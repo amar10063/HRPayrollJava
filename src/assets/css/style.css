@@ -785,3 +785,25 @@ footer p{ color:#194b4f; font-weight:400; font-size:0.6875rem; margin:0; line-he
 .businessBox li{ width:100%;}
 }
 
+.ng-valid {
+    border-color: lightgreen;
+  }
+  .ng-invalid {
+      border-color: red !important;
+  }
+  .errorred{
+      color: red !important ;
+      font-size:10px;
+  }
+  .ripple {
+    background-position: center!important;
+    transition: background 0.8s!important;
+  }
+  .ripple:hover {
+    background: #47a7f5 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000% !important;
+  }
+  .ripple:active {
+    background-color: #6eb9f7!important;
+    background-size: 100%!important;
+    transition: background 0s !important;
+  }
