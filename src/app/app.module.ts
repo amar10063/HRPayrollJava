@@ -8,6 +8,10 @@ import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { HrAreaPageComponent } from './hr-area-page/hr-area-page.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +19,11 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     LoginComponent,
     SignupComponent,
     DashboardComponent,
-    ForgetpasswordComponent
+    ForgetpasswordComponent,
+    HeaderComponent,
+    FooterComponent,
+    NavbarComponent,
+    HrAreaPageComponent
   ],
   imports: [
     BrowserModule, ReactiveFormsModule, FormsModule,
