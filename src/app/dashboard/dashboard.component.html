@@ -1,3 +1,143 @@
-<p>
-  dashboard works!
-</p>
+<div class="container-fluid gridBody">
+
+  <div class="buttonCon pull-right">
+
+      <button type="button" class="btn templateBg"><img src="{{'assets/images/home-icon.png'}}" alt="home" /></button>
+  </div>
+  <h5>ALL DEPARTMENTS</h5>
+  <div class="row">
+      <div class="col-7 col-md-7">
+          <div class="buttonCon pull-left">
+
+              <button type="button" class="btn templateBg" data-toggle="modal" data-target="#addNew"><img src="assets/images/new-icon.png" alt="new">Add New</button>
+
+          </div>
+      </div>
+
+      <div class="col-12 col-md-8 col-sm-9 pull-right col-lg-5 top-space">
+          <div class="show pull-left col-6 col-md-6 pl-5 pr-0 no-space">
+              <p>Show</p>
+              <form>
+                  <div class="form-group">
+                      <div class="styled-select slate">
+                          <select class="form-control" id="country" name="country">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                              <option>6</option>
+                              <option>7</option>
+                              <option>8</option>
+                          </select>
+                      </div>
+                  </div>
+
+              </form>
+              <p>Entries</p>
+          </div>
+          <div class="input-group mb-2 col-6 col-md-6 pull-right pl-0">
+              <input class="form-control border-secondary" type="search" placeholder="search">
+              <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button">
+                      <img src="assets/images/search-icon.png" alt="search" />
+                  </button>
+              </div>
+          </div>
+      </div>
+
+  </div>
+  <div>
+      <div>
+      </div>
+
+
+
+  </div>
+  <table class="table greyBorder mb-4">
+    <thead>
+      <tr class="lightGreen">
+        <th>Name</th>
+        <th>Description</th>
+        <th>Region</th>
+        <th>Parent</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John Doe</td>
+        <td>Description</td>
+        <td>Region </td>
+        <td>Parent</td>
+      </tr>      
+      <tr class="lightGrey">
+        <td>John Doe</td>
+        <td>Description</td>
+        <td>Region </td>
+        <td>Parent</td>
+      </tr>
+      <tr>
+        <td>John Doe</td>
+        <td>Description</td>
+        <td>Region </td>
+        <td>Parent</td>
+      </tr>      
+      <tr class="lightGrey">
+        <td>John Doe</td>
+        <td>Description</td>
+        <td>Region </td>
+        <td>Parent</td>
+      </tr>
+      <tr>
+        <td>John Doe</td>
+        <td>Description</td>
+        <td>Region </td>
+        <td>Parent</td>
+      </tr>      
+      
+      <tr class="lightGrey">
+        <td>John Doe</td>
+        <td>Description</td>
+        <td>Region </td>
+        <td>Parent</td>
+     </tr>
+ 
+    </tbody>
+  </table>
+
+  <div class="buttonCon pull-left mt-3">
+
+      <button type="button" class="btn templateBg" id="btnEdit" onclick="Edit();" value="Add New"><img src="{{'assets/images/edit-icon.png'}}" alt="edit" />Edit</button>
+
+
+      <button type="button" class="btn templateBg" id="btnDelete" data-toggle="modal" data-target="#deletePopup"><img src="assets/images/delete-icon.png" alt="delete" />Delete</button>
+
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="addNew">
+  <div class="modal-dialog modal-dialog-centered" id="Div3">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5>Departments</h5>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+              <form name="myForm" onsubmit="return checkFormValidation();" class="hr-form col-12 col-md-12" style="padding:0px;">
+                  <div class="form-inline mb-2">
+                      <label for="name" class="col-4 col-md-4">Name:</label>
+                      <input type="text" class="form-control col-7 col-md-7" onkeyup="RemoveClass()" id="txtName" name="username" placeholder="Name" />
+                  </div>
+                  <div class="form-inline mb-2">
+                      <label for="email" class="col-4 col-md-4">Description:</label>
+                      <input type="text" onkeyup="RemoveClass()" class="form-control col-7 col-md-7" id="txtDescription" name="description" placeholder="Description" />
+                  </div><div class="form-inline mb-2">
+                      <label for="email" class="col-4 col-md-4">Location:</label> <input type="text" class="form-control col-7 col-md-7" id="ddlLocation" name="Location" style="margin-top:1px" />
+                  </div><div class="form-inline mb-2"> <label for="Parent" class="col-4 col-md-4">Parent:</label> <input type="text" class="form-control col-7 col-md-7" id="ddlParent" name="Parent" /></div>
+              </form>
+          </div><div class="modal-footer"><button type="button" id="btnSave" class="btn btn-submit" onclick="SaveDepartment();" style="padding:4px;">SUBMIT</button></div>
+      </div>
+  </div>
+</div>

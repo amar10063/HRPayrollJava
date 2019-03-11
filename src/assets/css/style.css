@@ -788,9 +788,7 @@ footer p{ color:#194b4f; font-weight:400; font-size:0.6875rem; margin:0; line-he
 .ng-valid {
     border-color: lightgreen;
   }
-  .ng-invalid {
-      border-color: red !important;
-  }
+  
   .errorred{
       color: red !important ;
       font-size:10px;

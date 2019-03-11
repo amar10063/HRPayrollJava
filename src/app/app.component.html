@@ -1,7 +1,17 @@
-<!-- <nav>
-  <a routerLink="/login">Login </a>
-  <a routerLink="/signup">Sign up</a>
-  <a routerLink="/dashboard">Dashboard</a>
- 
-</nav> -->
-<router-outlet></router-outlet>
+
+<!-- <router-outlet></router-outlet> -->
+<div id="wrapper" >
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-2 col-md-2 templateBg p-0 navHeight" *ngIf='(this.router1.url !== "/login" && this.router1.url !== "/signup" && this.router1.url !== "/forgetpassword")'>
+              <app-navbar></app-navbar>
+          </div>
+          <div class="col-10 col-md-10 p-0">
+              <app-header *ngIf='(this.router1.url !== "/login" && this.router1.url !== "/signup" && this.router1.url !== "/forgetpassword")'></app-header>
+              <router-outlet></router-outlet>
+          </div>
+          <app-footer *ngIf='(this.router1.url !== "/login" && this.router1.url !== "/signup" && this.router1.url !== "/forgetpassword")'></app-footer>
+
+      </div>
+  </div>
+</div>

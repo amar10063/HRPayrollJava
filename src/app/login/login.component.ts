@@ -8,25 +8,23 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) { }
+
   loginForm: FormGroup;
-
+  submitted = false;
   ngOnInit() {
-
-  }
-  onSubmit() {
-    this.loginForm = this.createFormGroup();
-
-
-  }
-
-  createFormGroup() {
-    return this.formBuilder.group({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required])
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     });
   }
+  onSubmit() {
+    this.submitted = true;
 
-  get f() {
-    return this.loginForm.controls;
+    if (this.loginForm.invalid) {
+      return;
+    }
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.loginForm.value));
   }
+
+  get f() { return this.loginForm.controls; }
 }
