@@ -11,7 +11,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { HrAreaPageComponent } from './hr-area-page/hr-area-page.component';
+
 
 @NgModule({
   declarations: [
@@ -22,8 +22,8 @@ import { HrAreaPageComponent } from './hr-area-page/hr-area-page.component';
     ForgetpasswordComponent,
     HeaderComponent,
     FooterComponent,
-    NavbarComponent,
-    HrAreaPageComponent
+    NavbarComponent
+    
   ],
   imports: [
     BrowserModule, ReactiveFormsModule, FormsModule,

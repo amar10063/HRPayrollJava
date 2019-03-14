@@ -3,7 +3,7 @@
       <div class="row align-items-center">
         <div class="col-8 mx-auto col-md-8 logBox">
           <!--<img class="img-fluid" src="images/signin.jpg" alt="">-->
-          <div class="logo"><img class="img-fluid" src="images/logo.png" alt=""/></div>
+          <div class="logo"><img class="img-fluid" src="{{'assets/images/logo.png'}}" /></div>
           <div class="mainCon">
                <div class="leftCon col-6 col-md-6">
               <h2>Welcome to Our Site</h2>
@@ -13,23 +13,27 @@
               <h6>Create Your Account</h6>
               <div class="signupBody">
                   <form>
-                      <div class="form-group">
+                      <div class="form-group" [formGroup]="signupform">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" formControlName="formControlEnterName" name="username" placeholder="Enter Name" >
+                        <input type="text" class="form-control" formControlName="name"  placeholder="Enter Name" [ngClass]="{'is-invalid': submitted && f.name.errors}" >
+                      <div *ngIf="submitted && f.name.errors">
+                      <div *ngIf="f.name.errors.required" class="errorred">Name is required.</div>
+                      
+                      </div>
                       </div>
                       <div class="form-group">
                         <label for="email">Email ID</label>
-                        <input type="email" class="form-control" formControlName="formControlEmail" name="username" placeholder="Enter Email ID" >
+                        <input type="email" class="form-control" formControlName="email" placeholder="Enter Email ID" >
                       </div>
                       <div class="form-group">
                         <label for="pwd">Password</label>
-                        <input type="password" class="form-control" formControlName="formControlPassword" name="password"  placeholder="Enter Password">
+                        <input type="password" class="form-control" formControlName="password"  placeholder="Enter Password">
                       </div>
                       <div class="form-group">
                         <label for="pwd1">Confirm Password</label>
-                        <input type="password" class="form-control" formControlName="formControlConfirmPassword" name="password"  placeholder="Confirm Password">
+                        <input type="password" class="form-control" formControlName="confirmpassword"   placeholder="Confirm Password">
                       </div>
-                      <button type="buttonSubmit" class="btn templateBg">SIGN UP</button>
+                      <button type="submit" (click)="signupform()" class="btn templateBg">SIGN UP</button>
                 </form>
                   </div>
                   <div class="loginfooter text-center">

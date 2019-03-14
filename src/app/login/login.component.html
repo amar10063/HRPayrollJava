@@ -3,19 +3,23 @@
     <div class="row align-items-center">
       <div class="col-8 mx-auto col-md-8 logBox">
 
-        <div class="logo"><img class="img-fluid" src="~/Content/images/logo.png" alt="" /></div>
+       
         <div class="mainCon">
-          <div class="leftCon col-6 col-md-6">
-            <h2>Welcome to Our Site</h2>
+          <div class="row">
+          <div class="leftCon col-12 col-md-6 col-sm-6">
+              <div class="logo"><img class="img-fluid" src="assets/images/logo.png" alt="" /></div>
+              <div class="logintext">
+            <h2>Welcome !</h2>
             <h6>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h6>
+              </div>
           </div>
-          <div class="rightCon col-6 col-md-6">
+          <div class="rightCon col-12 col-md-6 col-sm-6">
             <h6>Sign In</h6>
             <div class="loginBody">
-              <form [formGroup]="loginForm">
+              <form [formGroup]="loginForm" class="forms">
                 <div class=" form-group">
                   <label for="usr">Email</label>
-                  <input type="text" formControlName="email" class="form-control" [ngClass]="{'is-invalid': submitted && f.email.errors}" />
+                  <input type="text" placeholder="Enter E-mail" formControlName="email" class="form-control" [ngClass]="{'is-invalid': submitted && f.email.errors}" />
                   <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                     <div *ngIf="f.email.errors.required" class="errorred">Email is required</div>
                     <div *ngIf="f.email.errors.email" class="errorred">Email must be a valid email address
@@ -26,7 +30,7 @@
                 </div>
                 <div class="form-group">
                   <label for="pwd">Password</label>
-                  <input type="password" formControlName="password" class="form-control" [ngClass]="{'is-invalid': submitted && f.password.errors}" />
+                  <input type="password" placeholder="Enter Password" formControlName="password" class="form-control" [ngClass]="{'is-invalid': submitted && f.password.errors}" />
                   <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                     <div *ngIf="f.password.errors.required" class="errorred">Password is required</div>
                     <div *ngIf="f.password.errors.minlength" class="errorred">Password must be at least 6
@@ -45,11 +49,12 @@
 
             <div class="loginfooter">
               <p><a routerLink="/forgetpassword">Forgot User ID or password?</a></p>
-              <p><a class="createAcc" routerLink="/signup">Create an account</a></p>
+              <!-- <p><a class="createAcc" routerLink="/signup">Create an account</a></p> -->
 
             </div>
 
           </div>
+        </div>
           <div class="clearfix"></div>
 
         </div>
