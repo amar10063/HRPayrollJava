@@ -5,7 +5,7 @@ import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 const routes: Routes = [
-{ path: '', redirectTo: '/signup', pathMatch: 'full' },
+{ path: '', redirectTo: '/login', pathMatch: 'full' },
 { path: 'dashboard', component: DashboardComponent },
 { path: 'login', component: LoginComponent},
 { path: 'forgetpassword', component: ForgetpasswordComponent },

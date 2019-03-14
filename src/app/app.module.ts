@@ -16,6 +16,7 @@ import { HrmoduleComponent } from './HRPayroll/hrmodule/hrmodule.component';
 import { FinanceComponent } from './HRPayroll/finance/finance.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { FinanceComponent } from './HRPayroll/finance/finance.component';
     EmployeeComponent,
     HrmoduleComponent,
     FinanceComponent
+
   ],
   imports: [
     BrowserModule, ReactiveFormsModule, FormsModule,
