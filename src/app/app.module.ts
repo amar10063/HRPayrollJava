@@ -32,7 +32,7 @@ import { FinanceComponent } from './HRPayroll/finance/finance.component';
     EmployeeComponent,
     HrmoduleComponent,
     FinanceComponent
-   
+
   ],
   imports: [
     AgGridModule.withComponents([]),
