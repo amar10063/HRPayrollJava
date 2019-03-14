@@ -42,7 +42,7 @@ a:hover{color:#3d7f7f;}
 .img-fluid{padding:10% 10% 0% 10%;}
 .logintext{padding:10% 10%;}
 .container{ max-width: 1300px !important;}
-.navHeight{ min-height:800px}
+.navHeight{ min-height:650px !important;}
 input::placeholder{color:#969696 !important;}
 p{font-size: 0.6875rem !important;}
 thead>tr>th, tbody>tr>td{ font-size:0.6875rem !important}
@@ -277,9 +277,9 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill, inpu
 .smLogo{ padding:5px 20px }
 ul.navbar-nav{ width:100%}
 .navbar-nav li{ border-top:1px solid #719bab; padding:10px 10px 10px 20px; }
-a.nav-link{ color:#fff; font-size:0.825rem; line-height:1.2}
+a.nav-link{ color:#fff !important; font-size:0.825rem; line-height:1.2}
 .arrow{ padding-right:10px; padding-bottom: 5px;}
-.topNav{ padding:20px; border-bottom:2px solid #398d94;}
+.topNav{    padding: 5px 15px; border-bottom:2px solid #398d94;}
 .gridBody{ padding:20px; overflow:hidden; margin-bottom: 40px;}
 .gridBody h5{font-size: 1.2rem;}
 .width-18{ width:18%}
@@ -809,3 +809,10 @@ footer p{ color:#194b4f; font-weight:400; font-size:0.6875rem; margin:0; line-he
     transition: background 0s !important;
   }
   .dropdown-menu{background:transparent !important;}
+  label {    display: inline-block;    color: #3e3e3e;    font-size: 0.6875rem;   font-weight: 600;}
+  .pullright{float:right;}
+  .setting{padding-right:10%; color: #3e3e3e !important;     padding-top: 5px;   font-size: 0.6875rem;   font-weight: 600;}
+  .setting a{    font-size: 0.6875rem;  color: #3e3e3e !important;   padding: 0 5px;}
+  .setting a:hover {    color: #009688 !important;    text-decoration: underline !important;}
+  .setting ul{   background:#fff !important;    padding: 0;}
+  .setting ul li{border-bottom: 1px solid #caece9;}
