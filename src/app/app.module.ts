@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -12,6 +11,10 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HrAreaPageComponent } from './hr-area-page/hr-area-page.component';
+import { EmployeeComponent } from './HRPayroll/employee/employee.component';
+import { HrmoduleComponent } from './HRPayroll/hrmodule/hrmodule.component';
+import { FinanceComponent } from './HRPayroll/finance/finance.component';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { HrAreaPageComponent } from './hr-area-page/hr-area-page.component';
     HeaderComponent,
     FooterComponent,
     NavbarComponent,
-    HrAreaPageComponent
+    HrAreaPageComponent,
+    EmployeeComponent,
+    HrmoduleComponent,
+    FinanceComponent
   ],
   imports: [
     BrowserModule, ReactiveFormsModule, FormsModule,
