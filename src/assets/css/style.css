@@ -768,7 +768,7 @@ thead.scrollbar, tfoot.scrollbar{ overflow:hidden; height: 32px; margin-bottom: 
 #payChecks tfoot { background-color:#b7dbde}
 #payChecks tfoot td{ border-top:0}
 
-footer{ width:100%; padding:10px 30px 5px; background-color:#e6e2e2; border-top:1px solid #398d94; overflow:hidden; position: fixed; bottom: 0; left: 0; z-index: 1000;}
+footer{ width:100%;  background-color:#e6e2e2; border-top:1px solid #398d94; overflow:hidden; position: fixed; bottom: 0; left: 0; z-index: 1000;}
 footer img{ padding-left:10px}
 footer p{ color:#194b4f; font-weight:400; font-size:0.6875rem; margin:0; line-height: 26px;}
 @media (min-width:1200px)
@@ -815,4 +815,7 @@ footer p{ color:#194b4f; font-weight:400; font-size:0.6875rem; margin:0; line-he
   .setting a{    font-size: 0.6875rem;  color: #3e3e3e !important;   padding: 0 5px;}
   .setting a:hover {    color: #009688 !important;    text-decoration: underline !important;}
   .setting ul{   background:#fff !important;    padding: 0;}
-  .setting ul li{border-bottom: 1px solid #caece9;}
+  .setting ul li{border-bottom: 1px solid #e0e8e8;}
+  .textcenter{    text-align: center;}
+  .tinny-footer{border-bottom:1px solid #fff;background: #ccc9c9;}
+  .tinny-footer span{padding:2px;}
