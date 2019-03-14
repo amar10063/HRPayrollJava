@@ -1,6 +1,12 @@
+
+@import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
+@import "../node_modules/ag-grid-community/dist/styles/ag-theme-balham.css";
+body{overflow-x: hidden;}
+
 .errorred{
     color: red !important ;
     font-size:10px;
 }
-body{overflow-x: hidden;}
+
+
 
