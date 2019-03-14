@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AgGridModule } from 'ag-grid-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -16,6 +17,7 @@ import { HrmoduleComponent } from './HRPayroll/hrmodule/hrmodule.component';
 import { FinanceComponent } from './HRPayroll/finance/finance.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,8 +32,10 @@ import { FinanceComponent } from './HRPayroll/finance/finance.component';
     EmployeeComponent,
     HrmoduleComponent,
     FinanceComponent
+   
   ],
   imports: [
+    AgGridModule.withComponents([]),
     BrowserModule, ReactiveFormsModule, FormsModule,
     AppRoutingModule
   ],
