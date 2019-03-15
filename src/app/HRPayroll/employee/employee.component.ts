@@ -9,7 +9,7 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs = [
     { headerName: "All", checkboxSelection: true, field: "all", width: 60 },
-    { headerName: 'Employee Image', field: 'EmpImage', cellTemplate:"<img src='../assets/images/delete-icon.png' />", width: 100 },
+    { headerName: 'Employee Image', field: 'EmpImage', template:"<img src='../assets/images/profile-img-2.png' />", width: 100 },
     { headerName: 'Employee Name', field: 'EmpName', sortable: true, filter: true, width: 100 },
     { headerName: 'Designation', field: 'Designation', sortable: true, filter: true, width: 100 },
     { headerName: 'Department', field: 'Department', sortable: true, filter: true, width: 120 },
@@ -22,10 +22,10 @@ export class EmployeeComponent implements OnInit {
     { headerName: 'Date of Joining', field: 'JoiningDate', sortable: true, filter: true, width: 120 },
     { headerName: 'Reporting Heirarchy', field: 'Heirarchy', sortable: true, filter: true, width: 120,
     cellRenderer: function(params) {
-        return '<a href="https://www.google.com" target="_blank" style="text-decoration:underline; color:#3e3e3e">'+ params.value+'</a>'
+        return '<a href="#" target="_blank" style="text-decoration:underline; color:#3e3e3e">'+ params.value+'</a>'
     } },
     { headerName: 'Send Message', field: 'SendMessage', sortable: true, filter: true, width: 100,cellRenderer: function(params) {
-      return '<a href="https://www.google.com" target="_blank" style="text-decoration:underline; color:#3e3e3e">'+ params.value+'</a>'
+      return '<a href="#" target="_blank" style="text-decoration:underline; color:#3e3e3e">'+ params.value+'</a>'
   } }
 
   ];
@@ -41,7 +41,15 @@ export class EmployeeComponent implements OnInit {
   ];
 
   constructor() { }
-  ngOnInit() {
-  }
+ 
+  public show:boolean = false;
+  public buttonName:any = 'Add New';
 
+  ngOnInit () {  }
+
+ 
+  showhide(){   
+    this.show=true;
+     alert(this.show);
+  }
 }

@@ -1,0 +1,9 @@
+.headCon{ overflow: hidden;
+    background: #d9e3e4;
+    padding: 15px 0px 0px;
+    margin-bottom: 20px;}
+.empPhoto{ background: #398d94;
+        border-radius: 4px;
+        padding: 10px !important;}
+.empPhoto img{width:100%}
+#basic .formBody .form-inline label{ width:100% !important;  padding-top: 5px; }
