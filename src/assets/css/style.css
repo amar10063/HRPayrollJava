@@ -383,7 +383,7 @@ tbody>tr>td, thead>tr>th{ border-right:1px solid #d8dad9; font-size:0.875rem; co
 .formBody .form-inline{ margin-bottom: 0.7rem; position:relative }
 .formBody .form-inline label{ display:inline-block; color:#3e3e3e; font-size:10px; width:36%; font-weight: 600;}
 .formBody input{border:1px solid #a6a5a3; background:#eeede9; padding:.18rem .75rem;}
-.formBody textarea{ min-height:100px}
+
 .formBody input:focus, .formBody select:focus, .formBody textarea:focus{border-color:#57a4a6 !important; box-shadow:0 0 0 .16rem rgba(123,202,205,.25) !important}
 .formBody .form-control { width: 64%;}
 .formBody input::placeholder, .formBody textarea::placeholder{color:#3e3e3e; font-size:0.75rem; }
