@@ -50,6 +50,6 @@ export class EmployeeComponent implements OnInit {
  
   showhide(){   
     this.show=true;
-     alert(this.show);
+  
   }
 }
