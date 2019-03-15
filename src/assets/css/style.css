@@ -279,14 +279,14 @@ ul.navbar-nav{ width:100%}
 .navbar-nav li{ border-top:1px solid #719bab; padding:10px 10px 10px 20px; }
 a.nav-link{ color:#fff !important; font-size:0.825rem; line-height:1.2}
 .arrow{ padding-right:10px; padding-bottom: 5px;}
-.topNav{    padding: 5px 15px; border-bottom:2px solid #398d94;}
-.gridBody{ padding:20px; overflow:hidden; margin-bottom: 40px;}
+.topNav{    padding: 4px 15px; border-bottom:2px solid #398d94;}
+.gridBody{ padding:10px 20px; overflow:hidden; margin-bottom: 40px;background: #fff;}
 .gridBody h5{font-size: 1.2rem;}
 .width-18{ width:18%}
 .width-25{ width:25%}
 .buttonCon .btn{ color:#fff; border-radius:.17rem; padding: .21rem .75rem; font-size:0.6875rem; font-weight: 600; margin-right:5px}
 .buttonCon .btn img{ margin-right:5px; vertical-align: text-bottom}
-.gridBody h5{ color: #1f4c50; text-decoration: underline; padding-bottom: 20px; font-size: 1rem; font-weight: bold;}
+.gridBody h5{ color: #1f4c50; text-decoration: underline; padding-bottom: 3px; font-size: 1rem; font-weight: bold;}
 tbody>tr>td, thead>tr>th{ border-right:1px solid #d8dad9; font-size:0.875rem; color:#3e3e3e}
 .gridBody .form-control { color: #3e3e3e; background-color: #f5f5f5; border: 1px solid #b6ced8; font-size: 0.6875rem;}
 .tableDropdown .form-control { color: #3e3e3e; background-color: #f5f5f5; border: 1px solid #b6ced8 !important; width:100% !important; border-radius:0; font-size: 0.6875rem;}
@@ -338,14 +338,14 @@ tbody>tr>td, thead>tr>th{ border-right:1px solid #d8dad9; font-size:0.875rem; co
 .panel-heading {padding: 0; border:0;  border-bottom: 1px solid #398d94;}
 .panel-title>a, .panel-title>a:active{
 	display:block;
-	padding:3px 0px;
+	padding:1px 0px;
   	color:#398d94;
   	font-size:.875rem;
   	font-weight:600;
   	word-spacing:3px;
 	text-decoration:none;
 }
-.panel-body{ padding:10px 10px 0 0; font-size:14px}
+.panel-body{ padding:7px 10px 0 0; font-size:14px}
 .panel-heading  a:before {
 	padding-top:5px;
  /*  content: "\02C5";  */
@@ -362,8 +362,8 @@ tbody>tr>td, thead>tr>th{ border-right:1px solid #d8dad9; font-size:0.875rem; co
     padding: 5px 15px;
     /* text-decoration: underline; */
     font-size: 0.825rem;}
-    .panel-heading h4{margin-bottom:.2rem !important;}
-.panel-body ul{ list-style:none; padding:0}
+    .panel-heading h4{margin-bottom:.1rem !important;}
+.panel-body ul{ list-style:none; padding:0; margin-bottom:.4rem;}
 .panel-body ul li{ display:inline-block; vertical-align: top; width: 10%; }
 .panel-body ul li:last-child{ padding-right:0}
 .panel-body ul li img{ margin: 0 auto; display: block;width: 35px;height:auto}
@@ -371,7 +371,7 @@ tbody>tr>td, thead>tr>th{ border-right:1px solid #d8dad9; font-size:0.875rem; co
     line-height: 1.2;
     text-decoration: none;
     font-weight: bold;
-    color: #3e3e3e;
+    color: #9c9a9a;
 	text-align:center}
 
 .textCon p{font-size: 0.6875rem;
@@ -769,7 +769,7 @@ thead.scrollbar, tfoot.scrollbar{ overflow:hidden; height: 32px; margin-bottom: 
 #payChecks tfoot { background-color:#b7dbde}
 #payChecks tfoot td{ border-top:0}
 
-footer{ width:100%;  background-color:#e6e2e2; border-top:1px solid #398d94; overflow:hidden; position: fixed; bottom: 0; left: 0; z-index: 1000;}
+footer{ width:100%;  background-color:#e6e2e2; border-top:2px solid #398d94; overflow:hidden; position: fixed; bottom: 0; left: 0; z-index: 1000;}
 footer img{ padding-left:10px}
 footer p{ color:#194b4f; font-weight:400; font-size:0.6875rem; margin:0; line-height: 26px;}
 @media (min-width:1200px)
@@ -825,3 +825,4 @@ footer p{ color:#194b4f; font-weight:400; font-size:0.6875rem; margin:0; line-he
     color: #155169 !important;
     text-decoration: underline;
 }
+.companyName{font-size:.825rem;}
