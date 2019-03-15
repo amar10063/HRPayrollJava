@@ -50,8 +50,9 @@ export class EmployeeComponent implements OnInit {
   public hide: boolean = true;
   public buttonName: any = 'Add New';
 
+
   ngOnInit() { }
-  true
+
 
   showhide() {
     this.show = true;
@@ -62,5 +63,6 @@ export class EmployeeComponent implements OnInit {
     this.show = false;
     this.hide = true;
    // alert(this.hide);
+
   }
 }
