@@ -1,5 +1,6 @@
 <div class="container-fluid gridBody">
     <div class="buttonCon pull-right">
+        <button type="button" class="btn templateBg" (click)="showhide2()"><img src="../assets/images/home-icon.png" alt="home" />Back</button>
         <button type="button" class="btn templateBg"><img src="../assets/images/home-icon.png" alt="home" />Home</button>
     </div>
     <h5>EMPLOYEES</h5>
@@ -42,19 +43,19 @@
         </div>
     </div>
     
-            <div class="card-body p-0">
+            <div class="card-body p-0"  *ngIf="hide">
                     <ag-grid-angular style="width:100%; height: auto"
                                      class="ag-theme-balham"
                                      [rowData]="rowData"
                                      [columnDefs]="columnDefs"></ag-grid-angular>
     
-    
+                                     <div class="buttonCon pull-left mt-3">
+                                        <button type="button" class="btn templateBg" value="Add New"><img src="../assets/images/edit-icon.png" alt="edit" />Edit</button>
+                                
+                                        <button type="button" class="btn templateBg"><img src="../assets/images/delete-icon.png" alt="delete" />Delete</button>
+                                    </div>
     </div>
-    <div class="buttonCon pull-left mt-3">
-        <button type="button" class="btn templateBg" value="Add New"><img src="../assets/images/edit-icon.png" alt="edit" />Edit</button>
-
-        <button type="button" class="btn templateBg"><img src="../assets/images/delete-icon.png" alt="delete" />Delete</button>
-    </div>
+  
 <div class="clearfix"></div>
     <div class="pay-head clearfix mt-4" style="border:1px solid #2e6c71" *ngIf="show" id="payHead">
             <div class="col-2 col-md-2 p-0 pull-left" style="box-shadow: 1px 1px 1px #c0c1c1;">
