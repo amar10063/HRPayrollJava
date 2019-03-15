@@ -335,17 +335,17 @@ tbody>tr>td, thead>tr>th{ border-right:1px solid #d8dad9; font-size:0.875rem; co
 #notification{ display:inline-block}
 #notification .fa-bell{ color:#3a8d94}
 
-.panel-heading {padding: 0; border:0; background: #719bab; border-bottom: 2px solid #398d94; margin-bottom: 1%;}
+.panel-heading {padding: 0; border:0;  border-bottom: 1px solid #398d94;}
 .panel-title>a, .panel-title>a:active{
 	display:block;
-	padding:10px 15px;
-  	color:#fff;
-  	font-size:1rem;
+	padding:3px 0px;
+  	color:#398d94;
+  	font-size:.875rem;
   	font-weight:600;
   	word-spacing:3px;
 	text-decoration:none;
 }
-.panel-body{ padding:10px; font-size:14px}
+.panel-body{ padding:10px 10px 0 0; font-size:14px}
 .panel-heading  a:before {
 	padding-top:5px;
  /*  content: "\02C5";  */
@@ -362,11 +362,12 @@ tbody>tr>td, thead>tr>th{ border-right:1px solid #d8dad9; font-size:0.875rem; co
     padding: 5px 15px;
     /* text-decoration: underline; */
     font-size: 0.825rem;}
+    .panel-heading h4{margin-bottom:.2rem !important;}
 .panel-body ul{ list-style:none; padding:0}
-.panel-body ul li{ display:inline-block; vertical-align: top; width: 16%; margin-bottom: 40px;}
+.panel-body ul li{ display:inline-block; vertical-align: top; width: 10%; }
 .panel-body ul li:last-child{ padding-right:0}
-.panel-body ul li img{ margin: 0 auto; display: block;}
-.panel-body ul li a{ display:block; font-size:0.825rem;
+.panel-body ul li img{ margin: 0 auto; display: block;width: 35px;height:auto}
+.panel-body ul li a{ display:block; font-size:0.625rem;
     line-height: 1.2;
     text-decoration: none;
     font-weight: bold;
@@ -811,11 +812,16 @@ footer p{ color:#194b4f; font-weight:400; font-size:0.6875rem; margin:0; line-he
   .dropdown-menu{background:transparent !important;}
   label {    display: inline-block;    color: #3e3e3e;    font-size: 0.6875rem;   font-weight: 600;}
   .pullright{float:right;}
-  .setting{padding-right:10%; color: #3e3e3e !important;     padding-top: 5px;   font-size: 0.6875rem;   font-weight: 600;}
+  .setting{padding-right:15%; color: #3e3e3e !important;     padding-top: 5px;   font-size: 0.6875rem;   font-weight: 600;}
   .setting a{    font-size: 0.6875rem;  color: #3e3e3e !important;   padding: 0 5px;}
   .setting a:hover {    color: #009688 !important;    text-decoration: underline !important;}
   .setting ul{   background:#fff !important;    padding: 0;}
   .setting ul li{border-bottom: 1px solid #e0e8e8;}
   .textcenter{    text-align: center;}
-  .tinny-footer{border-bottom:1px solid #fff;background: #ccc9c9;}
+  .tinny-footer{border-bottom:1px solid #fff;background: #fff;}
   .tinny-footer span{padding:2px;}
+  .right-border{padding-right:5px;border-right:1px solid #333;}
+  a:hover {
+    color: #155169 !important;
+    text-decoration: underline;
+}
