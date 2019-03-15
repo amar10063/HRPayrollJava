@@ -381,7 +381,7 @@ tbody>tr>td, thead>tr>th{ border-right:1px solid #d8dad9; font-size:0.875rem; co
 .formBody{ padding:2% 1%}
 .formBody form{ width:100%}
 .formBody .form-inline{ margin-bottom: 0.7rem; position:relative }
-.formBody .form-inline label{ display:inline-block; color:#3e3e3e; font-size:0.6875rem; width:36%; font-weight: 600;}
+.formBody .form-inline label{ display:inline-block; color:#3e3e3e; font-size:10px; width:36%; font-weight: 600;}
 .formBody input{border:1px solid #a6a5a3; background:#eeede9; padding:.18rem .75rem;}
 .formBody textarea{ min-height:100px}
 .formBody input:focus, .formBody select:focus, .formBody textarea:focus{border-color:#57a4a6 !important; box-shadow:0 0 0 .16rem rgba(123,202,205,.25) !important}
@@ -730,13 +730,13 @@ form[name="recordForm"]{ width:100%; padding-right:20px; padding-left:20px}
     padding: 0;
     color: #3e3e3e;}
 .payHead a.nav-link {
-    color: #1f4c50;
+    color: #1f4c50 !important;
     font-size: 0.725rem;
     line-height: 1.5;
     font-weight: 600;
 }
 .payHead .navbar-nav li{ padding:0; border-top:0}
-.payHead .navbar-nav li a{ padding:16px 10px; border-top: 1px solid #719bab;}
+.payHead .navbar-nav li a{ padding:12px 10px; border-top: 1px solid #719bab;}
 .payHead .navbar-nav .nav-item.show .nav-link, .payHead .navbar-nav .nav-link.active {
     border-radius: 0;
     background-color: #2e6d72 !important;
