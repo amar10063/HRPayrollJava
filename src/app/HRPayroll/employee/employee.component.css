@@ -7,13 +7,16 @@
         padding: 10px !important;}
 .empPhoto img{width:100%}
 #basic .formBody .form-inline label{ width:100% !important;  padding-top: 5px; }
+
 #payHead label{font-weight:bold}
 #payHead .scrollbar {
     max-height: 348px;
+
     width: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
     margin-bottom: 0;
+
     z-index: 100;
 }
 .formBody .form-inline {
@@ -35,9 +38,16 @@ width:20%; }
 #skillsList ul li.list-item .skillList{border-bottom: 1px solid #AAC7D0 !important; padding-bottom: 8px; padding-left: 12px;}
 #skillsList ul li.list-item i{font-weight: bold; padding-right: 6px;}
 
+
 .educationTitle{
     margin-bottom: 5px;}
     .educationTitle span{    font-size: 11px;
         font-weight: 500;}
         .mainTitle{      font-size: 14px !important;
             font-weight: 500 !important;border-bottom: 1px solid #d4d2d2;}
+
+.emergency{
+            top: -4px;
+        left: -2px;       
+}
+
