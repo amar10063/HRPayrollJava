@@ -243,17 +243,77 @@
                 <div class="form-inline col-12 col-md-12 p-0 mt-1">
                   <div class="col-8 col-md-8 p-0">
 
-                  </div>
-                  <div class="col-4 col-md-4 pr-0">
-                    <label for="pay" class="col-4 col-md-4 pull-left p-0">Anniversary</label>
-                    <input type="text" class="form-control addrCon formSelect ml-3 col-7 col-md-7" name="name"
-                      placeholder="dd/mm/yyyy">
 
+            <div class="buttonCon pull-right mt-3 mb-2 mr-1">
+                <button type="button" class="btn templateBg" value="Add New">Add</button>
+        
+                
+            </div>
+            <div class="buttonCon pull-right mt-3 mb-2 mr-1">
+              <button type="button" class="btn templateBg" value="Add New"><i class="fa fa-pencil " aria-hidden="true"></i>Save</button>
+      
+              
+          </div>
+          <div class="formBody clearfix">
+          <form class="employeebkgcolour">
+            <div style="position: relative;top:0;right:10px;float: right;">
+                <i class="fa fa-pencil editicon" aria-hidden="true"></i>
+            </div>
+        <div class="pull-left col-12 col-md-12 pl-0" style="position:relative;"> 
+          <div class="row">
+          <div class="col-12 col-md-8 pl-0 pr-0">                 
+        <div class="form-inline">
+          <label for="Employee Name" class="col-3 col-md-3">Address 1:</label>
+         <textarea rows="1" class="form-control col-6 col-md-7 ptb-4" style="margin-left: -6%;" id="name" name="name" placeholder=" Address"></textarea>
+        </div>
+      </div> 
+
+<div class="col-12 col-md-4 pl-0">
+  <div class="row">
+  <div class="col-12 col-md-4 pl-0">
+    <div class="form-inline">
+        <label for="Flat Rate" class="col-3 col-md-12">Permanent:</label>
+        <div class="form-check checkCol " style="margin: 0 auto;">
+            <label class="checkBox smallFont mb-0"> 
+              <input type="checkbox" name="option1" checked="">
+              <span class="checkmark check1 mt-1"></span> </label>
+          </div>
+        </div>
+
+               
                   </div>
+
+
+</div>
+
+
+<div class="col-12 col-md-4 pl-0">
+    <div class="form-inline">
+        <label for="Flat Rate" class="col-3 col-md-12 pl-0">Communication:</label>
+        <div class="form-check checkCol " style="margin: 0 auto;">
+            <label class="checkBox smallFont mb-0"> 
+              <input type="checkbox" name="option1" checked="">
+              <span class="checkmark check1 mt-1"></span> </label>
+          </div>
+        </div>
+
+
+</div>
+
+<div class="col-12 col-md-3 pl-0">
+    <div class="form-inline">
+        <label for="Flat Rate" class="col-3 col-md-12 pl-0">Current:</label>
+        <div class="form-check checkCol " style="margin: 0 auto;">
+            <label class="checkBox smallFont mb-0"> 
+              <input type="checkbox" name="option1" checked="">
+              <span class="checkmark check1 mt-1"></span> </label>
+          </div>
+        </div>
 
 
 
                 </div>
+
 
                 <div class="form-inline col-12 col-md-12 p-0 mt-1">
                   <div class="col-4 col-md-4 p-0">
@@ -265,24 +325,52 @@
                     <label for="pay" class="col-lg-5 col-md-5 pull-left">Employment Date:</label>
                     <label for="pay" class="addrCon formSelect col-7 col-md-7">dd/mm/yyyy</label>
 
-                  </div>
-                  <div class="col-4 col-md-4 p-0">
 
-                  </div>
 
-                </div>
+</div>
 
-              </div>
-              <div class="col-1 col-md-1 pull-left p-0 empPhoto"><img src="../assets/images/profile-image.png" alt="profile Image" /></div>
-              <div class="clearfix"></div>
 
-            </form>
-            <div class="buttonCon pull-left mt-2">
-              <button type="submit" class="btn templateBg" data-toggle="modal" onclick="javascript: document.location.href='#'">Save</button>
-            </div>
-          </div>
+
+
+
+
+    </div>
+      <div class="row">
+      <div class="col-12 col-md-4 pl-0">
+      <div class="form-inline">
+        <label for="Employee Name" class="col-3 col-md-4"></label>
+        <input type="text" class="form-control addrCon formSelect ml-3 col-7 col-md-7" name="name" placeholder="country">
+      </div>
+    </div>
+    <div class="col-12 col-md-4 pl-0">
+      <div class="form-inline">
+        
+        <input type="text" class="form-control addrCon formSelect  col-7 col-md-7" name="name" placeholder="State">
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-md-4 pl-0">
+    <div class="form-inline">
+      <label for="Employee Name" class="col-3 col-md-4"></label>
+      <input type="text" class="form-control addrCon formSelect ml-3 col-7 col-md-7" name="name" placeholder="City">
+    </div>
+  </div>
+  <div class="col-12 col-md-4 pl-0">
+    <div class="form-inline">
+      
+      <input type="text" class="form-control addrCon formSelect  col-7 col-md-7" name="name" placeholder="Pin code">
+    </div>
+  </div>
+</div>
+
+
 
         </div>
+         
+          </form>
 
         <div id="AddressBook" class="container tab-pane fade">
 
@@ -290,47 +378,159 @@
             <button type="button" class="btn templateBg" value="Add New">Add</button>
 
 
-          </div>
-          <div class="buttonCon pull-right mt-3 mb-2 mr-1">
-            <button type="button" class="btn templateBg" value="Add New">Save</button>
 
-
-          </div>
-          <div class="formBody clearfix">
-            <form class="employeebkgcolour">
+          <form class="employeebkgcolour">
               <div style="position: relative;top:0;right:10px;float: right;">
-                <i class="fa fa-pencil editicon" aria-hidden="true"></i>
+                  <i class="fa fa-pencil editicon" aria-hidden="true"></i>
               </div>
-              <div class="pull-left col-12 col-md-12 pl-0" style="position:relative;">
+          <div class="pull-left col-12 col-md-12 pl-0" style="position:relative;"> 
+            <div class="row">
+            <div class="col-12 col-md-8 pl-0">                 
+          <div class="form-inline">
+            <label for="Employee Name" class="col-3 col-md-2">Phone No:</label>
+            <input type="text" class="form-control addrCon formSelect ml-3 col-7 col-md-7" name="name" >
+            
+            
+            
+          </div>
+          
+        </div> 
+        <div class="col-2 col-md-4  pl-0">
+            <div class="col-12 col-md-4 pl-0">
+                <div class="form-inline">
+                    <label for="Flat Rate" class="col-3 col-md-12">Official:</label>
+                    <div class="form-check checkCol " style="margin: 0 auto;">
+                        <label class="checkBox smallFont mb-0"> 
+                          <input type="checkbox" name="option1" checked="">
+                          <span class="checkmark check1 mt-1"></span> </label>
+                      </div>
+                    </div>
+              
+              
+              </div>
+
+
+        </div>
+
+        
+  
+  
+      </div>
+      <div class="row">
+          <div class="col-12 col-md-8 pl-0">                 
+        <div class="form-inline">
+          <label for="Employee Name" class="col-3 col-md-2"></label>
+          <input type="text" class="form-control addrCon formSelect ml-3 col-7 col-md-7" name="name" >
+        </div>
+      </div> 
+
+
+    </div>
+      
+  
+    
+  
+  
+    
+          </div>
+           
+            </form>
+
+
+
+
+
+
+
+
+            <form class="employeebkgcolour">
+                <div style="position: relative;top:0;right:10px;float: right;">
+                    <i class="fa fa-pencil editicon" aria-hidden="true"></i>
+                </div>
+            <div class="pull-left col-12 col-md-12 pl-0" style="position:relative;"> 
+              <div class="row">
+              <div class="col-12 col-md-8 pl-0">                 
+            <div class="form-inline">
+              <label for="Employee Name" class="col-3 col-md-2">Email ID:</label>
+              <input type="text" class="form-control addrCon formSelect ml-3 col-7 col-md-7" name="name" >
+             
+              
+            </div>
+            
+          </div> 
+  
+          
+    
+    
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-8 pl-0">                 
+          <div class="form-inline">
+            <label for="Employee Name" class="col-3 col-md-2"></label>
+            <input type="text" class="form-control addrCon formSelect ml-3 col-7 col-md-7" name="name" >
+          </div>
+        </div> 
+  
+  
+      </div>
+        
+    
+      
+    
+    
+      
+            </div>
+             
+              </form>
+
+
+
+
+              <form class="employeebkgcolour">
+                  <div style="position: relative;top:0;right:10px;float: right;">
+                      <i class="fa fa-pencil editicon" aria-hidden="true"></i>
+                  </div>
+              <div class="pull-left col-12 col-md-12 pl-0" style="position:relative;"> 
                 <div class="row">
-                  <div class="col-12 col-md-6 pl-0">
-                    <div class="form-inline">
-                      <label for="Employee Name" class="col-3 col-md-4">Address 1:</label>
-                      <textarea rows="1" cols="50" class="form-control col-6 col-md-7 ptb-4" style="margin-left: -6%;"
-                        id="name" name="name" placeholder=" Address"></textarea>
-                    </div>
+                  <div class="col-12 col-md-8 pl-0">
+                      <div _ngcontent-c4="" class="form-inline"><label _ngcontent-c4="" class="col-4 col-md-3" for="Flat Rate">Emergency:</label><div _ngcontent-c4="" class="form-check checkCol pull-left" style="margin-left: -5%;"><label _ngcontent-c4="" class="checkBox smallFont mb-0"><input _ngcontent-c4="" checked="" name="option1" type="checkbox"><span _ngcontent-c4="" class="checkmark check1"></span></label></div></div>
                   </div>
-                  <div class="col-12 col-md-2 pl-0">
-                    <div class="form-inline">
-                      <label for="Flat Rate" class="col-3 col-md-7">Permanent:</label>
-                      <div class="form-check checkCol pull-left" style="margin-bottom: 14px;">
-                        <label class="checkBox smallFont mb-0">
-                          <input type="checkbox" name="option1" checked="">
-                          <span class="checkmark check1 mt-1"></span> </label>
-                      </div>
-                    </div>
+                <div class="col-12 col-md-8 pl-0">                 
+              <div class="form-inline">
+                <label for="Employee Name" class="col-3 col-md-2">Name:</label>
+                <input type="text" class="form-control addrCon formSelect ml-3 col-7 col-md-7" name="name" >
+               
+                
+              </div>
+              
+            </div> 
+    
+            
+      
+      
+          </div>
+          <div class="row">
+              <div class="col-12 col-md-8 pl-0">                 
+            <div class="form-inline">
+              <label for="Employee Name" class="col-3 col-md-2">Contact No.:</label>
+              <input type="text" class="form-control addrCon formSelect ml-3 col-7 col-md-7" name="name" >
+            </div>
+          </div> 
+    
+    
+        </div>
+          
+      
+        
+      
+      
+        
+              </div>
+               
+                </form>
+         </div> 
+         
 
-
-                  </div>
-                  <div class="col-12 col-md-2 pl-0">
-                    <div class="form-inline">
-                      <label for="Flat Rate" class="col-3 col-md-8 pl-0">Communication:</label>
-                      <div class="form-check checkCol pull-left" style="margin-bottom: 14px;">
-                        <label class="checkBox smallFont mb-0">
-                          <input type="checkbox" name="option1" checked="">
-                          <span class="checkmark check1 mt-1"></span> </label>
-                      </div>
-                    </div>
 
 
                   </div>
