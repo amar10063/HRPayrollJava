@@ -13,11 +13,11 @@ export class ForgetpasswordComponent implements OnInit {
   submitted: false;
 
   ngOnInit() {
-  submitted:true;
- 
-}
+    submitted: true;
+
+  }
 
 
-  forget() { alert(this.forgetpassword.controls);}
-  get f( ){return; }
+  forget() { alert(this.forgetpassword.controls); }
+  get f() { return; }
 }
