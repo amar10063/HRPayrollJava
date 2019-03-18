@@ -1,29 +1,46 @@
 <div class="container-fluid gridBody">
-  <div class="buttonCon pull-right">
-    <button type="button" class="btn templateBg" (click)="showhide2()"><img src="../assets/images/back-icon.png" alt="home" />Back</button>
-    <button type="button" class="btn templateBg"><img src="../assets/images/home-icon.png" alt="home" />Home</button>
-  </div>
-  <h5>EMPLOYEES</h5>
 
-  <div class="row">
-    <div class="col-7 col-md-7">
-      <div class="buttonCon pull-left">
-        <button type="button" class="btn templateBg" (click)="showhide()"><img src="../assets/images/new-icon.png" alt="new">{{buttonName}}</button>
-
-      </div>
+    <div class="buttonCon pull-right">
+        <button type="button" class="btn templateBg" (click)="showhide2()"><img src="../assets/images/back-icon.png" alt="home" />Back</button>
+        <button type="button" class="btn templateBg"><img src="../assets/images/home-icon.png" alt="home" />Home</button>
     </div>
-    <div class="col-12 col-md-8 col-sm-9 pull-right col-lg-5 top-space">
-      <div class="show pull-left col-6 col-md-6 no-space p-0">
-        <form class="col-12 col-md-12 col-sm-12">
-          <div class="form-group">
-            <div class="styled-select slate">
-              <select class="form-control" id="country" name="country" placeholder="Select">
-                <option>Select</option>
-                <option>Name</option>
-                <option>Designation</option>
-                <option>Department</option>
+    <h5>EMPLOYEES</h5>
+    
+    <div class="row mt-3">
+        <div class="col-7 col-md-7">
+            <div class="buttonCon pull-left">
+                <button type="button" class="btn templateBg" (click)="showhide()"><img src="../assets/images/new-icon.png" alt="new">{{buttonName}}</button>
+        
+        
+       
+        
+            </div>
+        </div>
+        <div class="col-12 col-md-8 col-sm-9 pull-right col-lg-5 top-space">
+            <div class="show pull-left col-6 col-md-6 no-space p-0">
+                <form class="col-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                                <div class="styled-select slate">
+                                    <select class="form-control" id="country" name="country" placeholder="Select">
+                                        <option>Select</option>
+                                        <option>Name</option>
+                                        <option>Designation</option>
+                                        <option>Department</option>
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                </form>
+                
+            </div>
+            <div class="input-group mb-2 col-6 col-md-6 pull-right p-0">
+                <input class="form-control border-secondary" type="search" placeholder="search " style="height:28px">
+                <div class="input-group-append" style="height:28px">
+                        <button class="btn btn-outline-secondary" type="button">
+                            <img src="../assets/images/search-icon.png" alt="search" />
+                        </button>
+                    </div>
 
-              </select>
             </div>
           </div>
         </form>
@@ -48,84 +65,90 @@
 
       <button type="button" class="btn templateBg"><img src="../assets/images/delete-icon.png" alt="delete" />Delete</button>
     </div>
-  </div>
 
-  <div class="clearfix"></div>
-  <div class="pay-head clearfix mt-4" style="border:1px solid #2e6c71" *ngIf="show" id="payHead">
-    <div class="col-2 col-md-2 p-0 pull-left" style="box-shadow: 1px 1px 1px #c0c1c1;">
+  
+<div class="clearfix"></div>
+    <div class="pay-head clearfix" style="border:1px solid #2e6c71" *ngIf="show" id="payHead">
+            <div class="col-2 col-md-2 p-0 pull-left" style="box-shadow: 1px 1px 1px #c0c1c1;">
 
-      <div class="payHead">
-        <ul class="nav navbar-nav" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#basic">
-              Basic Details</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#AddressBook">
-              Address Book</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#educationalQualifications">
-              Educational Qualifications</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#mobile">
-              Professional Qualifications</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#experience">
-              Employment Experience</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#bonus">
-              Skills</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#allowance">
-              Achievements/Certificates</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#bankDetails">
-              Bank Details</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#document">
-              Documents</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#bonus">
-              Notes</a>
-          </li>
+                    <div class="payHead">
+      <ul class="nav navbar-nav" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#basic">
+          Basic Details</a>					 				  
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#AddressBook">
+          Address Book</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#conveyance">
+          Educational Qualifications</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#mobile">
+          Professional Qualifications</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#experience">
+          Employment Experience</a>					 				  
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#skills">
+          Skills</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#allowance">
+          Achievements/Certificates</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#mobile">
+          Bank Details</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#variables">
+          Documents</a>					 				  
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#bonus">
+             Notes</a>
+        </li>
+        
+        
+      </ul>
 
-
-        </ul>
-      </div>
     </div>
     <div class="col-10 col-md-10 pull-left p-0">
       <div class="tab-content col-md-12 col-12 p-0">
         <div id="basic" class="container tab-pane active">
-          <div class="formBody clearfix">
-            <form>
-              <div class="pull-left col-11 col-md-11 pl-0">
-                <div class="form-inline col-12 col-md-12 p-0">
-                  <div class="col-4 col-md-4 p-0">
-                    <label for="Employee Code" class="col-5 col-md-5 pl-0">Employee Code:</label>
-                    <input type="text" class="form-control col-12 col-md-6 ptb-4" id="name" name="name" placeholder="Employee Code">
 
-                  </div>
-                  <div class="col-4 col-md-4 p-0">
-                    <label for="pay" class="col-5 col-md-5 pull-left">Title:</label>
-                    <select class="form-control addrCon formSelect col-7 col-md-7" id="type" name="type" style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
-                      <option>Select</option>
-                      <option>Mr</option>
-                      <option>Mrs</option>
-                      <option>Ms</option>
-                    </select>
+            <div class="buttonCon pull-right mt-3 mb-2 mr-1">
+                 <button type="button" class="btn templateBg"><img src="../assets/images/save-icon.png" alt="save" />Save</button>
+                
+            </div>
+            <div class="clearfix"></div>
+          <div class="formBody clearfix pt-0">
+          <form style="background-color:#e7eeef; border-radius: 5px; padding: 12px 5px 5px 15px;">
+        <div class="pull-left col-11 col-md-11 pl-0">                    
+        <div class="form-inline col-12 col-md-12 p-0">
+                <div class="col-4 col-md-4 p-0">
+                        <label for="Employee Code" class="col-5 col-md-5 pl-0">Employee Code:</label>
+                        <input type="text" class="form-control col-12 col-md-6 ptb-4" id="name" name="name" placeholder="Employee Code">
+        
+                </div>
+                <div class="col-4 col-md-4 p-0">
+                        <label for="pay" class="col-5 col-md-5 pull-left">Title:</label>
+                        <select class="form-control addrCon formSelect col-7 col-md-7" id="type" name="type" style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
+                                <option>Select</option>
+                                <option>Mr</option>
+                                <option>Mrs</option>
+                                <option>Ms</option>
+                              </select>
+                       
+                </div>
+                <div class="col-4 col-md-4 p-0">
+                       
 
-                  </div>
-                  <div class="col-4 col-md-4 p-0">
-
-                  </div>
                 </div>
                 <div class="form-inline col-12 col-md-12 p-0 mt-1">
                   <div class="col-4 col-md-4 p-0">
@@ -239,6 +262,18 @@
 
 
                 </div>
+
+           
+        </div>
+        <div class="col-1 col-md-1 pull-left p-0 empPhoto"><img src="../assets/images/profile-image.png" alt="profile Image" /></div>
+        <div class="clearfix"></div>
+        
+          </form>
+          
+         </div> 
+         
+        </div>
+
 
                 <div class="form-inline col-12 col-md-12 p-0 mt-1">
                   <div class="col-8 col-md-8 p-0">
@@ -838,110 +873,191 @@
 
         </div>
         <div id="experience" class="container tab-pane fade">
+            <div class="buttonCon pull-right mt-3 mb-2 mr-1">
+                <button type="button" class="btn templateBg" value="Add New"><img src="../assets/images/new-icon.png" alt="edit" />Add</button>
+                <button type="button" class="btn templateBg"><img src="../assets/images/save-icon.png" alt="save" />Save</button>
+                
+            </div>
           <div class="formBody clearfix">
-            <form>
-              <div class="pull-left col-12 col-md-12 pl-0">
-                <div class="form-inline col-12 col-md-12 p-0">
-                  <div class="col-6 col-md-6 p-0">
-                    <label for="Employee Code" class="col-5 col-md-5 pl-0">Company Name:</label>
-                    <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="Company Name">
 
-                  </div>
-                  <div class="col-6 col-md-6 p-0">
-                    <label for="pay" class="col-5 col-md-5 pull-left pl-0">From Date:</label>
-                    <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="dd/mm/yyyy">
-
-
-                  </div>
-
-                </div>
-                <div class="form-inline col-12 col-md-12 p-0">
-                  <div class="col-6 col-md-6 p-0">
-                    <label for="pay" class="col-5 col-md-5 pull-left pl-0">To Date:</label>
-                    <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="dd/mm/yyyy">
-
-
-                  </div>
-                  <div class="col-6 col-md-6 p-0">
-                    <label for="Employee Code" class="col-5 col-md-5 pl-0">Designation:</label>
-                    <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="Developer">
-
-                  </div>
-                </div>
-                <div class="form-inline col-12 col-md-12 p-0">
-                  <div class="col-6 col-md-6 p-0">
-                    <label for="pay" class="col-5 col-md-5 pull-left pl-0">Department:</label>
-                    <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="Information Technology">
-
-
-                  </div>
-                  <div class="col-6 col-md-6 p-0">
-                    <label for="Employee Code" class="col-5 col-md-5 pl-0">Joining Date:</label>
-                    <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="dd/mm/yyyy">
-
-                  </div>
-                </div>
-                <div class="form-inline col-12 col-md-12 p-0">
-                  <div class="col-6 col-md-6 p-0">
-                    <label for="pay" class="col-5 col-md-5 pull-left pl-0">Exit Date:</label>
-                    <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="dd/mm/yyyy">
-
-
-                  </div>
-                  <div class="col-6 col-md-6 p-0">
-                    <label for="Employee Code" class="col-5 col-md-5 pl-0">Experience:</label>
-                    <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="2 Years">
-
-                  </div>
-                </div>
-
-              </div>
-              <div class="buttonCon pull-left col-5 col-md-5 p-0">
-
-                <button type="button" class="btn templateBg pull-left col-3 col-md-3" value="Add New"><img src="../assets/images/new-icon.png"
-                    alt="edit" />Add</button>
-
-                <button type="button" class="btn templateBg pull-left col-3 col-md-3"><img src="../assets/images/save-icon.png"
-                    alt="delete" />Save</button>
-
-              </div>
-            </form>
-          </div>
+          <form class="scrollbar">
+            <div class="clearfix mb-2" style="background-color:#e7eeef; border-radius: 5px; padding: 12px 5px 5px 15px;">
+        
+            <div class="pull-left col-12 col-md-12 pl-0">                    
+          <div class="form-inline col-12 col-md-12 p-0">
+            <div class="col-12 col-md-12 p-0">
+                    <label for="Employee Code" class="col-12 col-md-2 pl-0">Company Name:</label>
+                    <input type="text" class="form-control col-12 col-md-9 ptb-4" style="margin-left: 11px;" name="name" placeholder="Company Name">
+    
+            </div>
+                      
+      </div>
+      <div class="form-inline col-12 col-md-12 p-0">
+         
+        <div class="col-6 col-md-6 p-0">
+                <label for="Employee Code" class="col-5 col-md-5 pl-0">Designation:</label>
+                <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="Developer">
 
         </div>
-        <div id="bonus" class="container tab-pane fade">
-          <div class="formBody clearfix">
-            <form>
-              <div class="pull-left col-12 col-md-12 pl-0">
-                <div class="form-inline">
-                  <label for="Employee Name" class="col-3 col-md-3 pl-0">Skill 1:</label>
-                  <input type="text" class="form-control col-6 col-md-6 ptb-4" id="name" name="name" placeholder="Enter Skill">
-                </div>
-                <div class="form-inline">
-                  <label for="Employee Name" class="col-3 col-md-3 pl-0">Skill 2:</label>
-                  <input type="text" class="form-control col-6 col-md-6 ptb-4" id="name" name="name" placeholder=" Enter Skill">
-                </div>
-                <div class="form-inline">
-                  <label for="Employee Name" class="col-3 col-md-3 pl-0">Skill 3:</label>
-                  <input type="text" class="form-control col-6 col-md-6 ptb-4" id="name" name="name" placeholder=" Enter Skill">
-                </div>
-                <div class="form-inline">
-                  <label for="Employee Name" class="col-3 col-md-3 pl-0">Skill 4:</label>
-                  <input type="text" class="form-control col-6 col-md-6 ptb-4" id="name" name="name" placeholder=" Enter Skill">
-                </div>
+        <div class="col-6 col-md-6 p-0">
+            <label for="pay" class="col-5 col-md-5 pull-left pl-0">Department:</label>
+            <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="Information Technology">
+  
+           
+    </div>
+  </div>
+  <div class="form-inline col-12 col-md-12 p-0">
+      
+    <div class="col-6 col-md-6 p-0">
+            <label for="Employee Code" class="col-5 col-md-5 pl-0">Joining Date:</label>
+            <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="dd/mm/yyyy">
 
+    </div>
+    <div class="col-6 col-md-6 p-0">
+        <label for="pay" class="col-5 col-md-5 pull-left pl-0">Exit Date:</label>
+        <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="dd/mm/yyyy">
+
+       
+</div>
+</div>
+<div class="form-inline col-12 col-md-12 p-0">
+    <div class="col-6 col-md-6 p-0">
+          <label for="Experience" class="col-5 col-md-5 pull-left pl-0">Experience:</label>
+          <label for="Experience" class="col-12 col-md-6 ptb-4" style="margin-left: 11px;">2Years</label>
+
+  </div>
+  <div class="col-6 col-md-6 p-0">
+      <label for="pay" class="col-5 col-md-5 pull-left pl-0">Location:</label>
+      <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="Location">
+
+     
+</div>
+</div>
+           
+        </div>
+      </div>
+      <div class="clearfix mb-2" style="position:relative; background-color:#e7eeef; border-radius: 5px; padding: 12px 5px 5px 15px;">
+          <div style="position: absolute; top:10px; right:10px;">
+                  <i class="fa fa-pencil" aria-hidden="true" style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i>
               </div>
-              <div class="buttonCon pull-left col-5 col-md-5 p-0">
-
-                <button type="button" class="btn templateBg pull-left col-3 col-md-3" value="Add New"><img src="../assets/images/new-icon.png"
-                    alt="edit" />Add Skill</button>
-
-                <button type="button" class="btn templateBg pull-left col-3 col-md-3"><img src="../assets/images/save-icon.png"
-                    alt="delete" />Save</button>
-
-              </div>
-            </form>
+              <div class="pull-left col-12 col-md-12 pl-0">                    
+        
+   
+  <div class="form-inline col-12 col-md-12 p-0">
+      <div class="col-12 col-md-12 p-0">
+            <h5 class="pl-0">Software Developer <span>(IT Department)</span></h5>
+            <p class="pl-0">YoekiSoft Pvt Ltd</p>
+            <p class="pl-0">Jan 2016 - Present  <span>3 yrs 3mos</span></p>
+            <p class="pl-0"> Noida</p>
+  
+    </div>
+  </div>
+             
           </div>
+        </div>
+        
+          </form>
+         </div> 
+         
+
+        </div>
+        <div id="skills" class="container tab-pane fade">
+            <div class="buttonCon pull-right mt-3 mb-2 mr-1">
+                <button type="button" class="btn templateBg" value="Add New"><img src="../assets/images/new-icon.png" alt="edit" />Add</button>
+                <button type="button" class="btn templateBg"><img src="../assets/images/save-icon.png" alt="save" />Save</button>
+                
+            </div>
+          <div class="formBody clearfix">
+
+          <form>
+              <div class="clearfix mb-2" style="position:relative; background-color:#e7eeef; border-radius: 5px; padding: 12px 5px 5px 15px;">
+                    <div style="position: absolute; top:10px; right:10px;">
+                            <i class="fa fa-pencil" aria-hidden="true" style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i>
+                        </div>
+            <div class="pull-left col-12 col-md-12 pl-0">                    
+         
+      <div class="form-inline col-12 col-md-12 p-0">
+         
+        <div class="col-12 col-md-12 p-0">
+                <label for="Skills" class="col-12 col-md-2 pl-0">Skills:</label>
+                <input type="text" class="form-control col-12 col-md-9 ptb-4" name="name" placeholder="Skills">
+        </div>
+        
+  </div>
+  <div class="form-inline col-12 col-md-12 p-0" id="skillsList">
+      <ul class="list-group">
+          <li class="list-item">
+            <div class="skillList">
+              <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>C#</label>
+          </div>
+        </li>
+          <li class="list-item">
+              <div class="skillList">
+                  <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>MVC</label>
+              </div>
+            </li>
+            <li class="list-item">
+                <div class="skillList">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>Java</label>
+                </div>
+              </li>
+              <li class="list-item">
+                  <div class="skillList">
+                      <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>HTML</label>
+                  </div>
+                </li>
+                <li class="list-item">
+                    <div class="skillList">
+                        <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>CSS</label>
+                    </div>
+                  </li>
+                  <li class="list-item">
+                      <div class="skillList">
+                          <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>SCSS</label>
+                      </div>
+                    </li>
+                    <li class="list-item">
+                        <div class="skillList">
+                            <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>Angular 4</label>
+                        </div>
+                      </li>
+                      <li class="list-item">
+                          <div class="skillList">
+                              <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>Angular 5</label>
+                          </div>
+                        </li>
+                        <li class="list-item">
+                            <div class="skillList">
+                                <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>Angular 6</label>
+                            </div>
+                          </li>
+                          <li class="list-item">
+                              <div class="skillList">
+                                  <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>Angular 7</label>
+                              </div>
+                            </li>
+                            <li class="list-item">
+                                <div class="skillList">
+                                    <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>React</label>
+                                </div>
+                              </li>
+                              <li class="list-item">
+                                  <div class="skillList">
+                                      <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>SQL</label>
+                                  </div>
+                                </li>
+           </ul>
+
+  </div>
+  
+           
+        </div>
+      </div>
+     
+        
+          </form>
+         </div> 
+         
 
         </div>
         <div id="document" class="container tab-pane fade">
