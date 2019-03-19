@@ -736,7 +736,7 @@ form[name="recordForm"]{ width:100%; padding-right:20px; padding-left:20px}
     font-weight: 600;
 }
 .payHead .navbar-nav li{ padding:0; border-top:0}
-.payHead .navbar-nav li a{ padding:12px 10px; border-top: 1px solid #719bab;}
+.payHead .navbar-nav li a{ padding:12px 6px; border-top: 1px solid #719bab;}
 .payHead .navbar-nav .nav-item.show .nav-link, .payHead .navbar-nav .nav-link.active {
     border-radius: 0;
     background-color: #2e6d72 !important;
