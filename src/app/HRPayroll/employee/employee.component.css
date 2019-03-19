@@ -67,12 +67,19 @@ width:20%; }
         font-weight: 600;}
     .duration{    font-size: 11px;
         font-weight: 600;}
-        .phoneeditpart{
+    #payHead p.phoneeditpart{
             background-color: #ffffff;
-            padding: 8px 5px 8px 10px;
+            padding: 3px 5px 3px 7px;
             width: 12%;
             border-radius: 10px;
+            margin-bottom: 4px !important;
         }
         td.textHighlight{padding:5px 5px 0px}
-        .phoneeditpart{margin-bottom: 5px; padding: 3px 5px 3px 7px;}
-
+      
+.payHeadBtn{font-size: 12px;
+    color: #21656b;
+    font-weight: 600;
+    background: none;
+    box-shadow: none;
+    border: 0; }
+    .payHeadBtn i{padding-right:5px}
