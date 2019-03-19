@@ -39,6 +39,7 @@ width:20%; }
 #skillsList ul li.list-item i{font-weight: bold; padding-right: 6px;}
 
 #achievements .scrollbar{max-height:260px}
+#bankDetails .scrollbar{ max-height:280px}
 .educationTitle{
     margin-bottom: 5px;}
     .educationTitle span{    font-size: 11px;
@@ -53,4 +54,12 @@ width:20%; }
 
 .partition{ position: relative;
     border-bottom: 1px solid #b6ced8;}
+    .accountDetails p{ font-weight:bold}
+    .accountDetails p span{ font-weight:600}
+    .instituteName{    font-size: 13px;
+        font-weight: 600;}
+    .Qualifications{    font-size: 12px;
+        font-weight: 600;}
+    .duration{    font-size: 11px;
+        font-weight: 600;}
 
