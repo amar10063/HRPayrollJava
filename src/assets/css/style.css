@@ -835,9 +835,16 @@ footer p{ color:#194b4f; font-weight:400; font-size:0.6875rem; margin:0; line-he
     padding: 6px;
     border-radius: 5px;
 }
-.educationTitle{
-    margin-bottom: 5px;}
-    .educationTitle span{    font-size: 11px;
-        font-weight: 500;}
+.educationTitle{    margin-bottom: 5px;}
+    .educationTitle span{    font-size: 11px;        font-weight: 500;}
         .mainTitle{      font-size: 14px !important;
             font-weight: 500 !important;border-bottom: 1px solid #d4d2d2;}
+
+        #educationalQualifications .form-inline{position: relative;}
+        .addbutton{position: absolute; right:0;top:0;}   
+        .instituteName{    font-size: 13px;
+            font-weight: 600;}
+        .Qualifications{    font-size: 12px;
+            font-weight: 600;}
+        .duration{    font-size: 11px;
+            font-weight: 600;}
