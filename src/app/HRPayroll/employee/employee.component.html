@@ -1,7 +1,8 @@
 <div class="container-fluid gridBody">
-    <div class="buttonCon pull-right">
+  <div class="buttonCon pull-right">
 
-        <button type="button" class="btn templateBg" (click)="showhide2()"><img src="../assets/images/back-icon.png" alt="home" />Back</button>
+    <button type="button" class="btn templateBg" (click)="showhide2()"><img src="../assets/images/back-icon.png" alt="home" />Back</button>
+
 
         <button type="button" class="btn templateBg"><img src="../assets/images/home-icon.png" alt="home" />Home</button>
     </div>
@@ -106,83 +107,89 @@
         
         
       </ul>
+
     </div>
-            </div>
-            <div class="col-10 col-md-10 pull-left p-0">
-            <div class="tab-content col-md-12 col-12 p-0">
+    <div class="col-10 col-md-10 pull-left p-0">
+      <div class="tab-content col-md-12 col-12 p-0">
         <div id="basic" class="container tab-pane active">
+
 
             <div class="buttonCon pull-right mt-2 mb-2 mr-1">
                  <button type="button" class="btn templateBg"><img src="../assets/images/save-icon.png" alt="save" />Save</button>
                 
             </div>
             <div class="clearfix"></div>
+
           <div class="formBody clearfix pt-0">
 
-          <form class="employeebkgcolour">
+            <form class="employeebkgcolour">
 
-        <div class="pull-left col-11 col-md-11 pl-0">                    
-        <div class="form-inline col-12 col-md-12 p-0">
-                <div class="col-4 col-md-4 p-0">
-                        <label for="Employee Code" class="col-5 col-md-5 pl-0">Employee Code:</label>
-                        <input type="text" class="form-control col-12 col-md-6 ptb-4" id="name" name="name" placeholder="Employee Code">
-        
+              <div class="pull-left col-11 col-md-11 pl-0">
+                <div class="form-inline col-12 col-md-12 p-0">
+                  <div class="col-4 col-md-4 p-0">
+                    <label for="Employee Code" class="col-5 col-md-5 pl-0">Employee Code:</label>
+                    <input type="text" class="form-control col-12 col-md-6 ptb-4" id="name" name="name" placeholder="Employee Code">
+
+                  </div>
+                  <div class="col-4 col-md-4 p-0">
+                    <label for="pay" class="col-5 col-md-5 pull-left">Title:</label>
+                    <select class="form-control addrCon formSelect col-7 col-md-7" id="type" name="type" style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
+                      <option>Select</option>
+                      <option>Mr</option>
+                      <option>Mrs</option>
+                      <option>Ms</option>
+                    </select>
+
+                  </div>
+                  <div class="col-4 col-md-4 p-0">
+
+                  </div>
                 </div>
-                <div class="col-4 col-md-4 p-0">
-                        <label for="pay" class="col-5 col-md-5 pull-left">Title:</label>
-                        <select class="form-control addrCon formSelect col-7 col-md-7" id="type" name="type" style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
-                                <option>Select</option>
-                                <option>Mr</option>
-                                <option>Mrs</option>
-                                <option>Ms</option>
-                              </select>
-                       
-                </div>
-                <div class="col-4 col-md-4 p-0">
-                       
-                </div>
-          </div>
-        <div class="form-inline col-12 col-md-12 p-0 mt-1">
-            <div class="col-4 col-md-4 p-0">
+                <div class="form-inline col-12 col-md-12 p-0 mt-1">
+                  <div class="col-4 col-md-4 p-0">
                     <label for="pay" class="col-5 col-md-5 pl-0 pull-left">First Name:</label>
-                    <input type="text" class="form-control addrCon formSelect col-7 col-md-7" id="name" name="name" placeholder="First Name">
-                   
-            </div>
-            <div class="col-4 col-md-4 p-0">
+                    <input type="text" class="form-control addrCon formSelect col-7 col-md-7" id="name" name="name"
+                      placeholder="First Name">
+
+                  </div>
+                  <div class="col-4 col-md-4 p-0">
                     <label for="pay" class="col-lg-5 col-md-5 pull-left">Middle Name:</label>
-                    <input type="text" class="form-control addrCon formSelect col-7 col-md-7" id="name" name="name" placeholder="Middle Name">
-                   
-            </div>
-            <div class="col-4 col-md-4 p-0">
+                    <input type="text" class="form-control addrCon formSelect col-7 col-md-7" id="name" name="name"
+                      placeholder="Middle Name">
+
+                  </div>
+                  <div class="col-4 col-md-4 p-0">
                     <label for="pay" class="col-5 col-md-5 pull-left">Last Name:</label>
-                    <input type="text" class="form-control addrCon formSelect col-7 col-md-7" id="name" name="name" placeholder="Last Name">
-                   
-            </div>
-          
-        </div>
-        <div class="form-inline col-12 col-md-12 p-0 mt-1">
-                <div class="col-4 col-md-4 p-0">
-                        <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Date of Birth:</label>
-                        <input type="text" class="form-control addrCon formSelect col-7 col-md-7" name="name" placeholder="dd/mm/yyyy">
-                       
+                    <input type="text" class="form-control addrCon formSelect col-7 col-md-7" id="name" name="name"
+                      placeholder="Last Name">
+
+                  </div>
+
                 </div>
-                <div class="col-4 col-md-4 p-0">
-                        <label for="pay" class="col-lg-5 col-md-5 pull-left">Age:</label>
-                        <label for="pay" class="addrCon formSelect col-7 col-md-7">22Years</label>
-                        
+                <div class="form-inline col-12 col-md-12 p-0 mt-1">
+                  <div class="col-4 col-md-4 p-0">
+                    <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Date of Birth:</label>
+                    <input type="text" class="form-control addrCon formSelect col-7 col-md-7" name="name" placeholder="dd/mm/yyyy">
+
+                  </div>
+                  <div class="col-4 col-md-4 p-0">
+                    <label for="pay" class="col-lg-5 col-md-5 pull-left">Age:</label>
+                    <label for="pay" class="addrCon formSelect col-7 col-md-7">22Years</label>
+
+                  </div>
+                  <div class="col-4 col-md-4 p-0">
+                    <label for="pay" class="col-5 col-md-5 pull-left">Department:</label>
+                    <select class="form-control addrCon formSelect col-7 col-md-7" id="type" name="type" style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
+                      <option>Select</option>
+                      <option>Sales</option>
+                      <option>IT</option>
+                      <option>Finance</option>
+                    </select>
+
+                  </div>
+
                 </div>
-                <div class="col-4 col-md-4 p-0">
-                        <label for="pay" class="col-5 col-md-5 pull-left">Department:</label>
-                        <select class="form-control addrCon formSelect col-7 col-md-7" id="type" name="type" style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
-                                <option>Select</option>
-                                <option>Sales</option>
-                                <option>IT</option>
-                                <option>Finance</option>
-                              </select>
-                       
-                </div>
-              
-            </div>
+
 
             <div class="form-inline col-12 col-md-12 p-0 mt-1">
                     <div class="col-4 col-md-4 p-0">
@@ -205,325 +212,109 @@
                             
                     </div>
                   
+
                 </div>
 
                 <div class="form-inline col-12 col-md-12 p-0 mt-1">
-                        <div class="col-8 col-md-8 p-0">
-                                <label for="pay" class="col-2 col-md-2 pull-left p-0">Gender:</label>
-                                <div class="formSelect clearfix col-10 col-md-10 pull-left ">
-                                        <div class="form-check checkCol col-4 col-md-4 pull-left">
-                                                <label class="checkBox">Male
-                                              <input type="radio" name="radio" checked="">
-                                              <span class="checkmark check mt-1"></span> </label>
-                                              </div>
-                                          <div class="form-check checkCol col-4 col-md-4 pull-left">
-                                                <label class="checkBox">Female
-                                              <input type="radio" name="radio">
-                                              <span class="checkmark check mt-1"></span> </label>
-                                              </div>
-                                           <div class="form-check checkCol col-4 col-md-4 pull-left">
-                                                    <label class="checkBox">Other
-                                                  <input type="radio" name="radio">
-                                                  <span class="checkmark check mt-1"></span> </label>
-                                                </div>
-        
-                                </div>
-                               
-                        </div>                     
-                        <div class="col-4 col-md-4 pr-0">
-                                <label for="pay" class="col-4 col-md-4 pull-left p-0">Marital Status:</label>
-                                <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
-                                        <div class="form-check checkCol col-6 col-md-6 pull-left">
-                                                <label class="checkBox">Married
-                                              <input type="radio" name="radio" checked="">
-                                              <span class="checkmark check mt-1"></span> </label>
-                                              </div>
-                                          <div class="form-check checkCol col-6 col-md-6 pull-left">
-                                                <label class="checkBox">Unmarried
-                                              <input type="radio" name="radio">
-                                              <span class="checkmark check mt-1"></span> </label>
-                                              </div>
-                                          
-        
-                                </div>
-                        </div>
-                        
-                  
-                      
-                    </div>
-                    
-                    <div class="form-inline col-12 col-md-12 p-0 mt-1">
-                      <div class="col-8 col-md-8 p-0">
-                             
-                      </div>                     
-                      <div class="col-4 col-md-4 pr-0">
-                              <label for="pay" class="col-4 col-md-4 pull-left p-0">Anniversary</label>
-                              <input type="text" class="form-control addrCon formSelect ml-3 col-7 col-md-7" name="name" placeholder="dd/mm/yyyy">
-                       
+                  <div class="col-8 col-md-8 p-0">
+                    <label for="pay" class="col-2 col-md-2 pull-left p-0">Gender:</label>
+                    <div class="formSelect clearfix col-10 col-md-10 pull-left ">
+                      <div class="form-check checkCol col-4 col-md-4 pull-left">
+                        <label class="checkBox">Male
+                          <input type="radio" name="radio" checked="">
+                          <span class="checkmark check mt-1"></span> </label>
                       </div>
-                      
-                
-                    
+                      <div class="form-check checkCol col-4 col-md-4 pull-left">
+                        <label class="checkBox">Female
+                          <input type="radio" name="radio">
+                          <span class="checkmark check mt-1"></span> </label>
+                      </div>
+                      <div class="form-check checkCol col-4 col-md-4 pull-left">
+                        <label class="checkBox">Other
+                          <input type="radio" name="radio">
+                          <span class="checkmark check mt-1"></span> </label>
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <div class="col-4 col-md-4 pr-0">
+                    <label for="pay" class="col-4 col-md-4 pull-left p-0">Marital Status:</label>
+                    <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
+                      <div class="form-check checkCol col-6 col-md-6 pull-left">
+                        <label class="checkBox">Married
+                          <input type="radio" name="radio" checked="">
+                          <span class="checkmark check mt-1"></span> </label>
+                      </div>
+                      <div class="form-check checkCol col-6 col-md-6 pull-left">
+                        <label class="checkBox">Unmarried
+                          <input type="radio" name="radio">
+                          <span class="checkmark check mt-1"></span> </label>
+                      </div>
+
+
+                    </div>
                   </div>
 
-                  <div class="form-inline col-12 col-md-12 p-0 mt-1">
-                    <div class="col-4 col-md-4 p-0">
-                            <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Reporting Heirarchy:</label>
-                            <label for="pay" class="addrCon formSelect col-7 col-md-7">Heirarchy</label>
-                            
-                    </div>
-                    <div class="col-4 col-md-4 p-0">
-                            <label for="pay" class="col-lg-5 col-md-5 pull-left">Employment Date:</label>
-                            <label for="pay" class="addrCon formSelect col-7 col-md-7">dd/mm/yyyy</label>
-                            
-                    </div>
-                    <div class="col-4 col-md-4 p-0">
-                           
-                    </div>
-                  
+
+
                 </div>
-           
-        </div>
-        <div class="col-1 col-md-1 pull-left p-0 empPhoto"><img src="../assets/images/profile-image.png" alt="profile Image" /></div>
-        <div class="clearfix"></div>
-        
-          </form>
 
-          
+                <div class="form-inline col-12 col-md-12 p-0 mt-1">
+                  <div class="col-8 col-md-8 p-0">
 
-         </div> 
-         
+                  </div>
+                  <div class="col-4 col-md-4 pr-0">
+                    <label for="pay" class="col-4 col-md-4 pull-left p-0">Anniversary</label>
+                    <input type="text" class="form-control addrCon formSelect ml-3 col-7 col-md-7" name="name"
+                      placeholder="dd/mm/yyyy">
+
+                  </div>
+
+
+
+                </div>
+
+                <div class="form-inline col-12 col-md-12 p-0 mt-1">
+                  <div class="col-4 col-md-4 p-0">
+                    <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Reporting Heirarchy:</label>
+                    <label for="pay" class="addrCon formSelect col-7 col-md-7">Heirarchy</label>
+
+                  </div>
+                  <div class="col-4 col-md-4 p-0">
+                    <label for="pay" class="col-lg-5 col-md-5 pull-left">Employment Date:</label>
+                    <label for="pay" class="addrCon formSelect col-7 col-md-7">dd/mm/yyyy</label>
+
+                  </div>
+                  <div class="col-4 col-md-4 p-0">
+
+                  </div>
+
+                </div>
+
+              </div>
+              <div class="col-1 col-md-1 pull-left p-0 empPhoto"><img src="../assets/images/profile-image.png" alt="profile Image" /></div>
+              <div class="clearfix"></div>
+
+            </form>
+
+
+
+          </div>
+
         </div>
 
         <div id="AddressBook" class="container tab-pane fade">
 
-            <div class="buttonCon pull-right mt-3 mb-2 mr-1">
-                <button type="button" class="btn templateBg" value="Add New">Add</button>
-        
-                
-            </div>
-            <div class="buttonCon pull-right mt-3 mb-2 mr-1">
-              <button type="button" class="btn templateBg" value="Add New"><i class="fa fa-pencil " aria-hidden="true"></i>Save</button>
-      
-              
+          <div class="buttonCon pull-right mt-3 mb-2 mr-1">
+            <button type="button" class="btn templateBg" value="Add New">Add</button>
+
+
           </div>
-          <div class="formBody clearfix scrollbar">
-          <form class="employeebkgcolour">
-            <div style="position: relative;top:0;right:10px;float: right;">
-                <i class="fa fa-pencil editicon" aria-hidden="true"></i>
-            </div>
-        <div class="pull-left col-12 col-md-12 pl-0" style="position:relative;"> 
-          <div class="row">
-          <div class="col-12 col-md-8 pl-0 pr-0">                 
-        <div class="form-inline">
-          <label for="Employee Name" class="col-3 col-md-3">Address 1:</label>
-         <textarea rows="1" class="form-control col-6 col-md-7 ptb-4" style="margin-left: -6%;" id="name" name="name" placeholder=" Address"></textarea>
-        </div>
-      </div> 
-
-<div class="col-12 col-md-4 pl-0">
-  <div class="row">
-  <div class="col-12 col-md-4 pl-0">
-    <div class="form-inline">
-        <label for="Flat Rate" class="col-3 col-md-12">Permanent:</label>
-        <div class="form-check checkCol " style="margin: 0 auto;">
-            <label class="checkBox smallFont mb-0"> 
-              <input type="checkbox" name="option1" checked="">
-              <span class="checkmark check1 mt-1"></span> </label>
-          </div>
-        </div>
-</div>
-<div class="col-12 col-md-4 pl-0">
-    <div class="form-inline">
-        <label for="Flat Rate" class="col-3 col-md-12 pl-0">Communication:</label>
-        <div class="form-check checkCol " style="margin: 0 auto;">
-            <label class="checkBox smallFont mb-0"> 
-              <input type="checkbox" name="option1" checked="">
-              <span class="checkmark check1 mt-1"></span> </label>
-          </div>
-        </div>
+          <div class="buttonCon pull-right mt-3 mb-2 mr-1">
+            <button type="button" class="btn templateBg" value="Add New"><i class="fa fa-pencil " aria-hidden="true"></i>Save</button>
 
 
-</div>
-
-<div class="col-12 col-md-3 pl-0">
-    <div class="form-inline">
-        <label for="Flat Rate" class="col-3 col-md-12 pl-0">Current:</label>
-        <div class="form-check checkCol " style="margin: 0 auto;">
-            <label class="checkBox smallFont mb-0"> 
-              <input type="checkbox" name="option1" checked="">
-              <span class="checkmark check1 mt-1"></span> </label>
-          </div>
-        </div>
-
-
-</div>
-</div>
-
-
-</div>
-    </div>
-      <div class="row">
-      <div class="col-12 col-md-4 pl-0">
-      <div class="form-inline">
-        <label for="Employee Name" class="col-3 col-md-4"></label>
-        <input type="text" class="form-control addrCon formSelect ml-3 col-7 col-md-7" name="name" placeholder="country">
-      </div>
-    </div>
-    <div class="col-12 col-md-4 pl-0">
-      <div class="form-inline">
-        
-        <input type="text" class="form-control addrCon formSelect  col-7 col-md-7" name="name" placeholder="State">
-      </div>
-    </div>
-    
-  </div>
-
-  <div class="row">
-    <div class="col-12 col-md-4 pl-0">
-    <div class="form-inline">
-      <label for="Employee Name" class="col-3 col-md-4"></label>
-      <input type="text" class="form-control addrCon formSelect ml-3 col-7 col-md-7" name="name" placeholder="City">
-    </div>
-  </div>
-  <div class="col-12 col-md-4 pl-0">
-    <div class="form-inline">
-      
-      <input type="text" class="form-control addrCon formSelect  col-7 col-md-7" name="name" placeholder="Pin code">
-    </div>
-  </div>
-</div>
-
-
-  
-        </div>
-         
-          </form>
-
-
-          <form class="employeebkgcolour">
-              <div style="position: relative;top:0;right:10px;float: right;">
-                  <i class="fa fa-pencil editicon" aria-hidden="true"></i>
-              </div>
-          <div class="pull-left col-12 col-md-12 pl-0" style="position:relative;"> 
-            <div class="row">
-            <div class="col-12 col-md-8 pl-0">                 
-          <div class="form-inline">
-            <label for="Employee Name" class="col-3 col-md-2">Phone No:</label>
-            <input type="text" class="form-control addrCon formSelect ml-3 col-7 col-md-7" name="name" >
-            
-                
-            
-          </div>
-          
-        </div> 
-        <div class="col-2 col-md-4  pl-0">
-            <div class="col-12 col-md-4 pl-0">
-                <div class="form-inline">
-                    <label for="Flat Rate" class="col-3 col-md-12">Official:</label>
-                    <div class="form-check checkCol " style="margin: 0 auto;">
-                        <label class="checkBox smallFont mb-0"> 
-                          <input type="checkbox" name="option1" checked="">
-                          <span class="checkmark check1 mt-1"></span> </label>
-                      </div>
-                    </div>
-              
-              
-              </div>
-
-
-        </div>
-
-        
-  
-  
-      </div>
-      <div class="row">
-          <div id="" class="col-md-12 col-sm-12 col-xs-12 no-padding-left">
-              <table id="TableSponsorBankCode" class="DimensionTable table table-striped table-hover mt-2">
-                  <tbody>
-                      <tr>
-                          <td class="CCtexTextareaHighlight" style="background-color: #f5f5f5;">
-                          </td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div> 
-
-
-    </div>
-
-    
-          </div>
-           
-            </form>
-
-            <form class="employeebkgcolour">
-                <div style="position: relative;top:0;right:10px;float: right;">
-                    <i class="fa fa-pencil editicon" aria-hidden="true"></i>
-                </div>
-            <div class="pull-left col-12 col-md-12 pl-0" style="position:relative;"> 
-              <div class="row">
-              <div class="col-12 col-md-8 pl-0">                 
-            <div class="form-inline">
-              <label for="Employee Name" class="col-3 col-md-2">Email ID:</label>
-              <input type="text" class="form-control addrCon formSelect ml-3 col-7 col-md-7" name="name" >
-             
-              
-            </div>
-            
-          </div> 
-        </div>
-        <div class="row">
-
-            <div id="" class="col-md-12 col-sm-12 col-xs-12 no-padding-left">
-
-                <table id="TableSponsorBankCode" class="DimensionTable table table-striped table-hover mt-2">
-                    <tbody>
-                        <tr>
-                            <td class="CCtexTextareaHighlight" style="background-color: #f5f5f5;">
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div> 
-  
-      </div>
-            </div>
-             
-              </form>
-
-              <form class="employeebkgcolour">
-                  <div style="position: relative;top:0;right:10px;float: right;">
-                      <i class="fa fa-pencil editicon" aria-hidden="true"></i>
-                  </div>
-              <div class="pull-left col-12 col-md-12 pl-0" style="position:relative;"> 
-                <div class="row">
-                  <div class="col-12 col-md-8 pl-0">
-                      <div ngcontent-c4="" class="form-inline"><label ngcontent-c4="" class="col-4 col-md-3" for="Flat Rate">Emergency:</label><div ngcontent-c4="" class="form-check checkCol pull-left emergency" style="margin-left: -5%;"><label ngcontent-c4="" class="checkBox smallFont mb-0"><input ngcontent-c4="" checked="" name="option1" type="checkbox"><span ngcontent-c4="" class="checkmark check1"></span></label></div></div>
-                  </div>
-                <div class="col-12 col-md-8 pl-0">                 
-              <div class="form-inline">
-                <label for="Employee Name" class="col-3 col-md-2">Name:</label>
-                <input type="text" class="form-control addrCon formSelect ml-3 col-7 col-md-7" name="name" >
-               
-              </div>
-            </div> 
-          </div>
-          <div class="row">
-              <div class="col-12 col-md-8 pl-0">                 
-            <div class="form-inline">
-              <label for="Employee Name" class="col-3 col-md-2">Contact No.:</label>
-              <input type="text" class="form-control addrCon formSelect ml-3 col-7 col-md-7" name="name" >
-            </div>
-          </div>     
-        </div>        
-              </div>
-               
-                </form>
-         </div> 
-
-        </div>
 
         <div id="educationalQualifications" class="container tab-pane fade">
           <div class="buttonCon pull-right mt-2 mb-2 mr-1">
@@ -565,6 +356,7 @@
     
     
                       </div>
+
                     </div>
                     <div class="form-inline col-12 col-md-12 p-0">
     
@@ -587,6 +379,7 @@
                  
     
                   </div>
+
                 </div>
                 <div class="clearfix mb-2 employeebkgcolour" style="position:relative">
                   <div style="position: absolute; top:10px; right:10px;">
@@ -624,8 +417,12 @@
                           <div class="Qualifications">B-Tech(CS)</div>
                           <div class="duration"> 03-07-2011 to 04-05-2015</div>
       
+
                         </div>
+
+
                       </div>
+
       
                     </div>
       
@@ -671,48 +468,59 @@
             </div>
           <div class="formBody clearfix">
 
-          <form class="scrollbar">
-            <div class="clearfix mb-2 employeebkgcolour">
-        
-            <div class="pull-left col-12 col-md-12 pl-0">                    
-          <div class="form-inline col-12 col-md-12 p-0">
-            <div class="col-12 col-md-12 p-0">
-                    <label for="Employee Code" class="col-12 col-md-2 pl-0">Company Name:</label>
-                    <input type="text" class="form-control col-12 col-md-9 ptb-4" style="margin-left: 11px;" name="name" placeholder="Company Name">
-    
-            </div>
-                      
-      </div>
-      <div class="form-inline col-12 col-md-12 p-0">
-         
-        <div class="col-6 col-md-6 p-0">
-                <label for="Employee Code" class="col-5 col-md-5 pl-0">Designation:</label>
-                <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="Developer">
 
-        </div>
-        <div class="col-6 col-md-6 p-0">
-            <label for="pay" class="col-5 col-md-5 pull-left pl-0">Department:</label>
-            <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="Information Technology">
-  
-           
-    </div>
-  </div>
-  <div class="form-inline col-12 col-md-12 p-0">
-      
-
-    <div class="col-6 col-md-6 p-0">
-            <label for="Employee Code" class="col-5 col-md-5 pl-0">Joining Date:</label>
-            <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="dd/mm/yyyy">
-
-    </div>
+                      <div class="col-12 col-md-3 pl-0">
+                        <div class="form-inline">
+                          <label for="Flat Rate" class="col-3 col-md-12 pl-0">Current:</label>
+                          <div class="form-check checkCol " style="margin: 0 auto;">
+                            <label class="checkBox smallFont mb-0">
+                              <input type="checkbox" name="option1" checked="">
+                              <span class="checkmark check1 mt-1"></span> </label>
+                          </div>
+                        </div>
 
 
-    <div class="col-6 col-md-6 p-0">
-        <label for="pay" class="col-5 col-md-5 pull-left pl-0">Exit Date:</label>
-        <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="dd/mm/yyyy">
+                      </div>
+                    </div>
 
-       
-</div>
+
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 col-md-4 pl-0">
+                    <div class="form-inline">
+                      <label for="Employee Name" class="col-3 col-md-4"></label>
+                      <input type="text" class="form-control addrCon formSelect ml-3 col-7 col-md-7" name="name"
+                        placeholder="country">
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-4 pl-0">
+                    <div class="form-inline">
+
+                      <input type="text" class="form-control addrCon formSelect  col-7 col-md-7" name="name"
+                        placeholder="State">
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="col-12 col-md-4 pl-0">
+                    <div class="form-inline">
+                      <label for="Employee Name" class="col-3 col-md-4"></label>
+                      <input type="text" class="form-control addrCon formSelect ml-3 col-7 col-md-7" name="name"
+                        placeholder="City">
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-4 pl-0">
+                    <div class="form-inline">
+
+                      <input type="text" class="form-control addrCon formSelect  col-7 col-md-7" name="name"
+                        placeholder="Pin code">
+                    </div>
+                  </div>
+                </div>
+
 
 </div>
 <div class="form-inline col-12 col-md-12 p-0">
@@ -720,21 +528,10 @@
           <label for="Experience" class="col-5 col-md-5 pull-left pl-0">Experience:</label>
           <label for="Experience" class="col-12 col-md-6 ptb-4 p-0">2Years</label>
 
-  </div>
-  <div class="col-6 col-md-6 p-0">
-      <label for="pay" class="col-5 col-md-5 pull-left pl-0">Location:</label>
-      <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="Location">
 
-     
-</div>
-</div>
-           
-        </div>
-      </div>
-      <div class="clearfix mb-2 employeebkgcolour" style="position:relative" >
-          <div style="position: absolute; top:10px; right:10px;">
-                  <i class="fa fa-pencil" aria-hidden="true" style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i>
+
               </div>
+
               <div class="pull-left col-12 col-md-12 pl-0">                    
         
    
@@ -748,113 +545,343 @@
     </div>
   </div>
              
+
           </div>
 
         </div>
-        
-          </form>
-         </div> 
-         
-        </div>
-        <div id="skills" class="container tab-pane fade">
-            <div class="buttonCon pull-right mt-2 mb-2 mr-1">
-                <button type="button" class="btn templateBg" value="Add New"><img src="../assets/images/new-icon.png" alt="edit" />Add</button>
+
+        <div id="educationalQualifications" class="container tab-pane fade">
+            <div class="buttonCon pull-right mt-3 mb-2 mr-1">
+                <!-- <button type="button" class="btn templateBg" value="Add New"><img src="../assets/images/new-icon.png" alt="edit" />Add</button> -->
                 <button type="button" class="btn templateBg"><img src="../assets/images/save-icon.png" alt="save" />Save</button>
-                
+      
+              </div>
+              <div class="formBody clearfix">
+      
+                <form class="scrollbar">
+                  <div class="clearfix mb-2 employeebkgcolour">
+      
+                    <div class="pull-left col-12 col-md-12 pl-0">
+                      <div class="form-inline col-12 col-md-12 p-0">
+                        <div class="col-12 col-md-12 p-0 form-inline">
+                          <label for="Employee Code" class="col-12 col-md-2 pl-0">Choose Qualification:</label>
+                          <select class="form-control addrCon formSelect col-12 col-md-9" id="pay" name="pay" style="background:#f5f5f5 !important; border:1px solid #ced4da !important;margin-left: 11px !important;">
+                              <option>Select</option>
+                              <option>10</option>
+                              <option>12</option>
+                              <option>Graduation</option>
+                              <option>Post Graduation</option>
+                              <option>Other</option>
+                            </select>
+      
+                        </div>
+      
+                      </div>
+                      <div class="form-inline col-12 col-md-12 p-0">
+      
+                        <div class="col-6 col-md-6 p-0">
+                          <label for="Employee Code" class="col-5 col-md-5 pl-0">Institute:</label>
+                          <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="Institute Name">
+      
+                        </div>
+                        <div class="col-6 col-md-6 p-0">
+                          <label for="pay" class="col-5 col-md-5 pull-left pl-0">Qualification:</label>
+                          <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="Like:-High School">
+      
+      
+                        </div>
+                      </div>
+                      <div class="form-inline col-12 col-md-12 p-0">
+      
+      
+                        <div class="col-6 col-md-6 p-0">
+                          <label for="Employee Code" class="col-5 col-md-5 pl-0">Start Date:</label>
+                          <input type="date" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="dd/mm/yyyy">
+      
+                        </div>
+      
+      
+                        <div class="col-6 col-md-6 p-0">
+                          <label for="pay" class="col-5 col-md-5 pull-left pl-0">End Date:</label>
+                          <input type="date" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="dd/mm/yyyy">
+      
+      
+                        </div>
+      
+                      </div>
+                   
+      
+                    </div>
+                  </div>
+                  <div class="clearfix mb-2 employeebkgcolour" style="position:relative">
+                    <div style="position: absolute; top:10px; right:10px;">
+                      <i class="fa fa-pencil" aria-hidden="true" style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i>
+                    </div>
+                    <div class="pull-left col-12 col-md-12 pl-0">
+      
+      
+                      <div class="form-inline col-12 col-md-12 p-0">
+                        <div class="col-12 col-md-12 p-0">
+                          <h5 class="pl-0">School</h5>
+                          <hr>
+                          <div class="instituteName">Delhi Public School</div>
+                          <div class="Qualifications">High School</div>
+                          <div class="duration"> 03-03-2007 to 04-05-2009</div>
+      
+                        </div>
+                      </div>
+      
+                    </div>
+      
+                  </div>
+                  <div class="clearfix mb-2 employeebkgcolour" style="position:relative">
+                      <div style="position: absolute; top:10px; right:10px;">
+                        <i class="fa fa-pencil" aria-hidden="true" style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i>
+                      </div>
+                      <div class="pull-left col-12 col-md-12 pl-0">
+        
+        
+                        <div class="form-inline col-12 col-md-12 p-0">
+                          <div class="col-12 col-md-12 p-0">
+                            <h5 class="pl-0">Graduation</h5>
+                            <hr>
+                            <div class="instituteName">Hi-Tech Institute of technology</div>
+                            <div class="Qualifications">B-Tech(CS)</div>
+                            <div class="duration"> 03-07-2011 to 04-05-2015</div>
+        
+                          </div>
+                        </div>
+        
+                      </div>
+        
+                    </div>
+                </form>
+              </div>
+
+      </div>
+
+      <div id="mobile" class="container tab-pane fade">
+        <div class="formBody clearfix">
+          <form>
+            <div class="pull-left col-12 col-md-12 pl-0">
+              <div class="form-inline">
+                <label for="Employee Name" class="col-3 col-md-3 pl-0">Skill 1:</label>
+                <input type="text" class="form-control col-6 col-md-6 ptb-4" id="name" name="name" placeholder=" Name">
+              </div>
+              <div class="form-inline">
+                <label for="Employee Name" class="col-3 col-md-3 pl-0">Skill 2:</label>
+                <input type="text" class="form-control col-6 col-md-6 ptb-4" id="name" name="name" placeholder=" Name">
+              </div>
+              <div class="form-inline">
+                <label for="Employee Name" class="col-3 col-md-3 pl-0">Skill 3:</label>
+                <input type="text" class="form-control col-6 col-md-6 ptb-4" id="name" name="name" placeholder=" Name">
+              </div>
+              <div class="form-inline">
+                <label for="Employee Name" class="col-3 col-md-3 pl-0">Skill 4:</label>
+                <input type="text" class="form-control col-6 col-md-6 ptb-4" id="name" name="name" placeholder=" Name">
+              </div>
             </div>
-          <div class="formBody clearfix">
+            <div class="buttonCon pull-left">
+              <button type="submit" class="btn templateBg" data-toggle="modal" onclick="javascript: document.location.href='#'">Save</button>
+            </div>
+          </form>
+        </div>
+
+
+      </div>
+      <div id="experience" class="container tab-pane fade">
+        <div class="buttonCon pull-right mt-3 mb-2 mr-1">
+          <button type="button" class="btn templateBg" value="Add New"><img src="../assets/images/new-icon.png" alt="edit" />Add</button>
+          <button type="button" class="btn templateBg"><img src="../assets/images/save-icon.png" alt="save" />Save</button>
+
+        </div>
+        <div class="formBody clearfix">
+
+          <form class="scrollbar">
+            <div class="clearfix mb-2 employeebkgcolour">
+
+              <div class="pull-left col-12 col-md-12 pl-0">
+                <div class="form-inline col-12 col-md-12 p-0">
+                  <div class="col-12 col-md-12 p-0">
+                    <label for="Employee Code" class="col-12 col-md-2 pl-0">Company Name:</label>
+                    <input type="text" class="form-control col-12 col-md-9 ptb-4" style="margin-left: 11px;" name="name"
+                      placeholder="Company Name">
+
+                  </div>
+
+                </div>
+                <div class="form-inline col-12 col-md-12 p-0">
+
+                  <div class="col-6 col-md-6 p-0">
+                    <label for="Employee Code" class="col-5 col-md-5 pl-0">Designation:</label>
+                    <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="Developer">
+
+                  </div>
+                  <div class="col-6 col-md-6 p-0">
+                    <label for="pay" class="col-5 col-md-5 pull-left pl-0">Department:</label>
+                    <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="Information Technology">
+
+
+                  </div>
+                </div>
+                <div class="form-inline col-12 col-md-12 p-0">
+
+
+                  <div class="col-6 col-md-6 p-0">
+                    <label for="Employee Code" class="col-5 col-md-5 pl-0">Joining Date:</label>
+                    <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="dd/mm/yyyy">
+
+                  </div>
+
+
+                  <div class="col-6 col-md-6 p-0">
+                    <label for="pay" class="col-5 col-md-5 pull-left pl-0">Exit Date:</label>
+                    <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="dd/mm/yyyy">
+
+
+                  </div>
+
+                </div>
+                <div class="form-inline col-12 col-md-12 p-0">
+                  <div class="col-6 col-md-6 p-0">
+                    <label for="Experience" class="col-5 col-md-5 pull-left pl-0">Experience:</label>
+                    <label for="Experience" class="col-12 col-md-6 ptb-4" style="margin-left: 11px;">2Years</label>
+
+                  </div>
+                  <div class="col-6 col-md-6 p-0">
+                    <label for="pay" class="col-5 col-md-5 pull-left pl-0">Location:</label>
+                    <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="Location">
+
+
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+            <div class="clearfix mb-2 employeebkgcolour" style="position:relative">
+              <div style="position: absolute; top:10px; right:10px;">
+                <i class="fa fa-pencil" aria-hidden="true" style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i>
+              </div>
+              <div class="pull-left col-12 col-md-12 pl-0">
+
+
+                <div class="form-inline col-12 col-md-12 p-0">
+                  <div class="col-12 col-md-12 p-0">
+                    <h5 class="pl-0">Software Developer <span>(IT Department)</span></h5>
+                    <p class="pl-0">YoekiSoft Pvt Ltd</p>
+                    <p class="pl-0">Jan 2016 - Present <span>3 yrs 3mos</span></p>
+                    <p class="pl-0"> Noida</p>
+
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+      <div id="skills" class="container tab-pane fade">
+        <div class="buttonCon pull-right mt-3 mb-2 mr-1">
+          <button type="button" class="btn templateBg" value="Add New"><img src="../assets/images/new-icon.png" alt="edit" />Add</button>
+          <button type="button" class="btn templateBg"><img src="../assets/images/save-icon.png" alt="save" />Save</button>
+
+        </div>
+        <div class="formBody clearfix">
           <form>
 
-              <div class="clearfix mb-2 employeebkgcolour" style="position:relative" >
+            <div class="clearfix mb-2 employeebkgcolour" style="position:relative">
 
-                    <div style="position: absolute; top:10px; right:10px;">
-                            <i class="fa fa-pencil" aria-hidden="true" style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i>
-                        </div>
-            <div class="pull-left col-12 col-md-12 pl-0">                    
-         
-      <div class="form-inline col-12 col-md-12 p-0">
-         
-        <div class="col-12 col-md-12 p-0">
-                <label for="Skills" class="col-12 col-md-2 pl-0">Skills:</label>
-                <input type="text" class="form-control col-12 col-md-9 ptb-4" name="name" placeholder="Skills">
-        </div>
-        
-  </div>
-  <div class="form-inline col-12 col-md-12 p-0" id="skillsList">
-      <ul class="list-group">
-          <li class="list-item">
-            <div class="skillList">
-              <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>C#</label>
-          </div>
-        </li>
-          <li class="list-item">
-              <div class="skillList">
-                  <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>MVC</label>
+              <div style="position: absolute; top:10px; right:10px;">
+                <i class="fa fa-pencil" aria-hidden="true" style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i>
               </div>
-            </li>
-            <li class="list-item">
-                <div class="skillList">
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>Java</label>
-                </div>
-              </li>
-              <li class="list-item">
-                  <div class="skillList">
-                      <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>HTML</label>
+              <div class="pull-left col-12 col-md-12 pl-0">
+
+                <div class="form-inline col-12 col-md-12 p-0">
+
+                  <div class="col-12 col-md-12 p-0">
+                    <label for="Skills" class="col-12 col-md-2 pl-0">Skills:</label>
+                    <input type="text" class="form-control col-12 col-md-9 ptb-4" name="name" placeholder="Skills">
                   </div>
-                </li>
-                <li class="list-item">
-                    <div class="skillList">
-                        <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>CSS</label>
-                    </div>
-                  </li>
-                  <li class="list-item">
+
+                </div>
+                <div class="form-inline col-12 col-md-12 p-0" id="skillsList">
+                  <ul class="list-group">
+                    <li class="list-item">
                       <div class="skillList">
-                          <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>SCSS</label>
+                        <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>C#</label>
                       </div>
                     </li>
                     <li class="list-item">
-                        <div class="skillList">
-                            <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>Angular 4</label>
-                        </div>
-                      </li>
-                      <li class="list-item">
-                          <div class="skillList">
-                              <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>Angular 5</label>
-                          </div>
-                        </li>
-                        <li class="list-item">
-                            <div class="skillList">
-                                <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>Angular 6</label>
-                            </div>
-                          </li>
-                          <li class="list-item">
-                              <div class="skillList">
-                                  <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>Angular 7</label>
-                              </div>
-                            </li>
-                            <li class="list-item">
-                                <div class="skillList">
-                                    <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>React</label>
-                                </div>
-                              </li>
-                              <li class="list-item">
-                                  <div class="skillList">
-                                      <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>SQL</label>
-                                  </div>
-                                </li>
-           </ul>
+                      <div class="skillList">
+                        <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>MVC</label>
+                      </div>
+                    </li>
+                    <li class="list-item">
+                      <div class="skillList">
+                        <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>Java</label>
+                      </div>
+                    </li>
+                    <li class="list-item">
+                      <div class="skillList">
+                        <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>HTML</label>
+                      </div>
+                    </li>
+                    <li class="list-item">
+                      <div class="skillList">
+                        <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>CSS</label>
+                      </div>
+                    </li>
+                    <li class="list-item">
+                      <div class="skillList">
+                        <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>SCSS</label>
+                      </div>
+                    </li>
+                    <li class="list-item">
+                      <div class="skillList">
+                        <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>Angular 4</label>
+                      </div>
+                    </li>
+                    <li class="list-item">
+                      <div class="skillList">
+                        <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>Angular 5</label>
+                      </div>
+                    </li>
+                    <li class="list-item">
+                      <div class="skillList">
+                        <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>Angular 6</label>
+                      </div>
+                    </li>
+                    <li class="list-item">
+                      <div class="skillList">
+                        <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>Angular 7</label>
+                      </div>
+                    </li>
+                    <li class="list-item">
+                      <div class="skillList">
+                        <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>React</label>
+                      </div>
+                    </li>
+                    <li class="list-item">
+                      <div class="skillList">
+                        <i class="fa fa-angle-double-right" aria-hidden="true"></i><label>SQL</label>
+                      </div>
+                    </li>
+                  </ul>
 
-  </div>
-  
-           
-        </div>
-      </div>
-     
-        
+                </div>
+
+
+              </div>
+            </div>
+
+
           </form>
-         </div> 
-         
         </div>
+
         <div id="achievements" class="container tab-pane fade">
             <div class="buttonCon pull-right mt-2 mb-2 mr-1">
                 <button type="button" class="btn templateBg" value="Add New"><img src="../assets/images/new-icon.png" alt="edit" />Add</button>
@@ -953,7 +980,7 @@
           </form>
          </div> 
          </div> 
-         
+
          <div id="bankDetails" class="container tab-pane fade">
           <div class="buttonCon pull-right mt-2 mb-2 mr-1">
               <button type="button" class="btn templateBg" value="Add New"><img src="../assets/images/new-icon.png" alt="edit" />Add</button>
@@ -1100,9 +1127,12 @@
        </div> 
        </div> 
 
+
         </div>
-    
+
       </div>
+
             </div>
         
 </div>
+
