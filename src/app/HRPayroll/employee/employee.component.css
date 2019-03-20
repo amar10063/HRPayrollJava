@@ -8,7 +8,7 @@
 .empPhoto img{width:100%}
 #basic .formBody .form-inline label{ width:100% !important;  padding-top: 5px; }
 
-#payHead label{font-weight:bold}
+#payHead label{font-weight:600}
 #payHead .scrollbar {
     max-height: 348px;
 
@@ -82,4 +82,113 @@ width:20%; }
     background: none;
     box-shadow: none;
     border: 0; }
-    .payHeadBtn i{padding-right:5px}
+.payHeadBtn i{padding-right:5px}
+.itemdiv.dialogdiv>.body {
+    border: 1px solid #a9d0d4;
+    padding: 5px 8px 8px;
+    border-left-width: 2px;
+    margin-left: 10%;
+    background:#e7eeef;
+}
+
+.itemdiv>.user {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 0;
+    border: 1px solid #336f74;
+    border-radius: 50%;
+    background: #fff;
+}
+.itemdiv>.body>.text {
+    display: block;
+    position: relative;
+    margin-top: 2px;
+    padding-bottom: 19px;
+    padding-left: 7px;
+    font-size: 11px;
+}
+.itemdiv.dialogdiv>.body>.text {
+    padding-left: 0;
+    padding-bottom: 0;
+}
+.itemdiv.dialogdiv>.user>img {
+    padding: 2px 5px 4px;
+}
+.itemdiv.dialogdiv>.body>.time {
+    position: static;
+    float: right;
+}
+
+.itemdiv>.body>.time {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #666;
+    position: absolute;
+    right: 9px;
+    top: 0;
+}
+.itemdiv>.body>.time .ace-icon {
+    margin-right: 4px;
+}
+
+.itemdiv>.body>.time .ace-icon {
+    font-size: 14px;
+    font-weight: 400;
+}
+.ace-icon {
+    text-align: center;
+}
+
+.itemdiv.dialogdiv:before {
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 14px;
+    width: 3px;
+    max-width: 3px;
+    background-color: #a9d0d4;
+    border: 1px solid #D7DBDD;
+    border-width: 0 1px;
+}
+.itemdiv.dialogdiv>.body:before {
+    display: block;
+    left: 36px;
+    top: 11px;
+    width: 8px;
+    height: 8px;
+    border: 2px solid #a9d0d4;
+    border-width: 2px 0 0 2px;
+    background-color: #e7eeef;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.itemdiv.dialogdiv:before, .itemdiv.dialogdiv>.body:before, .itemdiv>.body>.text:after {
+    content: "";
+    position: absolute;
+}
+.itemdiv.dialogdiv:last-child {
+    padding-bottom: 0;
+}
+.itemdiv.dialogdiv:last-child:before {
+    display: none !important;
+}
+.itemdiv.dialogdiv {
+    padding-bottom: 14px;
+}
+
+.itemdiv {
+    padding-right: 3px;
+    min-height: 66px;
+}
+.dialogs, .itemdiv {
+    position: relative;
+}
+.name p{ color:#1f4c50 !important; font-weight:bold !important}
