@@ -812,11 +812,11 @@ footer p{ color:#194b4f; font-weight:400; font-size:0.6875rem; margin:0; line-he
   .dropdown-menu{background:transparent !important;}
   label {    display: inline-block;    color: #3e3e3e;    font-size: 0.6875rem;   font-weight: 600;}
   .pullright{float:right;}
-  .setting{padding-right:15%; color: #3e3e3e !important;     padding-top: 5px;   font-size: 0.6875rem;   font-weight: 600;}
+  .setting{ color: #3e3e3e !important;     padding-top: 5px;   font-size: 0.6875rem;   font-weight: 600;}
   .setting a{    font-size: 0.6875rem;  color: #3e3e3e !important;   padding: 0 5px;}
   .setting a:hover {    color: #009688 !important;    text-decoration: underline !important;}
   .setting ul{   background:#fff !important;    padding: 0;}
-  .setting ul li{border-bottom: 1px solid #e0e8e8;}
+  .setting ul li{border-bottom: 1px solid #e0e8e8;    line-height: 30px;}
   .textcenter{    text-align: center;}
   .tinny-footer{border-bottom:1px solid #fff;background: #fff;}
   .tinny-footer span{padding:2px;}
@@ -825,7 +825,7 @@ footer p{ color:#194b4f; font-weight:400; font-size:0.6875rem; margin:0; line-he
     /* color: #155169 !important; */
     text-decoration: underline;
 }
-.companyName{font-size:.825rem;}
+.companyName{font-size:.825rem;    color: #009688;}
 .employeebkgcolour{
     background-color: #e7eeef;
     border-radius:5px;padding: 12px 5px 5px 15px;
@@ -848,3 +848,11 @@ footer p{ color:#194b4f; font-weight:400; font-size:0.6875rem; margin:0; line-he
             font-weight: 600;}
         .duration{    font-size: 11px;
             font-weight: 600;}
+    .userdetails{    height: 50px;
+        line-height: 50px !important;
+        text-align: center;}
+        .userdetails a{font-size:15px;}
+        .setting a i{padding-right:5px;}
+        .bgline{    background: #f5f3f3;
+    text-align: center;
+    line-height: 25px;}
