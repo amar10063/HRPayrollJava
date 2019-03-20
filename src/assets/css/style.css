@@ -276,7 +276,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill, inpu
 .addr img{ vertical-align:text-bottom}
 .smLogo{ padding:5px 20px }
 ul.navbar-nav{ width:100%}
-.navbar-nav li{ border-top:1px solid #719bab; padding:10px 10px 10px 20px; }
+.navbar-nav li{ border-top:1px solid #719bab; padding:5px 10px 5px 20px; }
 a.nav-link{ color:#fff !important; font-size:0.825rem; line-height:1.2}
 .arrow{ padding-right:10px; padding-bottom: 5px;}
 .topNav{    padding: 4px 15px; border-bottom:2px solid #398d94;}
@@ -858,3 +858,4 @@ footer p{ color:#194b4f; font-weight:400; font-size:0.6875rem; margin:0; line-he
     line-height: 25px;}
     .dropdown-menu.show {
         box-shadow: 1px 1px 1px #333;    }
+        .active1{background:#2e6d72 ;}
