@@ -816,7 +816,7 @@ footer p{ color:#194b4f; font-weight:400; font-size:0.6875rem; margin:0; line-he
   .setting a{    font-size: 0.6875rem;  color: #3e3e3e !important;   padding: 0 5px;}
   .setting a:hover {    color: #009688 !important;    text-decoration: underline !important;}
   .setting ul{   background:#fff !important;    padding: 0;}
-  .setting ul li{border-bottom: 1px solid #e0e8e8;    line-height: 25px;}
+  .setting ul li{border-bottom: 1px solid #e0e8e8;    line-height: 30px;}
   .textcenter{    text-align: center;}
   .tinny-footer{border-bottom:1px solid #fff;background: #fff;}
   .tinny-footer span{padding:2px;}
