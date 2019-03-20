@@ -84,10 +84,11 @@ width:20%; }
     border: 0; }
 .payHeadBtn i{padding-right:5px}
 .itemdiv.dialogdiv>.body {
-    border: 1px solid #DDE4ED;
+    border: 1px solid #a9d0d4;
     padding: 5px 8px 8px;
     border-left-width: 2px;
-    margin-right: 1px;
+    margin-left: 10%;
+    background:#e7eeef;
 }
 
 .itemdiv>.user {
@@ -98,6 +99,7 @@ width:20%; }
     left: 0;
     border: 1px solid #336f74;
     border-radius: 50%;
+    background: #fff;
 }
 .itemdiv>.body>.text {
     display: block;
@@ -105,14 +107,14 @@ width:20%; }
     margin-top: 2px;
     padding-bottom: 19px;
     padding-left: 7px;
-    font-size: 13px;
+    font-size: 11px;
 }
 .itemdiv.dialogdiv>.body>.text {
     padding-left: 0;
     padding-bottom: 0;
 }
 .itemdiv.dialogdiv>.user>img {
-    padding: 0px 5px 4px;
+    padding: 2px 5px 4px;
 }
 .itemdiv.dialogdiv>.body>.time {
     position: static;
@@ -144,22 +146,22 @@ width:20%; }
     display: block;
     top: 0;
     bottom: 0;
-    left: 19px;
+    left: 14px;
     width: 3px;
     max-width: 3px;
-    background-color: #E1E6ED;
+    background-color: #a9d0d4;
     border: 1px solid #D7DBDD;
     border-width: 0 1px;
 }
 .itemdiv.dialogdiv>.body:before {
     display: block;
-    left: -7px;
+    left: 36px;
     top: 11px;
     width: 8px;
     height: 8px;
-    border: 2px solid #DDE4ED;
+    border: 2px solid #a9d0d4;
     border-width: 2px 0 0 2px;
-    background-color: #FFF;
+    background-color: #e7eeef;
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
@@ -175,6 +177,9 @@ width:20%; }
 .itemdiv.dialogdiv:last-child {
     padding-bottom: 0;
 }
+.itemdiv.dialogdiv:last-child:before {
+    display: none !important;
+}
 .itemdiv.dialogdiv {
     padding-bottom: 14px;
 }
@@ -186,3 +191,4 @@ width:20%; }
 .dialogs, .itemdiv {
     position: relative;
 }
+.name p{ color:#1f4c50 !important; font-weight:bold !important}
