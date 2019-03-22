@@ -10,13 +10,11 @@
 
 #payHead label{font-weight:600}
 #payHead .scrollbar {
-    max-height: 348px;
-
+    max-height: 415px;
     width: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
     margin-bottom: 0;
-
     z-index: 100;
 }
 .formBody .form-inline {
@@ -26,7 +24,7 @@
 #payHead .formBody {
     padding: 1%}
 #payHead h5 {
-    font-size: 16px;
+    font-size: 14px;
 }
 #payHead h6{font-size:12px}
 #payHead p{font-size:11px !important; display: block !important; margin-bottom: 10px !important}
@@ -42,8 +40,8 @@ width:20%; }
 .skillList i{width:14%}
 .skillList label{width:85%}
 
-#achievements .scrollbar{max-height:260px}
-#bankDetails .scrollbar{ max-height:300px}
+#achievements .scrollbar{max-height:327px}
+#bankDetails .scrollbar{ max-height:350px}
 .educationTitle{
     margin-bottom: 5px;}
     .educationTitle span{    font-size: 11px;
@@ -67,6 +65,9 @@ width:20%; }
         font-weight: 600;}
     .duration{    font-size: 11px;
         font-weight: 600;}
+        .payHead .navbar-nav li a {
+            padding: 14px 6px !important;
+        }
     #payHead p.phoneeditpart{
             background-color: #ffffff;
             padding: 3px 5px 3px 7px;
@@ -192,3 +193,9 @@ width:20%; }
     position: relative;
 }
 .name p{ color:#1f4c50 !important; font-weight:bold !important}
+.documentAttached img{width:60px;}
+
+        .documentAttached{ padding-right: 15%;}
+        .documentAttached a{  border: 1px solid #eae8e8;
+    padding: 1px;
+    cursor: pointer;}
