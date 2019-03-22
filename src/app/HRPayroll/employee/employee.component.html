@@ -9,7 +9,8 @@
     <div class="row mt-3">
       <div class="col-7 col-md-7">
         <div class="buttonCon pull-left">
-          <button type="button" class="btn templateBg" (click)="showhide()"><img src="../assets/images/new-icon.png" alt="new">{{buttonName}}</button>
+          <button type="button" class="btn templateBg" (click)="showhide()"><img src="../assets/images/new-icon.png"
+              alt="new">{{buttonName}}</button>
         </div>
       </div>
       <div class="col-12 col-md-8 col-sm-9 pull-right col-lg-5 top-space">
@@ -30,35 +31,43 @@
         <div class="input-group mb-2 col-6 col-md-6 pull-right p-0">
           <input class="form-control border-secondary" type="search" placeholder="search " style="height:28px">
           <div class="input-group-append" style="height:28px">
-            <button class="btn btn-outline-secondary" type="button"> <img src="../assets/images/search-icon.png" alt="search" /> </button>
+            <button class="btn btn-outline-secondary" type="button"> <img src="../assets/images/search-icon.png" alt="search" />
+            </button>
           </div>
         </div>
       </div>
     </div>
-    <ag-grid-angular style="width:100%; height: auto"
-                                   class="ag-theme-balham"
-                                   [rowData]="rowData"
-                                   [columnDefs]="columnDefs"></ag-grid-angular>
-    <div class="buttonCon pull-left mt-3">
+    <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData" [columnDefs]="columnDefs"></ag-grid-angular>
+    <!-- <div class="buttonCon pull-left mt-3">
       <button type="button" class="btn templateBg" value="Add New"><img src="../assets/images/edit-icon.png" alt="edit" />Edit</button>
       <button type="button" class="btn templateBg"><img src="../assets/images/delete-icon.png" alt="delete" />Delete</button>
-    </div>
+    </div> -->
   </div>
   <div class="clearfix"></div>
   <div class="pay-head clearfix mt-3" style="border:1px solid #2e6c71" *ngIf="show" id="payHead">
     <div class="col-2 col-md-2 p-0 pull-left" style="box-shadow: 1px 1px 1px #c0c1c1;">
       <div class="payHead">
         <ul class="nav navbar-nav" role="tablist">
-          <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#basic"><i class="fa fa-info-circle pr-1" aria-hidden="true"></i> Basic Details</a> </li>
-          <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#AddressBook"><i class="fa fa-book pr-1" aria-hidden="true"></i> Address Book</a> </li>
-          <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#educationalQualifications"><i class="fa fa-graduation-cap pr-1" aria-hidden="true"></i> Educational Qualifications</a> </li>
-          <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profQualifications"><i class="fa fa-user-md pr-1" aria-hidden="true"></i> Professional Qualifications</a> </li>
-          <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#experience"><i class="fa fa-user pr-1" aria-hidden="true"></i> Employment Experience</a> </li>
-          <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#skills"><i class="fa fa-language pr-1" aria-hidden="true"></i> Skills</a> </li>
-          <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#achievements"><i class="fa fa-certificate pr-1" aria-hidden="true"></i> Achievements/Certificates</a> </li>
-          <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#bankDetails"><i class="fa fa-university pr-1" aria-hidden="true"></i> Bank Details</a> </li>
-          <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#variables"><i class="fa fa-file-text pr-1" aria-hidden="true"></i> Documents</a> </li>
-          <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#notes"><i class="fa fa-sticky-note pr-1" aria-hidden="true"></i> Notes</a> </li>
+          <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#basic"><i class="fa fa-info-circle pr-1"
+                aria-hidden="true"></i> Basic Details</a> </li>
+          <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#AddressBook"><i class="fa fa-book pr-1"
+                aria-hidden="true"></i> Address Book</a> </li>
+          <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#educationalQualifications"><i class="fa fa-graduation-cap pr-1"
+                aria-hidden="true"></i> Educational Qualifications</a> </li>
+          <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profQualifications"><i class="fa fa-user-md pr-1"
+                aria-hidden="true"></i> Professional Qualifications</a> </li>
+          <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#experience"><i class="fa fa-user pr-1"
+                aria-hidden="true"></i> Employment Experience</a> </li>
+          <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#skills"><i class="fa fa-language pr-1"
+                aria-hidden="true"></i> Skills</a> </li>
+          <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#achievements"><i class="fa fa-certificate pr-1"
+                aria-hidden="true"></i> Achievements/Certificates</a> </li>
+          <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#bankDetails"><i class="fa fa-university pr-1"
+                aria-hidden="true"></i> Bank Details</a> </li>
+          <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#documents"><i class="fa fa-file-text pr-1"
+                aria-hidden="true"></i> Documents</a> </li>
+          <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#notes"><i class="fa fa-sticky-note pr-1"
+                aria-hidden="true"></i> Notes</a> </li>
         </ul>
       </div>
     </div>
@@ -86,50 +95,53 @@
                       <option>Ms</option>
                     </select>
                   </div>
-                 
+
                 </div>
                 <div class="form-inline col-12 col-md-12 p-0 mt-1">
                   <div class="col-12 col-md-6 p-0">
                     <label for="pay" class="col-5 col-md-5 pl-0 pull-left">First Name:</label>
-                    <input type="text" class="form-control addrCon formSelect col-7 col-md-7" id="name" name="name" placeholder="First Name">
+                    <input type="text" class="form-control addrCon formSelect col-7 col-md-7" id="name" name="name"
+                      placeholder="First Name">
                   </div>
                   <div class="col-12 col-md-6 p-0">
-                      <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Date of Birth:</label>
-                      <input type="date" class="form-control addrCon formSelect col-7 col-md-7" name="name" placeholder="dd/mm/yyyy">
-                    </div>
-                 
-                  
+                    <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Date of Birth:</label>
+                    <input type="date" class="form-control addrCon formSelect col-7 col-md-7" name="name" placeholder="dd/mm/yyyy">
+                  </div>
+
+
                 </div>
                 <div class="form-inline col-12 col-md-12 p-0 mt-1">
-                   
-                      <div class="col-12 col-md-6 p-0">
-                          <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Middle Name:</label>
-                          <input type="text" class="form-control addrCon formSelect col-7 col-md-7" id="name" name="name" placeholder="Middle Name">
-                        </div>
-                        <div class="col-12 col-md-6 p-0">
-                            <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Age:</label>
-                            <label for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">22Years</label>
-                          </div>
+
+                  <div class="col-12 col-md-6 p-0">
+                    <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Middle Name:</label>
+                    <input type="text" class="form-control addrCon formSelect col-7 col-md-7" id="name" name="name"
+                      placeholder="Middle Name">
+                  </div>
+                  <div class="col-12 col-md-6 p-0">
+                    <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Age:</label>
+                    <label for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">22Years</label>
+                  </div>
                 </div>
                 <div class="form-inline col-12 col-md-12 p-0 mt-1">
-                 
-                  
+
+
                   <div class="col-12 col-md-6 p-0">
-                      <label for="pay" class="col-5 col-md-5 pull-left pl-0">Last Name:</label>
-                      <input type="text" class="form-control addrCon formSelect col-7 col-md-7" id="name" name="name" placeholder="Last Name">
-                    </div>
+                    <label for="pay" class="col-5 col-md-5 pull-left pl-0">Last Name:</label>
+                    <input type="text" class="form-control addrCon formSelect col-7 col-md-7" id="name" name="name"
+                      placeholder="Last Name">
+                  </div>
                   <div class="col-12 col-md-6 p-0">
-                      <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Contact No.:</label>
-                      <label for="pay" class="addrCon formSelect col-7 col-md-7 p-0">9876543210</label>
-                   
+                    <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Contact No.:</label>
+                    <label for="pay" class="addrCon formSelect col-7 col-md-7 p-0">9876543210</label>
+
                   </div>
                 </div>
 
                 <div class="form-inline col-12 col-md-12 p-0 mt-1">
-                 
-                  
-                    <div class="col-12 col-md-6 p-0">
-                        <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Designation:</label>
+
+
+                  <div class="col-12 col-md-6 p-0">
+                    <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Designation:</label>
                     <select class="form-control addrCon formSelect col-7 col-md-7" id="type" name="type" style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
                       <option>Select</option>
                       <option>Manager</option>
@@ -137,87 +149,87 @@
                       <option>UI Developer</option>
                     </select>
                   </div>
-                    <div class="col-12 col-md-6 p-0">
-                        <label for="pay" class="col-5 col-md-5 pull-left pl-0">Department:</label>
-                        <select class="form-control addrCon formSelect col-7 col-md-7" id="type" name="type" style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
-                          <option>Select</option>
-                          <option>Sales</option>
-                          <option>IT</option>
-                          <option>Finance</option>
-                        </select>
+                  <div class="col-12 col-md-6 p-0">
+                    <label for="pay" class="col-5 col-md-5 pull-left pl-0">Department:</label>
+                    <select class="form-control addrCon formSelect col-7 col-md-7" id="type" name="type" style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
+                      <option>Select</option>
+                      <option>Sales</option>
+                      <option>IT</option>
+                      <option>Finance</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-inline col-12 col-md-12 p-0 mt-1">
+
+
+                  <div class="col-12 col-md-6 p-0">
+                    <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Email ID:</label>
+                    <label for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">abcd@gmail.com</label>
+                  </div>
+                  <div class="col-12 col-md-6 p-0">
+                    <label for="pay" class="col-4 col-md-4 pull-left pl-0">Marital Status:</label>
+                    <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
+                      <div class="form-check checkCol col-6 col-md-6 pull-left pl-3">
+                        <label class="checkBox">Married
+                          <input type="radio" name="radio2" checked>
+                          <span class="checkmark check mt-1"></span> </label>
+                      </div>
+                      <div class="form-check checkCol col-6 col-md-6 pull-left">
+                        <label class="checkBox">Unmarried
+                          <input type="radio" name="radio3">
+                          <span class="checkmark check mt-1"></span> </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-inline col-12 col-md-12 p-0 mt-1">
+
+
+                  <div class="col-12 col-md-6 p-0">
+                    <label for="pay" class="col-5 col-md-5 pull-left pl-0">Gender:</label>
+                    <div class="formSelect clearfix col-7 col-md-7 pull-left p-0">
+                      <div class="form-check checkCol col-4 col-md-4 pull-left">
+                        <label class="checkBox">Male
+                          <input type="radio" name="radio" checked="">
+                          <span class="checkmark check mt-1"></span> </label>
+                      </div>
+                      <div class="form-check checkCol col-4 col-md-4 pull-left">
+                        <label class="checkBox">Female
+                          <input type="radio" name="radio">
+                          <span class="checkmark check mt-1"></span> </label>
+                      </div>
+                      <div class="form-check checkCol col-4 col-md-4 pull-left">
+                        <label class="checkBox">Other
+                          <input type="radio" name="radio">
+                          <span class="checkmark check mt-1"></span> </label>
+
+                      </div>
                     </div>
                   </div>
 
-                  <div class="form-inline col-12 col-md-12 p-0 mt-1">
-                 
-                  
-                      <div class="col-12 col-md-6 p-0">
-                          <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Email ID:</label>
-                    <label for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">abcd@gmail.com</label>
-                   </div>
-                      <div class="col-12 col-md-6 p-0">
-                          <label for="pay" class="col-4 col-md-4 pull-left pl-0">Marital Status:</label>
-                          <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
-                            <div class="form-check checkCol col-6 col-md-6 pull-left pl-3">
-                              <label class="checkBox">Married
-                                <input type="radio" name="radio2" checked>
-                                <span class="checkmark check mt-1"></span> </label>
-                            </div>
-                            <div class="form-check checkCol col-6 col-md-6 pull-left">
-                              <label class="checkBox">Unmarried
-                                <input type="radio" name="radio3">
-                                <span class="checkmark check mt-1"></span> </label>
-                            </div>
-                          </div>
-                      </div>
-                    </div>
-                    <div class="form-inline col-12 col-md-12 p-0 mt-1">
-                 
-                  
-                        <div class="col-12 col-md-6 p-0">
-                            <label for="pay" class="col-5 col-md-5 pull-left pl-0">Gender:</label>
-                            <div class="formSelect clearfix col-7 col-md-7 pull-left p-0">
-                              <div class="form-check checkCol col-4 col-md-4 pull-left">
-                                <label class="checkBox">Male
-                                  <input type="radio" name="radio" checked="">
-                                  <span class="checkmark check mt-1"></span> </label>
-                              </div>
-                              <div class="form-check checkCol col-4 col-md-4 pull-left">
-                                <label class="checkBox">Female
-                                  <input type="radio" name="radio">
-                                  <span class="checkmark check mt-1"></span> </label>
-                              </div>
-                              <div class="form-check checkCol col-4 col-md-4 pull-left">
-                                <label class="checkBox">Other
-                                  <input type="radio" name="radio">
-                                  <span class="checkmark check mt-1"></span> </label>
-        
-                              </div>
-                            </div>
-                           </div>
-                        
-                            <div class="col-12 col-md-6 p-0">
-                                <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Anniversary:</label>
-                                <input type="date" class="form-control addrCon formSelect col-7 col-md-7" name="name" placeholder="dd/mm/yyyy">
-                              </div>
-                        
-                      </div>
-                      <div class="form-inline col-12 col-md-12 p-0 mt-1">
-                 
-                  
-                          <div class="col-12 col-md-6 p-0">
-                              <label for="pay" class="col-5 col-md-5 pull-left pl-0">Reporting Heirarchy:</label>
-                              <label for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">Heirarchy</label>
-                           
-                            </div>
-                          <div class="col-12 col-md-6 p-0">
-                              <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Employment Date:</label>
-                              <label for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">dd/mm/yyyy</label>
-                           
-                          </div>
-                        </div>
+                  <div class="col-12 col-md-6 p-0">
+                    <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Anniversary:</label>
+                    <input type="date" class="form-control addrCon formSelect col-7 col-md-7" name="name" placeholder="dd/mm/yyyy">
+                  </div>
 
-                
+                </div>
+                <div class="form-inline col-12 col-md-12 p-0 mt-1">
+
+
+                  <div class="col-12 col-md-6 p-0">
+                    <label for="pay" class="col-5 col-md-5 pull-left pl-0">Reporting Heirarchy:</label>
+                    <label for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">Heirarchy</label>
+
+                  </div>
+                  <div class="col-12 col-md-6 p-0">
+                    <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Employment Date:</label>
+                    <label for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">dd/mm/yyyy</label>
+
+                  </div>
+                </div>
+
+
               </div>
               <div class="col-1 col-md-1 pull-left p-0 empPhoto"><img src="../assets/images/profile-image.png" alt="profile Image" /></div>
               <div class="clearfix"></div>
@@ -226,7 +238,8 @@
         </div>
         <div id="AddressBook" class="container tab-pane fade">
           <div class="buttonCon pull-right mt-2 mb-2 mr-1">
-            <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add New</button>
+            <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+              New</button>
             <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
           </div>
           <div class="formBody clearfix scrollbar pt-0">
@@ -279,8 +292,10 @@
                     <div class="form-inline">
                       <label for="Employee Name" class="col-3 col-md-3"></label>
                       <div class=" col-6 col-md-9 ptb-4 p-0">
-                        <input type="text" class="form-control addrCon formSelect col-6 col-md-6 pull-left" style="margin-right: 3px;" name="name" placeholder="City">
-                        <input type="text" class="form-control addrCon formSelect col-6 col-md-6 pull-left" name="name" placeholder="State">
+                        <input type="text" class="form-control addrCon formSelect col-6 col-md-6 pull-left" style="margin-right: 3px;"
+                          name="name" placeholder="City">
+                        <input type="text" class="form-control addrCon formSelect col-6 col-md-6 pull-left" name="name"
+                          placeholder="State">
                       </div>
                     </div>
                   </div>
@@ -291,8 +306,10 @@
                     <div class="form-inline">
                       <label for="Employee Name" class="col-3 col-md-3"></label>
                       <div class=" col-6 col-md-9 ptb-4 p-0">
-                        <input type="text" class="form-control addrCon formSelect col-6 col-md-6 pull-left" style="margin-right: 3px;" name="name" placeholder="Country">
-                        <input type="text" class="form-control addrCon formSelect col-6 col-md-6 pull-left" name="name" placeholder="Pin Code">
+                        <input type="text" class="form-control addrCon formSelect col-6 col-md-6 pull-left" style="margin-right: 3px;"
+                          name="name" placeholder="Country">
+                        <input type="text" class="form-control addrCon formSelect col-6 col-md-6 pull-left" name="name"
+                          placeholder="Pin Code">
                       </div>
                     </div>
                   </div>
@@ -301,7 +318,8 @@
               </div>
             </form>
             <form class="employeebkgcolour" style="position:relative">
-              <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil editicon" aria-hidden="true"></i> </div>
+              <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil editicon" aria-hidden="true"></i>
+              </div>
               <div class="pull-left col-12 col-md-12 pl-0">
                 <div class="row">
                   <div class="col-12 col-md-8">
@@ -315,13 +333,13 @@
                 </div>
               </div>
             </form>
-            <form class="employeebkgcolour" >
-              <div class="pull-left col-12 col-md-12 pl-0 pr-0" >
+            <form class="employeebkgcolour">
+              <div class="pull-left col-12 col-md-12 pl-0 pr-0">
                 <div class="row">
                   <div class="col-12 col-md-8 pl-0">
                     <div class="form-inline">
                       <label for="Employee Name" class="col-3 col-md-3">Phone No:</label>
-                      <input type="text" class="form-control addrCon formSelect  col-7 col-md-9" name="name" >
+                      <input type="text" class="form-control addrCon formSelect  col-7 col-md-9" name="name">
                     </div>
                   </div>
                   <div class="col-2 col-md-4  pl-0">
@@ -342,7 +360,9 @@
                     <table id="TableSponsorBankCode" class="DimensionTable table table-striped table-hover mt-2" style="margin-bottom: 3px">
                       <tbody>
                         <tr>
-                          <td class="textHighlight" style="background-color: #f5f5f5;"><p class="phoneeditpart">9990750721<i class="fa fa-close" style="padding: 3px; color:#266469"></i></p></td>
+                          <td class="textHighlight" style="background-color: #f5f5f5;">
+                            <p class="phoneeditpart">9990750721<i class="fa fa-close" style="padding: 3px; color:#266469"></i></p>
+                          </td>
                         </tr>
                       </tbody>
                     </table>
@@ -350,13 +370,13 @@
                 </div>
               </div>
             </form>
-            <form class="employeebkgcolour" >
-              <div class="pull-left col-12 col-md-12 pl-0 pr-0" >
+            <form class="employeebkgcolour">
+              <div class="pull-left col-12 col-md-12 pl-0 pr-0">
                 <div class="row">
                   <div class="col-12 col-md-8 pl-0">
                     <div class="form-inline">
                       <label for="Employee Name" class="col-3 col-md-3">Email ID:</label>
-                      <input type="text" class="form-control addrCon formSelect col-7 col-md-9" name="name" >
+                      <input type="text" class="form-control addrCon formSelect col-7 col-md-9" name="name">
                     </div>
                   </div>
                 </div>
@@ -365,7 +385,10 @@
                     <table id="TableSponsorBankCode" class="DimensionTable table table-striped table-hover mt-2" style="margin-bottom: 3px">
                       <tbody>
                         <tr>
-                          <td class="textHighlight" style="background-color: #f5f5f5;"><p class="phoneeditpart" style="width:21%">vishalverma@gmail.com<i class="fa fa-close" style="padding: 3px; color:#266469"></i></p></td>
+                          <td class="textHighlight" style="background-color: #f5f5f5;">
+                            <p class="phoneeditpart" style="width:21%">vishalverma@gmail.com<i class="fa fa-close"
+                                style="padding: 3px; color:#266469"></i></p>
+                          </td>
                         </tr>
                       </tbody>
                     </table>
@@ -373,7 +396,7 @@
                 </div>
               </div>
             </form>
-            <form class="employeebkgcolour" >
+            <form class="employeebkgcolour">
               <div class="pull-left col-12 col-md-12 pl-0">
                 <div class="row">
                   <div class="col-12 col-md-8 pl-0">
@@ -389,7 +412,7 @@
                   <div class="col-12 col-md-8 pl-0 pr-0">
                     <div class="form-inline">
                       <label for="Employee Name" class="col-3 col-md-3">Name:</label>
-                      <input type="text" class="form-control addrCon formSelect col-7 col-md-9" name="name" >
+                      <input type="text" class="form-control addrCon formSelect col-7 col-md-9" name="name">
                     </div>
                   </div>
                 </div>
@@ -397,7 +420,7 @@
                   <div class="col-12 col-md-8 pl-0 pr-0">
                     <div class="form-inline">
                       <label for="Employee Name" class="col-3 col-md-3">Contact No.:</label>
-                      <input type="text" class="form-control addrCon formSelect col-7 col-md-9" name="name" >
+                      <input type="text" class="form-control addrCon formSelect col-7 col-md-9" name="name">
                     </div>
                   </div>
                 </div>
@@ -407,7 +430,8 @@
         </div>
         <div id="educationalQualifications" class="container tab-pane fade">
           <div class="buttonCon pull-right mt-2 mb-2 mr-1">
-            <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add New</button>
+            <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+              New</button>
             <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
           </div>
           <div class="formBody clearfix">
@@ -450,31 +474,33 @@
                 </div>
               </div>
               <div class="clearfix mb-2 employeebkgcolour" style="position:relative">
-                <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true" style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
+                <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true"
+                    style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
                 <div class="pull-left col-12 col-md-12 pl-0">
                   <div class="form-inline col-12 col-md-12 p-0">
                     <div class="col-12 col-md-12 p-0">
                       <h5 class="pl-0">School</h5>
                       <div class="partition pb-2">
-                      <p class="instituteName" style="font-weight:bold">Delhi Public School</p>
-                      <p class="Qualifications">High School</p>
-                      <p class="duration"> 03-03-2007 to 04-05-2009</p>
+                        <p class="instituteName" style="font-weight:bold">Delhi Public School</p>
+                        <p class="Qualifications">High School</p>
+                        <p class="duration"> 03-03-2007 to 04-05-2009</p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="clearfix mb-2 employeebkgcolour" style="position:relative">
-                <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true" style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
+                <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true"
+                    style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
                 <div class="pull-left col-12 col-md-12 pl-0">
                   <div class="form-inline col-12 col-md-12 p-0">
                     <div class="col-12 col-md-12 p-0">
                       <h5 class="pl-0">Graduation</h5>
                       <div class="partition pb-2">
-                      <p class="instituteName" style="font-weight:bold">Hi-Tech Institute of technology</p>
-                      <p class="Qualifications">B-Tech(CS)</p>
-                      <p class="duration"> 03-07-2011 to 04-05-2015</p>
-                    </div>
+                        <p class="instituteName" style="font-weight:bold">Hi-Tech Institute of technology</p>
+                        <p class="Qualifications">B-Tech(CS)</p>
+                        <p class="duration"> 03-07-2011 to 04-05-2015</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -484,14 +510,15 @@
         </div>
         <div id="profQualifications" class="container tab-pane fade">
           <div class="buttonCon pull-right mt-2 mb-2 mr-1">
-            <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add New</button>
+            <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+              New</button>
             <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
           </div>
           <div class="formBody clearfix">
             <form class="scrollbar">
               <div class="clearfix mb-2 employeebkgcolour">
                 <div class="pull-left col-12 col-md-12 pl-0">
-                  
+
                   <div class="form-inline col-12 col-md-12 p-0">
                     <div class="col-6 col-md-6 p-0">
                       <label for="Employee Code" class="col-5 col-md-5 pl-0">Institute:</label>
@@ -515,29 +542,31 @@
                 </div>
               </div>
               <div class="clearfix mb-2 employeebkgcolour" style="position:relative">
-                <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true" style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
+                <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true"
+                    style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
                 <div class="pull-left col-12 col-md-12 pl-0">
                   <div class="form-inline col-12 col-md-12 p-0">
                     <div class="col-12 col-md-12 p-0">
                       <h5 class="pl-0">Dot Net</h5>
                       <div class="partition pb-2">
-                      <p class="instituteName" style="font-weight:bold">DUCAT Noida</p>
-                      <p class="duration"> 03-03-2007 to 04-05-2009</p>
+                        <p class="instituteName" style="font-weight:bold">DUCAT Noida</p>
+                        <p class="duration"> 03-03-2007 to 04-05-2009</p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="clearfix mb-2 employeebkgcolour" style="position:relative">
-                <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true" style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
+                <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true"
+                    style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
                 <div class="pull-left col-12 col-md-12 pl-0">
                   <div class="form-inline col-12 col-md-12 p-0">
                     <div class="col-12 col-md-12 p-0">
                       <h5 class="pl-0">Angular</h5>
                       <div class="partition pb-2">
-                      <p class="instituteName" style="font-weight:bold">DUCAT Noida</p>
-                      <p class="duration"> 03-07-2011 to 04-05-2015</p>
-                    </div>
+                        <p class="instituteName" style="font-weight:bold">DUCAT Noida</p>
+                        <p class="duration"> 03-07-2011 to 04-05-2015</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -547,7 +576,8 @@
         </div>
         <div id="experience" class="container tab-pane fade">
           <div class="buttonCon pull-right mt-2 mb-2 mr-1">
-            <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add New</button>
+            <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+              New</button>
             <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
           </div>
           <div class="formBody clearfix">
@@ -557,7 +587,8 @@
                   <div class="form-inline col-12 col-md-12 p-0">
                     <div class="col-12 col-md-12 p-0">
                       <label for="Employee Code" class="col-12 col-md-2 pl-0">Company Name:</label>
-                      <input type="text" class="form-control col-12 col-md-9 ptb-4" style="margin-left: 11px;" name="name" placeholder="Company Name">
+                      <input type="text" class="form-control col-12 col-md-9 ptb-4" style="margin-left: 11px;" name="name"
+                        placeholder="Company Name">
                     </div>
                   </div>
                   <div class="form-inline col-12 col-md-12 p-0">
@@ -573,11 +604,11 @@
                   <div class="form-inline col-12 col-md-12 p-0">
                     <div class="col-6 col-md-6 p-0">
                       <label for="Employee Code" class="col-5 col-md-5 pl-0">Joining Date:</label>
-                      <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="dd/mm/yyyy">
+                      <input type="date" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="dd/mm/yyyy">
                     </div>
                     <div class="col-6 col-md-6 p-0">
                       <label for="pay" class="col-5 col-md-5 pl-0">Exit Date:</label>
-                      <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="dd/mm/yyyy">
+                      <input type="date" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="dd/mm/yyyy">
                     </div>
                   </div>
                   <div class="form-inline col-12 col-md-12 p-0">
@@ -592,8 +623,9 @@
                   </div>
                 </div>
               </div>
-              <div class="clearfix mb-2 employeebkgcolour" style="position:relative" >
-                <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true" style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
+              <div class="clearfix mb-2 employeebkgcolour" style="position:relative">
+                <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true"
+                    style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
                 <div class="pull-left col-12 col-md-12 pl-0">
                   <div class="form-inline col-12 col-md-12 p-0 partition">
                     <div class="col-12 col-md-12 p-0">
@@ -610,13 +642,13 @@
         </div>
         <div id="skills" class="container tab-pane fade">
           <div class="buttonCon pull-right mt-2 mb-2 mr-1">
-            <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add New</button>
+            <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+              New</button>
             <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
           </div>
           <div class="formBody clearfix">
             <form>
-              <div class="clearfix mb-2 employeebkgcolour" style="position:relative" >
-                <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true" style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
+              <div class="clearfix mb-2 employeebkgcolour" style="position:relative">
                 <div class="pull-left col-12 col-md-12 pl-0">
                   <div class="form-inline col-12 col-md-12 p-0">
                     <div class="col-12 col-md-12 p-0">
@@ -695,7 +727,8 @@
         </div>
         <div id="achievements" class="container tab-pane fade">
           <div class="buttonCon pull-right mt-2 mb-2 mr-1">
-            <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add New</button>
+            <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+              New</button>
             <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
           </div>
           <div class="formBody clearfix">
@@ -705,24 +738,26 @@
                   <div class="form-inline col-12 col-md-12 p-0">
                     <div class="col-12 col-md-12 p-0">
                       <label for="Employee Code" class="col-12 col-md-2 pl-0">Certificate Name:</label>
-                      <input type="text" class="form-control col-12 col-md-9 ptb-4" style="margin-left: 11px;" name="name" placeholder="Certificate Name">
+                      <input type="text" class="form-control col-12 col-md-9 ptb-4" style="margin-left: 11px;" name="name"
+                        placeholder="Certificate Name">
                     </div>
                   </div>
                   <div class="form-inline col-12 col-md-12 p-0">
                     <div class="col-6 col-md-6 p-0">
                       <label for="Employee Code" class="col-5 col-md-5 pl-0">Start Date:</label>
-                      <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="dd/mm/yyyy">
+                      <input type="date" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="dd/mm/yyyy">
                     </div>
                     <div class="col-6 col-md-6 p-0">
                       <label for="pay" class="col-5 col-md-5 pl-0">End Date:</label>
-                      <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="dd/mm/yyyy">
+                      <input type="date" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="dd/mm/yyyy">
                     </div>
                   </div>
                 </div>
               </div>
               <div class="employeebkgcolour scrollbar">
                 <div class="clearfix mb-2 partition">
-                  <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true" style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
+                  <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true"
+                      style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
                   <div class="pull-left col-12 col-md-12 pl-0">
                     <div class="form-inline col-12 col-md-12 p-0">
                       <div class="col-12 col-md-12 p-0">
@@ -732,8 +767,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="clearfix mb-2 partition" >
-                  <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true" style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
+                <div class="clearfix mb-2 partition">
+                  <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true"
+                      style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
                   <div class="pull-left col-12 col-md-12 pl-0">
                     <div class="form-inline col-12 col-md-12 p-0">
                       <div class="col-12 col-md-12 p-0">
@@ -743,8 +779,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="clearfix mb-2 partition" >
-                  <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true" style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
+                <div class="clearfix mb-2 partition">
+                  <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true"
+                      style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
                   <div class="pull-left col-12 col-md-12 pl-0">
                     <div class="form-inline col-12 col-md-12 p-0">
                       <div class="col-12 col-md-12 p-0">
@@ -760,7 +797,8 @@
         </div>
         <div id="bankDetails" class="container tab-pane fade">
           <div class="buttonCon pull-right mt-2 mb-2 mr-1">
-            <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add New</button>
+            <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+              New</button>
             <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
           </div>
           <div class="formBody clearfix">
@@ -826,7 +864,8 @@
                   </div>
                 </div>
                 <div class="clearfix mb-2 partition">
-                  <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true" style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
+                  <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true"
+                      style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
                   <div class="pull-left col-12 col-md-12 pl-0">
                     <div class="form-inline col-12 col-md-12 p-0">
                       <div class="col-12 col-md-12 p-0 accountDetails">
@@ -841,7 +880,8 @@
                   </div>
                 </div>
                 <div class="clearfix mb-2 partition">
-                  <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true" style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
+                  <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true"
+                      style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
                   <div class="pull-left col-12 col-md-12 pl-0">
                     <div class="form-inline col-12 col-md-12 p-0">
                       <div class="col-12 col-md-12 p-0 accountDetails">
@@ -856,7 +896,8 @@
                   </div>
                 </div>
                 <div class="clearfix mb-2 partition">
-                  <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true" style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
+                  <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true"
+                      style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
                   <div class="pull-left col-12 col-md-12 pl-0">
                     <div class="form-inline col-12 col-md-12 p-0">
                       <div class="col-12 col-md-12 p-0 accountDetails">
@@ -874,196 +915,338 @@
             </form>
           </div>
         </div>
+        <div id="documents" class="container tab-pane fade">
+          <div class="formBody clearfix">
+            <form>
+              <div class="clearfix mb-2 employeebkgcolour">
+                <div class="pull-left col-12 col-md-12 pl-0">
+                  <div class="form-inline col-12 col-md-12 p-0">
+                    <div class="col-12 col-md-12 p-0">
+                      <label for="Employee Code" class="col-12 col-md-2 pl-0 pt-2 pull-left">Documents:</label>
+                      <div class="form-group col-12 col-md-5 ptb-4 pull-left">
+                        <div class="styled-select slate">
+                          <select class="form-control" id="account" name="Type of Account" style="margin-bottom:5px">
+                            <option>Select</option>
+                            <option>Passport</option>
+                            <option>Visa</option>
+                            <option>Curriculum Vitae(CV)</option>
+                            <option>Driving Licence(DL)</option>
+                            <option>Medical Certificate</option>
+                            <option>Educational Certificate</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="clearfix mb-2 employeebkgcolour">
+                <div class="pull-left col-12 col-md-12 pl-0">
 
+                  <div class="form-inline col-12 col-md-12 p-0">
+                    <div class="col-6 col-md-6 p-0">
+                      <label for="Employee Code" class="col-5 col-md-5 pl-0">Passport No:</label>
+                      <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="Institute Name">
+                    </div>
+                    <div class="col-6 col-md-6 p-0">
+                      <label for="pay" class="col-5 col-md-5 pull-left pl-0">Expiry Date:</label>
+                      <input type="text" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="Dot Net">
+                    </div>
+                  </div>
+                  <div class="form-inline col-12 col-md-12 p-0">
+                    <div class="col-6 col-md-6 p-0">
+                      <label for="Employee Code" class="col-5 col-md-5 pl-0">Upload Document:</label>
+                      <input type="file" class="form-control col-12 col-md-6 ptb-4 pl-0" name="name" placeholder="Upload Document" style="border:0; background:transparent">
+                    </div>
+                    <div class="col-6 col-md-6 p-0">
+                      <label for="pay" class="col-5 col-md-5 pull-left pl-0">Time to Expire:</label>
+                      <label for="pay" class="col-5 col-md-5 pull-left pl-0">3 Months</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="employeebkgcolour scrollbar">
+                <div class="clearfix mb-2 partition">
+                  <div class="pull-left col-12 col-md-12 pl-0">
+
+
+                  </div>
+                </div>
+                <div class="clearfix mb-2 partition">
+                  <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true"
+                      style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
+                  <div class="pull-left col-12 col-md-12 pl-0">
+                    <div class="form-inline col-12 col-md-12 p-0">
+                      <div class="col-12 col-md-6 p-0 accountDetails">
+                        <h5 class="pl-0">Passport Details</h5>
+                        <p class="pl-0">Passport No.: <span>PAS96ER0001</span></p>
+                        <p class="pl-0">Expiry Date: <span>28-02-1996</span></p>
+                        <p class="pl-0">Time to Expire: <span>1 year 3 months</span> </p>
+
+                      </div>
+                      <div class="col-12 col-md-6 p-0 accountDetails">
+
+                        <div class="documentAttached pull-right">
+
+                          <a type="submit" class="" data-toggle="modal" data-target="#addNew"><img src="../assets/images/passport.png"
+                              alt="profile Image" /> </a>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix mb-2 partition">
+                  <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true"
+                      style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
+                  <div class="pull-left col-12 col-md-12 pl-0">
+                    <div class="form-inline col-12 col-md-12 p-0">
+                      <div class="col-12 col-md-12 p-0 accountDetails">
+                        <h5 class="pl-0">Visa Details</h5>
+                        <p class="pl-0">Visa No.: <span>VS96ER0001</span></p>
+                        <p class="pl-0">Visa Type: <span>Multiple Visit</span></p>
+                        <p class="pl-0">Expiry Date: <span>28-02-1996</span></p>
+                        <p class="pl-0">Time to Expire: <span>1 year 3 months</span> </p>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix mb-2 partition">
+                  <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true"
+                      style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
+                  <div class="pull-left col-12 col-md-12 pl-0">
+                    <div class="form-inline col-12 col-md-12 p-0">
+                      <div class="col-12 col-md-12 p-0 accountDetails">
+                        <h5 class="pl-0">Driving Licence Details</h5>
+                        <p class="pl-0">Driving Licence No.: <span>DL96ER0001</span></p>
+                        <p class="pl-0">Driving Licence Type: <span>Commercial</span></p>
+                        <p class="pl-0">Expiry Date: <span>28-02-1996</span></p>
+                        <p class="pl-0">Time to Expire: <span>1 year 3 months</span> </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+
+        </div>
         <div id="notes" class="container tab-pane fade">
           <div class="buttonCon pull-right mt-2 mb-2 mr-1">
-            <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add New</button>
+            <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+              New</button>
             <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
           </div>
           <div class="clearfix"></div>
           <div class="formBody clearfix">
-              <div class="col-md-12 col-sm-12 clearfix col-xs-12 p-0">
-                  <div class="col-md-6 col-sm-12 col-xs-6 pl-0 pull-left">
-                      <div class="col-md-12 col-sm-12 col-xs-12 p-0">
-                          <div class="dialogs" id="txtCommentDisplay">
-                              <div class="itemdiv dialogdiv">
-                  <div class="user">
-                      <img alt="Alexa's Avatar" src="../assets/images/profile-img-2.png"/>
-                  </div>
-                  <div class="body">
-                      <div class="time">
+            <div class="col-md-12 col-sm-12 clearfix col-xs-12 p-0">
+              <div class="col-md-6 col-sm-12 col-xs-6 pl-0 pull-left">
+                <div class="col-md-12 col-sm-12 col-xs-12 p-0">
+                  <div class="dialogs" id="txtCommentDisplay">
+                    <div class="itemdiv dialogdiv">
+                      <div class="user">
+                        <img alt="Alexa's Avatar" src="../assets/images/profile-img-2.png" />
+                      </div>
+                      <div class="body">
+                        <div class="time">
                           <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
-                      </div>
-                      
-                      <div class="name">
+                        </div>
+
+                        <div class="name">
                           <p>Alexa</p>
-                      </div>
-                      <div class="text" style="clear: both;">
+                        </div>
+                        <div class="text" style="clear: both;">
                           Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-            
-            
-                  </div>
-              </div>
-                               <div class="itemdiv dialogdiv">
-                  <div class="user">
-                      <img alt="Alexa's Avatar" src="../assets/images/profile-img-2.png">
-                  </div>
-                  <div class="body">
-                      <div class="time">
+
+
+                      </div>
+                    </div>
+                    <div class="itemdiv dialogdiv">
+                      <div class="user">
+                        <img alt="Alexa's Avatar" src="../assets/images/profile-img-2.png">
+                      </div>
+                      <div class="body">
+                        <div class="time">
                           <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
-                      </div>
-                      
-                      <div class="name">
+                        </div>
+
+                        <div class="name">
                           <p>Alexa</p>
-                      </div>
-                      <div class="text" style="clear: both;">
+                        </div>
+                        <div class="text" style="clear: both;">
                           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed
                           ipsum porttitor facilisis.</div>
-                          
-                      
-                  </div>
-              </div>
-              <div class="itemdiv dialogdiv">
-                <div class="user">
-                    <img alt="Alexa's Avatar" src="../assets/images/profile-img-2.png">
-                </div>
-                <div class="body">
-                    <div class="time">
-                        <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
+
+
+                      </div>
                     </div>
-                    
-                    <div class="name">
-                        <p>Alexa</p>
-                    </div>
-                    <div class="text" style="clear: both;">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed
-                        ipsum porttitor facilisis.</div>
-                        
-                    
-                </div>
-            </div>
-               <div class="itemdiv dialogdiv">
-                  <div class="user">
-                      <img alt="Alexa's Avatar" src="../assets/images/profile-img-2.png">
-                  </div>
-                  <div class="body">
-                      <div class="time">
+                    <div class="itemdiv dialogdiv">
+                      <div class="user">
+                        <img alt="Alexa's Avatar" src="../assets/images/profile-img-2.png">
+                      </div>
+                      <div class="body">
+                        <div class="time">
                           <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
-                      </div>
-                      
-                      <div class="name">
+                        </div>
+
+                        <div class="name">
                           <p>Alexa</p>
+                        </div>
+                        <div class="text" style="clear: both;">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed
+                          ipsum porttitor facilisis.</div>
+
+
                       </div>
-                      <div class="text" style="clear: both;">
+                    </div>
+                    <div class="itemdiv dialogdiv">
+                      <div class="user">
+                        <img alt="Alexa's Avatar" src="../assets/images/profile-img-2.png">
+                      </div>
+                      <div class="body">
+                        <div class="time">
+                          <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
+                        </div>
+
+                        <div class="name">
+                          <p>Alexa</p>
+                        </div>
+                        <div class="text" style="clear: both;">
                           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed
                           ipsum porttitor facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                        
-                  </div>
-              </div>
-                          </div>
+
                       </div>
                     </div>
-                    <div class="col-md-6 col-sm-12 col-xs-6 pr-0 pull-left">
-                        <form class="employeebkgcolour mb-1">
-                            <div class="pull-left col-12 col-md-12 pl-0">
-                              <div class="row">
-                                <div class="col-12 col-md-12">
-                                  <div class="form-inline">
-                                    <label for="Employee Name" class="col-2 col-md-2 pl-0">Note:</label>
-                                    <textarea rows="1" class="form-control col-6 col-md-10 ptb-4" id="name" name="name" placeholder=""></textarea>
-                                  </div>
-                                </div>
-                                
-                              </div>
-                           
-                             
-                            </div>
-                          </form>
-                      <div class="col-md-12 col-sm-12 col-xs-12 p-0">
-                        <div class="dialogs" id="txtCommentDisplay">
-                            <div class="itemdiv dialogdiv">
-                <div class="user">
-                    <img alt="Alexa's Avatar" src="../assets/images/profile-img-2.png"/>
-                </div>
-                <div class="body">
-                    <div class="time">
-                        <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
-                    </div>
-                    
-                    <div class="name">
-                        <p>Alexa</p>
-                    </div>
-                    <div class="text" style="clear: both;">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-          
-          
-                </div>
-            </div>
-                             <div class="itemdiv dialogdiv">
-                <div class="user">
-                    <img alt="Alexa's Avatar" src="../assets/images/profile-img-2.png">
-                </div>
-                <div class="body">
-                    <div class="time">
-                        <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
-                    </div>
-                    
-                    <div class="name">
-                        <p>Alexa</p>
-                    </div>
-                    <div class="text" style="clear: both;">
-                        Lorem ipsum dolor sit amet.</div>
-                        
-                    
-                </div>
-            </div>
-            <div class="itemdiv dialogdiv">
-              <div class="user">
-                  <img alt="Alexa's Avatar" src="../assets/images/profile-img-2.png">
-              </div>
-              <div class="body">
-                  <div class="time">
-                      <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
                   </div>
-                  
-                  <div class="name">
-                      <p>Alexa</p>
-                  </div>
-                  <div class="text" style="clear: both;">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed
-                      ipsum porttitor facilisis.</div>
-                      
-                  
+                </div>
               </div>
-          </div>
-             <div class="itemdiv dialogdiv">
-                <div class="user">
-                    <img alt="Alexa's Avatar" src="../assets/images/profile-img-2.png">
-                </div>
-                <div class="body">
-                    <div class="time">
-                        <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
-                    </div>
-                    
-                    <div class="name">
-                        <p>Alexa</p>
-                    </div>
-                    <div class="text" style="clear: both;">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed
-                        ipsum porttitor facilisis. Lorem ipsum dolor sit amet.</div>
-                      
-                </div>
-            </div>
+              <div class="col-md-6 col-sm-12 col-xs-6 pr-0 pull-left">
+                <form class="employeebkgcolour mb-1">
+                  <div class="pull-left col-12 col-md-12 pl-0">
+                    <div class="row">
+                      <div class="col-12 col-md-12">
+                        <div class="form-inline">
+                          <label for="Employee Name" class="col-2 col-md-2 pl-0">Note:</label>
+                          <textarea rows="1" class="form-control col-6 col-md-10 ptb-4" id="name" name="name"
+                            placeholder=""></textarea>
                         </div>
-                    </div>
                       </div>
+
+                    </div>
+
+
+                  </div>
+                </form>
+                <div class="col-md-12 col-sm-12 col-xs-12 p-0">
+                  <div class="dialogs" id="txtCommentDisplay">
+                    <div class="itemdiv dialogdiv">
+                      <div class="user">
+                        <img alt="Alexa's Avatar" src="../assets/images/profile-img-2.png" />
+                      </div>
+                      <div class="body">
+                        <div class="time">
+                          <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
+                        </div>
+
+                        <div class="name">
+                          <p>Alexa</p>
+                        </div>
+                        <div class="text" style="clear: both;">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+
+
+                      </div>
+                    </div>
+                    <div class="itemdiv dialogdiv">
+                      <div class="user">
+                        <img alt="Alexa's Avatar" src="../assets/images/profile-img-2.png">
+                      </div>
+                      <div class="body">
+                        <div class="time">
+                          <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
+                        </div>
+
+                        <div class="name">
+                          <p>Alexa</p>
+                        </div>
+                        <div class="text" style="clear: both;">
+                          Lorem ipsum dolor sit amet.</div>
+
+
+                      </div>
+                    </div>
+                    <div class="itemdiv dialogdiv">
+                      <div class="user">
+                        <img alt="Alexa's Avatar" src="../assets/images/profile-img-2.png">
+                      </div>
+                      <div class="body">
+                        <div class="time">
+                          <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
+                        </div>
+
+                        <div class="name">
+                          <p>Alexa</p>
+                        </div>
+                        <div class="text" style="clear: both;">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed
+                          ipsum porttitor facilisis.</div>
+
+
+                      </div>
+                    </div>
+                    <div class="itemdiv dialogdiv">
+                      <div class="user">
+                        <img alt="Alexa's Avatar" src="../assets/images/profile-img-2.png">
+                      </div>
+                      <div class="body">
+                        <div class="time">
+                          <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
+                        </div>
+
+                        <div class="name">
+                          <p>Alexa</p>
+                        </div>
+                        <div class="text" style="clear: both;">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed
+                          ipsum porttitor facilisis. Lorem ipsum dolor sit amet.</div>
+
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              
+              </div>
+            </div>
+
           </div>
         </div>
-        
+
       </div>
     </div>
   </div>
 </div>
+<div class="modal fade" id="addNew">
+  <div class="modal-dialog modal-dialog-centered" id="addpopUp">
+    <div class="modal-content">
 
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5>Passport</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <img src="../assets/images/passport.png">
+      </div>
+
+      <!-- Modal footer -->
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-submit" data-dismiss="modal">SUBMIT</button>
+        
+      </div> -->
+
+    </div>
+  </div>
+</div>
