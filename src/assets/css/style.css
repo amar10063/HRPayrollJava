@@ -2418,3 +2418,5 @@ a:hover {
         width: 100%;
         overflow-x: hidden !important;
     }
+
+    #accordion .scrollbar{max-height:500px !important; height: 500px !important}
