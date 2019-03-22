@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
 
   public href1: string = "";
-  constructor(private router1: Router) { }
+  constructor(public router1: Router) { }
   ngOnInit() {
     this.href1 = this.router1.url;
     console.log(this.router1.url);
