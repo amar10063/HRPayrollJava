@@ -934,11 +934,19 @@
                     <div style="position: absolute; top:10px; right:10px;"> <i class="fa fa-pencil" aria-hidden="true" style=" background-color: #ffff; padding: 6px;border-radius: 5px;"></i> </div>
                     <div class="pull-left col-12 col-md-12 pl-0">
                       <div class="form-inline col-12 col-md-12 p-0">
-                        <div class="col-12 col-md-12 p-0 accountDetails">
+                        <div class="col-12 col-md-6 p-0 accountDetails">
                           <h5 class="pl-0">Passport Details</h5>
                           <p class="pl-0">Passport No.: <span>PAS96ER0001</span></p>
                           <p class="pl-0">Expiry Date: <span>28-02-1996</span></p>
                           <p class="pl-0">Time to Expire: <span>1 year 3 months</span> </p>
+                         
+                        </div>
+                        <div class="col-12 col-md-6 p-0 accountDetails">
+                        
+                         <div class="documentAttached pull-right">
+                             
+                          <a type="submit" class="" data-toggle="modal" data-target="#addNew"><img src="../assets/images/passport.png" alt="profile Image" /> </a>                      
+                         </div>
                          
                         </div>
                       </div>
@@ -1170,4 +1178,27 @@
     </div>
   </div>
 </div>
-
+<div class="modal fade" id="addNew">
+  <div class="modal-dialog modal-dialog-centered" id="addpopUp">
+    <div class="modal-content">
+    
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5>Passport</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <!-- Modal body -->
+      <div class="modal-body">
+        <img  src="../assets/images/passport.png" >
+      </div>
+      
+      <!-- Modal footer -->
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-submit" data-dismiss="modal">SUBMIT</button>
+        
+      </div> -->
+      
+    </div>
+  </div>
+</div>

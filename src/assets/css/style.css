@@ -859,3 +859,9 @@ footer p{ color:#194b4f; font-weight:400; font-size:0.6875rem; margin:0; line-he
     .dropdown-menu.show {
         box-shadow: 1px 1px 1px #333;    }
         .active1{background:#2e6d72 ;}
+        .documentAttached img{width:60px;}
+
+        .documentAttached{ padding-right: 15%;}
+        .documentAttached a{  border: 1px solid #eae8e8;
+    padding: 1px;
+    cursor: pointer;}
