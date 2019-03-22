@@ -949,7 +949,7 @@
                   <div class="form-inline col-12 col-md-12 p-0">
                     <div class="col-6 col-md-6 p-0">
                       <label for="Employee Code" class="col-5 col-md-5 pl-0">Upload Document:</label>
-                      <input type="date" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="dd/mm/yyyy">
+                      <input type="file" class="form-control col-12 col-md-6 ptb-4" name="name" placeholder="dd/mm/yyyy">
                     </div>
                     <div class="col-6 col-md-6 p-0">
                       <label for="pay" class="col-5 col-md-5 pull-left pl-0">Time to Expire:</label>
@@ -975,13 +975,15 @@
                         <p class="pl-0">Passport No.: <span>PAS96ER0001</span></p>
                         <p class="pl-0">Expiry Date: <span>28-02-1996</span></p>
                         <p class="pl-0">Time to Expire: <span>1 year 3 months</span> </p>
-
+                       
                       </div>
                       <div class="col-12 col-md-6 p-0 accountDetails">
-
-
-                        <span class="uploadarea">kkk</span>
-
+                      
+                       <div class="documentAttached pull-right">
+                           
+                        <a type="submit" class="" data-toggle="modal" data-target="#addNew"><img src="../assets/images/passport.png" alt="profile Image" /> </a>                      
+                       </div>
+                       
                       </div>
                     </div>
                   </div>
@@ -1212,6 +1214,30 @@
         </div>
 
       </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="addNew">
+  <div class="modal-dialog modal-dialog-centered" id="addpopUp">
+    <div class="modal-content">
+    
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5>Passport</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <!-- Modal body -->
+      <div class="modal-body">
+        <img  src="../assets/images/passport.png" >
+      </div>
+      
+      <!-- Modal footer -->
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-submit" data-dismiss="modal">SUBMIT</button>
+        
+      </div> -->
+      
     </div>
   </div>
 </div>
