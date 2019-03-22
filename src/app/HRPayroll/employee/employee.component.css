@@ -1,201 +1,335 @@
-.headCon{ overflow: hidden;
-    background: #d9e3e4;
-    padding: 15px 0px 0px;
-    margin-bottom: 20px;}
-.empPhoto{ background: #398d94;
-        border-radius: 4px;
-        padding: 10px !important;}
-.empPhoto img{width:100%}
-#basic .formBody .form-inline label{ width:100% !important;  padding-top: 5px; }
+.headCon {
+  overflow: hidden;
+  background: #d9e3e4;
+  padding: 15px 0px 0px;
+  margin-bottom: 20px;
+}
 
-#payHead label{font-weight:600}
+.empPhoto {
+  background: #398d94;
+  border-radius: 4px;
+  padding: 10px !important;
+}
+
+.empPhoto img {
+  width: 100%
+}
+
+#basic .formBody .form-inline label {
+  width: 100% !important;
+  padding-top: 5px;
+}
+
+#payHead label {
+  font-weight: 600
+}
+
 #payHead .scrollbar {
-    max-height: 415px;
-    width: 100%;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    margin-bottom: 0;
-    z-index: 100;
+  max-height: 415px;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin-bottom: 0;
+  z-index: 100;
 }
+
 .formBody .form-inline {
-    margin-bottom: 3px;
- 
+  margin-bottom: 3px;
+
 }
+
 #payHead .formBody {
-    padding: 1%}
+  padding: 1%
+}
+
 #payHead h5 {
-    font-size: 14px;
-}
-#payHead h6{font-size:12px}
-#payHead p{font-size:11px !important; display: block !important; margin-bottom: 10px !important}
-#skillsList ul.list-group{display:inline-block !important; width: 100%;  padding-top: 25px; }
-#skillsList ul li{display:inline-block !important;}
-#skillsList ul li.list-item{color: #3e3e3e;
-    font-size: 11px;
-    font-weight: bold;
-    padding: 10px 10px;
-width:20%; }
-#skillsList ul li.list-item .skillList{border-bottom: 1px solid #AAC7D0 !important; padding-bottom: 8px; padding-left: 12px;}
-#skillsList ul li.list-item i{font-weight: bold; padding-right: 6px;}
-.skillList i{width:14%}
-.skillList label{width:85%}
-
-#achievements .scrollbar{max-height:327px}
-#bankDetails .scrollbar{ max-height:350px}
-.educationTitle{
-    margin-bottom: 5px;}
-    .educationTitle span{    font-size: 11px;
-        font-weight: 500;}
-        .mainTitle{      font-size: 14px !important;
-            font-weight: 500 !important;border-bottom: 1px solid #d4d2d2;}
-
-.emergency{
-            top: -4px;
-        left: -2px;       
+  font-size: 14px;
 }
 
+#payHead h6 {
+  font-size: 12px
+}
 
-.partition{ position: relative;
-    border-bottom: 1px solid #b6ced8;}
-    .accountDetails p{ font-weight:bold}
-    .accountDetails p span{ font-weight:600}
-    .instituteName{    font-size: 13px;
-        font-weight: 600;}
-    .Qualifications{    font-size: 12px;
-        font-weight: 600;}
-    .duration{    font-size: 11px;
-        font-weight: 600;}
-        .payHead .navbar-nav li a {
-            padding: 14px 6px !important;
-        }
-    #payHead p.phoneeditpart{
-            background-color: #ffffff;
-            padding: 3px 5px 3px 7px;
-            width: 12%;
-            border-radius: 10px;
-            margin-bottom: 4px !important;
-        }
-        td.textHighlight{padding:5px 5px 0px}
-      
-.payHeadBtn{font-size: 12px;
-    color: #21656b;
-    font-weight: 600;
-    background: none;
-    box-shadow: none;
-    border: 0; }
-.payHeadBtn i{padding-right:5px}
+#payHead p {
+  font-size: 11px !important;
+  display: block !important;
+  margin-bottom: 10px !important
+}
+
+#skillsList ul.list-group {
+  display: inline-block !important;
+  width: 100%;
+  padding-top: 25px;
+}
+
+#skillsList ul li {
+  display: inline-block !important;
+}
+
+#skillsList ul li.list-item {
+  color: #3e3e3e;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 10px 10px;
+  width: 20%;
+}
+
+#skillsList ul li.list-item .skillList {
+  border-bottom: 1px solid #AAC7D0 !important;
+  padding-bottom: 8px;
+  padding-left: 12px;
+}
+
+#skillsList ul li.list-item i {
+  font-weight: bold;
+  padding-right: 6px;
+}
+
+.skillList i {
+  width: 14%
+}
+
+.skillList label {
+  width: 85%
+}
+
+#achievements .scrollbar {
+  max-height: 327px
+}
+
+#bankDetails .scrollbar {
+  max-height: 350px
+}
+
+.educationTitle {
+  margin-bottom: 5px;
+}
+
+.educationTitle span {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.mainTitle {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  border-bottom: 1px solid #d4d2d2;
+}
+
+.emergency {
+  top: -4px;
+  left: -2px;
+}
+
+
+.partition {
+  position: relative;
+  border-bottom: 1px solid #b6ced8;
+}
+
+.accountDetails p {
+  font-weight: bold
+}
+
+.accountDetails p span {
+  font-weight: 600
+}
+
+.instituteName {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.Qualifications {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.duration {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.payHead .navbar-nav li a {
+  padding: 14px 6px !important;
+}
+
+#payHead p.phoneeditpart {
+  background-color: #ffffff;
+  padding: 3px 5px 3px 7px;
+  width: 12%;
+  border-radius: 10px;
+  margin-bottom: 4px !important;
+}
+
+td.textHighlight {
+  padding: 5px 5px 0px
+}
+
+.payHeadBtn {
+  font-size: 12px;
+  color: #21656b;
+  font-weight: 600;
+  background: none;
+  box-shadow: none;
+  border: 0;
+}
+
+.payHeadBtn i {
+  padding-right: 5px
+}
+
 .itemdiv.dialogdiv>.body {
-    border: 1px solid #a9d0d4;
-    padding: 5px 8px 8px;
-    border-left-width: 2px;
-    margin-left: 10%;
-    background:#e7eeef;
+  border: 1px solid #a9d0d4;
+  padding: 5px 8px 8px;
+  border-left-width: 2px;
+  margin-left: 10%;
+  background: #e7eeef;
 }
 
 .itemdiv>.user {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    left: 0;
-    border: 1px solid #336f74;
-    border-radius: 50%;
-    background: #fff;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 0;
+  border: 1px solid #336f74;
+  border-radius: 50%;
+  background: #fff;
 }
+
 .itemdiv>.body>.text {
-    display: block;
-    position: relative;
-    margin-top: 2px;
-    padding-bottom: 19px;
-    padding-left: 7px;
-    font-size: 11px;
+  display: block;
+  position: relative;
+  margin-top: 2px;
+  padding-bottom: 19px;
+  padding-left: 7px;
+  font-size: 11px;
 }
+
 .itemdiv.dialogdiv>.body>.text {
-    padding-left: 0;
-    padding-bottom: 0;
+  padding-left: 0;
+  padding-bottom: 0;
 }
+
 .itemdiv.dialogdiv>.user>img {
-    padding: 2px 5px 4px;
+  padding: 2px 5px 4px;
 }
+
 .itemdiv.dialogdiv>.body>.time {
-    position: static;
-    float: right;
+  position: static;
+  float: right;
 }
 
 .itemdiv>.body>.time {
-    display: block;
-    font-size: 11px;
-    font-weight: 700;
-    color: #666;
-    position: absolute;
-    right: 9px;
-    top: 0;
-}
-.itemdiv>.body>.time .ace-icon {
-    margin-right: 4px;
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: #666;
+  position: absolute;
+  right: 9px;
+  top: 0;
 }
 
 .itemdiv>.body>.time .ace-icon {
-    font-size: 14px;
-    font-weight: 400;
+  margin-right: 4px;
 }
+
+.itemdiv>.body>.time .ace-icon {
+  font-size: 14px;
+  font-weight: 400;
+}
+
 .ace-icon {
-    text-align: center;
+  text-align: center;
 }
 
 .itemdiv.dialogdiv:before {
-    display: block;
-    top: 0;
-    bottom: 0;
-    left: 14px;
-    width: 3px;
-    max-width: 3px;
-    background-color: #a9d0d4;
-    border: 1px solid #D7DBDD;
-    border-width: 0 1px;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 14px;
+  width: 3px;
+  max-width: 3px;
+  background-color: #a9d0d4;
+  border: 1px solid #D7DBDD;
+  border-width: 0 1px;
 }
+
 .itemdiv.dialogdiv>.body:before {
-    display: block;
-    left: 36px;
-    top: 11px;
-    width: 8px;
-    height: 8px;
-    border: 2px solid #a9d0d4;
-    border-width: 2px 0 0 2px;
-    background-color: #e7eeef;
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-    -webkit-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    -o-transform: rotate(-45deg);
-    transform: rotate(-45deg);
+  display: block;
+  left: 36px;
+  top: 11px;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #a9d0d4;
+  border-width: 2px 0 0 2px;
+  background-color: #e7eeef;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
-.itemdiv.dialogdiv:before, .itemdiv.dialogdiv>.body:before, .itemdiv>.body>.text:after {
-    content: "";
-    position: absolute;
+
+.itemdiv.dialogdiv:before,
+.itemdiv.dialogdiv>.body:before,
+.itemdiv>.body>.text:after {
+  content: "";
+  position: absolute;
 }
+
 .itemdiv.dialogdiv:last-child {
-    padding-bottom: 0;
+  padding-bottom: 0;
 }
+
 .itemdiv.dialogdiv:last-child:before {
-    display: none !important;
+  display: none !important;
 }
+
 .itemdiv.dialogdiv {
-    padding-bottom: 14px;
+  padding-bottom: 14px;
 }
 
 .itemdiv {
-    padding-right: 3px;
-    min-height: 66px;
+  padding-right: 3px;
+  min-height: 66px;
 }
-.dialogs, .itemdiv {
-    position: relative;
-}
-.name p{ color:#1f4c50 !important; font-weight:bold !important}
-.documentAttached img{width:60px;}
 
-        .documentAttached{ padding-right: 15%;}
-        .documentAttached a{  border: 1px solid #eae8e8;
-    padding: 1px;
-    cursor: pointer;}
+.dialogs,
+.itemdiv {
+  position: relative;
+}
+
+.name p {
+  color: #1f4c50 !important;
+  font-weight: bold !important
+}
+
+.documentAttached img {
+  width: 60px;
+}
+
+.documentAttached {
+  padding-right: 15%;
+}
+
+.documentAttached a {
+  border: 1px solid #eae8e8;
+  padding: 1px;
+  cursor: pointer;
+}
+
+#documents .scrollbar {
+  max-height: 292px;
+}
+#educationalQualifications .scrollbar, #profQualifications .scrollbar {
+    max-height: 286px;}
+#experience .scrollbar{max-height: 264px;}
+#AddressBook .scrollbar{max-height: 300px;}
+.ag-center-cols-viewport {
+    width: 100%;
+    overflow-x: hidden !important;
+}
