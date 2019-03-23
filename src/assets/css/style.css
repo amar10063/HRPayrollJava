@@ -6,7 +6,7 @@ body {
 }
 
 p {
-    font-size: 14px;
+    font-size: 10px;
     line-height: 1.2;
     color: #3e3e3e;
 }
@@ -710,8 +710,9 @@ ul.navbar-nav {
 
 a.nav-link {
     color: #fff !important;
-    font-size: 0.825rem;
-    line-height: 1.2
+    font-size: 10px;
+    line-height: 1.2;
+    font-weight:bold;
 }
 
 .arrow {
@@ -725,7 +726,7 @@ a.nav-link {
 }
 
 .gridBody {
-    padding: 10px 20px;
+    padding: 20px 20px 10px;
     overflow: hidden;
     margin-bottom: 40px;
     background: #fff;
@@ -759,10 +760,12 @@ a.nav-link {
 
 .gridBody h5 {
     color: #1f4c50;
-    text-decoration: underline;
     padding-bottom: 3px;
-    font-size: 1rem;
+    font-size: 10px;
     font-weight: bold;
+    position: absolute;
+    top: 1%;
+    left: 2%;
 }
 
 tbody>tr>td,
@@ -825,7 +828,7 @@ thead>tr>th {
 
 .show p {
     display: inline-block;
-    font-size: 14px;
+    font-size: 10px;
     font-weight: 600;
     color: #1f4c50;
     vertical-align: middle;
@@ -940,7 +943,7 @@ thead>tr>th {
 }
 
 .panel-heading {
-    padding: 0;
+    padding: 10px 0px 15px !important;
     border: 0;
     border-bottom: 1px solid #398d94;
 }
@@ -950,15 +953,15 @@ thead>tr>th {
     display: block;
     padding: 1px 0px;
     color: #398d94;
-    font-size: .875rem;
-    font-weight: 600;
+    font-size: 10px;
+    font-weight: bold;
     word-spacing: 3px;
     text-decoration: none;
 }
 
 .panel-body {
     padding: 7px 10px 0 0;
-    font-size: 14px
+    font-size: 10px
 }
 
 .panel-heading a:before {
@@ -984,18 +987,20 @@ thead>tr>th {
 
 .panel-heading h4 {
     margin-bottom: .1rem !important;
+    width: 95px;
+    padding-top: 10px;
 }
 
 .panel-body ul {
     list-style: none;
     padding: 0;
-    margin-bottom: .4rem;
+    display: inline;
 }
 
 .panel-body ul li {
     display: inline-block;
     vertical-align: top;
-    width: 10%;
+    width: 9%;
 }
 
 .panel-body ul li:last-child {
@@ -1005,13 +1010,13 @@ thead>tr>th {
 .panel-body ul li img {
     margin: 0 auto;
     display: block;
-    width: 35px;
+    width: 28px;
     height: auto
 }
 
 .panel-body ul li a {
     display: block;
-    font-size: 0.625rem;
+    font-size: 9px;
     line-height: 1.2;
     text-decoration: none;
     font-weight: bold;
@@ -1119,7 +1124,7 @@ thead>tr>th {
     /* background-color: transparent; */
     background-position: left 10px center;
     background-repeat: no-repeat;
-    font-size: 14px;
+    font-size: 10px;
     text-align: left;
     color: #3e3e3e;
     /* opacity: 0.7; */
@@ -1653,7 +1658,7 @@ td.drop {
 }
 
 #posting-radio .checkBox {
-    font-size: 11px;
+    font-size: 10px;
     padding-top: 0px;
 }
 
@@ -2257,7 +2262,7 @@ label {
 }
 
 .setting a {
-    font-size: 11px;
+    font-size: 10px;
     color: #3e3e3e !important;
     padding: 0 5px;
 }
@@ -2323,12 +2328,12 @@ a:hover {
 }
 
 .educationTitle span {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 500;
 }
 
 .mainTitle {
-    font-size: 14px !important;
+    font-size: 10px !important;
     font-weight: 500 !important;
     border-bottom: 1px solid #d4d2d2;
 }
@@ -2344,17 +2349,17 @@ a:hover {
 }
 
 .instituteName {
-    font-size: 13px;
+    font-size: 10px;
     font-weight: 600;
 }
 
 .Qualifications {
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 600;
 }
 
 .duration {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
 }
 
@@ -2375,7 +2380,7 @@ a:hover {
 
 .bgline {
     background: #f5f3f3;
-    font-size: 12px;
+    font-size: 10px;
     /* text-align: center; */
     padding-left: 8px;
     color: #1f4c50;
@@ -2418,3 +2423,4 @@ a:hover {
         width: 100%;
         overflow-x: hidden !important;
     }
+    .dropdown-menu { font-size: 12px !important;}
