@@ -1,0 +1,24 @@
+.search{    padding-left: 15%;}
+.topsearch{border: 1px solid #b7dcd9;
+    height: 20px;}
+    .topsarchbtn{height: 19px;
+        background: #1d8c81;
+        border: none;
+        color: #fff;
+        line-height: 17px;}
+        #tt::placeholder {
+          
+            opacity: 1; /* Firefox */
+            font-size:11px;
+            padding:2px;
+          }
+          
+          #tt:-ms-input-placeholder { /* Internet Explorer 10-11 */
+            padding:2px;
+            font-size:11px;
+          }
+          
+          #tt::-ms-input-placeholder { /* Microsoft Edge */
+            padding:2px;
+            font-size:11px;
+          }
