@@ -2425,7 +2425,22 @@ a:hover {
     }
 
 
+    .payHeadBtn {
+        font-size: 12px;
+        color: #21656b;
+        font-weight: 600;
+        background: none;
+        box-shadow: none;
+        border: 0;
+      }
+      
+      .payHeadBtn i {
+        padding-right: 5px
+      }
+
+
     #accordion .scrollbar{max-height:500px !important; height: 500px !important}
 
     .dropdown-menu { font-size: 10px !important;}
+
 

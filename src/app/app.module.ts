@@ -13,6 +13,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { EmployeeComponent } from './HRPayroll/employee/employee.component';
 import { HrmoduleComponent } from './HRPayroll/hrmodule/hrmodule.component';
 import { FinanceComponent } from './HRPayroll/finance/finance.component';
+import { SelfServiceComponent } from './self-service/self-service.component';
+import { SystemAdminModuleComponent } from './SystemAdministration/SystemAdminModule/SystemAdminModule.component';
+import { CountryComponent } from './SystemAdministration/country/country.component';
 
 
 
@@ -27,7 +30,10 @@ import { FinanceComponent } from './HRPayroll/finance/finance.component';
     NavbarComponent,
     EmployeeComponent,
     HrmoduleComponent,
-    FinanceComponent
+    FinanceComponent,
+    SelfServiceComponent,
+    SystemAdminModuleComponent,
+    CountryComponent
 
   ],
   imports: [

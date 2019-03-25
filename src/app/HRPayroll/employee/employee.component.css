@@ -166,18 +166,7 @@ td.textHighlight {
   padding: 5px 5px 0px
 }
 
-.payHeadBtn {
-  font-size: 12px;
-  color: #21656b;
-  font-weight: 600;
-  background: none;
-  box-shadow: none;
-  border: 0;
-}
 
-.payHeadBtn i {
-  padding-right: 5px
-}
 
 .itemdiv.dialogdiv>.body {
   border: 1px solid #a9d0d4;
