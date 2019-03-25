@@ -1,13 +1,3 @@
-#setup .navbar-nav {
-    flex-direction: row;
-}
-#setup .navbar-nav li {
-    border-right: 1px solid #719bab;
-    width: 25% !important;
-  }
-  #setup .navbar-nav li:last-child{border-right: 0}
-  #setup .navbar-nav li a{ text-align:center !important; padding:8px 6px !important}
-  #setup .tab-content{min-height:380px}
 
   p.simple-card {
     margin: 0;
@@ -19,3 +9,11 @@
     text-align: center;
     box-shadow: 0 3px 6px rgba(204, 131, 103, 0.22);
 }
+#setup #payrollDetail .navbar-nav {
+  flex-direction: row;
+}
+#setup #payrollDetail .navbar-nav li{ width:33.3%; border-right:1px solid #719bab}
+#setup #payrollDetail .navbar-nav li a{ text-align:left !important}
+#setup #payrollDetail .navbar-nav li:last-child{border-right: 0}
+#setup #payrollDetail .navbar-nav li a{ text-align:center !important; padding:8px 6px !important}
+#setup #payrollDetail .tab-content{min-height:380px}
