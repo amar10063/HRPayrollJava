@@ -1,11 +1,16 @@
-.search{    padding-left: 15%;}
-.topsearch{border: 1px solid #b7dcd9;
-    height: 20px;}
-    .topsarchbtn{height: 19px;
+.search{    padding-left: 20%;}
+.topsearch{ border: 1px solid #b7dcd9;
+  height: 22px;
+  padding-left: 5px;
+  color: #3e3e3e;
+  font-size: 10px;
+  padding-top: 3px;}
+    .topsarchbtn{height: 22px;
         background: #1d8c81;
         border: none;
         color: #fff;
-        line-height: 17px;}
+        line-height: 17px;
+        padding-top: 0px;}
         #tt::placeholder {
           
             opacity: 1; /* Firefox */

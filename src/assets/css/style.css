@@ -2082,7 +2082,7 @@ form[name="recordForm"] {
 
 .payHead a.nav-link {
     color: #1f4c50 !important;
-    font-size: 0.725rem;
+    font-size: 10px;
     line-height: 1.5;
     font-weight: 600;
 }
