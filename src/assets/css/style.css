@@ -2423,6 +2423,7 @@ a:hover {
         width: 100%;
         overflow-x: hidden !important;
     }
+<<<<<<< HEAD
     .dropdown-menu { font-size: 12px !important;}
     .payHeadBtn {
         font-size: 12px;
@@ -2436,3 +2437,11 @@ a:hover {
       .payHeadBtn i {
         padding-right: 5px
       }
+=======
+
+
+    #accordion .scrollbar{max-height:500px !important; height: 500px !important}
+
+    .dropdown-menu { font-size: 10px !important;}
+
+>>>>>>> 4d8ea889e8a9914557c4a6c4ca82c6759b06d6ba
