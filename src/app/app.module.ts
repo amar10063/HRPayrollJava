@@ -4,17 +4,18 @@ import { AgGridModule } from 'ag-grid-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
-
 import { EmployeeComponent } from './HRPayroll/employee/employee.component';
 import { HrmoduleComponent } from './HRPayroll/hrmodule/hrmodule.component';
 import { FinanceComponent } from './HRPayroll/finance/finance.component';
+import { SelfServiceComponent } from './self-service/self-service.component';
+import { SystemAdminModuleComponent } from './SystemAdministration/SystemAdminModule/SystemAdminModule.component';
+import { CountryComponent } from './SystemAdministration/country/country.component';
 
 
 
@@ -22,16 +23,17 @@ import { FinanceComponent } from './HRPayroll/finance/finance.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent,
     DashboardComponent,
     ForgetpasswordComponent,
     HeaderComponent,
     FooterComponent,
     NavbarComponent,
-
     EmployeeComponent,
     HrmoduleComponent,
-    FinanceComponent
+    FinanceComponent,
+    SelfServiceComponent,
+    SystemAdminModuleComponent,
+    CountryComponent
 
   ],
   imports: [
