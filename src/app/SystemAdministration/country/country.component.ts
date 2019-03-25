@@ -75,7 +75,7 @@ export class CountryComponent implements OnInit {
   columnDefs4 = [
     { headerName: "All", checkboxSelection: true, field: "all", width: 100 },
     { headerName: 'Sr No.', field: 'serial', width: 200 },    
-    { headerName: 'Department', field: 'department', sortable: true, filter: true, editable:true, width: 255 },
+    { headerName: 'Department', field: 'department', sortable: true, filter: true, editable:true, width: 252 },
     { headerName: 'Designation', field: 'designation', sortable: true, filter: true, editable:true, width: 260 }
      ];
 
