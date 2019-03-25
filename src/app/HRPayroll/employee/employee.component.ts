@@ -223,6 +223,29 @@ export class EmployeeComponent implements OnInit {
     
   ];
 
+  columnDefs11 = [
+    { headerName: "All", checkboxSelection: true, field: 'all', width: 60 },
+    { headerName: 'Documents', field: 'Documents', width: 160 },
+    { headerName: 'Passport No', field: 'PassportNo', sortable: true, filter: true, width: 160 },
+    { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, width: 160 },
+    { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, width: 170 },
+    { headerName: 'Time to Expire', field: 'TimetoExpire', sortable: true, filter: true, width: 160 },
+    
+   
+    
+    
+    
+
+  ];
+
+  rowData11 = [
+    { all: " ", checkboxSelection: true, Documents: 'Passport', PassportNo: 'PAS96ER0001', ExpiryDate: '28-02-1996', UploadDocument:'', TimetoExpire:'1 year 3 months'},
+    
+   
+    
+  ];
+
+
 
 
   constructor() { }

@@ -847,7 +847,19 @@
           </div>-->
         </div>
         <div id="documents" class="container tab-pane fade">
-          <div class="formBody clearfix">
+            <div class="buttonCon pull-right mt-2 mb-2 mr-1">
+                <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                  New</button>
+                <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
+              </div>
+              <div class="formBody clearfix pt-0" style="clear: both;">
+                  <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData11" [columnDefs]="columnDefs11"></ag-grid-angular>
+      
+                </div>
+
+
+
+          <!--<div class="formBody clearfix">
             <form>
               <div class="clearfix mb-2 employeebkgcolour">
                 <div class="pull-left col-12 col-md-12 pl-0">
@@ -964,7 +976,7 @@
                 </div>
               </div>
             </form>
-          </div>
+          </div>-->
 
 
         </div>
