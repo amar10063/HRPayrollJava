@@ -2323,6 +2323,7 @@ a:hover {
     border-radius: 5px;
 }
 
+
 .educationTitle {
     margin-bottom: 5px;
 }
@@ -2442,5 +2443,6 @@ a:hover {
     #accordion .scrollbar{max-height:500px !important; height: 500px !important}
 
     .dropdown-menu { font-size: 10px !important;}
+
 
 
