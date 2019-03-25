@@ -94,11 +94,11 @@
 }
 
 #achievements .scrollbar {
-  max-height: 327px
+  max-height: 321px
 }
 
 #bankDetails .scrollbar {
-  max-height: 350px
+  max-height: 344px
 }
 
 .educationTitle {
@@ -312,7 +312,7 @@ td.textHighlight {
 }
 
 #documents .scrollbar {
-  max-height: 292px;
+  max-height: 290px;
 }
 #educationalQualifications .scrollbar, #profQualifications .scrollbar {
     max-height: 286px;}
