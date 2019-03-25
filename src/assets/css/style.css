@@ -428,7 +428,7 @@ select option:disabled {
 
 .local {
     -webkit-appearance: none;
-    apperance: none;
+    
     -moz-appearance: none
 }
 
@@ -2442,3 +2442,15 @@ a:hover {
 
     .dropdown-menu { font-size: 10px !important;}
 
+#educationalQualifications .navbar-nav {
+    flex-direction: row;
+    
+}
+#educationalQualifications .navbar-nav li{
+   
+    width:25%;
+}
+#educationalQualifications .navbar-nav li a
+{
+text-align:center;
+}

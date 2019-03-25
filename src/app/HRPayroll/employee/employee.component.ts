@@ -71,6 +71,82 @@ export class EmployeeComponent implements OnInit {
     { all: " ", checkboxSelection: true, address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '0987654321', EmailID: 'acd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
   ];
 
+
+  columnDefs2 = [
+    { headerName: "All", checkboxSelection: true, field: 'all', width: 60 },
+    { headerName: 'Class', field: 'Class', width: 120 },
+    { headerName: 'Board', field: 'Board', sortable: true, filter: true, width: 120 },
+    { headerName: 'School Name', field: 'SchoolName', sortable: true, filter: true, width: 150 },
+    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, width: 120 },
+    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, width: 120 },
+    { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, width: 150 },
+    
+    
+
+  ];
+
+  rowData2 = [
+    { all: " ", checkboxSelection: true, Class: '10', Board: 'CBSE', SchoolName: 'DPSG', StartDate: '10-03-2010', EndDate: '10-03-2011',  percentage: '74 %' },
+    { all: " ", checkboxSelection: true, Class: '12', Board: 'CBSE', SchoolName: 'DPSG', StartDate: '10-03-2012', EndDate: '10-03-2013',  percentage: '72 %' },
+  ];
+
+  
+
+  columnDefs4 = [
+    { headerName: "All", checkboxSelection: true, field: 'all', width: 60 },
+    { headerName: 'Degree', field: 'Degree', width: 120 },
+    { headerName: 'Specialization', field: 'specialization', sortable: true, filter: true, width: 140 },
+    { headerName: 'University', field: 'university', sortable: true, filter: true, width: 150 },
+    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, width: 125 },
+    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, width: 125 },
+    { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, width: 120 },
+    
+    
+
+  ];
+
+  rowData4 = [
+    { all: " ", checkboxSelection: true, Degree: 'BCA', specialization: 'BCA', university: 'CCSU', StartDate: '10-04-2013', EndDate: '10-04-2016', percentage: '78 %' }
+    
+  ];
+
+  columnDefs5 = [
+    { headerName: "All", checkboxSelection: true, field: 'all', width: 60 },
+    { headerName: 'Degree', field: 'Degree', width: 120 },
+    { headerName: 'Specialization', field: 'specialization', sortable: true, filter: true, width: 140 },
+    { headerName: 'University', field: 'university', sortable: true, filter: true, width: 150 },
+    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, width: 125 },
+    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, width: 125 },
+    { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, width: 120 },
+    
+    
+
+  ];
+
+  rowData5 = [
+    { all: " ", checkboxSelection: true, Degree: 'MCA', specialization: 'MCA', university: 'AKTU', StartDate: '10-04-2016', EndDate: '10-04-2018', percentage: '76 %' },
+    
+  ];
+
+  columnDefs6 = [
+    { headerName: "All", checkboxSelection: true, field: 'all', width: 60 },
+    { headerName: 'Degree', field: 'Degree', width: 120 },
+    { headerName: 'Specialization', field: 'specialization', sortable: true, filter: true, width: 140 },
+    { headerName: 'University', field: 'university', sortable: true, filter: true, width: 150 },
+    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, width: 125 },
+    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, width: 125 },
+    { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, width: 120 },
+    
+    
+
+  ];
+
+  rowData6 = [
+    { all: " ", checkboxSelection: true, Degree: 'P.hd', specialization: 'computer science', university: 'AKTU', StartDate: '10-04-2016', EndDate: '10-04-2018', percentage: '76 %' },
+    
+  ];
+
+
   constructor() { }
 
   public show: boolean = false;
