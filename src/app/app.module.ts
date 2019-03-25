@@ -16,6 +16,7 @@ import { FinanceComponent } from './HRPayroll/finance/finance.component';
 import { SelfServiceComponent } from './self-service/self-service.component';
 import { SystemAdminModuleComponent } from './SystemAdministration/SystemAdminModule/SystemAdminModule.component';
 import { CountryComponent } from './SystemAdministration/country/country.component';
+import { SetupComponent } from './HRPayroll/setup/setup.component';
 
 
 
@@ -33,7 +34,8 @@ import { CountryComponent } from './SystemAdministration/country/country.compone
     FinanceComponent,
     SelfServiceComponent,
     SystemAdminModuleComponent,
-    CountryComponent
+    CountryComponent,
+    SetupComponent
 
   ],
   imports: [

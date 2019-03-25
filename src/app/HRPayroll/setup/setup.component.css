@@ -1,0 +1,21 @@
+#setup .navbar-nav {
+    flex-direction: row;
+}
+#setup .navbar-nav li {
+    border-right: 1px solid #719bab;
+    width: 25% !important;
+  }
+  #setup .navbar-nav li:last-child{border-right: 0}
+  #setup .navbar-nav li a{ text-align:center !important; padding:8px 6px !important}
+  #setup .tab-content{min-height:380px}
+
+  p.simple-card {
+    margin: 0;
+    background-color: #398d94;
+    color: #fff;
+    padding: 10px 10px;
+    border-radius: 4px;
+    min-width: 100px;
+    text-align: center;
+    box-shadow: 0 3px 6px rgba(204, 131, 103, 0.22);
+}

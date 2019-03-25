@@ -8,6 +8,7 @@ import { HrmoduleComponent } from './HRPayroll/hrmodule/hrmodule.component';
 import { SelfServiceComponent } from './self-service/self-service.component';
 import { SystemAdminModuleComponent } from './SystemAdministration/SystemAdminModule/SystemAdminModule.component';
 import { CountryComponent } from './SystemAdministration/country/country.component';
+import { SetupComponent } from './HRPayroll/setup/setup.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
 { path: 'hrmodule', component: HrmoduleComponent },
 { path: 'self-service', component: SelfServiceComponent },
 { path: 'system-administration', component: SystemAdminModuleComponent },
-{ path: 'country', component: CountryComponent }
+{ path: 'country', component: CountryComponent },
+{ path: 'Setup', component: SetupComponent }
 ];
 
 @NgModule({
