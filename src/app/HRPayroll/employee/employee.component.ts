@@ -75,8 +75,8 @@ export class EmployeeComponent implements OnInit {
   columnDefs2 = [
     { headerName: "All", checkboxSelection: true, field: 'all', width: 60 },
     { headerName: 'Class', field: 'Class', width: 120 },
-    { headerName: 'Board', field: 'Board', sortable: true, filter: true, width: 120 },
-    { headerName: 'School Name', field: 'SchoolName', sortable: true, filter: true, width: 150 },
+    { headerName: 'Board', field: 'Board', sortable: true, filter: true, width: 150 },
+    { headerName: 'School Name', field: 'SchoolName', sortable: true, filter: true, width: 152 },
     { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, width: 120 },
     { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, width: 120 },
     { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, width: 150 },
@@ -95,8 +95,8 @@ export class EmployeeComponent implements OnInit {
   columnDefs4 = [
     { headerName: "All", checkboxSelection: true, field: 'all', width: 60 },
     { headerName: 'Degree', field: 'Degree', width: 120 },
-    { headerName: 'Specialization', field: 'specialization', sortable: true, filter: true, width: 140 },
-    { headerName: 'University', field: 'university', sortable: true, filter: true, width: 150 },
+    { headerName: 'Specialization', field: 'specialization', sortable: true, filter: true, width: 160 },
+    { headerName: 'University', field: 'university', sortable: true, filter: true, width: 160 },
     { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, width: 125 },
     { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, width: 125 },
     { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, width: 120 },
@@ -113,8 +113,8 @@ export class EmployeeComponent implements OnInit {
   columnDefs5 = [
     { headerName: "All", checkboxSelection: true, field: 'all', width: 60 },
     { headerName: 'Degree', field: 'Degree', width: 120 },
-    { headerName: 'Specialization', field: 'specialization', sortable: true, filter: true, width: 140 },
-    { headerName: 'University', field: 'university', sortable: true, filter: true, width: 150 },
+    { headerName: 'Specialization', field: 'specialization', sortable: true, filter: true, width: 160 },
+    { headerName: 'University', field: 'university', sortable: true, filter: true, width: 160 },
     { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, width: 125 },
     { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, width: 125 },
     { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, width: 120 },
@@ -131,8 +131,8 @@ export class EmployeeComponent implements OnInit {
   columnDefs6 = [
     { headerName: "All", checkboxSelection: true, field: 'all', width: 60 },
     { headerName: 'Degree', field: 'Degree', width: 120 },
-    { headerName: 'Specialization', field: 'specialization', sortable: true, filter: true, width: 140 },
-    { headerName: 'University', field: 'university', sortable: true, filter: true, width: 150 },
+    { headerName: 'Specialization', field: 'specialization', sortable: true, filter: true, width: 162 },
+    { headerName: 'University', field: 'university', sortable: true, filter: true, width: 160 },
     { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, width: 125 },
     { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, width: 125 },
     { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, width: 120 },
@@ -145,6 +145,84 @@ export class EmployeeComponent implements OnInit {
     { all: " ", checkboxSelection: true, Degree: 'P.hd', specialization: 'computer science', university: 'AKTU', StartDate: '10-04-2016', EndDate: '10-04-2018', percentage: '76 %' },
     
   ];
+
+  columnDefs7 = [
+    { headerName: "All", checkboxSelection: true, field: 'all', width: 60 },
+    { headerName: 'Institute', field: 'Institute', width: 210 },
+    { headerName: 'Course', field: 'Course', sortable: true, filter: true, width: 215 },
+    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, width: 185 },
+    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, width: 200 },
+    
+    
+    
+
+  ];
+
+  rowData7 = [
+    { all: " ", checkboxSelection: true, Institute: 'Ducat', Course: 'Ruby', StartDate: '10-01-2018', EndDate: '10-06-2018' },
+    
+  ];
+
+
+  columnDefs8 = [
+    { headerName: "All", checkboxSelection: true, field: 'all', width: 60 },
+    { headerName: 'Company Name', field: 'CompanyName', width: 210 },
+    { headerName: 'Designation', field: 'Designation', sortable: true, filter: true, width: 215 },
+    { headerName: 'Department', field: 'Department', sortable: true, filter: true, width: 185 },
+    { headerName: 'Joining Date', field: 'JoiningDate', sortable: true, filter: true, width: 200 },
+    { headerName: 'Exit Date', field: 'ExitDate', sortable: true, filter: true, width: 200 },
+    { headerName: 'Experience', field: 'Experience', sortable: true, filter: true, width: 200 },
+    { headerName: 'Location', field: 'Location', sortable: true, filter: true, width: 200 },
+    
+    
+    
+
+  ];
+
+  rowData8 = [
+    { all: " ", checkboxSelection: true, CompanyName: 'YoekiSoft Pvt Ltd', Designation: 'UI Developer', Department: 'Software Developer', JoiningDate: '01-05-2018', ExitDate:'01-09-2019',Experience:'1 year 4 months', Location:'noida' },
+    
+  ];
+
+  columnDefs9 = [
+    { headerName: "All", checkboxSelection: true, field: 'all', width: 60 },
+    { headerName: 'Certificate Name', field: 'CertificateName', width: 272 },
+    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, width: 270 },
+    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, width: 270 },
+   
+    
+    
+    
+
+  ];
+
+  rowData9 = [
+    { all: " ", checkboxSelection: true, CertificateName: 'CCNA', StartDate: '10-05-2018', EndDate: '10-10-2018'},
+    
+  ];
+
+  columnDefs10 = [
+    { headerName: "All", checkboxSelection: true, field: 'all', width: 60 },
+    { headerName: 'Type of Account', field: 'TypeofAccount', width: 272 },
+    { headerName: 'Account Holder Name', field: 'AccountHolderName', sortable: true, filter: true, width: 270 },
+    { headerName: 'Account Number', field: 'AccountNumber', sortable: true, filter: true, width: 270 },
+    { headerName: 'IFSC', field: 'IFSC', sortable: true, filter: true, width: 270 },
+    { headerName: 'Branch Name', field: 'BranchName', sortable: true, filter: true, width: 270 },
+    { headerName: 'Primary', field: 'Primary', sortable: true, filter: true, width: 270 },
+   
+    
+    
+    
+
+  ];
+
+  rowData10 = [
+    { all: " ", checkboxSelection: true, TypeofAccount: 'Salary Account', AccountHolderName: 'Abhishek vats', AccountNumber: '09876543210', IFSC:'HDFC000003', BranchName:'Ghaziabad', Primary:'yes'},
+    { all: " ", checkboxSelection: true, TypeofAccount: 'PF Account', AccountHolderName: 'Abhishek vats', AccountNumber: '09876543210', IFSC:'HDFC000003', BranchName:'Ghaziabad', Primary:'yes'},
+    { all: " ", checkboxSelection: true, TypeofAccount: 'Gratuity Account', AccountHolderName: 'Abhishek vats', AccountNumber: '09876543210', IFSC:'HDFC000003', BranchName:'Ghaziabad', Primary:'yes'},
+    
+  ];
+
 
 
   constructor() { }
