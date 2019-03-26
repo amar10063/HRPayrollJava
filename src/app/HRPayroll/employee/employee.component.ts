@@ -31,7 +31,6 @@ export class EmployeeComponent implements OnInit {
         return '<a href="#" target="_blank" style="text-decoration:underline; color:#3e3e3e">' + params.value + '</a>'
       }
     }
-
   ];
 
   rowData = [
