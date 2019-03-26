@@ -70,20 +70,31 @@
               <div class="col-12 col-md-12 p-0 pull-left" style="box-shadow: 1px 1px 1px #c0c1c1;">
                 <div class="payHead">
                   <ul class="nav navbar-nav" role="tablist">
-                   
-                    <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#earnings"><i class="fa fa-book pr-1"
+                      <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#payDetail"><i class="fa fa-user pr-1"
+                        aria-hidden="true"></i> Pay Elements</a> </li> 
+                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#earnings"><i class="fa fa-book pr-1"
                           aria-hidden="true"></i> Earnings</a> </li>
                      <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#deduction"><i class="fa fa-user-md pr-1"
                           aria-hidden="true"></i> Deductions</a> </li>
-                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#payDetail"><i class="fa fa-user pr-1"
-                          aria-hidden="true"></i> Pay head</a> </li>                                  
+                                                     
                   </ul>
                 </div>
               </div>
               <div class="col-12 col-md-12 pull-left p-0">
                 <div class="tab-content col-md-12 col-12 p-0">
-                  
-                  <div id="earnings" class="container tab-pane active">
+                    <div id="payDetail" class="container tab-pane active">
+                        <div class="buttonCon pull-right mt-2 mb-2 mr-1">
+                          <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                            New</button>
+                          <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="formBody clearfix pt-0">
+                          <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData5" [columnDefs]="columnDefs5"></ag-grid-angular>
+              
+                        </div>
+                      </div>
+                  <div id="earnings" class="container tab-pane fade">
                     <div class="buttonCon pull-right mt-2 mb-2 mr-1">
                       <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                         New</button>
@@ -107,19 +118,6 @@
           
                     </div>
                   </div>
-                  <div id="payDetail" class="container tab-pane fade">
-                    <div class="buttonCon pull-right mt-2 mb-2 mr-1">
-                      <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
-                        New</button>
-                      <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="formBody clearfix pt-0">
-                      <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData5" [columnDefs]="columnDefs5"></ag-grid-angular>
-          
-                    </div>
-                  </div>
-          
                 </div>
               </div>
             </div>

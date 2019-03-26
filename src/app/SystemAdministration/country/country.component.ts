@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class CountryComponent implements OnInit {
   columnDefs = [
     { headerName: "All", checkboxSelection: true, field: "all", width: 200 },
-    { headerName: 'Sr No.', field: 'serial', width: 250 },
+    { headerName: 'Sr No.', field: 'serial', width: 200 },
         { headerName: 'Country Code', field: 'countryCode', sortable: true, filter: true, width: 285 },
         { headerName: 'Country', field: 'country', sortable: true, filter: true, width: 250 }
   ];
@@ -25,7 +25,7 @@ export class CountryComponent implements OnInit {
     { headerName: "All", checkboxSelection: true, field: "all", width: 150 },
     { headerName: 'Sr No.', field: 'serial', width: 200 },
     { headerName: 'Country', field: 'country', sortable: true, editable:true, filter: true, width: 243 },
-    { headerName: 'State', field: 'state', sortable: true, filter: true, editable:true, width: 220 }
+    { headerName: 'State', field: 'state', sortable: true, filter: true, editable:true, width: 230 }
   ];
 
   rowData1 = [
@@ -41,7 +41,7 @@ export class CountryComponent implements OnInit {
     { headerName: 'Sr No.', field: 'serial', width: 200 }, 
     { headerName: 'Country', field: 'country', sortable: true, editable:true, filter: true, width: 160 },   
     { headerName: 'State', field: 'state', sortable: true, filter: true, editable:true, width: 150 },
-    { headerName: 'City', field: 'city', sortable: true, filter: true, editable:true, width: 150 }
+    { headerName: 'City', field: 'city', sortable: true, filter: true, editable:true, width: 200 }
   ];
 
   rowData2 = [
@@ -56,7 +56,7 @@ export class CountryComponent implements OnInit {
     { headerName: "All", checkboxSelection: true, field: "all", width: 150 },
     { headerName: 'Sr No.', field: 'serial', width: 200 },
     { headerName: 'Department Code', field: 'departmentCode', sortable: true, filter: true, editable:true, width: 243 },
-    { headerName: 'Department Name', field: 'department', sortable: true, filter: true, editable:true, width: 220 }
+    { headerName: 'Department Name', field: 'department', sortable: true, filter: true, editable:true, width: 240 }
      ];
 
   rowData3 = [
@@ -71,7 +71,7 @@ export class CountryComponent implements OnInit {
     { headerName: "All", checkboxSelection: true, field: "all", width: 150 },
     { headerName: 'Sr No.', field: 'serial', width: 200 },    
     { headerName: 'Department', field: 'department', sortable: true, filter: true, editable:true, width: 243 },
-    { headerName: 'Designation', field: 'designation', sortable: true, filter: true, editable:true, width: 220 }
+    { headerName: 'Designation', field: 'designation', sortable: true, filter: true, editable:true, width: 240 }
      ];
 
   rowData4 = [
@@ -86,7 +86,7 @@ export class CountryComponent implements OnInit {
     { headerName: "All", checkboxSelection: true, field: "all", width: 150 },
     { headerName: 'Sr No.', field: 'serial', width: 200 },
     { headerName: 'Language', field: 'language', sortable: true, filter: true, editable:true, width: 243 },
-    { headerName: 'Language Code', field: 'languageCode', sortable: true, editable:true, filter: true, width: 220 }
+    { headerName: 'Language Code', field: 'languageCode', sortable: true, editable:true, filter: true, width: 240 }
   ];
 
   rowData5 = [
