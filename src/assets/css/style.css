@@ -2454,3 +2454,16 @@ a:hover {
 {
 text-align:center;
 }
+
+#documents .navbar-nav {
+    flex-direction: row;
+    
+}
+#documents .navbar-nav li{
+   
+    width:16.666666667%;
+}
+#documents .navbar-nav li a
+{
+text-align:center;
+}

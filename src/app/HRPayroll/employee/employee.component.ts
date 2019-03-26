@@ -231,18 +231,86 @@ export class EmployeeComponent implements OnInit {
     { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, width: 170 },
     { headerName: 'Time to Expire', field: 'TimetoExpire', sortable: true, filter: true, width: 160 },
     
-   
-    
-    
-    
-
   ];
 
   rowData11 = [
     { all: " ", checkboxSelection: true, Documents: 'Passport', PassportNo: 'PAS96ER0001', ExpiryDate: '28-02-1996', UploadDocument:'', TimetoExpire:'1 year 3 months'},
+     
+  ];
+
+  columnDefs12 = [
+    { headerName: "All", checkboxSelection: true, field: 'all', width: 60 },
+    { headerName: 'Documents', field: 'Documents', width: 160 },
+    { headerName: 'Visa', field: 'Visa', sortable: true, filter: true, width: 160 },
+    { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, width: 160 },
+    { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, width: 170 },
+    { headerName: 'Time to Expire', field: 'TimetoExpire', sortable: true, filter: true, width: 160 },
     
-   
+  ];
+
+  rowData12 = [
+    { all: " ", checkboxSelection: true, Documents: 'Visa', Visa: 'VS96ER0001', ExpiryDate: '28-02-1996', UploadDocument:'', TimetoExpire:'1 year 3 months'},
+     
+  ];
+
+  columnDefs13 = [
+    { headerName: "All", checkboxSelection: true, field: 'all', width: 60 },
+    { headerName: 'Documents', field: 'Documents', width: 160 },
+    { headerName: 'Curriculum Vitae', field: 'CurriculumVitae', sortable: true, filter: true, width: 160 },
+    { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, width: 160 },
+    { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, width: 170 },
+    { headerName: 'Time to Expire', field: 'TimetoExpire', sortable: true, filter: true, width: 160 },
     
+  ];
+
+  rowData13 = [
+    { all: " ", checkboxSelection: true, Documents: 'Curriculum Vitae', CurriculumVitae: 'CV96ER0001', ExpiryDate: '28-02-1996', UploadDocument:'', TimetoExpire:'1 year 3 months'},
+     
+  ];
+
+  columnDefs14 = [
+    { headerName: "All", checkboxSelection: true, field: 'all', width: 60 },
+    { headerName: 'Documents', field: 'Documents', width: 160 },
+    { headerName: 'Driving Licence', field: 'DrivingLicence', sortable: true, filter: true, width: 160 },
+    { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, width: 160 },
+    { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, width: 170 },
+    { headerName: 'Time to Expire', field: 'TimetoExpire', sortable: true, filter: true, width: 160 },
+    
+  ];
+
+  rowData14 = [
+    { all: " ", checkboxSelection: true, Documents: 'Driving Licence', DrivingLicence: 'DL96ER0001', ExpiryDate: '28-02-1996', UploadDocument:'', TimetoExpire:'1 year 3 months'},
+     
+  ];
+
+  columnDefs15 = [
+    { headerName: "All", checkboxSelection: true, field: 'all', width: 60 },
+    { headerName: 'Documents', field: 'Documents', width: 160 },
+    { headerName: 'Medical Certificate', field: 'MedicalCertificate', sortable: true, filter: true, width: 160 },
+    { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, width: 160 },
+    { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, width: 170 },
+    { headerName: 'Time to Expire', field: 'TimetoExpire', sortable: true, filter: true, width: 160 },
+    
+  ];
+
+  rowData15 = [
+    { all: " ", checkboxSelection: true, Documents: 'Medical Certificate', MedicalCertificate: 'MED96ER0001', ExpiryDate: '28-02-1996', UploadDocument:'', TimetoExpire:'1 year 3 months'},
+     
+  ];
+
+  columnDefs16 = [
+    { headerName: "All", checkboxSelection: true, field: 'all', width: 60 },
+    { headerName: 'Documents', field: 'Documents', width: 160 },
+    { headerName: 'Educational Certificate', field: 'EducationalCertificate', sortable: true, filter: true, width: 160 },
+    { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, width: 160 },
+    { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, width: 170 },
+    { headerName: 'Time to Expire', field: 'TimetoExpire', sortable: true, filter: true, width: 160 },
+    
+  ];
+
+  rowData16 = [
+    { all: " ", checkboxSelection: true, Documents: 'Educational Certificate', EducationalCertificate: '96ER0001', ExpiryDate: '28-02-1996', UploadDocument:'', TimetoExpire:'1 year 3 months'},
+     
   ];
 
 
