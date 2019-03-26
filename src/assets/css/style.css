@@ -153,6 +153,7 @@ a:hover {
 
 .navHeight {
     min-height: 650px !important;
+    width: 15%;
 }
 
 input::placeholder {
@@ -730,6 +731,7 @@ a.nav-link {
     overflow: hidden;
     margin-bottom: 40px;
     background: #fff;
+    
 }
 
 .gridBody h5 {
@@ -764,7 +766,7 @@ a.nav-link {
     font-size: 10px;
     font-weight: bold;
     position: absolute;
-    top: 1%;
+    top: 1.5%;
     left: 2%;
 }
 
@@ -2467,3 +2469,5 @@ text-align:center;
 {
 text-align:center;
 }
+
+.mainPage{ width: 85%; position: relative;}
