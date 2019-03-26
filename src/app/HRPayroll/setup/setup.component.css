@@ -9,6 +9,9 @@
     text-align: center;
     box-shadow: 0 3px 6px rgba(204, 131, 103, 0.22);
 }
+#setup{ max-height: 400px !important;
+  border: 1px solid #2e6c71;
+  height: 320px; overflow: hidden}
 #setup #payrollDetail .navbar-nav {
   flex-direction: row;
 }

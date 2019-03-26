@@ -1,13 +1,4 @@
 .payHead .navbar-nav li a {
     padding: 15px 6px !important;}
 
-    #country .navbar-nav {
-        flex-direction: row;
-    }
-    #country .navbar-nav li {
-        border-right: 1px solid #719bab;
-        width: 16.66% !important;
-      }
-      #country .navbar-nav li:last-child{ border-right: 0}
-      #country .navbar-nav li a{ text-align:center !important; padding:8px 6px !important}
-      #country .tab-content{min-height:380px}
+    
