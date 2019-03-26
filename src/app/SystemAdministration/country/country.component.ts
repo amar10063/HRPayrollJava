@@ -22,10 +22,10 @@ export class CountryComponent implements OnInit {
   ];
 
   columnDefs1 = [
-    { headerName: "All", checkboxSelection: true, field: "all", width: 200 },
-    { headerName: 'Sr No.', field: 'serial', width: 250 },
-    { headerName: 'Country', field: 'country', sortable: true, editable:true, filter: true, width: 285 },
-    { headerName: 'State', field: 'state', sortable: true, filter: true, editable:true, width: 250 }
+    { headerName: "All", checkboxSelection: true, field: "all", width: 150 },
+    { headerName: 'Sr No.', field: 'serial', width: 200 },
+    { headerName: 'Country', field: 'country', sortable: true, editable:true, filter: true, width: 243 },
+    { headerName: 'State', field: 'state', sortable: true, filter: true, editable:true, width: 220 }
   ];
 
   rowData1 = [
@@ -37,11 +37,11 @@ export class CountryComponent implements OnInit {
   ];
 
   columnDefs2 = [
-    { headerName: "All", checkboxSelection: true, field: "all", width: 200 },
-    { headerName: 'Sr No.', field: 'serial', width: 250 }, 
-    { headerName: 'Country', field: 'country', sortable: true, editable:true, filter: true, width: 170 },   
-    { headerName: 'State', field: 'state', sortable: true, filter: true, editable:true, width: 180 },
-    { headerName: 'City', field: 'city', sortable: true, filter: true, editable:true, width: 180 }
+    { headerName: "All", checkboxSelection: true, field: "all", width: 150 },
+    { headerName: 'Sr No.', field: 'serial', width: 200 }, 
+    { headerName: 'Country', field: 'country', sortable: true, editable:true, filter: true, width: 160 },   
+    { headerName: 'State', field: 'state', sortable: true, filter: true, editable:true, width: 150 },
+    { headerName: 'City', field: 'city', sortable: true, filter: true, editable:true, width: 150 }
   ];
 
   rowData2 = [
@@ -53,10 +53,10 @@ export class CountryComponent implements OnInit {
   ];
 
   columnDefs3 = [
-    { headerName: "All", checkboxSelection: true, field: "all", width: 200 },
-    { headerName: 'Sr No.', field: 'serial', width: 250 },
-    { headerName: 'Department Code', field: 'departmentCode', sortable: true, filter: true, editable:true, width: 285 },
-    { headerName: 'Department Name', field: 'department', sortable: true, filter: true, editable:true, width: 250 }
+    { headerName: "All", checkboxSelection: true, field: "all", width: 150 },
+    { headerName: 'Sr No.', field: 'serial', width: 200 },
+    { headerName: 'Department Code', field: 'departmentCode', sortable: true, filter: true, editable:true, width: 243 },
+    { headerName: 'Department Name', field: 'department', sortable: true, filter: true, editable:true, width: 220 }
      ];
 
   rowData3 = [
@@ -68,10 +68,10 @@ export class CountryComponent implements OnInit {
   ];
 
   columnDefs4 = [
-    { headerName: "All", checkboxSelection: true, field: "all", width: 200 },
-    { headerName: 'Sr No.', field: 'serial', width: 250 },    
-    { headerName: 'Department', field: 'department', sortable: true, filter: true, editable:true, width: 285 },
-    { headerName: 'Designation', field: 'designation', sortable: true, filter: true, editable:true, width: 250 }
+    { headerName: "All", checkboxSelection: true, field: "all", width: 150 },
+    { headerName: 'Sr No.', field: 'serial', width: 200 },    
+    { headerName: 'Department', field: 'department', sortable: true, filter: true, editable:true, width: 243 },
+    { headerName: 'Designation', field: 'designation', sortable: true, filter: true, editable:true, width: 220 }
      ];
 
   rowData4 = [
@@ -83,10 +83,10 @@ export class CountryComponent implements OnInit {
   ];
 
   columnDefs5 = [
-    { headerName: "All", checkboxSelection: true, field: "all", width: 200 },
-    { headerName: 'Sr No.', field: 'serial', width: 250 },
-    { headerName: 'Language', field: 'language', sortable: true, filter: true, editable:true, width: 285 },
-    { headerName: 'Language Code', field: 'languageCode', sortable: true, editable:true, filter: true, width: 250 }
+    { headerName: "All", checkboxSelection: true, field: "all", width: 150 },
+    { headerName: 'Sr No.', field: 'serial', width: 200 },
+    { headerName: 'Language', field: 'language', sortable: true, filter: true, editable:true, width: 243 },
+    { headerName: 'Language Code', field: 'languageCode', sortable: true, editable:true, filter: true, width: 220 }
   ];
 
   rowData5 = [
