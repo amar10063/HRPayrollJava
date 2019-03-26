@@ -10,8 +10,8 @@ export class SetupComponent implements OnInit {
   columnDefs1 = [
     { headerName: "All", checkboxSelection: true, field: "all", width: 150 },
     { headerName: 'Sr No.', field: 'serial', width: 200 },
-    { headerName: 'Department Code', field: 'departmentCode', sortable: true, filter: true, editable:true, width: 243 },
-    { headerName: 'Department Name', field: 'department', sortable: true, filter: true, editable:true, width: 220 }
+    { headerName: 'Department Code', field: 'departmentCode', sortable: true, filter: true, editable:true, width: 250 },
+    { headerName: 'Department Name', field: 'department', sortable: true, filter: true, editable:true, width: 240 }
      ];
 
   rowData1 = [
@@ -25,8 +25,8 @@ export class SetupComponent implements OnInit {
   columnDefs2 = [
     { headerName: "All", checkboxSelection: true, field: "all", width: 150 },
     { headerName: 'Sr No.', field: 'serial', width: 200 },    
-    { headerName: 'Department', field: 'department', sortable: true, filter: true, editable:true, width: 243 },
-    { headerName: 'Designation', field: 'designation', sortable: true, filter: true, editable:true, width: 220 }
+    { headerName: 'Department', field: 'department', sortable: true, filter: true, editable:true, width: 250 },
+    { headerName: 'Designation', field: 'designation', sortable: true, filter: true, editable:true, width: 240 }
      ];
 
   rowData2 = [
@@ -39,7 +39,7 @@ export class SetupComponent implements OnInit {
   columnDefs3 = [
     { headerName: "All", checkboxSelection: true, field: "all", width: 200 },
     { headerName: 'Sr No.', field: 'serial', width: 250 },    
-    { headerName: 'Earnings', field: 'earnings', sortable: true, filter: true, editable:true, width: 364 }
+    { headerName: 'Earnings', field: 'earnings', sortable: true, filter: true, editable:true, width: 390 }
     ];
 
   rowData3 = [
@@ -53,7 +53,7 @@ export class SetupComponent implements OnInit {
   columnDefs4 = [
     { headerName: "All", checkboxSelection: true, field: "all", width: 200 },
     { headerName: 'Sr No.', field: 'serial', width: 250 },    
-    { headerName: 'Deductions', field: 'deductions', sortable: true, filter: true, editable:true, width: 364 }
+    { headerName: 'Deductions', field: 'deductions', sortable: true, filter: true, editable:true, width: 390 }
     ];
 
   rowData4 = [
@@ -66,7 +66,7 @@ export class SetupComponent implements OnInit {
   columnDefs5 = [
     { headerName: "All", checkboxSelection: true, field: "all", width: 200 },
     { headerName: 'Sr No.', field: 'serial', width: 250 },    
-    { headerName: 'Deductions', field: 'deductions', sortable: true, filter: true, editable:true, width: 364 }
+    { headerName: 'Deductions', field: 'deductions', sortable: true, filter: true, editable:true, width: 390 }
     ];
 
   rowData5 = [
