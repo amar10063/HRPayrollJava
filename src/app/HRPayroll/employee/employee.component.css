@@ -335,3 +335,9 @@ td.textHighlight {
 #documents .navbar-nav li {
   border-right: 1px solid #719bab;
 }
+
+
+
+ #CurriculumVitae .form-control {
+  display: Inline-block !important;
+}

@@ -870,6 +870,7 @@
                 </div>
                 </div>
               </div>
+              <div class="clearfix"></div>
 
               <div class="tab-content">
                   <div id="Passport" class="container tab-pane active">
@@ -898,7 +899,13 @@
                           </div>
                         </div>
                         <div id="CurriculumVitae" class="container tab-pane fade">
-                            <div class="buttonCon pull-right mt-2 mb-2 mr-1">
+                          <div class="col-12 col-md-12 p-0 mt-4">
+                            <div class="col-6 col-md-6 p-0">
+                                <label for="Employee Code" class="col-5 col-md-3 pl-0">Upload File:</label>
+                                <input type="file" class="form-control col-12 col-md-6 ptb-4" name="Account no" >
+                              </div>
+                            </div>
+                            <!--<div class="buttonCon pull-right mt-2 mb-2 mr-1">
                               <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                                 New</button>
                               <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
@@ -907,7 +914,7 @@
                             <div class="formBody clearfix pt-0">
                               <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData13" [columnDefs]="columnDefs13"></ag-grid-angular>
                   
-                            </div>
+                            </div>-->
                           </div>
                           <div id="DrivingLicence" class="container tab-pane fade">
                               <div class="buttonCon pull-right mt-2 mb-2 mr-1">
@@ -1084,7 +1091,66 @@
           </div>-->
           <div class="clearfix"></div>
           <div class="formBody clearfix">
-            <div class="col-md-12 col-sm-12 clearfix col-xs-12 p-0">
+            <div class="col-md-12 col-sm-12 clearfix col-xs-12 employeebkgcolour ">
+              <div class="row">
+              <div class="col-md-4 col-sm-12 col-xs-4">
+               
+                    <div class="pull-left col-12 col-md-12 pl-0">
+                      <div class="row">
+                        <div class="col-12 col-md-12">
+                          <div class="form-inline">
+                            <label for="Employee Name" class="col-2 col-md-2 pl-0">Note:</label>
+                            <textarea rows="1" class="form-control col-6 col-md-10 ptb-4" id="name" name="name"
+                              placeholder=""></textarea>
+                          </div>
+                        </div>
+  
+                      </div>
+  
+  
+                    </div>
+             
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-4">
+                   
+                        <div class="pull-left col-12 col-md-12 pl-0">
+                          <div class="row">
+                            <div class="col-12 col-md-12">
+                              <div class="form-inline">
+                                <label for="Employee Name" class="col-2 col-md-2 pl-0">Note:</label>
+                                <input type="text" class="form-control col-6 col-md-10 ptb-4" name="name" >
+                                 
+                              </div>
+                            </div>
+      
+                          </div>
+      
+      
+                        </div>
+                  
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-4">
+                       
+                            <div class="pull-left col-12 col-md-12 pl-0">
+                              <div class="row">
+                                <div class="col-12 col-md-12">
+                                  <div class="form-inline">
+                                    <label for="Employee Name" class="col-2 col-md-2 pl-0">Note:</label>
+                                    <input type="checkbox" class="form-control col-6 col-md-10 ptb-4" id="name" name="name">
+                                      
+                                  </div>
+                                </div>
+          
+                              </div>
+          
+          
+                            </div>
+                      
+                        </div>
+
+            </div>
+          </div>
+            <div class="col-md-12 col-sm-12 clearfix col-xs-12 p-0 mt-2" >
               <div class="col-md-6 col-sm-12 col-xs-6 pl-0 pull-left">
                 <div class="col-md-12 col-sm-12 col-xs-12 p-0">
                   <div class="dialogs" id="txtCommentDisplay">
@@ -1167,22 +1233,7 @@
                 </div>
               </div>
               <div class="col-md-6 col-sm-12 col-xs-6 pr-0 pull-left">
-                <form class="employeebkgcolour mb-1">
-                  <div class="pull-left col-12 col-md-12 pl-0">
-                    <div class="row">
-                      <div class="col-12 col-md-12">
-                        <div class="form-inline">
-                          <label for="Employee Name" class="col-2 col-md-2 pl-0">Note:</label>
-                          <textarea rows="1" class="form-control col-6 col-md-10 ptb-4" id="name" name="name"
-                            placeholder=""></textarea>
-                        </div>
-                      </div>
-
-                    </div>
-
-
-                  </div>
-                </form>
+                
                 <div class="col-md-12 col-sm-12 col-xs-12 p-0">
                   <div class="dialogs" id="txtCommentDisplay">
                     <div class="itemdiv dialogdiv">
