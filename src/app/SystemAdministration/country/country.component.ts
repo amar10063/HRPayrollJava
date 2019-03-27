@@ -7,94 +7,88 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CountryComponent implements OnInit {
   columnDefs = [
-    { headerName: "All", checkboxSelection: true, field: "all", width: 200 },
-    { headerName: 'Sr No.', field: 'serial', width: 200 },
-        { headerName: 'Country Code', field: 'countryCode', sortable: true, filter: true, width: 285 },
-        { headerName: 'Country', field: 'country', sortable: true, filter: true, width: 250 }
+    { headerName: 'Country Code', field: 'countryCode', sortable: true, filter: true, width: 120 },
+    { headerName: 'Country Name', field: 'country', sortable: true, filter: true, width: 130 },
+    { headerName: '', field: '', width: 590 }
   ];
 
   rowData = [
-    { all: " ", checkboxSelection: true, serial: '1', country: 'India', countryCode:'001' },
-    { all: " ", checkboxSelection: true, serial: '2', country: 'UAE', countryCode:'002' },
-    { all: " ", checkboxSelection: true, serial: '3', country: 'USA', countryCode:'003' },
-    { all: " ", checkboxSelection: true, serial: '4', country: 'Sri Lanka', countryCode:'004' },
-    { all: " ", checkboxSelection: true, serial: '5', country: 'Nepal', countryCode:'005' }
+    { country: 'India', countryCode:'001' },
+    { country: 'UAE', countryCode:'002' },
+    { country: 'USA', countryCode:'003' },
+    { country: 'Sri Lanka', countryCode:'004' },
+    { country: 'Nepal', countryCode:'005' }
   ];
 
   columnDefs1 = [
-    { headerName: "All", checkboxSelection: true, field: "all", width: 150 },
-    { headerName: 'Sr No.', field: 'serial', width: 200 },
-    { headerName: 'Country', field: 'country', sortable: true, editable:true, filter: true, width: 243 },
-    { headerName: 'State', field: 'state', sortable: true, filter: true, editable:true, width: 230 }
+    { headerName: 'Country', field: 'country', sortable: true, editable:true, filter: true, width: 120 },
+    { headerName: 'State', field: 'state', sortable: true, filter: true, editable:true, width: 120 },
+    { headerName: '', field: '', width: 600 }
   ];
 
   rowData1 = [
-    { all: " ", checkboxSelection: true, serial: '1', state: 'UP', country: 'India' },
-    { all: " ", checkboxSelection: true, serial: '2', state: 'Punjab', country: 'India' },
-    { all: " ", checkboxSelection: true, serial: '3', state: 'Haryana', country: 'India' },
-    { all: " ", checkboxSelection: true, serial: '4', state: 'Sikkim', country: 'India' },
-    { all: " ", checkboxSelection: true, serial: '5', state: 'Rajasthan', country: 'India' }
+    { state: 'UP', country: 'India' },
+    { state: 'Punjab', country: 'India' },
+    { state: 'Haryana', country: 'India' },
+    { state: 'Sikkim', country: 'India' },
+    { state: 'Rajasthan', country: 'India' }
   ];
 
   columnDefs2 = [
-    { headerName: "All", checkboxSelection: true, field: "all", width: 150 },
-    { headerName: 'Sr No.', field: 'serial', width: 200 }, 
-    { headerName: 'Country', field: 'country', sortable: true, editable:true, filter: true, width: 160 },   
-    { headerName: 'State', field: 'state', sortable: true, filter: true, editable:true, width: 150 },
-    { headerName: 'City', field: 'city', sortable: true, filter: true, editable:true, width: 200 }
+    { headerName: 'Country', field: 'country', sortable: true, editable:true, filter: true, width: 120 },   
+    { headerName: 'State', field: 'state', sortable: true, filter: true, editable:true, width: 120 },
+    { headerName: 'City', field: 'city', sortable: true, filter: true, editable:true, width: 120 },
+    { headerName: '', field: '', width: 480 }
   ];
 
   rowData2 = [
-    { all: " ", checkboxSelection: true, city: 'Noida', serial: '1', state: 'UP', country: 'India' },
-    { all: " ", checkboxSelection: true, city: 'Chandigarh', serial: '2', state: 'Punjab', country: 'India' },
-    { all: " ", checkboxSelection: true, city: 'Gurugram', serial: '3', state: 'Haryana', country: 'India' },
-    { all: " ", checkboxSelection: true, city: 'Gangtok', serial: '4', state: 'Sikkim', country: 'India' },
-    { all: " ", checkboxSelection: true, city: 'Jaipur', serial: '5', state: 'Rajasthan', country: 'India' }
+    { city: 'Noida', state: 'UP', country: 'India' },
+    { city: 'Chandigarh', state: 'Punjab', country: 'India' },
+    { city: 'Gurugram', state: 'Haryana', country: 'India' },
+    { city: 'Gangtok', state: 'Sikkim', country: 'India' },
+    { city: 'Jaipur', state: 'Rajasthan', country: 'India' }
   ];
 
   columnDefs3 = [
-    { headerName: "All", checkboxSelection: true, field: "all", width: 150 },
-    { headerName: 'Sr No.', field: 'serial', width: 200 },
-    { headerName: 'Department Code', field: 'departmentCode', sortable: true, filter: true, editable:true, width: 243 },
-    { headerName: 'Department Name', field: 'department', sortable: true, filter: true, editable:true, width: 240 }
-     ];
+    { headerName: 'Department Code', field: 'departmentCode', sortable: true, filter: true, editable:true, width: 120 },
+    { headerName: 'Department Name', field: 'department', sortable: true, filter: true, editable:true, width: 120 },
+    { headerName: '', field: '', width: 600 }
+  ];
 
   rowData3 = [
-    { all: " ", checkboxSelection: true, serial: '1', departmentCode:'001', department: 'IT' },
-    { all: " ", checkboxSelection: true, serial: '2', departmentCode:'002', department: 'Finance' },
-    { all: " ", checkboxSelection: true, serial: '3', departmentCode:'003', department: 'AX' },
-    { all: " ", checkboxSelection: true, serial: '4', departmentCode:'004', department: 'Medical' },
-    { all: " ", checkboxSelection: true, serial: '5', departmentCode:'005', department: 'Accounts' }
+    { departmentCode:'001', department: 'IT' },
+    { departmentCode:'002', department: 'Finance' },
+    { departmentCode:'003', department: 'AX' },
+    { departmentCode:'004', department: 'Medical' },
+    { departmentCode:'005', department: 'Accounts' }
   ];
 
   columnDefs4 = [
-    { headerName: "All", checkboxSelection: true, field: "all", width: 150 },
-    { headerName: 'Sr No.', field: 'serial', width: 200 },    
-    { headerName: 'Department', field: 'department', sortable: true, filter: true, editable:true, width: 243 },
-    { headerName: 'Designation', field: 'designation', sortable: true, filter: true, editable:true, width: 240 }
-     ];
+    { headerName: 'Department', field: 'department', sortable: true, filter: true, editable:true, width: 120 },
+    { headerName: 'Designation', field: 'designation', sortable: true, filter: true, editable:true, width: 120 },
+    { headerName: '', field: '', width: 600 }
+   ];
 
   rowData4 = [
-    { all: " ", checkboxSelection: true, serial: '1', department: 'IT', designation:'Software Developer' },
-    { all: " ", checkboxSelection: true, serial: '2', department: 'Finance', designation:'Software Developer' },
-    { all: " ", checkboxSelection: true, serial: '3', department: 'AX', designation:'AX Technical' },
-    { all: " ", checkboxSelection: true, serial: '4', department: 'Medical', designation:'Doctor' },
-    { all: " ", checkboxSelection: true, serial: '5', department: 'Accounts', designation:'Accountant' }
+    { department: 'IT', designation:'Software Developer' },
+    { department: 'Finance', designation:'Software Developer' },
+    { department: 'AX', designation:'AX Technical' },
+    { department: 'Medical', designation:'Doctor' },
+    { department: 'Accounts', designation:'Accountant' }
   ];
 
   columnDefs5 = [
-    { headerName: "All", checkboxSelection: true, field: "all", width: 150 },
-    { headerName: 'Sr No.', field: 'serial', width: 200 },
-    { headerName: 'Language', field: 'language', sortable: true, filter: true, editable:true, width: 243 },
-    { headerName: 'Language Code', field: 'languageCode', sortable: true, editable:true, filter: true, width: 240 }
-  ];
+    { headerName: 'Language', field: 'language', sortable: true, filter: true, editable:true, width: 120 },
+    { headerName: 'Language Code', field: 'languageCode', sortable: true, editable:true, filter: true, width: 120 },
+    { headerName: '', field: '', width: 600 }
+   ];
 
   rowData5 = [
-    { all: " ", checkboxSelection: true, serial: '1', language: 'English', languageCode: '001' },
-    { all: " ", checkboxSelection: true, serial: '2', language: 'Hindi', languageCode: '002' },
-    { all: " ", checkboxSelection: true, serial: '3', language: 'Urdu', languageCode: '003' },
-    { all: " ", checkboxSelection: true, serial: '4', language: 'Arabic', languageCode: '004' },
-    { all: " ", checkboxSelection: true, serial: '5', language: 'French', languageCode: '005' }
+    { language: 'English', languageCode: '001' },
+    { language: 'Hindi', languageCode: '002' },
+    { language: 'Urdu', languageCode: '003' },
+    { language: 'Arabic', languageCode: '004' },
+    { language: 'French', languageCode: '005' }
   ];
   constructor() { }
 
