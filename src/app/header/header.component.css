@@ -1,11 +1,11 @@
 .search{    padding-left: 8%;}
 .topsearch{ border: 1px solid #b7dcd9;
-  height: 22px;
+  height: 24px;
   padding-left: 5px;
   color: #3e3e3e;
   font-size: 10px;
   padding-top: 3px;}
-    .topsarchbtn{height: 22px;
+    .topsarchbtn{
         background: #1d8c81;
         border: none;
         color: #fff;
@@ -27,3 +27,9 @@
             padding:2px;
             font-size:11px;
           }
+          .topsarchbtn a{color: #fff;
+            font-size: 11px;
+            display: block;
+            /* height: 14px; */
+            padding: 3px 5px 0px;
+            height: 23px;}
