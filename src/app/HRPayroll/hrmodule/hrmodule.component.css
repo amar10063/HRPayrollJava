@@ -1,14 +1,14 @@
 .navbarlogosize
 {
-    font-size: 12px;
+    font-size: 15px;
     color:white;
     padding:9px;
 }
 .logoborder
 {
-    border: 1px solid #ffffff;
-    width:32px;
-    height:32px;
-    background-color:#398d94;
+    border: 1px solid #2e6d72;
+    width:34px;
+    height:33px;
+    background-color:#2e6d72;;
     border-radius:50%;
 }
