@@ -1,0 +1,199 @@
+<div class="container-fluid gridBody">
+
+  <div class="buttonCon pull-right">
+    <button type="button" class="btn templateBg"><img src="../assets/images/back-icon.png" alt="home" />Back</button>
+    <button type="button" class="btn templateBg"><img src="../assets/images/home-icon.png" alt="home" />Home</button>
+  </div>
+  <h5>Setup</h5>
+
+  <div class="clearfix"></div>
+  <div class="pay-head clearfix mt-3" id="setup">
+    <div class="col-2 col-md-2 p-0 pull-left" style="box-shadow: 1px 1px 1px #c0c1c1;">
+      <div class="payHead">
+        <ul class="nav navbar-nav" role="tablist">
+          <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#department"><i class="fa fa-th-large pr-1"
+                aria-hidden="true"></i> Department</a> </li>
+          <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#designation"><i
+                class="fa fa-th pr-1" aria-hidden="true"></i> Designation</a> </li>
+                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#payroll"><i class="fa fa-money pr-1"
+                  aria-hidden="true"></i> Payroll</a> </li>
+          <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#organization"><i
+                class="fa fa-list-ul pr-1" aria-hidden="true"></i> Organization Hierarchy</a> </li>
+          <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#"><i
+            class="fa fa-list-ul pr-1" aria-hidden="true"></i> Setup 5 </a> </li>
+          <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#"><i
+            class="fa fa-list-ul pr-1" aria-hidden="true"></i> Setup 6 </a> </li>
+            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#"><i
+              class="fa fa-list-ul pr-1" aria-hidden="true"></i> Setup 7 </a> </li>
+            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#"><i
+              class="fa fa-list-ul pr-1" aria-hidden="true"></i> Setup 8 </a> </li>
+      
+        </ul>
+      </div>
+    </div>
+    <div class="col-10 col-md-10 pull-left p-0">
+      <div class="tab-content col-md-12 col-12 p-0">
+        
+        <div id="department" class="container tab-pane active">
+          <div class="buttonCon pull-left mt-2 mb-2 mr-1">
+            <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+              New</button>
+            <!-- <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>-->
+          </div>
+          <div class="clearfix"></div>
+          <div class="formBody clearfix pt-0">
+
+            <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData1"
+              [columnDefs]="columnDefs1"></ag-grid-angular>
+
+          </div>
+        </div>
+        <div id="designation" class="container tab-pane fade">
+          <div class="buttonCon pull-left mt-2 mb-2 mr-1">
+            <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+              New</button>
+            <!-- <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>-->
+          </div>
+          <div class="clearfix"></div>
+          <div class="col-12 col-md-12 p-0">
+            <div class="formBody clearfix pt-0">
+              <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData2"
+                [columnDefs]="columnDefs2"></ag-grid-angular>
+            </div>
+          </div>
+        </div>
+        <div id="payroll" class="container tab-pane fade p-0">
+          
+          <div class="clearfix"></div>
+          <div class="col-12 col-md-12 p-0">
+            <div class="pay-head clearfix" id="payrollDetail">
+              <div class="col-12 col-md-12 p-0 pull-left" style="box-shadow: 1px 1px 1px #c0c1c1;">
+                <div class="payHead">
+                  <ul class="nav navbar-nav" role="tablist">
+                      <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#payDetail"><i class="fa fa-user pr-1"
+                        aria-hidden="true"></i> Pay Elements</a> </li> 
+                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#earnings"><i class="fa fa-book pr-1"
+                          aria-hidden="true"></i> Earnings</a> </li>
+                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#deduction"><i class="fa fa-user-md pr-1"
+                          aria-hidden="true"></i> Deductions</a> </li>
+                                                     
+                  </ul>
+                </div>
+              </div>
+              <div class="col-12 col-md-12 pull-left p-0">
+                <div class="tab-content col-md-12 col-12 p-0">
+                    <div id="payDetail" class="container tab-pane active">
+                        <div class="buttonCon pull-right mt-2 mb-2 mr-1">
+                          <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                            New</button>
+                          <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="formBody clearfix pt-0">
+                          <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData5" [columnDefs]="columnDefs5"></ag-grid-angular>
+              
+                        </div>
+                      </div>
+                  <div id="earnings" class="container tab-pane fade">
+                    <div class="buttonCon pull-right mt-2 mb-2 mr-1">
+                      <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                        New</button>
+                      <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="formBody clearfix pt-0">
+                      <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData3" [columnDefs]="columnDefs3"></ag-grid-angular>
+          
+                    </div>
+                  </div>
+                  <div id="deduction" class="container tab-pane fade">
+                    <div class="buttonCon pull-right mt-2 mb-2 mr-1">
+                      <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                        New</button>
+                      <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="formBody clearfix pt-0">
+                      <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData4" [columnDefs]="columnDefs4"></ag-grid-angular>
+          
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <!-- <div class="formBody clearfix pt-0 scrollbar">
+            <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData"
+              [columnDefs]="columnDefs" ></ag-grid-angular>
+
+          </div> -->
+        </div>
+        <div id="organization" class="container tab-pane fade">
+          <div class="buttonCon pull-left mt-2 mb-2 mr-1">
+            <!-- <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+              New</button> -->
+            <!-- <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>-->
+          </div>
+          <div class="clearfix"></div>
+          <div class="col-12 col-md-12 pt-3">
+            <div class="hv-container">
+              <div class="hv-wrapper">
+
+                <!-- Key component -->
+                <div class="hv-item">
+
+                  <div class="hv-item-parent">
+                    <p class="simple-card"> Parent </p>
+                  </div>
+
+                  <div class="hv-item-children">
+
+                    <div class="hv-item-child">
+
+                      <div class="hv-item">
+
+                        <div class="hv-item-parent">
+                          <p class="simple-card"> Parent </p>
+                        </div>
+
+                        <div class="hv-item-children">
+
+                          <div class="hv-item-child">
+                            <p class="simple-card"> Child 1 </p>
+                          </div>
+
+
+                          <div class="hv-item-child">
+                            <p class="simple-card"> Child 2 </p>
+                          </div>
+
+                          <div class="hv-item-child">
+                            <p class="simple-card"> Child 2 </p>
+                          </div>
+
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="hv-item-child">
+                      <p class="simple-card"> Child 2 </p>
+                    </div>
+
+                    <div class="hv-item-child">
+                      <p class="simple-card"> Child 3 </p>
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

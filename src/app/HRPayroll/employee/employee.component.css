@@ -322,3 +322,22 @@ td.textHighlight {
     width: 100%;
     overflow-x: hidden !important;
 }
+
+
+.payHead .qualifications .navbar-nav li a {
+  padding: 8px 6px !important;
+}
+#educationalQualifications .navbar-nav li {
+  border-right: 1px solid #719bab;
+}
+.ag-theme-balham, .ag-theme-balham .ag-header{font-size:10px !important}
+
+#documents .navbar-nav li {
+  border-right: 1px solid #719bab;
+}
+
+
+
+ #CurriculumVitae .form-control {
+  display: Inline-block !important;
+}

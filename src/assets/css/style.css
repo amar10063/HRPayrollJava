@@ -153,6 +153,7 @@ a:hover {
 
 .navHeight {
     min-height: 650px !important;
+    width: 14%;
 }
 
 input::placeholder {
@@ -428,7 +429,7 @@ select option:disabled {
 
 .local {
     -webkit-appearance: none;
-    apperance: none;
+    
     -moz-appearance: none
 }
 
@@ -730,6 +731,7 @@ a.nav-link {
     overflow: hidden;
     margin-bottom: 40px;
     background: #fff;
+    
 }
 
 .gridBody h5 {
@@ -764,7 +766,7 @@ a.nav-link {
     font-size: 10px;
     font-weight: bold;
     position: absolute;
-    top: 1%;
+    top: 1.5%;
     left: 2%;
 }
 
@@ -1016,7 +1018,7 @@ thead>tr>th {
 
 .panel-body ul li a {
     display: block;
-    font-size: 9px;
+    font-size: 10px;
     line-height: 1.2;
     text-decoration: none;
     font-weight: bold;
@@ -2082,7 +2084,7 @@ form[name="recordForm"] {
 
 .payHead a.nav-link {
     color: #1f4c50 !important;
-    font-size: 0.725rem;
+    font-size: 10px;
     line-height: 1.5;
     font-weight: 600;
 }
@@ -2246,7 +2248,7 @@ footer p {
 label {
     display: inline-block;
     color: #3e3e3e;
-    font-size: 0.6875rem;
+    font-size: 10px;
     font-weight: 600;
 }
 
@@ -2442,3 +2444,31 @@ a:hover {
 
     .dropdown-menu { font-size: 10px !important;}
 
+#educationalQualifications .navbar-nav {
+    flex-direction: row;
+    
+}
+#educationalQualifications .navbar-nav li{
+   
+    width:25%;
+}
+#educationalQualifications .navbar-nav li a
+{
+text-align:center;
+}
+
+#documents .navbar-nav {
+    flex-direction: row;
+    
+}
+#documents .navbar-nav li{
+   
+    width:16.666666667%;
+}
+#documents .navbar-nav li a
+{
+text-align:center;
+}
+
+.mainPage{ width: 86%; position: relative;}
+.gsearch-icon{ color:#1f656b; font-size: 25px !important}

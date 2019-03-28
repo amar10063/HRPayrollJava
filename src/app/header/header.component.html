@@ -1,14 +1,15 @@
 <div class="topNav clearfix">
 <div class="row">
-    <div class="col-12 col-md-6 col-lg-6">
+    <div class="col-12 col-md-7 col-lg-7">
         <!-- <label for="Company" class="companyName">Company : </label>
         <label for="Yoeki" class="companyName"> Yoeki Soft Pvt Ltd.</label> -->
     </div>
-    <div class="col-12 col-md-6 col-lg-6 ">
-    <span class="search">
-          <input class="topsearch" type="search" id="tt" placeholder="Search... " >
+    <div class="col-12 col-md-5 col-lg-5 search">
+     
+    <span class="ml-2">
+          <input class="topsearch" type="search" id="tt" placeholder="Global Search " >
        
-          <button class="topsarchbtn" type="button"><i class="fa fa-search" aria-hidden="true"></i>
+          <button class="topsarchbtn" type="button"><a [routerLink]="['/global-search']" style="color:#fff; font-size: 11px;"><i class="fa fa-search" aria-hidden="true"></i></a>
           </button>
        
     </span>

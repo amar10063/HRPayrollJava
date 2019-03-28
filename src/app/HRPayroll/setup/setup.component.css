@@ -1,0 +1,22 @@
+
+  p.simple-card {
+    margin: 0;
+    background-color: #398d94;
+    color: #fff;
+    padding: 10px 10px;
+    border-radius: 4px;
+    min-width: 100px;
+    text-align: center;
+    box-shadow: 0 3px 6px rgba(204, 131, 103, 0.22);
+}
+#setup{ max-height: 400px !important;
+  border: 1px solid #2e6c71;
+  height: 320px; overflow: hidden}
+#setup #payrollDetail .navbar-nav {
+  flex-direction: row;
+}
+#setup #payrollDetail .navbar-nav li{ width:33.3%; border-right:1px solid #719bab}
+#setup #payrollDetail .navbar-nav li a{ text-align:left !important}
+#setup #payrollDetail .navbar-nav li:last-child{border-right: 0}
+#setup #payrollDetail .navbar-nav li a{ text-align:center !important; padding:8px 6px !important}
+#setup #payrollDetail .tab-content{min-height:380px}
