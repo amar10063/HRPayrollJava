@@ -1011,12 +1011,13 @@ thead>tr>th {
     padding-right: 0
 }
 
-.panel-body ul li img {
+.panel-body ul li img, .panel-body ul li i {
     margin: 0 auto;
     display: block;
     width: 28px;
     height: auto
 }
+.panel-body ul li i{ background-color: #1d576d}
 
 .panel-body ul li a {
     display: block;
@@ -2475,3 +2476,15 @@ text-align:center;
 
 .mainPage{ width: 86%; position: relative;}
 .gsearch-icon{ color:#1f656b; font-size: 25px !important}
+.logoborder {
+    border: 1px solid #1d576d;
+    width: 34px;
+    height: 33px;
+    background-color: #1d576d;
+    border-radius: 50%;
+}
+.navbarlogosize {
+    font-size: 15px;
+    color: white;
+    padding: 9px;
+}
