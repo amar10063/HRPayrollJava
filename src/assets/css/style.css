@@ -945,7 +945,7 @@ thead>tr>th {
 }
 
 .panel-heading {
-    padding: 10px 0px 15px !important;
+    padding: 7px 0px 11px !important;
     border: 0;
     border-bottom: 1px solid #398d94;
 }
@@ -996,7 +996,9 @@ thead>tr>th {
 .panel-body ul {
     list-style: none;
     padding: 0;
-    display: inline;
+    display: inline-block;
+    width: 90%;
+    margin-bottom: 0;
 }
 
 .panel-body ul li {
