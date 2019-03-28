@@ -1766,7 +1766,8 @@ span.check:after {
 span.check1 {
     border-radius: 2px;
     height: 12px !important;
-    width: 12px !important
+    width: 12px !important;
+    margin-top: 3px
 }
 
 span.check1:after {
