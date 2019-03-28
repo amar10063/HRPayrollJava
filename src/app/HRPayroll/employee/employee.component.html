@@ -239,11 +239,31 @@
           </div>
         </div>
         <div id="AddressBook" class="container tab-pane fade">
+          <div class="row">
+              <div class="col-6 col-md-6">
+                      
+                            <div class="form-inline">
+                              <label for="Employee Name" class="col-2 col-md-3 pl-0">Visible:</label>
+                              <input type="checkbox" class="col-6 col-md-2 ptb-4"  name="name">
+                            </div>
+                    
+              </div>
+
+
+              <div class="col-6 col-md-6">
           <div class="buttonCon pull-right mt-2 mb-2 mr-1">
             <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
               New</button>
-            <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
+            <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
           </div>
+        </div>
+
+
+
+
+
+
+        </div>
           <div class="clearfix"></div>
           <div class="formBody clearfix pt-0">
             <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData1" [columnDefs]="columnDefs1"></ag-grid-angular>
@@ -271,11 +291,11 @@
               </div>
               <div class="tab-content">
               <div id="Highschool" class="container tab-pane active">
-                  <div class="buttonCon pull-right mt-2 mb-2 mr-1">
-                    <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
-                      New</button>
-                    <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
-                  </div>
+                <div class="buttonCon pull-right mt-2 mb-2 mr-1">
+                  <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                    New</button>
+                  <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                </div>
                   <div class="clearfix"></div>
                   <div class="formBody clearfix pt-0">
                     <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData2" [columnDefs]="columnDefs2"></ag-grid-angular>
@@ -284,11 +304,11 @@
                 </div>
                 
                   <div id="Graduation" class="container tab-pane fade">
-                      <div class="buttonCon pull-right mt-2 mb-2 mr-1">
-                        <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
-                          New</button>
-                        <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
-                      </div>
+                    <div class="buttonCon pull-right mt-2 mb-2 mr-1">
+                      <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                        New</button>
+                      <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                    </div>
                       <div class="clearfix"></div>
                       <div class="formBody clearfix pt-0">
                         <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData4" [columnDefs]="columnDefs4"></ag-grid-angular>
@@ -296,11 +316,11 @@
                       </div>
                     </div>
                     <div id="PostGraduation" class="container tab-pane fade">
-                        <div class="buttonCon pull-right mt-2 mb-2 mr-1">
-                          <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
-                            New</button>
-                          <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
-                        </div>
+                      <div class="buttonCon pull-right mt-2 mb-2 mr-1">
+                        <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                          New</button>
+                        <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                      </div>
                         <div class="clearfix"></div>
                         <div class="formBody clearfix pt-0">
                           <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData5" [columnDefs]="columnDefs5"></ag-grid-angular>
@@ -308,11 +328,11 @@
                         </div>
                       </div>
                       <div id="Other" class="container tab-pane fade">
-                          <div class="buttonCon pull-right mt-2 mb-2 mr-1">
-                            <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
-                              New</button>
-                            <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
-                          </div>
+                        <div class="buttonCon pull-right mt-2 mb-2 mr-1">
+                          <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                            New</button>
+                          <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                        </div>
                           <div class="clearfix"></div>
                           <div class="formBody clearfix pt-0">
                             <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData6" [columnDefs]="columnDefs6"></ag-grid-angular>
@@ -402,13 +422,11 @@
           </div>-->
         </div>
         <div id="profQualifications" class="container tab-pane fade">
-          <div class="col-12 col-md-12">
-            <div class="buttonCon pull-right mt-2 mb-2 mr-1">
-                <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
-                  New</button>
-                <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
-              </div>
-            </div>
+          <div class="buttonCon pull-right mt-2 mb-2 mr-1">
+            <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+              New</button>
+            <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+          </div>
             <div class="formBody clearfix pt-0" style="clear: both;">
                 <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData7" [columnDefs]="columnDefs7"></ag-grid-angular>
     
@@ -485,7 +503,7 @@
           <div class="buttonCon pull-right mt-2 mb-2 mr-1">
             <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
               New</button>
-            <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
+            <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
           </div>
 
           <div class="formBody clearfix pt-0" style="clear: both;">
@@ -561,7 +579,7 @@
           <div class="buttonCon pull-right mt-2 mb-2 mr-1">
             <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
               New</button>
-            <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
+            <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
           </div>
           <div class="formBody clearfix">
             <form>
@@ -646,7 +664,7 @@
           <div class="buttonCon pull-right mt-2 mb-2 mr-1">
             <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
               New</button>
-            <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
+            <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
           </div>
           <div class="formBody clearfix pt-0" style="clear: both;">
               <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData9" [columnDefs]="columnDefs9"></ag-grid-angular>
@@ -724,7 +742,7 @@
           <div class="buttonCon pull-right mt-2 mb-2 mr-1">
             <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
               New</button>
-            <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
+            <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
           </div>
           <div class="formBody clearfix pt-0" style="clear: both;">
               <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData10" [columnDefs]="columnDefs10"></ag-grid-angular>
@@ -874,11 +892,11 @@
 
               <div class="tab-content">
                   <div id="Passport" class="container tab-pane active">
-                      <div class="buttonCon pull-right mt-2 mb-2 mr-1">
-                        <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
-                          New</button>
-                        <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
-                      </div>
+                    <div class="buttonCon pull-right mt-2 mb-2 mr-1">
+                      <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                        New</button>
+                      <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                    </div>
                       <div class="clearfix"></div>
                       <div class="formBody clearfix pt-0" style="clear: both;">
                           <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData11" [columnDefs]="columnDefs11"></ag-grid-angular>
@@ -887,11 +905,11 @@
                     </div>
                     
                       <div id="Visa" class="container tab-pane fade">
-                          <div class="buttonCon pull-right mt-2 mb-2 mr-1">
-                            <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
-                              New</button>
-                            <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
-                          </div>
+                        <div class="buttonCon pull-right mt-2 mb-2 mr-1">
+                          <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                            New</button>
+                          <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                        </div>
                           <div class="clearfix"></div>
                           <div class="formBody clearfix pt-0">
                             <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData12" [columnDefs]="columnDefs12"></ag-grid-angular>
@@ -917,11 +935,11 @@
                             </div>-->
                           </div>
                           <div id="DrivingLicence" class="container tab-pane fade">
-                              <div class="buttonCon pull-right mt-2 mb-2 mr-1">
-                                <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
-                                  New</button>
-                                <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
-                              </div>
+                            <div class="buttonCon pull-right mt-2 mb-2 mr-1">
+                              <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                                New</button>
+                              <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                            </div>
                               <div class="clearfix"></div>
                               <div class="formBody clearfix pt-0">
                                 <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData14" [columnDefs]="columnDefs14"></ag-grid-angular>
@@ -929,11 +947,11 @@
                               </div>
                             </div>
                             <div id="MedicalCertificate" class="container tab-pane fade">
-                                <div class="buttonCon pull-right mt-2 mb-2 mr-1">
-                                  <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
-                                    New</button>
-                                  <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
-                                </div>
+                              <div class="buttonCon pull-right mt-2 mb-2 mr-1">
+                                <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                                  New</button>
+                                <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                              </div>
                                 <div class="clearfix"></div>
                                 <div class="formBody clearfix pt-0">
                                   <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData15" [columnDefs]="columnDefs15"></ag-grid-angular>
@@ -941,11 +959,11 @@
                                 </div>
                               </div>
                               <div id="EducationalCertificate" class="container tab-pane fade">
-                                  <div class="buttonCon pull-right mt-2 mb-2 mr-1">
-                                    <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
-                                      New</button>
-                                    <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
-                                  </div>
+                                <div class="buttonCon pull-right mt-2 mb-2 mr-1">
+                                  <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                                    New</button>
+                                  <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                                </div>
                                   <div class="clearfix"></div>
                                   <div class="formBody clearfix pt-0">
                                     <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData16" [columnDefs]="columnDefs16"></ag-grid-angular>
