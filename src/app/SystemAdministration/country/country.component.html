@@ -4,7 +4,7 @@
     <button type="button" class="btn templateBg"><img src="../assets/images/back-icon.png" alt="home" />Back</button>
     <button type="button" class="btn templateBg"><img src="../assets/images/home-icon.png" alt="home" />Home</button>
   </div>
-  <h5>System Administration</h5>  
+  <h5>System Administration</h5>
 
   <div class="clearfix"></div>
   <div class="pay-head clearfix mt-3" style="border:1px solid #2e6c71" id="country">
@@ -24,11 +24,11 @@
           <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#language"><i class="fa fa-language pr-1"
                 aria-hidden="true"></i> Language</a> </li>
           <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#"><i class="fa fa-user pr-1"
-                  aria-hidden="true"></i> System Admin 7</a> </li>
+                aria-hidden="true"></i> System Admin 7</a> </li>
           <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#"><i class="fa fa-user pr-1"
-                    aria-hidden="true"></i> System Admin 8</a> </li>
+                aria-hidden="true"></i> System Admin 8</a> </li>
           <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#"><i class="fa fa-user pr-1"
-                      aria-hidden="true"></i> System Admin 9</a> </li>
+                aria-hidden="true"></i> System Admin 9</a> </li>
         </ul>
       </div>
     </div>
@@ -36,24 +36,26 @@
       <div class="tab-content col-md-12 col-12 p-0">
         <div id="country" class="container tab-pane active">
           <div class="buttonCon pull-left mt-2 mb-2 mr-1">
-            <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+            <button type="button" class="payHeadBtn" (click)="onAddClick()"><i class="fa fa-plus-square"
+                aria-hidden="true"></i>Add
               New</button>
             <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
           </div>
           <div class="clearfix"></div>
           <div class="formBody clearfix pt-0">
             <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData"
-              [columnDefs]="columnDefs"></ag-grid-angular>
-
+              [columnDefs]="columnDefs" [animateRows]="true" [rowSelection]="rowSelection"
+              (selectionChanged)="onSelectionChanged($event)" (gridReady)="onGridReady($event)"      (cellKeyDown)="
+              onCellKeyDown($event)"></ag-grid-angular>
           </div>
         </div>
         <div id="state" class="container tab-pane fade">
           <div class="buttonCon pull-left mt-2 mb-2 mr-1">
             <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
               New</button>
-              <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button></div>
-            
-             
+            <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button></div>
+
+
           <div class="clearfix"></div>
           <div class="formBody clearfix pt-0">
 
@@ -64,11 +66,11 @@
         </div>
         <div id="city" class="container tab-pane fade">
           <div class="buttonCon pull-left mt-2 mb-2 mr-1">
-              <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
-                New</button>
-                <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
-              </div>
- 
+            <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+              New</button>
+            <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+          </div>
+
           <div class="clearfix"></div>
           <div class="formBody clearfix pt-0">
             <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData2"
@@ -79,8 +81,8 @@
           <div class="buttonCon pull-left mt-2 mb-2 mr-1">
             <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
               New</button>
-              <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
-            </div>
+            <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+          </div>
           <div class="clearfix"></div>
           <div class="formBody clearfix pt-0">
 
