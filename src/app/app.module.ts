@@ -18,6 +18,9 @@ import { SystemAdminModuleComponent } from './SystemAdministration/SystemAdminMo
 import { CountryComponent } from './SystemAdministration/country/country.component';
 import { SetupComponent } from './HRPayroll/setup/setup.component';
 import { GlobalSearchComponent } from './global-search/global-search.component';
+import { OrganizationComponent } from './SystemAdministration/organization/organization.component';
+import { PayrollComponent } from './SystemAdministration/payroll/payroll.component';
+import { TaxComponent } from './SystemADministration/tax/tax.component';
 
 
 
@@ -37,7 +40,10 @@ import { GlobalSearchComponent } from './global-search/global-search.component';
     SystemAdminModuleComponent,
     CountryComponent,
     SetupComponent,
-    GlobalSearchComponent
+    GlobalSearchComponent,
+    OrganizationComponent,
+    PayrollComponent,
+    TaxComponent
 
   ],
   imports: [
