@@ -945,7 +945,7 @@ thead>tr>th {
 }
 
 .panel-heading {
-    padding: 10px 0px 15px !important;
+    padding: 7px 0px 11px !important;
     border: 0;
     border-bottom: 1px solid #398d94;
 }
@@ -996,25 +996,28 @@ thead>tr>th {
 .panel-body ul {
     list-style: none;
     padding: 0;
-    display: inline;
+    display: inline-block;
+    width: 90%;
+    margin-bottom: 0;
 }
 
 .panel-body ul li {
     display: inline-block;
     vertical-align: top;
-    width: 9%;
+    width: 8%;
 }
 
 .panel-body ul li:last-child {
     padding-right: 0
 }
 
-.panel-body ul li img {
+.panel-body ul li img, .panel-body ul li i {
     margin: 0 auto;
     display: block;
     width: 28px;
     height: auto
 }
+.panel-body ul li i{ background-color: #1d576d}
 
 .panel-body ul li a {
     display: block;
@@ -1764,7 +1767,8 @@ span.check:after {
 span.check1 {
     border-radius: 2px;
     height: 12px !important;
-    width: 12px !important
+    width: 12px !important;
+    margin-top: 3px
 }
 
 span.check1:after {
@@ -2472,3 +2476,15 @@ text-align:center;
 
 .mainPage{ width: 86%; position: relative;}
 .gsearch-icon{ color:#1f656b; font-size: 25px !important}
+.logoborder {
+    border: 1px solid #1d576d;
+    width: 34px;
+    height: 33px;
+    background-color: #1d576d;
+    border-radius: 50%;
+}
+.navbarlogosize {
+    font-size: 15px;
+    color: white;
+    padding: 7px;
+}

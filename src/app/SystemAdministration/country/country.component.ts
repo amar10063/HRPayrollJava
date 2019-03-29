@@ -21,47 +21,56 @@ export class CountryComponent implements OnInit {
 
   rowData = [];
 
+ 
   columnDefs1 = [
-    { headerName: 'Country', field: 'country', sortable: true, editable: true, filter: true, width: 120 },
-    { headerName: 'State', field: 'state', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: '', field: '', width: 600 }
+    { headerName: 'Country', field: 'country', sortable: true, editable:true, filter: true, width: 120 },
+    { headerName: 'State', field: 'state', sortable: true, filter: true, editable:true, width: 120 },
+    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 130 },
+    { headerName: '', field: '', width: 470 }
   ];
 
   rowData1 = [
-    { state: 'UP', country: 'India' },
-    { state: 'Punjab', country: 'India' },
-    { state: 'Haryana', country: 'India' },
-    { state: 'Sikkim', country: 'India' },
-    { state: 'Rajasthan', country: 'India' }
+    { state: 'UP', country: 'India', description:'State Name' },
+    { state: 'Punjab', country: 'India', description:'State Name' },
+    { state: 'Haryana', country: 'India', description:'State Name' },
+    { state: 'Sikkim', country: 'India', description:'State Name' },
+    { state: 'Rajasthan', country: 'India', description:'State Name' }
   ];
 
   columnDefs2 = [
-    { headerName: 'Country', field: 'country', sortable: true, editable: true, filter: true, width: 120 },
-    { headerName: 'State', field: 'state', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'City', field: 'city', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: '', field: '', width: 480 }
+
+    { headerName: 'Country', field: 'country', sortable: true, editable:true, filter: true, width: 120 },   
+    { headerName: 'State', field: 'state', sortable: true, filter: true, editable:true, width: 120 },
+    { headerName: 'City', field: 'city', sortable: true, filter: true, editable:true, width: 120 },
+    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 130 },
+    { headerName: '', field: '', width: 350 }
   ];
 
   rowData2 = [
-    { city: 'Noida', state: 'UP', country: 'India' },
-    { city: 'Chandigarh', state: 'Punjab', country: 'India' },
-    { city: 'Gurugram', state: 'Haryana', country: 'India' },
-    { city: 'Gangtok', state: 'Sikkim', country: 'India' },
-    { city: 'Jaipur', state: 'Rajasthan', country: 'India' }
+    { city: 'Noida', state: 'UP', country: 'India', description:'City Name' },
+    { city: 'Chandigarh', state: 'Punjab', country: 'India', description:'City Name' },
+    { city: 'Gurugram', state: 'Haryana', country: 'India', description:'City Name' },
+    { city: 'Gangtok', state: 'Sikkim', country: 'India', description:'City Name' },
+    { city: 'Jaipur', state: 'Rajasthan', country: 'India', description:'City Name' }
   ];
 
   columnDefs3 = [
-    { headerName: 'Department Code', field: 'departmentCode', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'Department Name', field: 'department', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: '', field: '', width: 600 }
+
+    { headerName: 'Country', field: 'country', sortable: true, editable:true, filter: true, width: 120 },   
+    { headerName: 'State', field: 'state', sortable: true, filter: true, editable:true, width: 120 },
+    { headerName: 'City', field: 'city', sortable: true, filter: true, editable:true, width: 120 },
+    { headerName: 'Postal Code', field: 'postal', sortable: true, filter: true, editable:true, width: 120 },
+    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 130 },
+    { headerName: '', field: '', width: 230 }
   ];
 
   rowData3 = [
-    { departmentCode: '001', department: 'IT' },
-    { departmentCode: '002', department: 'Finance' },
-    { departmentCode: '003', department: 'AX' },
-    { departmentCode: '004', department: 'Medical' },
-    { departmentCode: '005', department: 'Accounts' }
+    { city: 'Noida', state: 'UP', country: 'India', postal:'201301', description:'Postal Code No' },
+    { city: 'Chandigarh', state: 'Punjab', country: 'India', postal:'201301', description:'Postal Code No' },
+    { city: 'Gurugram', state: 'Haryana', country: 'India', postal:'201301', description:'Postal Code No' },
+    { city: 'Gangtok', state: 'Sikkim', country: 'India', postal:'201301', description:'Postal Code No' },
+    { city: 'Jaipur', state: 'Rajasthan', country: 'India', postal:'201301', description:'Postal Code No' }
+
   ];
 
   columnDefs4 = [
