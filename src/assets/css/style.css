@@ -2488,3 +2488,17 @@ text-align:center;
     color: white;
     padding: 7px;
 }
+#nextprev{
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 16px;
+  }
+  
+  #nextprev:hover {
+    background-color:#398d94;
+    color: white;
+  }
+  
+  .round {
+    border-radius: 50%;
+  }
