@@ -796,18 +796,22 @@ thead>tr>th {
 .gridBody .border-secondary,
 .gridBody .btn-outline-secondary {
     border-color: #b6ced8 !important;
-    padding: 0px 8px 4px;
+    padding: 0px 4px 4px;
 }
 
 .gridBody .input-group input {
-    padding: 5px 15px;
-    height: 30px;
+    padding: 5px 5px;
+    height: 20px;
 }
 
 .gridBody .input-group-append {
-    height: 30px;
+    height: 20px;
 }
-
+.gridBody .input-group-append img {
+    vertical-align: text-top;
+    padding-top: 1px;
+}
+.gridBody .input-group-append .btn:hover{ background: #fff !important}
 .gridBody .input-group input:focus {
     border-color: #57a4a6 !important;
     box-shadow: 0 0 0 .16rem rgba(123, 202, 205, .25) !important
@@ -2432,7 +2436,7 @@ a:hover {
     }
 
     .payHeadBtn {
-        font-size: 12px;
+        font-size: 10px;
         color: #21656b;
         font-weight: 600;
         background: none;
