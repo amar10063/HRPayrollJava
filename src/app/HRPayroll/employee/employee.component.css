@@ -341,21 +341,4 @@ td.textHighlight {
  #CurriculumVitae .form-control {
   display: Inline-block !important;
 }
-i:hover {
-  position:relative;
-  background-color:#e9ecef;
-  border:1px solid #e9ecef;
-  color:#393939;
-height:30px;
-width:30px;
-border-radius:50px;
-}
-.textlow{
-  position: absolute;
-  padding-top:10px;
-Border:1px solid #393939;
-background-color:#393939;
-height:10px;
-width:40px;
-color:#e9ecef;
-}
+
