@@ -21,6 +21,7 @@ import { GlobalSearchComponent } from './global-search/global-search.component';
 import { OrganizationComponent } from './SystemAdministration/organization/organization.component';
 import { PayrollComponent } from './SystemAdministration/payroll/payroll.component';
 import { TaxComponent } from './SystemADministration/tax/tax.component';
+import { GeneralComponent } from './SystemAdministration/general/general.component';
 
 
 
@@ -43,7 +44,8 @@ import { TaxComponent } from './SystemADministration/tax/tax.component';
     GlobalSearchComponent,
     OrganizationComponent,
     PayrollComponent,
-    TaxComponent
+    TaxComponent,
+    GeneralComponent
 
   ],
   imports: [
