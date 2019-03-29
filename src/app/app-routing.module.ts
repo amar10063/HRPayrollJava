@@ -13,6 +13,7 @@ import { GlobalSearchComponent } from './global-search/global-search.component';
 import { OrganizationComponent } from './SystemAdministration/organization/organization.component';
 import { PayrollComponent } from './SystemAdministration/payroll/payroll.component';
 import { TaxComponent } from './SystemADministration/tax/tax.component';
+import { GeneralComponent } from './SystemAdministration/general/general.component';
 
 const routes: Routes = [
 { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -28,7 +29,8 @@ const routes: Routes = [
 { path: 'global-search', component: GlobalSearchComponent },
 { path: 'organization', component: OrganizationComponent },
 { path: 'payroll', component: PayrollComponent },
-{ path: 'tax', component: TaxComponent }
+{ path: 'tax', component: TaxComponent },
+{ path: 'general', component: GeneralComponent }
 ];
 
 @NgModule({
