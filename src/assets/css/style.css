@@ -2491,7 +2491,8 @@ text-align:center;
 #nextprev{
     text-decoration: none;
     display: inline-block;
-    padding: 10px 16px;
+    padding: 6px 10px;
+    margin-left: 8px;
   }
   
   #nextprev:hover {
