@@ -10,7 +10,10 @@ import { SystemAdminModuleComponent } from './SystemAdministration/SystemAdminMo
 import { CountryComponent } from './SystemAdministration/country/country.component';
 import { SetupComponent } from './HRPayroll/setup/setup.component';
 import { GlobalSearchComponent } from './global-search/global-search.component';
-
+import { OrganizationComponent } from './SystemAdministration/organization/organization.component';
+import { PayrollComponent } from './SystemAdministration/payroll/payroll.component';
+import { TaxComponent } from './SystemADministration/tax/tax.component';
+import { GeneralComponent } from './SystemAdministration/general/general.component';
 
 const routes: Routes = [
 { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -23,7 +26,11 @@ const routes: Routes = [
 { path: 'system-administration', component: SystemAdminModuleComponent },
 { path: 'country', component: CountryComponent },
 { path: 'Setup', component: SetupComponent },
-{ path: 'global-search', component: GlobalSearchComponent }
+{ path: 'global-search', component: GlobalSearchComponent },
+{ path: 'organization', component: OrganizationComponent },
+{ path: 'payroll', component: PayrollComponent },
+{ path: 'tax', component: TaxComponent },
+{ path: 'general', component: GeneralComponent }
 ];
 
 @NgModule({

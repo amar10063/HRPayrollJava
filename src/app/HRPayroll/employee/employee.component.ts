@@ -72,12 +72,13 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs2 = [
     
-    { headerName: 'Class', field: 'Class', width: 120 },
-    { headerName: 'Board', field: 'Board', sortable: true, filter: true, width: 150 },
-    { headerName: 'School Name', field: 'SchoolName', sortable: true, filter: true, width: 152 },
-    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, width: 120 },
-    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, width: 120 },
-    { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, width: 150 },
+    { headerName: 'Class', field: 'Class', filter: true, sortable: true, editable: true,  width: 70 },
+    { headerName: 'Board', field: 'Board', editable: true, sortable: true, filter: true, width: 70 },
+    { headerName: 'School Name', field: 'SchoolName', editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: 'Start Date', field: 'StartDate', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'End Date', field: 'EndDate', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'Percentage', field: 'percentage', sortable: true, editable: true, filter: true, width: 110 },
+    { headerName: ' ', field: ' ', editable: true, width: 330 }
     
     
 
@@ -92,13 +93,13 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs4 = [
     
-    { headerName: 'Degree', field: 'Degree', width: 120 },
-    { headerName: 'Specialization', field: 'specialization', sortable: true, filter: true, width: 160 },
-    { headerName: 'University', field: 'university', sortable: true, filter: true, width: 160 },
-    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, width: 125 },
-    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, width: 125 },
-    { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, width: 120 },
-    
+    { headerName: 'Degree', field: 'Degree', sortable: true, editable: true, filter: true, width: 90 },
+    { headerName: 'Specialization', field: 'specialization', editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: 'University', field: 'university', editable: true, sortable: true, filter: true, width: 110 },
+    { headerName: 'Start Date', field: 'StartDate', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'End Date', field: 'EndDate', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'Percentage', field: 'percentage', editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: '', field: '', editable: true, width: 260 }
     
 
   ];
@@ -110,13 +111,13 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs5 = [
     
-    { headerName: 'Degree', field: 'Degree', width: 120 },
-    { headerName: 'Specialization', field: 'specialization', sortable: true, filter: true, width: 160 },
-    { headerName: 'University', field: 'university', sortable: true, filter: true, width: 160 },
-    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, width: 125 },
-    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, width: 125 },
-    { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, width: 120 },
-    
+    { headerName: 'Degree', field: 'Degree', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'Specialization', field: 'specialization', editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: 'University', field: 'university', editable: true, sortable: true, filter: true, width: 110 },
+    { headerName: 'Start Date', field: 'StartDate', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'End Date', field: 'EndDate', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'Percentage', field: 'percentage', editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: '', field: '', editable: true, sortable: true, filter: true, width: 250 },
     
 
   ];
@@ -128,13 +129,13 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs6 = [
    
-    { headerName: 'Degree', field: 'Degree', width: 120 },
-    { headerName: 'Specialization', field: 'specialization', sortable: true, filter: true, width: 162 },
-    { headerName: 'University', field: 'university', sortable: true, filter: true, width: 160 },
-    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, width: 125 },
-    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, width: 125 },
-    { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, width: 120 },
-    
+    { headerName: 'Degree', field: 'Degree', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'Specialization', field: 'specialization', editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: 'University', field: 'university', editable: true, sortable: true, filter: true, width: 110 },
+    { headerName: 'Start Date', field: 'StartDate', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'End Date', field: 'EndDate', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'Percentage', field: 'percentage', editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: '', field: '', width: 250 },
     
 
   ];
@@ -146,11 +147,11 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs7 = [
     
-    { headerName: 'Institute', field: 'Institute', width: 210 },
-    { headerName: 'Course', field: 'Course', sortable: true, filter: true, width: 215 },
-    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, width: 185 },
-    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, width: 200 },
-    
+    { headerName: 'Institute', field: 'Institute', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'Course', field: 'Course', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'Start Date', field: 'StartDate',  editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'End Date', field: 'EndDate', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: '', field: '',  width: 500 },
     
     
 
@@ -164,14 +165,14 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs8 = [
     
-    { headerName: 'Company Name', field: 'CompanyName', width: 210 },
-    { headerName: 'Designation', field: 'Designation', sortable: true, filter: true, width: 215 },
-    { headerName: 'Department', field: 'Department', sortable: true, filter: true, width: 185 },
-    { headerName: 'Joining Date', field: 'JoiningDate', sortable: true, filter: true, width: 200 },
-    { headerName: 'Exit Date', field: 'ExitDate', sortable: true, filter: true, width: 200 },
-    { headerName: 'Experience', field: 'Experience', sortable: true, filter: true, width: 200 },
-    { headerName: 'Location', field: 'Location', sortable: true, filter: true, width: 200 },
-    
+    { headerName: 'Company Name', field: 'CompanyName', editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: 'Designation', field: 'Designation', editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: 'Department', field: 'Department', editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: 'Joining Date', field: 'JoiningDate', editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: 'Exit Date', field: 'ExitDate', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'Experience', field: 'Experience', editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: 'Location', field: 'Location', editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: '', field: '', width: 80 },
     
     
 
@@ -184,11 +185,11 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs9 = [
    
-    { headerName: 'Certificate Name', field: 'CertificateName', width: 272 },
-    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, width: 270 },
-    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, width: 270 },
-   
-    
+    { headerName: 'Certificate Name', field: 'CertificateName', editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: 'Start Date', field: 'StartDate', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'End Date', field: 'EndDate', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'End Date', field: 'EndDate', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: '', field: '',  width: 480 },
     
     
 
@@ -201,12 +202,13 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs10 = [
    
-    { headerName: 'Type of Account', field: 'TypeofAccount', width: 272 },
-    { headerName: 'Account Holder Name', field: 'AccountHolderName', sortable: true, filter: true, width: 270 },
-    { headerName: 'Account Number', field: 'AccountNumber', sortable: true, filter: true, width: 270 },
-    { headerName: 'IFSC', field: 'IFSC', sortable: true, filter: true, width: 270 },
-    { headerName: 'Branch Name', field: 'BranchName', sortable: true, filter: true, width: 270 },
-    { headerName: 'Primary', field: 'Primary', sortable: true, filter: true, width: 270 },
+    { headerName: 'Type of Account', field: 'TypeofAccount', editable: true, sortable: true, filter: true, width: 140 },
+    { headerName: 'Account Holder Name', field: 'AccountHolderName', editable: true, sortable: true, filter: true, width: 150},
+    { headerName: 'Account Number', field: 'AccountNumber', editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: 'IFSC', field: 'IFSC', sortable: true, editable: true, filter: true, width: 100 },
+    { headerName: 'Branch Name', field: 'BranchName', editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: 'Primary', field: 'Primary', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: '', field: '', width: 170 }
    
     
     
@@ -223,10 +225,11 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs11 = [
    
-    { headerName: 'Passport No', field: 'PassportNo', sortable: true, filter: true, width: 230 },
-    { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, width: 200 },
-    { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, width: 200 },
-    { headerName: 'Time Duration', field: 'TimetoExpire', sortable: true, filter: true, width: 200 },
+    { headerName: 'Passport No', field: 'PassportNo', editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: 'Expiry Date', field: 'ExpiryDate', editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: 'Upload Document', field: 'UploadDocument', editable: true, sortable: true, filter: true, width: 140 },
+    { headerName: 'Time Duration', field: 'TimetoExpire',editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: '', field: '', width: 400 },
     
   ];
 
@@ -237,11 +240,12 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs12 = [
    
-    { headerName: 'Country', field: 'Country', sortable: true, filter: true, width: 170 },
-    { headerName: 'Number Of Visit', field: 'NumberOfVisit', sortable: true, filter: true, width: 170 },
-    { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, width: 160 },
-    { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, width: 170 },
-    { headerName: 'Time to Expire', field: 'TimetoExpire', sortable: true, filter: true, width: 160 },
+    { headerName: 'Country', field: 'Country', editable: true, sortable: true, filter: true, width: 110 },
+    { headerName: 'Number Of Visit', field: 'NumberOfVisit', editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: 'Expiry Date', field: 'ExpiryDate', editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: 'Upload Document', field: 'UploadDocument', editable: true, sortable: true, filter: true, width: 130 },
+    { headerName: 'Time to Expire', field: 'TimetoExpire', editable: true, sortable: true, filter: true, width: 130 },
+    { headerName: '', field: '', width: 290 },
     
   ];
 
@@ -252,11 +256,11 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs13 = [
   
-    { headerName: 'Documents', field: 'Documents', width: 160 },
-    { headerName: 'Curriculum Vitae', field: 'CurriculumVitae', sortable: true, filter: true, width: 160 },
-    { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, width: 160 },
-    { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, width: 170 },
-    { headerName: 'Time to Expire', field: 'TimetoExpire', sortable: true, filter: true, width: 160 },
+    { headerName: 'Documents', field: 'Documents', editable: true, sortable: true, filter: true, width: 160 },
+    { headerName: 'Curriculum Vitae', field: 'CurriculumVitae', editable: true, sortable: true, filter: true, width: 160 },
+    { headerName: 'Expiry Date', field: 'ExpiryDate', editable: true, sortable: true, filter: true, width: 160 },
+    { headerName: 'Upload Document', field: 'UploadDocument', editable: true, sortable: true, filter: true, width: 170 },
+    { headerName: 'Time to Expire', field: 'TimetoExpire', editable: true, sortable: true, filter: true, width: 160 },
     
   ];
 
@@ -267,10 +271,11 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs14 = [
   
-    { headerName: 'Driving Licence Number', field: 'DrivingLicence', sortable: true, filter: true, width: 220 },
-    { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, width: 200 },
-    { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, width: 210 },
-    { headerName: 'Time Duration', field: 'TimetoExpire', sortable: true, filter: true, width: 200 },
+    { headerName: 'Driving Licence Number', field: 'DrivingLicence', editable: true, sortable: true, filter: true, width: 150 },
+    { headerName: 'Expiry Date', field: 'ExpiryDate', editable: true, sortable: true, filter: true, width: 110 },
+    { headerName: 'Upload Document', field: 'UploadDocument', editable: true, sortable: true, filter: true, width: 140 },
+    { headerName: 'Time Duration', field: 'TimetoExpire', editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: '', field: '', width: 380 },
     
   ];
 
@@ -281,11 +286,11 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs15 = [
     
-    { headerName: 'Medical Certificate', field: 'MedicalCertificate', sortable: true, filter: true, width: 230 },
-    { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, width: 200 },
-    { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, width: 200 },
-    { headerName: 'Time Duration', field: 'TimeDuration', sortable: true, filter: true, width: 200 },
-    
+    { headerName: 'Medical Certificate', field: 'MedicalCertificate', editable: true, sortable: true, filter: true, width: 130 },
+    { headerName: 'Expiry Date', field: 'ExpiryDate', editable: true, sortable: true, filter: true, width: 110 },
+    { headerName: 'Upload Document', field: 'UploadDocument', editable: true, sortable: true, filter: true, width: 140 },
+    { headerName: 'Time Duration', field: 'TimeDuration', editable: true, sortable: true, filter: true, width: 110 },
+    { headerName: '', field: '', width: 410 },
   ];
 
   rowData15 = [
@@ -295,12 +300,12 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs16 = [
   
-    { headerName: 'Class/Degree', field: 'ClassDegree', width: 160 },
-    { headerName: 'Board/University', field: 'BoardUniversity', sortable: true, filter: true, width: 180 },
-    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, width: 160 },
-    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, width: 170 },
-    { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, width: 160 },
-    
+    { headerName: 'Class/Degree', field: 'ClassDegree', editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: 'Board/University', field: 'BoardUniversity', editable: true, sortable: true, filter: true, width: 140 },
+    { headerName: 'Start Date', field: 'StartDate', editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: 'End Date', field: 'EndDate', editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: 'Upload Document', field: 'UploadDocument', editable: true, sortable: true, filter: true, width: 140 },
+    { headerName: '', field: '', width: 260 },
   ];
 
   rowData16 = [
