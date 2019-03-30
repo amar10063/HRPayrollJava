@@ -13,14 +13,14 @@ export class CountryComponent implements OnInit {
   }
   api: GridApi;
   columnApi: ColumnApi;
-
   rowSelection: string;
-
   columnDefs = [
     {
-      id: 0, headerName: 'Country Code', field: 'countryCode', sortable: true, filter: true, width: 120, editable: true, valueGetter: this.getColumnValue
+      id: 0, headerName: 'Country Code', field: 'countryCode', sortable: true, filter: true, width: 120, editable: true
     },
-    { id: 1, headerName: 'Country Name', field: 'country', sortable: true, filter: true, width: 130, editable: true },
+    {
+      id: 1, headerName: 'Country Name', field: 'country', sortable: true, filter: true, width: 130, editable: true
+    },
     { headerName: '', field: '', width: 590 }
   ];
 
@@ -111,12 +111,14 @@ export class CountryComponent implements OnInit {
   public buttonName: any = 'Add New';
   colDef: string;
   buttonCLick: string;
+  count = 1;
   ngOnInit() {
   }
   onAddClick() {
     this.api.getFirstDisplayedRow;
     this.buttonCLick = 'ADD';
-    let res = this.api.updateRowData({ add: [{ country: 'india', countryCode: 'in' }] });
+    this.count++;
+    let res = this.api.updateRowData({ add: [{ country: 'india', countryCode: 'in', id: this.count + "" }] });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
@@ -138,22 +140,24 @@ export class CountryComponent implements OnInit {
   }
   onCellKeyDown(e) {
     const keyPressed = e.event.key;
-    const countryColumn = this.api.getColumnDef('country').field;
-    const countryCodeColumn = this.api.getColumnDef('countryCode').field;
     this.colDef = this.api.getFocusedCell().column.getColId();
-    if (keyPressed === 'Enter') {
 
-      if (countryColumn.length === 0) {
-        alert('Add Country Name');
-      } else if (countryCodeColumn.length === 0) {
-        alert('Add Country Code');
-      } else {
-        alert('call service ');
-      }
+    if (keyPressed === 'Enter') {
+      // if (this.api.getColumnDef('country') === '') {
+      //   alert('Add Country Name');
+      // } else if (this.api.getValue('countryCode', this.api.getDisplayedRowAtIndex(1)) === '') {
+      //   alert('Add Country Code');
+      // } else {
+      //   alert('call service ');
+      // }
+
+      const selectedNodes = this.api.getSelectedNodes();
+      const selectedData = selectedNodes.map(node => node.data);
+      const selectedDataStringPresentation = selectedData.map(node => node.country + ' ' + node.countryCode).join(', ');
+      console.log('Selected nodes: ${selectedDataStringPresentation}');
+
     }
   }
 
-  getColumnValue(params) {
-    return params.value;
-  }
+
 }
