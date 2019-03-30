@@ -17,8 +17,9 @@ export class CountryComponent implements OnInit {
   rowSelection: string;
 
   columnDefs = [
-    { id: 0, headerName: 'Country Code', field: 'countryCode', sortable: true, filter: true, width: 120, editable: true },
-    // tslint:disable-next-line: max-line-length
+    {
+      id: 0, headerName: 'Country Code', field: 'countryCode', sortable: true, filter: true, width: 120, editable: true, valueGetter: this.getColumnValue
+    },
     { id: 1, headerName: 'Country Name', field: 'country', sortable: true, filter: true, width: 130, editable: true },
     { headerName: '', field: '', width: 590 }
   ];
@@ -109,11 +110,13 @@ export class CountryComponent implements OnInit {
   public hide = true;
   public buttonName: any = 'Add New';
   colDef: string;
-
+  buttonCLick: string;
   ngOnInit() {
   }
   onAddClick() {
-    let res = this.api.updateRowData({ add: [{ country: 'India', countryCode: 'ed' }] });
+    this.api.getFirstDisplayedRow;
+    this.buttonCLick = 'ADD';
+    let res = this.api.updateRowData({ add: [{ country: 'india', countryCode: 'in' }] });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
@@ -135,12 +138,22 @@ export class CountryComponent implements OnInit {
   }
   onCellKeyDown(e) {
     const keyPressed = e.event.key;
+    const countryColumn = this.api.getColumnDef('country').field;
+    const countryCodeColumn = this.api.getColumnDef('countryCode').field;
     this.colDef = this.api.getFocusedCell().column.getColId();
     if (keyPressed === 'Enter') {
-      if (this.colDef === 'country') {
-        alert('onCellKeyDown  ' + keyPressed + ' ' + this.colDef);
+
+      if (countryColumn.length === 0) {
+        alert('Add Country Name');
+      } else if (countryCodeColumn.length === 0) {
+        alert('Add Country Code');
+      } else {
+        alert('call service ');
       }
     }
+  }
 
+  getColumnValue(params) {
+    return params.value;
   }
 }
