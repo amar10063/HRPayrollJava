@@ -146,11 +146,11 @@ export class EmployeeComponent implements OnInit {
   ];
 
   columnDefs7 = [
-    
-    { headerName: 'Institute', field: 'Institute', editable: true, sortable: true, filter: true, width: 100 },
-    { headerName: 'Course', field: 'Course', editable: true, sortable: true, filter: true, width: 100 },
-    { headerName: 'Start Date', field: 'StartDate',  editable: true, sortable: true, filter: true, width: 100 },
-    { headerName: 'End Date', field: 'EndDate', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'Employee Image', field: 'EmpImage', template: '<input type="textbox" />', width: 120 },
+    { headerName: 'Institute', field: 'Institute', template: '<input type="textbox" />', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'Course', field: 'Course', template: '<input type="textbox" />', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'Start Date', field: 'StartDate', template: '<input type="textbox" />',  editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'End Date', field: 'EndDate', template: '<input type="textbox" />', editable: true, sortable: true, filter: true, width: 100 },
     { headerName: '', field: '',  width: 500 },
     
     

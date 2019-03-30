@@ -16,10 +16,10 @@ export class CountryComponent implements OnInit {
   rowSelection: string;
   columnDefs = [
     {
-      id: 0, headerName: 'Country Code', field: 'countryCode', sortable: true, filter: true, width: 120, editable: true
+      id: 0, headerName: 'Country Code', field: 'countryCode', template: '<input type="textbox" />', sortable: true, filter: true, width: 120, editable: true
     },
     {
-      id: 1, headerName: 'Country Name', field: 'country', sortable: true, filter: true, width: 130, editable: true
+      id: 1, headerName: 'Country Name', field: 'country', template: '<input type="textbox" />', sortable: true, filter: true, width: 130, editable: true
     },
     { headerName: '', field: '', width: 590 }
   ];
