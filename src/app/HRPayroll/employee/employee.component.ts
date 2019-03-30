@@ -44,17 +44,17 @@ export class EmployeeComponent implements OnInit {
 
 
   columnDefs1 = [
-   
-    { headerName: 'Address', field: 'address', width: 150 },
-    { headerName: 'City', field: 'city', sortable: true, filter: true, width: 100 },
-    { headerName: 'State', field: 'state', sortable: true, filter: true, width: 100 },
-    { headerName: 'Country', field: 'country', sortable: true, filter: true, width: 90 },
-    { headerName: 'Pin Code', field: 'pin', sortable: true, filter: true, width: 100 },
-    { headerName: 'Status', field: 'status', sortable: true, filter: true, width: 100 },
-    { headerName: 'Contact No.', field: 'ContactNo', sortable: true, filter: true, width: 100 },
-    { headerName: 'Email ID', field: 'EmailID', sortable: true, filter: true, width: 120 },
-    { headerName: 'Emergency Contact Person', field: 'EmergencyContactPerson', sortable: true, filter: true, width: 120 },
-    { headerName: 'Emergency Contact No', field: 'EmergencyContactNo', sortable: true, filter: true, width: 120 },
+    { headerName: 'Status', field: 'status', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'Address', field: 'address', editable: true, sortable: true, filter: true, width: 150 },
+    { headerName: 'Country', field: 'country', editable: true, sortable: true, filter: true, width: 90 },
+    { headerName: 'State', field: 'state', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'City', field: 'city', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'Postal Code', field: 'pin', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'Contact No.', field: 'ContactNo', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'Email ID', field: 'EmailID', editable: true, sortable: true, filter: true, width: 120 },
+    { headerName: 'Status', field: 'status', editable: true, sortable: true, filter: true, width: 100 },
+    { headerName: 'Emergency Contact Person', editable: true, field: 'EmergencyContactPerson', sortable: true, filter: true, width: 120 },
+    { headerName: 'Emergency Contact No', editable: true, field: 'EmergencyContactNo', sortable: true, filter: true, width: 120 },
     
 
   ];
