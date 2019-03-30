@@ -7,69 +7,74 @@ import { GridApi, ColumnApi } from 'ag-grid-community';
   styleUrls: ['./country.component.css']
 })
 export class CountryComponent implements OnInit {
+  constructor() {
+    this.rowSelection = 'single';
+
+  }
   api: GridApi;
   columnApi: ColumnApi;
 
   rowSelection: string;
 
   columnDefs = [
-    { headerName: 'Country Code', field: 'countryCode', sortable: true, filter: true, width: 120, editable: true },
-    // tslint:disable-next-line: max-line-length
-    { headerName: 'Country Name', field: 'country', sortable: true, filter: true, width: 130, editable: true },
+    {
+      id: 0, headerName: 'Country Code', field: 'countryCode', sortable: true, filter: true, width: 120, editable: true, valueGetter: this.getColumnValue
+    },
+    { id: 1, headerName: 'Country Name', field: 'country', sortable: true, filter: true, width: 130, editable: true },
     { headerName: '', field: '', width: 590 }
   ];
 
   rowData = [];
 
- 
+
   columnDefs1 = [
-    { headerName: 'Country', field: 'country', sortable: true, editable:true, filter: true, width: 120 },
-    { headerName: 'State', field: 'state', sortable: true, filter: true, editable:true, width: 120 },
+    { headerName: 'Country', field: 'country', sortable: true, editable: true, filter: true, width: 120 },
+    { headerName: 'State', field: 'state', sortable: true, filter: true, editable: true, width: 120 },
     { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 130 },
     { headerName: '', field: '', width: 470 }
   ];
 
   rowData1 = [
-    { state: 'UP', country: 'India', description:'State Name' },
-    { state: 'Punjab', country: 'India', description:'State Name' },
-    { state: 'Haryana', country: 'India', description:'State Name' },
-    { state: 'Sikkim', country: 'India', description:'State Name' },
-    { state: 'Rajasthan', country: 'India', description:'State Name' }
+    { state: 'UP', country: 'India', description: 'State Name' },
+    { state: 'Punjab', country: 'India', description: 'State Name' },
+    { state: 'Haryana', country: 'India', description: 'State Name' },
+    { state: 'Sikkim', country: 'India', description: 'State Name' },
+    { state: 'Rajasthan', country: 'India', description: 'State Name' }
   ];
 
   columnDefs2 = [
 
-    { headerName: 'Country', field: 'country', sortable: true, editable:true, filter: true, width: 120 },   
-    { headerName: 'State', field: 'state', sortable: true, filter: true, editable:true, width: 120 },
-    { headerName: 'City', field: 'city', sortable: true, filter: true, editable:true, width: 120 },
+    { headerName: 'Country', field: 'country', sortable: true, editable: true, filter: true, width: 120 },
+    { headerName: 'State', field: 'state', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'City', field: 'city', sortable: true, filter: true, editable: true, width: 120 },
     { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 130 },
     { headerName: '', field: '', width: 350 }
   ];
 
   rowData2 = [
-    { city: 'Noida', state: 'UP', country: 'India', description:'City Name' },
-    { city: 'Chandigarh', state: 'Punjab', country: 'India', description:'City Name' },
-    { city: 'Gurugram', state: 'Haryana', country: 'India', description:'City Name' },
-    { city: 'Gangtok', state: 'Sikkim', country: 'India', description:'City Name' },
-    { city: 'Jaipur', state: 'Rajasthan', country: 'India', description:'City Name' }
+    { city: 'Noida', state: 'UP', country: 'India', description: 'City Name' },
+    { city: 'Chandigarh', state: 'Punjab', country: 'India', description: 'City Name' },
+    { city: 'Gurugram', state: 'Haryana', country: 'India', description: 'City Name' },
+    { city: 'Gangtok', state: 'Sikkim', country: 'India', description: 'City Name' },
+    { city: 'Jaipur', state: 'Rajasthan', country: 'India', description: 'City Name' }
   ];
 
   columnDefs3 = [
 
-    { headerName: 'Country', field: 'country', sortable: true, editable:true, filter: true, width: 120 },   
-    { headerName: 'State', field: 'state', sortable: true, filter: true, editable:true, width: 120 },
-    { headerName: 'City', field: 'city', sortable: true, filter: true, editable:true, width: 120 },
-    { headerName: 'Postal Code', field: 'postal', sortable: true, filter: true, editable:true, width: 120 },
+    { headerName: 'Country', field: 'country', sortable: true, editable: true, filter: true, width: 120 },
+    { headerName: 'State', field: 'state', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'City', field: 'city', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'Postal Code', field: 'postal', sortable: true, filter: true, editable: true, width: 120 },
     { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 130 },
     { headerName: '', field: '', width: 230 }
   ];
 
   rowData3 = [
-    { city: 'Noida', state: 'UP', country: 'India', postal:'201301', description:'Postal Code No' },
-    { city: 'Chandigarh', state: 'Punjab', country: 'India', postal:'201301', description:'Postal Code No' },
-    { city: 'Gurugram', state: 'Haryana', country: 'India', postal:'201301', description:'Postal Code No' },
-    { city: 'Gangtok', state: 'Sikkim', country: 'India', postal:'201301', description:'Postal Code No' },
-    { city: 'Jaipur', state: 'Rajasthan', country: 'India', postal:'201301', description:'Postal Code No' }
+    { city: 'Noida', state: 'UP', country: 'India', postal: '201301', description: 'Postal Code No' },
+    { city: 'Chandigarh', state: 'Punjab', country: 'India', postal: '201301', description: 'Postal Code No' },
+    { city: 'Gurugram', state: 'Haryana', country: 'India', postal: '201301', description: 'Postal Code No' },
+    { city: 'Gangtok', state: 'Sikkim', country: 'India', postal: '201301', description: 'Postal Code No' },
+    { city: 'Jaipur', state: 'Rajasthan', country: 'India', postal: '201301', description: 'Postal Code No' }
 
   ];
 
@@ -100,19 +105,18 @@ export class CountryComponent implements OnInit {
     { language: 'Arabic', languageCode: '004' },
     { language: 'French', languageCode: '005' }
   ];
-  constructor() {
-    this.rowSelection = 'single';
-
-  }
 
   public show = false;
   public hide = true;
   public buttonName: any = 'Add New';
-
+  colDef: string;
+  buttonCLick: string;
   ngOnInit() {
   }
   onAddClick() {
-    let res = this.api.updateRowData({ add: [{ country: 'India', countryCode: 'ed' }] });
+    this.api.getFirstDisplayedRow;
+    this.buttonCLick = 'ADD';
+    let res = this.api.updateRowData({ add: [{ country: 'india', countryCode: 'in' }] });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
@@ -122,8 +126,8 @@ export class CountryComponent implements OnInit {
     this.columnApi = params.columnApi;
   }
   onSelectionChanged() {
-    var selectedRows = this.api.getSelectedRows();
-    var selectedRowsString = "";
+    const selectedRows = this.api.getSelectedRows();
+    let selectedRowsString = '';
     selectedRows.forEach(function (selectedRow, index) {
       if (index !== 0) {
         selectedRowsString += ', ';
@@ -133,9 +137,23 @@ export class CountryComponent implements OnInit {
     document.querySelector('#selectedRows').innerHTML = selectedRowsString;
   }
   onCellKeyDown(e) {
-    const colDef = this.columnApi.getRowGroupColumns;
     const keyPressed = e.event.key;
-    alert('onCellKeyDown  ' + keyPressed + ' ' + colDef);
+    const countryColumn = this.api.getColumnDef('country').field;
+    const countryCodeColumn = this.api.getColumnDef('countryCode').field;
+    this.colDef = this.api.getFocusedCell().column.getColId();
+    if (keyPressed === 'Enter') {
 
+      if (countryColumn.length === 0) {
+        alert('Add Country Name');
+      } else if (countryCodeColumn.length === 0) {
+        alert('Add Country Code');
+      } else {
+        alert('call service ');
+      }
+    }
+  }
+
+  getColumnValue(params) {
+    return params.value;
   }
 }
