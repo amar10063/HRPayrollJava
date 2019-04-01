@@ -16,12 +16,17 @@ export class CountryComponent implements OnInit {
   rowSelection: string;
   columnDefs = [
     {
-      id: 0, headerName: 'Country Code', field: 'countryCode', template: '<input type="textbox" />', sortable: true, filter: true, width: 120, editable: true
-    },
-    {
-      id: 1, headerName: 'Country Name', field: 'country', template: '<input type="textbox" />', sortable: true, filter: true, width: 130, editable: true
-    },
-    { headerName: '', field: '', width: 590 }
+      id: 0, headerName: 'Country Code', field: 'countryCode', cellRenderer: function (params) {
+        var display = 'block';
+        if (params.data.score > 10) {
+            display = 'none';
+        }
+
+        var html = '<input type="textbox" style="display: ' + display + '">';
+
+        return html;
+    }},
+    
   ];
 
   rowData = [];
@@ -123,6 +128,9 @@ export class CountryComponent implements OnInit {
       console.log('Added Row Node', rowNode);
     });
   }
+
+ 
+
   onGridReady(params) {
     this.api = params.api;
     this.columnApi = params.columnApi;
