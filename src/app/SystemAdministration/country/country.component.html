@@ -35,8 +35,8 @@
 
 
             <div class="col-12 col-md-12 p-0">
-                <div class="col-12 col-md-7 pull-left mt-3">
-                    <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
+                <div class="col-12 col-md-7 pull-left mt-2">
+                    <label for="Select All" class="col-4 col-md-2 pull-left p-0 selectextwidth">Select All:</label>
                     <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                       <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                         <label class="checkBox">
@@ -46,9 +46,9 @@
                       
                     </div>
                 </div>
-                <div class="col-12 col-md-5 pull-left mt-2">
-                  <div class="col-6 col-md-6 p-0 pull-left">
-                    <div class="input-group pl-0">
+                <div class="col-12 col-md-5 pull-left mt-1 pr-0">
+                  <div class="col-6 col-md-7 p-1 pull-left">
+                    <div class="input-group col-md-9 pull-right p-0">
                         <input class="form-control border-secondary" type="search" placeholder="search">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="button">
@@ -57,8 +57,8 @@
                         </div>
                     </div>
                   </div>
-                    <div class="col-6 col-md-6 p-0 p-0 pull-left">
-              <div class="buttonCon pull-right mb-2 mr-1 ">
+                    <div class="col-6 col-md-5 p-0 p-0 pull-left">
+              <div class="buttonCon pull-right mb-2 mr-2 ">
                 <button type="button" class="payHeadBtn" (click)="onAddClick()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                   New</button>
                 <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
@@ -73,18 +73,27 @@
             <div class="clearfix"></div>
           </div>
           <div class="clearfix"></div>
-          <div class="formBody clearfix pt-0">
+          <div class="formBody clearfix pt-0 pb-2">
             <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData"
               [columnDefs]="columnDefs" [animateRows]="true" [rowSelection]="rowSelection"
 
               (selectionChanged)="onSelectionChanged($event)" (gridReady)="onGridReady($event)" (cellKeyDown)="
               onCellKeyDown($event)"></ag-grid-angular>
           </div>
+          <div class="row mb-1" >
+            <div class="col-md-12 col-sm-6 col-xs-12 p-0">
+              <div class="form group col-md-2 pull-right" >
+                  <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
+                <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of 100</label>
+                <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
+              </div>  
+              </div>
+          </div>
         </div>
         <div id="state" class="container tab-pane fade">
             <div class="col-12 col-md-12 p-0">
-                <div class="col-12 col-md-7 pull-left mt-3 ">
-                    <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
+                <div class="col-12 col-md-7 pull-left mt-2 ">
+                    <label for="Select All" class="col-4 col-md-2 pull-left p-0 selectextwidth">Select All:</label>
                     <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                       <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                         <label class="checkBox">
@@ -94,9 +103,9 @@
                       
                     </div>
                 </div>
-                <div class="col-12 col-md-5 pull-left mt-2 ">
-                  <div class="col-6 col-md-6 p-0 pull-left">
-                    <div class="input-group pl-0">
+                <div class="col-12 col-md-5 pull-left mt-1 pr-0 ">
+                  <div class="col-6 col-md-7 p-1 pull-left">
+                    <div class="input-group col-md-9 pull-right p-0">
                         <input class="form-control border-secondary" type="search" placeholder="search">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="button">
@@ -105,8 +114,8 @@
                         </div>
                     </div>
                   </div>
-                    <div class="col-6 col-md-6 p-0 p-0 pull-left">
-              <div class="buttonCon pull-right mb-2 mr-1 ">
+                    <div class="col-6 col-md-5 p-0 p-0 pull-left">
+              <div class="buttonCon pull-right mb-2 mr-2 ">
                 <button type="button" class="payHeadBtn" (click)="onAddClick()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
 
                   New</button>
@@ -121,18 +130,27 @@
             <div class="clearfix"></div>
           </div>
           <div class="clearfix"></div>
-          <div class="formBody clearfix pt-0">
+          <div class="formBody clearfix pt-0 pb-2">
 
             <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData1"
               [columnDefs]="columnDefs1"></ag-grid-angular>
 
           </div>
+          <div class="row mb-1" >
+            <div class="col-md-12 col-sm-6 col-xs-12 p-0">
+              <div class="form group col-md-2 pull-right" >
+                  <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
+                <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of 100</label>
+                <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
+              </div>  
+              </div>
+          </div>
         </div>
         <div id="city" class="container tab-pane fade">
 
             <div class="col-12 col-md-12 p-0">
-                <div class="col-12 col-md-7 pull-left mt-3 ">
-                    <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
+                <div class="col-12 col-md-7 pull-left mt-2 ">
+                    <label for="Select All" class="col-4 col-md-2 pull-left p-0 selectextwidth">Select All:</label>
                     <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                       <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                         <label class="checkBox">
@@ -142,9 +160,9 @@
                       
                     </div>
                 </div>
-                <div class="col-12 col-md-5 pull-left mt-2">
-                  <div class="col-6 col-md-6 p-0 pull-left">
-                    <div class="input-group pl-0">
+                <div class="col-12 col-md-5 pull-left mt-1 pr-0">
+                  <div class="col-6 col-md-7 p-1 pull-left">
+                    <div class="input-group col-md-9 pull-right p-0">
                         <input class="form-control border-secondary" type="search" placeholder="search">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="button">
@@ -153,8 +171,8 @@
                         </div>
                     </div>
                   </div>
-                    <div class="col-6 col-md-6 p-0 p-0 pull-left">
-              <div class="buttonCon pull-right mb-2 mr-1 ">
+                    <div class="col-6 col-md-5 p-0 p-0 pull-left">
+              <div class="buttonCon pull-right mb-2 mr-2 ">
                 <button type="button" class="payHeadBtn" (click)="onAddClick()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                   New</button>
                 <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
@@ -167,16 +185,25 @@
             <div class="clearfix"></div>
           </div>
           <div class="clearfix"></div>
-          <div class="formBody clearfix pt-0">
+          <div class="formBody clearfix pt-0 pb-2">
             <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData2"
               [columnDefs]="columnDefs2"></ag-grid-angular>
+          </div>
+          <div class="row mb-1" >
+            <div class="col-md-12 col-sm-6 col-xs-12 p-0">
+              <div class="form group col-md-2 pull-right" >
+                  <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
+                <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of 100</label>
+                <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
+              </div>  
+              </div>
           </div>
         </div>
         <div id="postal" class="container tab-pane fade">
 
             <div class="col-12 col-md-12 p-0">
-                <div class="col-12 col-md-7 pull-left mt-3 ">
-                    <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
+                <div class="col-12 col-md-7 pull-left mt-2 ">
+                    <label for="Select All" class="col-4 col-md-2 pull-left p-0 selectextwidth">Select All:</label>
                     <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                       <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                         <label class="checkBox">
@@ -186,9 +213,9 @@
                       
                     </div>
                 </div>
-                <div class="col-12 col-md-5 pull-left mt-2 ">
-                  <div class="col-6 col-md-6 p-0 pull-left">
-                    <div class="input-group pl-0">
+                <div class="col-12 col-md-5 pull-left mt-1 p-0">
+                  <div class="col-6 col-md-7 mt-1 pr-1 pull-left">
+                    <div class="input-group col-md-9 pull-right p-0">
                         <input class="form-control border-secondary" type="search" placeholder="search">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="button">
@@ -197,8 +224,8 @@
                         </div>
                     </div>
                   </div>
-                    <div class="col-6 col-md-6 p-0 pull-left">
-              <div class="buttonCon pull-right mb-2 mr-1 ">
+                    <div class="col-6 col-md-5 p-0 pull-left">
+              <div class="buttonCon pull-right mb-2 mr-2 ">
                 <button type="button" class="payHeadBtn" (click)="onAddClick()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                   New</button>
                   <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
@@ -209,11 +236,20 @@
               <div class="clearfix"></div>
             </div>
           <div class="clearfix"></div>
-          <div class="formBody clearfix pt-0">
+          <div class="formBody clearfix pt-0 pb-2">
 
             <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData3"
               [columnDefs]="columnDefs3"></ag-grid-angular>
 
+          </div>
+          <div class="row mb-1" >
+            <div class="col-md-12 col-sm-6 col-xs-12 p-0">
+              <div class="form group col-md-2 pull-right" >
+                  <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
+                <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of 100</label>
+                <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
+              </div>  
+              </div>
           </div>
         </div>
 

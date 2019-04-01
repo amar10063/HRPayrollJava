@@ -949,7 +949,7 @@ thead>tr>th {
 }
 
 .panel-heading {
-    padding: 7px 0px 11px !important;
+    padding: 0px 0px 4px !important;
     border: 0;
     border-bottom: 1px solid #398d94;
 }
@@ -966,7 +966,7 @@ thead>tr>th {
 }
 
 .panel-body {
-    padding: 7px 10px 0 0;
+    padding: 5px 0px 5px 0px!important;
     font-size: 10px
 }
 
@@ -994,12 +994,13 @@ thead>tr>th {
 .panel-heading h4 {
     margin-bottom: .1rem !important;
     width: 95px;
-    padding-top: 10px;
+    padding-top:0px;
+    vertical-align:middle;
 }
 
 .panel-body ul {
     list-style: none;
-    padding: 0;
+  padding-top:6px;
     display: inline-block;
     width: 90%;
     margin-bottom: 0;
@@ -2506,4 +2507,8 @@ text-align:center;
   
   .round {
     border-radius: 50%;
+  }
+  
+  .selectextwidth{
+      width:9%!important;
   }
