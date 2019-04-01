@@ -749,15 +749,16 @@ a.nav-link {
 .buttonCon .btn {
     color: #fff;
     border-radius: .17rem;
-    padding: .21rem .75rem;
-    font-size: 0.6875rem;
+    padding: .2rem .60rem;
+   font-size:10px;
     font-weight: 600;
     margin-right: 5px
 }
 
 .buttonCon .btn img {
     margin-right: 5px;
-    vertical-align: text-bottom
+    vertical-align: text-bottom;
+    width: 12px;
 }
 
 .gridBody h5 {
@@ -966,7 +967,7 @@ thead>tr>th {
 }
 
 .panel-body {
-    padding: 5px 0px 5px 0px!important;
+    padding: 6px 0px 6px 0px!important;
     font-size: 10px
 }
 
@@ -1002,7 +1003,7 @@ thead>tr>th {
     list-style: none;
   padding-top:6px;
     display: inline-block;
-    width: 90%;
+    width: 91%;
     margin-bottom: 0;
 }
 
