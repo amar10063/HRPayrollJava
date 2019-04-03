@@ -749,8 +749,10 @@ a.nav-link {
 .buttonCon .btn {
     color: #fff;
     border-radius: .17rem;
-    padding: .2rem .60rem;
-   font-size:10px;
+
+    padding: .21rem .75rem;
+    font-size: 10px;
+
     font-weight: 600;
     margin-right: 5px
 }
