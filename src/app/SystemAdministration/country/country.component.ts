@@ -24,7 +24,6 @@ export class CountryComponent implements OnInit {
   postalColomnApi: ColumnApi;
 
   rowSelection: string;
-
   columnDefs = [
     {
       id: 0, headerName: 'Country Code', field: 'countryCode', sortable: true, filter: true, width: 120, editable: true,
@@ -281,6 +280,7 @@ export class CountryComponent implements OnInit {
       console.log('Added Row Node', rowNode);
     });
   }
+  
   onAddState() {
    //this.api.setFocusedCell(this.count, "countryCode");
     //this.api.setFocusedCell(1, "country");
@@ -347,11 +347,20 @@ export class CountryComponent implements OnInit {
     this.colDef = this.api.getFocusedCell().column.getColId();
 
     if (keyPressed === 'Enter') {
-      if (this.colDef === 'country') {
-        alert('onCellKeyDown  ' + keyPressed + ' ' + this.colDef);
-      }
-    }
+      // if (this.api.getColumnDef('country') === '') {
+      //   alert('Add Country Name');
+      // } else if (this.api.getValue('countryCode', this.api.getDisplayedRowAtIndex(1)) === '') {
+      //   alert('Add Country Code');
+      // } else {
+      //   alert('call service ');
+      // }
 
+      const selectedNodes = this.api.getSelectedNodes();
+      const selectedData = selectedNodes.map(node => node.data);
+      const selectedDataStringPresentation = selectedData.map(node => node.country + ' ' + node.countryCode).join(', ');
+      console.log('Selected nodes: ${selectedDataStringPresentation}');
+
+    }
   }
 
 }

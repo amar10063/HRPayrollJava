@@ -18,11 +18,18 @@ import { SystemAdminModuleComponent } from './SystemAdministration/SystemAdminMo
 import { CountryComponent } from './SystemAdministration/country/country.component';
 import { SetupComponent } from './HRPayroll/setup/setup.component';
 import { GlobalSearchComponent } from './global-search/global-search.component';
+<<<<<<< HEAD
 import { HttpClientModule , HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import{ Urls} from './webservices/Urls';
 import { BasicdetailsserviceService } from './webservices/basicdetailsservice.service';
 import { XhrInterceptor } from './XhrInterceptor';
+=======
+import { OrganizationComponent } from './SystemAdministration/organization/organization.component';
+import { PayrollComponent } from './SystemAdministration/payroll/payroll.component';
+import { TaxComponent } from './SystemADministration/tax/tax.component';
+import { GeneralComponent } from './SystemAdministration/general/general.component';
+>>>>>>> 4280dcc5d61109c02e3ff2a394bc94aab76d5b69
 
 
 
@@ -43,14 +50,22 @@ import { XhrInterceptor } from './XhrInterceptor';
     SystemAdminModuleComponent,
     CountryComponent,
     SetupComponent,
-    GlobalSearchComponent
+    GlobalSearchComponent,
+    OrganizationComponent,
+    PayrollComponent,
+    TaxComponent,
+    GeneralComponent
 
   ],
   imports: [
     AgGridModule.withComponents([]),
     BrowserModule, ReactiveFormsModule, FormsModule,
+<<<<<<< HEAD
     AppRoutingModule,
     HttpClientModule
+=======
+    AppRoutingModule, HttpClientModule
+>>>>>>> 4280dcc5d61109c02e3ff2a394bc94aab76d5b69
   ],
   providers: [BasicdetailsserviceService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }],
   bootstrap: [AppComponent]

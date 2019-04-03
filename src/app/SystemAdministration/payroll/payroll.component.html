@@ -1,0 +1,88 @@
+<div class="container-fluid gridBody">
+
+  <div class="buttonCon pull-right">
+    <button type="button" class="btn templateBg"><img src="../assets/images/back-icon.png" alt="home" />Back</button>
+    <button type="button" class="btn templateBg"><img src="../assets/images/home-icon.png" alt="home" />Home</button>
+  </div>
+  <h5>Payroll Setup</h5>  
+
+  <div class="clearfix"></div>
+  <div class="pay-head clearfix mt-2" style="border:1px solid #2e6c71" id="country">
+    <div class="col-12 col-md-2 p-0 pull-left" style="box-shadow: 1px 0px 1px #c0c1c1;">
+      <div class="payHead">
+        <ul class="nav navbar-nav" role="tablist">
+          <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#payables"><i class="fa fa-globe"
+                aria-hidden="true"></i> Payables</a> </li>
+          <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#deductables"><i class="fa fa-map pr-1"
+                aria-hidden="true"></i> Deductables</a> </li>
+                  
+        </ul>
+      </div>
+    </div>
+    <div class="col-12 col-md-10 pull-left p-0">
+      <div class="tab-content col-md-12 col-12 p-0">
+        <div id="payables" class="container tab-pane active">
+            <!-- <div class="col-12 col-md-12 p-0">
+                <div class="col-12 col-md-6 pull-left mt-3 ">
+                    <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
+                    <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
+                      <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
+                        <label class="checkBox">
+                          <input type="checkbox" name="checkbox" checked>
+                          <span class="checkmark check1"></span> </label>
+                      </div>
+                      
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 p-0 pull-left">
+              <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
+                <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                  New</button>
+                  <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+              <div class="clearfix"></div>
+          <div class="formBody clearfix pt-0">
+            <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData"
+              [columnDefs]="columnDefs"></ag-grid-angular>
+
+          </div> -->
+        </div>
+        <div id="deductables" class="container tab-pane fade">
+            <!-- <div class="col-12 col-md-12 p-0">
+                <div class="col-12 col-md-6 pull-left mt-3 ">
+                    <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
+                    <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
+                      <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
+                        <label class="checkBox">
+                          <input type="checkbox" name="checkbox" checked>
+                          <span class="checkmark check1"></span> </label>
+                      </div>
+                      
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 p-0 pull-left">
+              <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
+                <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                  New</button>
+                  <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+              <div class="clearfix"></div>
+          <div class="formBody clearfix pt-0">
+
+            <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData1"
+              [columnDefs]="columnDefs1"></ag-grid-angular>
+
+          </div> -->
+        </div>
+       
+      </div>
+    </div>
+  </div>
+</div>
+

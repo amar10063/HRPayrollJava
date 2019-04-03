@@ -722,12 +722,12 @@ a.nav-link {
 }
 
 .topNav {
-    padding: 4px 15px;
+    padding: 5px 15px;
     border-bottom: 2px solid #398d94;
 }
 
 .gridBody {
-    padding: 20px 20px 10px;
+    padding: 6px 20px 10px;
     overflow: hidden;
     margin-bottom: 40px;
     background: #fff;
@@ -749,15 +749,28 @@ a.nav-link {
 .buttonCon .btn {
     color: #fff;
     border-radius: .17rem;
+<<<<<<< HEAD
+<<<<<<< HEAD
     padding: .21rem .75rem;
-    font-size: 0.6875rem;
+    font-size: 10px;
+=======
+    padding: .2rem .60rem;
+   font-size:10px;
+>>>>>>> 124869151689a80ae51dad7a21ce1f94245b8c2f
+=======
+
+    padding: .21rem .75rem;
+    font-size: 10px;
+
+>>>>>>> 3c30b0e61611b2b57fb1624fc28240948d73a0aa
     font-weight: 600;
     margin-right: 5px
 }
 
 .buttonCon .btn img {
     margin-right: 5px;
-    vertical-align: text-bottom
+    vertical-align: text-bottom;
+    width: 12px;
 }
 
 .gridBody h5 {
@@ -796,18 +809,22 @@ thead>tr>th {
 .gridBody .border-secondary,
 .gridBody .btn-outline-secondary {
     border-color: #b6ced8 !important;
-    padding: 0px 8px 4px;
+    padding: 0px 4px 4px;
 }
 
 .gridBody .input-group input {
-    padding: 5px 15px;
-    height: 30px;
+    padding: 5px 5px;
+    height: 20px;
 }
 
 .gridBody .input-group-append {
-    height: 30px;
+    height: 20px;
 }
-
+.gridBody .input-group-append img {
+    vertical-align: text-top;
+    padding-top: 1px;
+}
+.gridBody .input-group-append .btn:hover{ background: #fff !important}
 .gridBody .input-group input:focus {
     border-color: #57a4a6 !important;
     box-shadow: 0 0 0 .16rem rgba(123, 202, 205, .25) !important
@@ -945,7 +962,7 @@ thead>tr>th {
 }
 
 .panel-heading {
-    padding: 7px 0px 11px !important;
+    padding: 0px 0px 4px !important;
     border: 0;
     border-bottom: 1px solid #398d94;
 }
@@ -962,7 +979,7 @@ thead>tr>th {
 }
 
 .panel-body {
-    padding: 7px 10px 0 0;
+    padding: 6px 0px 6px 0px!important;
     font-size: 10px
 }
 
@@ -990,14 +1007,15 @@ thead>tr>th {
 .panel-heading h4 {
     margin-bottom: .1rem !important;
     width: 95px;
-    padding-top: 10px;
+    padding-top:0px;
+    vertical-align:middle;
 }
 
 .panel-body ul {
     list-style: none;
-    padding: 0;
+  padding-top:6px;
     display: inline-block;
-    width: 90%;
+    width: 91%;
     margin-bottom: 0;
 }
 
@@ -2432,7 +2450,7 @@ a:hover {
     }
 
     .payHeadBtn {
-        font-size: 12px;
+        font-size: 10px;
         color: #21656b;
         font-weight: 600;
         background: none;
@@ -2488,3 +2506,22 @@ text-align:center;
     color: white;
     padding: 7px;
 }
+#nextprev{
+    text-decoration: none;
+    display: inline-block;
+    padding: 6px 10px;
+ 
+  }
+  
+  #nextprev:hover {
+    background-color:#398d94;
+    color: white;
+  }
+  
+  .round {
+    border-radius: 50%;
+  }
+  
+  .selectextwidth{
+      width:9%!important;
+  }

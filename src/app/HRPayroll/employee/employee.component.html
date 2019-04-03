@@ -43,6 +43,7 @@
       <button type="button" class="btn templateBg"><img src="../assets/images/delete-icon.png" alt="delete" />Delete</button>
     </div> -->
   </div>
+  
   <div class="clearfix"></div>
   <div class="pay-head clearfix mt-3" style="border:1px solid #2e6c71" *ngIf="show" id="payHead">
     <div class="col-2 col-md-2 p-0 pull-left" style="box-shadow: 1px 1px 1px #c0c1c1;">
@@ -129,12 +130,12 @@
 
                 </div>
                 <div class="form-inline col-12 col-md-12 p-0 mt-1">
-
-                  <div class="col-12 col-md-6 p-0">
-                    <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Middle Name:</label>
-                    <input type="text" class="form-control addrCon formSelect col-7 col-md-7" id="name" name="name"
-                      placeholder="Middle Name">
-                  </div>
+                    <div class="col-12 col-md-6 p-0">
+                        <label for="pay" class="col-5 col-md-5 pl-0 pull-left">First Name:</label>
+                        <input type="text" class="form-control addrCon formSelect col-7 col-md-7" id="name" name="name"
+                          placeholder="First Name">
+                      </div>
+                  
                   <div class="col-12 col-md-6 p-0">
                     <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Age:</label>
                     <label for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">22Years</label>
@@ -215,51 +216,70 @@
                 </div>
 
                 <div class="form-inline col-12 col-md-12 p-0 mt-1">
-
-
-                  <div class="col-12 col-md-6 p-0">
-                    <label for="pay" class="col-5 col-md-5 pull-left pl-0">Gender:</label>
-                    <div class="formSelect clearfix col-7 col-md-7 pull-left p-0">
-                      <div class="form-check checkCol col-4 col-md-4 pull-left">
-                        <label class="checkBox">Male
-                          <input type="radio" name="radio" checked="">
-                          <span class="checkmark check mt-1"></span> </label>
+                    <div class="col-12 col-md-6 p-0">
+                        <label for="pay" class="col-5 col-md-5 pull-left pl-0">Department:</label>
+                        <select class="form-control addrCon formSelect col-7 col-md-7" id="type" name="type" style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
+                          <option>Select</option>
+                          <option>Sales</option>
+                          <option>IT</option>
+                          <option>Finance</option>
+                        </select>
                       </div>
-                      <div class="form-check checkCol col-4 col-md-4 pull-left">
-                        <label class="checkBox">Female
-                          <input type="radio" name="radio">
-                          <span class="checkmark check mt-1"></span> </label>
-                      </div>
-                      <div class="form-check checkCol col-4 col-md-4 pull-left">
-                        <label class="checkBox">Other
-                          <input type="radio" name="radio">
-                          <span class="checkmark check mt-1"></span> </label>
-
+                    <div class="col-12 col-md-6 p-0">
+                        <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Email ID:</label>
+                        <label for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">abcd@gmail.com</label>
+    
                       </div>
                     </div>
-                  </div>
 
-                  <div class="col-12 col-md-6 p-0">
-                    <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Anniversary:</label>
-                    <input type="date" class="form-control addrCon formSelect col-7 col-md-7" name="name" placeholder="dd/mm/yyyy">
-
-                  </div>
-
-                </div>
-                <div class="form-inline col-12 col-md-12 p-0 mt-1">
+                    <div class="form-inline col-12 col-md-12 p-0 mt-1">
+                      <div class="col-12 col-md-6 p-0">
+                          <label for="pay" class="col-5 col-md-5 pull-left pl-0">Reporting Heirarchy:</label>
+                          <label for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">Heirarchy</label>
+      
+                        </div>
 
 
-                  <div class="col-12 col-md-6 p-0">
-                    <label for="pay" class="col-5 col-md-5 pull-left pl-0">Reporting Heirarchy:</label>
-                    <label for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">Heirarchy</label>
+                        <div class="col-12 col-md-6 p-0">
+                            <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Joining Date:</label>
+                            <label for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">dd/mm/yyyy</label>
+        
+                          </div>
+                      </div>
 
-                  </div>
-                  <div class="col-12 col-md-6 p-0">
-                    <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Employment Date:</label>
-                    <label for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">dd/mm/yyyy</label>
+                      <div class="form-inline col-12 col-md-12 p-0 mt-1">
+                          <div class="col-12 col-md-6 p-0">
+                              <label for="pay" class="col-5 col-md-5 pull-left pl-0">Employment Type:</label>
+                              <div class="formSelect clearfix col-7 col-md-7 pull-left p-0">
+                                <div class="form-check checkCol col-4 col-md-4 pull-left">
+                                  <label class="checkBox">Contract
+                                    <input type="radio" name="radio" checked="">
+                                    <span class="checkmark check mt-1"></span> </label>
+                                </div>
+                                <div class="form-check checkCol col-4 col-md-4 pull-left">
+                                  <label class="checkBox">Permanent
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark check mt-1"></span> </label>
+                                </div>
+                                
+                              </div>
+                            </div>
+    
+    
+                      
+                          </div>
+                          <div class="form-inline col-12 col-md-12 p-0 mt-1">
+                              <div class="col-12 col-md-6 p-0">
+                                  <label for="pay" class="col-5 col-md-5 pull-left pl-0">Contractor Name:</label>
+                                  <label for="pay" class="col-5 col-md-5 pull-left pl-0">fateh Singh</label>
+                                </div>
+        
+        
+                          
+                              </div>
 
-                  </div>
-                </div>
+
+
               </div>
               <div class="col-1 col-md-1 pull-left p-0 empPhoto"><img src="../assets/images/profile-image.png" alt="profile Image" /></div>
               <div class="clearfix"></div>
@@ -295,6 +315,16 @@
             <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData1" [columnDefs]="columnDefs1"></ag-grid-angular>
 
           </div>
+          <div class="row" >
+            <div class="col-md-12 col-sm-6 col-xs-12 p-0">
+              <div class="form group col-md-2 pull-right" >
+                  <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
+                <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of 100</label>
+                <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
+              </div>  
+              </div>
+          </div>
+
         </div>
         <div id="educationalQualifications" class="container tab-pane fade p-0">
             <div class="col-2 col-md-12 p-0 pull-left" style="box-shadow: 1px 1px 1px #c0c1c1;">
@@ -318,7 +348,7 @@
             
               <div class="tab-content">
               <div id="Highschool" class="container tab-pane active">
-                  <div class="col-12 col-md-12 p-0">
+                  <div class="container p-0">
                       <div class="col-12 col-md-6 pull-left mt-3 ">
                           <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
                           <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
@@ -344,10 +374,19 @@
                     <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData2" [columnDefs]="columnDefs2"></ag-grid-angular>
         
                   </div>
+                  <div class="row" >
+                    <div class="col-md-12 col-sm-6 col-xs-12 p-0">
+                      <div class="form group col-md-2 pull-right" >
+                          <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
+                        <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of 100</label>
+                        <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
+                      </div>  
+                      </div>
+                  </div>
                 </div>
                 
                   <div id="Graduation" class="container tab-pane fade">
-                      <div class="col-12 col-md-12 p-0">
+                      <div class="container p-0">
                           <div class="col-12 col-md-6 pull-left mt-3 ">
                               <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
                               <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
@@ -373,9 +412,18 @@
                         <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData4" [columnDefs]="columnDefs4"></ag-grid-angular>
             
                       </div>
+                      <div class="row" >
+                        <div class="col-md-12 col-sm-6 col-xs-12 p-0">
+                          <div class="form group col-md-2 pull-right" >
+                              <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
+                            <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of 100</label>
+                            <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
+                          </div>  
+                          </div>
+                      </div>
                     </div>
                     <div id="PostGraduation" class="container tab-pane fade">
-                        <div class="col-12 col-md-12 p-0">
+                        <div class="container p-0">
                             <div class="col-12 col-md-6 pull-left mt-3 ">
                                 <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
                                 <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
@@ -401,33 +449,51 @@
                           <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData5" [columnDefs]="columnDefs5"></ag-grid-angular>
               
                         </div>
+                        <div class="row" >
+                          <div class="col-md-12 col-sm-6 col-xs-12 p-0">
+                            <div class="form group col-md-2 pull-right" >
+                                <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
+                              <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of 100</label>
+                              <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
+                            </div>  
+                            </div>
+                        </div>
                       </div>
                       <div id="Other" class="container tab-pane fade">
-                          <div class="col-12 col-md-12 p-0">
-                              <div class="col-12 col-md-6 pull-left mt-3 ">
-                                  <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
-                                  <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
-                                    <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
-                                      <label class="checkBox">
-                                        <input type="checkbox" name="checkbox" checked>
-                                        <span class="checkmark check1"></span> </label>
-                                    </div>
-                                    
-                                  </div>
+                          <div class="container p-0">
+                          <div class="col-12 col-md-6 pull-left mt-3 ">
+                              <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
+                              <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
+                                <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
+                                  <label class="checkBox">
+                                    <input type="checkbox" name="checkbox" checked>
+                                    <span class="checkmark check1"></span> </label>
+                                </div>
+                                
                               </div>
-                              <div class="col-12 col-md-6 p-0 pull-left">
-                            <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-                              <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
-                                New</button>
-                                <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
-                              </div>
-                            </div>
-                            <div class="clearfix"></div>
                           </div>
+                          <div class="col-12 col-md-6 p-0 pull-left">
+                        <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
+                          <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                            New</button>
+                            <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                          </div>
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
                           <div class="clearfix"></div>
                           <div class="formBody clearfix pt-0">
                             <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData6" [columnDefs]="columnDefs6"></ag-grid-angular>
                 
+                          </div>
+                          <div class="row" >
+                            <div class="col-md-12 col-sm-6 col-xs-12 p-0">
+                              <div class="form group col-md-2 pull-right" >
+                                  <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
+                                <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of 100</label>
+                                <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
+                              </div>  
+                              </div>
                           </div>
                         </div>
                 </div>
@@ -538,6 +604,15 @@
                 <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData7" [columnDefs]="columnDefs7"></ag-grid-angular>
     
               </div>
+              <div class="row" >
+                <div class="col-md-12 col-sm-6 col-xs-12 p-0">
+                  <div class="form group col-md-2 pull-right" >
+                      <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
+                    <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of 100</label>
+                    <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
+                  </div>  
+                  </div>
+              </div>
 
           <!--<div class="buttonCon pull-right mt-2 mb-2 mr-1">
             <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
@@ -633,7 +708,15 @@
               <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData8" [columnDefs]="columnDefs8"></ag-grid-angular>
   
             </div>
-
+            <div class="row" >
+              <div class="col-md-12 col-sm-6 col-xs-12 p-0">
+                <div class="form group col-md-2 pull-right" >
+                    <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
+                  <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of 100</label>
+                  <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
+                </div>  
+                </div>
+            </div>
         <!--<div class="formBody clearfix">
             <form>
               <div class="clearfix mb-2 employeebkgcolour">
@@ -825,7 +908,15 @@
               <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData9" [columnDefs]="columnDefs9"></ag-grid-angular>
   
             </div>
-
+            <div class="row" >
+              <div class="col-md-12 col-sm-6 col-xs-12 p-0">
+                <div class="form group col-md-2 pull-right" >
+                    <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
+                  <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of 100</label>
+                  <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
+                </div>  
+                </div>
+            </div>
 
 
 
@@ -919,7 +1010,15 @@
               <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData10" [columnDefs]="columnDefs10"></ag-grid-angular>
   
             </div>
-
+            <div class="row" >
+              <div class="col-md-12 col-sm-6 col-xs-12 p-0">
+                <div class="form group col-md-2 pull-right" >
+                    <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
+                  <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of 100</label>
+                  <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
+                </div>  
+                </div>
+            </div>
 
           <!--<div class="formBody clearfix">
             <form>
@@ -1089,6 +1188,16 @@
                           <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData11" [columnDefs]="columnDefs11"></ag-grid-angular>
               
                         </div>
+                        <div class="row" >
+                          <div class="col-md-12 col-sm-6 col-xs-12 p-0">
+                            <div class="form group col-md-2 pull-right" >
+                                <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
+                              <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of 100</label>
+                              <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
+                            </div>  
+                            </div>
+                        </div>
+                       
                     </div>
                     
                       <div id="Visa" class="container tab-pane fade">
@@ -1117,6 +1226,15 @@
                           <div class="formBody clearfix pt-0">
                             <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData12" [columnDefs]="columnDefs12"></ag-grid-angular>
                 
+                          </div>
+                          <div class="row" >
+                            <div class="col-md-12 col-sm-6 col-xs-12 p-0">
+                              <div class="form group col-md-2 pull-right" >
+                                  <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
+                                <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of 100</label>
+                                <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
+                              </div>  
+                              </div>
                           </div>
                         </div>
                         <div id="CurriculumVitae" class="container tab-pane fade">
@@ -1164,6 +1282,15 @@
                                 <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData14" [columnDefs]="columnDefs14"></ag-grid-angular>
                     
                               </div>
+                              <div class="row" >
+                                <div class="col-md-12 col-sm-6 col-xs-12 p-0">
+                                  <div class="form group col-md-2 pull-right" >
+                                      <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
+                                    <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of 100</label>
+                                    <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
+                                  </div>  
+                                  </div>
+                              </div>
                             </div>
                             <div id="MedicalCertificate" class="container tab-pane fade">
                                 <div class="col-12 col-md-12 p-0">
@@ -1192,6 +1319,15 @@
                                   <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData15" [columnDefs]="columnDefs15"></ag-grid-angular>
                       
                                 </div>
+                                <div class="row" >
+                                  <div class="col-md-12 col-sm-6 col-xs-12 p-0">
+                                    <div class="form group col-md-2 pull-right" >
+                                        <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
+                                      <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of 100</label>
+                                      <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
+                                    </div>  
+                                    </div>
+                                </div>
                               </div>
                               <div id="EducationalCertificate" class="container tab-pane fade">
                                   <div class="col-12 col-md-12 p-0">
@@ -1219,6 +1355,15 @@
                                   <div class="formBody clearfix pt-0">
                                     <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData16" [columnDefs]="columnDefs16"></ag-grid-angular>
                         
+                                  </div>
+                                  <div class="row" >
+                                    <div class="col-md-12 col-sm-6 col-xs-12 p-0">
+                                      <div class="form group col-md-2 pull-right" >
+                                          <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
+                                        <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of 100</label>
+                                        <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
+                                      </div>  
+                                      </div>
                                   </div>
                                 </div>
                     </div>
@@ -1420,7 +1565,10 @@
             </div>
           </div>
             <div class="col-md-12 col-sm-12 clearfix col-xs-12 p-0 mt-2" >
+             
+              
               <div class="col-md-6 col-sm-12 col-xs-6 pl-0 pull-left">
+                  <label class="employeenotes">Notes For Me</label>
                 <div class="col-md-12 col-sm-12 col-xs-12 p-0">
                   <div class="dialogs" id="txtCommentDisplay">
                     <div class="itemdiv dialogdiv">
@@ -1429,7 +1577,7 @@
                       </div>
                       <div class="body">
                         <div class="time">
-                          <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
+                          <i class="ace-icon fa fa-clock-o"></i><span class="green">30/03/2019</span>
                         </div>
 
                         <div class="name">
@@ -1447,7 +1595,7 @@
                       </div>
                       <div class="body">
                         <div class="time">
-                          <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
+                          <i class="ace-icon fa fa-clock-o"></i><span class="green">28/03/2019</span>
                         </div>
 
                         <div class="name">
@@ -1467,7 +1615,7 @@
 
                       <div class="body">
                         <div class="time">
-                          <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
+                          <i class="ace-icon fa fa-clock-o"></i><span class="green">11/03/2019</span>
                         </div>
 
                         <div class="name">
@@ -1486,7 +1634,7 @@
                       </div>
                       <div class="body">
                         <div class="time">
-                          <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
+                          <i class="ace-icon fa fa-clock-o"></i><span class="green">22/03/2019</span>
                         </div>
 
                         <div class="name">
@@ -1501,8 +1649,10 @@
                   </div>
                 </div>
               </div>
+            
+             
               <div class="col-md-6 col-sm-12 col-xs-6 pr-0 pull-left">
-                
+                  <label class="employeenotes">Notes For Other</label>
                 <div class="col-md-12 col-sm-12 col-xs-12 p-0">
                   <div class="dialogs" id="txtCommentDisplay">
                     <div class="itemdiv dialogdiv">
@@ -1511,7 +1661,7 @@
                       </div>
                       <div class="body">
                         <div class="time">
-                          <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
+                          <i class="ace-icon fa fa-clock-o"></i><span class="green">20/03/2019</span>
                         </div>
 
                         <div class="name">
@@ -1529,7 +1679,7 @@
                       </div>
                       <div class="body">
                         <div class="time">
-                          <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
+                          <i class="ace-icon fa fa-clock-o"></i><span class="green">27/03/2019</span>
                         </div>
 
                         <div class="name">
@@ -1547,7 +1697,7 @@
                       </div>
                       <div class="body">
                         <div class="time">
-                          <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
+                          <i class="ace-icon fa fa-clock-o"></i><span class="green">08/03/2019</span>
 
                         </div>
 
@@ -1570,7 +1720,7 @@
                       </div>
                       <div class="body">
                         <div class="time">
-                          <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
+                          <i class="ace-icon fa fa-clock-o"></i><span class="green">03/03/2019</span>
                         </div>
 
                         <div class="name">
