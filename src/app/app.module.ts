@@ -18,6 +18,12 @@ import { SystemAdminModuleComponent } from './SystemAdministration/SystemAdminMo
 import { CountryComponent } from './SystemAdministration/country/country.component';
 import { SetupComponent } from './HRPayroll/setup/setup.component';
 import { GlobalSearchComponent } from './global-search/global-search.component';
+import { HttpClientModule , HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import{ Urls} from './webservices/Urls';
+import { BasicdetailsserviceService } from './webservices/basicdetailsservice.service';
+import { XhrInterceptor } from './XhrInterceptor';
+
 
 
 
@@ -43,9 +49,10 @@ import { GlobalSearchComponent } from './global-search/global-search.component';
   imports: [
     AgGridModule.withComponents([]),
     BrowserModule, ReactiveFormsModule, FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [BasicdetailsserviceService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
