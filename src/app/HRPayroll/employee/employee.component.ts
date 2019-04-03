@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { BasicDetails } from './BasicDetails';
 import { from } from 'rxjs';
-import { BasicdetailsserviceService } from 'src/app/webservices/basicdetailsservice.service';
 import { BasicDetailsResponse } from './BasicDetailsResponse';
 @Component({
   selector: 'app-employee',
@@ -322,7 +321,7 @@ export class EmployeeComponent implements OnInit {
 
 
 
-  constructor(private formBuilder: FormBuilder, private basicDetailsService: BasicdetailsserviceService) { }
+  constructor(private formBuilder: FormBuilder) { }
 
   public show: boolean = false;
   public hide: boolean = true;
