@@ -354,13 +354,13 @@ export class EmployeeComponent implements OnInit {
     else {
       const basicDetails = new BasicDetails();
 
-      this.basicDetailsService.doSave(basicDetails)
-        .subscribe(
-          data => {
-            this.basicDetailsResponse = data;
-            alert("api hits");
-          }
-        )
+      // this.basicDetailsService.doSave(basicDetails)
+      //   .subscribe(
+      //     data => {
+      //       this.basicDetailsResponse = data;
+      //       alert("api hits");
+      //     }
+      //   )
     }
 
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.basicDetailsForm.value));
