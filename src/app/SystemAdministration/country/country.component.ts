@@ -150,7 +150,6 @@ export class CountryComponent implements OnInit {
         return { outline: 'white' };
       }
     }
-  
   },
     { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 130 },
     { headerName: '', field: '', width: 350 }
