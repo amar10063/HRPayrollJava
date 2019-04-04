@@ -76,62 +76,55 @@
       <div class="tab-content col-md-12 col-12 p-0">
         <div id="basic" class="container tab-pane active">
           <div class="buttonCon pull-right mt-2 mb-2 mr-1">
-            <button type="button" class="payHeadBtn"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
+            <button type="button" class="payHeadBtn" (click)="onSave()"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
           </div>
           <div class="clearfix"></div>
           <div class="formBody clearfix pt-0">
-            <form class="employeebkgcolour">
+            <form class="employeebkgcolour" [formGroup]="basicDetailsForm">
               <div class="pull-left col-11 col-md-11 pl-0">
                 <div class="form-inline col-12 col-md-12 p-0">
                   <div class="col-12 col-md-6 p-0">
-                    <label for="Employee Code" class="col-5 col-md-5 pl-0">Employee Code:</label>
-                    <input type="text" class="form-control col-12 col-md-6 ptb-4" id="name" name="name" placeholder="Employee Code">
+                    <label for="Employee Code" class="col-5 col-md-5 pl-0" >Employee Code:</label>
+                    <input type="text" class="form-control col-12 col-md-6 ptb-4" id="name" name="name" placeholder="Employee Code" formControlName="empCode" [ngClass]="{'is-invalid': submitted && f.empCode.errors}" >
+                    <div *ngIf="submitted && f.empCode.errors" class="invalid-feedback">
+                      <div *ngIf="f.empCode.errors.required" class="errorred">Employee Code is required</div>
+                      <!-- <div *ngIf="f.name.errors.name" class="errorred">Email must be a valid email address
+                      </div> -->
+                    </div>
                   </div>
-
-
-                   <div class="col-12 col-md-6 p-0">
-                          <label for="pay" class="col-5 col-md-5 pull-left pl-0">Gender:</label>
-                          <div class="formSelect clearfix col-7 col-md-7 pull-left p-0">
-                            <div class="form-check checkCol col-4 col-md-4 pull-left">
-                              <label class="checkBox">Male
-                                <input type="radio" name="radio" checked="">
-                                <span class="checkmark check mt-1"></span> </label>
-                            </div>
-                            <div class="form-check checkCol col-4 col-md-4 pull-left">
-                              <label class="checkBox">Female
-                                <input type="radio" name="radio">
-                                <span class="checkmark check mt-1"></span> </label>
-                            </div>
-                            <div class="form-check checkCol col-4 col-md-4 pull-left">
-                              <label class="checkBox">Other
-                                <input type="radio" name="radio">
-                                <span class="checkmark check mt-1"></span> </label>
-      
-                            </div>
-                          </div>
-                        </div>
-                  <div class="form-inline col-12 col-md-12 p-0 mt-1">
-                     
-  
-                   
-               
+                  <div class="col-12 col-md-6 p-0">
+                    <label for="pay" class="col-5 col-md-5 pull-left pl-0">Title:</label>
+                    <select class="form-control addrCon formSelect col-7 col-md-7" id="type" name="type" formControlName="title" [ngClass]="{'is-invalid': submitted && f.title.errors}" style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
+                      <option>Select</option>
+                      <option>Mr</option>
+                      <option>Mrs</option>
+                      <option>Ms</option>
+                    </select>
+                    <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                      <div *ngIf="f.title.errors.required" class="errorred">Title is required</div>
+                      
+                    </div>
                   </div>
 
                 </div>
                 <div class="form-inline col-12 col-md-12 p-0 mt-1">
-                    <div class="col-12 col-md-6 p-0">
-                        <label for="pay" class="col-5 col-md-5 pull-left pl-0">Title:</label>
-                        <select class="form-control addrCon formSelect col-7 col-md-7" id="type" name="type" style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
-                          <option>Select</option>
-                          <option>Mr</option>
-                          <option>Mrs</option>
-                          <option>Ms</option>
-                        </select>
+                  <div class="col-12 col-md-6 p-0">
+                    <label for="pay" class="col-5 col-md-5 pl-0 pull-left">First Name:</label>
+                    <input type="text" class="form-control addrCon formSelect col-7 col-md-7" id="name" name="name"
+                      placeholder="First Name" formControlName="firstName" [ngClass]="{'is-invalid': submitted && f.firstName.errors}">
+
+                      <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                        <div *ngIf="f.firstName.errors.required" class="errorred">First Name is required</div>
+                        
                       </div>
-                  
+                  </div>
                   <div class="col-12 col-md-6 p-0">
                     <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Date of Birth:</label>
-                    <input type="date" class="form-control addrCon formSelect col-7 col-md-7" name="name" placeholder="dd/mm/yyyy">
+                    <input type="date" class="form-control addrCon formSelect col-7 col-md-7" name="name" placeholder="dd/mm/yyyy" formControlName="dateofBirth" [ngClass]="{'is-invalid': submitted && f.dateofBirth.errors}">
+                    <div *ngIf="submitted && f.dateofBirth.errors" class="invalid-feedback">
+                      <div *ngIf="f.dateofBirth.errors.required" class="errorred">Date of Birth is required</div>
+                      
+                    </div>
                   </div>
 
 
@@ -149,71 +142,80 @@
                   </div>
                 </div>
                 <div class="form-inline col-12 col-md-12 p-0 mt-1">
-                    <div class="col-12 col-md-6 p-0">
-                        <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Middle Name:</label>
-                        <input type="text" class="form-control addrCon formSelect col-7 col-md-7" id="name" name="name"
-                          placeholder="Middle Name">
+
+
+                  <div class="col-12 col-md-6 p-0">
+                    <label for="pay" class="col-5 col-md-5 pull-left pl-0" >Last Name:</label>
+                    <input type="text" class="form-control addrCon formSelect col-7 col-md-7" id="name" name="name"
+                      placeholder="Last Name" formControlName="lastName" [ngClass]="{'is-invalid': submitted && f.lastName.errors}">
+                      <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                        <div *ngIf="f.lastName.errors.required" class="errorred">Last Name is required</div>
+                        
                       </div>
-                      <div class="col-12 col-md-6 p-0">
-                          <label for="pay" class="col-4 col-md-4 pull-left pl-0">Marital Status:</label>
-                          <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
-                            <div class="form-check checkCol col-6 col-md-6 pull-left pl-3">
-                              <label class="checkBox">Married
-                                <input type="radio" name="radio2" checked>
-                                <span class="checkmark check mt-1"></span> </label>
-                            </div>
-                            <div class="form-check checkCol col-6 col-md-6 pull-left">
-                              <label class="checkBox">Unmarried
-                                <input type="radio" name="radio3">
-                                <span class="checkmark check mt-1"></span> </label>
-                            </div>
-                          </div>
-                        </div>
-                  
-                  
-                </div>
+                  </div>
+                  <div class="col-12 col-md-6 p-0">
+                    <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Contact No.:</label>
+                    <label for="pay" class="addrCon formSelect col-7 col-md-7 p-0">9876543210</label>
 
-                <div class="form-inline col-12 col-md-12 p-0 mt-1">
-                    <div class="col-12 col-md-6 p-0">
-                        <label for="pay" class="col-5 col-md-5 pull-left pl-0">Last Name:</label>
-                        <input type="text" class="form-control addrCon formSelect col-7 col-md-7" id="name" name="name"
-                          placeholder="Last Name">
-                      </div>
-                      <div class="col-12 col-md-6 p-0">
-                          <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Anniversary:</label>
-                          <input type="date" class="form-control addrCon formSelect col-7 col-md-7" name="name" placeholder="dd/mm/yyyy">
-      
-                        </div>
-      
-                  
-                 
-                </div>
-
-                <div class="form-inline col-12 col-md-12 p-0 mt-1">
-                    <div class="col-12 col-md-6 p-0">
-                        <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Designation:</label>
-                        <select class="form-control addrCon formSelect col-7 col-md-7" id="type" name="type" style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
-                          <option>Select</option>
-                          <option>Manager</option>
-                          <option>Developer</option>
-                          <option>UI Developer</option>
-                        </select>
-                      </div>
-
-
-                      <div class="col-12 col-md-6 p-0">
-                          <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Contact No.:</label>
-                          <label for="pay" class="addrCon formSelect col-7 col-md-7 p-0">9876543210</label>
-      
-                        </div>
-
-                  
-                  
+                  </div>
                 </div>
 
                 <div class="form-inline col-12 col-md-12 p-0 mt-1">
 
 
+                  <div class="col-12 col-md-6 p-0">
+                    <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Designation:</label>
+                    <select class="form-control addrCon formSelect col-7 col-md-7" id="type" name="type" formControlName="designation" [ngClass]="{'is-invalid': submitted && f.designation.errors}" style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
+                      <option>Select</option>
+                      <option>Manager</option>
+                      <option>Developer</option>
+                      <option>UI Developer</option>
+                    </select>
+                    <div *ngIf="submitted && f.designation.errors" class="invalid-feedback">
+                      <div *ngIf="f.designation.errors.required" class="errorred">Designation is required</div>
+                      
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6 p-0">
+                    <label for="pay" class="col-5 col-md-5 pull-left pl-0">Department:</label>
+                    <select class="form-control addrCon formSelect col-7 col-md-7" id="type" name="type" formControlName="department" [ngClass]="{'is-invalid': submitted && f.department.errors}" style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
+                      <option>Select</option>
+                      <option>Sales</option>
+                      <option>IT</option>
+                      <option>Finance</option>
+                    </select>
+                    <div *ngIf="submitted && f.department.errors" class="invalid-feedback">
+                      <div *ngIf="f.department.errors.required" class="errorred">Designation is required</div>
+                      
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-inline col-12 col-md-12 p-0 mt-1">
+
+                  <div class="col-12 col-md-6 p-0">
+                    <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Email ID:</label>
+                    <label for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">abcd@gmail.com</label>
+
+                  </div>
+                  <div class="col-12 col-md-6 p-0">
+                    <label for="pay" class="col-4 col-md-4 pull-left pl-0">Marital Status:</label>
+                    <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
+                      <div class="form-check checkCol col-6 col-md-6 pull-left pl-3">
+                        <label class="checkBox">Married
+                          <input type="radio" name="radio8" checked>
+                          <span class="checkmark check mt-1"></span> </label>
+                      </div>
+                      <div class="form-check checkCol col-6 col-md-6 pull-left">
+                        <label class="checkBox">Unmarried
+                          <input type="radio" name="radio8">
+                          <span class="checkmark check mt-1"></span> </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-inline col-12 col-md-12 p-0 mt-1">
                     <div class="col-12 col-md-6 p-0">
                         <label for="pay" class="col-5 col-md-5 pull-left pl-0">Department:</label>
                         <select class="form-control addrCon formSelect col-7 col-md-7" id="type" name="type" style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
@@ -1583,7 +1585,7 @@
                       </div>
                       <div class="body">
                         <div class="time">
-                          <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
+                          <i class="ace-icon fa fa-clock-o"></i><span class="green">30/03/2019</span>
                         </div>
 
                         <div class="name">
@@ -1601,7 +1603,7 @@
                       </div>
                       <div class="body">
                         <div class="time">
-                          <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
+                          <i class="ace-icon fa fa-clock-o"></i><span class="green">28/03/2019</span>
                         </div>
 
                         <div class="name">
@@ -1621,7 +1623,7 @@
 
                       <div class="body">
                         <div class="time">
-                          <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
+                          <i class="ace-icon fa fa-clock-o"></i><span class="green">11/03/2019</span>
                         </div>
 
                         <div class="name">
@@ -1640,7 +1642,7 @@
                       </div>
                       <div class="body">
                         <div class="time">
-                          <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
+                          <i class="ace-icon fa fa-clock-o"></i><span class="green">22/03/2019</span>
                         </div>
 
                         <div class="name">
@@ -1667,7 +1669,7 @@
                       </div>
                       <div class="body">
                         <div class="time">
-                          <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
+                          <i class="ace-icon fa fa-clock-o"></i><span class="green">20/03/2019</span>
                         </div>
 
                         <div class="name">
@@ -1685,7 +1687,7 @@
                       </div>
                       <div class="body">
                         <div class="time">
-                          <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
+                          <i class="ace-icon fa fa-clock-o"></i><span class="green">27/03/2019</span>
                         </div>
 
                         <div class="name">
@@ -1703,7 +1705,7 @@
                       </div>
                       <div class="body">
                         <div class="time">
-                          <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
+                          <i class="ace-icon fa fa-clock-o"></i><span class="green">08/03/2019</span>
 
                         </div>
 
@@ -1726,7 +1728,7 @@
                       </div>
                       <div class="body">
                         <div class="time">
-                          <i class="ace-icon fa fa-clock-o"></i><span class="green">2 Days ago</span>
+                          <i class="ace-icon fa fa-clock-o"></i><span class="green">03/03/2019</span>
                         </div>
 
                         <div class="name">
