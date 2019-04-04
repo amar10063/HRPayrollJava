@@ -165,6 +165,7 @@ export class CountryComponent implements OnInit {
 
   columnDefs3 = [
 
+
     { headerName: 'Country', field: 'country', sortable: true, editable: true, filter: true, width: 120 ,
   
     cellEditor: "select",
@@ -220,6 +221,7 @@ export class CountryComponent implements OnInit {
     }
   
   },
+
     { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 130 },
     { headerName: '', field: '', width: 230 }
   ];
@@ -270,6 +272,7 @@ export class CountryComponent implements OnInit {
 
   ngOnInit() {
   }
+
   onAddClick() {
     this.api.setFocusedCell(this.count, "countryCode");
     //this.api.setFocusedCell(1, "country");
@@ -279,6 +282,7 @@ export class CountryComponent implements OnInit {
       console.log('Added Row Node', rowNode);
     });
   }
+
   
   onAddState() {
    //this.api.setFocusedCell(this.count, "countryCode");
@@ -311,6 +315,7 @@ export class CountryComponent implements OnInit {
     });
    }
   
+
   onGridReady(params) {
     this.api = params.api;
     this.columnApi = params.columnApi;
