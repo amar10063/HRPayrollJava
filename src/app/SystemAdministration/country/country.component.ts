@@ -65,7 +65,6 @@ export class CountryComponent implements OnInit {
   ];
 
   columnDefs3 = [
-
     { headerName: 'Country', field: 'country', sortable: true, editable: true, filter: true, width: 120 },
     { headerName: 'State', field: 'state', sortable: true, filter: true, editable: true, width: 120 },
     { headerName: 'City', field: 'city', sortable: true, filter: true, editable: true, width: 120 },
@@ -119,6 +118,7 @@ export class CountryComponent implements OnInit {
   count = 1;
   ngOnInit() {
   }
+
   onAddClick() {
     this.api.getFirstDisplayedRow;
     this.buttonCLick = 'ADD';
@@ -128,9 +128,6 @@ export class CountryComponent implements OnInit {
       console.log('Added Row Node', rowNode);
     });
   }
-
- 
-
   onGridReady(params) {
     this.api = params.api;
     this.columnApi = params.columnApi;
