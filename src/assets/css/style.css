@@ -2525,3 +2525,7 @@ text-align:center;
   .selectextwidth{
       width:9%!important;
   }
+
+  .ag-theme-balham .ag-cell-inline-editing select, .ag-theme-balham .ag-popup-editor select {
+    height: 100% !important; 
+}
