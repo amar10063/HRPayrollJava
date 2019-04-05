@@ -18,6 +18,12 @@ import { SystemAdminModuleComponent } from './SystemAdministration/SystemAdminMo
 import { CountryComponent } from './SystemAdministration/country/country.component';
 import { SetupComponent } from './HRPayroll/setup/setup.component';
 import { GlobalSearchComponent } from './global-search/global-search.component';
+<<<<<<< HEAD
+=======
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { XhrInterceptor } from './XhrInterceptor';
+>>>>>>> 90cebad0273fb4c16c321b49127b146d51e65cb5
 import { OrganizationComponent } from './SystemAdministration/organization/organization.component';
 import { PayrollComponent } from './SystemAdministration/payroll/payroll.component';
 import { TaxComponent } from './SystemADministration/tax/tax.component';
@@ -54,7 +60,11 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule, ReactiveFormsModule, FormsModule,
     AppRoutingModule, HttpClientModule
   ],
+<<<<<<< HEAD
   providers: [],
+=======
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }],
+>>>>>>> 90cebad0273fb4c16c321b49127b146d51e65cb5
   bootstrap: [AppComponent]
 })
 export class AppModule { }
