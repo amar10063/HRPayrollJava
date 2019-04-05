@@ -151,6 +151,39 @@ export class CountryComponent implements OnInit {
     this.colDef = this.api.getFocusedCell().column.getColId();
 
     if (keyPressed === 'Enter') {
+      alert("Enter ");
+      const countryBody = new CountryBody();
+
+      const selectedNodes = this.api.getSelectedNodes();
+
+      const selectedData = selectedNodes.map(node => node.data);
+      var dataTest: Object;
+      selectedData.map(node => dataTest = node as Object);
+      countryBody.CountryCode = dataTest['countryCode'];
+      countryBody.CountryName = dataTest['country'];
+
+      if (dataTest['countryCode'] === '') {
+        alert("Enter country code");
+        // this.ToggleButton = true;
+      }
+      else if (dataTest['country'] === '') {
+        alert("Enter country name");
+        // this.ToggleButton = true;
+      }
+      else {
+        this.countryService.doLogin(countryBody)
+          .subscribe(
+            data => {
+              this.countryResponse = data;
+
+              alert(this.countryResponse.MESSAGE);
+            }
+
+          );
+      }
+
+
+
       // if (this.api.getColumnDef('country') === '') {
       //   alert('Add Country Name');
       // } else if (this.api.getValue('countryCode', this.api.getDisplayedRowAtIndex(1)) === '') {
