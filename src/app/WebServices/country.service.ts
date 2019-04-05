@@ -18,7 +18,7 @@ export class CountryService {
   doLogin(countryBody: CountryBody): Observable<any> {
     return this.httpClient.post<any>(Urls.baseUrls + Urls.saveCountry, JSON.stringify(countryBody), this.httpOptions);
   }
-<<<<<< Aarati
+
 
   // getCountries(countryBody: CountryBody[]): Observable<any>
   // {
