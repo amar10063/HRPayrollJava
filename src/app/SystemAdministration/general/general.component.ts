@@ -42,7 +42,7 @@ export class GeneralComponent implements OnInit {
   columnDefs2 = [
     { headerName: 'Country', field: 'country', sortable: true, filter: true, editable:true, width: 100 },
     { headerName: 'Time Zone', field: 'timezone', sortable: true, filter: true, editable:true, width: 120 },
-    {headerName: 'Description', field: 'description', sortable: true, filter: true, editable:true, width: 130 },
+   { headerName: 'Description', field: 'description', sortable: true, filter: true, editable:true, width: 130 },
     { headerName: '', field: '', width: 490 }
   ];
 

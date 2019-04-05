@@ -18,18 +18,17 @@ import { SystemAdminModuleComponent } from './SystemAdministration/SystemAdminMo
 import { CountryComponent } from './SystemAdministration/country/country.component';
 import { SetupComponent } from './HRPayroll/setup/setup.component';
 import { GlobalSearchComponent } from './global-search/global-search.component';
+<<<<<<< HEAD
+=======
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { XhrInterceptor } from './XhrInterceptor';
+>>>>>>> 90cebad0273fb4c16c321b49127b146d51e65cb5
 import { OrganizationComponent } from './SystemAdministration/organization/organization.component';
 import { PayrollComponent } from './SystemAdministration/payroll/payroll.component';
 import { TaxComponent } from './SystemADministration/tax/tax.component';
 import { GeneralComponent } from './SystemAdministration/general/general.component';
-
-import { DropdownComponent } from './dropdown/dropdown.component';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -53,18 +52,19 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     OrganizationComponent,
     PayrollComponent,
     TaxComponent,
-    GeneralComponent,
-    DropdownComponent
+    GeneralComponent
 
   ],
   imports: [
-    AgGridModule.withComponents([DropdownComponent]), BsDropdownModule.forRoot(),
+    AgGridModule.withComponents([]),
     BrowserModule, ReactiveFormsModule, FormsModule,
-    AppRoutingModule,
-    HttpClientModule
-
+    AppRoutingModule, HttpClientModule
   ],
+<<<<<<< HEAD
+  providers: [],
+=======
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }],
+>>>>>>> 90cebad0273fb4c16c321b49127b146d51e65cb5
   bootstrap: [AppComponent]
 })
 export class AppModule { }
