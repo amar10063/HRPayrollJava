@@ -23,11 +23,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { XhrInterceptor } from './XhrInterceptor';
 import { OrganizationComponent } from './SystemAdministration/organization/organization.component';
 import { PayrollComponent } from './SystemAdministration/payroll/payroll.component';
-import { TaxComponent } from './SystemADministration/tax/tax.component';
+import { TaxComponent } from './SystemAdministration/tax/tax.component';
 import { GeneralComponent } from './SystemAdministration/general/general.component';
-
-
-
 
 @NgModule({
   declarations: [
