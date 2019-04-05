@@ -24,7 +24,7 @@ export class CountryService {
   saveCity(cityBody: CityBody): Observable<any> {
     return this.httpClient.post<any>(AllUrls.baseUrls + AllUrls.saveCity, JSON.stringify(cityBody), this.httpOptions);
   }
-  
+
   // getCountries(countryBody: CountryBody[]): Observable<any>
   // {
   //   return this.httpClient.post<any>(Urls.baseUrls + Urls.getCountry, JSON.stringify(countryBody), this.httpOptions);
