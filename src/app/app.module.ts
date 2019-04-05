@@ -26,8 +26,14 @@ import { OrganizationComponent } from './SystemAdministration/organization/organ
 import { PayrollComponent } from './SystemAdministration/payroll/payroll.component';
 import { TaxComponent } from './SystemADministration/tax/tax.component';
 import { GeneralComponent } from './SystemAdministration/general/general.component';
+
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+
+import { HttpClientModule } from '@angular/common/http';
+
+
+
 
 @NgModule({
   declarations: [

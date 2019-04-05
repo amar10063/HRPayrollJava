@@ -1,18 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { GridApi, ColumnApi, CellComp } from 'ag-grid-community';
-
+import { CountryService } from 'src/app/WebServices/country.service';
+import { CountryBody } from './CountryDetails/CountryBody';
+import { CountryResponse } from './CountryDetails/CountryResponse';
+import { CityBody } from './CityDetails/CityBody';
+import { CityResponse } from './CityDetails/CityResponse';
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
   styleUrls: ['./country.component.css']
 })
 export class CountryComponent implements OnInit {
-  constructor() {
+  constructor(private countryService: CountryService) {
     this.rowSelection = 'single';
 
   }
   api: GridApi;
   columnApi: ColumnApi;
+
+
+  ToggleButton: boolean = false;
 
   stateApi: GridApi;
   stateColumnApi: ColumnApi;
@@ -23,14 +30,20 @@ export class CountryComponent implements OnInit {
   postalApi: GridApi;
   postalColomnApi: ColumnApi;
 
+  countryResponse: CountryResponse;
+  cityResponse: CityResponse;
+
   rowSelection: string;
   columnDefs = [
     {
       id: 0, headerName: 'Country Code', field: 'countryCode', sortable: true, filter: true, width: 120, editable: true,
       cellStyle: function (params) {
         if (params.value === '') {
-          alert("Enter country code");
-          return { outline: '3px solid red' };
+
+          //this.ToggleButton = true;
+          // alert("Enter country code");
+
+          return { outline: '1px solid red' };
         } else {
           return { outline: 'white' };
         }
@@ -48,7 +61,8 @@ export class CountryComponent implements OnInit {
 
         if (params.value === '') {
 
-          alert("Enter country name");
+          //(<HTMLInputElement> document.getElementById("#addCountry")).disabled = true;
+          //alert("Enter country name");
 
           //this.api.FocusedCell(1, "country");
           return { outline: '1px solid red' };
@@ -156,7 +170,9 @@ export class CountryComponent implements OnInit {
       }
 
     },
-    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 130 },
+
+    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 130, editable: true },
+
     { headerName: '', field: '', width: 350 }
   ];
 
@@ -182,6 +198,7 @@ export class CountryComponent implements OnInit {
 
         return lookupKey(countryMappings, params.newValue);
       }
+
 
     },
     {
@@ -229,7 +246,9 @@ export class CountryComponent implements OnInit {
       }
 
     },
-    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 130 },
+
+    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 130, editable: true },
+
     { headerName: '', field: '', width: 230 }
   ];
 
@@ -279,6 +298,7 @@ export class CountryComponent implements OnInit {
 
   ngOnInit() {
   }
+
   onAddClick() {
     this.api.setFocusedCell(this.count, "countryCode");
     //this.api.setFocusedCell(1, "country");
@@ -317,7 +337,17 @@ export class CountryComponent implements OnInit {
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
+
+
   }
+
+  onDeleteCountry() {
+    alert("delete");
+    var selectedData = this.api.getSelectedRows();
+    var res = this.api.updateRowData({ remove: selectedData });
+
+  }
+
 
   onGridReady(params) {
     this.api = params.api;
@@ -349,9 +379,43 @@ export class CountryComponent implements OnInit {
   }
   onCellKeyDown(e) {
     const keyPressed = e.event.key;
-    this.colDef = this.api.getFocusedCell().column.getColId();
+    //this.colDef = this.api.getFocusedCell().column.getColId();
+    //alert("Enter ");
+
 
     if (keyPressed === 'Enter') {
+      alert("Enter ");
+      const countryBody = new CountryBody();
+
+      const selectedNodes = this.api.getSelectedNodes();
+
+      const selectedData = selectedNodes.map(node => node.data);
+      var dataTest: Object;
+      selectedData.map(node => dataTest = node as Object);
+      countryBody.CountryCode = dataTest['countryCode'];
+      countryBody.CountryName = dataTest['country'];
+
+      if (dataTest['countryCode'] === '') {
+        alert("Enter country code");
+        // this.ToggleButton = true;
+      }
+      else if (dataTest['country'] === '') {
+        alert("Enter country name");
+        // this.ToggleButton = true;
+      }
+      else {
+        this.countryService.doLogin(countryBody)
+        .subscribe(
+          data => {
+            this.countryResponse = data;
+
+            alert(this.countryResponse.MESSAGE);
+          }
+
+        );
+      }
+      
+
       // if (this.api.getColumnDef('country') === '') {
       //   alert('Add Country Name');
       // } else if (this.api.getValue('countryCode', this.api.getDisplayedRowAtIndex(1)) === '') {
@@ -360,10 +424,46 @@ export class CountryComponent implements OnInit {
       //   alert('call service ');
       // }
 
-      const selectedNodes = this.api.getSelectedNodes();
+
+      //const selectedNodes = this.api.getSelectedNodes();
+      // const selectedData = selectedNodes.map(node => node.data);
+      // const selectedDataStringPresentation = selectedData.map(node => node.country + ' ' + node.countryCode).join(', ');
+      // console.log('Selected nodes: ${selectedDataStringPresentation}');
+
+    }
+  }
+  onCityCellKeyDown(e) {
+    const keyPressed = e.event.key;
+
+
+
+    if (keyPressed === 'Enter') {
+      alert("Enter ");
+      const cityBody = new CityBody();
+
+      const selectedNodes = this.cityApi.getSelectedNodes();
+
       const selectedData = selectedNodes.map(node => node.data);
-      const selectedDataStringPresentation = selectedData.map(node => node.country + ' ' + node.countryCode).join(', ');
-      console.log('Selected nodes: ${selectedDataStringPresentation}');
+      var dataTest: Object;
+      selectedData.map(node => dataTest = node as Object);
+      cityBody.CityName = dataTest['city'];
+
+
+      if (dataTest['city'] === '') {
+        alert("Enter city name");
+        // this.ToggleButton = true;
+      }
+      else {
+        this.countryService.saveCity(cityBody)
+          .subscribe(
+            data => {
+              this.cityResponse = data;
+
+              alert(this.cityResponse.MESSAGE);
+            }
+
+          );
+      }
 
     }
   }
@@ -375,7 +475,7 @@ var countryMappings = {
   En: "England",
   Au: "Australia"
 };
-
+//var Country =
 
 function extractValues(mappings) {
   return Object.keys(mappings);
@@ -403,7 +503,24 @@ var stateMappings = {
 var cityMappings = {
   gzb: "Ghaziabad",
   no: "Noida",
-  kp: "Bengal",
-  jk: "Jammu & Kashmir",
-  ke: "Kerala"
+  be: "Bengal",
+  hy: "Hyderabad",
+  se: "Secundrabad"
 };
+
+//var country = this.Countries();
+
+
+
+// var country = function Countries(){
+//   const countryBody = new CountryBody();
+//     this.countryService.getCountries(countryBody)
+//     .subscribe(
+//       data => {
+//         this.cityResponse = data;
+
+//         alert(this.countryResponse.country);
+//       }
+//     );
+//     return this.countryResponse.countryName;
+//   }
