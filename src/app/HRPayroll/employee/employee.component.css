@@ -51,7 +51,7 @@
 }
 
 #payHead p {
-  font-size: 11px !important;
+  font-size: 10px !important;
   display: block !important;
   margin-bottom: 10px !important
 }
@@ -212,9 +212,9 @@ td.textHighlight {
 
 .itemdiv>.body>.time {
   display: block;
-  font-size: 11px;
-  font-weight: 700;
-  color: #666;
+  font-size: 10px;
+  font-weight: 600;
+  color: #35666b;
   position: absolute;
   right: 9px;
   top: 0;
@@ -335,17 +335,12 @@ td.textHighlight {
 #documents .navbar-nav li {
   border-right: 1px solid #719bab;
 }
-
-
-
  #CurriculumVitae .form-control {
   display: Inline-block !important;
 }
-
 .employeenotes{  
-  color: #398d94;
-  font-size: 12px;
-
+  color: #1f4c50;
+  font-size: 10px;
 }
 
 #basic p {
