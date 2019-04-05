@@ -13,7 +13,7 @@ export class CountryComponent implements OnInit {
   }
   api: GridApi;
   columnApi: ColumnApi;
- 
+
   stateApi: GridApi;
   stateColumnApi: ColumnApi;
 
@@ -71,9 +71,9 @@ export class CountryComponent implements OnInit {
   columnDefs1 = [
     {
       headerName: 'Country', field: 'country', sortable: true, editable: true, filter: true, width: 120,
-      
+
       cellEditor: "select",
-      
+
       cellEditorParams: { values: extractValues(countryMappings) },
       valueFormatter: function (params) {
         return lookupValue(countryMappings, params.value);
@@ -84,22 +84,23 @@ export class CountryComponent implements OnInit {
 
 
     },
-    { headerName: 'State', field: 'state', sortable: true, filter: true, editable: true, width: 120 ,
-  
-    cellStyle: function (params) {
-      if (params.value === '') {
-        // bordercolor: 'red'
-        alert("Enter State name");
+    {
+      headerName: 'State', field: 'state', sortable: true, filter: true, editable: true, width: 120,
 
-        return { outline: '1px solid red' };
+      cellStyle: function (params) {
+        if (params.value === '') {
+          // bordercolor: 'red'
+          alert("Enter State name");
 
-        //color: 'red', backgroundColor: 'green',
-      } else {
-        return { outline: 'white' };
+          return { outline: '1px solid red' };
+
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
       }
-    }
 
-  },
+    },
     { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 130 },
     { headerName: '', field: '', width: 470 }
   ];
@@ -114,44 +115,47 @@ export class CountryComponent implements OnInit {
 
   columnDefs2 = [
 
-    { headerName: 'Country', field: 'country', sortable: true, editable: true, filter: true, width: 120,
+    {
+      headerName: 'Country', field: 'country', sortable: true, editable: true, filter: true, width: 120,
 
-    cellEditor: "select",
-    cellEditorParams: { values: extractValues(countryMappings) },
-    valueFormatter: function (params) {
-      return lookupValue(countryMappings, params.value);
-    },
-    valueParser: function (params) {
-      return lookupKey(countryMappings, params.newValue);
-    }
-  },
-    { headerName: 'State', field: 'state', sortable: true, filter: true, editable: true, width: 120 ,
-    cellEditor: "select",
-    cellEditorParams: { values: extractValues(stateMappings) },
-    valueFormatter: function (params) {
-      return lookupValue(stateMappings, params.value);
-    },
-    valueParser: function (params) {
-      return lookupKey(stateMappings, params.newValue);
-    }
-  
-  },
-    { headerName: 'City', field: 'city', sortable: true, filter: true, editable: true, width: 120 ,
-  
-    cellStyle: function (params) {
-      if (params.value === '') {
-        // bordercolor: 'red'
-        alert("Enter city");
-
-        return { outline: '1px solid red' };
-
-        //color: 'red', backgroundColor: 'green',
-      } else {
-        return { outline: 'white' };
+      cellEditor: "select",
+      cellEditorParams: { values: extractValues(countryMappings) },
+      valueFormatter: function (params) {
+        return lookupValue(countryMappings, params.value);
+      },
+      valueParser: function (params) {
+        return lookupKey(countryMappings, params.newValue);
       }
-    }
-  
-  },
+    },
+    {
+      headerName: 'State', field: 'state', sortable: true, filter: true, editable: true, width: 120,
+      cellEditor: "select",
+      cellEditorParams: { values: extractValues(stateMappings) },
+      valueFormatter: function (params) {
+        return lookupValue(stateMappings, params.value);
+      },
+      valueParser: function (params) {
+        return lookupKey(stateMappings, params.newValue);
+      }
+
+    },
+    {
+      headerName: 'City', field: 'city', sortable: true, filter: true, editable: true, width: 120,
+
+      cellStyle: function (params) {
+        if (params.value === '') {
+          // bordercolor: 'red'
+          alert("Enter city");
+
+          return { outline: '1px solid red' };
+
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
+      }
+
+    },
     { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 130 },
     { headerName: '', field: '', width: 350 }
   ];
@@ -166,61 +170,65 @@ export class CountryComponent implements OnInit {
 
   columnDefs3 = [
 
-    { headerName: 'Country', field: 'country', sortable: true, editable: true, filter: true, width: 120 ,
-  
-    cellEditor: "select",
-    cellEditorParams: { values: extractValues(countryMappings) },
-    valueFormatter: function (params) {
-      return lookupValue(countryMappings, params.value);
-    },
-    valueParser: function (params) {
-      
-      return lookupKey(countryMappings, params.newValue);
-    }
+    {
+      headerName: 'Country', field: 'country', sortable: true, editable: true, filter: true, width: 120,
 
-  },
-    { headerName: 'State', field: 'state', sortable: true, filter: true, editable: true, width: 120 ,
+      cellEditor: "select",
+      cellEditorParams: { values: extractValues(countryMappings) },
+      valueFormatter: function (params) {
+        return lookupValue(countryMappings, params.value);
+      },
+      valueParser: function (params) {
 
-  
-    cellEditor: "select",
-    cellEditorParams: { values: extractValues(stateMappings) },
-    valueFormatter: function (params) {
-      return lookupValue(stateMappings, params.value);
-    },
-    valueParser: function (params) {
-      return lookupKey(stateMappings, params.newValue);
-    }
-  
-  
-  },
-    { headerName: 'City', field: 'city', sortable: true, filter: true, editable: true, width: 120 ,
-  
-    cellEditor: "select",
-    cellEditorParams: { values: extractValues(cityMappings) },
-    valueFormatter: function (params) {
-      return lookupValue(cityMappings, params.value);
-    },
-    valueParser: function (params) {
-      return lookupKey(cityMappings, params.newValue);
-    }
-
-  },
-    { headerName: 'Postal Code', field: 'postal', sortable: true, filter: true, editable: true, width: 120 ,
-  
-    cellStyle: function (params) {
-      if (params.value === '') {
-        // bordercolor: 'red'
-        alert("Enter postal code");
-
-        return { outline: '1px solid red' };
-
-        //color: 'red', backgroundColor: 'green',
-      } else {
-        return { outline: 'white' };
+        return lookupKey(countryMappings, params.newValue);
       }
-    }
-  
-  },
+
+    },
+    {
+      headerName: 'State', field: 'state', sortable: true, filter: true, editable: true, width: 120,
+
+
+      cellEditor: "select",
+      cellEditorParams: { values: extractValues(stateMappings) },
+      valueFormatter: function (params) {
+        return lookupValue(stateMappings, params.value);
+      },
+      valueParser: function (params) {
+        return lookupKey(stateMappings, params.newValue);
+      }
+
+
+    },
+    {
+      headerName: 'City', field: 'city', sortable: true, filter: true, editable: true, width: 120,
+
+      cellEditor: "select",
+      cellEditorParams: { values: extractValues(cityMappings) },
+      valueFormatter: function (params) {
+        return lookupValue(cityMappings, params.value);
+      },
+      valueParser: function (params) {
+        return lookupKey(cityMappings, params.newValue);
+      }
+
+    },
+    {
+      headerName: 'Postal Code', field: 'postal', sortable: true, filter: true, editable: true, width: 120,
+
+      cellStyle: function (params) {
+        if (params.value === '') {
+          // bordercolor: 'red'
+          alert("Enter postal code");
+
+          return { outline: '1px solid red' };
+
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
+      }
+
+    },
     { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 130 },
     { headerName: '', field: '', width: 230 }
   ];
@@ -280,9 +288,9 @@ export class CountryComponent implements OnInit {
       console.log('Added Row Node', rowNode);
     });
   }
-  
+
   onAddState() {
-   //this.api.setFocusedCell(this.count, "countryCode");
+    //this.api.setFocusedCell(this.count, "countryCode");
     //this.api.setFocusedCell(1, "country");
     //this.count++;
     //alert("add state");
@@ -290,28 +298,27 @@ export class CountryComponent implements OnInit {
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
-    
+
   }
 
   onAddCity() {
     //this.api.setFocusedCell(this.count, "countryCode");
-     //this.api.setFocusedCell(1, "country");
-     //this.count++;
-     //alert("add state");
-     let res = this.cityApi.updateRowData({ add: [{ city: 'Noida', state: 'UP', country: 'India', description: 'City Name' }] });
-     res.add.forEach(function (rowNode) {
-       console.log('Added Row Node', rowNode);
-     });
-     
-   }
-   onAddPostal()
-   {
+    //this.api.setFocusedCell(1, "country");
+    //this.count++;
+    //alert("add state");
+    let res = this.cityApi.updateRowData({ add: [{ city: 'Noida', state: 'UP', country: 'India', description: 'City Name' }] });
+    res.add.forEach(function (rowNode) {
+      console.log('Added Row Node', rowNode);
+    });
+
+  }
+  onAddPostal() {
     let res = this.postalApi.updateRowData({ add: [{ city: 'Noida', state: 'UP', country: 'India', postal: '201301', description: 'Postal Code No' }] });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
-   }
-  
+  }
+
   onGridReady(params) {
     this.api = params.api;
     this.columnApi = params.columnApi;
@@ -321,15 +328,13 @@ export class CountryComponent implements OnInit {
     this.stateColumnApi = params.columnApi;
   }
 
-  onCityGridReady(params)
-  {
+  onCityGridReady(params) {
     this.cityApi = params.api;
-    this.cityColumnApi = params.columnApi; 
+    this.cityColumnApi = params.columnApi;
   }
-  onPostalGridReady(params)
-  {
+  onPostalGridReady(params) {
     this.postalApi = params.api;
-    this.postalColomnApi = params.columnApi; 
+    this.postalColomnApi = params.columnApi;
   }
   onSelectionChanged() {
     const selectedRows = this.api.getSelectedRows();
