@@ -8,4 +8,5 @@ export class XhrInterceptor implements HttpInterceptor {
         });
         return next.handle(xhr);
     }
+// tslint:disable-next-line:eofline
 }
