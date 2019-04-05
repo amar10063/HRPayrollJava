@@ -1,9 +1,4 @@
-import {
-    HttpInterceptor,
-    HttpRequest,
-    HttpHandler,
-
-} from '@angular/common/http';
+import {HttpInterceptor, HttpRequest, HttpHandler} from '@angular/common/http';
 
 export class XhrInterceptor implements HttpInterceptor {
 
@@ -12,6 +7,6 @@ export class XhrInterceptor implements HttpInterceptor {
             headers: req.headers.set('X-Requested-With', 'XMLHttpRequest')
         });
         return next.handle(xhr);
-
     }
+// tslint:disable-next-line:eofline
 }
