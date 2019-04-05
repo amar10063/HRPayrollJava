@@ -1,6 +1,6 @@
 import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Urls } from './Urls';
+import { AllUrls } from './AllUrls';
 import { Injectable } from '@angular/core';
 import { CountryBody } from '../SystemAdministration/country/CountryDetails/CountryBody';
 import { CityBody } from '../SystemAdministration/country/CityDetails/CityBody';
@@ -19,10 +19,10 @@ export class CountryService {
 
 
   doLogin(countryBody: CountryBody): Observable<any> {
-    return this.httpClient.post<any>(Urls.baseUrls + Urls.saveCountry, JSON.stringify(countryBody), this.httpOptions);
+    return this.httpClient.post<any>(AllUrls.baseUrls + AllUrls.saveCountry, JSON.stringify(countryBody), this.httpOptions);
   }
   saveCity(cityBody: CityBody): Observable<any> {
-    return this.httpClient.post<any>(Urls.baseUrls + Urls.saveCity, JSON.stringify(cityBody), this.httpOptions);
+    return this.httpClient.post<any>(AllUrls.baseUrls + AllUrls.saveCity, JSON.stringify(cityBody), this.httpOptions);
   }
   
   // getCountries(countryBody: CountryBody[]): Observable<any>

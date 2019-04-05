@@ -30,7 +30,6 @@ import { GeneralComponent } from './SystemAdministration/general/general.compone
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
-import { HttpClientModule } from '@angular/common/http';
 
 
 
