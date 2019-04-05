@@ -20,7 +20,6 @@ import { SetupComponent } from './HRPayroll/setup/setup.component';
 import { GlobalSearchComponent } from './global-search/global-search.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { BasicdetailsserviceService } from './webservices/basicdetailsservice.service';
 import { XhrInterceptor } from './XhrInterceptor';
 import { OrganizationComponent } from './SystemAdministration/organization/organization.component';
 import { PayrollComponent } from './SystemAdministration/payroll/payroll.component';
@@ -65,7 +64,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     HttpClientModule
 
   ],
-  providers: [BasicdetailsserviceService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
