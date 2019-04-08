@@ -25,6 +25,11 @@ import { PayrollComponent } from './SystemAdministration/payroll/payroll.compone
 import { TaxComponent } from './SystemAdministration/tax/tax.component';
 import { GeneralComponent } from './SystemAdministration/general/general.component';
 
+
+import { DropdownComponent } from './dropdown/dropdown.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { AaratiComponent } from './aarati/aarati.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +49,11 @@ import { GeneralComponent } from './SystemAdministration/general/general.compone
     OrganizationComponent,
     PayrollComponent,
     TaxComponent,
-    GeneralComponent
+
+    GeneralComponent,
+    DropdownComponent,
+    AaratiComponent
+
 
   ],
   imports: [
