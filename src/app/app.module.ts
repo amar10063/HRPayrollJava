@@ -29,6 +29,7 @@ import { GeneralComponent } from './SystemAdministration/general/general.compone
 
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { AaratiComponent } from './aarati/aarati.component';
 
 
 
@@ -55,7 +56,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     PayrollComponent,
     TaxComponent,
     GeneralComponent,
-    DropdownComponent
+    DropdownComponent,
+    AaratiComponent
 
   ],
   imports: [
