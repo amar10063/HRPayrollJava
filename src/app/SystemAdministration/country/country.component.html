@@ -75,7 +75,7 @@
                 </div>
 
               </div>
-              
+
             </div>
             <div class="col-12 col-md-6 p-0 pull-left">
               <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
@@ -169,59 +169,62 @@
 <div id="state" class="container tab-pane fade">
 
   <div class="col-12 col-md-12 p-0">
-  <div class="col-12 col-md-6 pull-left mt-3 ">
-  <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
-  <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
-  <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
-  <label class="checkBox">
-  <input type="checkbox" name="checkbox" checked>
-  <span class="checkmark check1"></span> </label>
-  </div>
-  
-  </div>
-  </div>
-  <div class="col-12 col-md-6 p-0 pull-left">
-  <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-  <button type="button" class="payHeadBtn" (click)="onAddState()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
-  New</button>
-  <button type="button" class="payHeadBtn" (click)="onDeleteState()"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
-  </div>
-  </div>
-  <div class="clearfix"></div>
+    <div class="col-12 col-md-6 pull-left mt-3 ">
+      <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
+      <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
+        <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
+          <label class="checkBox">
+            <input type="checkbox" name="checkbox" checked>
+            <span class="checkmark check1"></span> </label>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-12 col-md-6 p-0 pull-left">
+      <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
+        <button type="button" class="payHeadBtn" (click)="onAddState()"><i class="fa fa-plus-square"
+            aria-hidden="true"></i>Add
+          New</button>
+        <button type="button" class="payHeadBtn" (click)="onDeleteState()"><i class="fa fa-trash"
+            aria-hidden="true"></i>Delete</button>
+      </div>
+    </div>
+    <div class="clearfix"></div>
   </div>
   <div class="clearfix"></div>
   <div class="formBody clearfix pt-0">
-  
-  <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData1"
-  [columnDefs]="columnDefs1" [animateRows]="true" [rowSelection]="rowSelection"
-  (gridReady)="onStateGridReady($event)" (cellKeyDown)="
+
+    <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData1"
+      [columnDefs]="columnDefs1" [animateRows]="true" [rowSelection]="rowSelection"
+      (gridReady)="onStateGridReady($event)" (cellKeyDown)="
   onStateCellKeyDown($event)"></ag-grid-angular>
-  
-  </div>
+
   </div>
 </div>
 <div id="city" class="container tab-pane fade">
 
   <div class="col-12 col-md-12 p-0">
-  <div class="col-12 col-md-6 pull-left mt-3 ">
-  <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
-  <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
-  <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
-  <label class="checkBox">
-  <input type="checkbox" name="checkbox" checked>
-  <span class="checkmark check1"></span> </label>
-  </div>
-  
-  </div>
-  </div>
-  <div class="col-12 col-md-6 p-0 pull-left">
-  <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-  <button type="button" class="payHeadBtn" (click)="onAddCity()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
-  New</button>
-  <button type="button" class="payHeadBtn" (click)="onDeleteCity()"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
-  </div>
-  </div>
-  <div class="clearfix"></div>
+    <div class="col-12 col-md-6 pull-left mt-3 ">
+      <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
+      <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
+        <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
+          <label class="checkBox">
+            <input type="checkbox" name="checkbox" checked>
+            <span class="checkmark check1"></span> </label>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-12 col-md-6 p-0 pull-left">
+      <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
+        <button type="button" class="payHeadBtn" (click)="onAddCity()"><i class="fa fa-plus-square"
+            aria-hidden="true"></i>Add
+          New</button>
+        <button type="button" class="payHeadBtn" (click)="onDeleteCity()"><i class="fa fa-trash"
+            aria-hidden="true"></i>Delete</button>
+      </div>
+    </div>
+    <div class="clearfix"></div>
   </div>
   <div class="clearfix"></div>
   <div class="formBody clearfix pt-0">
@@ -233,39 +236,37 @@
 </div>
 <div id="postal" class="container tab-pane fade">
   <div class="col-12 col-md-12 p-0">
-  <div class="col-12 col-md-6 pull-left mt-3 ">
-  <label for="Select All" class="col-4 col-md-2 pull-left pl-0">Select All:</label>
-  <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
-  <div class="form-check checkCol col-6 col-md-6 pull-left pl-3">
-  <label class="checkBox">
-  <input type="checkbox" name="checkbox" checked>
-  <span class="checkmark check1"></span> </label>
-  </div>
-  
-  </div>
-  </div>
-  <div class="col-12 col-md-6 p-0 pull-left">
-  <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-  <button type="button" class="payHeadBtn" (click)="onAddPostal()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
-  New</button>
-  
-  <button type="button" class="payHeadBtn"(click)="onDeletePostal()"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
-  </div>
-  </div>
-  <div class="clearfix"></div>
+    <div class="col-12 col-md-6 pull-left mt-3 ">
+      <label for="Select All" class="col-4 col-md-2 pull-left pl-0">Select All:</label>
+      <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
+        <div class="form-check checkCol col-6 col-md-6 pull-left pl-3">
+          <label class="checkBox">
+            <input type="checkbox" name="checkbox" checked>
+            <span class="checkmark check1"></span> </label>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-12 col-md-6 p-0 pull-left">
+      <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
+        <button type="button" class="payHeadBtn" (click)="onAddPostal()"><i class="fa fa-plus-square"
+            aria-hidden="true"></i>Add
+          New</button>
+
+        <button type="button" class="payHeadBtn" (click)="onDeletePostal()"><i class="fa fa-trash"
+            aria-hidden="true"></i>Delete</button>
+      </div>
+    </div>
+    <div class="clearfix"></div>
   </div>
   <div class="clearfix"></div>
   <div class="formBody clearfix pt-0">
-  
-  <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData3"
-  [columnDefs]="columnDefs3" [animateRows]="true" [rowSelection]="rowSelection"
-  (gridReady)="onPostalGridReady($event)" (cellKeyDown)="
+
+    <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData3"
+      [columnDefs]="columnDefs3" [animateRows]="true" [rowSelection]="rowSelection"
+      (gridReady)="onPostalGridReady($event)" (cellKeyDown)="
   onPostalCellKeyDown($event)"></ag-grid-angular>
-  
-  </div>
-  </div>
-  
-  </div>
-  </div>
+
   </div>
 </div>
+

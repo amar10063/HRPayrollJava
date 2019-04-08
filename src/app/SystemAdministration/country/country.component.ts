@@ -313,7 +313,7 @@ export class CountryComponent implements OnInit {
     this.api.setFocusedCell(this.countCountry, "countryCode");
     //this.api.setFocusedCell(1, "country");
     this.countCountry++;
-    let res = this.api.updateRowData({ add: [{ country: ' ', countryCode: ' ' }] });
+    let res = this.api.updateRowData({ add: [{ country: '', countryCode: ' ' }] });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
