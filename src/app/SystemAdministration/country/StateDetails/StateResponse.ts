@@ -1,4 +1,4 @@
-export class CountryResponse {
+export class StateResponse {
     MESSAGE: string;
     STATUS: string;
 }

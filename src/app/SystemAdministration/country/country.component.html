@@ -78,7 +78,7 @@
   <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
   <button type="button" class="payHeadBtn" (click)="onAddState()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
   New</button>
-  <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+  <button type="button" class="payHeadBtn" (click)="onDeleteState()"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
   </div>
   </div>
   <div class="clearfix"></div>
@@ -88,7 +88,8 @@
   
   <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData1"
   [columnDefs]="columnDefs1" [animateRows]="true" [rowSelection]="rowSelection"
-  (gridReady)="onStateGridReady($event)"></ag-grid-angular>
+  (gridReady)="onStateGridReady($event)" (cellKeyDown)="
+  onStateCellKeyDown($event)"></ag-grid-angular>
   
   </div>
   </div>
@@ -110,7 +111,7 @@
   <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
   <button type="button" class="payHeadBtn" (click)="onAddCity()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
   New</button>
-  <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+  <button type="button" class="payHeadBtn" (click)="onDeleteCity()"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
   </div>
   </div>
   <div class="clearfix"></div>
@@ -141,7 +142,7 @@
   <button type="button" class="payHeadBtn" (click)="onAddPostal()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
   New</button>
   
-  <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+  <button type="button" class="payHeadBtn"(click)="onDeletePostal()"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
   </div>
   </div>
   <div class="clearfix"></div>
@@ -151,7 +152,8 @@
   
   <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData3"
   [columnDefs]="columnDefs3" [animateRows]="true" [rowSelection]="rowSelection"
-  (gridReady)="onPostalGridReady($event)"></ag-grid-angular>
+  (gridReady)="onPostalGridReady($event)" (cellKeyDown)="
+  onPostalCellKeyDown($event)"></ag-grid-angular>
   
   </div>
   </div>

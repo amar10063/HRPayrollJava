@@ -5,6 +5,10 @@ import { CountryBody } from './CountryDetails/CountryBody';
 import { CountryResponse } from './CountryDetails/CountryResponse';
 import { CityBody } from './CityDetails/CityBody';
 import { CityResponse } from './CityDetails/CityResponse';
+import { StateBody } from './StateDetails/StateBody';
+import { StateResponse } from './StateDetails/StateResponse';
+import { CountryDataResponse } from './CountryDetails/CountryDataResponse';
+import { GetAllCountryBody } from './CountryDetails/GetAllCountryBody';
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
@@ -31,6 +35,9 @@ export class CountryComponent implements OnInit {
 
   countryResponse: CountryResponse;
   cityResponse: CityResponse;
+  stateResponse: StateResponse;
+  countryDataResponse: CountryDataResponse;
+ 
 
   rowSelection: string;
   columnDefs = [
@@ -114,7 +121,7 @@ export class CountryComponent implements OnInit {
       }
 
     },
-    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 130 },
+    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 130, editable: true },
     { headerName: '', field: '', width: 470 }
   ];
 
@@ -288,26 +295,28 @@ export class CountryComponent implements OnInit {
   public buttonName: any = 'Add New';
   colDef: string;
 
-  count = 0;
+  countCountry = 0;
+  countState = 0;
+  countCity = 0;
+  countPostal = 0;
 
   ngOnInit() {
   }
   onAddClick() {
-    this.api.setFocusedCell(this.count, "countryCode");
+    this.api.setFocusedCell(this.countCountry, "countryCode");
     //this.api.setFocusedCell(1, "country");
-    this.count++;
-    let res = this.api.updateRowData({ add: [{ country: 'India', countryCode: 'ed' }] });
+    this.countCountry++;
+    let res = this.api.updateRowData({ add: [{ country: ' ', countryCode: ' ' }] });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
   }
 
   onAddState() {
-    //this.api.setFocusedCell(this.count, "countryCode");
-    //this.api.setFocusedCell(1, "country");
-    //this.count++;
-    //alert("add state");
-    let res = this.stateApi.updateRowData({ add: [{ state: 'UP', country: 'India', description: 'State Name' }] });
+
+    this.stateApi.setFocusedCell(this.countState, "country");
+    this.countState++;
+    let res = this.stateApi.updateRowData({ add: [{ state: ' ', country: ' ', description: ' ' }] });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
@@ -315,27 +324,43 @@ export class CountryComponent implements OnInit {
   }
 
   onAddCity() {
-    //this.api.setFocusedCell(this.count, "countryCode");
-    //this.api.setFocusedCell(1, "country");
-    //this.count++;
-    //alert("add state");
-    let res = this.cityApi.updateRowData({ add: [{ city: 'Noida', state: 'UP', country: 'India', description: 'City Name' }] });
+    this.cityApi.setFocusedCell(this.countCity, "country");
+    this.countCity++;
+    let res = this.cityApi.updateRowData({ add: [{ city: ' ', state: ' ', country: ' ', description: ' ' }] });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
 
   }
   onAddPostal() {
-    let res = this.postalApi.updateRowData({ add: [{ city: 'Noida', state: 'UP', country: 'India', postal: '201301', description: 'Postal Code No' }] });
+    this.postalApi.setFocusedCell(this.countPostal, "country");
+    this.countPostal++;
+    let res = this.postalApi.updateRowData({ add: [{ city: ' ', state: ' ', country: ' ', postal: ' ', description: ' ' }] });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
   }
 
   onDeleteCountry() {
-    alert("delete");
+    //alert("delete");
     var selectedData = this.api.getSelectedRows();
     var res = this.api.updateRowData({ remove: selectedData });
+
+  }
+  onDeleteState() {
+    //alert("delete");
+    var selectedData = this.stateApi.getSelectedRows();
+    var res = this.stateApi.updateRowData({ remove: selectedData });
+
+  }
+  onDeleteCity() {
+    //alert("delete");
+    var selectedData = this.cityApi.getSelectedRows();
+    var res = this.cityApi.updateRowData({ remove: selectedData });
+  }
+  onDeletePostal() {
+    var selectedData = this.postalApi.getSelectedRows();
+    var res = this.postalApi.updateRowData({ remove: selectedData });
 
   }
   onGridReady(params) {
@@ -366,16 +391,17 @@ export class CountryComponent implements OnInit {
     });
     document.querySelector('#selectedRows').innerHTML = selectedRowsString;
   }
+
   onCellKeyDown(e) {
     const keyPressed = e.event.key;
     //this.colDef = this.api.getFocusedCell().column.getColId();
-    //alert("Enter ");
+
 
 
     if (keyPressed === 'Enter') {
-      alert("Enter ");
+      //alert("Enter ");
       const countryBody = new CountryBody();
-
+      const getAllCountryBody = new GetAllCountryBody();
       const selectedNodes = this.api.getSelectedNodes();
 
       const selectedData = selectedNodes.map(node => node.data);
@@ -392,18 +418,35 @@ export class CountryComponent implements OnInit {
         alert("Enter country name");
         // this.ToggleButton = true;
       }
+
       else {
         this.countryService.doLogin(countryBody)
-        .subscribe(
-          data => {
-            this.countryResponse = data;
+          .subscribe(
+            data => {
+              this.countryResponse = data;
 
-            alert(this.countryResponse.MESSAGE);
-          }
+              alert(this.countryResponse.MESSAGE);
+            }
 
-        );
+          );
       }
-      
+
+      //let countryResponse1: CountryDataResponse[] ;
+      // if (this.countryResponse.STATUS === 'Success') {   
+
+
+      //   this.countryService.getCountries(getAllCountryBody)
+      //     .subscribe(
+      //       data => {
+      //         this.countryDataResponse = data;
+      //         this.rowData = data;
+      //         alert("Countryyyyyyyyyyyy");
+      //         this.api.setRowData(data);
+      //         alert(JSON.stringify(data));
+      //         let res = this.api.updateRowData({ add: [{ country: this.countryDataResponse.countryName, countryCode: this.countryDataResponse.countryCode }] });
+      //       }
+      //     )
+      // }
 
       // if (this.api.getColumnDef('country') === '') {
       //   alert('Add Country Name');
@@ -423,11 +466,8 @@ export class CountryComponent implements OnInit {
   }
   onCityCellKeyDown(e) {
     const keyPressed = e.event.key;
-
-
-
     if (keyPressed === 'Enter') {
-      alert("Enter ");
+      //alert("Enter ");
       const cityBody = new CityBody();
 
       const selectedNodes = this.cityApi.getSelectedNodes();
@@ -436,11 +476,11 @@ export class CountryComponent implements OnInit {
       var dataTest: Object;
       selectedData.map(node => dataTest = node as Object);
       cityBody.CityName = dataTest['city'];
-
+      cityBody.Description = dataTest['description'];
 
       if (dataTest['city'] === '') {
         alert("Enter city name");
-        // this.ToggleButton = true;
+
       }
       else {
         this.countryService.saveCity(cityBody)
@@ -456,6 +496,71 @@ export class CountryComponent implements OnInit {
 
     }
   }
+  onStateCellKeyDown(e) {
+    const keyPressed = e.event.key;
+    if (keyPressed === 'Enter') {
+      alert("Enter ");
+      const stateBody = new StateBody();
+
+      const selectedNodes = this.stateApi.getSelectedNodes();
+
+      const selectedData = selectedNodes.map(node => node.data);
+      var dataTest: Object;
+      selectedData.map(node => dataTest = node as Object);
+      stateBody.StateName = dataTest['state'];
+      stateBody.Description = dataTest['description'];
+
+      if (dataTest['state'] === '') {
+        alert("Enter state name");
+
+      }
+      else {
+        this.countryService.saveState(stateBody)
+          .subscribe(
+            data => {
+              this.stateResponse = data;
+
+              alert(this.stateResponse.MESSAGE);
+            }
+
+          );
+      }
+
+    }
+  }
+
+  // onPostalCellKeyDown(e) {
+  //   const keyPressed = e.event.key;
+  //   if (keyPressed === 'Enter') {
+  //     alert("Enter ");
+  //     const stateBody = new StateBody();
+
+  //     const selectedNodes = this.stateApi.getSelectedNodes();
+
+  //     const selectedData = selectedNodes.map(node => node.data);
+  //     var dataTest: Object;
+  //     selectedData.map(node => dataTest = node as Object);
+  //     stateBody.StateName = dataTest['state'];
+  //     stateBody.Description = dataTest['description'];
+
+  //     if (dataTest['state'] === '') {
+  //       alert("Enter state name");
+
+  //     }
+  //     else {
+  //       this.countryService.saveState(stateBody)
+  //         .subscribe(
+  //           data => {
+  //             this.stateResponse = data;
+
+  //             alert(this.stateResponse.MESSAGE);
+  //           }
+
+  //         );
+  //     }
+
+  //   }
+  // }
 
 }
 var countryMappings = {
@@ -502,14 +607,15 @@ var cityMappings = {
 
 
 // var country = function Countries(){
-//   const countryBody = new CountryBody();
-//     this.countryService.getCountries(countryBody)
+//   const getAllCountryBody = new GetAllCountryBody();
+//     this.countryService.getCountries(getAllCountryBody)
 //     .subscribe(
 //       data => {
-//         this.cityResponse = data;
+//         this.countryDataResponse = data;
 
-//         alert(this.countryResponse.country);
+//         //alert(this.countryResponse.country);
 //       }
 //     );
-//     return this.countryResponse.countryName;
+//     return this.countryDataResponse.countryName;
+
 //   }
