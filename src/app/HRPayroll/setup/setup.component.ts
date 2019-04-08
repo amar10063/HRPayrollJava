@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GridApi, ColumnApi, CellComp, CellClickedEvent } from 'ag-grid-community';
 import { $ } from 'protractor';
-import { DropdownComponent } from 'src/app/dropdown/dropdown.component';
 
 @Component({
   selector: 'app-setup',
@@ -13,13 +12,12 @@ export class SetupComponent implements OnInit {
   colDef: string;
   rowSelection: string;
   public components = {
-    dropDownComponent: DropdownComponent
   };
   columnDefs1 = [
     {
       headerName: 'Department Code', field: 'departmentCode', sortable: true, filter: true, width: 160,
       cellClass: 'dropdown-cell', suppressMenu: true, suppressResize: true,
-      cellRendererFramework: DropdownComponent,
+      //cellRendererFramework: DropdownComponent,
       cellStyle: function (params) {
         if (params.value === '') {
           return { outline: '1px solid red' };
