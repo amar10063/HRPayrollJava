@@ -37,11 +37,10 @@
         </div>
       </div>
     </div>
-    <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData" [columnDefs]="columnDefs"></ag-grid-angular>
-    <!-- <div class="buttonCon pull-left mt-3">
-      <button type="button" class="btn templateBg" value="Add New"><img src="../assets/images/edit-icon.png" alt="edit" />Edit</button>
-      <button type="button" class="btn templateBg"><img src="../assets/images/delete-icon.png" alt="delete" />Delete</button>
-    </div> -->
+   
+    <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData" [columnDefs]="columnDefs">
+    </ag-grid-angular>
+    
   </div>
   
   <div class="clearfix"></div>
@@ -133,7 +132,7 @@
                     <div class="col-12 col-md-6 p-0">
                         <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Middle Name:</label>
                         <input type="text" class="form-control addrCon formSelect col-7 col-md-7" id="name" name="name"
-                          placeholder="First Name">
+                          placeholder="Middle Name">
                       </div>
                   
                   <div class="col-12 col-md-6 p-0">
@@ -281,7 +280,15 @@
 
 
               </div>
-              <div class="col-1 col-md-1 pull-left p-0 empPhoto"><img src="../assets/images/profile-image.png" alt="profile Image" /></div>
+              <div class="col-1 col-md-1 pull-left p-0 empPhoto">
+                <img src="../assets/images/profile-image.png" alt="profile Image" />
+                
+              </div>
+              <div class="col-1 col-md-1 pull-left p-0 mt-1">
+                  <p>Fateh Rana</p>
+                  <p>1035</p>
+                  <p>Developer</p>
+                </div>
               <div class="clearfix"></div>
               
             </form>

@@ -18,7 +18,7 @@ import { SystemAdminModuleComponent } from './SystemAdministration/SystemAdminMo
 import { CountryComponent } from './SystemAdministration/country/country.component';
 import { SetupComponent } from './HRPayroll/setup/setup.component';
 import { GlobalSearchComponent } from './global-search/global-search.component';
-import { HttpClientModule , HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { BasicdetailsserviceService } from './webservices/basicdetailsservice.service';
 import { XhrInterceptor } from './XhrInterceptor';
@@ -26,6 +26,8 @@ import { OrganizationComponent } from './SystemAdministration/organization/organ
 import { PayrollComponent } from './SystemAdministration/payroll/payroll.component';
 import { TaxComponent } from './SystemADministration/tax/tax.component';
 import { GeneralComponent } from './SystemAdministration/general/general.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+
 
 
 
@@ -50,15 +52,15 @@ import { GeneralComponent } from './SystemAdministration/general/general.compone
     OrganizationComponent,
     PayrollComponent,
     TaxComponent,
-    GeneralComponent
+    GeneralComponent,
 
   ],
   imports: [
-    AgGridModule.withComponents([]),
+    AgGridModule.withComponents([]), BsDropdownModule.forRoot(),
     BrowserModule, ReactiveFormsModule, FormsModule,
     AppRoutingModule,
     HttpClientModule
-     
+
   ],
   providers: [BasicdetailsserviceService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }],
   bootstrap: [AppComponent]
