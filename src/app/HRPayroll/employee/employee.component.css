@@ -344,8 +344,14 @@ td.textHighlight {
 }
 
 #basic p {
-color: #398d94;;
+color: #398d94;
 margin-bottom: 0px !important;
 font-size:10px!important
 
+}
+
+.employeebkgcolour1 {
+  background-color: #e7eeef;
+  border-radius: 5px;
+  padding: 12px 47px 12px 0px;
 }
