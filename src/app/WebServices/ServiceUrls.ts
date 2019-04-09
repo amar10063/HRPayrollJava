@@ -8,4 +8,7 @@ export class ServiceUrls {
     public static deleteCountry = '/DeleteCountry';
     public static getState ='/getState';
     public static getCity ='/getCity';
+    public static getAllDesignation = '/getDesignation';
+    static getAllDepartment: '/getDepartment';
+    static getLocation: '/getLocation';
 }
