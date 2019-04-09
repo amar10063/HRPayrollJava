@@ -7,4 +7,5 @@ export class AllUrls {
   static getAllDepartment: 'getDepartment';
   static getLocation: 'getLocation';
   
+
 }
