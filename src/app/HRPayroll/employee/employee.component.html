@@ -67,26 +67,29 @@
       <div class="col-md-4 col-sm-12 col-xs-4 p-0">
         <div class="form-inline">
           <label for="Employee Name" class="col-2 col-md-5 p-0">On Leave:</label>
-          <input type="checkbox" class="col-6 col-md-1 ptb-4"  name="name" style="margin-left: -2%;">
+          <div class="formSelect col-6 col-md-1" style="height:18px">
+              <div class="form-check checkCol">
+                <label class="checkBox">
+                  <input type="checkbox" name="checkbox" checked>
+                  <span class="checkmark check1"></span> </label>
+              </div>
+
+            </div>
         </div>
 </div>
               <div class="col-md-4 col-sm-12 col-xs-4">
-             
-             
-                
-                    
                       <div class="form-inline">
                         <label for="Employee Name" class="col-2 col-md-5 p-0">Active Employee:</label>
-                        <input type="checkbox" class="col-6 col-md-1 ptb-4"  name="name" style="margin-left: -2%;">
-                          
+                        <div class="formSelect col-6 col-md-1" style="height:18px">
+                            <div class="form-check checkCol">
+                              <label class="checkBox">
+                                <input type="checkbox" name="checkbox" checked>
+                                <span class="checkmark check1"></span> </label>
+                            </div>
+              
+                          </div>  
                       </div>
                     
-
-                  
-
-
-               
-          
             </div>
 
   </div>
@@ -130,10 +133,19 @@
     <div class="col-10 col-md-10 pull-left p-0">
       <div class="tab-content col-md-12 col-12 p-0">
         <div id="basic" class="container tab-pane active">
-          <div class="buttonCon pull-right mt-2 mb-2 mr-1">
-            <button type="button" class="payHeadBtn" (click)="onSave()"><i class="fa fa-floppy-o"
-                aria-hidden="true"></i>Save</button>
-          </div>
+            <div class="col-12 col-md-12 p-0">
+                <div class="col-12 col-md-6 pull-left mt-2 empDetail">
+                      <label>Fateh Singh Rana <span>(Software Developer, Employee ID: 1035)</span> </label>
+                </div>
+                <div class="col-12 col-md-6 p-0 pull-left">
+                  <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
+                      <button type="button" class="payHeadBtn" (click)="onSave()"><i class="fa fa-floppy-o"
+                        aria-hidden="true"></i>Save</button>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+  
           <div class="clearfix"></div>
           <div class="formBody clearfix pt-0">
             <form class="employeebkgcolour" [formGroup]="basicDetailsForm">
@@ -347,11 +359,7 @@
                 <img src="../assets/images/profile-image.png" alt="profile Image" />
 
               </div>
-              <div class="col-1 col-md-1 pull-left p-0 mt-1">
-                <p>Fateh Rana</p>
-                <p>1035</p>
-                <p>Developer</p>
-              </div>
+           
               <div class="clearfix"></div>
 
             </form>
