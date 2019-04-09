@@ -7,7 +7,7 @@
   </div>
   <h5>Employees</h5>
   <div class="card-body p-0" *ngIf="hide">
-    <div class="row mt-3">
+    <div class="row mt-1 mb-2">
       <div class="col-7 col-md-7">
         <div class="buttonCon pull-left">
           <button type="button" class="btn templateBg" (click)="showhide()"><img src="../assets/images/new-icon.png"
@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="col-12 col-md-8 col-sm-9 pull-right col-lg-5 top-space">
-        <div class="show pull-left col-6 col-md-6 no-space p-0">
+       <!--  <div class="show pull-left col-6 col-md-6 no-space p-0">
           <form class="col-12 col-md-12 col-sm-12">
             <div class="form-group">
               <div class="styled-select slate">
@@ -36,29 +36,53 @@
                 alt="search" />
             </button>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
 
-    <div class="col-md-12 col-sm-12 clearfix col-xs-12 employeebkgcolour1 mb-3">
+    <div class="col-md-12 col-sm-12 col-xs-12 employeebkgcolour1 mb-2">
       <div class="row">
         <div class="col-md-4 col-sm-12 col-xs-4 p-0">
                 <div class="form-inline">
                   <label for="Employee Name" class="col-2 col-md-5 pl-0">Name:</label>
-                  <input type="text" class="form-control col-6 col-md-7 ptb-4" name="name" >
+                  <input type="text" class="form-control border-secondary col-6 col-md-6 ptb-4" style="height:24px" name="name" >
                    
                 </div>
       </div>
         <div class="col-md-4 col-sm-12 col-xs-4">
                       <div class="form-inline">
                         <label for="Employee Name" class="col-2 col-md-5 pl-0">Department:</label>
-                        <input type="text" class="form-control col-6 col-md-7 ptb-4" name="name" >
-                      </div>
+                        <div class="col-6 col-md-6 ptb-4 p-0">
+                            <div class="form-group">
+                                <div class="styled-select slate">
+                                  <select class="form-control" id="dept" name="department" placeholder="Select" style="height: 24px !important; padding: 2px 5px;">
+                                    <option>Select</option>
+                                    <option>IT</option>
+                                    <option>Finance</option>
+                                    <option>Accounts</option>
+                                  </select>
+                                </div>
+                              </div>
+
+                        </div>
+                         </div>
             </div>
             <div class="col-md-4 col-sm-12 col-xs-4">
                     <div class="form-inline">
                       <label for="Employee Name" class="col-2 col-md-5 pl-0">Designation:</label>
-                      <input type="text" class="form-control col-6 col-md-7 ptb-4" name="name" >
+                      <div class="col-6 col-md-6 ptb-4 p-0">
+                          <div class="form-group">
+                              <div class="styled-select slate">
+                                <select class="form-control" id="designation" name="designation" placeholder="Select" style="height: 24px !important; padding: 2px 5px;">
+                                  <option>Select</option>
+                                  <option>Software Developer</option>
+                                  <option>UI Developer</option>
+                                  <option>Designer</option>
+                                </select>
+                              </div>
+                            </div>
+
+                      </div>
                     </div>
           </div>
     </div>
@@ -95,7 +119,7 @@
   </div>
   </div>
    
-    <ag-grid-angular style="width:100%; height: 400px" class="ag-theme-balham" [rowData]="rowData"
+    <ag-grid-angular style="width:100%; height: 300px" class="ag-theme-balham" [rowData]="rowData"
       [columnDefs]="columnDefs">
 
     </ag-grid-angular>
@@ -138,7 +162,7 @@
                       <label>Fateh Singh Rana <span>(Software Developer, Employee ID: 1035)</span> </label>
                 </div>
                 <div class="col-12 col-md-6 p-0 pull-left">
-                  <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
+                  <div class="buttonCon pull-right mt-2 mb-2 mr-2 ">
                       <button type="button" class="payHeadBtn" (click)="onSave()"><i class="fa fa-floppy-o"
                         aria-hidden="true"></i>Save</button>
                     </div>
@@ -196,7 +220,6 @@
                       [ngClass]="{'is-invalid': submitted && f.dateofBirth.errors}">
                     <div *ngIf="submitted && f.dateofBirth.errors" class="invalid-feedback">
                       <div *ngIf="f.dateofBirth.errors.required" class="errorred">Date of Birth is required</div>
-
                     </div>
                   </div>
 
