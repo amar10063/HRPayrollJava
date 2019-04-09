@@ -17,21 +17,43 @@ import { GetStateBody } from '../SystemAdministration/country/StateDetails/GetSt
 import { GetStateResponse } from '../SystemAdministration/country/StateDetails/GetStateResponse';
 import { GetCityBody } from '../SystemAdministration/country/CityDetails/GetCityBody';
 import { GetCityResponse } from '../SystemAdministration/country/CityDetails/GetCityResponse';
+import { DesignationBody } from '../HRPayroll/employee/EmployeeApiResponse/DesignationBody';
+import { DepartmentBody } from '../HRPayroll/employee/EmployeeApiResponse/DepartmentBody';
+import { LocationBody } from '../HRPayroll/employee/EmployeeApiResponse/LocationBody';
+
 @Injectable({
   providedIn: 'root'
 })
 export class CountryService {
-
-  constructor(private httpClient: HttpClient) { }
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
   };
 
-
+  constructor(private httpClient: HttpClient) { 
+  }
   doLogin(countryBody: CountryBody): Observable<CountryResponse> {
     return this.httpClient.post<CountryResponse>(ServiceUrls.baseUrls + ServiceUrls.saveCountry, JSON.stringify(countryBody), this.httpOptions);
+
+  }
+ 
+
+
+saveCity(cityBody: CityBody): Observable < any > {
+  return this.httpClient.post<any>(AllUrls.baseUrls + AllUrls.saveCity, JSON.stringify(cityBody), this.httpOptions);
+}
+getAllDesignation(designationBody: DesignationBody): Observable < any > {
+  return this.httpClient.post<any>(AllUrls.baseUrls + AllUrls.getAllDesignation, JSON.stringify(designationBody), this.httpOptions);
+}
+getAllDepartment(departmentBody: DepartmentBody): Observable < any > {
+  return this.httpClient.post<any>(AllUrls.baseUrls + AllUrls.getAllDepartment, JSON.stringify(departmentBody), this.httpOptions);
+}
+getLocation(locationBody: LocationBody): Observable < any > {
+  this.httpOptions.headers.append('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT');
+  return this.httpClient.post<any>(AllUrls.baseUrls + AllUrls.getLocation, JSON.stringify(locationBody), this.httpOptions);
+  doLogin(countryBody: CountryBody): Observable<any> {
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.saveCountry, JSON.stringify(countryBody), this.httpOptions);
   }
   saveCity(cityBody: CityBody): Observable<CityResponse> {
     return this.httpClient.post<CityResponse>(ServiceUrls.baseUrls + ServiceUrls.saveCity, JSON.stringify(cityBody), this.httpOptions);
