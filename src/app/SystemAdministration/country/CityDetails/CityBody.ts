@@ -4,5 +4,5 @@ export class CityBody {
 	UpdatedBy: string = '1';
 	StateID: number = 1;
 	Description: string;
-
+    userID: number = 1;
 }
