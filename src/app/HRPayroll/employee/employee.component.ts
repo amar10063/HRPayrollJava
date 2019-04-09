@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { BasicDetails } from './BasicDetails';
 import { from } from 'rxjs';
-import { BasicdetailsserviceService } from 'src/app/webservices/basicdetailsservice.service';
-import { BasicDetailsResponse } from './BasicDetailsResponse';
+import { CountryService } from 'src/app/WebServices/country.service';
+import { DesignationResponse } from './EmployeeApiResponse/DesignationResponse';
+import { LocationBody } from './EmployeeApiResponse/LocationBody';
+import { DepartmentBody } from './EmployeeApiResponse/DepartmentBody';
+import { DepartmentResponse } from './EmployeeApiResponse/DepartmentResponse';
+import { DesignationBody } from './EmployeeApiResponse/DesignationBody';
+import { LocationResponse } from './EmployeeApiResponse/LocationResponse';
+
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
@@ -11,11 +16,11 @@ import { BasicDetailsResponse } from './BasicDetailsResponse';
 })
 export class EmployeeComponent implements OnInit {
   basicDetailsForm: FormGroup;
+  titles = ['Mr', 'Miss', 'Mrs'];
 
   submitted = false;
-
-  basicDetailsResponse: BasicDetailsResponse;
-
+  designationResponse: DesignationResponse[];
+  selectedDesignationIndex;
   columnDefs = [
     { headerName: 'Employee Image', field: 'EmpImage', template: "<img src='../assets/images/profile-img-2.png' />", width: 120 },
     { headerName: 'Employee Name', field: 'EmpName', sortable: true, filter: true, width: 130 },
@@ -318,12 +323,17 @@ export class EmployeeComponent implements OnInit {
     { ClassDegree: 'BCA', BoardUniversity: 'CCSU', StartDate: '03-04-2013', EndDate: '03-04-2016', UploadDocument: '' },
     { ClassDegree: 'MCA', BoardUniversity: 'AKTU', StartDate: '03-04-2016', EndDate: '03-04-2018', UploadDocument: '' },
   ];
+  departmentResponse: DepartmentResponse[];
+  locationResponse: LocationResponse[];
+  selectedLocationIndex: number;
+  selectedDepartmentIndex: number;
 
 
 
 
-  constructor(private formBuilder: FormBuilder, private basicDetailsService: BasicdetailsserviceService) { }
+  constructor(private formBuilder: FormBuilder, private countryService: CountryService) {
 
+  }
   public show: boolean = false;
   public hide: boolean = true;
   public buttonName: any = 'Add New';
@@ -335,52 +345,90 @@ export class EmployeeComponent implements OnInit {
       empCode: ['', [Validators.required,]],
       firstName: ['', [Validators.required,]],
       dateofBirth: ['', [Validators.required,]],
-      title: ['', [Validators.required,]],
       lastName: ['', [Validators.required,]],
-      designation: ['', [Validators.required,]],
-      department: ['', [Validators.required,]],
+      designation: [this.designationResponse],
+      department: ['Select', [Validators.required,]],
+      title: ['Mr', [Validators.required,]],
+      location: [this.locationResponse]
 
     });
+    this.getLocation(1);
+   // this.getAllDepartment('1', 2);
+  // this.getAllDesignation('1', 2);
+
+  }
+  getLocation(UserID: number) {
+    var locationBody = new LocationBody();
+    locationBody.UserID = UserID;
+    this.countryService.getLocation(locationBody)
+      .subscribe(
+        data => {
+          this.locationResponse = data;
+          this.selectedLocationIndex = this.locationResponse.length - 1;
+          this.getAllDepartment('1', this.selectedLocationIndex);
+        }
+
+      );
+  }
+  getAllDepartment(UserID: string, LocationID: number) {
+    var departmentBody = new DepartmentBody();
+    departmentBody.UserID = UserID;
+    departmentBody.LocationID = LocationID;
+    this.countryService.getAllDepartment(departmentBody)
+      .subscribe(
+        data => {
+          this.departmentResponse = data;
+          this.selectedDepartmentIndex = this.departmentResponse.length - 1;
+          this.getAllDesignation('1', this.selectedDepartmentIndex);
+        }
+
+      );
+
+  }
+  getAllDesignation(UserID: string, DepartmentID: number) {
+    var designationBody = new DesignationBody();
+    designationBody.UserID = UserID;
+    designationBody.DepartmentID = DepartmentID;
+
+    this.countryService.getAllDesignation(designationBody)
+      .subscribe(
+        data => {
+          this.designationResponse = data;
+          this.selectedDesignationIndex = this.designationResponse.length - 1;
+
+        }
+
+      );
 
   }
 
-  onSave() {
 
-    alert("Save Clicked");
+  selectedDesignation(args) {
+    this.selectedDesignationIndex = args.target.selectedIndex;
+    console.log(this.selectedDesignationIndex - 1);
+    console.log(args.target.selectedIndex);
+    console.log(args.target.options[args.target.selectedIndex].text);
+  }
+  onSave() {
     this.submitted = true;
     if (this.basicDetailsForm.invalid) {
       return;
-    }
-    else {
-      const basicDetails = new BasicDetails();
-
-      // this.basicDetailsService.doSave(basicDetails)
-      //   .subscribe(
-      //     data => {
-      //       this.basicDetailsResponse = data;
-      //       alert("api hits");
-      //     }
-      //   )
+    } else {
     }
 
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.basicDetailsForm.value));
   }
 
-  // this.basicDetailsForm = this.formBuilder.group({
-  //   name:[null, Validators.required],
 
-  //   });
 
 
   showhide() {
     this.show = true;
     this.hide = false;
-    //alert(this.hide);
   }
   showhide2() {
     this.show = false;
     this.hide = true;
-    // alert(this.hide);
 
   }
   get f() { return this.basicDetailsForm.controls; }
