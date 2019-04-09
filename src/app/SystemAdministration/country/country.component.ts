@@ -9,6 +9,13 @@ import { StateBody } from './StateDetails/StateBody';
 import { StateResponse } from './StateDetails/StateResponse';
 import { CountryDataResponse } from './CountryDetails/CountryDataResponse';
 import { GetAllCountryBody } from './CountryDetails/GetAllCountryBody';
+import { PostalBody } from './PostalDetails/PostalBody';
+import { PostalResponse } from './PostalDetails/PostalResponse';
+import { DeleteCountryBody } from './CountryDetails/DeleteCountryBody';
+import { GetStateBody } from './StateDetails/GetStateBody';
+import { GetStateResponse } from './StateDetails/GetStateResponse';
+import { GetCityResponse } from './CityDetails/GetCityResponse';
+import { GetCityBody } from './CityDetails/GetCityBody';
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
@@ -17,13 +24,14 @@ import { GetAllCountryBody } from './CountryDetails/GetAllCountryBody';
 export class CountryComponent implements OnInit {
   constructor(private countryService: CountryService) {
     this.rowSelection = 'single';
+    //this.topOptions.api.push(this.topOptions);
 
   }
   api: GridApi;
   columnApi: ColumnApi;
 
 
-  ToggleButton: boolean = false;
+  ToggleButton: false;
 
   stateApi: GridApi;
   stateColumnApi: ColumnApi;
@@ -38,7 +46,11 @@ export class CountryComponent implements OnInit {
   cityResponse: CityResponse;
   stateResponse: StateResponse;
   countryDataResponse: CountryDataResponse;
- 
+  postalResponse: PostalResponse;
+  getStateResponse: GetStateResponse;
+  getCityResponse: GetCityResponse
+
+
 
   rowSelection: string;
   columnDefs = [
@@ -47,8 +59,7 @@ export class CountryComponent implements OnInit {
       cellStyle: function (params) {
         if (params.value === '') {
 
-          //this.ToggleButton = true;
-          // alert("Enter country code");
+
 
           return { outline: '1px solid red' };
         } else {
@@ -57,25 +68,17 @@ export class CountryComponent implements OnInit {
       }
 
     },
-    // tslint:disable-next-line: max-line-length
+
     {
-      id: 1, headerName: 'Country Name', field: 'country', sortable: true, //cellEditor: "agTextCellEditor",
-      //cellEditorParams: { useFormatter: true },
+      id: 1, headerName: 'Country Name', field: 'countryName', sortable: true, //cellEditor: "agTextCellEditor",
+
       filter: true, width: 130, editable: true,
 
       cellStyle: function (params) {
 
 
         if (params.value === '') {
-
-          //(<HTMLInputElement> document.getElementById("#addCountry")).disabled = true;
-          //alert("Enter country name");
-
-          //this.api.FocusedCell(1, "country");
           return { outline: '1px solid red' };
-
-
-          //color: 'red', backgroundColor: 'green',
         } else {
           return { outline: 'white' };
         }
@@ -84,14 +87,17 @@ export class CountryComponent implements OnInit {
 
     },
     { headerName: '', field: '', width: 590 }
+
+
   ];
 
-  rowData = [];
+
+  rowData;
 
 
   columnDefs1 = [
     {
-      headerName: 'Country', field: 'country', sortable: true, editable: true, filter: true, width: 120,
+      headerName: 'Country', field: 'countryName', sortable: true, editable: true, filter: true, width: 120,
 
       cellEditor: "select",
 
@@ -106,16 +112,13 @@ export class CountryComponent implements OnInit {
 
     },
     {
-      headerName: 'State', field: 'state', sortable: true, filter: true, editable: true, width: 120,
+      headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: true, width: 120,
 
       cellStyle: function (params) {
         if (params.value === '') {
-          // bordercolor: 'red'
-          alert("Enter State name");
-
           return { outline: '1px solid red' };
 
-          //color: 'red', backgroundColor: 'green',
+
         } else {
           return { outline: 'white' };
         }
@@ -126,18 +129,19 @@ export class CountryComponent implements OnInit {
     { headerName: '', field: '', width: 470 }
   ];
 
-  rowData1 = [
-    // { state: 'UP', country: 'India', description: 'State Name' },
-    // { state: 'Punjab', country: 'India', description: 'State Name' },
-    // { state: 'Haryana', country: 'India', description: 'State Name' },
-    // { state: 'Sikkim', country: 'India', description: 'State Name' },
-    // { state: 'Rajasthan', country: 'India', description: 'State Name' }
-  ];
+  rowData1;
+  //= [
+  // { state: 'UP', country: 'India', description: 'State Name' },
+  // { state: 'Punjab', country: 'India', description: 'State Name' },
+  // { state: 'Haryana', country: 'India', description: 'State Name' },
+  // { state: 'Sikkim', country: 'India', description: 'State Name' },
+  // { state: 'Rajasthan', country: 'India', description: 'State Name' }
+  //];
 
   columnDefs2 = [
 
     {
-      headerName: 'Country', field: 'country', sortable: true, editable: true, filter: true, width: 120,
+      headerName: 'Country', field: 'countryName', sortable: true, editable: true, filter: true, width: 120,
 
       cellEditor: "select",
       cellEditorParams: { values: extractValues(countryMappings) },
@@ -149,7 +153,7 @@ export class CountryComponent implements OnInit {
       }
     },
     {
-      headerName: 'State', field: 'state', sortable: true, filter: true, editable: true, width: 120,
+      headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: true, width: 120,
       cellEditor: "select",
       cellEditorParams: { values: extractValues(stateMappings) },
       valueFormatter: function (params) {
@@ -161,16 +165,14 @@ export class CountryComponent implements OnInit {
 
     },
     {
-      headerName: 'City', field: 'city', sortable: true, filter: true, editable: true, width: 120,
+      headerName: 'City', field: 'cityName', sortable: true, filter: true, editable: true, width: 120,
 
       cellStyle: function (params) {
         if (params.value === '') {
-          // bordercolor: 'red'
-          alert("Enter city");
 
           return { outline: '1px solid red' };
 
-          //color: 'red', backgroundColor: 'green',
+
         } else {
           return { outline: 'white' };
         }
@@ -183,13 +185,14 @@ export class CountryComponent implements OnInit {
     { headerName: '', field: '', width: 350 }
   ];
 
-  rowData2 = [
-    // { city: 'Noida', state: 'UP', country: 'India', description: 'City Name' },
-    // { city: 'Chandigarh', state: 'Punjab', country: 'India', description: 'City Name' },
-    // { city: 'Gurugram', state: 'Haryana', country: 'India', description: 'City Name' },
-    // { city: 'Gangtok', state: 'Sikkim', country: 'India', description: 'City Name' },
-    // { city: 'Jaipur', state: 'Rajasthan', country: 'India', description: 'City Name' }
-  ];
+  rowData2;
+  //= [
+  // { city: 'Noida', state: 'UP', country: 'India', description: 'City Name' },
+  // { city: 'Chandigarh', state: 'Punjab', country: 'India', description: 'City Name' },
+  // { city: 'Gurugram', state: 'Haryana', country: 'India', description: 'City Name' },
+  // { city: 'Gangtok', state: 'Sikkim', country: 'India', description: 'City Name' },
+  // { city: 'Jaipur', state: 'Rajasthan', country: 'India', description: 'City Name' }
+  //];
 
   columnDefs3 = [
 
@@ -241,12 +244,11 @@ export class CountryComponent implements OnInit {
 
       cellStyle: function (params) {
         if (params.value === '') {
-          // bordercolor: 'red'
-          alert("Enter postal code");
+
 
           return { outline: '1px solid red' };
 
-          //color: 'red', backgroundColor: 'green',
+
         } else {
           return { outline: 'white' };
         }
@@ -259,14 +261,15 @@ export class CountryComponent implements OnInit {
     { headerName: '', field: '', width: 230 }
   ];
 
-  rowData3 = [
-    // { city: 'Noida', state: 'UP', country: 'India', postal: '201301', description: 'Postal Code No' },
-    // { city: 'Chandigarh', state: 'Punjab', country: 'India', postal: '201301', description: 'Postal Code No' },
-    // { city: 'Gurugram', state: 'Haryana', country: 'India', postal: '201301', description: 'Postal Code No' },
-    // { city: 'Gangtok', state: 'Sikkim', country: 'India', postal: '201301', description: 'Postal Code No' },
-    // { city: 'Jaipur', state: 'Rajasthan', country: 'India', postal: '201301', description: 'Postal Code No' }
+  rowData3
+  //= [
+  // { city: 'Noida', state: 'UP', country: 'India', postal: '201301', description: 'Postal Code No' },
+  // { city: 'Chandigarh', state: 'Punjab', country: 'India', postal: '201301', description: 'Postal Code No' },
+  // { city: 'Gurugram', state: 'Haryana', country: 'India', postal: '201301', description: 'Postal Code No' },
+  // { city: 'Gangtok', state: 'Sikkim', country: 'India', postal: '201301', description: 'Postal Code No' },
+  // { city: 'Jaipur', state: 'Rajasthan', country: 'India', postal: '201301', description: 'Postal Code No' }
 
-  ];
+  // ];
 
   columnDefs4 = [
     { headerName: 'Department', field: 'department', sortable: true, filter: true, editable: true, width: 120 },
@@ -313,7 +316,7 @@ export class CountryComponent implements OnInit {
     this.api.setFocusedCell(this.countCountry, "countryCode");
     //this.api.setFocusedCell(1, "country");
     this.countCountry++;
-    let res = this.api.updateRowData({ add: [{ country: '', countryCode: ' ' }] });
+    let res = this.api.updateRowData({ add: [{ countryName: '', countryCode: '' }] });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
@@ -321,9 +324,9 @@ export class CountryComponent implements OnInit {
 
   onAddState() {
 
-    this.stateApi.setFocusedCell(this.countState, "country");
+    this.stateApi.setFocusedCell(this.countState, "countryName");
     this.countState++;
-    let res = this.stateApi.updateRowData({ add: [{ state: ' ', country: ' ', description: ' ' }] });
+    let res = this.stateApi.updateRowData({ add: [{ stateName: '', countryName: 'Select', description: '' }] });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
@@ -333,7 +336,7 @@ export class CountryComponent implements OnInit {
   onAddCity() {
     this.cityApi.setFocusedCell(this.countCity, "country");
     this.countCity++;
-    let res = this.cityApi.updateRowData({ add: [{ city: ' ', state: ' ', country: ' ', description: ' ' }] });
+    let res = this.cityApi.updateRowData({ add: [{ city: '', state: '', country: '', description: '' }] });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
@@ -342,7 +345,7 @@ export class CountryComponent implements OnInit {
   onAddPostal() {
     this.postalApi.setFocusedCell(this.countPostal, "country");
     this.countPostal++;
-    let res = this.postalApi.updateRowData({ add: [{ city: ' ', state: ' ', country: ' ', postal: ' ', description: ' ' }] });
+    let res = this.postalApi.updateRowData({ add: [{ city: '', state: '', country: '', postal: '', description: '' }] });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
@@ -352,12 +355,72 @@ export class CountryComponent implements OnInit {
 
   onDeleteCountry() {
     //alert("delete");
-    var selectedData = this.api.getSelectedRows();
-    var res = this.api.updateRowData({ remove: selectedData });
+    let i: number;
+    const selectedNodes = this.api.getSelectedNodes();
+
+    const deleteCountryBody = new DeleteCountryBody();
+    const selectedData = selectedNodes.map(node => node.data);
+    var dataTest: Object;
+    selectedData.map(node => dataTest = node as Object);
+    if (selectedData.length === 0) {
+      alert("Please select a row");
+    }
+
+
+    for (i = 0; i < 20; i++) {
+      if (this.countryDataResponse[i].countryCode === dataTest['countryCode']) {
+
+        deleteCountryBody.CountryID = this.countryDataResponse[i].countryID;
+        this.countryService.deleteCountry(deleteCountryBody)
+          .subscribe(
+            data => {
+              this.countryResponse = data;
+
+              alert(this.countryResponse.MESSAGE);
+              if (this.countryResponse.STATUS === 'Success') {
+                var res = this.api.updateRowData({ remove: selectedData });
+              }
+            }
+
+          );
+
+      }
+    }
+
 
   }
   onDeleteState() {
     //alert("delete");
+    // let i: number;
+    // const selectedNodes = this.api.getSelectedNodes();
+
+    // const deleteCountryBody = new DeleteCountryBody();
+    // const selectedData = selectedNodes.map(node => node.data);
+    // var dataTest: Object;
+    // selectedData.map(node => dataTest = node as Object);
+    // if (selectedData.length === 0) {
+    //   alert("Please select a row");
+    // }
+
+
+    // for (i = 0; i < 20; i++) {
+    //   if (this.countryDataResponse[i].countryCode === dataTest['countryCode']) {
+
+    //     deleteCountryBody.CountryID = this.countryDataResponse[i].countryID;
+    //     this.countryService.deleteCountry(deleteCountryBody)
+    //       .subscribe(
+    //         data => {
+    //           this.countryResponse = data;
+
+    //           alert(this.countryResponse.MESSAGE);
+    //           if (this.countryResponse.STATUS === 'Success') {
+    //             var res = this.api.updateRowData({ remove: selectedData });
+    //           }
+    //         }
+
+    //       );
+
+    //   }
     var selectedData = this.stateApi.getSelectedRows();
     var res = this.stateApi.updateRowData({ remove: selectedData });
 
@@ -417,13 +480,14 @@ export class CountryComponent implements OnInit {
       var dataTest: Object;
       selectedData.map(node => dataTest = node as Object);
       countryBody.CountryCode = dataTest['countryCode'];
-      countryBody.CountryName = dataTest['country'];
+      countryBody.CountryName = dataTest['countryName'];
 
       if (dataTest['countryCode'] === '') {
         alert("Enter country code");
-        // this.ToggleButton = true;
+
+        //this.ToggleButton = true;
       }
-      else if (dataTest['country'] === '') {
+      else if (dataTest['countryName'] === '') {
         alert("Enter country name");
         // this.ToggleButton = true;
       }
@@ -435,27 +499,27 @@ export class CountryComponent implements OnInit {
               this.countryResponse = data;
 
               alert(this.countryResponse.MESSAGE);
+
+              if (this.countryResponse.STATUS === 'Success') {
+
+
+                this.countryService.getCountries(getAllCountryBody)
+                  .subscribe(
+                    data => {
+                      this.countryDataResponse = data;
+                      this.rowData = this.countryDataResponse;
+                      // alert("Countryyyyyyyyyyyy");
+                      //this.api.setRowData(data);
+                      //alert(JSON.stringify(data));
+                      //let res = this.api.updateRowData({ add: [{  countryCode: JSON.stringify(this.countryDataResponse.countryCode), country: JSON.stringify(this.countryDataResponse.countryName) }] });
+                    }
+                  )
+              }
             }
+
 
           );
       }
-
-      //let countryResponse1: CountryDataResponse[] ;
-      // if (this.countryResponse.STATUS === 'Success') {   
-
-
-      //   this.countryService.getCountries(getAllCountryBody)
-      //     .subscribe(
-      //       data => {
-      //         this.countryDataResponse = data;
-      //         this.rowData = data;
-      //         alert("Countryyyyyyyyyyyy");
-      //         this.api.setRowData(data);
-      //         alert(JSON.stringify(data));
-      //         let res = this.api.updateRowData({ add: [{ country: this.countryDataResponse.countryName, countryCode: this.countryDataResponse.countryCode }] });
-      //       }
-      //     )
-      // }
 
       // if (this.api.getColumnDef('country') === '') {
       //   alert('Add Country Name');
@@ -473,21 +537,23 @@ export class CountryComponent implements OnInit {
 
     }
   }
+
   onCityCellKeyDown(e) {
     const keyPressed = e.event.key;
     if (keyPressed === 'Enter') {
       //alert("Enter ");
       const cityBody = new CityBody();
+      const getCityBody = new GetCityBody();
 
       const selectedNodes = this.cityApi.getSelectedNodes();
 
       const selectedData = selectedNodes.map(node => node.data);
       var dataTest: Object;
       selectedData.map(node => dataTest = node as Object);
-      cityBody.CityName = dataTest['city'];
+      cityBody.CityName = dataTest['cityName'];
       cityBody.Description = dataTest['description'];
 
-      if (dataTest['city'] === '') {
+      if (dataTest['cityName'] === '') {
         alert("Enter city name");
 
       }
@@ -498,28 +564,44 @@ export class CountryComponent implements OnInit {
               this.cityResponse = data;
 
               alert(this.cityResponse.MESSAGE);
+
+              if (this.cityResponse.STATUS === 'Success') {
+
+                alert("City Details");
+                  this.countryService.getCity(getCityBody)
+                    .subscribe(
+                      data => {
+                        this.getCityResponse = data;
+                        this.rowData2 = this.getCityResponse;
+                        
+                      }
+                    )
+              }
             }
 
           );
       }
 
+
+
     }
   }
+
   onStateCellKeyDown(e) {
     const keyPressed = e.event.key;
     if (keyPressed === 'Enter') {
-      alert("Enter ");
+      // alert("Enter ");
       const stateBody = new StateBody();
-
+      const getStateBody = new GetStateBody();
       const selectedNodes = this.stateApi.getSelectedNodes();
 
       const selectedData = selectedNodes.map(node => node.data);
       var dataTest: Object;
       selectedData.map(node => dataTest = node as Object);
-      stateBody.StateName = dataTest['state'];
+      stateBody.StateName = dataTest['stateName'];
       stateBody.Description = dataTest['description'];
 
-      if (dataTest['state'] === '') {
+      if (dataTest['stateName'] === '') {
         alert("Enter state name");
 
       }
@@ -530,6 +612,19 @@ export class CountryComponent implements OnInit {
               this.stateResponse = data;
 
               alert(this.stateResponse.MESSAGE);
+
+              if (this.stateResponse.STATUS === 'Success') {
+
+                alert("State Details");
+
+                this.countryService.getStates(getStateBody)
+                  .subscribe(
+                    data => {
+                      this.getStateResponse = data;
+                      this.rowData1 = this.getStateResponse;
+                    }
+                  )
+              }
             }
 
           );
@@ -538,38 +633,52 @@ export class CountryComponent implements OnInit {
     }
   }
 
-  // onPostalCellKeyDown(e) {
-  //   const keyPressed = e.event.key;
-  //   if (keyPressed === 'Enter') {
-  //     alert("Enter ");
-  //     const stateBody = new StateBody();
+  onPostalCellKeyDown(e) {
+    const keyPressed = e.event.key;
+    if (keyPressed === 'Enter') {
+      //alert("Enter ");
+      const postalBody = new PostalBody();
 
-  //     const selectedNodes = this.stateApi.getSelectedNodes();
+      const selectedNodes = this.postalApi.getSelectedNodes();
 
-  //     const selectedData = selectedNodes.map(node => node.data);
-  //     var dataTest: Object;
-  //     selectedData.map(node => dataTest = node as Object);
-  //     stateBody.StateName = dataTest['state'];
-  //     stateBody.Description = dataTest['description'];
+      const selectedData = selectedNodes.map(node => node.data);
+      var dataTest: Object;
+      selectedData.map(node => dataTest = node as Object);
+      postalBody.postalCode = dataTest['postal'];
+      postalBody.Description = dataTest['description'];
 
-  //     if (dataTest['state'] === '') {
-  //       alert("Enter state name");
+      if (dataTest['postal'] === '') {
+        alert("Enter postal code");
 
-  //     }
-  //     else {
-  //       this.countryService.saveState(stateBody)
-  //         .subscribe(
-  //           data => {
-  //             this.stateResponse = data;
+      }
+      else {
+        this.countryService.savePostal(postalBody)
+          .subscribe(
+            data => {
+              this.postalResponse = data;
 
-  //             alert(this.stateResponse.MESSAGE);
-  //           }
+              alert(this.postalResponse.MESSAGE);
 
-  //         );
-  //     }
+              if (this.postalResponse.STATUS === 'Success') {
 
-  //   }
-  // }
+                alert("Postal Details");
+
+                //   this.countryService.getCountries(getAllCountryBody)
+                //     .subscribe(
+                //       data => {
+                //         this.countryDataResponse = data;
+                //         this.rowData3 = this.countryDataResponse;
+                //       }
+                //     )
+              }
+
+            }
+
+          );
+      }
+
+    }
+  }
 
 }
 var countryMappings = {
