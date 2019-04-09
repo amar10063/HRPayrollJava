@@ -23,8 +23,7 @@
           <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#postal"><i class="fa fa-th-large pr-1"
                 aria-hidden="true"></i> Postal Code</a> </li>
 
-                <!---->
-
+            
         </ul>
       </div>
     </div>
@@ -59,7 +58,6 @@
             <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData"
               [columnDefs]="columnDefs" [animateRows]="true" [rowSelection]="rowSelection"
               (selectionChanged)="onSelectionChanged($event)" (gridReady)="onGridReady($event)" (cellKeyDown)="
-
               onCellKeyDown($event)"></ag-grid-angular>
           </div>
           <div class="row mb-1" >
@@ -70,9 +68,6 @@
                 <span class="fa fa-angle-double-right  next round" title="Newer" id="nextprev"></span>
               </div>  
               </div>
-
-
-  onCellKeyDown($event)"></ag-grid-angular>
 
           </div>
         </div>
@@ -160,8 +155,6 @@
               </div>  
               </div>
 
-              [columnDefs]="columnDefs2" [animateRows]="true" [rowSelection]="rowSelection"
-              (gridReady)="onCityGridReady($event)"></ag-grid-angular>
 
           </div>
         </div>
