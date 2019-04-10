@@ -24,9 +24,9 @@ import { GetStateBody } from '../SystemAdministration/country/StateDetails/GetSt
 import { GetStateResponse } from '../SystemAdministration/country/StateDetails/GetStateResponse';
 import { GetCityBody } from '../SystemAdministration/country/CityDetails/GetCityBody';
 import { GetCityResponse } from '../SystemAdministration/country/CityDetails/GetCityResponse';
-import { DesignationBody } from '../HRPayroll/employee/EmployeeApiResponse/DesignationBody';
-import { DepartmentBody } from '../HRPayroll/employee/EmployeeApiResponse/DepartmentBody';
-import { LocationBody } from '../HRPayroll/employee/EmployeeApiResponse/LocationBody';
+//import { DesignationBody } from '../HRPayroll/employee/EmployeeApiResponse/DesignationBody';
+//import { DepartmentBody } from '../HRPayroll/employee/EmployeeApiResponse/DepartmentBody';
+//import { LocationBody } from '../HRPayroll/employee/EmployeeApiResponse/LocationBody';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +37,10 @@ export class CountryService {
       'Content-Type': 'application/json'
     })
   };
+  constructor(private httpClient:HttpClient) {
+   
+  }
+
   doLogin(countryBody: CountryBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.saveCountry, JSON.stringify(countryBody), this.httpOptions);
   
@@ -62,23 +66,17 @@ doDesignation(designationBody: DesignationBody): Observable<any> {
 doDeleteDesignation(deleteDesignationBody: DeleteDesignationBody): Observable<any> {
   return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteDesignation, JSON.stringify(deleteDesignationBody), this.httpOptions);
 }
-}
 
-
-  constructor(private httpClient: HttpClient) { 
-  }
- 
- 
-getAllDesignation(designationBody: DesignationBody): Observable < any > {
-  return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getAllDesignation, JSON.stringify(designationBody), this.httpOptions);
-}
-getAllDepartment(departmentBody: DepartmentBody): Observable < any > {
-  return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getAllDepartment, JSON.stringify(departmentBody), this.httpOptions);
-}
-getLocation(locationBody: LocationBody): Observable < any > {
-  this.httpOptions.headers.append('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT');
-  return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getLocation, JSON.stringify(locationBody), this.httpOptions);
-}
+// getAllDesignation(designationBody: DesignationBody): Observable < any > {
+//   return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getAllDesignation, JSON.stringify(designationBody), this.httpOptions);
+// }
+// getAllDepartment(departmentBody: DepartmentBody): Observable < any > {
+//   return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getAllDepartment, JSON.stringify(departmentBody), this.httpOptions);
+// }
+// getLocation(locationBody: LocationBody): Observable < any > {
+//   this.httpOptions.headers.append('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT');
+//   return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getLocation, JSON.stringify(locationBody), this.httpOptions);
+// }
   saveCity(cityBody: CityBody): Observable<CityResponse> {
     return this.httpClient.post<CityResponse>(ServiceUrls.baseUrls + ServiceUrls.saveCity, JSON.stringify(cityBody), this.httpOptions);
   }
