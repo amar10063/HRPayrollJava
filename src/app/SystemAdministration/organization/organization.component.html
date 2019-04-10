@@ -38,25 +38,27 @@
                   </div>
                   <div class="col-12 col-md-5 p-0 pull-left">
                 <div class="buttonCon pull-right mt-1 mb-2 mr-2 ">
-                  <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                  <button type="button" class="payHeadBtn" (click)="onAddLocation()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                     New</button>
-                    <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                    <button type="button" class="payHeadBtn" (click)="onDeleteLocation()"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
                   </div>
                 </div>
                 <div class="clearfix"></div>
               </div>
                 <div class="clearfix"></div>
             <div class="formBody clearfix pt-0 pb-2">
-              <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData"
-                [columnDefs]="columnDefs"></ag-grid-angular>
+              <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham"   [rowData]="rowData"
+              [columnDefs]="columnDefs" [animateRows]="true" [rowSelection]="rowSelection"
+              (selectionChanged)="onSelectionChanged($event)" (gridReady)="onGridLocationReady($event)" 
+              (cellKeyDown)="onCellKeyLocationDown($event)"></ag-grid-angular>
   
             </div>
             <div class="row mb-1" >
               <div class="col-md-12 col-sm-6 col-xs-12 p-0">
                 <div class="form group col-md-2 pull-right" >
-                    <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
+                    <span class="fa fa-angle-double-left  previous round" title="Older" id="nextprev"></span>
                   <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of 100</label>
-                  <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
+                  <span class="fa fa-angle-double-right  next round" title="Newer" id="nextprev"></span>
                 </div>  
                 </div>
             </div>
@@ -76,9 +78,9 @@
                   </div>
                   <div class="col-12 col-md-5 p-0 pull-left">
                 <div class="buttonCon pull-right mt-1 mb-2 mr-2 ">
-                  <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                  <button type="button" class="payHeadBtn"  (click)="onAddDepartment()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                     New</button>
-                    <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                    <button type="button" class="payHeadBtn" (click)="onDeleteDepartment()"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
                   </div>
                 </div>
                 <div class="clearfix"></div>
@@ -87,15 +89,17 @@
             <div class="formBody clearfix pt-0 pb-2">
   
               <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData1"
-                [columnDefs]="columnDefs1"></ag-grid-angular>
+              [columnDefs]="columnDefs1" [animateRows]="true" [rowSelection]="rowSelection"
+              (selectionChanged)="onSelectionChanged($event)" (gridReady)="onGridDepartmentReady($event)" (cellKeyDown)="
+              onCellKeyDepartmentDown($event)"></ag-grid-angular>
   
             </div>
             <div class="row mb-1" >
               <div class="col-md-12 col-sm-6 col-xs-12 p-0">
                 <div class="form group col-md-2 pull-right" >
-                    <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
+                    <span class="fa fa-angle-double-left  previous round" title="Older" id="nextprev"></span>
                   <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of 100</label>
-                  <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
+                  <span class="fa fa-angle-double-right  next round" title="Newer" id="nextprev"></span>
                 </div>  
                 </div>
             </div>
@@ -115,9 +119,9 @@
                   </div>
                   <div class="col-12 col-md-5 p-0 pull-left">
                 <div class="buttonCon pull-right mt-1 mb-2 mr-2 ">
-                  <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                  <button type="button" class="payHeadBtn" (click)="onAddDesignation()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                     New</button>
-                    <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                    <button type="button" class="payHeadBtn" (click)="onDeleteDesignation()"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
                   </div>
                 </div>
                 <div class="clearfix"></div>
@@ -125,14 +129,16 @@
                 <div class="clearfix"></div>
             <div class="formBody clearfix pt-0 pb-2">
               <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData2"
-                [columnDefs]="columnDefs2"></ag-grid-angular>
+              [columnDefs]="columnDefs2" [animateRows]="true" [rowSelection]="rowSelection"
+              (selectionChanged)="onSelectionChanged($event)" (gridReady)="onGridDesignationReady($event)" (cellKeyDown)="
+              onCellKeyDesignationDown($event)"></ag-grid-angular>
             </div>
             <div class="row mb-1" >
               <div class="col-md-12 col-sm-6 col-xs-12 p-0">
                 <div class="form group col-md-2 pull-right" >
-                    <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
+                    <span class="fa fa-angle-double-left  previous round" title="Older" id="nextprev"></span>
                   <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of 100</label>
-                  <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
+                  <span class="fa fa-angle-double-right  next round" title="Newer" id="nextprev"></span>
                 </div>  
                 </div>
             </div>
