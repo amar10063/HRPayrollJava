@@ -76,8 +76,8 @@ export class EmployeeComponent implements OnInit {
   rowData1 = [
     { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Permanent', ContactNo: '0987654321', EmailID: 'abcd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
     { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '9876543210', EmailID: 'bcd@gmail.com', EmergencyContactPerson: 'Fateh Singh', EmergencyContactNo: '8459267584' },
-    { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Current', ContactNo: '0987654321', EmailID: 'abc@gmail.com', EmergencyContactPerson: 'Himanshu', EmergencyContactNo: '8459267584'},
-    { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Permanent', ContactNo: '0987654321', EmailID: 'abcd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584'},
+    { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Current', ContactNo: '0987654321', EmailID: 'abc@gmail.com', EmergencyContactPerson: 'Himanshu', EmergencyContactNo: '8459267584' },
+    { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Permanent', ContactNo: '0987654321', EmailID: 'abcd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
     { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '0987654321', EmailID: 'abc@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
     { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Current', ContactNo: '8765432100', EmailID: 'abd@gmail.com9', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
     { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '0987654321', EmailID: 'acd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
@@ -216,7 +216,7 @@ export class EmployeeComponent implements OnInit {
   columnDefs10 = [
 
     { headerName: 'Type of Account', field: 'TypeofAccount', editable: true, width: 180 },
-    { headerName: 'Account Holder Name', field: 'AccountHolderName', sortable: true, filter: true, editable: true, width:180 },
+    { headerName: 'Account Holder Name', field: 'AccountHolderName', sortable: true, filter: true, editable: true, width: 180 },
     { headerName: 'Account Number', field: 'AccountNumber', sortable: true, filter: true, editable: true, width: 150 },
     { headerName: 'IFSC', field: 'IFSC', sortable: true, filter: true, editable: true, width: 150 },
     { headerName: 'Branch Name', field: 'BranchName', sortable: true, filter: true, editable: true, width: 140 },
@@ -324,13 +324,9 @@ export class EmployeeComponent implements OnInit {
     { ClassDegree: 'MCA', BoardUniversity: 'AKTU', StartDate: '03-04-2016', EndDate: '03-04-2018', UploadDocument: '' },
   ];
   departmentResponse: DepartmentResponse[];
-  locationResponse: LocationResponse[];
+  locationResponse: any;
   selectedLocationIndex: number;
   selectedDepartmentIndex: number;
-
-
-
-
   constructor(private formBuilder: FormBuilder, private countryService: CountryService) {
 
   }
@@ -353,13 +349,13 @@ export class EmployeeComponent implements OnInit {
 
     });
     this.getLocation(1);
-   // this.getAllDepartment('1', 2);
-  // this.getAllDesignation('1', 2);
+    // this.getAllDepartment('1', 2);
+    // this.getAllDesignation('1', 1);
 
   }
   getLocation(UserID: number) {
     var locationBody = new LocationBody();
-    locationBody.UserID = UserID;
+    locationBody.userID = UserID;
     this.countryService.getLocation(locationBody)
       .subscribe(
         data => {
@@ -372,7 +368,7 @@ export class EmployeeComponent implements OnInit {
   }
   getAllDepartment(UserID: string, LocationID: number) {
     var departmentBody = new DepartmentBody();
-    departmentBody.UserID = UserID;
+    departmentBody.userID = UserID;
     departmentBody.LocationID = LocationID;
     this.countryService.getAllDepartment(departmentBody)
       .subscribe(
@@ -387,7 +383,7 @@ export class EmployeeComponent implements OnInit {
   }
   getAllDesignation(UserID: string, DepartmentID: number) {
     var designationBody = new DesignationBody();
-    designationBody.UserID = UserID;
+    designationBody.userID = UserID;
     designationBody.DepartmentID = DepartmentID;
 
     this.countryService.getAllDesignation(designationBody)
@@ -397,7 +393,6 @@ export class EmployeeComponent implements OnInit {
           this.selectedDesignationIndex = this.designationResponse.length - 1;
 
         }
-
       );
 
   }
