@@ -6,7 +6,7 @@ import { DesignationResponse } from './EmployeeApiResponse/DesignationResponse';
 import { GetAllDepartmentBody } from './EmployeeApiResponse/GetAllDepartmentBody';
 import { DepartmentResponse } from './EmployeeApiResponse/DepartmentResponse';
 import { GetAllDesignationBody } from './EmployeeApiResponse/GetAllDesignationBody';
-import { LocationResponse } from './EmployeeApiResponse/LocationResponse';
+import { GetAllLocationResponse } from './EmployeeApiResponse/GetAllLocationResponse';
 import { GetLocationBody } from 'src/app/SystemAdministration/organization/GetLocationBody';
 
 @Component({
@@ -324,7 +324,7 @@ export class EmployeeComponent implements OnInit {
     { ClassDegree: 'MCA', BoardUniversity: 'AKTU', StartDate: '03-04-2016', EndDate: '03-04-2018', UploadDocument: '' },
   ];
   departmentResponse: DepartmentResponse[];
-  locationResponse: LocationResponse[];
+  locationResponse: GetAllLocationResponse[];
   selectedLocationIndex: number;
   selectedDepartmentIndex: number;
   constructor(private formBuilder: FormBuilder, private countryService: CountryService) {
