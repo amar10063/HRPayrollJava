@@ -247,7 +247,7 @@ td.textHighlight {
 
 .itemdiv.dialogdiv>.body:before {
   display: block;
-  left: 36px;
+  left: 40px;
   top: 11px;
   width: 8px;
   height: 8px;
@@ -353,8 +353,11 @@ font-size:10px!important
 .employeebkgcolour1 {
   background-color: #e7eeef;
   border-radius: 5px;
-  padding: 12px 47px 12px 0px;
+  padding: 12px 0px;
 }
+
+.employeebkgcolour1 .form-inline label {
+  display: inline-block;}
 
 .empDetail label{
   margin-bottom: 3px;
