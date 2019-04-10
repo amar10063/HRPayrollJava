@@ -1,11 +1,11 @@
 import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
-import {LocationBody} from '../SystemAdministration/organization/LocationBody';
-import {GetLocationBody} from '../SystemAdministration/organization/GetLocationBody';
-import {DeleteLocationBody} from '../SystemAdministration/organization/DeleteLocationBody';
-import {DepartmentBody} from '../SystemAdministration/organization/DepartmentBody';
-import {DeleteDepartmentBody} from '../SystemAdministration/organization/DeleteDepartmentBody';
-import {DesignationBody} from '../SystemAdministration/organization/DesignationBody';
-import {DeleteDesignationBody} from '../SystemAdministration/organization/DeleteDesignationBody';
+import { LocationBody } from '../SystemAdministration/organization/LocationBody';
+import { GetLocationBody } from '../SystemAdministration/organization/GetLocationBody';
+import { DeleteLocationBody } from '../SystemAdministration/organization/DeleteLocationBody';
+import { DepartmentBody } from '../SystemAdministration/organization/DepartmentBody';
+import { DeleteDepartmentBody } from '../SystemAdministration/organization/DeleteDepartmentBody';
+import { DesignationBody } from '../SystemAdministration/organization/DesignationBody';
+import { DeleteDesignationBody } from '../SystemAdministration/organization/DeleteDesignationBody';
 import { Observable } from 'rxjs';
 import { ServiceUrls } from './ServiceUrls';
 import { Injectable } from '@angular/core';
@@ -24,9 +24,8 @@ import { GetStateBody } from '../SystemAdministration/country/StateDetails/GetSt
 import { GetStateResponse } from '../SystemAdministration/country/StateDetails/GetStateResponse';
 import { GetCityBody } from '../SystemAdministration/country/CityDetails/GetCityBody';
 import { GetCityResponse } from '../SystemAdministration/country/CityDetails/GetCityResponse';
-//import { DesignationBody } from '../HRPayroll/employee/EmployeeApiResponse/DesignationBody';
-//import { DepartmentBody } from '../HRPayroll/employee/EmployeeApiResponse/DepartmentBody';
-//import { LocationBody } from '../HRPayroll/employee/EmployeeApiResponse/LocationBody';
+import { GetAllDesignationBody } from '../HRPayroll/employee/EmployeeApiResponse/GetAllDesignationBody';
+import { GetAllDepartmentBody } from '../HRPayroll/employee/EmployeeApiResponse/GetAllDepartmentBody';
 
 @Injectable({
   providedIn: 'root'
@@ -37,46 +36,44 @@ export class CountryService {
       'Content-Type': 'application/json'
     })
   };
-  constructor(private httpClient:HttpClient) {
-   
+  constructor(private httpClient: HttpClient) {
+
   }
 
   doLogin(countryBody: CountryBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.saveCountry, JSON.stringify(countryBody), this.httpOptions);
-  
-}
-  doLocation(locationBody: LocationBody): Observable<any> {
-  return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddLocation, JSON.stringify(locationBody), this.httpOptions);
-}
-doGetLocation(getLocationBody: GetLocationBody): Observable<any> {
-  return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getLocation, JSON.stringify(getLocationBody), this.httpOptions);
-}
-doDeleteLocation(deleteLocationBody: DeleteLocationBody): Observable<any> {
-  return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteLocation, JSON.stringify(deleteLocationBody), this.httpOptions);
-}
-doDepartment(departmentBody: DepartmentBody): Observable<any> {
-  return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddDepartment, JSON.stringify(departmentBody), this.httpOptions);
-}
-doDeleteDepartment(deleteDepartmentBody: DeleteDepartmentBody): Observable<any> {
-  return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteDepartment, JSON.stringify(deleteDepartmentBody), this.httpOptions);
-}
-doDesignation(designationBody: DesignationBody): Observable<any> {
-  return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddDesignation, JSON.stringify(designationBody), this.httpOptions);
-}
-doDeleteDesignation(deleteDesignationBody: DeleteDesignationBody): Observable<any> {
-  return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteDesignation, JSON.stringify(deleteDesignationBody), this.httpOptions);
-}
 
-// getAllDesignation(designationBody: DesignationBody): Observable < any > {
-//   return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getAllDesignation, JSON.stringify(designationBody), this.httpOptions);
-// }
-// getAllDepartment(departmentBody: DepartmentBody): Observable < any > {
-//   return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getAllDepartment, JSON.stringify(departmentBody), this.httpOptions);
-// }
-// getLocation(locationBody: LocationBody): Observable < any > {
-//   this.httpOptions.headers.append('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT');
-//   return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getLocation, JSON.stringify(locationBody), this.httpOptions);
-// }
+  }
+  doLocation(locationBody: LocationBody): Observable<any> {
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddLocation, JSON.stringify(locationBody), this.httpOptions);
+  }
+  doGetLocation(getLocationBody: GetLocationBody): Observable<any> {
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getLocation, JSON.stringify(getLocationBody), this.httpOptions);
+  }
+  getAllDepartment(departmentBody: GetAllDepartmentBody): Observable<any> {
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getAllDepartment, JSON.stringify(departmentBody), this.httpOptions);
+  }
+  doDeleteLocation(deleteLocationBody: DeleteLocationBody): Observable<any> {
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteLocation, JSON.stringify(deleteLocationBody), this.httpOptions);
+  }
+  doDepartment(departmentBody: DepartmentBody): Observable<any> {
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddDepartment, JSON.stringify(departmentBody), this.httpOptions);
+  }
+  doDeleteDepartment(deleteDepartmentBody: DeleteDepartmentBody): Observable<any> {
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteDepartment, JSON.stringify(deleteDepartmentBody), this.httpOptions);
+  }
+  doDesignation(designationBody: DesignationBody): Observable<any> {
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddDesignation, JSON.stringify(designationBody), this.httpOptions);
+  }
+  doDeleteDesignation(deleteDesignationBody: DeleteDesignationBody): Observable<any> {
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteDesignation, JSON.stringify(deleteDesignationBody), this.httpOptions);
+  }
+
+  getAllDesignation(designationBody: GetAllDesignationBody): Observable<any> {
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getAllDesignation, JSON.stringify(designationBody), this.httpOptions);
+  }
+  
+
   saveCity(cityBody: CityBody): Observable<CityResponse> {
     return this.httpClient.post<CityResponse>(ServiceUrls.baseUrls + ServiceUrls.saveCity, JSON.stringify(cityBody), this.httpOptions);
   }

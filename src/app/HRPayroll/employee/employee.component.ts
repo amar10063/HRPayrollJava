@@ -3,11 +3,11 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { from } from 'rxjs';
 import { CountryService } from 'src/app/WebServices/country.service';
 import { DesignationResponse } from './EmployeeApiResponse/DesignationResponse';
-import { LocationBody } from './EmployeeApiResponse/LocationBody';
-import { DepartmentBody } from './EmployeeApiResponse/DepartmentBody';
+import { GetAllDepartmentBody } from './EmployeeApiResponse/GetAllDepartmentBody';
 import { DepartmentResponse } from './EmployeeApiResponse/DepartmentResponse';
-import { DesignationBody } from './EmployeeApiResponse/DesignationBody';
+import { GetAllDesignationBody } from './EmployeeApiResponse/GetAllDesignationBody';
 import { LocationResponse } from './EmployeeApiResponse/LocationResponse';
+import { GetLocationBody } from 'src/app/SystemAdministration/organization/GetLocationBody';
 
 @Component({
   selector: 'app-employee',
@@ -324,7 +324,7 @@ export class EmployeeComponent implements OnInit {
     { ClassDegree: 'MCA', BoardUniversity: 'AKTU', StartDate: '03-04-2016', EndDate: '03-04-2018', UploadDocument: '' },
   ];
   departmentResponse: DepartmentResponse[];
-  locationResponse: any;
+  locationResponse: LocationResponse[];
   selectedLocationIndex: number;
   selectedDepartmentIndex: number;
   constructor(private formBuilder: FormBuilder, private countryService: CountryService) {
@@ -354,9 +354,9 @@ export class EmployeeComponent implements OnInit {
 
   }
   getLocation(UserID: number) {
-    var locationBody = new LocationBody();
+    var locationBody = new GetLocationBody();
     locationBody.userID = UserID;
-    this.countryService.getLocation(locationBody)
+    this.countryService.doGetLocation(locationBody)
       .subscribe(
         data => {
           this.locationResponse = data;
@@ -367,9 +367,9 @@ export class EmployeeComponent implements OnInit {
       );
   }
   getAllDepartment(UserID: string, LocationID: number) {
-    var departmentBody = new DepartmentBody();
+    var departmentBody = new GetAllDepartmentBody();
     departmentBody.userID = UserID;
-    departmentBody.LocationID = LocationID;
+    departmentBody.LocationID = LocationID + '';
     this.countryService.getAllDepartment(departmentBody)
       .subscribe(
         data => {
@@ -382,9 +382,9 @@ export class EmployeeComponent implements OnInit {
 
   }
   getAllDesignation(UserID: string, DepartmentID: number) {
-    var designationBody = new DesignationBody();
+    var designationBody = new GetAllDesignationBody();
     designationBody.userID = UserID;
-    designationBody.DepartmentID = DepartmentID;
+    designationBody.DepartmentID = DepartmentID+'';
 
     this.countryService.getAllDesignation(designationBody)
       .subscribe(
