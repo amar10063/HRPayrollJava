@@ -26,7 +26,6 @@ import { OrganizationComponent } from './SystemAdministration/organization/organ
 import { PayrollComponent } from './SystemAdministration/payroll/payroll.component';
 import { TaxComponent } from './SystemADministration/tax/tax.component';
 import { GeneralComponent } from './SystemAdministration/general/general.component';
-// import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 
 
