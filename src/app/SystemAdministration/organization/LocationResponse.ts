@@ -1,6 +1,5 @@
-export class LocationResponse
-{
+export class LocationResponse {
     STATUS: string;
     MESSAGE: string;
-    
+
 }
