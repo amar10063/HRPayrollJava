@@ -4,8 +4,8 @@ import { BasicDetails } from './BasicDetails';
 import { from } from 'rxjs';
 import { BasicDetailsResponse } from './BasicDetailsResponse';
 import { GridApi, ColumnApi, CellComp } from 'ag-grid-community';
-import { HighSchoolModel } from './highSchoolModel';
-import { HighSchoolResponse } from './HighSchoolResponse';
+import { HighSchoolModel } from '../Education/HighSchoolModel';
+import { HighSchoolResponse } from '../Education/HighSchoolResponse';
 import { CountryService } from 'src/app/WebServices/country.service';
 
 
@@ -457,18 +457,32 @@ export class EmployeeComponent implements OnInit {
     document.querySelector('#selectedRows').innerHTML = selectedRowsString;
   }
 
+  onGetSchoolQualification(){
+    var highSchoolResonse : HighSchoolResponse;
+
+    this.countryService.doGetHighSchoolData()
+        .subscribe(
+          data => {
+            highSchoolResonse = data;
+              console.log("recived",highSchoolResonse.STATUS);
+              if(highSchoolResonse.STATUS===""){
+                alert(highSchoolResonse.STATUS+" : "+highSchoolResonse.MESSAGE);
+                this.onGetSchoolQualification();
+              }else{
+                alert(highSchoolResonse.STATUS+" : "+highSchoolResonse.MESSAGE);
+              }
+          } 
+        );
+  }
+
   onDeleteQualification() {
 
    var selectedNodes = this.api.getSelectedNodes();
    if(selectedNodes.length === 0){
-
     // alert("Please Select any row.");
-    
    }else{
     this.api.removeItems(selectedNodes);
    }
-   
-  //  }
   }
 
   onPressEducationalEnter(e)
@@ -479,8 +493,6 @@ export class EmployeeComponent implements OnInit {
       const highSchool = new HighSchoolModel();
       const selectedNodes = this.api.getSelectedNodes();
       const selectedData = selectedNodes.map(node => node.data);
-      // console.log("selected",selectedData);
-      // var countryService : CountryService;
       var highSchoolResonse : HighSchoolResponse;
       var dataTest: Object;
       selectedData.map(node => dataTest = node as Object);
@@ -509,17 +521,17 @@ export class EmployeeComponent implements OnInit {
           data => {
             highSchoolResonse = data;
               console.log("recived",highSchoolResonse.STATUS);
-              alert(highSchoolResonse.STATUS+" : "+highSchoolResonse.MESSAGE);
+              if(highSchoolResonse.STATUS===""){
+                alert(highSchoolResonse.STATUS+" : "+highSchoolResonse.MESSAGE);
+                this.onGetSchoolQualification();
+              }else{
+                alert(highSchoolResonse.STATUS+" : "+highSchoolResonse.MESSAGE);
+              }
           } 
         );
       }
     }
   }
-
- 
-
-
-
 
   onSave() {
 

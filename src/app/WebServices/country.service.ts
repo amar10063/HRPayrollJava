@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { ServiceUrls } from './ServiceUrls';
 import { Injectable } from '@angular/core';
 import { CountryBody } from '../SystemAdministration/country/CountryBody';
-import { HighSchoolModel } from '../HRPayroll/employee/highSchoolModel';
+import { HighSchoolModel } from '../HRPayroll/Education/HighSchoolModel';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +23,10 @@ export class CountryService {
 
   doHighSchoolSave(highSchool: HighSchoolModel): Observable<any> { 
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.highSchoolApi, JSON.stringify(highSchool), this.httpOptions);
+  }
+
+  doGetHighSchoolData(): Observable<any> { 
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getSchoolDataApi, this.httpOptions);
   }
   
 }
