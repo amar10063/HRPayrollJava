@@ -20,3 +20,6 @@
 #setup #payrollDetail .navbar-nav li:last-child{border-right: 0}
 #setup #payrollDetail .navbar-nav li a{ text-align:center !important; padding:8px 6px !important}
 #setup #payrollDetail .tab-content{min-height:380px}
+.errorRed{
+  outline: 1px solid  red !important;
+}

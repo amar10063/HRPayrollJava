@@ -342,3 +342,24 @@ td.textHighlight {
   color: #1f4c50;
   font-size: 10px;
 }
+
+#basic p {
+color: #398d94;
+margin-bottom: 0px !important;
+font-size:10px!important
+
+}
+
+.employeebkgcolour1 {
+  background-color: #e7eeef;
+  border-radius: 5px;
+  padding: 12px 47px 12px 0px;
+}
+
+.empDetail label{
+  margin-bottom: 3px;
+  font-weight: bold !important; 
+  color: #184144;}
+  .gridBody .border-secondary, .gridBody .btn-outline-secondary {
+    padding: 2px 4px 4px;
+}
