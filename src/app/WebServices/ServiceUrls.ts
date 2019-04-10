@@ -6,6 +6,9 @@ export class ServiceUrls {
     public static saveState = '/AddState';
     public static savePostal = '/AddPostalCode';
     public static deleteCountry = '/DeleteCountry';
-    public static getState ='/getState';
-    public static getCity ='/getCity';
+    public static getState = '/getState';
+    public static getCity = '/getCity';
+    public static getAllDesignation = '/getDesignation';
+    static getAllDepartment: '/getDepartment';
+    static getLocation: '/getLocation';
 }
