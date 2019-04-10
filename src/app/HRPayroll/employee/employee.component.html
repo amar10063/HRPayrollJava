@@ -365,12 +365,12 @@
                   <div class="col-12 col-md-6 p-0">
                     <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Location:</label>
                     <select class="form-control addrCon formSelect col-7 col-md-7" [(ngModel)]="selectedLevel" 
-                      id="type" name="type" (change)="selectedDesignation($event)" formControlName="location"
+                      id="type" name="type" formControlName="location"
                       [ngClass]="{'is-invalid': submitted && f.location.errors}"
                       style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
-                      <option [value]="location" *ngFor="let location of locationResponse;let i = index"
+                      <option [value]="location" *ngFor="let location of locationResponse; let i = index"
                         [attr.selected]="i">
-                        {{location.LocationName}}</option>
+                        {{location.locationName}}</option>
 
                     </select>
 
