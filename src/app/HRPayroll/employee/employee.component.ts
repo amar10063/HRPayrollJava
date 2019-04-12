@@ -1,13 +1,18 @@
+import { GridApi, ColumnApi, CellComp } from 'ag-grid-community';
+import { HighSchoolModel } from '../Education/HighSchoolModel';
+import { HighSchoolResponse } from '../Education/HighSchoolResponse';
+
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { from } from 'rxjs';
-import { CountryService } from 'src/app/WebServices/country.service';
+import { AllWeb } from "src/app/WebServices/AllWeb.service";
 import { DesignationResponse } from './EmployeeApiResponse/DesignationResponse';
 import { GetAllDepartmentBody } from './EmployeeApiResponse/GetAllDepartmentBody';
 import { DepartmentResponse } from './EmployeeApiResponse/DepartmentResponse';
 import { GetAllDesignationBody } from './EmployeeApiResponse/GetAllDesignationBody';
-import { LocationResponse } from './EmployeeApiResponse/LocationResponse';
+import { GetAllLocationResponse } from './EmployeeApiResponse/GetAllLocationResponse';
 import { GetLocationBody } from 'src/app/SystemAdministration/organization/GetLocationBody';
+
 
 @Component({
   selector: 'app-employee',
@@ -17,6 +22,11 @@ import { GetLocationBody } from 'src/app/SystemAdministration/organization/GetLo
 export class EmployeeComponent implements OnInit {
   basicDetailsForm: FormGroup;
   titles = ['Mr', 'Miss', 'Mrs'];
+
+  addressApi: GridApi;
+  addressColumnApi: ColumnApi;
+
+  rowSelection: string;
 
   submitted = false;
   designationResponse: DesignationResponse[];
@@ -59,60 +69,257 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs1 = [
 
-    { headerName: 'Status', field: 'status', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'Address', field: 'address', editable: true, width: 150 },
-    { headerName: 'City', field: 'city', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'State', field: 'state', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'Country', field: 'country', sortable: true, filter: true, editable: true, width: 90 },
-    { headerName: 'Postal Code', field: 'pin', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'Contact No.', field: 'ContactNo', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'Email ID', field: 'EmailID', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'Emergency Contact Person', field: 'EmergencyContactPerson', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'Emergency Contact No', field: 'EmergencyContactNo', sortable: true, filter: true, editable: true, width: 120 },
+    {
+      headerName: 'Status', field: 'status', sortable: true, filter: true, editable: true, width: 100,
+
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+
+    },
+    {
+      headerName: 'Address', field: 'address', editable: true, width: 150,
+
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+    {
+      headerName: 'City', field: 'city', sortable: true, filter: true, editable: true, width: 100,
+
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+
+    },
+    {
+      headerName: 'State', field: 'state', sortable: true, filter: true, editable: true, width: 100,
+
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+
+    },
+
+    {
+      headerName: 'Country', field: 'country', sortable: true, filter: true, editable: true, width: 90,
+
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+    {
+      headerName: 'Postal Code', field: 'pin', sortable: true, filter: true, editable: true, width: 100,
+
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+
+    },
+    {
+      headerName: 'Contact No.', field: 'ContactNo', sortable: true, filter: true, editable: true, width: 100,
+
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+    {
+      headerName: 'Email ID', field: 'EmailID', sortable: true, filter: true, editable: true, width: 120,
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+    {
+      headerName: 'Emergency Contact Person', field: 'EmergencyContactPerson', sortable: true, filter: true, editable: true, width: 120,
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+    {
+      headerName: 'Emergency Contact No', field: 'EmergencyContactNo', sortable: true, filter: true, editable: true, width: 120,
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
 
 
   ];
 
   rowData1 = [
-    { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Permanent', ContactNo: '0987654321', EmailID: 'abcd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
-    { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '9876543210', EmailID: 'bcd@gmail.com', EmergencyContactPerson: 'Fateh Singh', EmergencyContactNo: '8459267584' },
-    { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Current', ContactNo: '0987654321', EmailID: 'abc@gmail.com', EmergencyContactPerson: 'Himanshu', EmergencyContactNo: '8459267584' },
-    { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Permanent', ContactNo: '0987654321', EmailID: 'abcd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
-    { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '0987654321', EmailID: 'abc@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
-    { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Current', ContactNo: '8765432100', EmailID: 'abd@gmail.com9', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
-    { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '0987654321', EmailID: 'acd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
+    // { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Permanent', ContactNo: '0987654321', EmailID: 'abcd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
+    // { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '9876543210', EmailID: 'bcd@gmail.com', EmergencyContactPerson: 'Fateh Singh', EmergencyContactNo: '8459267584' },
+    // { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Current', ContactNo: '0987654321', EmailID: 'abc@gmail.com', EmergencyContactPerson: 'Himanshu', EmergencyContactNo: '8459267584'},
+    // { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Permanent', ContactNo: '0987654321', EmailID: 'abcd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584'},
+    // { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '0987654321', EmailID: 'abc@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
+    // { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Current', ContactNo: '8765432100', EmailID: 'abd@gmail.com9', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
+    // { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '0987654321', EmailID: 'acd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
   ];
 
 
   columnDefs2 = [
 
-    { headerName: 'Class', field: 'Class', editable: true, width: 120 },
-    { headerName: 'Board', field: 'Board', sortable: true, filter: true, editable: true, width: 150 },
-    { headerName: 'School Name', field: 'SchoolName', sortable: true, filter: true, editable: true, width: 152 },
-    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, editable: true, width: 150 },
+
+    {
+      headerName: 'Class', field: 'Class', width: 120, editable: true,
+      cellStyle: function (params) {
+        if (params.value === '') {
+          // bordercolor: 'red'
+          // alert("Enter Class Name");
+
+          return { outline: '1px solid red' };
+
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+    {
+      headerName: 'Board', field: 'Board', sortable: true, filter: true, width: 150, editable: true,
+      cellStyle: function (params) {
+        if (params.value === '') {
+          // bordercolor: 'red'
+          // alert("Enter Board Name");
+
+          return { outline: '1px solid red' };
+
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+    {
+      headerName: 'School Name', field: 'SchoolName', sortable: true, filter: true, width: 152, editable: true,
+      cellStyle: function (params) {
+        if (params.value === '') {
+          // bordercolor: 'red'
+          // alert("Enter School Name");
+
+          return { outline: '1px solid red' };
+
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+
+    {
+      headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, width: 120, editable: true,
+      cellStyle: function (params) {
+        if (params.value === '') {
+          // bordercolor: 'red'
+          // alert("Enter Start Date");
+
+          return { outline: '1px solid red' };
+
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+    {
+      headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, width: 120, editable: true,
+      cellStyle: function (params) {
+        if (params.value === '') {
+          // bordercolor: 'red'
+          // alert("Enter End Date");
+
+          return { outline: '1px solid red' };
+
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+
+    {
+      headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, width: 150, editable: true,
+      cellStyle: function (params) {
+        if (params.value === '') {
+          // bordercolor: 'red'
+          // alert("Enter Percentage");
+
+          return { outline: '1px solid red' };
 
 
-
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
   ];
 
   rowData2 = [
-    { Class: '10', Board: 'CBSE', SchoolName: 'DPSG', StartDate: '10-03-2010', EndDate: '10-03-2011', percentage: '74 %' },
-    { Class: '12', Board: 'CBSE', SchoolName: 'DPSG', StartDate: '10-03-2012', EndDate: '10-03-2013', percentage: '72 %' },
+    // { Class: '10', Board: 'CBSE', SchoolName: 'DPSG', StartDate: '10-03-2010', EndDate: '10-03-2011', percentage: '74 %' },
+    // { Class: '12', Board: 'CBSE', SchoolName: 'DPSG', StartDate: '10-03-2012', EndDate: '10-03-2013', percentage: '72 %' },
+
   ];
-
-
 
   columnDefs4 = [
 
-    { headerName: 'Degree', field: 'Degree', filter: true, editable: true, width: 120 },
+    { headerName: 'Degree', field: 'Degree', width: 120 },
     { headerName: 'Specialization', field: 'specialization', sortable: true, filter: true, width: 160 },
+
     { headerName: 'University', field: 'university', sortable: true, filter: true, editable: true, width: 160 },
     { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, editable: true, width: 125 },
     { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, editable: true, width: 125 },
     { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, editable: true, width: 120 },
-
+    { headerName: '', width: 130 }
 
 
   ];
@@ -124,13 +331,14 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs5 = [
 
+
     { headerName: 'Degree', field: 'Degree', editable: true, width: 120 },
     { headerName: 'Specialization', field: 'specialization', sortable: true, filter: true, editable: true, width: 160 },
     { headerName: 'University', field: 'university', sortable: true, filter: true, editable: true, width: 160 },
     { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, editable: true, width: 125 },
     { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, editable: true, width: 125 },
     { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, editable: true, width: 120 },
-
+    { headerName: '', width: 130 }
 
 
   ];
@@ -143,12 +351,12 @@ export class EmployeeComponent implements OnInit {
   columnDefs6 = [
 
     { headerName: 'Degree', field: 'Degree', width: 120 },
-    { headerName: 'Specialization', field: 'specialization', sortable: true, filter: true, editable: true, width: 162 },
+    { headerName: 'Specialization', field: 'specialization', sortable: true, filter: true, editable: true, width: 150 },
     { headerName: 'University', field: 'university', sortable: true, filter: true, editable: true, width: 160 },
-    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, editable: true, width: 125 },
-    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, editable: true, width: 125 },
-    { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, editable: true, width: 120 },
-
+    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, editable: true, width: 150 },
+    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, editable: true, width: 110 },
+    { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, editable: true, width: 100 },
+    { headerName: '', width: 145 }
 
 
   ];
@@ -160,13 +368,11 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs7 = [
 
-    { headerName: 'Institute', field: 'Institute', editable: true, width: 210 },
-    { headerName: 'Course', field: 'Course', sortable: true, filter: true, editable: true, width: 215 },
-    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, editable: true, width: 185 },
-    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, editable: true, width: 200 },
-
-
-
+    { headerName: 'Institute', field: 'Institute', editable: true, width: 120 },
+    { headerName: 'Course', field: 'Course', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: '', width: 458 }
 
   ];
 
@@ -178,14 +384,14 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs8 = [
 
-    { headerName: 'Company Name', field: 'CompanyName', editable: true, width: 210 },
-    { headerName: 'Designation', field: 'Designation', sortable: true, filter: true, editable: true, width: 215 },
-    { headerName: 'Department', field: 'Department', sortable: true, filter: true, editable: true, width: 185 },
-    { headerName: 'Joining Date', field: 'JoiningDate', sortable: true, filter: true, editable: true, width: 200 },
-    { headerName: 'Exit Date', field: 'ExitDate', sortable: true, filter: true, editable: true, width: 200 },
-    { headerName: 'Experience', field: 'Experience', sortable: true, filter: true, editable: true, width: 200 },
-    { headerName: 'Location', field: 'Location', sortable: true, filter: true, editable: true, width: 200 },
 
+    { headerName: 'Company Name', field: 'CompanyName', editable: true, width: 130 },
+    { headerName: 'Designation', field: 'Designation', sortable: true, filter: true, editable: true, width: 130 },
+    { headerName: 'Department', field: 'Department', sortable: true, filter: true, editable: true, width: 160 },
+    { headerName: 'Joining Date', field: 'JoiningDate', sortable: true, filter: true, editable: true, width: 130 },
+    { headerName: 'Exit Date', field: 'ExitDate', sortable: true, filter: true, editable: true, width: 130 },
+    { headerName: 'Experience', field: 'Experience', sortable: true, filter: true, editable: true, width: 130 },
+    { headerName: 'Location', field: 'Location', sortable: true, filter: true, editable: true, width: 130 },
 
 
 
@@ -197,6 +403,7 @@ export class EmployeeComponent implements OnInit {
   ];
 
   columnDefs9 = [
+
 
     { headerName: 'Certificate Name', field: 'CertificateName', editable: true, width: 272 },
     { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, editable: true, width: 270 },
@@ -215,15 +422,14 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs10 = [
 
+
     { headerName: 'Type of Account', field: 'TypeofAccount', editable: true, width: 180 },
+
     { headerName: 'Account Holder Name', field: 'AccountHolderName', sortable: true, filter: true, editable: true, width: 180 },
-    { headerName: 'Account Number', field: 'AccountNumber', sortable: true, filter: true, editable: true, width: 150 },
-    { headerName: 'IFSC', field: 'IFSC', sortable: true, filter: true, editable: true, width: 150 },
+    { headerName: 'Account Number', field: 'AccountNumber', sortable: true, filter: true, editable: true, width: 160 },
+    { headerName: 'IFSC', field: 'IFSC', sortable: true, filter: true, editable: true, width: 160 },
     { headerName: 'Branch Name', field: 'BranchName', sortable: true, filter: true, editable: true, width: 140 },
-    { headerName: 'Primary', field: 'Primary', sortable: true, filter: true, editable: true, width: 80 },
-
-
-
+    { headerName: 'Primary', field: 'Primary', sortable: true, filter: true, editable: true, width: 120 },
 
 
   ];
@@ -236,6 +442,7 @@ export class EmployeeComponent implements OnInit {
   ];
 
   columnDefs11 = [
+
 
     { headerName: 'Passport No', field: 'PassportNo', sortable: true, filter: true, editable: true, width: 230 },
     { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, editable: true, width: 200 },
@@ -250,6 +457,7 @@ export class EmployeeComponent implements OnInit {
   ];
 
   columnDefs12 = [
+
 
     { headerName: 'Country', field: 'Country', sortable: true, filter: true, editable: true, width: 170 },
     { headerName: 'Number Of Visit', field: 'NumberOfVisit', sortable: true, filter: true, editable: true, width: 170 },
@@ -266,6 +474,7 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs13 = [
 
+
     { headerName: 'Documents', field: 'Documents', editable: true, width: 160 },
     { headerName: 'Curriculum Vitae', field: 'CurriculumVitae', sortable: true, filter: true, editable: true, width: 160 },
     { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, editable: true, width: 160 },
@@ -281,6 +490,7 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs14 = [
 
+
     { headerName: 'Driving Licence Number', field: 'DrivingLicence', sortable: true, filter: true, editable: true, width: 220 },
     { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, editable: true, width: 200 },
     { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, editable: true, width: 210 },
@@ -294,6 +504,7 @@ export class EmployeeComponent implements OnInit {
   ];
 
   columnDefs15 = [
+
 
     { headerName: 'Medical Certificate', field: 'MedicalCertificate', sortable: true, filter: true, editable: true, width: 230 },
     { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, editable: true, width: 200 },
@@ -324,17 +535,22 @@ export class EmployeeComponent implements OnInit {
     { ClassDegree: 'MCA', BoardUniversity: 'AKTU', StartDate: '03-04-2016', EndDate: '03-04-2018', UploadDocument: '' },
   ];
   departmentResponse: DepartmentResponse[];
-  locationResponse: LocationResponse[];
+  locationResponse;
   selectedLocationIndex: number;
   selectedDepartmentIndex: number;
-  constructor(private formBuilder: FormBuilder, private countryService: CountryService) {
 
-  }
   public show: boolean = false;
   public hide: boolean = true;
   public buttonName: any = 'Add New';
 
 
+
+  constructor(private formBuilder: FormBuilder, private countryService: AllWeb) {
+    this.rowSelection = 'single';
+  }
+
+  api: GridApi;
+  columnApi: ColumnApi;
   ngOnInit() {
 
     this.basicDetailsForm = this.formBuilder.group({
@@ -352,6 +568,17 @@ export class EmployeeComponent implements OnInit {
     // this.getAllDepartment('1', 2);
     // this.getAllDesignation('1', 1);
 
+  }
+  onAddressGridReady(params) {
+    this.addressApi = params.api;
+    this.addressColumnApi = params.columnApi;
+  }
+  onAddAddress() {
+    alert("add");
+    let res = this.addressApi.updateRowData({ add: [{ address: '', city: '', state: '', country: '', pin: '', status: '', ContactNo: '', EmailID: '', EmergencyContactPerson: '', EmergencyContactNo: '' }] });
+    res.add.forEach(function (rowNode) {
+      console.log('Added Row Node', rowNode);
+    });
   }
   getLocation(UserID: number) {
     var locationBody = new GetLocationBody();
@@ -384,7 +611,7 @@ export class EmployeeComponent implements OnInit {
   getAllDesignation(UserID: string, DepartmentID: number) {
     var designationBody = new GetAllDesignationBody();
     designationBody.userID = UserID;
-    designationBody.DepartmentID = DepartmentID+'';
+    designationBody.DepartmentID = DepartmentID + '';
 
     this.countryService.getAllDesignation(designationBody)
       .subscribe(
@@ -417,6 +644,110 @@ export class EmployeeComponent implements OnInit {
 
 
 
+  onAddQualification() {
+    //this.api.setFocusedCell(this.count, "Class");
+    //this.api.setFocusedCell(1, "school");
+    // this.count++;
+    let res = this.api.updateRowData({ add: [{ class: 'High School' }] });
+    res.add.forEach(function (rowNode) {
+      console.log('Added Row Node', rowNode);
+    });
+  }
+  onGridSchoolReady(params) {
+    this.api = params.api;
+    this.columnApi = params.columnApi;
+  }
+  onSelectionChanged() {
+    const selectedRows = this.api.getSelectedRows();
+    let selectedRowsString = '';
+    selectedRows.forEach(function (selectedRow, index) {
+      if (index !== 0) {
+        selectedRowsString += ', ';
+      }
+      selectedRowsString += selectedRow.athlete;
+    });
+    document.querySelector('#selectedRows').innerHTML = selectedRowsString;
+  }
+
+  onGetSchoolQualification() {
+    var highSchoolResonse: HighSchoolResponse;
+
+    this.countryService.doGetHighSchoolData()
+      .subscribe(
+        data => {
+          highSchoolResonse = data;
+          console.log("recived", highSchoolResonse.STATUS);
+          if (highSchoolResonse.STATUS === "") {
+            alert(highSchoolResonse.STATUS + " : " + highSchoolResonse.MESSAGE);
+            this.onGetSchoolQualification();
+          } else {
+            alert(highSchoolResonse.STATUS + " : " + highSchoolResonse.MESSAGE);
+          }
+        }
+      );
+  }
+
+  onDeleteQualification() {
+
+    var selectedNodes = this.api.getSelectedNodes();
+    if (selectedNodes.length === 0) {
+      // alert("Please Select any row.");
+    } else {
+      this.api.removeItems(selectedNodes);
+    }
+  }
+
+  onPressEducationalEnter(e) {
+    const keyPressed = e.event.key;
+    if (keyPressed === 'Enter') {
+      alert("Do you want to save the data.");
+      const highSchool = new HighSchoolModel();
+      const selectedNodes = this.api.getSelectedNodes();
+      const selectedData = selectedNodes.map(node => node.data);
+      var highSchoolResonse: HighSchoolResponse;
+      var dataTest: Object;
+      selectedData.map(node => dataTest = node as Object);
+      highSchool.ClassName = dataTest['Class'];
+      highSchool.BoardName = dataTest['Board'];
+      highSchool.SchoolName = dataTest['SchoolName'];
+      highSchool.Percentage = dataTest['percentage'];
+      highSchool.EndDate = dataTest['EndDate'];
+      highSchool.StartDate = dataTest['StartDate'];
+      if (dataTest['Class'] === '') {
+        alert("Enter Class");
+      } else if (dataTest['Board'] === '') {
+        alert("Enter Board");
+      } else if (dataTest['SchoolName'] === '') {
+        alert("Enter School Name");
+      } else if (dataTest['StartDate'] === '') {
+        alert("Enter Start Date");
+      } else if (dataTest['EndDate'] === '') {
+        alert("Enter End Date");
+      } else if (dataTest['percentage'] === '') {
+        alert("Enter Percentage");
+      } else {
+        console.log("Sending Data", highSchool);
+        this.countryService.doHighSchoolSave(highSchool)
+          .subscribe(
+            data => {
+              highSchoolResonse = data;
+              console.log("recived", highSchoolResonse.STATUS);
+              if (highSchoolResonse.STATUS === "") {
+                alert(highSchoolResonse.STATUS + " : " + highSchoolResonse.MESSAGE);
+                this.onGetSchoolQualification();
+              } else {
+                alert(highSchoolResonse.STATUS + " : " + highSchoolResonse.MESSAGE);
+              }
+            }
+          );
+      }
+    }
+  }
+
+
+
+
+
   showhide() {
     this.show = true;
     this.hide = false;
@@ -424,6 +755,7 @@ export class EmployeeComponent implements OnInit {
   showhide2() {
     this.show = false;
     this.hide = true;
+
 
   }
   get f() { return this.basicDetailsForm.controls; }

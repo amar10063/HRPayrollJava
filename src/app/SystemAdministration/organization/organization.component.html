@@ -91,7 +91,7 @@
               <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData1"
               [columnDefs]="columnDefs1" [animateRows]="true" [rowSelection]="rowSelection"
               (selectionChanged)="onSelectionChanged($event)" (gridReady)="onGridDepartmentReady($event)" (cellKeyDown)="
-              onCellKeyDepartmentDown($event)"></ag-grid-angular>
+              onCellKeyDepartmentDown($event)"#agGrid></ag-grid-angular>
   
             </div>
             <div class="row mb-1" >
