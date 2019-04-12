@@ -24,11 +24,8 @@ import { OrganizationComponent } from './SystemAdministration/organization/organ
 import { PayrollComponent } from './SystemAdministration/payroll/payroll.component';
 import { TaxComponent } from './SystemADministration/tax/tax.component';
 import { GeneralComponent } from './SystemAdministration/general/general.component';
-<<<<<<< HEAD
 import { LocationDropdownComponent } from './location-dropdown/location-dropdown.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-=======
->>>>>>> f1c79062c2985871e8e665abc02435b62b94bf77
 
 
 
