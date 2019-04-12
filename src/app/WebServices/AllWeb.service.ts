@@ -27,6 +27,7 @@ import { GetCityBody } from '../SystemAdministration/country/CityDetails/GetCity
 import { GetCityResponse } from '../SystemAdministration/country/CityDetails/GetCityResponse';
 import { GetAllDesignationBody } from '../HRPayroll/employee/EmployeeApiResponse/GetAllDesignationBody';
 import { GetAllDepartmentBody } from '../HRPayroll/employee/EmployeeApiResponse/GetAllDepartmentBody';
+import { GetAllLocationResponse } from '../HRPayroll/employee/EmployeeApiResponse/GetAllLocationResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -49,8 +50,8 @@ export class CountryService {
   doLocation(locationBody: LocationBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddLocation, JSON.stringify(locationBody), this.httpOptions);
   }
-  doGetLocation(getLocationBody: GetLocationBody): Observable<any> {
-    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getLocation, JSON.stringify(getLocationBody), this.httpOptions);
+  doGetLocation(getLocationBody: GetLocationBody): Observable<GetAllLocationResponse[]> {
+    return this.httpClient.post<GetAllLocationResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getLocation, JSON.stringify(getLocationBody), this.httpOptions);
   }
   getAllDepartment(departmentBody: GetAllDepartmentBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getAllDepartment, JSON.stringify(departmentBody), this.httpOptions);
