@@ -18,4 +18,6 @@ export class ServiceUrls {
     public static getAllDesignation = '/getDesignation';
     public static getAllDepartment = '/getDepartment';
 
+    //kcjjdhcj
+
 }
