@@ -1,0 +1,7 @@
+ <div><select class="addrCon formSelect" [(ngModel)]="selectedLevel" id="type" name="type"
+    style="background:#ffffffff !important; border:1px solid #ffffffff !important">
+    <option [value]="location" *ngFor="let location of locationResponse; let i = index" [attr.selected]="i">
+      {{location.name}}</option>
+  </select>
+
+</div> 
