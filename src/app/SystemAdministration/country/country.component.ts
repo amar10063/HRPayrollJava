@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GridApi, ColumnApi, CellComp } from 'ag-grid-community';
-import { CountryService } from 'src/app/WebServices/country.service';
+import { CountryService } from 'src/app/WebServices/AllWeb.service';
 import { CountryBody } from './CountryDetails/CountryBody';
 import { CountryResponse } from './CountryDetails/CountryResponse';
 import { CityBody } from './CityDetails/CityBody';

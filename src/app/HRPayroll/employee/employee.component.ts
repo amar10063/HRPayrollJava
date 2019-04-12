@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { from } from 'rxjs';
-import { CountryService } from 'src/app/WebServices/country.service';
+import { CountryService } from 'src/app/WebServices/AllWeb.service';
 import { DesignationResponse } from './EmployeeApiResponse/DesignationResponse';
 import { GetAllDepartmentBody } from './EmployeeApiResponse/GetAllDepartmentBody';
 import { DepartmentResponse } from './EmployeeApiResponse/DepartmentResponse';
@@ -324,7 +324,7 @@ export class EmployeeComponent implements OnInit {
     { ClassDegree: 'MCA', BoardUniversity: 'AKTU', StartDate: '03-04-2016', EndDate: '03-04-2018', UploadDocument: '' },
   ];
   departmentResponse: DepartmentResponse[];
-  locationResponse: GetAllLocationResponse[];
+  locationResponse;
   selectedLocationIndex: number;
   selectedDepartmentIndex: number;
   constructor(private formBuilder: FormBuilder, private countryService: CountryService) {

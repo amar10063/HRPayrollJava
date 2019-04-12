@@ -26,7 +26,8 @@ import { OrganizationComponent } from './SystemAdministration/organization/organ
 import { PayrollComponent } from './SystemAdministration/payroll/payroll.component';
 import { TaxComponent } from './SystemADministration/tax/tax.component';
 import { GeneralComponent } from './SystemAdministration/general/general.component';
-// import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { LocationDropdownComponent } from './location-dropdown/location-dropdown.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 
 
@@ -53,16 +54,17 @@ import { GeneralComponent } from './SystemAdministration/general/general.compone
     PayrollComponent,
     TaxComponent,
     GeneralComponent,
+    LocationDropdownComponent,
 
   ],
   imports: [
-    AgGridModule.withComponents([]), 
+    AgGridModule.withComponents([LocationDropdownComponent]), BsDropdownModule.forRoot(),
     BrowserModule, ReactiveFormsModule, FormsModule,
     AppRoutingModule,
     HttpClientModule
 
   ],
-  providers: [BasicdetailsserviceService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }],
+  providers: [BasicdetailsserviceService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }], entryComponents: [LocationDropdownComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { GridApi, ColumnApi, CellComp } from 'ag-grid-community';
+import { GridApi, ColumnApi, CellComp, GridOptions } from 'ag-grid-community';
 
 import { LocationBody } from '../organization/LocationBody';
 import { DepartmentBody } from '../organization/DepartmentBody';
 import { DesignationBody } from '../organization/DesignationBody';
-import { CountryService } from 'src/app/WebServices/country.service';
+import { CountryService } from 'src/app/WebServices/AllWeb.service';
 import { LocationResponse } from './LocationResponse';
 import { DepartmentResponse } from './DepartmentResponse';
 import { from } from 'rxjs';
@@ -14,6 +14,7 @@ import { DeleteLocationBody } from './DeleteLocationBody';
 import { DeleteDepartmentBody } from './DeleteDepartmentBody';
 import { DeleteDesignationBody } from './DeleteDesignationBody';
 import { GetAllLocationResponse } from 'src/app/HRPayroll/employee/EmployeeApiResponse/GetAllLocationResponse';
+import { LocationDropdownComponent } from 'src/app/location-dropdown/location-dropdown.component';
 
 
 @Component({
@@ -34,6 +35,7 @@ export class OrganizationComponent implements OnInit {
   locationResponse: LocationResponse;
   departmentResponse: DepartmentResponse;
   designationResponse: DesignationResponse;
+  private frameworkComponents;
 
   rowSelection: string;
   columnDefs: any; columnDefs1: any;
@@ -41,8 +43,10 @@ export class OrganizationComponent implements OnInit {
   rowData: any; rowData1: any;
   rowData2: any;
   getAllLocationResponse: GetAllLocationResponse[];
+  gridOptions: GridOptions;
 
   constructor(private countryService: CountryService) {
+    this.frameworkComponents = { genderCellRenderer: LocationDropdownComponent };
 
     this.columnDefs = [
       {
@@ -54,7 +58,6 @@ export class OrganizationComponent implements OnInit {
             return { outline: 'white' };
           }
         }
-
       },
       {
         headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, editable: true, width: 120,
@@ -91,19 +94,12 @@ export class OrganizationComponent implements OnInit {
     this.rowData;
     this.columnDefs1 = [
       {
-        headerName: 'Location Name', field: 'LocationName', sortable: true, editable: true, filter: true, width: 120,
-        cellEditor: 'agSelectCellEditor',
-        cellEditorParams: {
-          values: this.getAllLocationResponse
-        }, cellRenderer: function (params) {
-         
-          return params.data;
-        }
+        headerName: 'Location Name', field: 'LocationName', sortable: true,  filter: true, width: 120,
+        cellRendererFramework: LocationDropdownComponent
       },
 
       {
         headerName: 'Department Code', field: 'DepartmentCode', sortable: true, editable: true, filter: true, width: 140,
-
         cellStyle: function (params) {
           if (params.value === '') {
             // bordercolor: 'red'
@@ -156,11 +152,6 @@ export class OrganizationComponent implements OnInit {
     ];
 
     this.rowData1 = [
-      { LocationName: 'Noida', DepartmentCode: '001', DepartmentName: 'IT', Description: 'IT description' },
-      { LocationName: 'Gurgaon', DepartmentCode: '002', DepartmentName: 'Accounts', Description: 'Accounts description' },
-      { LocationName: 'Faridabad', DepartmentCode: '003', DepartmentName: 'Finance', Description: 'Finance description' },
-      { LocationName: 'Delhi', DepartmentCode: '004', DepartmentName: 'AX', Description: 'AX description' },
-      { LocationName: 'Ghaziabad', DepartmentCode: '005', DepartmentName: 'Management', Description: 'Management description' }
     ];
 
     this.columnDefs2 = [
@@ -243,12 +234,6 @@ export class OrganizationComponent implements OnInit {
     ];
 
     this.rowData2 = [
-      { LocationName: 'Noida', DepartmentName: 'IT', DesignationCode: '001', DesignationName: 'Software Developer', Description: 'IT description' },
-      { LocationName: 'Gurgaon', DepartmentName: 'Accounts', DesignationCode: '002', DesignationName: 'Accountant', Description: 'Accounts description' },
-      { LocationName: 'Faridabad', DepartmentName: 'Finance', DesignationCode: '003', DesignationName: 'CA', Description: 'Finance description' },
-      { LocationName: 'Delhi', DepartmentName: 'AX', DesignationCode: '004', DesignationName: 'Technical', Description: 'AX description' },
-      { LocationName: 'Ghaziabad', DepartmentName: 'Management', DesignationCode: '005', DesignationName: 'Manager', Description: 'Management description' }
-
     ];
   }
 
@@ -260,7 +245,7 @@ export class OrganizationComponent implements OnInit {
   count = 1;
 
   ngOnInit() {
-    this.getAllLocationResponse = this.getAllLocation();
+    // this.getAllLocationResponse = this.getAllLocation();
 
   }
   onAddLocation() {
@@ -287,14 +272,18 @@ export class OrganizationComponent implements OnInit {
   onGridLocationReady(params) {
     this.api = params.api;
     this.columnApi = params.columnApi;
+    params.api.sizeColumnsToFit();
   }
   onGridDepartmentReady(params) {
     this.departmentApi = params.api;
     this.departmentColumnApi = params.columnApi;
+    this.gridOptions = params.gridOptions;
+    params.api.sizeColumnsToFit();
   }
   onGridDesignationReady(params) {
     this.designationApi = params.api;
     this.designationColumnApi = params.columnApi;
+    params.api.sizeColumnsToFit();
   }
   onSelectionChanged() {
     const selectedRows = this.api.getSelectedRows();
@@ -442,8 +431,8 @@ export class OrganizationComponent implements OnInit {
                 this.countryService.doGetLocation(getLocationBody)
                   .subscribe(
                     data => {
-                      this.locationResponse = data;
-                      this.rowData = this.locationResponse;
+                      //  this.locationResponse = data;
+                      //  this.rowData = this.locationResponse;
                     }
                   )
               }
@@ -557,57 +546,13 @@ export class OrganizationComponent implements OnInit {
     }
   }
 
-  getAllLocation(): any {
-    var locationBody = new GetLocationBody();
-    locationBody.userID = 1;
-    this.countryService.doGetLocation(locationBody)
-      .subscribe(
-        data => {
-          this.getAllLocationResponse = data;
-          return this.getAllLocationResponse;
-        }
 
-      );
-  }
-  extractValues(mappings) {
-    var newMappings: GetAllLocationResponse[];
-    newMappings = mappings;
-    return newMappings.values.name;
 
-  };
 
-}
-var gridOptions = {
-  components: {
-    countryCellRenderer: CountryCellRenderer
-  }
-};
-function CountryCellRenderer(params) {
-  return params.value.name;
 }
 
 
 
 
-function lookupValue(mappings, key) {
-  return mappings[key];
-};
 
-function lookupKey(mappings, name) {
-  for (var key in mappings) {
-    if (mappings.hasOwnProperty(key)) {
-      if (name === mappings[key]) {
-        return key;
-      }
-    }
-  }
-};
 
-var locationMappings;
-var departmentMappings = {
-  it: "IT",
-  f: "Finance",
-  s: "Sales",
-  mkt: "Marketing",
-  hr: "HR"
-}; 
