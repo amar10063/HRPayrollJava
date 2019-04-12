@@ -22,8 +22,7 @@ export class EmployeeComponent implements OnInit {
   basicDetailsForm: FormGroup;
   titles = ['Mr', 'Miss', 'Mrs'];
 
-  basicDetailsForm: FormGroup;
-  basicDetailsResponse: BasicDetailsResponse;
+  
   highSchoolResponse : HighSchoolResponse;
   submitted = false;
   designationResponse: DesignationResponse[];
@@ -418,9 +417,7 @@ export class EmployeeComponent implements OnInit {
   locationResponse;
   selectedLocationIndex: number;
   selectedDepartmentIndex: number;
-  constructor(private formBuilder: FormBuilder, private countryService: CountryService) {
-
-  }
+  
   public show: boolean = false;
   public hide: boolean = true;
   public buttonName: any = 'Add New';
@@ -615,27 +612,7 @@ export class EmployeeComponent implements OnInit {
     }
   }
 
-  onSave() {
-
-    alert("Save Clicked");
-    this.submitted = true;
-    if (this.basicDetailsForm.invalid) {
-      return;
-    }
-    else {
-      const basicDetails = new BasicDetails();
-
-      // this.basicDetailsService.doSave(basicDetails)
-      //   .subscribe(
-      //     data => {
-      //       this.basicDetailsResponse = data;
-      //       alert("api hits");
-      //     }
-      //   )
-    }
-
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.basicDetailsForm.value));
-  }
+ 
 
 
 
