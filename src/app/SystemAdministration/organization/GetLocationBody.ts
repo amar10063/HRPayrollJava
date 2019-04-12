@@ -1,3 +1,3 @@
 export class GetLocationBody{
-    userID:number;
+    userID:number=1;
 }

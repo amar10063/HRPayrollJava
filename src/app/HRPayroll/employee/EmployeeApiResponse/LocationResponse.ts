@@ -1,6 +1,6 @@
 export class LocationResponse {
-    locationID: number;
-    locationName: string;
-    locationCode: string;
-    locationDescription: string;
+    ID: number;
+    Name: string;
+    Code: string;
+    Description: string;
 }

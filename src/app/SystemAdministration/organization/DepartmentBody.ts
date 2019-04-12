@@ -1,6 +1,6 @@
 export class DepartmentBody {
   
-    LocationID:number=1;
+    LocationID:number=2;
     DepartmentCode:string;
     DepartmentName:string;
     Description: string;

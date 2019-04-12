@@ -9,6 +9,7 @@ import{DepartmentResponse} from './DepartmentResponse';
 import { from } from 'rxjs';
 import { DesignationResponse } from './DesignationResponse';
 import {GetLocationBody} from './GetLocationBody';
+import {GetLocationResponse} from './GetLocationResponse';
 import { DeleteLocationBody } from './DeleteLocationBody';
 import {DeleteDepartmentBody} from './DeleteDepartmentBody';
 import {DeleteDesignationBody} from './DeleteDesignationBody';
@@ -35,13 +36,15 @@ export class OrganizationComponent implements OnInit {
   designationColumnApi: ColumnApi;
   
   locationResponse:LocationResponse;
+  getLocationResponse:GetLocationResponse;
   departmentResponse:DepartmentResponse;
   designationResponse:DesignationResponse;
+  selectedLocationIndex: number;
 
   rowSelection: string;
   columnDefs = [
     {
-      headerName: 'Location Code', field: 'LocationCode', sortable: true, filter: true, editable:true, width: 120,
+      headerName: 'Location Code', field: 'code', sortable: true, filter: true, editable:true, width: 120,
 
       cellStyle: function (params) {
         if (params.value === '') {
@@ -58,7 +61,7 @@ export class OrganizationComponent implements OnInit {
 
     },
     {
-      headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, editable:true, width: 120,
+      headerName: 'Location Name', field: 'name', sortable: true, filter: true, editable:true, width: 120,
 
       cellStyle: function (params) {
         if (params.value === '') {
@@ -75,7 +78,7 @@ export class OrganizationComponent implements OnInit {
 
     },
     {
-      headerName: 'Description', field: 'LocationDescription', sortable: true, filter: true, editable:true, width: 130,
+      headerName: 'Description', field: 'description', sortable: true, filter: true, editable:true, width: 130,
 
       cellStyle: function (params) {
         if (params.value === '') {
@@ -105,7 +108,7 @@ export class OrganizationComponent implements OnInit {
   //  ];
 
   columnDefs1 = [
-    { headerName: 'Location Name', field: 'LocationName', sortable: true, editable: true, filter: true, width: 120,
+    { headerName: 'Location Name', field: 'locationName', sortable: true, editable: true,singleClickEdit :true, filter: true, width: 120,
 
     cellEditor: "select",
     cellEditorParams: { values: extractValues(locationMappings) },
@@ -117,7 +120,7 @@ export class OrganizationComponent implements OnInit {
     },
   },
     
-    { headerName: 'Department Code', field: 'DepartmentCode', sortable: true, editable:true, filter: true, width: 140,
+    { headerName: 'Department Code', field: 'departmentCode', sortable: true, editable:true, filter: true, width: 140,
     
     cellStyle: function (params) {
       if (params.value === '') {
@@ -133,7 +136,7 @@ export class OrganizationComponent implements OnInit {
     }
 
   },
-    { headerName: 'Department Name', field: 'DepartmentName', sortable: true, editable:true, filter: true, width: 120,
+    { headerName: 'Department Name', field: 'departmentName', sortable: true, editable:true, filter: true, width: 120,
     
     cellStyle: function (params) {
       if (params.value === '') {
@@ -149,7 +152,7 @@ export class OrganizationComponent implements OnInit {
     }
 
   },
-    { headerName: 'Description', field: 'Description', sortable: true,editable:true, filter: true, width: 130, 
+    { headerName: 'Description', field: 'description', sortable: true,editable:true, filter: true, width: 130, 
     
     cellStyle: function (params) {
       if (params.value === '') {
@@ -169,15 +172,10 @@ export class OrganizationComponent implements OnInit {
   ];
 
   rowData1 = [
-    { LocationName: 'Noida', DepartmentCode: '001', DepartmentName: 'IT', Description:'IT description' },
-    { LocationName: 'Gurgaon', DepartmentCode: '002', DepartmentName: 'Accounts', Description:'Accounts description' },
-    { LocationName: 'Faridabad', DepartmentCode: '003', DepartmentName: 'Finance', Description:'Finance description' },
-    { LocationName: 'Delhi', DepartmentCode: '004', DepartmentName: 'AX', Description:'AX description' },
-    { LocationName: 'Ghaziabad', DepartmentCode: '005', DepartmentName: 'Management', Description:'Management description' }
-  ];
+    ];
 
   columnDefs2 = [
-    { headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, editable:true, width: 120,
+    { headerName: 'Location Name', field: 'locationName', sortable: true, filter: true,singleClickEdit :true, editable:true, width: 120,
 
     cellEditor: "select",
     cellEditorParams: { values: extractValues(locationMappings) },
@@ -189,7 +187,7 @@ export class OrganizationComponent implements OnInit {
     },
   },
     
-    { headerName: 'Department', field: 'DepartmentName', sortable: true, editable:true, filter: true, width: 120 ,
+    { headerName: 'Department', field: 'departmentName', sortable: true, editable:true,singleClickEdit :true, filter: true, width: 120 ,
 
     cellEditor: "select",
     cellEditorParams: { values: extractValues(departmentMappings) },
@@ -200,7 +198,7 @@ export class OrganizationComponent implements OnInit {
       return lookupKey(departmentMappings, params.newValue);
     },
   },
-    { headerName: 'Designation Code', field: 'DesignationCode', sortable: true, editable:true, filter: true, width: 140,
+    { headerName: 'Designation Code', field: 'designationCode', sortable: true, editable:true, filter: true, width: 140,
     
     cellStyle: function (params) {
       if (params.value === '') {
@@ -216,7 +214,7 @@ export class OrganizationComponent implements OnInit {
     }
 
   },
-    { headerName: 'Designation', field: 'DesignationName', sortable: true, editable:true, filter: true, width: 140 ,
+    { headerName: 'Designation', field: 'designationName', sortable: true, editable:true, filter: true, width: 140 ,
     
     cellStyle: function (params) {
       if (params.value === '') {
@@ -232,7 +230,7 @@ export class OrganizationComponent implements OnInit {
     }
 
   },
-    { headerName: 'Description', field: 'Description', sortable: true,editable:true, filter: true, width: 130,
+    { headerName: 'Description', field: 'description', sortable: true,editable:true, filter: true, width: 130,
 
     cellStyle: function (params) {
       if (params.value === '') {
@@ -252,12 +250,6 @@ export class OrganizationComponent implements OnInit {
   ];
 
   rowData2 = [
-    { LocationName: 'Noida', DepartmentName: 'IT', DesignationCode: '001', DesignationName:'Software Developer', Description:'IT description' },
-    { LocationName: 'Gurgaon', DepartmentName: 'Accounts', DesignationCode: '002', DesignationName:'Accountant', Description:'Accounts description' },
-    { LocationName: 'Faridabad', DepartmentName: 'Finance', DesignationCode: '003', DesignationName:'CA', Description:'Finance description' },
-    { LocationName: 'Delhi', DepartmentName: 'AX', DesignationCode: '004', DesignationName:'Technical', Description:'AX description' },
-    { LocationName: 'Ghaziabad', DepartmentName: 'Management', DesignationCode: '005', DesignationName:'Manager', Description:'Management description' }
-  
   ];
 
   
@@ -265,10 +257,12 @@ export class OrganizationComponent implements OnInit {
   public hide: boolean = true;
   public buttonName: any = 'Add New';
   
+  
     
   count = 1;
 
   ngOnInit() {
+    this.getLocation();
   }
   onAddLocation() {
    alert("add");
@@ -337,30 +331,65 @@ export class OrganizationComponent implements OnInit {
     document.querySelector('#selectedRows').innerHTML = selectedRowsString;
   }
 
-  onDeleteLocation() {
+  onDeleteLocation(id:number) {
    
       alert("Are you sure you want to delete this ?")
+      let i:number;
       const deleteLocationBody = new DeleteLocationBody();
+     // deleteLocationBody.locationID = locationID;
         const selectedNodes = this.api.getSelectedNodes();
-    
-      if(selectedNodes.length === 0){
-   
-        alert("Please Select any row.");
+      
        
-      }else{
-       this.api.removeItems(selectedNodes);
-       this.countryService.doDeleteLocation(deleteLocationBody)
-      
-      .subscribe(
-        data => {
-          this.locationResponse = data;
-          console.log("key",LocationResponse);
-            alert(this.locationResponse.MESSAGE);
+    const selectedData = selectedNodes.map(node => node.data);
+    console.log("key",selectedData);
+    var dataTest: Object;
+    selectedData.map(node => dataTest = node as Object);
+      if(selectedData.length === 0){
+        alert("Please Select any row.");
+        this.api.removeItems(selectedData);       
+       
+      }for (i = 0; i < 20; i++) {
+        if (this.getLocationResponse[i].Code === dataTest['code']) {
+  
+          deleteLocationBody.id = this.getLocationResponse[i].id;
+          this.countryService.doDeleteLocation(deleteLocationBody)
+            .subscribe(
+              data => {
+                this.getLocationResponse = data;
+  
+                alert(this.locationResponse.MESSAGE);
+                if (this.locationResponse.STATUS === 'Success') {
+                  var res = this.api.updateRowData({ remove: selectedData });
+                }
+              }
+  
+            );
+  
         }
+      }
+    //    this.api.removeItems(selectedNodes);
+    //    this.countryService.doDeleteLocation(deleteLocationBody)
+       
+    //   .subscribe(
+    //     data => {
+    //       this.locationResponse = data;
+    //       console.log("key",LocationResponse);
+    //         alert(this.locationResponse.MESSAGE);
+    //     }
       
-    );
-   }
+    // );
+   
   }
+  // onDeleteLocation(locationID:number) {
+  //   alert("In Delete")
+  //   const deleteLocationBody = new DeleteLocationBody();
+  //   this.countryService.doDeleteLocation(deleteLocationBody).subscribe(
+  //     (data)=> {this.getLocation();
+  //       console.log("key",data);
+  //     },
+
+  //   );
+  // }
    
   onDeleteDepartment() {
     alert("Are you sure you want to delete this ?")
@@ -409,6 +438,19 @@ export class OrganizationComponent implements OnInit {
     );
    }
   }
+  getLocation() {
+    var getLocationBody = new GetLocationBody();
+    
+    this.countryService.doGetLocation(getLocationBody)
+      .subscribe(
+        data => {
+          this.getLocationResponse = data;
+          console.log("key",data);
+          this.rowData = this.getLocationResponse;
+        }
+
+      );
+  }
   onCellKeyLocationDown(e) {
     const keyPressed = e.event.key;
     if (keyPressed === 'Enter') {
@@ -421,15 +463,15 @@ export class OrganizationComponent implements OnInit {
       var dataTest: Object;
       selectedData.map(node => dataTest = node as Object);
       
-      locationBody.LocationCode = dataTest['LocationCode'];
-       locationBody.LocationName = dataTest['LocationName'];
-       locationBody.LocationDescription=dataTest['LocationDescription']
+      locationBody.LocationCode = dataTest['locationCode'];
+       locationBody.LocationName = dataTest['locationName'];
+       locationBody.LocationDescription=dataTest['locationDescription']
 
-       if(dataTest['LocationCode'] === '')
+       if(dataTest['locationCode'] === '')
        {
          alert("Plesae Enter Location code");
               }
-              else if(dataTest['LocationName'] === '')
+              else if(dataTest['locationName'] === '')
                          {
                            alert("Please Enter Location Name");
                                 }
@@ -444,16 +486,78 @@ export class OrganizationComponent implements OnInit {
               this.locationResponse = data;
 
               alert(this.locationResponse.MESSAGE);
+              
 
               if (this.locationResponse.STATUS === 'Success') {
 
                 alert("Location Details");
-
+              //  getLocationBody.userID = userID;
+              
                 this.countryService.doGetLocation(getLocationBody)
                   .subscribe(
                     data => {
-                      this.locationResponse = data;
-                      this.rowData = this.locationResponse;
+                      this.getLocationResponse = data;
+                      console.log("key",data);
+                     
+                      this.rowData = this.getLocationResponse;
+                      
+                    }
+                  )
+              }
+            }
+          ); 
+          } 
+    }  
+  }
+  onCellKeyDepartmentDown(e) {
+    const keyPressed = e.event.key;
+    if (keyPressed === 'Enter') {
+      // alert("Enter ");
+      const departmentBody = new DepartmentBody();
+      const getLocationBody = new GetLocationBody();
+      const selectedNodes = this.api.getSelectedNodes();
+
+      const selectedData = selectedNodes.map(node => node.data);
+      var dataTest: Object;
+      selectedData.map(node => dataTest = node as Object);
+      
+      departmentBody.DepartmentCode = dataTest['departmentCode'];
+      departmentBody.DepartmentName=dataTest['departmentName']
+      departmentBody.Description=dataTest['description']
+
+       if(dataTest['locationCode'] === '')
+       {
+         alert("Plesae Enter Location code");
+              }
+              else if(dataTest['locationName'] === '')
+                         {
+                           alert("Please Enter Location Name");
+                                }
+                         else if(dataTest['description'] === '')
+                         {
+                           alert("Please Enter Description");
+                         }
+      else {
+        this.countryService.doDepartment(departmentBody)
+          .subscribe(
+            data => {
+              this.locationResponse = data;
+
+              alert(this.locationResponse.MESSAGE);
+
+              if (this.locationResponse.STATUS === 'Success') {
+
+                alert("Department Details");
+              
+              
+                this.countryService.doGetLocation(getLocationBody)
+                  .subscribe(
+                    data => {
+                      this.getLocationResponse = data;
+                      console.log("key",data);
+                      
+                      this.rowData = this.getLocationResponse;
+                      
                     }
                   )
               }
@@ -464,114 +568,14 @@ export class OrganizationComponent implements OnInit {
 
     }
   }
-  // onCellKeyLocationDown(e) {
-  //   const keyPressed = e.event.key;
-    
-    
-  //   if (keyPressed === 'Enter') {
-  //     alert("Enter ");
-  //     const locationBody = new LocationBody();
-  //     const selectedNodes = this.api.getSelectedNodes();
-     
-  //     const selectedData = selectedNodes.map(node => node.data);
-  //     var dataTest: Object;
-  //     selectedData.map(node => dataTest = node as Object);
-  //     // alert(dataTest['locationCode']);
-     
-  //     locationBody.LocationCode = dataTest['LocationCode'];
-  //     locationBody.LocationName = dataTest['LocationName'];
-  //     locationBody.LocationDescription=dataTest['LocationDescription']
-
-  //    // console.log("key",dataTest);
-      
-  //    if(dataTest['LocationCode'] === '')
-  //     {
-  //       alert("Plesae Enter Location code");
-  //            }
-
-  //           else if(dataTest['LocationName'] === '')
-  //            {
-  //              alert("Please Enter Location Name");
-  //                   }
-  //                 else if(dataTest['description'] === '')
-  //            {
-  //              alert("Please Enter Description");
-  //                   }
-  //                   else{
-                     
-  //                   this.countryService.doLocation(locationBody)
-                    
-  //                   .subscribe(
-  //                     data => {
-  //                       this.locationResponse = data;
-  //                       console.log("key",LocationResponse);
-  //                         alert(this.locationResponse.MESSAGE);
-  //                     }
-                      
-  //                   );
-  //                   }
-  //   }
-  onCellKeyDepartmentDown(e) {
-    const keyPressed = e.event.key;
-    
-    
-    if (keyPressed === 'Enter') {
-      alert("Enter ");
-      const departmentBody= new DepartmentBody();
-      const selectedNodes = this.departmentApi.getSelectedNodes();
-     // console.log("key",selectedNodes);
-      const selectedData = selectedNodes.map(node => node.data);
-      var dataTest: Object;
-      selectedData.map(node => dataTest = node as Object);
-      
-     
-     
-      departmentBody.DepartmentCode = dataTest['DepartmentCode'];
-      departmentBody.DepartmentName=dataTest['DepartmentName']
-      departmentBody.Description=dataTest['Description']
-      console.log("key",departmentBody)
-      
-      
-     if(dataTest['LocationName'] === '')
-      {
-        alert("Plesae Enter Location Name");
-             }
-             
-
-            else if(dataTest['DepartmentCode'] === '')
-             {
-               alert("Please Enter Department Code");
-                    }
-                     
-              if(dataTest['DepartmentName'] === '')
-              {
-                alert("Plesae Enter Department Name");
-                      }
-                  else if(dataTest['Description'] === '')
-             {
-               alert("Please Enter Description");
-                    }
-                    else{
-                     
-                    this.countryService.doDepartment(departmentBody)
-                    
-                    .subscribe(
-                      data => {
-                        this.locationResponse = data;
-                        console.log("key",LocationResponse);
-                          alert(this.locationResponse.MESSAGE);
-                      }
-                      
-                    );
-                    }
-    }
-  }
+  
+  
   onCellKeyDesignationDown(e) {
     const keyPressed = e.event.key;
     
     
     if (keyPressed === 'Enter') {
-      alert("Enter ");
+    //  alert("Enter ");
       const designationBody= new DesignationBody();
       const selectedNodes = this.designationApi.getSelectedNodes();
      // console.log("key",selectedNodes);
@@ -579,8 +583,6 @@ export class OrganizationComponent implements OnInit {
       var dataTest: Object;
       selectedData.map(node => dataTest = node as Object);
       
-     
-     
       designationBody.DesignationCode = dataTest['DesignationCode'];
       designationBody.DesignationName=dataTest['DesignationName']
       designationBody.Description=dataTest['Description']
@@ -638,7 +640,9 @@ export class OrganizationComponent implements OnInit {
   // }
 
 }
+
 var locationMappings = {
+
   201002: "Ghaziabad",
   202307: "Noida",
   325600: "Bengal",
