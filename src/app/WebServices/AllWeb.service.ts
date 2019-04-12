@@ -9,6 +9,7 @@ import { DeleteDesignationBody } from '../SystemAdministration/organization/Dele
 import { Observable } from 'rxjs';
 import { ServiceUrls } from './ServiceUrls';
 import { Injectable } from '@angular/core';
+import { HighSchoolModel } from '../HRPayroll/Education/HighSchoolModel';
 import { CountryBody } from '../SystemAdministration/country/CountryDetails/CountryBody';
 import { CityBody } from '../SystemAdministration/country/CityDetails/CityBody';
 import { CountryResponse } from '../SystemAdministration/country/CountryDetails/CountryResponse';
@@ -37,6 +38,7 @@ export class CountryService {
       'Content-Type': 'application/json'
     })
   };
+
   constructor(private httpClient: HttpClient) {
 
   }
@@ -96,6 +98,15 @@ export class CountryService {
   getCity(getCityBody: GetCityBody): Observable<GetCityResponse> {
     return this.httpClient.post<GetCityResponse>(ServiceUrls.baseUrls + ServiceUrls.getCity, JSON.stringify(getCityBody), this.httpOptions);
   }
+
+  doHighSchoolSave(highSchool: HighSchoolModel): Observable<any> { 
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.highSchoolApi, JSON.stringify(highSchool), this.httpOptions);
+  }
+
+  doGetHighSchoolData(): Observable<any> { 
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getSchoolDataApi, this.httpOptions);
+  }
+  
 }
 
 
