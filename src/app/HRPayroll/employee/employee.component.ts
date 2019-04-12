@@ -5,13 +5,14 @@ import { HighSchoolResponse } from '../Education/HighSchoolResponse';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { from } from 'rxjs';
-import { CountryService } from 'src/app/WebServices/AllWeb.service';
+import { AllWeb } from "src/app/WebServices/AllWeb.service";
 import { DesignationResponse } from './EmployeeApiResponse/DesignationResponse';
 import { GetAllDepartmentBody } from './EmployeeApiResponse/GetAllDepartmentBody';
 import { DepartmentResponse } from './EmployeeApiResponse/DepartmentResponse';
 import { GetAllDesignationBody } from './EmployeeApiResponse/GetAllDesignationBody';
 import { GetAllLocationResponse } from './EmployeeApiResponse/GetAllLocationResponse';
 import { GetLocationBody } from 'src/app/SystemAdministration/organization/GetLocationBody';
+
 
 @Component({
   selector: 'app-employee',
@@ -22,8 +23,11 @@ export class EmployeeComponent implements OnInit {
   basicDetailsForm: FormGroup;
   titles = ['Mr', 'Miss', 'Mrs'];
 
-  
-  highSchoolResponse : HighSchoolResponse;
+  addressApi: GridApi;
+  addressColumnApi: ColumnApi;
+
+  rowSelection: string;
+
   submitted = false;
   designationResponse: DesignationResponse[];
   selectedDesignationIndex;
@@ -65,122 +69,239 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs1 = [
 
+    {
+      headerName: 'Status', field: 'status', sortable: true, filter: true, editable: true, width: 100,
 
-    { headerName: 'Status', field: 'status', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'Address', field: 'address', editable: true, width: 150 },
-    { headerName: 'City', field: 'city', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'State', field: 'state', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'Country', field: 'country', sortable: true, filter: true, editable: true, width: 90 },
-    { headerName: 'Postal Code', field: 'pin', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'Contact No.', field: 'ContactNo', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'Email ID', field: 'EmailID', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'Emergency Contact Person', field: 'EmergencyContactPerson', sortable: true, filter: true, editable: true, width: 160 },
-    { headerName: 'Emergency Contact No', field: 'EmergencyContactNo', sortable: true, filter: true, editable: true, width: 160 },
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+
+    },
+    {
+      headerName: 'Address', field: 'address', editable: true, width: 150,
+
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+    {
+      headerName: 'City', field: 'city', sortable: true, filter: true, editable: true, width: 100,
+
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+
+    },
+    {
+      headerName: 'State', field: 'state', sortable: true, filter: true, editable: true, width: 100,
+
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+
+    },
+
+    {
+      headerName: 'Country', field: 'country', sortable: true, filter: true, editable: true, width: 90,
+
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+    {
+      headerName: 'Postal Code', field: 'pin', sortable: true, filter: true, editable: true, width: 100,
+
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+
+    },
+    {
+      headerName: 'Contact No.', field: 'ContactNo', sortable: true, filter: true, editable: true, width: 100,
+
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+    {
+      headerName: 'Email ID', field: 'EmailID', sortable: true, filter: true, editable: true, width: 120,
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+    {
+      headerName: 'Emergency Contact Person', field: 'EmergencyContactPerson', sortable: true, filter: true, editable: true, width: 120,
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+    {
+      headerName: 'Emergency Contact No', field: 'EmergencyContactNo', sortable: true, filter: true, editable: true, width: 120,
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
 
 
   ];
 
   rowData1 = [
-    { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Permanent', ContactNo: '0987654321', EmailID: 'abcd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
-    { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '9876543210', EmailID: 'bcd@gmail.com', EmergencyContactPerson: 'Fateh Singh', EmergencyContactNo: '8459267584' },
-    { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Current', ContactNo: '0987654321', EmailID: 'abc@gmail.com', EmergencyContactPerson: 'Himanshu', EmergencyContactNo: '8459267584' },
-    { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Permanent', ContactNo: '0987654321', EmailID: 'abcd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
-    { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '0987654321', EmailID: 'abc@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
-    { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Current', ContactNo: '8765432100', EmailID: 'abd@gmail.com9', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
-    { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '0987654321', EmailID: 'acd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
+    // { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Permanent', ContactNo: '0987654321', EmailID: 'abcd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
+    // { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '9876543210', EmailID: 'bcd@gmail.com', EmergencyContactPerson: 'Fateh Singh', EmergencyContactNo: '8459267584' },
+    // { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Current', ContactNo: '0987654321', EmailID: 'abc@gmail.com', EmergencyContactPerson: 'Himanshu', EmergencyContactNo: '8459267584'},
+    // { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Permanent', ContactNo: '0987654321', EmailID: 'abcd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584'},
+    // { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '0987654321', EmailID: 'abc@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
+    // { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Current', ContactNo: '8765432100', EmailID: 'abd@gmail.com9', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
+    // { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '0987654321', EmailID: 'acd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
   ];
 
 
   columnDefs2 = [
 
 
-    { headerName: 'Class', field: 'Class', width: 120,editable: true,
-    cellStyle: function (params) {
-      if (params.value === '') {
-        // bordercolor: 'red'
-        // alert("Enter Class Name");
+    {
+      headerName: 'Class', field: 'Class', width: 120, editable: true,
+      cellStyle: function (params) {
+        if (params.value === '') {
+          // bordercolor: 'red'
+          // alert("Enter Class Name");
 
-        return { outline: '1px solid red' };
+          return { outline: '1px solid red' };
 
-        //color: 'red', backgroundColor: 'green',
-      } else {
-        return { outline: 'white' };
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
       }
-    }
-   },
-    { headerName: 'Board', field: 'Board', sortable: true, filter: true, width: 150,editable: true,
-    cellStyle: function (params) {
-      if (params.value === '') {
-        // bordercolor: 'red'
-        // alert("Enter Board Name");
+    },
+    {
+      headerName: 'Board', field: 'Board', sortable: true, filter: true, width: 150, editable: true,
+      cellStyle: function (params) {
+        if (params.value === '') {
+          // bordercolor: 'red'
+          // alert("Enter Board Name");
 
-        return { outline: '1px solid red' };
+          return { outline: '1px solid red' };
 
-        //color: 'red', backgroundColor: 'green',
-      } else {
-        return { outline: 'white' };
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
       }
-    }
-   },
-    { headerName: 'School Name', field: 'SchoolName', sortable: true, filter: true, width: 152, editable: true,
-    cellStyle: function (params) {
-      if (params.value === '') {
-        // bordercolor: 'red'
-        // alert("Enter School Name");
+    },
+    {
+      headerName: 'School Name', field: 'SchoolName', sortable: true, filter: true, width: 152, editable: true,
+      cellStyle: function (params) {
+        if (params.value === '') {
+          // bordercolor: 'red'
+          // alert("Enter School Name");
 
-        return { outline: '1px solid red' };
+          return { outline: '1px solid red' };
 
-        //color: 'red', backgroundColor: 'green',
-      } else {
-        return { outline: 'white' };
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
       }
-    }
-   },
+    },
 
-    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, width: 120, editable: true,
-    cellStyle: function (params) {
-      if (params.value === '') {
-        // bordercolor: 'red'
-        // alert("Enter Start Date");
+    {
+      headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, width: 120, editable: true,
+      cellStyle: function (params) {
+        if (params.value === '') {
+          // bordercolor: 'red'
+          // alert("Enter Start Date");
 
-        return { outline: '1px solid red' };
+          return { outline: '1px solid red' };
 
-        //color: 'red', backgroundColor: 'green',
-      } else {
-        return { outline: 'white' };
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
       }
-    }
-   },
-    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, width: 120,editable: true,
-    cellStyle: function (params) {
-      if (params.value === '') {
-        // bordercolor: 'red'
-        // alert("Enter End Date");
+    },
+    {
+      headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, width: 120, editable: true,
+      cellStyle: function (params) {
+        if (params.value === '') {
+          // bordercolor: 'red'
+          // alert("Enter End Date");
 
-        return { outline: '1px solid red' };
+          return { outline: '1px solid red' };
 
-        //color: 'red', backgroundColor: 'green',
-      } else {
-        return { outline: 'white' };
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
       }
-    }
-   }, 
-    
-    { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, width: 150,editable: true,
-    cellStyle: function (params) {
-      if (params.value === '') {
-        // bordercolor: 'red'
-        // alert("Enter Percentage");
+    },
 
-        return { outline: '1px solid red' };
+    {
+      headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, width: 150, editable: true,
+      cellStyle: function (params) {
+        if (params.value === '') {
+          // bordercolor: 'red'
+          // alert("Enter Percentage");
+
+          return { outline: '1px solid red' };
 
 
-        //color: 'red', backgroundColor: 'green',
-      } else {
-        return { outline: 'white' };
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
       }
-    }
-   },
+    },
   ];
 
   rowData2 = [
@@ -251,7 +372,7 @@ export class EmployeeComponent implements OnInit {
     { headerName: 'Course', field: 'Course', sortable: true, filter: true, editable: true, width: 120 },
     { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, editable: true, width: 120 },
     { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: '',  width: 458 }
+    { headerName: '', width: 458 }
 
   ];
 
@@ -304,7 +425,7 @@ export class EmployeeComponent implements OnInit {
 
     { headerName: 'Type of Account', field: 'TypeofAccount', editable: true, width: 180 },
 
-    { headerName: 'Account Holder Name', field: 'AccountHolderName', sortable: true, filter: true, editable: true, width:180 },
+    { headerName: 'Account Holder Name', field: 'AccountHolderName', sortable: true, filter: true, editable: true, width: 180 },
     { headerName: 'Account Number', field: 'AccountNumber', sortable: true, filter: true, editable: true, width: 160 },
     { headerName: 'IFSC', field: 'IFSC', sortable: true, filter: true, editable: true, width: 160 },
     { headerName: 'Branch Name', field: 'BranchName', sortable: true, filter: true, editable: true, width: 140 },
@@ -417,18 +538,19 @@ export class EmployeeComponent implements OnInit {
   locationResponse;
   selectedLocationIndex: number;
   selectedDepartmentIndex: number;
-  
+
   public show: boolean = false;
   public hide: boolean = true;
   public buttonName: any = 'Add New';
 
-  constructor(private formBuilder: FormBuilder, private countryService:CountryService) { 
+
+
+  constructor(private formBuilder: FormBuilder, private countryService: AllWeb) {
     this.rowSelection = 'single';
   }
 
   api: GridApi;
   columnApi: ColumnApi;
-  rowSelection: string;
   ngOnInit() {
 
     this.basicDetailsForm = this.formBuilder.group({
@@ -446,6 +568,17 @@ export class EmployeeComponent implements OnInit {
     // this.getAllDepartment('1', 2);
     // this.getAllDesignation('1', 1);
 
+  }
+  onAddressGridReady(params) {
+    this.addressApi = params.api;
+    this.addressColumnApi = params.columnApi;
+  }
+  onAddAddress() {
+    alert("add");
+    let res = this.addressApi.updateRowData({ add: [{ address: '', city: '', state: '', country: '', pin: '', status: '', ContactNo: '', EmailID: '', EmergencyContactPerson: '', EmergencyContactNo: '' }] });
+    res.add.forEach(function (rowNode) {
+      console.log('Added Row Node', rowNode);
+    });
   }
   getLocation(UserID: number) {
     var locationBody = new GetLocationBody();
@@ -478,7 +611,7 @@ export class EmployeeComponent implements OnInit {
   getAllDesignation(UserID: string, DepartmentID: number) {
     var designationBody = new GetAllDesignationBody();
     designationBody.userID = UserID;
-    designationBody.DepartmentID = DepartmentID+'';
+    designationBody.DepartmentID = DepartmentID + '';
 
     this.countryService.getAllDesignation(designationBody)
       .subscribe(
@@ -514,7 +647,7 @@ export class EmployeeComponent implements OnInit {
   onAddQualification() {
     //this.api.setFocusedCell(this.count, "Class");
     //this.api.setFocusedCell(1, "school");
-   // this.count++;
+    // this.count++;
     let res = this.api.updateRowData({ add: [{ class: 'High School' }] });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
@@ -536,43 +669,42 @@ export class EmployeeComponent implements OnInit {
     document.querySelector('#selectedRows').innerHTML = selectedRowsString;
   }
 
-  onGetSchoolQualification(){
-    var highSchoolResonse : HighSchoolResponse;
+  onGetSchoolQualification() {
+    var highSchoolResonse: HighSchoolResponse;
 
     this.countryService.doGetHighSchoolData()
-        .subscribe(
-          data => {
-            highSchoolResonse = data;
-              console.log("recived",highSchoolResonse.STATUS);
-              if(highSchoolResonse.STATUS===""){
-                alert(highSchoolResonse.STATUS+" : "+highSchoolResonse.MESSAGE);
-                this.onGetSchoolQualification();
-              }else{
-                alert(highSchoolResonse.STATUS+" : "+highSchoolResonse.MESSAGE);
-              }
-          } 
-        );
+      .subscribe(
+        data => {
+          highSchoolResonse = data;
+          console.log("recived", highSchoolResonse.STATUS);
+          if (highSchoolResonse.STATUS === "") {
+            alert(highSchoolResonse.STATUS + " : " + highSchoolResonse.MESSAGE);
+            this.onGetSchoolQualification();
+          } else {
+            alert(highSchoolResonse.STATUS + " : " + highSchoolResonse.MESSAGE);
+          }
+        }
+      );
   }
 
   onDeleteQualification() {
 
-   var selectedNodes = this.api.getSelectedNodes();
-   if(selectedNodes.length === 0){
-    // alert("Please Select any row.");
-   }else{
-    this.api.removeItems(selectedNodes);
-   }
+    var selectedNodes = this.api.getSelectedNodes();
+    if (selectedNodes.length === 0) {
+      // alert("Please Select any row.");
+    } else {
+      this.api.removeItems(selectedNodes);
+    }
   }
 
-  onPressEducationalEnter(e)
-  {
+  onPressEducationalEnter(e) {
     const keyPressed = e.event.key;
     if (keyPressed === 'Enter') {
       alert("Do you want to save the data.");
       const highSchool = new HighSchoolModel();
       const selectedNodes = this.api.getSelectedNodes();
       const selectedData = selectedNodes.map(node => node.data);
-      var highSchoolResonse : HighSchoolResponse;
+      var highSchoolResonse: HighSchoolResponse;
       var dataTest: Object;
       selectedData.map(node => dataTest = node as Object);
       highSchool.ClassName = dataTest['Class'];
@@ -581,38 +713,38 @@ export class EmployeeComponent implements OnInit {
       highSchool.Percentage = dataTest['percentage'];
       highSchool.EndDate = dataTest['EndDate'];
       highSchool.StartDate = dataTest['StartDate'];
-      if(dataTest['Class'] === ''){
+      if (dataTest['Class'] === '') {
         alert("Enter Class");
-      }else if(dataTest['Board'] === ''){
+      } else if (dataTest['Board'] === '') {
         alert("Enter Board");
-      }else if(dataTest['SchoolName'] === ''){
+      } else if (dataTest['SchoolName'] === '') {
         alert("Enter School Name");
-      }else if(dataTest['StartDate'] === ''){
+      } else if (dataTest['StartDate'] === '') {
         alert("Enter Start Date");
-      }else if(dataTest['EndDate'] === ''){
+      } else if (dataTest['EndDate'] === '') {
         alert("Enter End Date");
-      }else if(dataTest['percentage'] === ''){
+      } else if (dataTest['percentage'] === '') {
         alert("Enter Percentage");
-      }else{
-        console.log("Sending Data",highSchool);
+      } else {
+        console.log("Sending Data", highSchool);
         this.countryService.doHighSchoolSave(highSchool)
-        .subscribe(
-          data => {
-            highSchoolResonse = data;
-              console.log("recived",highSchoolResonse.STATUS);
-              if(highSchoolResonse.STATUS===""){
-                alert(highSchoolResonse.STATUS+" : "+highSchoolResonse.MESSAGE);
+          .subscribe(
+            data => {
+              highSchoolResonse = data;
+              console.log("recived", highSchoolResonse.STATUS);
+              if (highSchoolResonse.STATUS === "") {
+                alert(highSchoolResonse.STATUS + " : " + highSchoolResonse.MESSAGE);
                 this.onGetSchoolQualification();
-              }else{
-                alert(highSchoolResonse.STATUS+" : "+highSchoolResonse.MESSAGE);
+              } else {
+                alert(highSchoolResonse.STATUS + " : " + highSchoolResonse.MESSAGE);
               }
-          } 
-        );
+            }
+          );
       }
     }
   }
 
- 
+
 
 
 

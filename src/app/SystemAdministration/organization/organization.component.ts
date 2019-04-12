@@ -4,7 +4,7 @@ import { GridApi, ColumnApi, CellComp, GridOptions } from 'ag-grid-community';
 import { LocationBody } from '../organization/LocationBody';
 import { DepartmentBody } from '../organization/DepartmentBody';
 import { DesignationBody } from '../organization/DesignationBody';
-import { CountryService } from 'src/app/WebServices/AllWeb.service';
+import { AllWeb } from "src/app/WebServices/AllWeb.service";
 import { LocationResponse } from './LocationResponse';
 import { DepartmentResponse } from './DepartmentResponse';
 import { from } from 'rxjs';
@@ -45,7 +45,7 @@ export class OrganizationComponent implements OnInit {
   getAllLocationResponse: GetAllLocationResponse[];
   gridOptions: GridOptions;
 
-  constructor(private countryService: CountryService) {
+  constructor(private countryService: AllWeb) {
     this.frameworkComponents = { genderCellRenderer: LocationDropdownComponent };
 
     this.columnDefs = [

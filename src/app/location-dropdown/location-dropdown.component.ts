@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GetLocationBody } from '../SystemAdministration/organization/GetLocationBody';
-import { CountryService } from 'src/app/WebServices/AllWeb.service';
+import { AllWeb } from "src/app/WebServices/AllWeb.service";
 import { GetAllLocationResponse } from '../HRPayroll/employee/EmployeeApiResponse/GetAllLocationResponse';
 import { INoRowsOverlayAngularComp } from 'ag-grid-angular';
 
@@ -16,7 +16,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
   }
 
   locationResponse: GetAllLocationResponse[];
-  constructor(private countryService: CountryService) {
+  constructor(private countryService: AllWeb) {
   }
 
   getAllLocation(): any {

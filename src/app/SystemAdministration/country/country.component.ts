@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GridApi, ColumnApi, CellComp } from 'ag-grid-community';
-import { CountryService } from 'src/app/WebServices/AllWeb.service';
+import { AllWeb } from 'src/app/WebServices/AllWeb.service';
 import { CountryBody } from './CountryDetails/CountryBody';
 import { CountryResponse } from './CountryDetails/CountryResponse';
 import { CityBody } from './CityDetails/CityBody';
@@ -16,15 +16,23 @@ import { GetStateBody } from './StateDetails/GetStateBody';
 import { GetStateResponse } from './StateDetails/GetStateResponse';
 import { GetCityResponse } from './CityDetails/GetCityResponse';
 import { GetCityBody } from './CityDetails/GetCityBody';
+import { GetPostalResponse } from './PostalDetails/GetPostalResponse';
+import { GetPostalBody } from './PostalDetails/GetPostalBody';
+import { DeleteStateBody } from './StateDetails/DeleteStateBody';
+import { DeleteCityBody } from './CityDetails/DeleteCityBody';
+import { DeletePostalBody } from './PostalDetails/DeletePostalBody';
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
   styleUrls: ['./country.component.css']
 })
 export class CountryComponent implements OnInit {
-  constructor(private countryService: CountryService) {
+  constructor(private countryService: AllWeb) {
     this.rowSelection = 'single';
+
     //this.topOptions.api.push(this.topOptions);
+
+
 
   }
   api: GridApi;
@@ -49,17 +57,17 @@ export class CountryComponent implements OnInit {
   postalResponse: PostalResponse;
   getStateResponse: GetStateResponse;
   getCityResponse: GetCityResponse
+  getPostalResponse: GetPostalResponse;
 
 
 
   rowSelection: string;
+  rowDeselection: string
   columnDefs = [
     {
       id: 0, headerName: 'Country Code', field: 'countryCode', sortable: true, filter: true, width: 120, editable: true,
       cellStyle: function (params) {
         if (params.value === '') {
-
-
 
           return { outline: '1px solid red' };
         } else {
@@ -76,7 +84,6 @@ export class CountryComponent implements OnInit {
 
       cellStyle: function (params) {
 
-
         if (params.value === '') {
           return { outline: '1px solid red' };
         } else {
@@ -87,17 +94,14 @@ export class CountryComponent implements OnInit {
 
     },
     { headerName: '', field: '', width: 590 }
-
-
   ];
-
 
   rowData;
 
 
   columnDefs1 = [
     {
-      headerName: 'Country', field: 'countryName', sortable: true, editable: true, filter: true, width: 120,
+      headerName: 'Country', field: 'countryName', sortable: true, editable: true, filter: true, width: 120, singleClickEdit: true,
 
       cellEditor: "select",
 
@@ -109,7 +113,6 @@ export class CountryComponent implements OnInit {
         return lookupKey(countryMappings, params.newValue);
       }
 
-
     },
     {
       headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: true, width: 120,
@@ -117,7 +120,6 @@ export class CountryComponent implements OnInit {
       cellStyle: function (params) {
         if (params.value === '') {
           return { outline: '1px solid red' };
-
 
         } else {
           return { outline: 'white' };
@@ -141,7 +143,7 @@ export class CountryComponent implements OnInit {
   columnDefs2 = [
 
     {
-      headerName: 'Country', field: 'countryName', sortable: true, editable: true, filter: true, width: 120,
+      headerName: 'Country', field: 'countryName', sortable: true, editable: true, filter: true, width: 120, singleClickEdit: true,
 
       cellEditor: "select",
       cellEditorParams: { values: extractValues(countryMappings) },
@@ -153,7 +155,8 @@ export class CountryComponent implements OnInit {
       }
     },
     {
-      headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: true, width: 120,
+      headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: true, width: 120, singleClickEdit: true,
+
       cellEditor: "select",
       cellEditorParams: { values: extractValues(stateMappings) },
       valueFormatter: function (params) {
@@ -165,7 +168,8 @@ export class CountryComponent implements OnInit {
 
     },
     {
-      headerName: 'City', field: 'cityName', sortable: true, filter: true, editable: true, width: 120,
+      headerName: 'City', field: 'cityName', sortable: true, filter: true, editable: true, width: 120, singleClickEdit: true,
+
 
       cellStyle: function (params) {
         if (params.value === '') {
@@ -197,7 +201,8 @@ export class CountryComponent implements OnInit {
   columnDefs3 = [
 
     {
-      headerName: 'Country', field: 'country', sortable: true, editable: true, filter: true, width: 120,
+      headerName: 'Country', field: 'countryName', sortable: true, editable: true, filter: true, width: 120,
+      singleClickEdit: true,
 
       cellEditor: "select",
       cellEditorParams: { values: extractValues(countryMappings) },
@@ -205,15 +210,12 @@ export class CountryComponent implements OnInit {
         return lookupValue(countryMappings, params.value);
       },
       valueParser: function (params) {
-
         return lookupKey(countryMappings, params.newValue);
       }
-
-
     },
     {
-      headerName: 'State', field: 'state', sortable: true, filter: true, editable: true, width: 120,
-
+      headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: true, width: 120,
+      singleClickEdit: true,
 
       cellEditor: "select",
       cellEditorParams: { values: extractValues(stateMappings) },
@@ -224,10 +226,10 @@ export class CountryComponent implements OnInit {
         return lookupKey(stateMappings, params.newValue);
       }
 
-
     },
     {
-      headerName: 'City', field: 'city', sortable: true, filter: true, editable: true, width: 120,
+      headerName: 'City', field: 'cityName', sortable: true, filter: true, editable: true, width: 120,
+      singleClickEdit: true,
 
       cellEditor: "select",
       cellEditorParams: { values: extractValues(cityMappings) },
@@ -240,14 +242,12 @@ export class CountryComponent implements OnInit {
 
     },
     {
-      headerName: 'Postal Code', field: 'postal', sortable: true, filter: true, editable: true, width: 120,
+      headerName: 'Postal Code', field: 'postalCode', sortable: true, filter: true, editable: true, width: 120,
 
       cellStyle: function (params) {
         if (params.value === '') {
 
-
           return { outline: '1px solid red' };
-
 
         } else {
           return { outline: 'white' };
@@ -261,7 +261,7 @@ export class CountryComponent implements OnInit {
     { headerName: '', field: '', width: 230 }
   ];
 
-  rowData3
+  rowData3;
   //= [
   // { city: 'Noida', state: 'UP', country: 'India', postal: '201301', description: 'Postal Code No' },
   // { city: 'Chandigarh', state: 'Punjab', country: 'India', postal: '201301', description: 'Postal Code No' },
@@ -310,6 +310,7 @@ export class CountryComponent implements OnInit {
   countPostal = 0;
 
   ngOnInit() {
+
   }
 
   onAddClick() {
@@ -336,7 +337,7 @@ export class CountryComponent implements OnInit {
   onAddCity() {
     this.cityApi.setFocusedCell(this.countCity, "country");
     this.countCity++;
-    let res = this.cityApi.updateRowData({ add: [{ city: '', state: '', country: '', description: '' }] });
+    let res = this.cityApi.updateRowData({ add: [{ stateName: '', cityName: '', countryName: '', description: '' }] });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
@@ -345,7 +346,7 @@ export class CountryComponent implements OnInit {
   onAddPostal() {
     this.postalApi.setFocusedCell(this.countPostal, "country");
     this.countPostal++;
-    let res = this.postalApi.updateRowData({ add: [{ city: '', state: '', country: '', postal: '', description: '' }] });
+    let res = this.postalApi.updateRowData({ add: [{ cityName: '', stateName: '', countryName: '', postalCode: '', description: '' }] });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
@@ -366,8 +367,9 @@ export class CountryComponent implements OnInit {
       alert("Please select a row");
     }
 
+    let l = this.api.getDisplayedRowCount();
 
-    for (i = 0; i < 20; i++) {
+    for (i = 0; i < l; i++) {
       if (this.countryDataResponse[i].countryCode === dataTest['countryCode']) {
 
         deleteCountryBody.CountryID = this.countryDataResponse[i].countryID;
@@ -391,48 +393,124 @@ export class CountryComponent implements OnInit {
   }
   onDeleteState() {
     //alert("delete");
-    // let i: number;
-    // const selectedNodes = this.api.getSelectedNodes();
+    let i: number;
+    const selectedNodes = this.stateApi.getSelectedNodes();
 
-    // const deleteCountryBody = new DeleteCountryBody();
-    // const selectedData = selectedNodes.map(node => node.data);
-    // var dataTest: Object;
-    // selectedData.map(node => dataTest = node as Object);
-    // if (selectedData.length === 0) {
-    //   alert("Please select a row");
-    // }
+    const delteStateBody = new DeleteStateBody();
+    const selectedData = selectedNodes.map(node => node.data);
+    var dataTest: Object;
+    selectedData.map(node => dataTest = node as Object);
+    if (selectedData.length === 0) {
+      alert("Please select a row");
+    }
+    //let l = this.rowData.length;
+    let l = this.stateApi.getDisplayedRowCount();
+
+    for (i = 0; i < l; i++) {
+      if (this.getStateResponse[i].stateName === dataTest['stateName']) {
+
+        delteStateBody.StateID = this.getStateResponse[i].stateID;
+        this.countryService.deleteState(delteStateBody)
+          .subscribe(
+            data => {
 
 
-    // for (i = 0; i < 20; i++) {
-    //   if (this.countryDataResponse[i].countryCode === dataTest['countryCode']) {
 
-    //     deleteCountryBody.CountryID = this.countryDataResponse[i].countryID;
-    //     this.countryService.deleteCountry(deleteCountryBody)
-    //       .subscribe(
-    //         data => {
-    //           this.countryResponse = data;
 
-    //           alert(this.countryResponse.MESSAGE);
-    //           if (this.countryResponse.STATUS === 'Success') {
-    //             var res = this.api.updateRowData({ remove: selectedData });
-    //           }
-    //         }
+              alert("delete");
+              this.stateResponse = data;
 
-    //       );
+              alert(this.stateResponse.MESSAGE);
+              if (this.stateResponse.STATUS === 'Success') {
+                var res = this.stateApi.updateRowData({ remove: selectedData });
+              }
+            }
 
-    //   }
-    var selectedData = this.stateApi.getSelectedRows();
-    var res = this.stateApi.updateRowData({ remove: selectedData });
+          );
+
+      }
+    }
+    // var selectedData = this.stateApi.getSelectedRows();
+    // var res = this.stateApi.updateRowData({ remove: selectedData });
 
   }
   onDeleteCity() {
     //alert("delete");
-    var selectedData = this.cityApi.getSelectedRows();
-    var res = this.cityApi.updateRowData({ remove: selectedData });
+    let i: number;
+    const selectedNodes = this.cityApi.getSelectedNodes();
+
+    const deleteCityBody = new DeleteCityBody();
+    const selectedData = selectedNodes.map(node => node.data);
+    var dataTest: Object;
+    selectedData.map(node => dataTest = node as Object);
+    if (selectedData.length === 0) {
+      alert("Please select a row");
+    }
+    //let l = this.rowData.length;
+    let l = this.cityApi.getDisplayedRowCount();
+
+    for (i = 0; i < l; i++) {
+      if (this.getCityResponse[i].cityName === dataTest['cityName']) {
+
+        deleteCityBody.CityID = this.getCityResponse[i].cityID;
+        this.countryService.deleteCity(deleteCityBody)
+          .subscribe(
+            data => {
+              alert("delete");
+              this.cityResponse = data;
+
+              alert(this.cityResponse.MESSAGE);
+              if (this.cityResponse.STATUS === 'Success') {
+                var res = this.cityApi.updateRowData({ remove: selectedData });
+              }
+            }
+
+          );
+
+      }
+    }
+    // var selectedData = this.cityApi.getSelectedRows();
+    // var res = this.cityApi.updateRowData({ remove: selectedData });
   }
   onDeletePostal() {
-    var selectedData = this.postalApi.getSelectedRows();
-    var res = this.postalApi.updateRowData({ remove: selectedData });
+    let i: number;
+    const selectedNodes = this.postalApi.getSelectedNodes();
+
+    const deletePostalBody = new DeletePostalBody();
+    const selectedData = selectedNodes.map(node => node.data);
+    var dataTest: Object;
+    selectedData.map(node => dataTest = node as Object);
+    if (selectedData.length === 0) {
+      alert("Please select a row");
+    }
+    let l = this.postalApi.getDisplayedRowCount();
+
+
+    for (i = 0; i < l; i++) {
+      if (this.getPostalResponse[i].postalCode === dataTest['postalCode']) {
+
+        deletePostalBody.pid = this.getPostalResponse[i].pID;
+        this.countryService.deletePostal(deletePostalBody)
+          .subscribe(
+            data => {
+              alert("delete");
+              this.postalResponse = data;
+
+
+
+
+              alert(this.postalResponse.MESSAGE);
+              if (this.postalResponse.STATUS === 'Success') {
+                var res = this.postalApi.updateRowData({ remove: selectedData });
+              }
+            }
+
+          );
+
+      }
+    }
+    // var selectedData = this.postalApi.getSelectedRows();
+    // var res = this.postalApi.updateRowData({ remove: selectedData });
 
   }
   onGridReady(params) {
@@ -493,32 +571,31 @@ export class CountryComponent implements OnInit {
       }
 
       else {
-        this.countryService.doLogin(countryBody)
-          .subscribe(
-            data => {
-              this.countryResponse = data;
+        // this.countryService.saveCountry(countryBody)
+        //   .subscribe(
+        //     data => {
+        //       this.countryResponse = data;
 
-              alert(this.countryResponse.MESSAGE);
+        //       alert(this.countryResponse.MESSAGE);
 
-              if (this.countryResponse.STATUS === 'Success') {
+        //       if (this.countryResponse.STATUS === 'Success') {
 
+        //         this.countryService.getCountries(getAllCountryBody)
+        //           .subscribe(
+        //             data => {
+        //               this.countryDataResponse = data;
+        //               this.rowData = this.countryDataResponse;
+        //               // alert("Countryyyyyyyyyyyy");
+        //               //this.api.setRowData(data);
+        //               //alert(JSON.stringify(data));
+        //               //let res = this.api.updateRowData({ add: [{  countryCode: JSON.stringify(this.countryDataResponse.countryCode), country: JSON.stringify(this.countryDataResponse.countryName) }] });
+        //             }
+        //           )
+        //       }
+        //     }
+      
 
-                this.countryService.getCountries(getAllCountryBody)
-                  .subscribe(
-                    data => {
-                      this.countryDataResponse = data;
-                      this.rowData = this.countryDataResponse;
-                      // alert("Countryyyyyyyyyyyy");
-                      //this.api.setRowData(data);
-                      //alert(JSON.stringify(data));
-                      //let res = this.api.updateRowData({ add: [{  countryCode: JSON.stringify(this.countryDataResponse.countryCode), country: JSON.stringify(this.countryDataResponse.countryName) }] });
-                    }
-                  )
-              }
-            }
-
-
-          );
+         // );
       }
 
       // if (this.api.getColumnDef('country') === '') {
@@ -568,14 +645,14 @@ export class CountryComponent implements OnInit {
               if (this.cityResponse.STATUS === 'Success') {
 
                 alert("City Details");
-                  this.countryService.getCity(getCityBody)
-                    .subscribe(
-                      data => {
-                        this.getCityResponse = data;
-                        this.rowData2 = this.getCityResponse;
-                        
-                      }
-                    )
+                this.countryService.getCity(getCityBody)
+                  .subscribe(
+                    data => {
+                      this.getCityResponse = data;
+                      this.rowData2 = this.getCityResponse;
+
+                    }
+                  )
               }
             }
 
@@ -638,16 +715,16 @@ export class CountryComponent implements OnInit {
     if (keyPressed === 'Enter') {
       //alert("Enter ");
       const postalBody = new PostalBody();
-
+      const getPostalBody = new GetPostalBody();
       const selectedNodes = this.postalApi.getSelectedNodes();
 
       const selectedData = selectedNodes.map(node => node.data);
       var dataTest: Object;
       selectedData.map(node => dataTest = node as Object);
-      postalBody.postalCode = dataTest['postal'];
+      postalBody.postalCode = dataTest['postalCode'];
       postalBody.Description = dataTest['description'];
 
-      if (dataTest['postal'] === '') {
+      if (dataTest['postalCode'] === '') {
         alert("Enter postal code");
 
       }
@@ -663,13 +740,13 @@ export class CountryComponent implements OnInit {
 
                 alert("Postal Details");
 
-                //   this.countryService.getCountries(getAllCountryBody)
-                //     .subscribe(
-                //       data => {
-                //         this.countryDataResponse = data;
-                //         this.rowData3 = this.countryDataResponse;
-                //       }
-                //     )
+                // this.countryService.getPostal(getPostalBody)
+                //   .subscribe(
+                //     data => {
+                //       this.getPostalResponse = data;
+                //       this.rowData3 = this.getPostalResponse;
+                //     }
+                //   )
               }
 
             }
@@ -681,12 +758,14 @@ export class CountryComponent implements OnInit {
   }
 
 }
-var countryMappings = {
-  In: "India",
-  Fr: "France",
-  En: "England",
-  Au: "Australia"
+var countryMappings =
+{
+  1: "India",
+  2: "France",
+  3: "England",
+  4: "Australia"
 };
+
 //var Country =
 
 function extractValues(mappings) {
@@ -724,16 +803,30 @@ var cityMappings = {
 
 
 
-// var country = function Countries(){
+ //var country = 
+// function Countries(){
 //   const getAllCountryBody = new GetAllCountryBody();
-//     this.countryService.getCountries(getAllCountryBody)
-//     .subscribe(
-//       data => {
-//         this.countryDataResponse = data;
-
-//         //alert(this.countryResponse.country);
-//       }
+//    this.countryDataResponse= this.countryService.getCountries(getAllCountryBody)
+//     .map(
+//       x => ({ 'value': x.countryName, 'label': x.countryID }),
+//      //countryMappings =this.x
 //     );
-//     return this.countryDataResponse.countryName;
+//   let name1 = this.countryDataResponse.countryID;
+//   let name = this.countryDataResponse.countryName;
+//     //return countryMappings;
+//     countryMappings = {name1: name};
+//     //return this.countryDataResponse.countryName;
 
 //   }
+// var country =
+// function Country()
+// {
+//   const getAllCountryBody = new GetAllCountryBody();
+//   this.countryService.getCountries(getAllCountryBody)
+//                   .map(
+//                     data => {
+//                       this.countryDataResponse = data;
+//                     }
+//                   )
+//       return             ({'value': this.countryDataResponse.countryName, 'label':this.countryDataResponse.countryID}) 
+// }

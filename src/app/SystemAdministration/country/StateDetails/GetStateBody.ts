@@ -1,3 +1,3 @@
 export class GetStateBody {
-    UserID: number = 1;
+    userID: number = 1;
 }
