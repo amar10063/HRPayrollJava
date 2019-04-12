@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GridApi, ColumnApi, CellComp } from 'ag-grid-community';
-import { CountryService } from 'src/app/WebServices/AllWeb.service';
+import { AllWeb } from 'src/app/WebServices/AllWeb.service';
 import { CountryBody } from './CountryDetails/CountryBody';
 import { CountryResponse } from './CountryDetails/CountryResponse';
 import { CityBody } from './CityDetails/CityBody';
@@ -27,18 +27,18 @@ import { DeletePostalBody } from './PostalDetails/DeletePostalBody';
   styleUrls: ['./country.component.css']
 })
 export class CountryComponent implements OnInit {
-  constructor(private countryService: CountryService) {
+  constructor(private countryService: AllWeb) {
     this.rowSelection = 'single';
-    
+
     //this.topOptions.api.push(this.topOptions);
 
-    
+
 
   }
   api: GridApi;
   columnApi: ColumnApi;
 
-  
+
   ToggleButton: false;
 
   stateApi: GridApi;
@@ -59,7 +59,7 @@ export class CountryComponent implements OnInit {
   getCityResponse: GetCityResponse
   getPostalResponse: GetPostalResponse;
 
-  
+
 
   rowSelection: string;
   rowDeselection: string
@@ -95,7 +95,7 @@ export class CountryComponent implements OnInit {
     },
     { headerName: '', field: '', width: 590 }
   ];
-   
+
   rowData;
 
 
@@ -197,7 +197,7 @@ export class CountryComponent implements OnInit {
   // { city: 'Gangtok', state: 'Sikkim', country: 'India', description: 'City Name' },
   // { city: 'Jaipur', state: 'Rajasthan', country: 'India', description: 'City Name' }
   //];
-  
+
   columnDefs3 = [
 
     {
@@ -310,7 +310,7 @@ export class CountryComponent implements OnInit {
   countPostal = 0;
 
   ngOnInit() {
-    
+
   }
 
   onAddClick() {
@@ -367,7 +367,7 @@ export class CountryComponent implements OnInit {
       alert("Please select a row");
     }
 
-    let l =this.api.getDisplayedRowCount();
+    let l = this.api.getDisplayedRowCount();
 
     for (i = 0; i < l; i++) {
       if (this.countryDataResponse[i].countryCode === dataTest['countryCode']) {
@@ -404,7 +404,7 @@ export class CountryComponent implements OnInit {
       alert("Please select a row");
     }
     //let l = this.rowData.length;
-    let l =this.stateApi.getDisplayedRowCount();
+    let l = this.stateApi.getDisplayedRowCount();
 
     for (i = 0; i < l; i++) {
       if (this.getStateResponse[i].stateName === dataTest['stateName']) {
@@ -413,6 +413,10 @@ export class CountryComponent implements OnInit {
         this.countryService.deleteState(delteStateBody)
           .subscribe(
             data => {
+
+
+
+
               alert("delete");
               this.stateResponse = data;
 
@@ -443,7 +447,7 @@ export class CountryComponent implements OnInit {
       alert("Please select a row");
     }
     //let l = this.rowData.length;
-     let l =this.cityApi.getDisplayedRowCount();
+    let l = this.cityApi.getDisplayedRowCount();
 
     for (i = 0; i < l; i++) {
       if (this.getCityResponse[i].cityName === dataTest['cityName']) {
@@ -479,7 +483,7 @@ export class CountryComponent implements OnInit {
     if (selectedData.length === 0) {
       alert("Please select a row");
     }
-    let l =this.postalApi.getDisplayedRowCount();
+    let l = this.postalApi.getDisplayedRowCount();
 
 
     for (i = 0; i < l; i++) {
@@ -491,6 +495,9 @@ export class CountryComponent implements OnInit {
             data => {
               alert("delete");
               this.postalResponse = data;
+
+
+
 
               alert(this.postalResponse.MESSAGE);
               if (this.postalResponse.STATUS === 'Success') {
@@ -564,31 +571,31 @@ export class CountryComponent implements OnInit {
       }
 
       else {
-        this.countryService.saveCountry(countryBody)
-          .subscribe(
-            data => {
-              this.countryResponse = data;
+        // this.countryService.saveCountry(countryBody)
+        //   .subscribe(
+        //     data => {
+        //       this.countryResponse = data;
 
-              alert(this.countryResponse.MESSAGE);
+        //       alert(this.countryResponse.MESSAGE);
 
-              if (this.countryResponse.STATUS === 'Success') {
+        //       if (this.countryResponse.STATUS === 'Success') {
 
-                this.countryService.getCountries(getAllCountryBody)
-                  .subscribe(
-                    data => {
-                      this.countryDataResponse = data;
-                      this.rowData = this.countryDataResponse;
-                      // alert("Countryyyyyyyyyyyy");
-                      //this.api.setRowData(data);
-                      //alert(JSON.stringify(data));
-                      //let res = this.api.updateRowData({ add: [{  countryCode: JSON.stringify(this.countryDataResponse.countryCode), country: JSON.stringify(this.countryDataResponse.countryName) }] });
-                    }
-                  )
-              }
-            }
+        //         this.countryService.getCountries(getAllCountryBody)
+        //           .subscribe(
+        //             data => {
+        //               this.countryDataResponse = data;
+        //               this.rowData = this.countryDataResponse;
+        //               // alert("Countryyyyyyyyyyyy");
+        //               //this.api.setRowData(data);
+        //               //alert(JSON.stringify(data));
+        //               //let res = this.api.updateRowData({ add: [{  countryCode: JSON.stringify(this.countryDataResponse.countryCode), country: JSON.stringify(this.countryDataResponse.countryName) }] });
+        //             }
+        //           )
+        //       }
+        //     }
+      
 
-
-          );
+         // );
       }
 
       // if (this.api.getColumnDef('country') === '') {
@@ -733,13 +740,13 @@ export class CountryComponent implements OnInit {
 
                 alert("Postal Details");
 
-                this.countryService.getPostal(getPostalBody)
-                  .subscribe(
-                    data => {
-                      this.getPostalResponse = data;
-                      this.rowData3 = this.getPostalResponse;
-                    }
-                  )
+                // this.countryService.getPostal(getPostalBody)
+                //   .subscribe(
+                //     data => {
+                //       this.getPostalResponse = data;
+                //       this.rowData3 = this.getPostalResponse;
+                //     }
+                //   )
               }
 
             }

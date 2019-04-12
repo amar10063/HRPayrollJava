@@ -19,18 +19,11 @@ export class ServiceUrls {
     public static getState = '/getState';
     public static getCity = '/getCity';
     public static getAllDesignation = '/getDesignation';
-<<<<<<< HEAD
     static getAllDepartment: '/getDepartment';
-    static getLocation: '/getLocation';
     public static getPostal = '/getPostalCode';
     public static deleteState ='/DeleteState';
     public static deleteCity ='/DeleteCity';
     public static deletePostal = '/DeletePostalCode';
     public static saveEmployeeAddress ='/SaveAddress';
-=======
-    public static getAllDepartment = '/getDepartment';
 
-    
-
->>>>>>> 22c0d47ea03871dd19d02799780c93096ffa0ac2
 }
