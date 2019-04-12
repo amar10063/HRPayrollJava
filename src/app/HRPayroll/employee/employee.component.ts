@@ -8,6 +8,7 @@ import { DepartmentBody } from './EmployeeApiResponse/DepartmentBody';
 import { DepartmentResponse } from './EmployeeApiResponse/DepartmentResponse';
 import { DesignationBody } from './EmployeeApiResponse/DesignationBody';
 import { LocationResponse } from './EmployeeApiResponse/LocationResponse';
+import { GridApi, ColumnApi } from 'ag-grid-community';
 
 @Component({
   selector: 'app-employee',
@@ -17,6 +18,11 @@ import { LocationResponse } from './EmployeeApiResponse/LocationResponse';
 export class EmployeeComponent implements OnInit {
   basicDetailsForm: FormGroup;
   titles = ['Mr', 'Miss', 'Mrs'];
+
+  addressApi: GridApi;
+  addressColumnApi: ColumnApi;
+ 
+  rowSelection: string;
 
   submitted = false;
   designationResponse: DesignationResponse[];
@@ -59,28 +65,130 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs1 = [
 
-    { headerName: 'Status', field: 'status', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'Address', field: 'address', editable: true, width: 150 },
-    { headerName: 'City', field: 'city', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'State', field: 'state', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'Country', field: 'country', sortable: true, filter: true, editable: true, width: 90 },
-    { headerName: 'Postal Code', field: 'pin', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'Contact No.', field: 'ContactNo', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'Email ID', field: 'EmailID', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'Emergency Contact Person', field: 'EmergencyContactPerson', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'Emergency Contact No', field: 'EmergencyContactNo', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'Status', field: 'status', sortable: true, filter: true, editable: true, width: 100,
+   
+    cellStyle: function (params) {
+      if (params.value === '') {
+
+        return { outline: '1px solid red' };
+      } else {
+        return { outline: 'white' };
+      }
+    }
+  
+  },
+    { headerName: 'Address', field: 'address', editable: true, width: 150,
+  
+    cellStyle: function (params) {
+      if (params.value === '') {
+
+        return { outline: '1px solid red' };
+      } else {
+        return { outline: 'white' };
+      }
+    }
+  },
+    { headerName: 'City', field: 'city', sortable: true, filter: true, editable: true, width: 100 ,
+      
+    cellStyle: function (params) {
+      if (params.value === '') {
+
+        return { outline: '1px solid red' };
+      } else {
+        return { outline: 'white' };
+      }
+    }
+    
+  },
+    { headerName: 'State', field: 'state', sortable: true, filter: true, editable: true, width: 100,
+  
+    cellStyle: function (params) {
+      if (params.value === '') {
+
+        return { outline: '1px solid red' };
+      } else {
+        return { outline: 'white' };
+      }
+    }
+  
+  },
+  
+    { headerName: 'Country', field: 'country', sortable: true, filter: true, editable: true, width: 90 ,
+      
+    cellStyle: function (params) {
+      if (params.value === '') {
+
+        return { outline: '1px solid red' };
+      } else {
+        return { outline: 'white' };
+      }
+    }
+  },
+    { headerName: 'Postal Code', field: 'pin', sortable: true, filter: true, editable: true, width: 100 ,
+     
+    cellStyle: function (params) {
+      if (params.value === '') {
+
+        return { outline: '1px solid red' };
+      } else {
+        return { outline: 'white' };
+      }
+    }
+  
+  },
+    { headerName: 'Contact No.', field: 'ContactNo', sortable: true, filter: true, editable: true, width: 100 ,
+  
+    cellStyle: function (params) {
+      if (params.value === '') {
+
+        return { outline: '1px solid red' };
+      } else {
+        return { outline: 'white' };
+      }
+    }
+  },
+    { headerName: 'Email ID', field: 'EmailID', sortable: true, filter: true, editable: true, width: 120,
+    cellStyle: function (params) {
+      if (params.value === '') {
+
+        return { outline: '1px solid red' };
+      } else {
+        return { outline: 'white' };
+      }
+    }
+  },
+    { headerName: 'Emergency Contact Person', field: 'EmergencyContactPerson', sortable: true, filter: true, editable: true, width: 120,
+    cellStyle: function (params) {
+      if (params.value === '') {
+
+        return { outline: '1px solid red' };
+      } else {
+        return { outline: 'white' };
+      }
+    }
+  },
+    { headerName: 'Emergency Contact No', field: 'EmergencyContactNo', sortable: true, filter: true, editable: true, width: 120,
+    cellStyle: function (params) {
+      if (params.value === '') {
+
+        return { outline: '1px solid red' };
+      } else {
+        return { outline: 'white' };
+      }
+    }
+  },
 
 
   ];
 
   rowData1 = [
-    { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Permanent', ContactNo: '0987654321', EmailID: 'abcd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
-    { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '9876543210', EmailID: 'bcd@gmail.com', EmergencyContactPerson: 'Fateh Singh', EmergencyContactNo: '8459267584' },
-    { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Current', ContactNo: '0987654321', EmailID: 'abc@gmail.com', EmergencyContactPerson: 'Himanshu', EmergencyContactNo: '8459267584'},
-    { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Permanent', ContactNo: '0987654321', EmailID: 'abcd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584'},
-    { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '0987654321', EmailID: 'abc@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
-    { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Current', ContactNo: '8765432100', EmailID: 'abd@gmail.com9', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
-    { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '0987654321', EmailID: 'acd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
+    // { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Permanent', ContactNo: '0987654321', EmailID: 'abcd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
+    // { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '9876543210', EmailID: 'bcd@gmail.com', EmergencyContactPerson: 'Fateh Singh', EmergencyContactNo: '8459267584' },
+    // { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Current', ContactNo: '0987654321', EmailID: 'abc@gmail.com', EmergencyContactPerson: 'Himanshu', EmergencyContactNo: '8459267584'},
+    // { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Permanent', ContactNo: '0987654321', EmailID: 'abcd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584'},
+    // { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '0987654321', EmailID: 'abc@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
+    // { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Current', ContactNo: '8765432100', EmailID: 'abd@gmail.com9', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
+    // { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '0987654321', EmailID: 'acd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
   ];
 
 
@@ -332,11 +440,13 @@ export class EmployeeComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder, private countryService: CountryService) {
-
+    this.rowSelection = 'single';
   }
   public show: boolean = false;
   public hide: boolean = true;
   public buttonName: any = 'Add New';
+  
+  
 
 
   ngOnInit() {
@@ -356,6 +466,18 @@ export class EmployeeComponent implements OnInit {
    // this.getAllDepartment('1', 2);
   // this.getAllDesignation('1', 2);
 
+  }
+  onAddressGridReady(params) {
+    this.addressApi = params.api;
+    this.addressColumnApi = params.columnApi;
+  }
+  onAddAddress()
+  {
+    alert("add");
+    let res = this.addressApi.updateRowData({ add: [{ address: '', city: '', state: '', country: '', pin: '', status: '', ContactNo: '', EmailID: '', EmergencyContactPerson: '', EmergencyContactNo: '' }] });
+    res.add.forEach(function (rowNode) {
+      console.log('Added Row Node', rowNode);
+    });
   }
   getLocation(UserID: number) {
     var locationBody = new LocationBody();

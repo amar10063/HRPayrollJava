@@ -11,4 +11,9 @@ export class ServiceUrls {
     public static getAllDesignation = '/getDesignation';
     static getAllDepartment: '/getDepartment';
     static getLocation: '/getLocation';
+    public static getPostal = '/getPostalCode';
+    public static deleteState ='/DeleteState';
+    public static deleteCity ='/DeleteCity';
+    public static deletePostal = '/DeletePostalCode';
+    public static saveEmployeeAddress ='/SaveAddress';
 }

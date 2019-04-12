@@ -20,6 +20,11 @@ import { GetCityResponse } from '../SystemAdministration/country/CityDetails/Get
 import { DesignationBody } from '../HRPayroll/employee/EmployeeApiResponse/DesignationBody';
 import { DepartmentBody } from '../HRPayroll/employee/EmployeeApiResponse/DepartmentBody';
 import { LocationBody } from '../HRPayroll/employee/EmployeeApiResponse/LocationBody';
+import { GetPostalBody } from '../SystemAdministration/country/PostalDetails/GetPostalBody';
+import { GetPostalResponse } from '../SystemAdministration/country/PostalDetails/GetPostalResponse';
+import { DeleteStateBody } from '../SystemAdministration/country/StateDetails/DeleteStateBody';
+import { DeleteCityBody } from '../SystemAdministration/country/CityDetails/DeleteCityBody';
+import { DeletePostalBody } from '../SystemAdministration/country/PostalDetails/DeletePostalBody';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +38,7 @@ export class CountryService {
 
   constructor(private httpClient: HttpClient) { 
   }
-  doLogin(countryBody: CountryBody): Observable<CountryResponse> {
+  saveCountry(countryBody: CountryBody): Observable<CountryResponse> {
     return this.httpClient.post<CountryResponse>(ServiceUrls.baseUrls + ServiceUrls.saveCountry, JSON.stringify(countryBody), this.httpOptions);
 
   }
@@ -69,7 +74,20 @@ getLocation(locationBody: LocationBody): Observable < any > {
   getCity(getCityBody: GetCityBody): Observable<GetCityResponse> {
     return this.httpClient.post<GetCityResponse>(ServiceUrls.baseUrls + ServiceUrls.getCity, JSON.stringify(getCityBody), this.httpOptions);
   }
+  getPostal(getPostalBody: GetPostalBody): Observable<GetPostalResponse> {
+    return this.httpClient.post<GetPostalResponse>(ServiceUrls.baseUrls + ServiceUrls.getPostal, JSON.stringify(getPostalBody), this.httpOptions);
+  }
+  deleteState(deleteStateBody: DeleteStateBody): Observable<StateResponse> {
+    return this.httpClient.post<StateResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteState, JSON.stringify(deleteStateBody), this.httpOptions);
+  }
+  deleteCity(deleteCityBody: DeleteCityBody): Observable<CityResponse> {
+    return this.httpClient.post<CityResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteCity, JSON.stringify(deleteCityBody), this.httpOptions);
+  }
+  deletePostal(deletePostalBody: DeletePostalBody): Observable<PostalResponse> {
+    return this.httpClient.post<PostalResponse>(ServiceUrls.baseUrls + ServiceUrls.deletePostal, JSON.stringify(deletePostalBody), this.httpOptions);
+  }
 }
+
 
 
 
