@@ -3,6 +3,5 @@ export class GetStateResponse{
     description: string;
     countryID: number;
     countryName:string;
-    stateID: number;
-    
+    stateID: number;   
 }
