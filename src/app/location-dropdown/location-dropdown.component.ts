@@ -12,7 +12,6 @@ import { INoRowsOverlayAngularComp } from 'ag-grid-angular';
 export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
   agInit(params): void {
     this.getAllLocation();
-
   }
 
   locationResponse: GetAllLocationResponse[];

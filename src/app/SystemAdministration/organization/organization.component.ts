@@ -46,7 +46,7 @@ export class OrganizationComponent implements OnInit {
   gridOptions: GridOptions;
 
   constructor(private countryService: AllWeb) {
-    this.frameworkComponents = { genderCellRenderer: LocationDropdownComponent };
+    //this.frameworkComponents = { genderCellRenderer: LocationDropdownComponent };
 
     this.columnDefs = [
       {
