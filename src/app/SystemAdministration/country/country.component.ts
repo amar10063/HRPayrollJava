@@ -539,9 +539,7 @@ export class CountryComponent implements OnInit {
 
   onCellKeyDown(e) {
     const keyPressed = e.event.key;
-
     if (keyPressed === 'Enter') {
-      //alert("Enter ");
       const countryBody = new CountryBody();
       const universalBody = new UniversalBody();
       const selectedNodes = this.api.getSelectedNodes();

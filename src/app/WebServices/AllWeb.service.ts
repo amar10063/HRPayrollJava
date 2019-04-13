@@ -47,9 +47,10 @@ export class AllWeb {
   doGetLocation(getLocationBody: GetLocationBody): Observable<GetAllLocationResponse[]> {
     return this.httpClient.post<GetAllLocationResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getLocation, JSON.stringify(getLocationBody), this.httpOptions);
   }
-  getAllDepartment(departmentBody: GetAllDepartmentBody): Observable<any> {
-    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getAllDepartment, JSON.stringify(departmentBody), this.httpOptions);
+  getDepartment(departmentBody: GetAllDepartmentBody): Observable<GetAllLocationResponse[]> {
+    return this.httpClient.post<GetAllLocationResponse[]>('http://10.10.10.48:8081' + '/getDepartment', JSON.stringify(departmentBody), this.httpOptions);
   }
+
   doDeleteLocation(deleteLocationBody: DeleteLocationBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteLocation, JSON.stringify(deleteLocationBody), this.httpOptions);
   }
