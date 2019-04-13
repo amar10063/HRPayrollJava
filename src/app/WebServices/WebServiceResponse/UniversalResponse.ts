@@ -1,4 +1,4 @@
-export class PostalResponse {
+export class UniversalResponse {
     MESSAGE: string;
     STATUS: string;
 }

@@ -1,7 +1,6 @@
 import { GridApi, ColumnApi, CellComp } from 'ag-grid-community';
-import { HighSchoolModel } from '../Education/HighSchoolModel';
-import { HighSchoolResponse } from '../Education/HighSchoolResponse';
-
+import { HighSchoolBody } from '../../WebServices/WebServiceBody/EducationBody/HighSchoolBody';
+import { HighSchoolResponse } from '../../WebServices/WebServiceResponse/EducationResponse/HighSchoolResponse';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { from } from 'rxjs';
@@ -12,7 +11,6 @@ import { DepartmentResponse } from './EmployeeApiResponse/DepartmentResponse';
 import { GetAllDesignationBody } from './EmployeeApiResponse/GetAllDesignationBody';
 import { GetAllLocationResponse } from './EmployeeApiResponse/GetAllLocationResponse';
 import { GetLocationBody } from 'src/app/SystemAdministration/organization/GetLocationBody';
-
 
 @Component({
   selector: 'app-employee',
@@ -184,6 +182,7 @@ export class EmployeeComponent implements OnInit {
 
 
   ];
+
 
   rowData1 = [];
   columnDefs2 = [
@@ -607,7 +606,7 @@ export class EmployeeComponent implements OnInit {
   onGetSchoolQualification() {
     var highSchoolResonse: HighSchoolResponse;
 
-    this.countryService.doGetHighSchoolData()
+    this.countryService.getHighSchoolData()
       .subscribe(
         data => {
           highSchoolResonse = data;
@@ -636,7 +635,7 @@ export class EmployeeComponent implements OnInit {
     const keyPressed = e.event.key;
     if (keyPressed === 'Enter') {
       alert("Do you want to save the data.");
-      const highSchool = new HighSchoolModel();
+      const highSchool = new HighSchoolBody();
       const selectedNodes = this.api.getSelectedNodes();
       const selectedData = selectedNodes.map(node => node.data);
       var highSchoolResonse: HighSchoolResponse;
@@ -662,7 +661,7 @@ export class EmployeeComponent implements OnInit {
         alert("Enter Percentage");
       } else {
         console.log("Sending Data", highSchool);
-        this.countryService.doHighSchoolSave(highSchool)
+        this.countryService.saveHighSchool(highSchool)
           .subscribe(
             data => {
               highSchoolResonse = data;
