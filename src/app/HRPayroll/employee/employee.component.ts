@@ -60,7 +60,7 @@ export class EmployeeComponent implements OnInit {
   columnDefs1 = [
 
     {
-      headerName: 'Status', field: 'status', sortable: true, filter: true, editable: true, width: 100,
+      headerName: 'Status', field: 'Address_Status', sortable: true, filter: true, editable: true, width: 100,
 
       cellStyle: function (params) {
         if (params.value === '') {
@@ -73,7 +73,7 @@ export class EmployeeComponent implements OnInit {
 
     },
     {
-      headerName: 'Address', field: 'address', editable: true, width: 150,
+      headerName: 'Address', field: 'Address', editable: true, width: 150,
       cellStyle: function (params) {
         if (params.value === '') {
           return { outline: '1px solid red' };

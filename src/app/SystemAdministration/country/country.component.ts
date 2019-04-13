@@ -278,8 +278,39 @@ export class CountryComponent implements OnInit {
   countState = 0;
   countCity = 0;
   countPostal = 0;
-
+ universalBody= new UniversalBody();
   ngOnInit() {
+
+    this.allWeb.getCountries(this.universalBody)
+      .subscribe(
+        data => {
+          this.countryDataResponse = data;
+          this.rowData = this.countryDataResponse;
+
+        });
+        this.allWeb.getStates(this.universalBody)
+                  .subscribe(
+                    data => {
+                      this.getStateResponse = data;
+                      this.rowData1 = this.getStateResponse;
+                    }
+                  )
+    this.allWeb.getCity(this.universalBody)
+      .subscribe(
+        data => {
+          this.getCityResponse = data;
+          this.rowData2 = this.getCityResponse;
+
+        }
+      );
+      this.allWeb.getPostal(this.universalBody)
+      .subscribe(
+        data => {
+          this.getPostalResponse = data;
+          this.rowData3 = this.getPostalResponse;
+        }
+      );
+
 
   }
 
@@ -373,7 +404,7 @@ export class CountryComponent implements OnInit {
     if (selectedData.length === 0) {
       alert("Please select a row");
     }
-    
+
     let l = this.stateApi.getDisplayedRowCount();
 
     for (i = 0; i < l; i++) {
@@ -410,7 +441,7 @@ export class CountryComponent implements OnInit {
     if (selectedData.length === 0) {
       alert("Please select a row");
     }
-    
+
     let l = this.cityApi.getDisplayedRowCount();
 
     for (i = 0; i < l; i++) {
@@ -433,7 +464,7 @@ export class CountryComponent implements OnInit {
 
       }
     }
-    
+
   }
   onDeletePostal() {
     let i: number;
@@ -468,7 +499,7 @@ export class CountryComponent implements OnInit {
 
       }
     }
-    
+
 
   }
   onGridReady(params) {
@@ -502,7 +533,7 @@ export class CountryComponent implements OnInit {
 
   onCellKeyDown(e) {
     const keyPressed = e.event.key;
-  
+
     if (keyPressed === 'Enter') {
       //alert("Enter ");
       const countryBody = new CountryBody();
@@ -521,7 +552,7 @@ export class CountryComponent implements OnInit {
       }
       else if (dataTest['countryName'] === '') {
         alert("Enter country name");
-       
+
       }
 
       else {
@@ -539,14 +570,14 @@ export class CountryComponent implements OnInit {
                     data => {
                       this.countryDataResponse = data;
                       this.rowData = this.countryDataResponse;
-                      
+
                     }
                   )
               }
             }
-      
 
-         );
+
+          );
       }
 
 
