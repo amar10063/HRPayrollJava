@@ -27,10 +27,6 @@ import { GeneralComponent } from './SystemAdministration/general/general.compone
 import { LocationDropdownComponent } from './location-dropdown/location-dropdown.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,

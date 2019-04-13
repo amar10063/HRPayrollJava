@@ -56,15 +56,7 @@ export class EmployeeComponent implements OnInit {
     }
   ];
 
-  rowData = [
-    { EmpImage: '', EmpName: 'Fateh Singh', Designation: 'Developer', Department: 'IT', ActiveEmp: 'Active', OnLeave: 'Yes', LeaveFrom: '05/03/2019', LeaveTo: '10/03/2019', ContactNo: '8459267584', EmailID: 'abc@gmail.com', JoiningDate: '12/04/2019', Heirarchy: 'Reporting Heirarchy', SendMessage: 'Send' },
-    { EmpImage: '', EmpName: 'Fateh Singh', Designation: 'Developer', Department: 'IT', ActiveEmp: 'Inactive', OnLeave: 'No', LeaveFrom: '05/03/2019', LeaveTo: '10/03/2019', ContactNo: '8459267584', EmailID: 'abc@gmail.com', JoiningDate: '12/04/2019', Heirarchy: 'Reporting Heirarchy', SendMessage: 'Send' },
-    { EmpImage: '', EmpName: 'Fateh Singh', Designation: 'Developer', Department: 'IT', ActiveEmp: 'Active', OnLeave: 'Yes', LeaveFrom: '05/03/2019', LeaveTo: '10/03/2019', ContactNo: '8459267584', EmailID: 'abc@gmail.com', JoiningDate: '12/04/2019', Heirarchy: 'Reporting Heirarchy', SendMessage: 'Send' },
-    { EmpImage: '', EmpName: 'Fateh Singh', Designation: 'Developer', Department: 'IT', ActiveEmp: 'Active', OnLeave: 'Yes', LeaveFrom: '05/03/2019', LeaveTo: '10/03/2019', ContactNo: '8459267584', EmailID: 'abc@gmail.com', JoiningDate: '12/04/2019', Heirarchy: 'Reporting Heirarchy', SendMessage: 'Send' },
-    { EmpImage: '', EmpName: 'Fateh Singh', Designation: 'Developer', Department: 'IT', ActiveEmp: 'Inactive', OnLeave: 'No', LeaveFrom: '05/03/2019', LeaveTo: '10/03/2019', ContactNo: '8459267584', EmailID: 'abc@gmail.com', JoiningDate: '12/04/2019', Heirarchy: 'Reporting Heirarchy', SendMessage: 'Send' },
-    { EmpImage: '', EmpName: 'Fateh Singh', Designation: 'Developer', Department: 'IT', ActiveEmp: 'Active', OnLeave: 'Yes', LeaveFrom: '05/03/2019', LeaveTo: '10/03/2019', ContactNo: '8459267584', EmailID: 'abc@gmail.com', JoiningDate: '12/04/2019', Heirarchy: 'Reporting Heirarchy', SendMessage: 'Send' },
-    { EmpImage: '', EmpName: 'Fateh Singh', Designation: 'Developer', Department: 'IT', ActiveEmp: 'Inactive', OnLeave: 'No', LeaveFrom: '05/03/2019', LeaveTo: '10/03/2019', ContactNo: '8459267584', EmailID: 'abc@gmail.com', JoiningDate: '12/04/2019', Heirarchy: 'Reporting Heirarchy', SendMessage: 'Send' },
-  ];
+  rowData = [];
 
 
   columnDefs1 = [
@@ -84,10 +76,8 @@ export class EmployeeComponent implements OnInit {
     },
     {
       headerName: 'Address', field: 'address', editable: true, width: 150,
-
       cellStyle: function (params) {
         if (params.value === '') {
-
           return { outline: '1px solid red' };
         } else {
           return { outline: 'white' };
@@ -195,30 +185,13 @@ export class EmployeeComponent implements OnInit {
 
   ];
 
-  rowData1 = [
-    // { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Permanent', ContactNo: '0987654321', EmailID: 'abcd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
-    // { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '9876543210', EmailID: 'bcd@gmail.com', EmergencyContactPerson: 'Fateh Singh', EmergencyContactNo: '8459267584' },
-    // { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Current', ContactNo: '0987654321', EmailID: 'abc@gmail.com', EmergencyContactPerson: 'Himanshu', EmergencyContactNo: '8459267584'},
-    // { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Permanent', ContactNo: '0987654321', EmailID: 'abcd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584'},
-    // { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '0987654321', EmailID: 'abc@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
-    // { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Current', ContactNo: '8765432100', EmailID: 'abd@gmail.com9', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
-    // { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '0987654321', EmailID: 'acd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
-  ];
-
-
+  rowData1 = [];
   columnDefs2 = [
-
-
     {
       headerName: 'Class', field: 'Class', width: 120, editable: true,
       cellStyle: function (params) {
         if (params.value === '') {
-          // bordercolor: 'red'
-          // alert("Enter Class Name");
-
           return { outline: '1px solid red' };
-
-          //color: 'red', backgroundColor: 'green',
         } else {
           return { outline: 'white' };
         }
@@ -228,12 +201,7 @@ export class EmployeeComponent implements OnInit {
       headerName: 'Board', field: 'Board', sortable: true, filter: true, width: 150, editable: true,
       cellStyle: function (params) {
         if (params.value === '') {
-          // bordercolor: 'red'
-          // alert("Enter Board Name");
-
           return { outline: '1px solid red' };
-
-          //color: 'red', backgroundColor: 'green',
         } else {
           return { outline: 'white' };
         }
@@ -243,12 +211,7 @@ export class EmployeeComponent implements OnInit {
       headerName: 'School Name', field: 'SchoolName', sortable: true, filter: true, width: 152, editable: true,
       cellStyle: function (params) {
         if (params.value === '') {
-          // bordercolor: 'red'
-          // alert("Enter School Name");
-
           return { outline: '1px solid red' };
-
-          //color: 'red', backgroundColor: 'green',
         } else {
           return { outline: 'white' };
         }
@@ -259,12 +222,7 @@ export class EmployeeComponent implements OnInit {
       headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, width: 120, editable: true,
       cellStyle: function (params) {
         if (params.value === '') {
-          // bordercolor: 'red'
-          // alert("Enter Start Date");
-
           return { outline: '1px solid red' };
-
-          //color: 'red', backgroundColor: 'green',
         } else {
           return { outline: 'white' };
         }
@@ -272,14 +230,9 @@ export class EmployeeComponent implements OnInit {
     },
     {
       headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, width: 120, editable: true,
-      cellStyle: function (params) {
+      cellStyle(params) {
         if (params.value === '') {
-          // bordercolor: 'red'
-          // alert("Enter End Date");
-
           return { outline: '1px solid red' };
-
-          //color: 'red', backgroundColor: 'green',
         } else {
           return { outline: 'white' };
         }
@@ -290,13 +243,7 @@ export class EmployeeComponent implements OnInit {
       headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, width: 150, editable: true,
       cellStyle: function (params) {
         if (params.value === '') {
-          // bordercolor: 'red'
-          // alert("Enter Percentage");
-
           return { outline: '1px solid red' };
-
-
-          //color: 'red', backgroundColor: 'green',
         } else {
           return { outline: 'white' };
         }
@@ -304,14 +251,9 @@ export class EmployeeComponent implements OnInit {
     },
   ];
 
-  rowData2 = [
-    // { Class: '10', Board: 'CBSE', SchoolName: 'DPSG', StartDate: '10-03-2010', EndDate: '10-03-2011', percentage: '74 %' },
-    // { Class: '12', Board: 'CBSE', SchoolName: 'DPSG', StartDate: '10-03-2012', EndDate: '10-03-2013', percentage: '72 %' },
-
-  ];
+  rowData2 = [];
 
   columnDefs4 = [
-
     { headerName: 'Degree', field: 'Degree', width: 120 },
     { headerName: 'Specialization', field: 'specialization', sortable: true, filter: true, width: 160 },
 
@@ -330,8 +272,6 @@ export class EmployeeComponent implements OnInit {
   ];
 
   columnDefs5 = [
-
-
     { headerName: 'Degree', field: 'Degree', editable: true, width: 120 },
     { headerName: 'Specialization', field: 'specialization', sortable: true, filter: true, editable: true, width: 160 },
     { headerName: 'University', field: 'university', sortable: true, filter: true, editable: true, width: 160 },
@@ -339,8 +279,6 @@ export class EmployeeComponent implements OnInit {
     { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, editable: true, width: 125 },
     { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, editable: true, width: 120 },
     { headerName: '', width: 130 }
-
-
   ];
 
   rowData5 = [
@@ -349,7 +287,6 @@ export class EmployeeComponent implements OnInit {
   ];
 
   columnDefs6 = [
-
     { headerName: 'Degree', field: 'Degree', width: 120 },
     { headerName: 'Specialization', field: 'specialization', sortable: true, filter: true, editable: true, width: 150 },
     { headerName: 'University', field: 'university', sortable: true, filter: true, editable: true, width: 160 },
@@ -357,8 +294,6 @@ export class EmployeeComponent implements OnInit {
     { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, editable: true, width: 110 },
     { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, editable: true, width: 100 },
     { headerName: '', width: 145 }
-
-
   ];
 
   rowData6 = [

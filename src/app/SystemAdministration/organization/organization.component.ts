@@ -48,7 +48,7 @@ export class OrganizationComponent implements OnInit {
   getLocationResponse: GetAllLocationResponse[];
 
   constructor(private countryService: AllWeb) {
-    this.frameworkComponents = { genderCellRenderer: LocationDropdownComponent };
+    //this.frameworkComponents = { genderCellRenderer: LocationDropdownComponent };
 
     this.columnDefs = [
       {
