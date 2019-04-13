@@ -1,4 +1,4 @@
-export class HighSchoolModel
+export class HighSchoolBody
 {
     public ClassName: number;
     public BoardName: string;
