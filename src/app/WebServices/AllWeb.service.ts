@@ -1,38 +1,32 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { LocationBody } from '../SystemAdministration/organization/LocationBody';
+import { LocationBody } from './WebServiceBody/OrganizationBody/LocationBody';
 import { GetLocationBody } from '../SystemAdministration/organization/GetLocationBody';
-import { DeleteLocationBody } from '../SystemAdministration/organization/DeleteLocationBody';
-import { DepartmentBody } from '../SystemAdministration/organization/DepartmentBody';
-import { DeleteDepartmentBody } from '../SystemAdministration/organization/DeleteDepartmentBody';
-import { DesignationBody } from '../SystemAdministration/organization/DesignationBody';
-import { DeleteDesignationBody } from '../SystemAdministration/organization/DeleteDesignationBody';
+import { DeleteLocationBody } from './WebServiceBody/OrganizationBody/DeleteLocationBody';
+import { DepartmentBody } from './WebServiceBody/OrganizationBody/DepartmentBody';
+import { DeleteDepartmentBody } from './WebServiceBody/OrganizationBody/DeleteDepartmentBody';
+import { DesignationBody } from './WebServiceBody/OrganizationBody/DesignationBody';
+import { DeleteDesignationBody } from './WebServiceBody/OrganizationBody/DeleteDesignationBody';
 import { Observable } from 'rxjs';
 import { ServiceUrls } from './ServiceUrls';
 import { Injectable } from '@angular/core';
-import { HighSchoolModel } from '../HRPayroll/Education/HighSchoolModel';
-import { CountryBody } from '../SystemAdministration/country/CountryDetails/CountryBody';
-import { CityBody } from '../SystemAdministration/country/CityDetails/CityBody';
-import { CountryResponse } from '../SystemAdministration/country/CountryDetails/CountryResponse';
-import { StateBody } from '../SystemAdministration/country/StateDetails/StateBody';
-import { CountryDataResponse } from '../SystemAdministration/country/CountryDetails/CountryDataResponse';
-import { GetAllCountryBody } from '../SystemAdministration/country/CountryDetails/GetAllCountryBody';
-import { PostalBody } from '../SystemAdministration/country/PostalDetails/PostalBody';
-import { CityResponse } from '../SystemAdministration/country/CityDetails/CityResponse';
-import { StateResponse } from '../SystemAdministration/country/StateDetails/StateResponse';
-import { PostalResponse } from '../SystemAdministration/country/PostalDetails/PostalResponse';
-import { DeleteCountryBody } from '../SystemAdministration/country/CountryDetails/DeleteCountryBody';
-import { GetStateBody } from '../SystemAdministration/country/StateDetails/GetStateBody';
-import { GetStateResponse } from '../SystemAdministration/country/StateDetails/GetStateResponse';
-import { GetCityBody } from '../SystemAdministration/country/CityDetails/GetCityBody';
-import { GetCityResponse } from '../SystemAdministration/country/CityDetails/GetCityResponse';
+import { HighSchoolBody } from './WebServiceBody/EducationBody/HighSchoolBody';
+import { CountryBody } from './WebServiceBody/CountryBody/CountryBody';
+import { CityBody } from './WebServiceBody/CountryBody/CityBody';
+import { StateBody } from './WebServiceBody/CountryBody/StateBody';
+import { CountryDataResponse } from './WebServiceResponse/CountryResponse/GetCountryResponse';
+import { UniversalBody } from './WebServiceBody/UniversalBody';
+import { PostalBody } from './WebServiceBody/CountryBody/PostalBody';
+import { DeleteCountryBody } from './WebServiceBody/CountryBody/DeleteCountryBody';
+import { GetStateResponse } from './WebServiceResponse/CountryResponse/GetStateResponse';
+import { GetCityResponse } from './WebServiceResponse/CountryResponse/GetCityResponse';
 import { GetAllDesignationBody } from '../HRPayroll/employee/EmployeeApiResponse/GetAllDesignationBody';
 import { GetAllDepartmentBody } from '../HRPayroll/employee/EmployeeApiResponse/GetAllDepartmentBody';
 import { GetAllLocationResponse } from '../HRPayroll/employee/EmployeeApiResponse/GetAllLocationResponse';
-import { GetPostalBody } from '../SystemAdministration/country/PostalDetails/GetPostalBody';
-import { GetPostalResponse } from '../SystemAdministration/country/PostalDetails/GetPostalResponse';
-import { DeleteStateBody } from '../SystemAdministration/country/StateDetails/DeleteStateBody';
-import { DeleteCityBody } from '../SystemAdministration/country/CityDetails/DeleteCityBody';
-import { DeletePostalBody } from '../SystemAdministration/country/PostalDetails/DeletePostalBody';
+import { GetPostalResponse } from './WebServiceResponse/CountryResponse/GetPostalResponse';
+import { DeleteStateBody } from './WebServiceBody/CountryBody/DeleteStateBody';
+import { DeleteCityBody } from './WebServiceBody/CountryBody/DeleteCityBody';
+import { DeletePostalBody } from './WebServiceBody/CountryBody/DeletePostalBody';
+import{UniversalResponse} from './WebServiceResponse/UniversalResponse';
 @Injectable({
   providedIn: 'root'
 })
@@ -44,10 +38,10 @@ export class AllWeb {
   };
   constructor(private httpClient: HttpClient) {
   }
-  doLogin(countryBody: CountryBody): Observable<any> {
-    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.saveCountry, JSON.stringify(countryBody), this.httpOptions);
+  saveCountry(countryBody: CountryBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveCountry, JSON.stringify(countryBody), this.httpOptions);
   }
-  doLocation(locationBody: LocationBody): Observable<any> {
+  saveLocation(locationBody: LocationBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddLocation, JSON.stringify(locationBody), this.httpOptions);
   }
   doGetLocation(getLocationBody: GetLocationBody): Observable<GetAllLocationResponse[]> {
@@ -59,59 +53,59 @@ export class AllWeb {
   doDeleteLocation(deleteLocationBody: DeleteLocationBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteLocation, JSON.stringify(deleteLocationBody), this.httpOptions);
   }
-  doDepartment(departmentBody: DepartmentBody): Observable<any> {
+  saveDepartment(departmentBody: DepartmentBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddDepartment, JSON.stringify(departmentBody), this.httpOptions);
   }
-  doDeleteDepartment(deleteDepartmentBody: DeleteDepartmentBody): Observable<any> {
+  deleteDepartment(deleteDepartmentBody: DeleteDepartmentBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteDepartment, JSON.stringify(deleteDepartmentBody), this.httpOptions);
   }
-  doDesignation(designationBody: DesignationBody): Observable<any> {
+  saveDesignation(designationBody: DesignationBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddDesignation, JSON.stringify(designationBody), this.httpOptions);
   }
-  doDeleteDesignation(deleteDesignationBody: DeleteDesignationBody): Observable<any> {
+  deleteDesignation(deleteDesignationBody: DeleteDesignationBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteDesignation, JSON.stringify(deleteDesignationBody), this.httpOptions);
   }
   getAllDesignation(designationBody: GetAllDesignationBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getAllDesignation, JSON.stringify(designationBody), this.httpOptions);
   }
-  saveCity(cityBody: CityBody): Observable<CityResponse> {
-    return this.httpClient.post<CityResponse>(ServiceUrls.baseUrls + ServiceUrls.saveCity, JSON.stringify(cityBody), this.httpOptions);
+  saveCity(cityBody: CityBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveCity, JSON.stringify(cityBody), this.httpOptions);
   }
-  saveState(stateBody: StateBody): Observable<StateResponse> {
-    return this.httpClient.post<StateResponse>(ServiceUrls.baseUrls + ServiceUrls.saveState, JSON.stringify(stateBody), this.httpOptions);
+  saveState(stateBody: StateBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveState, JSON.stringify(stateBody), this.httpOptions);
   }
-  getCountries(getAllCountrybody: GetAllCountryBody): Observable<CountryDataResponse> {
-    return this.httpClient.post<CountryDataResponse>(ServiceUrls.baseUrls + ServiceUrls.getCountry, JSON.stringify(getAllCountrybody), this.httpOptions);
+  getCountries(universalBody: UniversalBody): Observable<CountryDataResponse> {
+    return this.httpClient.post<CountryDataResponse>(ServiceUrls.baseUrls + ServiceUrls.getCountry, JSON.stringify(universalBody), this.httpOptions);
   }
-  savePostal(postalBody: PostalBody): Observable<PostalResponse> {
-    return this.httpClient.post<PostalResponse>(ServiceUrls.baseUrls + ServiceUrls.savePostal, JSON.stringify(postalBody), this.httpOptions);
+  savePostal(postalBody: PostalBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.savePostal, JSON.stringify(postalBody), this.httpOptions);
   }
-  deleteCountry(deleteCountryBody: DeleteCountryBody): Observable<CountryResponse> {
-    return this.httpClient.post<PostalResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteCountry, JSON.stringify(deleteCountryBody), this.httpOptions);
+  deleteCountry(deleteCountryBody: DeleteCountryBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteCountry, JSON.stringify(deleteCountryBody), this.httpOptions);
   }
-  getStates(getStateBody: GetStateBody): Observable<GetStateResponse> {
-    return this.httpClient.post<GetStateResponse>(ServiceUrls.baseUrls + ServiceUrls.getState, JSON.stringify(getStateBody), this.httpOptions);
+  getStates(universalBody: UniversalBody): Observable<GetStateResponse> {
+    return this.httpClient.post<GetStateResponse>(ServiceUrls.baseUrls + ServiceUrls.getState, JSON.stringify(universalBody), this.httpOptions);
   }
-  getCity(getCityBody: GetCityBody): Observable<GetCityResponse> {
-    return this.httpClient.post<GetCityResponse>(ServiceUrls.baseUrls + ServiceUrls.getCity, JSON.stringify(getCityBody), this.httpOptions);
+  getCity(universalBody: UniversalBody): Observable<GetCityResponse> {
+    return this.httpClient.post<GetCityResponse>(ServiceUrls.baseUrls + ServiceUrls.getCity, JSON.stringify(universalBody), this.httpOptions);
   }
-  doHighSchoolSave(highSchool: HighSchoolModel): Observable<any> {
+  saveHighSchool(highSchool: HighSchoolBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.highSchoolApi, JSON.stringify(highSchool), this.httpOptions);
   }
-  doGetHighSchoolData(): Observable<any> {
+  getHighSchoolData(): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getSchoolDataApi, this.httpOptions);
   }
- 
-  getPostal(getPostalBody: GetPostalBody): Observable<GetPostalResponse> {
-    return this.httpClient.post<GetPostalResponse>(ServiceUrls.baseUrls + ServiceUrls.getPostal, JSON.stringify(getPostalBody), this.httpOptions);
+  getPostal(universalBody: UniversalBody): Observable<GetPostalResponse> {
+    return this.httpClient.post<GetPostalResponse>(ServiceUrls.baseUrls + ServiceUrls.getPostal, JSON.stringify(universalBody), this.httpOptions);
   }
-  deleteState(deleteStateBody: DeleteStateBody): Observable<StateResponse> {
-    return this.httpClient.post<StateResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteState, JSON.stringify(deleteStateBody), this.httpOptions);
+  deleteState(deleteStateBody: DeleteStateBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteState, JSON.stringify(deleteStateBody), this.httpOptions);
   }
-  deleteCity(deleteCityBody: DeleteCityBody): Observable<CityResponse> {
-    return this.httpClient.post<CityResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteCity, JSON.stringify(deleteCityBody), this.httpOptions);
+  deleteCity(deleteCityBody: DeleteCityBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteCity, JSON.stringify(deleteCityBody), this.httpOptions);
   }
-  deletePostal(deletePostalBody: DeletePostalBody): Observable<PostalResponse> {
-    return this.httpClient.post<PostalResponse>(ServiceUrls.baseUrls + ServiceUrls.deletePostal, JSON.stringify(deletePostalBody), this.httpOptions);
+  deletePostal(deletePostalBody: DeletePostalBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deletePostal, JSON.stringify(deletePostalBody), this.httpOptions);
   }
+
 }
