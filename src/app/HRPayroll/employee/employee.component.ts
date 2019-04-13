@@ -5,7 +5,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { from } from 'rxjs';
 import { AllWeb } from 'src/app/WebServices/AllWeb.service';
-import { DesignationResponse } from './EmployeeApiResponse/DesignationResponse';
 import { GetAllDepartmentBody } from './EmployeeApiResponse/GetAllDepartmentBody';
 import { GetAllDesignationBody } from './EmployeeApiResponse/GetAllDesignationBody';
 import { GetAllLocationResponse } from './EmployeeApiResponse/GetAllLocationResponse';
@@ -26,7 +25,7 @@ export class EmployeeComponent implements OnInit {
   rowSelection: string;
 
   submitted = false;
-  designationResponse: DesignationResponse[];
+  designationResponse: GetAllLocationResponse[];
   selectedDesignationIndex;
   columnDefs = [
     { headerName: 'Employee Image', field: 'EmpImage', template: '<img src="../assets/images/profile-img-2.png" />', width: 120 },
@@ -486,14 +485,14 @@ export class EmployeeComponent implements OnInit {
   ngOnInit() {
 
     this.basicDetailsForm = this.formBuilder.group({
-      empCode: ['', [Validators.required,]],
-      firstName: ['', [Validators.required,]],
-      dateofBirth: ['', [Validators.required,]],
-      lastName: ['', [Validators.required,]],
-      designation: [this.designationResponse],
-      department: ['Select', [Validators.required,]],
+      empCode: ['', [Validators.required]],
+      firstName: ['', [Validators.required]],
+      dateofBirth: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      designation: ['Select', [Validators.required]],
+      department: ['Select', [Validators.required]],
       title: ['Mr', [Validators.required,]],
-      location: [this.locationResponse]
+      location: ['Select', [Validators.required,]]
     });
     this.getLocation(1);
     // this.getAllDepartment('1', 2);
@@ -521,18 +520,25 @@ export class EmployeeComponent implements OnInit {
       .subscribe(
         data => {
           this.locationResponse = data;
-          this.selectedLocationIndex = this.locationResponse.length - 1;
+          if (this.locationResponse.length > 0) {
+            this.selectedLocationIndex = this.locationResponse.length - 1;
+            this.getAllDepartment(1, this.locationResponse[this.selectedLocationIndex].ID);
+          } else { }
+
         }
 
       );
   }
   public getSelectedLocation(value): void {
-    console.log(this.departmentResponse[value.target.value].id);
-    this.getAllDepartment(1, this.departmentResponse[value.target.value].id);
+    this.getAllDepartment(1, value.target.value);
+
+  }
+  public getSelectedDepartment(value): void {
+    this.getAllDesignation('1', value.target.value);
 
   }
   getAllDepartment(UserID: number, LocationID: number) {
-    console.log(UserID, LocationID);
+   // console.log(UserID, LocationID);
     var departmentBody = new GetAllDepartmentBody();
     departmentBody.userID = UserID;
     departmentBody.LocationID = LocationID;
@@ -541,6 +547,7 @@ export class EmployeeComponent implements OnInit {
         data => {
           this.departmentResponse = data;
           this.selectedDepartmentIndex = this.departmentResponse.length - 1;
+          this.getAllDesignation('1', this.departmentResponse[this.selectedDepartmentIndex].id);
         }
 
       );
@@ -557,18 +564,16 @@ export class EmployeeComponent implements OnInit {
         data => {
           this.designationResponse = data;
           this.selectedDesignationIndex = this.designationResponse.length - 1;
-
         }
       );
 
   }
 
-
   selectedDesignation(args) {
     this.selectedDesignationIndex = args.target.selectedIndex;
-    console.log(this.selectedDesignationIndex - 1);
-    console.log(args.target.selectedIndex);
-    console.log(args.target.options[args.target.selectedIndex].text);
+   // console.log(this.selectedDesignationIndex - 1);
+  //  console.log(args.target.selectedIndex);
+  //  console.log(args.target.options[args.target.selectedIndex].text);
   }
   onSave() {
     this.submitted = true;
@@ -579,9 +584,6 @@ export class EmployeeComponent implements OnInit {
 
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.basicDetailsForm.value));
   }
-
-
-
 
   onAddQualification() {
     //this.api.setFocusedCell(this.count, 'Class');
@@ -640,7 +642,7 @@ export class EmployeeComponent implements OnInit {
     const keyPressed = e.event.key;
     if (keyPressed === 'Enter') {
       alert('Do you want to save the data.');
-      const highSchool = new HighSchoolModel();
+      const highSchool = new HighSchoolBody();
       const selectedNodes = this.api.getSelectedNodes();
       const selectedData = selectedNodes.map(node => node.data);
       var highSchoolResonse: HighSchoolResponse;
@@ -666,7 +668,7 @@ export class EmployeeComponent implements OnInit {
         alert('Enter Percentage');
       } else {
         console.log('Sending Data', highSchool);
-        this.countryService.doHighSchoolSave(highSchool)
+        this.countryService.saveHighSchool(highSchool)
           .subscribe(
             data => {
               highSchoolResonse = data;
