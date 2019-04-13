@@ -1,21 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { GridApi, ColumnApi, CellComp, GridOptions } from 'ag-grid-community';
-
-import { LocationBody } from '../../WebServices/WebServiceBody/OrganizationBody/LocationBody';
-import { DepartmentBody } from '../../WebServices/WebServiceBody/OrganizationBody/DepartmentBody';
-import { DesignationBody } from '../../WebServices/WebServiceBody/OrganizationBody/DesignationBody';
 import { AllWeb } from "src/app/WebServices/AllWeb.service";
 import { LocationResponse } from './LocationResponse';
-
+import { DepartmentResponse } from './DepartmentResponse';
 import { from } from 'rxjs';
 import { DesignationResponse } from './DesignationResponse';
 import { GetLocationBody } from './GetLocationBody';
-import { DeleteLocationBody } from '../../WebServices/WebServiceBody/OrganizationBody/DeleteLocationBody';
-import { DeleteDepartmentBody } from '../../WebServices/WebServiceBody/OrganizationBody/DeleteDepartmentBody';
-import { DeleteDesignationBody } from '../../WebServices/WebServiceBody/OrganizationBody/DeleteDesignationBody';
 import { GetAllLocationResponse } from 'src/app/HRPayroll/employee/EmployeeApiResponse/GetAllLocationResponse';
 import { LocationDropdownComponent } from 'src/app/location-dropdown/location-dropdown.component';
-import { UniversalResponse } from 'src/app/WebServices/WebServiceResponse/UniversalResponse';
+import { DeleteLocationBody } from 'src/app/WebServices/WebServiceBody/OrganizationBody/DeleteLocationBody';
+import { DeleteDesignationBody } from 'src/app/WebServices/WebServiceBody/OrganizationBody/DeleteDesignationBody';
+import { LocationBody } from 'src/app/WebServices/WebServiceBody/OrganizationBody/LocationBody';
+import { DepartmentBody } from 'src/app/WebServices/WebServiceBody/OrganizationBody/DepartmentBody';
+import { DesignationBody } from 'src/app/WebServices/WebServiceBody/OrganizationBody/DesignationBody';
+import { DeleteDepartmentBody } from 'src/app/WebServices/WebServiceBody/OrganizationBody/DeleteDepartmentBody';
 
 
 @Component({
@@ -33,9 +31,9 @@ export class OrganizationComponent implements OnInit {
   designationApi: GridApi;
   designationColumnApi: ColumnApi;
 
-  //locationResponse: LocationResponse;
-  universalResponse: UniversalResponse;
-  //designationResponse: DesignationResponse;
+  locationResponse: LocationResponse;
+  departmentResponse: DepartmentResponse;
+  designationResponse: DesignationResponse;
   private frameworkComponents;
 
   rowSelection: string;
@@ -45,7 +43,6 @@ export class OrganizationComponent implements OnInit {
   rowData2: any;
   getAllLocationResponse: GetAllLocationResponse[];
   gridOptions: GridOptions;
-  getLocationResponse: GetAllLocationResponse[];
 
   constructor(private countryService: AllWeb) {
     //this.frameworkComponents = { genderCellRenderer: LocationDropdownComponent };
@@ -90,21 +87,21 @@ export class OrganizationComponent implements OnInit {
         }
 
       },
-      {
-        headerName: 'Location Name', field: 'name', sortable: true, filter: true, editable: true, width: 120,
 
+      { headerName: '', field: '', width: 467 }
+    ];
+    this.rowData;
+    this.columnDefs1 = [
+      {
+        headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, width: 120,
+        cellRendererFramework: LocationDropdownComponent
       },
-      {
-        headerName: 'Department Name', field: 'DepartmentName', sortable: true, editable: true, filter: true, width: 120,
 
+      {
+        headerName: 'Department Code', field: 'DepartmentCode', sortable: true, editable: true, filter: true, width: 140,
         cellStyle: function (params) {
           if (params.value === '') {
-            // bordercolor: 'red'
-            // alert("Please Enter Department Name");
-
             return { outline: '1px solid red' };
-
-            //color: 'red', backgroundColor: 'green',
           } else {
             return { outline: 'white' };
           }
@@ -112,7 +109,19 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Description', field: 'description', sortable: true, filter: true, editable: true, width: 130,
+        headerName: 'Department Name', field: 'DepartmentName', sortable: true, editable: true, filter: true, width: 120,
+
+        cellStyle: function (params) {
+          if (params.value === '') {
+            return { outline: '1px solid red' };
+          } else {
+            return { outline: 'white' };
+          }
+        }
+
+      },
+      {
+        headerName: 'Description', field: 'Description', sortable: true, editable: true, filter: true, width: 130,
 
         cellStyle: function (params) {
           if (params.value === '') {
@@ -162,14 +171,10 @@ export class OrganizationComponent implements OnInit {
       {
         headerName: 'Designation Code', field: 'DesignationCode', sortable: true, editable: true, filter: true, width: 140,
 
-      },
-      {
-        headerName: 'Description', field: 'description', sortable: true, editable: true, filter: true, width: 130,
-
         cellStyle: function (params) {
           if (params.value === '') {
             // bordercolor: 'red'
-            // alert("Please Enter Description");
+            alert("Please Enter Designation Code");
 
             return { outline: '1px solid red' };
 
@@ -198,7 +203,7 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Description', field: 'description', sortable: true, editable: true, filter: true, width: 130,
+        headerName: 'Description', field: 'Description', sortable: true, editable: true, filter: true, width: 130,
 
         cellStyle: function (params) {
           if (params.value === '') {
@@ -303,228 +308,223 @@ export class OrganizationComponent implements OnInit {
     document.querySelector('#selectedRows').innerHTML = selectedRowsString;
   }
 
-  // onDeleteLocation(id: number) {
+  onDeleteLocation() {
 
-  //   alert("Are you sure you want to delete this ?")
-  //   let i: number;
-  //   const deleteLocationBody = new DeleteLocationBody();
-  //   // deleteLocationBody.locationID = locationID;
-  //   const selectedNodes = this.api.getSelectedNodes();
+    alert("Are you sure you want to delete this ?")
+    const deleteLocationBody = new DeleteLocationBody();
+    const selectedNodes = this.api.getSelectedNodes();
 
+    if (selectedNodes.length === 0) {
 
-  //   const selectedData = selectedNodes.map(node => node.data);
-  //   console.log("key", selectedData);
-  //   var dataTest: Object;
-  //   selectedData.map(node => dataTest = node as Object);
-  //   if (selectedData.length === 0) {
-  //     alert("Please Select any row.");
-  //     this.api.removeItems(selectedData);
+      alert("Please Select any row.");
 
-  //   } for (i = 0; i < 20; i++) {
-  //     if (this.getLocationResponse[i].code === dataTest['code']) {
+    } else {
+      this.api.removeItems(selectedNodes);
+      this.countryService.doDeleteLocation(deleteLocationBody)
 
-  //       .subscribe(
-  //         data => {
-  //           this.universalResponse = data;
-  //           console.log("key", LocationResponse);
-  //           alert(this.universalResponse.MESSAGE);
-  //         }
+        .subscribe(
+          data => {
+            this.locationResponse = data;
+            console.log("key", LocationResponse);
+            alert(this.locationResponse.MESSAGE);
+          }
 
-  //             alert(this.locationResponse.MESSAGE);
-  //             if (this.locationResponse.STATUS === 'Success') {
-  //               var res = this.api.updateRowData({ remove: selectedData });
-  //             }
-  //           }
+        );
+    }
+  }
 
-  //         );
+  onDeleteDepartment() {
+    alert("Are you sure you want to delete this ?")
+    const deleteDepartmentBody = new DeleteDepartmentBody();
+    const selectedNodes = this.departmentApi.getSelectedNodes();
 
-  //     }
-  //   }
-  //   //    this.api.removeItems(selectedNodes);
-  //   //    this.countryService.doDeleteLocation(deleteLocationBody)
+    if (selectedNodes.length === 0) {
 
-  //   //   .subscribe(
-  //   //     data => {
-  //   //       this.locationResponse = data;
-  //   //       console.log("key",LocationResponse);
-  //   //         alert(this.locationResponse.MESSAGE);
-  //   //     }
+      alert("Please Select any row.");
 
-  //   // );
+    } else {
+      this.departmentApi.removeItems(selectedNodes);
+      this.countryService.deleteDepartment(deleteDepartmentBody)
 
-  // }
-  // // onDeleteLocation(locationID:number) {
-  // //   alert("In Delete")
-  // //   const deleteLocationBody = new DeleteLocationBody();
-  // //   this.countryService.doDeleteLocation(deleteLocationBody).subscribe(
-  // //     (data)=> {this.getLocation();
-  // //       console.log("key",data);
-  // //     },
+        .subscribe(
+          data => {
+            this.locationResponse = data;
+            console.log("key", LocationResponse);
+            alert(this.locationResponse.MESSAGE);
+          }
 
-  // //   );
-  // // }
+        );
+    }
+  }
 
-  // onDeleteDepartment() {
-  //   alert("Are you sure you want to delete this ?")
-  //   const deleteDepartmentBody = new DeleteDepartmentBody();
-  //   const selectedNodes = this.departmentApi.getSelectedNodes();
+  onDeleteDesignation() {
+    alert("Are you sure you want to delete this ?")
+    const deleteDesignationBody = new DeleteDesignationBody();
+    const selectedNodes = this.designationApi.getSelectedNodes();
 
-  //   if (selectedNodes.length === 0) {
+    if (selectedNodes.length === 0) {
 
-  //     alert("Please Select any row.");
+      alert("Please Select any row.");
 
-  //   } else {
-  //     this.departmentApi.removeItems(selectedNodes);
-  //     this.countryService.deleteDepartment(deleteDepartmentBody)
+    } else {
+      this.designationApi.removeItems(selectedNodes);
+      this.countryService.deleteDesignation(deleteDesignationBody)
 
-  //       .subscribe(
-  //         data => {
-  //           this.universalResponse = data;
-  //           console.log("key", UniversalResponse);
-  //           alert(this.universalResponse.MESSAGE);
-  //         }
+        .subscribe(
+          data => {
+            this.locationResponse = data;
+            console.log("key", LocationResponse);
+            alert(this.locationResponse.MESSAGE);
+          }
 
-  //       );
-  //   }
-  // }
+        );
+    }
+  }
+  onCellKeyLocationDown(e) {
+    const keyPressed = e.event.key;
+    if (keyPressed === 'Enter') {
+      const locationBody = new LocationBody();
+      const getLocationBody = new GetLocationBody();
+      const selectedNodes = this.api.getSelectedNodes();
 
-  // onDeleteDesignation() {
-  //   alert("Are you sure you want to delete this ?")
-  //   const deleteDesignationBody = new DeleteDesignationBody();
-  //   const selectedNodes = this.designationApi.getSelectedNodes();
+      const selectedData = selectedNodes.map(node => node.data);
+      var dataTest: Object;
+      selectedData.map(node => dataTest = node as Object);
+      locationBody.LocationCode = dataTest['LocationCode'];
+      locationBody.LocationName = dataTest['LocationName'];
+      locationBody.LocationDescription = dataTest['LocationDescription']
 
-  //   if (selectedNodes.length === 0) {
+      if (dataTest['LocationCode'] === '') {
+        alert("Plesae Enter Location code");
+      }
+      else if (dataTest['LocationName'] === '') {
+        alert("Please Enter Location Name");
+      }
+      else if (dataTest['description'] === '') {
+        alert("Please Enter Description");
+      }
+      else {
+        this.countryService.saveLocation(locationBody)
+          .subscribe(
+            data => {
+              this.locationResponse = data;
 
-  //     alert("Please Select any row.");
+              alert(this.locationResponse.MESSAGE);
 
-  //   } else {
-  //     this.designationApi.removeItems(selectedNodes);
-  //     this.countryService.deleteDesignation(deleteDesignationBody)
+              if (this.locationResponse.STATUS === 'Success') {
 
-  //       .subscribe(
-  //         data => {
-  //           this.universalResponse = data;
-  //           console.log("key", UniversalResponse);
-  //           alert(this.universalResponse.MESSAGE);
-  //         }
+                alert("Location Details");
 
-  //       );
-  //   }
-  // }
-  // getLocation() {
-  //   var getLocationBody = new GetLocationBody();
+                this.countryService.doGetLocation(getLocationBody)
+                  .subscribe(
+                    data => {
+                      //  this.locationResponse = data;
+                      //  this.rowData = this.locationResponse;
+                    }
+                  )
+              }
+            }
 
-  //   this.countryService.doGetLocation(getLocationBody)
-  //     .subscribe(
-  //       data => {
-  //         this.getLocationResponse = data;
-  //         console.log("key", data);
-  //         this.rowData = this.getLocationResponse;
-  //       }
+          );
+      }
 
-  //     );
-  // }
-  // onCellKeyLocationDown(e) {
-  //   const keyPressed = e.event.key;
-  //   if (keyPressed === 'Enter') {
-  //     // alert("Enter ");
-  //     const locationBody = new LocationBody();
-  //     const getLocationBody = new GetLocationBody();
-  //     const selectedNodes = this.api.getSelectedNodes();
+    }
+  }
 
-  //     const selectedData = selectedNodes.map(node => node.data);
-  //     var dataTest: Object;
-  //     selectedData.map(node => dataTest = node as Object);
+  onCellKeyDepartmentDown(e) {
+    const keyPressed = e.event.key;
+    if (keyPressed === 'Enter') {
+      alert("Enter");
+      const departmentBody = new DepartmentBody();
+      const selectedNodes = this.departmentApi.getSelectedNodes();
+      // console.log("key",selectedNodes);
+      const selectedData = selectedNodes.map(node => node.data);
+      var dataTest: Object;
+      selectedData.map(node => dataTest = node as Object);
+      departmentBody.DepartmentCode = dataTest['DepartmentCode'];
+      departmentBody.DepartmentName = dataTest['DepartmentName']
+      departmentBody.Description = dataTest['Description']
+      console.log("key", departmentBody);
 
-  //     locationBody.LocationCode = dataTest['locationCode'];
-  //     locationBody.LocationName = dataTest['locationName'];
-  //     locationBody.LocationDescription = dataTest['locationDescription']
+      if (dataTest['LocationName'] === '') {
+        alert("Plesae Enter Location Name");
+      }
+      else if (dataTest['DepartmentCode'] === '') {
+        alert("Please Enter Department Code");
+      }
 
-  //     if (dataTest['locationCode'] === '') {
-  //       alert("Plesae Enter Location code");
-  //     }
-  //     else if (dataTest['locationName'] === '') {
-  //       alert("Please Enter Location Name");
-  //     }
-  //     else if (dataTest['description'] === '') {
-  //       alert("Please Enter Description");
-  //     }
-  //     else {
-  //       this.countryService.saveLocation(locationBody)
-  //         .subscribe(
-  //           data => {
-  //             this.universalResponse = data;
+      if (dataTest['DepartmentName'] === '') {
+        alert("Plesae Enter Department Name");
+      }
+      else if (dataTest['Description'] === '') {
+        alert("Please Enter Description");
+      }
+      else {
 
-  //             alert(this.universalResponse.MESSAGE);
+        this.countryService.saveDepartment(departmentBody)
+          .subscribe(
+            data => {
+              this.locationResponse = data;
+              console.log("key", LocationResponse);
+              alert(this.locationResponse.MESSAGE);
+            }
 
-  //             if (this.universalResponse.STATUS === 'Success') {
+          );
+      }
+    }
+  }
 
-  //               alert("Location Details");
-  //               //  getLocationBody.userID = userID;
-
-  //               this.countryService.doGetLocation(getLocationBody)
-  //                 .subscribe(
-  //                   data => {
-  //                     this.getLocationResponse = data;
-  //                     console.log("key", data);
-
-  //                     this.rowData = this.getLocationResponse;
-
-  //                   }
-  //                 )
-  //             }
-  //           }
-  //         );
-  //     }
-  //   }
-  // }
-  // onCellKeyDepartmentDown(e) {
-  //   const keyPressed = e.event.key;
-  //   if (keyPressed === 'Enter') {
-  //     // alert("Enter ");
-  //     const departmentBody = new DepartmentBody();
-  //     const getLocationBody = new GetLocationBody();
-  //     const selectedNodes = this.api.getSelectedNodes();
-
-  //     const selectedData = selectedNodes.map(node => node.data);
-  //     var dataTest: Object;
-  //     selectedData.map(node => dataTest = node as Object);
-
-  //     departmentBody.DepartmentCode = dataTest['DepartmentCode'];
-  //     departmentBody.DepartmentName = dataTest['DepartmentName']
-  //     departmentBody.Description = dataTest['Description']
-  //     console.log("key", departmentBody)
-
-  //     if (dataTest['LocationName'] === '') {
-  //       alert("Plesae Enter Location Name");
-  //     }
+  onCellKeyDesignationDown(e) {
+    const keyPressed = e.event.key;
+    if (keyPressed === 'Enter') {
+      alert("Enter ");
+      const designationBody = new DesignationBody();
+      const selectedNodes = this.designationApi.getSelectedNodes();
+      // console.log("key",selectedNodes);
+      const selectedData = selectedNodes.map(node => node.data);
+      var dataTest: Object;
+      selectedData.map(node => dataTest = node as Object);
+      designationBody.DesignationCode = dataTest['DesignationCode'];
+      designationBody.DesignationName = dataTest['DesignationName']
+      designationBody.Description = dataTest['Description']
+      console.log("key", designationBody)
 
 
-  //     else if (dataTest['DepartmentCode'] === '') {
-  //       alert("Please Enter Department Code");
-  //     }
-  //     else if (dataTest['locationName'] === '') {
-  //       alert("Please Enter Location Name");
-  //     }
-  //     else if (dataTest['description'] === '') {
-  //       alert("Please Enter Description");
-  //     }
-  //     else {
+      if (dataTest['LocationName'] === '') {
+        alert("Plesae Enter Location Name");
+      }
 
-  //       this.countryService.saveDepartment(departmentBody)
 
-  //         .subscribe(
-  //           data => {
-  //             this.universalResponse = data;
-  //             console.log("key", UniversalResponse);
-  //             alert(this.universalResponse.MESSAGE);
-  //           }
+      else if (dataTest['DepartmentName'] === '') {
+        alert("Please Enter Department Name");
+      }
 
-  //         );
-  //     }
+      if (dataTest['DesignationCode'] === '') {
+        alert("Plesae Enter Designation Code");
+      }
+      else if (dataTest['Designation'] === '') {
+        alert("Please Enter Designation");
+      }
+      else if (dataTest['Description'] === '') {
+        alert("Please Enter Description");
+      }
+      else {
 
-  
+        this.countryService.saveDesignation(designationBody)
+
+          .subscribe(
+            data => {
+              this.locationResponse = data;
+              console.log("key", LocationResponse);
+              alert(this.locationResponse.MESSAGE);
+            }
+
+          );
+      }
+    }
   }
 
 
- 
+
+
+}
