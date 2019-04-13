@@ -485,19 +485,17 @@
                         New</button>
                       <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#addNew1"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
                       </div>
-                      <!--(click)="onDeleteQualification($event)"-->
+                   
                     </div>
                     <div class="clearfix"></div>
                   </div>
                   <div class="clearfix"></div>
                   <div class="formBody clearfix pt-0">
-                    <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData2"
-                    
+                    <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData2"                    
                     [columnDefs]="columnDefs2" [animateRows]="true" [rowSelection]="rowSelection"
                     (gridReady)="onGridSchoolReady($event)" (cellKeyDown)="onPressEducationalEnter($event)">
                   </ag-grid-angular>
 
-                    <!-- (selectionChanged)="onSelectionChanged($event)" -->
                     
                   </div>
                   <div class="row" >
@@ -513,11 +511,7 @@
                 </div>
                 <div class="clearfix"></div>
               </div>
-              <div class="clearfix"></div>
-              <div class="formBody clearfix pt-0">
-                <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData2" [columnDefs]="columnDefs2"></ag-grid-angular>
-    
-              </div>
+             
               <div class="row" >
                 <div class="col-md-12 col-sm-6 col-xs-12 p-0">
                   <div class="form group col-md-2 pull-right" >
