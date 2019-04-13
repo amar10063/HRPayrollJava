@@ -34,7 +34,8 @@ export class CountryComponent implements OnInit {
   columnApi: ColumnApi;
 
 
-  ToggleButton: false;
+  ToggleButton = false;
+  StateToggleButton = false;
 
   stateApi: GridApi;
   stateColumnApi: ColumnApi;
@@ -273,12 +274,11 @@ export class CountryComponent implements OnInit {
   public hide = true;
   public buttonName: any = 'Add New';
   colDef: string;
-
   countCountry = 0;
   countState = 0;
   countCity = 0;
   countPostal = 0;
- universalBody= new UniversalBody();
+  universalBody = new UniversalBody();
   ngOnInit() {
 
     this.allWeb.getCountries(this.universalBody)
@@ -288,13 +288,13 @@ export class CountryComponent implements OnInit {
           this.rowData = this.countryDataResponse;
 
         });
-        this.allWeb.getStates(this.universalBody)
-                  .subscribe(
-                    data => {
-                      this.getStateResponse = data;
-                      this.rowData1 = this.getStateResponse;
-                    }
-                  )
+    this.allWeb.getStates(this.universalBody)
+      .subscribe(
+        data => {
+          this.getStateResponse = data;
+          this.rowData1 = this.getStateResponse;
+        }
+      )
     this.allWeb.getCity(this.universalBody)
       .subscribe(
         data => {
@@ -303,7 +303,7 @@ export class CountryComponent implements OnInit {
 
         }
       );
-      this.allWeb.getPostal(this.universalBody)
+    this.allWeb.getPostal(this.universalBody)
       .subscribe(
         data => {
           this.getPostalResponse = data;
@@ -316,19 +316,23 @@ export class CountryComponent implements OnInit {
 
   onAddClick() {
     this.api.setFocusedCell(this.countCountry, "countryCode");
-    //this.api.setFocusedCell(1, "country");
+
     this.countCountry++;
-    let res = this.api.updateRowData({ add: [{ countryName: '', countryCode: '' }] });
-    res.add.forEach(function (rowNode) {
-      console.log('Added Row Node', rowNode);
+    var res = this.api.updateRowData({
+      add: [{ countryName: '', countryCode: '' }],
+      addIndex: 0
     });
+    
+
+
+
   }
 
   onAddState() {
 
     this.stateApi.setFocusedCell(this.countState, "countryName");
     this.countState++;
-    let res = this.stateApi.updateRowData({ add: [{ stateName: '', countryName: 'Select', description: '' }] });
+    let res = this.stateApi.updateRowData({ add: [{ stateName: '', countryName: 'Select', description: '' }], addIndex: 0 });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
@@ -336,18 +340,20 @@ export class CountryComponent implements OnInit {
   }
 
   onAddCity() {
-    this.cityApi.setFocusedCell(this.countCity, "country");
+    this.cityApi.setFocusedCell(this.countCity, "countryName");
     this.countCity++;
-    let res = this.cityApi.updateRowData({ add: [{ stateName: '', cityName: '', countryName: '', description: '' }] });
+    let res = this.cityApi.updateRowData({ add: [{ stateName: '', cityName: '', countryName: '', description: '' }],addIndex: 0 });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
 
+    
   }
   onAddPostal() {
-    this.postalApi.setFocusedCell(this.countPostal, "country");
+    this.postalApi.setFocusedCell(this.countPostal, "countryName");
     this.countPostal++;
-    let res = this.postalApi.updateRowData({ add: [{ cityName: '', stateName: '', countryName: '', postalCode: '', description: '' }] });
+
+    let res = this.postalApi.updateRowData({ add: [{ cityName: '', stateName: '', countryName: '', postalCode: '', description: '' }] ,addIndex: 0});
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
@@ -549,6 +555,7 @@ export class CountryComponent implements OnInit {
       if (dataTest['countryCode'] === '') {
         alert("Enter country code");
 
+
       }
       else if (dataTest['countryName'] === '') {
         alert("Enter country name");
@@ -646,6 +653,7 @@ export class CountryComponent implements OnInit {
 
       if (dataTest['stateName'] === '') {
         alert("Enter state name");
+        this.StateToggleButton= true;
       }
       else {
         this.allWeb.saveState(stateBody)
