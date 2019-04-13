@@ -44,7 +44,7 @@ export class AllWeb {
   };
   constructor(private httpClient: HttpClient) {
   }
-  doLogin(countryBody: CountryBody): Observable<any> {
+  saveCountry(countryBody: CountryBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.saveCountry, JSON.stringify(countryBody), this.httpOptions);
   }
   doLocation(locationBody: LocationBody): Observable<any> {
@@ -53,9 +53,10 @@ export class AllWeb {
   doGetLocation(getLocationBody: GetLocationBody): Observable<GetAllLocationResponse[]> {
     return this.httpClient.post<GetAllLocationResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getLocation, JSON.stringify(getLocationBody), this.httpOptions);
   }
-  getAllDepartment(departmentBody: GetAllDepartmentBody): Observable<any> {
-    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getAllDepartment, JSON.stringify(departmentBody), this.httpOptions);
+  getDepartment(departmentBody: GetAllDepartmentBody): Observable<GetAllLocationResponse[]> {
+    return this.httpClient.post<GetAllLocationResponse[]>('http://10.10.10.48:8081' + '/getDepartment', JSON.stringify(departmentBody), this.httpOptions);
   }
+
   doDeleteLocation(deleteLocationBody: DeleteLocationBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteLocation, JSON.stringify(deleteLocationBody), this.httpOptions);
   }
@@ -101,7 +102,7 @@ export class AllWeb {
   doGetHighSchoolData(): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getSchoolDataApi, this.httpOptions);
   }
- 
+
   getPostal(getPostalBody: GetPostalBody): Observable<GetPostalResponse> {
     return this.httpClient.post<GetPostalResponse>(ServiceUrls.baseUrls + ServiceUrls.getPostal, JSON.stringify(getPostalBody), this.httpOptions);
   }

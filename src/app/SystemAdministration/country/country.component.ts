@@ -544,12 +544,7 @@ export class CountryComponent implements OnInit {
 
   onCellKeyDown(e) {
     const keyPressed = e.event.key;
-    //this.colDef = this.api.getFocusedCell().column.getColId();
-
-
-
     if (keyPressed === 'Enter') {
-      //alert("Enter ");
       const countryBody = new CountryBody();
       const getAllCountryBody = new GetAllCountryBody();
       const selectedNodes = this.api.getSelectedNodes();
@@ -571,46 +566,32 @@ export class CountryComponent implements OnInit {
       }
 
       else {
-        // this.countryService.saveCountry(countryBody)
-        //   .subscribe(
-        //     data => {
-        //       this.countryResponse = data;
+        this.countryService.saveCountry(countryBody)
+          .subscribe(
+            data => {
+              this.countryResponse = data;
 
-        //       alert(this.countryResponse.MESSAGE);
+              alert(this.countryResponse.MESSAGE);
 
-        //       if (this.countryResponse.STATUS === 'Success') {
+              if (this.countryResponse.STATUS === 'Success') {
 
-        //         this.countryService.getCountries(getAllCountryBody)
-        //           .subscribe(
-        //             data => {
-        //               this.countryDataResponse = data;
-        //               this.rowData = this.countryDataResponse;
-        //               // alert("Countryyyyyyyyyyyy");
-        //               //this.api.setRowData(data);
-        //               //alert(JSON.stringify(data));
-        //               //let res = this.api.updateRowData({ add: [{  countryCode: JSON.stringify(this.countryDataResponse.countryCode), country: JSON.stringify(this.countryDataResponse.countryName) }] });
-        //             }
-        //           )
-        //       }
-        //     }
+                this.countryService.getCountries(getAllCountryBody)
+                  .subscribe(
+                    data => {
+                      this.countryDataResponse = data;
+                      this.rowData = this.countryDataResponse;
+                      // alert("Countryyyyyyyyyyyy");
+                      //this.api.setRowData(data);
+                      //alert(JSON.stringify(data));
+                      //let res = this.api.updateRowData({ add: [{  countryCode: JSON.stringify(this.countryDataResponse.countryCode), country: JSON.stringify(this.countryDataResponse.countryName) }] });
+                    }
+                  )
+              }
+            }
       
 
-         // );
+         );
       }
-
-      // if (this.api.getColumnDef('country') === '') {
-      //   alert('Add Country Name');
-      // } else if (this.api.getValue('countryCode', this.api.getDisplayedRowAtIndex(1)) === '') {
-      //   alert('Add Country Code');
-      // } else {
-      //   alert('call service ');
-      // }
-
-
-      //const selectedNodes = this.api.getSelectedNodes();
-      // const selectedData = selectedNodes.map(node => node.data);
-      // const selectedDataStringPresentation = selectedData.map(node => node.country + ' ' + node.countryCode).join(', ');
-      // console.log('Selected nodes: ${selectedDataStringPresentation}');
 
     }
   }

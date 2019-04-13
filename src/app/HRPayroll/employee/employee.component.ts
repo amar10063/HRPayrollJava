@@ -5,10 +5,9 @@ import { HighSchoolResponse } from '../Education/HighSchoolResponse';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { from } from 'rxjs';
-import { AllWeb } from "src/app/WebServices/AllWeb.service";
+import { AllWeb } from 'src/app/WebServices/AllWeb.service';
 import { DesignationResponse } from './EmployeeApiResponse/DesignationResponse';
 import { GetAllDepartmentBody } from './EmployeeApiResponse/GetAllDepartmentBody';
-import { DepartmentResponse } from './EmployeeApiResponse/DepartmentResponse';
 import { GetAllDesignationBody } from './EmployeeApiResponse/GetAllDesignationBody';
 import { GetAllLocationResponse } from './EmployeeApiResponse/GetAllLocationResponse';
 import { GetLocationBody } from 'src/app/SystemAdministration/organization/GetLocationBody';
@@ -32,7 +31,7 @@ export class EmployeeComponent implements OnInit {
   designationResponse: DesignationResponse[];
   selectedDesignationIndex;
   columnDefs = [
-    { headerName: 'Employee Image', field: 'EmpImage', template: "<img src='../assets/images/profile-img-2.png' />", width: 120 },
+    { headerName: 'Employee Image', field: 'EmpImage', template: '<img src="../assets/images/profile-img-2.png" />', width: 120 },
     { headerName: 'Employee Name', field: 'EmpName', sortable: true, filter: true, editable: true, width: 130 },
     { headerName: 'Designation', field: 'Designation', sortable: true, filter: true, editable: true, width: 110 },
     { headerName: 'Department', field: 'Department', sortable: true, filter: true, editable: true, width: 100 },
@@ -45,14 +44,15 @@ export class EmployeeComponent implements OnInit {
     { headerName: 'Date of Joining', field: 'JoiningDate', sortable: true, filter: true, editable: true, width: 120 },
     {
       headerName: 'Reporting Heirarchy', field: 'Heirarchy', sortable: true, filter: true, width: 150,
-      cellRenderer: function (params) {
-        return '<a href="#" target="_blank" style="text-decoration:underline; color:#3e3e3e">' + params.value + '</a>'
-      }
+      // cellRenderer: function (params) {
+      //   return '<a href='#' target='_blank' style='text-decoration:underline; color:#3e3e3e'>' + params.value + '</a>'
+      // }
     },
     {
-      headerName: 'Send Message', field: 'SendMessage', sortable: true, filter: true, width: 110, cellRenderer: function (params) {
-        return '<a href="#" target="_blank" style="text-decoration:underline; color:#3e3e3e">' + params.value + '</a>'
-      }
+      headerName: 'Send Message', field: 'SendMessage', sortable: true, filter: true, width: 110
+      //cellRenderer: function (params) {
+      //   return '<a href='#' target='_blank' style='text-decoration:underline; color:#3e3e3e'>' + params.value + '</a>'
+      // }
     }
   ];
 
@@ -408,8 +408,6 @@ export class EmployeeComponent implements OnInit {
   ];
 
   columnDefs13 = [
-
-
     { headerName: 'Documents', field: 'Documents', editable: true, width: 160 },
     { headerName: 'Curriculum Vitae', field: 'CurriculumVitae', sortable: true, filter: true, editable: true, width: 160 },
     { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, editable: true, width: 160 },
@@ -469,7 +467,6 @@ export class EmployeeComponent implements OnInit {
     { ClassDegree: 'BCA', BoardUniversity: 'CCSU', StartDate: '03-04-2013', EndDate: '03-04-2016', UploadDocument: '' },
     { ClassDegree: 'MCA', BoardUniversity: 'AKTU', StartDate: '03-04-2016', EndDate: '03-04-2018', UploadDocument: '' },
   ];
-  departmentResponse: DepartmentResponse[];
   locationResponse;
   selectedLocationIndex: number;
   selectedDepartmentIndex: number;
@@ -477,6 +474,7 @@ export class EmployeeComponent implements OnInit {
   public show: boolean = false;
   public hide: boolean = true;
   public buttonName: any = 'Add New';
+  departmentResponse: GetAllLocationResponse[];
 
 
 
@@ -497,19 +495,21 @@ export class EmployeeComponent implements OnInit {
       department: ['Select', [Validators.required,]],
       title: ['Mr', [Validators.required,]],
       location: [this.locationResponse]
-
     });
     this.getLocation(1);
     // this.getAllDepartment('1', 2);
     // this.getAllDesignation('1', 1);
 
   }
+  onRadioClick(value) {
+    console.log(value);
+  }
   onAddressGridReady(params) {
     this.addressApi = params.api;
     this.addressColumnApi = params.columnApi;
   }
   onAddAddress() {
-    alert("add");
+    alert('add');
     let res = this.addressApi.updateRowData({ add: [{ address: '', city: '', state: '', country: '', pin: '', status: '', ContactNo: '', EmailID: '', EmergencyContactPerson: '', EmergencyContactNo: '' }] });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
@@ -523,26 +523,31 @@ export class EmployeeComponent implements OnInit {
         data => {
           this.locationResponse = data;
           this.selectedLocationIndex = this.locationResponse.length - 1;
-          this.getAllDepartment('1', this.selectedLocationIndex);
         }
 
       );
   }
-  getAllDepartment(UserID: string, LocationID: number) {
+  public getSelectedLocation(value): void {
+    console.log(this.departmentResponse[value.target.value].id);
+    this.getAllDepartment(1, this.departmentResponse[value.target.value].id);
+
+  }
+  getAllDepartment(UserID: number, LocationID: number) {
+    console.log(UserID, LocationID);
     var departmentBody = new GetAllDepartmentBody();
     departmentBody.userID = UserID;
-    departmentBody.LocationID = LocationID + '';
-    this.countryService.getAllDepartment(departmentBody)
+    departmentBody.LocationID = LocationID;
+    this.countryService.getDepartment(departmentBody)
       .subscribe(
         data => {
           this.departmentResponse = data;
           this.selectedDepartmentIndex = this.departmentResponse.length - 1;
-          this.getAllDesignation('1', this.selectedDepartmentIndex);
         }
 
       );
 
   }
+
   getAllDesignation(UserID: string, DepartmentID: number) {
     var designationBody = new GetAllDesignationBody();
     designationBody.userID = UserID;
@@ -580,8 +585,8 @@ export class EmployeeComponent implements OnInit {
 
 
   onAddQualification() {
-    //this.api.setFocusedCell(this.count, "Class");
-    //this.api.setFocusedCell(1, "school");
+    //this.api.setFocusedCell(this.count, 'Class');
+    //this.api.setFocusedCell(1, 'school');
     // this.count++;
     let res = this.api.updateRowData({ add: [{ class: 'High School' }] });
     res.add.forEach(function (rowNode) {
@@ -611,12 +616,12 @@ export class EmployeeComponent implements OnInit {
       .subscribe(
         data => {
           highSchoolResonse = data;
-          console.log("recived", highSchoolResonse.STATUS);
-          if (highSchoolResonse.STATUS === "") {
-            alert(highSchoolResonse.STATUS + " : " + highSchoolResonse.MESSAGE);
+          console.log('recived', highSchoolResonse.STATUS);
+          if (highSchoolResonse.STATUS === '') {
+            alert(highSchoolResonse.STATUS + ' : ' + highSchoolResonse.MESSAGE);
             this.onGetSchoolQualification();
           } else {
-            alert(highSchoolResonse.STATUS + " : " + highSchoolResonse.MESSAGE);
+            alert(highSchoolResonse.STATUS + ' : ' + highSchoolResonse.MESSAGE);
           }
         }
       );
@@ -626,7 +631,7 @@ export class EmployeeComponent implements OnInit {
 
     var selectedNodes = this.api.getSelectedNodes();
     if (selectedNodes.length === 0) {
-      // alert("Please Select any row.");
+      // alert('Please Select any row.');
     } else {
       this.api.removeItems(selectedNodes);
     }
@@ -635,7 +640,7 @@ export class EmployeeComponent implements OnInit {
   onPressEducationalEnter(e) {
     const keyPressed = e.event.key;
     if (keyPressed === 'Enter') {
-      alert("Do you want to save the data.");
+      alert('Do you want to save the data.');
       const highSchool = new HighSchoolModel();
       const selectedNodes = this.api.getSelectedNodes();
       const selectedData = selectedNodes.map(node => node.data);
@@ -649,29 +654,29 @@ export class EmployeeComponent implements OnInit {
       highSchool.EndDate = dataTest['EndDate'];
       highSchool.StartDate = dataTest['StartDate'];
       if (dataTest['Class'] === '') {
-        alert("Enter Class");
+        alert('Enter Class');
       } else if (dataTest['Board'] === '') {
-        alert("Enter Board");
+        alert('Enter Board');
       } else if (dataTest['SchoolName'] === '') {
-        alert("Enter School Name");
+        alert('Enter School Name');
       } else if (dataTest['StartDate'] === '') {
-        alert("Enter Start Date");
+        alert('Enter Start Date');
       } else if (dataTest['EndDate'] === '') {
-        alert("Enter End Date");
+        alert('Enter End Date');
       } else if (dataTest['percentage'] === '') {
-        alert("Enter Percentage");
+        alert('Enter Percentage');
       } else {
-        console.log("Sending Data", highSchool);
+        console.log('Sending Data', highSchool);
         this.countryService.doHighSchoolSave(highSchool)
           .subscribe(
             data => {
               highSchoolResonse = data;
-              console.log("recived", highSchoolResonse.STATUS);
-              if (highSchoolResonse.STATUS === "") {
-                alert(highSchoolResonse.STATUS + " : " + highSchoolResonse.MESSAGE);
+              console.log('recived', highSchoolResonse.STATUS);
+              if (highSchoolResonse.STATUS === '') {
+                alert(highSchoolResonse.STATUS + ' : ' + highSchoolResonse.MESSAGE);
                 this.onGetSchoolQualification();
               } else {
-                alert(highSchoolResonse.STATUS + " : " + highSchoolResonse.MESSAGE);
+                alert(highSchoolResonse.STATUS + ' : ' + highSchoolResonse.MESSAGE);
               }
             }
           );

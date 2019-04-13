@@ -94,7 +94,7 @@ export class OrganizationComponent implements OnInit {
     this.rowData;
     this.columnDefs1 = [
       {
-        headerName: 'Location Name', field: 'LocationName', sortable: true,  filter: true, width: 120,
+        headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, width: 120,
         cellRendererFramework: LocationDropdownComponent
       },
 
@@ -102,12 +102,7 @@ export class OrganizationComponent implements OnInit {
         headerName: 'Department Code', field: 'DepartmentCode', sortable: true, editable: true, filter: true, width: 140,
         cellStyle: function (params) {
           if (params.value === '') {
-            // bordercolor: 'red'
-            //  alert("Please Enter Department Code");
-
             return { outline: '1px solid red' };
-
-            //color: 'red', backgroundColor: 'green',
           } else {
             return { outline: 'white' };
           }
@@ -119,12 +114,7 @@ export class OrganizationComponent implements OnInit {
 
         cellStyle: function (params) {
           if (params.value === '') {
-            // bordercolor: 'red'
-            // alert("Please Enter Department Name");
-
             return { outline: '1px solid red' };
-
-            //color: 'red', backgroundColor: 'green',
           } else {
             return { outline: 'white' };
           }
@@ -394,7 +384,6 @@ export class OrganizationComponent implements OnInit {
   onCellKeyLocationDown(e) {
     const keyPressed = e.event.key;
     if (keyPressed === 'Enter') {
-      // alert("Enter ");
       const locationBody = new LocationBody();
       const getLocationBody = new GetLocationBody();
       const selectedNodes = this.api.getSelectedNodes();
@@ -402,7 +391,6 @@ export class OrganizationComponent implements OnInit {
       const selectedData = selectedNodes.map(node => node.data);
       var dataTest: Object;
       selectedData.map(node => dataTest = node as Object);
-
       locationBody.LocationCode = dataTest['LocationCode'];
       locationBody.LocationName = dataTest['LocationName'];
       locationBody.LocationDescription = dataTest['LocationDescription']
@@ -446,30 +434,22 @@ export class OrganizationComponent implements OnInit {
 
   onCellKeyDepartmentDown(e) {
     const keyPressed = e.event.key;
-
-
     if (keyPressed === 'Enter') {
-      alert("Enter ");
+      alert("Enter");
       const departmentBody = new DepartmentBody();
       const selectedNodes = this.departmentApi.getSelectedNodes();
       // console.log("key",selectedNodes);
       const selectedData = selectedNodes.map(node => node.data);
       var dataTest: Object;
       selectedData.map(node => dataTest = node as Object);
-
-
-
       departmentBody.DepartmentCode = dataTest['DepartmentCode'];
       departmentBody.DepartmentName = dataTest['DepartmentName']
       departmentBody.Description = dataTest['Description']
-      console.log("key", departmentBody)
-
+      console.log("key", departmentBody);
 
       if (dataTest['LocationName'] === '') {
         alert("Plesae Enter Location Name");
       }
-
-
       else if (dataTest['DepartmentCode'] === '') {
         alert("Please Enter Department Code");
       }
@@ -483,7 +463,6 @@ export class OrganizationComponent implements OnInit {
       else {
 
         this.countryService.doDepartment(departmentBody)
-
           .subscribe(
             data => {
               this.locationResponse = data;
