@@ -1,21 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { GridApi, ColumnApi, CellComp, GridOptions } from 'ag-grid-community';
-
-import { LocationBody } from '../../WebServices/WebServiceBody/OrganizationBody/LocationBody';
-import { DepartmentBody } from '../../WebServices/WebServiceBody/OrganizationBody/DepartmentBody';
-import { DesignationBody } from '../../WebServices/WebServiceBody/OrganizationBody/DesignationBody';
 import { AllWeb } from "src/app/WebServices/AllWeb.service";
 import { LocationResponse } from './LocationResponse';
-
+import { DepartmentResponse } from './DepartmentResponse';
 import { from } from 'rxjs';
 import { DesignationResponse } from './DesignationResponse';
 import { GetLocationBody } from './GetLocationBody';
-import { DeleteLocationBody } from '../../WebServices/WebServiceBody/OrganizationBody/DeleteLocationBody';
-import { DeleteDepartmentBody } from '../../WebServices/WebServiceBody/OrganizationBody/DeleteDepartmentBody';
-import { DeleteDesignationBody } from '../../WebServices/WebServiceBody/OrganizationBody/DeleteDesignationBody';
 import { GetAllLocationResponse } from 'src/app/HRPayroll/employee/EmployeeApiResponse/GetAllLocationResponse';
 import { LocationDropdownComponent } from 'src/app/location-dropdown/location-dropdown.component';
-import { UniversalResponse } from 'src/app/WebServices/WebServiceResponse/UniversalResponse';
+import { DeleteLocationBody } from 'src/app/WebServices/WebServiceBody/OrganizationBody/DeleteLocationBody';
+import { DeleteDesignationBody } from 'src/app/WebServices/WebServiceBody/OrganizationBody/DeleteDesignationBody';
+import { LocationBody } from 'src/app/WebServices/WebServiceBody/OrganizationBody/LocationBody';
+import { DepartmentBody } from 'src/app/WebServices/WebServiceBody/OrganizationBody/DepartmentBody';
+import { DesignationBody } from 'src/app/WebServices/WebServiceBody/OrganizationBody/DesignationBody';
+import { DeleteDepartmentBody } from 'src/app/WebServices/WebServiceBody/OrganizationBody/DeleteDepartmentBody';
 
 
 @Component({
@@ -33,9 +31,9 @@ export class OrganizationComponent implements OnInit {
   designationApi: GridApi;
   designationColumnApi: ColumnApi;
 
-  //locationResponse: LocationResponse;
-  universalResponse: UniversalResponse;
-  //designationResponse: DesignationResponse;
+  locationResponse: LocationResponse;
+  departmentResponse: DepartmentResponse;
+  designationResponse: DesignationResponse;
   private frameworkComponents;
 
   rowSelection: string;
@@ -95,7 +93,7 @@ export class OrganizationComponent implements OnInit {
     this.rowData;
     this.columnDefs1 = [
       {
-        headerName: 'Location Name', field: 'LocationName', sortable: true,  filter: true, width: 120,
+        headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, width: 120,
         cellRendererFramework: LocationDropdownComponent
       },
 
@@ -103,12 +101,7 @@ export class OrganizationComponent implements OnInit {
         headerName: 'Department Code', field: 'DepartmentCode', sortable: true, editable: true, filter: true, width: 140,
         cellStyle: function (params) {
           if (params.value === '') {
-            // bordercolor: 'red'
-            //  alert("Please Enter Department Code");
-
             return { outline: '1px solid red' };
-
-            //color: 'red', backgroundColor: 'green',
           } else {
             return { outline: 'white' };
           }
@@ -120,12 +113,7 @@ export class OrganizationComponent implements OnInit {
 
         cellStyle: function (params) {
           if (params.value === '') {
-            // bordercolor: 'red'
-            // alert("Please Enter Department Name");
-
             return { outline: '1px solid red' };
-
-            //color: 'red', backgroundColor: 'green',
           } else {
             return { outline: 'white' };
           }
@@ -336,9 +324,9 @@ export class OrganizationComponent implements OnInit {
 
         .subscribe(
           data => {
-            this.universalResponse = data;
+            this.locationResponse = data;
             console.log("key", LocationResponse);
-            alert(this.universalResponse.MESSAGE);
+            alert(this.locationResponse.MESSAGE);
           }
 
         );
@@ -360,9 +348,9 @@ export class OrganizationComponent implements OnInit {
 
         .subscribe(
           data => {
-            this.universalResponse = data;
-            console.log("key", UniversalResponse);
-            alert(this.universalResponse.MESSAGE);
+            this.locationResponse = data;
+            console.log("key", LocationResponse);
+            alert(this.locationResponse.MESSAGE);
           }
 
         );
@@ -384,9 +372,9 @@ export class OrganizationComponent implements OnInit {
 
         .subscribe(
           data => {
-            this.universalResponse = data;
-            console.log("key", UniversalResponse);
-            alert(this.universalResponse.MESSAGE);
+            this.locationResponse = data;
+            console.log("key", LocationResponse);
+            alert(this.locationResponse.MESSAGE);
           }
 
         );
@@ -395,7 +383,6 @@ export class OrganizationComponent implements OnInit {
   onCellKeyLocationDown(e) {
     const keyPressed = e.event.key;
     if (keyPressed === 'Enter') {
-      // alert("Enter ");
       const locationBody = new LocationBody();
       const getLocationBody = new GetLocationBody();
       const selectedNodes = this.api.getSelectedNodes();
@@ -403,7 +390,6 @@ export class OrganizationComponent implements OnInit {
       const selectedData = selectedNodes.map(node => node.data);
       var dataTest: Object;
       selectedData.map(node => dataTest = node as Object);
-
       locationBody.LocationCode = dataTest['LocationCode'];
       locationBody.LocationName = dataTest['LocationName'];
       locationBody.LocationDescription = dataTest['LocationDescription']
@@ -421,11 +407,11 @@ export class OrganizationComponent implements OnInit {
         this.countryService.saveLocation(locationBody)
           .subscribe(
             data => {
-              this.universalResponse = data;
+              this.locationResponse = data;
 
-              alert(this.universalResponse.MESSAGE);
+              alert(this.locationResponse.MESSAGE);
 
-              if (this.universalResponse.STATUS === 'Success') {
+              if (this.locationResponse.STATUS === 'Success') {
 
                 alert("Location Details");
 
@@ -447,27 +433,22 @@ export class OrganizationComponent implements OnInit {
 
   onCellKeyDepartmentDown(e) {
     const keyPressed = e.event.key;
-
-
     if (keyPressed === 'Enter') {
-      alert("Enter ");
+      alert("Enter");
       const departmentBody = new DepartmentBody();
       const selectedNodes = this.departmentApi.getSelectedNodes();
       // console.log("key",selectedNodes);
       const selectedData = selectedNodes.map(node => node.data);
       var dataTest: Object;
       selectedData.map(node => dataTest = node as Object);
-
       departmentBody.DepartmentCode = dataTest['DepartmentCode'];
       departmentBody.DepartmentName = dataTest['DepartmentName']
       departmentBody.Description = dataTest['Description']
-      console.log("key", departmentBody)
+      console.log("key", departmentBody);
 
       if (dataTest['LocationName'] === '') {
         alert("Plesae Enter Location Name");
       }
-
-
       else if (dataTest['DepartmentCode'] === '') {
         alert("Please Enter Department Code");
       }
@@ -481,12 +462,11 @@ export class OrganizationComponent implements OnInit {
       else {
 
         this.countryService.saveDepartment(departmentBody)
-
           .subscribe(
             data => {
-              this.universalResponse = data;
-              console.log("key", UniversalResponse);
-              alert(this.universalResponse.MESSAGE);
+              this.locationResponse = data;
+              console.log("key", LocationResponse);
+              alert(this.locationResponse.MESSAGE);
             }
 
           );
@@ -534,9 +514,9 @@ export class OrganizationComponent implements OnInit {
 
           .subscribe(
             data => {
-              this.universalResponse = data;
-              console.log("key", UniversalResponse);
-              alert(this.universalResponse.MESSAGE);
+              this.locationResponse = data;
+              console.log("key", LocationResponse);
+              alert(this.locationResponse.MESSAGE);
             }
 
           );
@@ -548,9 +528,3 @@ export class OrganizationComponent implements OnInit {
 
 
 }
-
-
-
-
-
-
