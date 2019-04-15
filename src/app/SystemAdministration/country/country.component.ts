@@ -84,7 +84,6 @@ export class CountryComponent implements OnInit {
         }
 
       }
-
     },
     { headerName: '', field: '', width: 590 }
   ];
