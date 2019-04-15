@@ -1,9 +1,10 @@
 export class HighSchoolBody
 {
-    public ClassName: number;
-    public BoardName: string;
-    public SchoolName: string;
-    public StartDate: string;
-    public EndDate: string;
-    public Percentage: string;
+    public className: number;
+    public boardName: string;
+    public schoolName: string;
+    public startDate: string;
+    public endDate: string;
+    public percentage: string;
+    public userID: number = 1;
 }
