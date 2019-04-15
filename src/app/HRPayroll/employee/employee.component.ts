@@ -433,21 +433,17 @@ export class EmployeeComponent implements OnInit {
   getSchoolResonseData: GetSchoolDataResponse[];
 
   ngOnInit() {
-
-
-
     this.basicDetailsForm = this.formBuilder.group({
       empCode: ['', [Validators.required]],
       firstName: ['', [Validators.required]],
       dateofBirth: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      designation: ['Select', [Validators.required]],
-      department: ['Select', [Validators.required]],
+      designation: ['', [Validators.required]],
+      department: ['', [Validators.required]],
       title: ['Mr', [Validators.required,]],
-      location: ['Select', [Validators.required,]]
+      location: ['', [Validators.required,]]
     });
     this.getLocation(1);
-
 
   }
   onRadioClick(value) {
@@ -471,11 +467,8 @@ export class EmployeeComponent implements OnInit {
       .subscribe(
         data => {
           this.locationResponse = data;
-          if (this.locationResponse.length > 0) {
-            this.selectedLocationIndex = this.locationResponse.length - 1;
-            this.getAllDepartment(1, this.locationResponse[this.selectedLocationIndex].ID);
-          } else { }
-
+          this.selectedLocationIndex = this.locationResponse.length - 1;
+          this.getAllDepartment(1, this.locationResponse[this.selectedLocationIndex].ID);
         }
 
       );
@@ -486,7 +479,8 @@ export class EmployeeComponent implements OnInit {
   }
   public getSelectedDepartment(value): void {
     this.getAllDesignation('1', value.target.value);
-
+  }
+  public getSelectedDesignation(value): void {
   }
   getAllDepartment(UserID: number, LocationID: number) {
     // console.log(UserID, LocationID);
@@ -520,26 +514,15 @@ export class EmployeeComponent implements OnInit {
 
   }
 
-  selectedDesignation(args) {
-    this.selectedDesignationIndex = args.target.selectedIndex;
-    // console.log(this.selectedDesignationIndex - 1);
-    //  console.log(args.target.selectedIndex);
-    //  console.log(args.target.options[args.target.selectedIndex].text);
-  }
   onSave() {
     this.submitted = true;
     if (this.basicDetailsForm.invalid) {
       return;
     } else {
     }
-
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.basicDetailsForm.value));
   }
 
   onAddQualification() {
-    //this.api.setFocusedCell(this.count, 'Class');
-    //this.api.setFocusedCell(1, 'school');
-    // this.count++;
     let res = this.api.updateRowData({ add: [{ class: 'High School' }] });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
