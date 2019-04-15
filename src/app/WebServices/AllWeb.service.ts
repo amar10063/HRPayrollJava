@@ -26,7 +26,9 @@ import { GetPostalResponse } from './WebServiceResponse/CountryResponse/GetPosta
 import { DeleteStateBody } from './WebServiceBody/CountryBody/DeleteStateBody';
 import { DeleteCityBody } from './WebServiceBody/CountryBody/DeleteCityBody';
 import { DeletePostalBody } from './WebServiceBody/CountryBody/DeletePostalBody';
-import{UniversalResponse} from './WebServiceResponse/UniversalResponse';
+import { UniversalResponse } from './WebServiceResponse/UniversalResponse';
+import { GetSchoolModel } from '../HRPayroll/Education/GetSchoolModel';
+import { GetSchoolDataResponse } from '../HRPayroll/Education/GetSchoolDataResponse';
 @Injectable({
   providedIn: 'root'
 })
@@ -93,8 +95,8 @@ export class AllWeb {
   saveHighSchool(highSchool: HighSchoolBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.highSchoolApi, JSON.stringify(highSchool), this.httpOptions);
   }
-  getHighSchoolData(): Observable<any> {
-    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getSchoolDataApi, this.httpOptions);
+  getHighSchoolData(getSchoolModel: GetSchoolModel): Observable<GetSchoolDataResponse[]> {
+    return this.httpClient.post<GetSchoolDataResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getSchoolDataApi, JSON.stringify(getSchoolModel), this.httpOptions);
   }
   getPostal(universalBody: UniversalBody): Observable<GetPostalResponse> {
     return this.httpClient.post<GetPostalResponse>(ServiceUrls.baseUrls + ServiceUrls.getPostal, JSON.stringify(universalBody), this.httpOptions);
