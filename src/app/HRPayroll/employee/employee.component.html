@@ -214,7 +214,7 @@
                     <input type="date" class="form-control addrCon formSelect col-7 col-md-7" name="name"
                       placeholder="yyyy-MM-dd" formControlName="dateofBirth"
                       [ngClass]="{'is-invalid': submitted && f.dateofBirth.errors}" 
-                      [ngModel]="today | date:'yyyy-MM-dd'" (ngModelChange)="updateCalcs($event,age.id)" [max]="today">
+                      [ngModel]="today | date:'yyyy-MM-dd'" (ngModelChange)="updateCalcs($event)" [max]="today">
                     <div *ngIf="submitted && f.dateofBirth.errors" class="invalid-feedback">
                       <div *ngIf="f.dateofBirth.errors.required" class="errorred">Date of Birth is required</div>
                       <div *ngIf="f.dateofBirth.errors.max" class="errorred">Date of Birth is sfgsfgsf</div>

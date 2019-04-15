@@ -419,7 +419,7 @@ export class EmployeeComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private countryService: AllWeb) {
     this.rowSelection = 'single';
   }
-  age;
+  age:number;
   api: GridApi;
   columnApi: ColumnApi;
   getSchoolResonseData: GetSchoolDataResponse[];
@@ -471,7 +471,7 @@ export class EmployeeComponent implements OnInit {
 
       );
   }
-  updateCalcs(date: number, id) {
+  updateCalcs(date: number) {
     var today = new Date();
     this.newDate = new Date(date);
     var diff = Math.abs(this.newDate.getTime() - today.getTime());
