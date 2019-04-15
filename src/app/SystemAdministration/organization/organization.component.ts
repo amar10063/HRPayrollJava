@@ -150,6 +150,7 @@ export class OrganizationComponent implements OnInit {
       {
         headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, editable: true, width: 120,
         cellEditor: 'select',
+        cellRendererFramework: LocationDropdownComponent
         // cellEditorParams: { values: extractValues(locationMappings) },
         // valueFormatter: function (params) {
         //   return lookupValue(locationMappings, params.value);
@@ -403,7 +404,7 @@ export class OrganizationComponent implements OnInit {
       else if (dataTest['LocationName'] === '') {
         alert("Please Enter Location Name");
       }
-      else if (dataTest['description'] === '') {
+      else if (dataTest['LocationDescription'] === '') {
         alert("Please Enter Description");
       }
       else {
