@@ -38,7 +38,7 @@
                 </div>
                 <div class="col-12 col-md-5 p-0 pull-left">
               <div class="buttonCon pull-right mt-1 mb-2 mr-2 ">
-                <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                <button type="button" class="payHeadBtn" (click)="onAddLocation()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                   New</button>
                   <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
                 </div>
@@ -48,7 +48,8 @@
               <div class="clearfix"></div>
           <div class="formBody clearfix pt-0 pb-2">
             <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData"
-              [columnDefs]="columnDefs"></ag-grid-angular>
+              [columnDefs]="columnDefs" [rowSelection]="rowSelection" (gridReady)="onGridLocationReady($event)" (cellKeyDown)="
+              onLocationCellKeyDown($event)"></ag-grid-angular>
 
           </div>
           <div class="row mb-1" >
@@ -76,7 +77,7 @@
                 </div>
                 <div class="col-12 col-md-5 p-0 pull-left">
               <div class="buttonCon pull-right mt-1 mb-2 mr-2 ">
-                <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                <button type="button" class="payHeadBtn" (click)="onAddDepartment()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                   New</button>
                   <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
                 </div>
@@ -87,7 +88,8 @@
           <div class="formBody clearfix pt-0 pb-2">
 
             <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData1"
-              [columnDefs]="columnDefs1"></ag-grid-angular>
+              [columnDefs]="columnDefs1" [rowSelection]="rowSelection" (gridReady)="onGridDepartmentReady($event)" (cellKeyDown)="
+              onDepartmentCellKeyDown($event)"></ag-grid-angular>
 
           </div>
           <div class="row mb-1" >
@@ -115,7 +117,7 @@
                 </div>
                 <div class="col-12 col-md-5 p-0 pull-left">
               <div class="buttonCon pull-right mt-1 mb-2 mr-2 ">
-                <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                <button type="button" class="payHeadBtn" (click)="onAddDesignation()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                   New</button>
                   <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
                 </div>
@@ -125,7 +127,9 @@
               <div class="clearfix"></div>
           <div class="formBody clearfix pt-0 pb-2">
             <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData2"
-              [columnDefs]="columnDefs2"></ag-grid-angular>
+              [columnDefs]="columnDefs2"
+              [rowSelection]="rowSelection" (gridReady)="onGridDesignationReady($event)" (cellKeyDown)="
+              onDesignationCellKeyDown($event)"></ag-grid-angular>
           </div>
           <div class="row mb-1" >
             <div class="col-md-12 col-sm-6 col-xs-12 p-0">

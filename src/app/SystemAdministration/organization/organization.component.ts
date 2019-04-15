@@ -14,6 +14,8 @@ import { LocationBody } from 'src/app/WebServices/WebServiceBody/OrganizationBod
 import { DepartmentBody } from 'src/app/WebServices/WebServiceBody/OrganizationBody/DepartmentBody';
 import { DesignationBody } from 'src/app/WebServices/WebServiceBody/OrganizationBody/DesignationBody';
 import { DeleteDepartmentBody } from 'src/app/WebServices/WebServiceBody/OrganizationBody/DeleteDepartmentBody';
+import { GetAllDepartmentBody } from 'src/app/HRPayroll/employee/EmployeeApiResponse/GetAllDepartmentBody';
+import { UniversalResponse } from 'src/app/WebServices/WebServiceResponse/UniversalResponse';
 
 
 @Component({
@@ -34,6 +36,7 @@ export class OrganizationComponent implements OnInit {
   locationResponse: LocationResponse;
   departmentResponse: DepartmentResponse;
   designationResponse: DesignationResponse;
+  universalResponse:UniversalResponse;
   private frameworkComponents;
 
   rowSelection: string;
@@ -46,7 +49,7 @@ export class OrganizationComponent implements OnInit {
 
   constructor(private countryService: AllWeb) {
     //this.frameworkComponents = { genderCellRenderer: LocationDropdownComponent };
-
+    this.rowSelection = 'single';
     this.columnDefs = [
       {
         headerName: 'Location Code', field: 'LocationCode', sortable: true, filter: true, editable: true, width: 120,
@@ -147,6 +150,7 @@ export class OrganizationComponent implements OnInit {
       {
         headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, editable: true, width: 120,
         cellEditor: 'select',
+        cellRendererFramework: LocationDropdownComponent
         // cellEditorParams: { values: extractValues(locationMappings) },
         // valueFormatter: function (params) {
         //   return lookupValue(locationMappings, params.value);
@@ -239,21 +243,21 @@ export class OrganizationComponent implements OnInit {
   }
   onAddLocation() {
     alert("add");
-    let res = this.api.updateRowData({ add: [{ class: "location" }] });
-    res.add.forEach(function (rowNode) {
-      console.log('Added Row Node', rowNode);
+    var res = this.api.updateRowData({
+      add: [{ LocationCode: '', LocationName: '', LocationDescription: '' }],
+      addIndex: 0
     });
   }
   onAddDepartment() {
     alert("add");
-    let res = this.departmentApi.updateRowData({ add: [{ class: "department" }] });
-    res.add.forEach(function (rowNode) {
-      console.log('Added Row Node', rowNode);
+    var res = this.departmentApi.updateRowData({
+      add: [{ LocationName: '', DepartmentCode: '', DepartmentName: '', Description: '', }],
+      addIndex: 0
     });
   }
   onAddDesignation() {
     alert("add");
-    let res = this.designationApi.updateRowData({ add: [{ class: "designation" }] });
+    let res = this.designationApi.updateRowData({ add: [{ class: "designation" }],  addIndex: 0 });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
@@ -380,7 +384,7 @@ export class OrganizationComponent implements OnInit {
         );
     }
   }
-  onCellKeyLocationDown(e) {
+  onLocationCellKeyDown(e) {
     const keyPressed = e.event.key;
     if (keyPressed === 'Enter') {
       const locationBody = new LocationBody();
@@ -400,7 +404,7 @@ export class OrganizationComponent implements OnInit {
       else if (dataTest['LocationName'] === '') {
         alert("Please Enter Location Name");
       }
-      else if (dataTest['description'] === '') {
+      else if (dataTest['LocationDescription'] === '') {
         alert("Please Enter Description");
       }
       else {
@@ -418,8 +422,8 @@ export class OrganizationComponent implements OnInit {
                 this.countryService.doGetLocation(getLocationBody)
                   .subscribe(
                     data => {
-                      //  this.locationResponse = data;
-                      //  this.rowData = this.locationResponse;
+                      this.getAllLocationResponse = data;
+                      this.rowData = this.getAllLocationResponse;
                     }
                   )
               }
@@ -431,25 +435,30 @@ export class OrganizationComponent implements OnInit {
     }
   }
 
-  onCellKeyDepartmentDown(e) {
+  onDepartmentCellKeyDown(e) {
     const keyPressed = e.event.key;
+
+
     if (keyPressed === 'Enter') {
-      alert("Enter");
+      alert("Enter ");
       const departmentBody = new DepartmentBody();
       const selectedNodes = this.departmentApi.getSelectedNodes();
       // console.log("key",selectedNodes);
       const selectedData = selectedNodes.map(node => node.data);
       var dataTest: Object;
       selectedData.map(node => dataTest = node as Object);
+
       departmentBody.DepartmentCode = dataTest['DepartmentCode'];
       departmentBody.DepartmentName = dataTest['DepartmentName']
       departmentBody.Description = dataTest['Description']
-      console.log("key", departmentBody);
+      console.log("key", departmentBody)
 
-      if (dataTest['LocationName'] === '') {
-        alert("Plesae Enter Location Name");
-      }
-      else if (dataTest['DepartmentCode'] === '') {
+      // if (dataTest['LocationName'] === '') {
+      //   alert("Plesae Enter Location Name");
+      // }
+
+
+       if (dataTest['DepartmentCode'] === '') {
         alert("Please Enter Department Code");
       }
 
@@ -462,11 +471,12 @@ export class OrganizationComponent implements OnInit {
       else {
 
         this.countryService.saveDepartment(departmentBody)
+
           .subscribe(
             data => {
-              this.locationResponse = data;
-              console.log("key", LocationResponse);
-              alert(this.locationResponse.MESSAGE);
+              this.universalResponse = data;
+              console.log("key", UniversalResponse);
+              alert(this.universalResponse.MESSAGE);
             }
 
           );
@@ -474,7 +484,7 @@ export class OrganizationComponent implements OnInit {
     }
   }
 
-  onCellKeyDesignationDown(e) {
+  onDesignationCellKeyDown(e) {
     const keyPressed = e.event.key;
     if (keyPressed === 'Enter') {
       alert("Enter ");
@@ -490,14 +500,14 @@ export class OrganizationComponent implements OnInit {
       console.log("key", designationBody)
 
 
-      if (dataTest['LocationName'] === '') {
-        alert("Plesae Enter Location Name");
-      }
+      // if (dataTest['LocationName'] === '') {
+      //   alert("Plesae Enter Location Name");
+      // }
 
 
-      else if (dataTest['DepartmentName'] === '') {
-        alert("Please Enter Department Name");
-      }
+      // if (dataTest['DepartmentName'] === '') {
+      //   alert("Please Enter Department Name");
+      // }
 
       if (dataTest['DesignationCode'] === '') {
         alert("Plesae Enter Designation Code");

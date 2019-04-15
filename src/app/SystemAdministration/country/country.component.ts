@@ -84,7 +84,6 @@ export class CountryComponent implements OnInit {
         }
 
       }
-
     },
     { headerName: '', field: '', width: 590 }
   ];
@@ -508,39 +507,10 @@ export class CountryComponent implements OnInit {
 
 
   }
-  onGridReady(params) {
-    this.api = params.api;
-    this.columnApi = params.columnApi;
-  }
-  onStateGridReady(params) {
-    this.stateApi = params.api;
-    this.stateColumnApi = params.columnApi;
-  }
 
-  onCityGridReady(params) {
-    this.cityApi = params.api;
-    this.cityColumnApi = params.columnApi;
-  }
-  onPostalGridReady(params) {
-    this.postalApi = params.api;
-    this.postalColomnApi = params.columnApi;
-  }
-  onSelectionChanged() {
-    const selectedRows = this.api.getSelectedRows();
-    let selectedRowsString = '';
-    selectedRows.forEach(function (selectedRow, index) {
-      if (index !== 0) {
-        selectedRowsString += ', ';
-      }
-      selectedRowsString += selectedRow.athlete;
-    });
-    document.querySelector('#selectedRows').innerHTML = selectedRowsString;
-  }
-
-  onCellKeyDown(e) {
-    const keyPressed = e.event.key;
-    if (keyPressed === 'Enter') {
-      const countryBody = new CountryBody();
+  onSaveCountry()
+  {
+    const countryBody = new CountryBody();
       const universalBody = new UniversalBody();
       const selectedNodes = this.api.getSelectedNodes();
 
@@ -584,10 +554,130 @@ export class CountryComponent implements OnInit {
 
           );
       }
-
-
-    }
   }
+  // onSaveState()
+  // {
+  //   const stateBody = new StateBody();
+  //     const universalBody = new UniversalBody();
+  //     const selectedNodes = this.stateApi.getSelectedNodes();
+
+  //     const selectedData = selectedNodes.map(node => node.data);
+  //     var dataTest: Object;
+  //     selectedData.map(node => dataTest = node as Object);
+  //     stateBody.StateName = dataTest['stateName'];
+  //     stateBody.Description = dataTest['description'];
+
+  //     if (dataTest['stateName'] === '') {
+  //       alert("Enter state name");
+  //       this.StateToggleButton= true;
+  //     }
+  //     else {
+  //       this.allWeb.saveState(stateBody)
+  //         .subscribe(
+  //           data => {
+  //             this.universalResponse = data;
+
+  //             alert(this.universalResponse.MESSAGE);
+
+  //             if (this.universalResponse.STATUS === 'Success') {
+
+  //               alert("State Details");
+
+  //               this.allWeb.getStates(universalBody)
+  //                 .subscribe(
+  //                   data => {
+  //                     this.getStateResponse = data;
+  //                     this.rowData1 = this.getStateResponse;
+  //                   }
+  //                 )
+  //             }
+  //           }
+
+  //         );
+  //     }
+
+    
+  // }
+  onGridReady(params) {
+    this.api = params.api;
+    this.columnApi = params.columnApi;
+  }
+  onStateGridReady(params) {
+    this.stateApi = params.api;
+    this.stateColumnApi = params.columnApi;
+  }
+
+  onCityGridReady(params) {
+    this.cityApi = params.api;
+    this.cityColumnApi = params.columnApi;
+  }
+  onPostalGridReady(params) {
+    this.postalApi = params.api;
+    this.postalColomnApi = params.columnApi;
+  }
+  onSelectionChanged() {
+    const selectedRows = this.api.getSelectedRows();
+    let selectedRowsString = '';
+    selectedRows.forEach(function (selectedRow, index) {
+      if (index !== 0) {
+        selectedRowsString += ', ';
+      }
+      selectedRowsString += selectedRow.athlete;
+    });
+    document.querySelector('#selectedRows').innerHTML = selectedRowsString;
+  }
+
+  // onCellKeyDown(e) {
+  //   const keyPressed = e.event.key;
+  //   if (keyPressed === 'Enter') {
+  //     const countryBody = new CountryBody();
+  //     const universalBody = new UniversalBody();
+  //     const selectedNodes = this.api.getSelectedNodes();
+
+  //     const selectedData = selectedNodes.map(node => node.data);
+  //     var dataTest: Object;
+  //     selectedData.map(node => dataTest = node as Object);
+  //     countryBody.CountryCode = dataTest['countryCode'];
+  //     countryBody.CountryName = dataTest['countryName'];
+
+  //     if (dataTest['countryCode'] === '') {
+  //       alert("Enter country code");
+
+
+  //     }
+  //     else if (dataTest['countryName'] === '') {
+  //       alert("Enter country name");
+
+  //     }
+
+  //     else {
+  //       this.allWeb.saveCountry(countryBody)
+  //         .subscribe(
+  //           data => {
+  //             this.universalResponse = data;
+
+  //             alert(this.universalResponse.MESSAGE);
+
+  //             if (this.universalResponse.STATUS === 'Success') {
+
+  //               this.allWeb.getCountries(universalBody)
+  //                 .subscribe(
+  //                   data => {
+  //                     this.countryDataResponse = data;
+  //                     this.rowData = this.countryDataResponse;
+
+  //                   }
+  //                 )
+  //             }
+  //           }
+
+
+  //         );
+  //     }
+
+
+  //   }
+  // }
 
   onCityCellKeyDown(e) {
     const keyPressed = e.event.key;
