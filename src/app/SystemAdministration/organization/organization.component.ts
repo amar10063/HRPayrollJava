@@ -98,15 +98,11 @@ export class OrganizationComponent implements OnInit {
       {
 
         headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, width: 250,
-        cellRendererFramework: LocationDropdownComponent
-
+        cellRendererFramework: LocationDropdownComponent,
         cellRendererParams: {
           value: 'location'
         }
-
-
       },
-
       {
         headerName: 'Department Code', field: 'DepartmentCode', sortable: true, editable: true, filter: true, width: 250,
         cellStyle: function (params) {
