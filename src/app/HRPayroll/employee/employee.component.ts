@@ -12,6 +12,8 @@ import { DepartmentResponse } from './EmployeeApiResponse/DepartmentResponse';
 import { GetAllDesignationBody } from './EmployeeApiResponse/GetAllDesignationBody';
 import { LocationResponse } from './EmployeeApiResponse/LocationResponse';
 import { GetLocationBody } from 'src/app/SystemAdministration/organization/GetLocationBody';
+import { GetSchoolDataResponse } from '../Education/GetSchoolDataResponse';
+import { GetSchoolModel } from '../Education/GetSchoolModel';
 
 @Component({
   selector: 'app-employee',
@@ -21,9 +23,6 @@ import { GetLocationBody } from 'src/app/SystemAdministration/organization/GetLo
 export class EmployeeComponent implements OnInit {
   basicDetailsForm: FormGroup;
   titles = ['Mr', 'Miss', 'Mrs'];
-
-  basicDetailsForm: FormGroup;
-  basicDetailsResponse: BasicDetailsResponse;
   highSchoolResponse : HighSchoolResponse;
   submitted = false;
   designationResponse: DesignationResponse[];
@@ -94,7 +93,7 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs2 = [
 
-    { headerName: 'Class', field: 'Class', width: 120,editable: true,
+    { headerName: 'Class', field: 'className', width: 120,editable: true,
     cellStyle: function (params) {
       if (params.value === '') {
         // bordercolor: 'red'
@@ -108,7 +107,7 @@ export class EmployeeComponent implements OnInit {
       }
     }
    },
-    { headerName: 'Board', field: 'Board', sortable: true, filter: true, width: 150,editable: true,
+    { headerName: 'Board', field: 'boardName', sortable: true, filter: true, width: 150,editable: true,
     cellStyle: function (params) {
       if (params.value === '') {
         // bordercolor: 'red'
@@ -122,7 +121,7 @@ export class EmployeeComponent implements OnInit {
       }
     }
    },
-    { headerName: 'School Name', field: 'SchoolName', sortable: true, filter: true, width: 152, editable: true,
+    { headerName: 'School Name', field: 'schoolName', sortable: true, filter: true, width: 152, editable: true,
     cellStyle: function (params) {
       if (params.value === '') {
         // bordercolor: 'red'
@@ -137,7 +136,7 @@ export class EmployeeComponent implements OnInit {
     }
    },
 
-    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, width: 120, editable: true,
+    { headerName: 'Start Date', field: 'startDate', sortable: true, filter: true, width: 120, editable: true,
     cellStyle: function (params) {
       if (params.value === '') {
         // bordercolor: 'red'
@@ -151,7 +150,7 @@ export class EmployeeComponent implements OnInit {
       }
     }
    },
-    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, width: 120,editable: true,
+    { headerName: 'End Date', field: 'endDate', sortable: true, filter: true, width: 120,editable: true,
     cellStyle: function (params) {
       if (params.value === '') {
         // bordercolor: 'red'
@@ -183,11 +182,12 @@ export class EmployeeComponent implements OnInit {
    },
   ];
 
-  rowData2 = [
-    // { Class: '10', Board: 'CBSE', SchoolName: 'DPSG', StartDate: '10-03-2010', EndDate: '10-03-2011', percentage: '74 %' },
-    // { Class: '12', Board: 'CBSE', SchoolName: 'DPSG', StartDate: '10-03-2012', EndDate: '10-03-2013', percentage: '72 %' },
+  rowData2;
+  // rowData2 = [
+  //   // { Class: '10', Board: 'CBSE', SchoolName: 'DPSG', StartDate: '10-03-2010', EndDate: '10-03-2011', percentage: '74 %' },
+  //   // { Class: '12', Board: 'CBSE', SchoolName: 'DPSG', StartDate: '10-03-2012', EndDate: '10-03-2013', percentage: '72 %' },
 
-  ];
+  // ];
 
 
 
@@ -427,9 +427,7 @@ export class EmployeeComponent implements OnInit {
   locationResponse: LocationResponse[];
   selectedLocationIndex: number;
   selectedDepartmentIndex: number;
-  constructor(private formBuilder: FormBuilder, private countryService: CountryService) {
-
-  }
+ 
   public show: boolean = false;
   public hide: boolean = true;
   public buttonName: any = 'Add New';
@@ -441,7 +439,11 @@ export class EmployeeComponent implements OnInit {
   api: GridApi;
   columnApi: ColumnApi;
   rowSelection: string;
+  getSchoolResonseData : GetSchoolDataResponse;
+
   ngOnInit() {
+    
+
 
     this.basicDetailsForm = this.formBuilder.group({
       empCode: ['', [Validators.required,]],
@@ -455,8 +457,7 @@ export class EmployeeComponent implements OnInit {
 
     });
     this.getLocation(1);
-    // this.getAllDepartment('1', 2);
-    // this.getAllDesignation('1', 1);
+    
 
   }
   getLocation(UserID: number) {
@@ -549,31 +550,15 @@ export class EmployeeComponent implements OnInit {
   }
 
   onGetSchoolQualification(){
-    var highSchoolResonse : HighSchoolResponse;
-
-    this.countryService.doGetHighSchoolData()
+    var getHighSchoolUserId = new GetSchoolModel();
+    this.countryService.doGetHighSchoolData(getHighSchoolUserId)
         .subscribe(
           data => {
-            highSchoolResonse = data;
-              console.log("recived",highSchoolResonse.STATUS);
-              if(highSchoolResonse.STATUS===""){
-                alert(highSchoolResonse.STATUS+" : "+highSchoolResonse.MESSAGE);
-                this.onGetSchoolQualification();
-              }else{
-                alert(highSchoolResonse.STATUS+" : "+highSchoolResonse.MESSAGE);
-              }
+            this.getSchoolResonseData = data;
+            console.log("key",data);
+            this.rowData2 = this.getSchoolResonseData;
           } 
         );
-  }
-
-  onDeleteQualification() {
-
-   var selectedNodes = this.api.getSelectedNodes();
-   if(selectedNodes.length === 0){
-    // alert("Please Select any row.");
-   }else{
-    this.api.removeItems(selectedNodes);
-   }
   }
 
   onPressEducationalEnter(e)
@@ -587,21 +572,21 @@ export class EmployeeComponent implements OnInit {
       var highSchoolResonse : HighSchoolResponse;
       var dataTest: Object;
       selectedData.map(node => dataTest = node as Object);
-      highSchool.ClassName = dataTest['Class'];
-      highSchool.BoardName = dataTest['Board'];
-      highSchool.SchoolName = dataTest['SchoolName'];
-      highSchool.Percentage = dataTest['percentage'];
-      highSchool.EndDate = dataTest['EndDate'];
-      highSchool.StartDate = dataTest['StartDate'];
-      if(dataTest['Class'] === ''){
+      highSchool.className = dataTest['className'];
+      highSchool.boardName = dataTest['boardName'];
+      highSchool.schoolName = dataTest['schoolName'];
+      highSchool.percentage = dataTest['percentage'];
+      highSchool.endDate = dataTest['endDate'];
+      highSchool.startDate = dataTest['startDate'];
+      if(dataTest['className'] === ''){
         alert("Enter Class");
-      }else if(dataTest['Board'] === ''){
+      }else if(dataTest['boardName'] === ''){
         alert("Enter Board");
-      }else if(dataTest['SchoolName'] === ''){
+      }else if(dataTest['schoolName'] === ''){
         alert("Enter School Name");
-      }else if(dataTest['StartDate'] === ''){
+      }else if(dataTest['startDate'] === ''){
         alert("Enter Start Date");
-      }else if(dataTest['EndDate'] === ''){
+      }else if(dataTest['endDate'] === ''){
         alert("Enter End Date");
       }else if(dataTest['percentage'] === ''){
         alert("Enter Percentage");
@@ -612,7 +597,7 @@ export class EmployeeComponent implements OnInit {
           data => {
             highSchoolResonse = data;
               console.log("recived",highSchoolResonse.STATUS);
-              if(highSchoolResonse.STATUS===""){
+              if(highSchoolResonse.STATUS==="Success"){
                 alert(highSchoolResonse.STATUS+" : "+highSchoolResonse.MESSAGE);
                 this.onGetSchoolQualification();
               }else{
@@ -624,39 +609,37 @@ export class EmployeeComponent implements OnInit {
     }
   }
 
-  onSave() {
 
-    alert("Save Clicked");
-    this.submitted = true;
-    if (this.basicDetailsForm.invalid) {
-      return;
-    }
-    else {
-      const basicDetails = new BasicDetails();
+  onDeleteQualification() {
 
-      // this.basicDetailsService.doSave(basicDetails)
-      //   .subscribe(
-      //     data => {
-      //       this.basicDetailsResponse = data;
-      //       alert("api hits");
-      //     }
-      //   )
-    }
+   var selectedNodes = this.api.getSelectedNodes();
+   var dataTest: Object;
+   
 
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.basicDetailsForm.value));
+   const selectedData = selectedNodes.map(node => node.data);
+   selectedData.map(node => dataTest = node as Object);
+   console.log("SDSDSD",selectedData);
+
+  
+
+   if(selectedNodes.length === 0){
+    // alert("Please Select any row.");
+   }else{
+    this.api.removeItems(selectedNodes);
+   }
   }
 
-
-
+ 
   showhide() {
     this.show = true;
     this.hide = false;
   }
+
   showhide2() {
     this.show = false;
     this.hide = true;
-
-
   }
+
   get f() { return this.basicDetailsForm.controls; }
+
 }

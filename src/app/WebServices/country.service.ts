@@ -27,6 +27,7 @@ import { GetCityBody } from '../SystemAdministration/country/CityDetails/GetCity
 import { GetCityResponse } from '../SystemAdministration/country/CityDetails/GetCityResponse';
 import { GetAllDesignationBody } from '../HRPayroll/employee/EmployeeApiResponse/GetAllDesignationBody';
 import { GetAllDepartmentBody } from '../HRPayroll/employee/EmployeeApiResponse/GetAllDepartmentBody';
+import { GetSchoolModel } from '../HRPayroll/Education/GetSchoolModel';
 
 @Injectable({
   providedIn: 'root'
@@ -102,8 +103,8 @@ export class CountryService {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.highSchoolApi, JSON.stringify(highSchool), this.httpOptions);
   }
 
-  doGetHighSchoolData(): Observable<any> { 
-    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getSchoolDataApi, this.httpOptions);
+  doGetHighSchoolData(getHighSchoolUserId : GetSchoolModel): Observable<any> { 
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getSchoolDataApi, JSON.stringify(getHighSchoolUserId), this.httpOptions);
   }
   
 }

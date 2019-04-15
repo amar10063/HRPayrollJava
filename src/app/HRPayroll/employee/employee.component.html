@@ -135,8 +135,8 @@
                 class="fa fa-info-circle pr-1" aria-hidden="true"></i> Basic Details</a> </li>
           <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#AddressBook"><i class="fa fa-book pr-1"
                 aria-hidden="true"></i> Address Book</a> </li>
-          <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#educationalQualifications"><i
-                class="fa fa-graduation-cap pr-1" aria-hidden="true"></i> Educational Qualifications</a> </li>
+          <li class="nav-item"> <a class="nav-link" data-toggle="tab" (click)="onGetSchoolQualification()" href="#educationalQualifications"><i
+                class="fa fa-graduation-cap pr-1" aria-hidden="true" ></i> Educational Qualifications</a> </li>
           <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profQualifications"><i
                 class="fa fa-user-md pr-1" aria-hidden="true"></i> Professional Qualifications</a> </li>
           <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#experience"><i class="fa fa-user pr-1"
@@ -157,7 +157,6 @@
     <div class="col-10 col-md-10 pull-left p-0">
       <div class="tab-content col-md-12 col-12 p-0">
         <div id="basic" class="container tab-pane active">
-
             <div class="col-12 col-md-12 p-0">
                 <div class="col-12 col-md-6 pull-left mt-2 empDetail">
                       <label>Fateh Singh Rana <span>(Software Developer, Employee ID: 1035)</span> </label>
@@ -177,7 +176,6 @@
               <div class="pull-left col-11 col-md-11 pl-0">
                 <div class="form-inline col-12 col-md-12 p-0">
                   <div class="col-12 col-md-6 p-0">
-
                     <label for="Employee Code" class="col-5 col-md-5 pl-0">Employee Code:</label>
                     <input type="text" class="form-control col-12 col-md-6 ptb-4" id="name" name="name"
                       placeholder="Employee Code" formControlName="empCode"
@@ -188,7 +186,6 @@
                   </div>
                   <div class="col-12 col-md-6 p-0">
                     <label for="pay" class="col-5 col-md-5 pull-left pl-0">Title:</label>
-
                     <select class="form-control addrCon formSelect col-7 col-md-7" id="type" name="type"
                     formControlName="title" [ngClass]="{'is-invalid': submitted && f.title.errors}"
                     style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
@@ -205,7 +202,6 @@
                   <div class="col-12 col-md-6 p-0">
                     <label for="pay" class="col-5 col-md-5 pl-0 pull-left">First Name:</label>
                     <input type="text" class="form-control addrCon formSelect col-7 col-md-7" id="name" name="name"
-
                       placeholder="First Name" formControlName="firstName"
                       [ngClass]="{'is-invalid': submitted && f.firstName.errors}">
 
@@ -227,7 +223,6 @@
 
                 </div>
                 <div class="form-inline col-12 col-md-12 p-0 mt-1">
-
                   <div class="col-12 col-md-6 p-0">
                     <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Middle Name:</label>
                     <input type="text" class="form-control addrCon formSelect col-7 col-md-7" id="name" name="name"
@@ -243,11 +238,9 @@
 
 
                   <div class="col-12 col-md-6 p-0">
-
                     <label for="pay" class="col-5 col-md-5 pull-left pl-0">Last Name:</label>
                     <input type="text" class="form-control addrCon formSelect col-7 col-md-7" id="name" name="name"
                       placeholder="Last Name" formControlName="lastName">
-
 
                   </div>
                   <div class="col-12 col-md-6 p-0">
@@ -258,7 +251,6 @@
                 </div>
 
                 <div class="form-inline col-12 col-md-12 p-0 mt-1">
-
 
 
                   <div class="col-12 col-md-6 p-0">
@@ -280,7 +272,6 @@
                   </div>
                   <div class="col-12 col-md-6 p-0">
                     <label for="pay" class="col-5 col-md-5 pull-left pl-0">Department:</label>
-
                     <select class="form-control addrCon formSelect col-7 col-md-7" id="type" name="type"
                     formControlName="department" [ngClass]="{'is-invalid': submitted && f.department.errors}"
                     style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
@@ -302,7 +293,6 @@
                   <div class="col-12 col-md-6 p-0">
                     <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Email ID:</label>
                     <label for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">abcd@gmail.com</label>
-
 
                   </div>
                   <div class="col-12 col-md-6 p-0">
@@ -332,13 +322,11 @@
                           <option>Finance</option>
                         </select>
                       </div> -->
-
                   <!-- <div class="col-12 col-md-6 p-0">
                         <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Email ID:</label>
                         <label for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">abcd@gmail.com</label>
     
                       </div> -->
-
                 </div>
 
                 <div class="form-inline col-12 col-md-12 p-0 mt-1">
@@ -472,58 +460,39 @@
 
                 </ul>
               </div>
-            
-              <div class="tab-content">
-              <div id="Highschool" class="container tab-pane active">
-                  <div class="container p-0">
-                      <div class="col-12 col-md-6 pull-left mt-3 ">
-                          <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
-                          <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
-                            <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
-                              <label class="checkBox">
-                                <input type="checkbox" name="checkbox" checked>
-                                <span class="checkmark check1"></span> </label>
-                            </div>
-                            
-                          </div>
-                      </div>
-                      <div class="col-12 col-md-6 p-0 pull-left">
-                    <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-                      <button type="button" class="payHeadBtn" (click)="onAddQualification()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
-                        New</button>
-                      <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#addNew1"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
-                      </div>
-                      <!--(click)="onDeleteQualification($event)"-->
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="clearfix"></div>
-                  <div class="formBody clearfix pt-0">
-                    <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData2"
-                    
-                    [columnDefs]="columnDefs2" [animateRows]="true" [rowSelection]="rowSelection"
-                    (gridReady)="onGridSchoolReady($event)" (cellKeyDown)="onPressEducationalEnter($event)">
-                  </ag-grid-angular>
+            </div>
+          </div>
 
-                    <!-- (selectionChanged)="onSelectionChanged($event)" -->
-                    
-                  </div>
-                  <div class="row" >
-                    <div class="col-md-12 col-sm-6 col-xs-12 p-0">
-                      <div class="form group col-md-2 pull-right" >
-                          <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
-                        <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of 100</label>
-                        <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
-                      </div>  
+          <div class="tab-content">
+            <div id="Highschool" class="container tab-pane active">
+              <div class="container p-0">
+                  <div class="col-12 col-md-6 pull-left mt-3 ">
+                      <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
+                      <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
+                        <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
+                          <label class="checkBox">
+                            <input type="checkbox" name="checkbox" checked>
+                            <span class="checkmark check1"></span> </label>
+                        </div>
+                        
                       </div>
-
+                  </div>
+                  <div class="col-12 col-md-6 p-0 pull-left">
+                <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
+                  <button type="button" class="payHeadBtn" (click)="onAddQualification()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                    New</button>
+                    <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#addNew1"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
                   </div>
                 </div>
                 <div class="clearfix"></div>
               </div>
               <div class="clearfix"></div>
               <div class="formBody clearfix pt-0">
-                <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData2" [columnDefs]="columnDefs2"></ag-grid-angular>
+                <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData2"
+                    
+                [columnDefs]="columnDefs2" [animateRows]="true" [rowSelection]="rowSelection"
+                (gridReady)="onGridSchoolReady($event)" (cellKeyDown)="onPressEducationalEnter($event)">
+              </ag-grid-angular>
     
               </div>
               <div class="row" >
@@ -1233,7 +1202,6 @@
 
             </div>
           </div>
-
           <div class="col-md-12 col-sm-12 clearfix col-xs-12 p-0 mt-2">
 
 
@@ -1249,7 +1217,6 @@
                       <div class="time">
                         <i class="ace-icon fa fa-clock-o"></i><span class="green">30/03/2019</span>
                       </div>
-
 
                       <div class="name">
                         <p>Alexa</p>
@@ -1268,7 +1235,6 @@
                       <div class="time">
                         <i class="ace-icon fa fa-clock-o"></i><span class="green">28/03/2019</span>
                       </div>
-
 
                       <div class="name">
                         <p>Alexa</p>
@@ -1293,7 +1259,6 @@
                       <div class="name">
                         <p>Alexa</p>
                       </div>
-
                       <div class="text" style="clear: both;">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed
                         ipsum porttitor facilisis.</div>
@@ -1321,7 +1286,6 @@
                   </div>
                 </div>
               </div>
-
             </div>
 
 
@@ -1337,7 +1301,6 @@
                       <div class="time">
                         <i class="ace-icon fa fa-clock-o"></i><span class="green">20/03/2019</span>
                       </div>
-
 
                       <div class="name">
                         <p>Alexa</p>
@@ -1356,7 +1319,6 @@
                       <div class="time">
                         <i class="ace-icon fa fa-clock-o"></i><span class="green">27/03/2019</span>
                       </div>
-
 
                       <div class="name">
                         <p>Alexa</p>
@@ -1398,7 +1360,6 @@
                       <div class="time">
                         <i class="ace-icon fa fa-clock-o"></i><span class="green">03/03/2019</span>
                       </div>
-
 
                       <div class="name">
                         <p>Alexa</p>
@@ -1450,7 +1411,6 @@
   </div>
 </div>
 
-
 <div class="modal fade" id="addNew1">
   <div class="modal-dialog modal-dialog-centered" id="Div3">
       <div class="modal-content">
@@ -1469,7 +1429,3 @@
       </div>
   </div>
 </div>
-
-  <!-- (click)="onAddQualification()"
-              onclick="onDeleteQualification(); -->
-
