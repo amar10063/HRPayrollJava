@@ -87,7 +87,7 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs2 = [
 
-    { headerName: 'Class', field: 'className', width: 120,editable: true,
+    { headerName: 'Class', field: 'className', width: 150,editable: true,
     cellStyle: function (params) {
       if (params.value === '') {
         // bordercolor: 'red'
@@ -101,7 +101,7 @@ export class EmployeeComponent implements OnInit {
       }
     }
    },
-    { headerName: 'Board', field: 'boardName', sortable: true, filter: true, width: 150,editable: true,
+    { headerName: 'Board', field: 'boardName', sortable: true, filter: true, width: 180,editable: true,
     cellStyle: function (params) {
       if (params.value === '') {
         // bordercolor: 'red'
@@ -115,7 +115,7 @@ export class EmployeeComponent implements OnInit {
       }
     }
    },
-    { headerName: 'School Name', field: 'schoolName', sortable: true, filter: true, width: 152, editable: true,
+    { headerName: 'School Name', field: 'schoolName', sortable: true, filter: true, width: 220, editable: true,
     cellStyle: function (params) {
       if (params.value === '') {
         // bordercolor: 'red'
@@ -130,7 +130,7 @@ export class EmployeeComponent implements OnInit {
     }
    },
 
-    { headerName: 'Start Date', field: 'startDate', sortable: true, filter: true, width: 120, editable: true,
+    { headerName: 'Start Date', field: 'startDate', sortable: true, filter: true, width: 150, editable: true,
     cellStyle: function (params) {
       if (params.value === '') {
         // bordercolor: 'red'
@@ -144,7 +144,7 @@ export class EmployeeComponent implements OnInit {
       }
     }
    },
-    { headerName: 'End Date', field: 'endDate', sortable: true, filter: true, width: 120,editable: true,
+    { headerName: 'End Date', field: 'endDate', sortable: true, filter: true, width: 150,editable: true,
     cellStyle: function (params) {
       if (params.value === '') {
         // bordercolor: 'red'
