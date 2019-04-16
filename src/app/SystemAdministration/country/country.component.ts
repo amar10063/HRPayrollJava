@@ -76,7 +76,7 @@ export class CountryComponent implements OnInit {
     {
       id: 1, headerName: 'Country Name', field: 'countryName', sortable: true, //cellEditor: "agTextCellEditor",
 
-      filter: true, width: 130, editable: true,
+      filter: true, width: 150, editable: true,
 
       cellStyle: function (params) {
 
@@ -88,7 +88,7 @@ export class CountryComponent implements OnInit {
 
       }
     },
-    { headerName: '', field: '', width: 590 }
+    { headerName: '', field: '', width:730, }
   ];
 
   rowData;
@@ -115,8 +115,8 @@ export class CountryComponent implements OnInit {
       }
 
     },
-    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 130, editable: true },
-    { headerName: '', field: '', width: 470 }
+    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: true },
+    { headerName: '', field: '',width:610,  }
   ];
 
   rowData1;
@@ -165,9 +165,9 @@ export class CountryComponent implements OnInit {
 
     },
 
-    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 130, editable: true },
+    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: true },
 
-    { headerName: '', field: '', width: 350 }
+    { headerName: '', field: '', width:490, }
   ];
 
   rowData2;
@@ -216,7 +216,7 @@ export class CountryComponent implements OnInit {
 
     },
     {
-      headerName: 'Postal Code', field: 'postalCode', sortable: true, filter: true, editable: true, width: 120,
+      headerName: 'Postal Code', field: 'postalCode', sortable: true, filter: true, editable: true, width:120,
 
       cellStyle: function (params) {
         if (params.value === '') {
@@ -230,17 +230,17 @@ export class CountryComponent implements OnInit {
 
     },
 
-    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 130, editable: true },
+    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: true },
 
-    { headerName: '', field: '', width: 230 }
+    { headerName: '', field: '', width:370, }
   ];
 
   rowData3;
 
   columnDefs4 = [
-    { headerName: 'Department', field: 'department', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'Designation', field: 'designation', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: '', field: '', width: 600 }
+    { headerName: 'Department', field: 'department', sortable: true, filter: true, editable: true, width: 500 },
+    { headerName: 'Designation', field: 'designation', sortable: true, filter: true, editable: true, width: 500 },
+    { headerName: '', field: '',  }
   ];
 
   rowData4 = [
