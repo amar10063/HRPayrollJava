@@ -104,7 +104,7 @@ export class EmployeeComponent implements OnInit {
         }
       }
 
-    }
+    
    },
     { headerName: 'Board', field: 'boardName', sortable: true, filter: true, width: 100,editable: true,
     cellStyle: function (params) {
@@ -120,7 +120,7 @@ export class EmployeeComponent implements OnInit {
         }
       }
 
-    }
+    
    },
     { headerName: 'School Name', field: 'schoolName', sortable: true, filter: true, width: 150, editable: true,
     cellStyle: function (params) {
@@ -167,7 +167,7 @@ export class EmployeeComponent implements OnInit {
         }
       }
 
-    }
+    
    }, 
     
     { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, width: 100,editable: true,
@@ -176,23 +176,16 @@ export class EmployeeComponent implements OnInit {
         // bordercolor: 'red'
         // alert("Enter Percentage");
 
-    {
-      headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, width: 150, editable: true,
-      cellStyle: function (params) {
-        if (params.value === '') {
           // bordercolor: 'red'
           // alert("Enter Percentage");
-
           return { outline: '1px solid red' };
-
-
           //color: 'red', backgroundColor: 'green',
         } else {
           return { outline: 'white' };
         }
       }
 
-    }
+    
    },
    { headerName: '', field: '', width:310, }
   ];
@@ -726,5 +719,4 @@ export class EmployeeComponent implements OnInit {
 
 }
 class ImageSnippet {
-  constructor(public src: string, public file: File) { }
-}
+  constructor(public src: string, public file: File) { }}
