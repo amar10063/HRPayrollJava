@@ -29,10 +29,12 @@ import { DeletePostalBody } from './WebServiceBody/CountryBody/DeletePostalBody'
 import { UniversalResponse } from './WebServiceResponse/UniversalResponse';
 import { GetSchoolModel } from '../HRPayroll/Education/GetSchoolModel';
 import { GetSchoolDataResponse } from '../HRPayroll/Education/GetSchoolDataResponse';
+import { BasicDetailBody } from './WebServiceBody/EmployeeBasicDetail/BasicDetailBody';
 @Injectable({
   providedIn: 'root'
 })
 export class AllWeb {
+  
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -42,6 +44,9 @@ export class AllWeb {
   }
   saveCountry(countryBody: CountryBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveCountry, JSON.stringify(countryBody), this.httpOptions);
+  }
+  saveEmployeeBasicDetail(basicDetailBody: BasicDetailBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveEmployeeBasicDetail, JSON.stringify(basicDetailBody), this.httpOptions);
   }
   saveLocation(locationBody: LocationBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddLocation, JSON.stringify(locationBody), this.httpOptions);
