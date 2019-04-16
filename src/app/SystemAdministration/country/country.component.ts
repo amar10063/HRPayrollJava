@@ -61,7 +61,7 @@ export class CountryComponent implements OnInit {
   rowDeselection: string
   columnDefs = [
     {
-      id: 0, headerName: 'Country Code', field: 'countryCode', sortable: true, filter: true, width: 300, editable: true,
+      id: 0, headerName: 'Country Code', field: 'countryCode', sortable: true, filter: true, width: 120, editable: true,
       cellStyle: function (params) {
         if (params.value === '') {
           //this.ToggleButton = true;
@@ -76,7 +76,7 @@ export class CountryComponent implements OnInit {
     {
       id: 1, headerName: 'Country Name', field: 'countryName', sortable: true, //cellEditor: "agTextCellEditor",
 
-      filter: true, width: 700, editable: true,
+      filter: true, width: 150, editable: true,
 
       cellStyle: function (params) {
 
@@ -88,7 +88,7 @@ export class CountryComponent implements OnInit {
 
       }
     },
-    { headerName: '', field: '',  }
+    { headerName: '', field: '', width:730, }
   ];
 
   rowData;
@@ -96,14 +96,14 @@ export class CountryComponent implements OnInit {
 
   columnDefs1 = [
     {
-      headerName: 'Country', field: 'countryName', sortable: true, editable: true, filter: true, width: 250, singleClickEdit: true,
+      headerName: 'Country', field: 'countryName', sortable: true, editable: true, filter: true, width: 120, singleClickEdit: true,
 
       cellRendererFramework: LocationDropdownComponent,
       cellRendererParams:{value:''}
 
     },
     {
-      headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: true, width: 250,
+      headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: true, width: 120,
 
       cellStyle: function (params) {
         if (params.value === '') {
@@ -115,8 +115,8 @@ export class CountryComponent implements OnInit {
       }
 
     },
-    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 500, editable: true },
-    { headerName: '', field: '',  }
+    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: true },
+    { headerName: '', field: '',width:610,  }
   ];
 
   rowData1;
@@ -124,7 +124,7 @@ export class CountryComponent implements OnInit {
   columnDefs2 = [
 
     {
-      headerName: 'Country', field: 'countryName', sortable: true, editable: true, filter: true, width: 250, singleClickEdit: true,
+      headerName: 'Country', field: 'countryName', sortable: true, editable: true, filter: true, width: 120, singleClickEdit: true,
 
       cellEditor: "select",
       cellEditorParams: { values: extractValues(countryMappings) },
@@ -136,7 +136,7 @@ export class CountryComponent implements OnInit {
       }
     },
     {
-      headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: true, width: 250, singleClickEdit: true,
+      headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: true, width: 120, singleClickEdit: true,
 
       cellEditor: "select",
       cellEditorParams: { values: extractValues(stateMappings) },
@@ -149,7 +149,7 @@ export class CountryComponent implements OnInit {
 
     },
     {
-      headerName: 'City', field: 'cityName', sortable: true, filter: true, editable: true, width: 250, singleClickEdit: true,
+      headerName: 'City', field: 'cityName', sortable: true, filter: true, editable: true, width: 120, singleClickEdit: true,
 
 
       cellStyle: function (params) {
@@ -165,9 +165,9 @@ export class CountryComponent implements OnInit {
 
     },
 
-    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 250, editable: true },
+    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: true },
 
-    { headerName: '', field: '',  }
+    { headerName: '', field: '', width:490, }
   ];
 
   rowData2;
@@ -175,7 +175,7 @@ export class CountryComponent implements OnInit {
   columnDefs3 = [
 
     {
-      headerName: 'Country', field: 'countryName', sortable: true, editable: true, filter: true, width: 200,
+      headerName: 'Country', field: 'countryName', sortable: true, editable: true, filter: true, width: 120,
       singleClickEdit: true,
 
       cellEditor: "select",
@@ -188,7 +188,7 @@ export class CountryComponent implements OnInit {
       }
     },
     {
-      headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: true, width: 200,
+      headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: true, width: 120,
       singleClickEdit: true,
 
       cellEditor: "select",
@@ -202,7 +202,7 @@ export class CountryComponent implements OnInit {
 
     },
     {
-      headerName: 'City', field: 'cityName', sortable: true, filter: true, editable: true, width: 200,
+      headerName: 'City', field: 'cityName', sortable: true, filter: true, editable: true, width: 120,
       singleClickEdit: true,
 
       cellEditor: "select",
@@ -216,7 +216,7 @@ export class CountryComponent implements OnInit {
 
     },
     {
-      headerName: 'Postal Code', field: 'postalCode', sortable: true, filter: true, editable: true, width:200,
+      headerName: 'Postal Code', field: 'postalCode', sortable: true, filter: true, editable: true, width:120,
 
       cellStyle: function (params) {
         if (params.value === '') {
@@ -230,9 +230,9 @@ export class CountryComponent implements OnInit {
 
     },
 
-    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 200, editable: true },
+    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: true },
 
-    { headerName: '', field: '',  }
+    { headerName: '', field: '', width:370, }
   ];
 
   rowData3;
