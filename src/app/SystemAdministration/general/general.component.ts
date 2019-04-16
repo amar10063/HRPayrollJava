@@ -8,11 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class GeneralComponent implements OnInit {
 
   columnDefs = [
-    { headerName: 'Country', field: 'country', sortable: true, filter: true, editable:true, width: 250 },
-    { headerName: 'Language Code', field: 'languageCode', sortable: true, filter: true, editable:true, width: 250 },
-    { headerName: 'Language', field: 'language', sortable: true, filter: true, editable:true, width: 250 },
-    { headerName: 'Description', field: 'description', sortable: true, filter: true, editable:true, width: 250 },
-    
+    { headerName: 'Country', field: 'country', sortable: true, filter: true, editable:true, width: 120 },
+    { headerName: 'Language Code', field: 'languageCode', sortable: true, filter: true, editable:true, width: 150 },
+    { headerName: 'Language', field: 'language', sortable: true, filter: true, editable:true, width: 120 },
+    { headerName: 'Description', field: 'description', sortable: true, filter: true, editable:true, width: 150 },
+    { headerName: '', field: '', width:460, }
    ];
 
   rowData = [
@@ -24,11 +24,11 @@ export class GeneralComponent implements OnInit {
   ];
 
   columnDefs1 = [
-    { headerName: 'Country', field: 'country', sortable: true, filter: true, editable:true, width:250 },
-    { headerName: 'Currency Code', field: 'currencyCode', sortable: true, filter: true, editable:true, width:250 },
-    { headerName: 'Currency', field: 'currency', sortable: true, filter: true, editable:true, width: 250 },
-    { headerName: 'Description', field: 'description', sortable: true, filter: true, editable:true, width: 250 },
-   
+    { headerName: 'Country', field: 'country', sortable: true, filter: true, editable:true, width:120 },
+    { headerName: 'Currency Code', field: 'currencyCode', sortable: true, filter: true, editable:true, width:150 },
+    { headerName: 'Currency', field: 'currency', sortable: true, filter: true, editable:true, width: 120 },
+    { headerName: 'Description', field: 'description', sortable: true, filter: true, editable:true, width: 150 },
+    { headerName: '', field: '', width:460, }
   ];
 
   rowData1 = [
@@ -40,10 +40,10 @@ export class GeneralComponent implements OnInit {
   ];
 
   columnDefs2 = [
-    { headerName: 'Country', field: 'country', sortable: true, filter: true, editable:true, width: 250 },
-    { headerName: 'Time Zone', field: 'timezone', sortable: true, filter: true, editable:true, width: 250 },
-    {headerName: 'Description', field: 'description', sortable: true, filter: true, editable:true, width: 500 },
-    
+    { headerName: 'Country', field: 'country', sortable: true, filter: true, editable:true, width: 120 },
+    { headerName: 'Time Zone', field: 'timezone', sortable: true, filter: true, editable:true, width: 120 },
+    {headerName: 'Description', field: 'description', sortable: true, filter: true, editable:true, width: 150 },
+    { headerName: '', field: '', width:610, }
   ];
 
   rowData2 = [
