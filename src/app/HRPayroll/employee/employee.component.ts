@@ -11,6 +11,9 @@ import { GetAllLocationResponse } from './EmployeeApiResponse/GetAllLocationResp
 import { GetLocationBody } from 'src/app/SystemAdministration/organization/GetLocationBody';
 import { GetSchoolDataResponse } from '../Education/GetSchoolDataResponse';
 import { GetSchoolModel } from '../Education/GetSchoolModel';
+import { BasicDetailBody } from 'src/app/WebServices/WebServiceBody/EmployeeBasicDetail/BasicDetailBody';
+import { DatePipe } from '@angular/common';
+import { UniversalResponse } from 'src/app/WebServices/WebServiceResponse/UniversalResponse';
 
 @Component({
   selector: 'app-employee',
@@ -21,15 +24,14 @@ export class EmployeeComponent implements OnInit {
   basicDetailsForm: FormGroup;
   titles = ['Mr', 'Miss', 'Mrs'];
   highSchoolResponse: HighSchoolResponse;
-
   addressApi: GridApi;
   addressColumnApi: ColumnApi;
-
   rowSelection: string;
-
   submitted = false;
   designationResponse: GetAllLocationResponse[];
-  selectedDesignationIndex;
+  selectedDesignationIndex: number;
+  url ;
+
   columnDefs = [
     { headerName: 'Employee Image', field: 'EmpImage', template: '<img src="../assets/images/profile-img-2.png" />', width: 120 },
     { headerName: 'Employee Name', field: 'EmpName', sortable: true, filter: true, editable: true, width: 130 },
@@ -87,18 +89,21 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs2 = [
 
+
     { headerName: 'Class', field: 'className', width: 100,editable: true,
     cellStyle: function (params) {
       if (params.value === '') {
         // bordercolor: 'red'
         // alert("Enter Class Name");
 
-        return { outline: '1px solid red' };
+          return { outline: '1px solid red' };
 
-        //color: 'red', backgroundColor: 'green',
-      } else {
-        return { outline: 'white' };
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
       }
+
     }
    },
     { headerName: 'Board', field: 'boardName', sortable: true, filter: true, width: 100,editable: true,
@@ -107,12 +112,14 @@ export class EmployeeComponent implements OnInit {
         // bordercolor: 'red'
         // alert("Enter Board Name");
 
-        return { outline: '1px solid red' };
+          return { outline: '1px solid red' };
 
-        //color: 'red', backgroundColor: 'green',
-      } else {
-        return { outline: 'white' };
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
       }
+
     }
    },
     { headerName: 'School Name', field: 'schoolName', sortable: true, filter: true, width: 150, editable: true,
@@ -121,41 +128,45 @@ export class EmployeeComponent implements OnInit {
         // bordercolor: 'red'
         // alert("Enter School Name");
 
-        return { outline: '1px solid red' };
+          return { outline: '1px solid red' };
 
-        //color: 'red', backgroundColor: 'green',
-      } else {
-        return { outline: 'white' };
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
       }
-    }
-   },
+    },
 
-    { headerName: 'Start Date', field: 'startDate', sortable: true, filter: true, width: 120, editable: true,
-    cellStyle: function (params) {
-      if (params.value === '') {
-        // bordercolor: 'red'
-        // alert("Enter Start Date");
+    {
+      headerName: 'Start Date', field: 'startDate', sortable: true, filter: true, width: 120, editable: true,
+      cellStyle: function (params) {
+        if (params.value === '') {
+          // bordercolor: 'red'
+          // alert("Enter Start Date");
 
-        return { outline: '1px solid red' };
+          return { outline: '1px solid red' };
 
-        //color: 'red', backgroundColor: 'green',
-      } else {
-        return { outline: 'white' };
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
       }
-    }
-   },
-    { headerName: 'End Date', field: 'endDate', sortable: true, filter: true, width: 120,editable: true,
-    cellStyle: function (params) {
-      if (params.value === '') {
-        // bordercolor: 'red'
-        // alert("Enter End Date");
+    },
+    {
+      headerName: 'End Date', field: 'endDate', sortable: true, filter: true, width: 120, editable: true,
+      cellStyle: function (params) {
+        if (params.value === '') {
+          // bordercolor: 'red'
+          // alert("Enter End Date");
 
-        return { outline: '1px solid red' };
+          return { outline: '1px solid red' };
 
-        //color: 'red', backgroundColor: 'green',
-      } else {
-        return { outline: 'white' };
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
       }
+
     }
    }, 
     
@@ -165,22 +176,31 @@ export class EmployeeComponent implements OnInit {
         // bordercolor: 'red'
         // alert("Enter Percentage");
 
-        return { outline: '1px solid red' };
+    {
+      headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, width: 150, editable: true,
+      cellStyle: function (params) {
+        if (params.value === '') {
+          // bordercolor: 'red'
+          // alert("Enter Percentage");
+
+          return { outline: '1px solid red' };
 
 
-        //color: 'red', backgroundColor: 'green',
-      } else {
-        return { outline: 'white' };
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
       }
+
     }
    },
    { headerName: '', field: '', width:310, }
   ];
 
   rowData2 = [
-      // { Class: '10', Board: 'CBSE', SchoolName: 'DPSG', StartDate: '10-03-2010', EndDate: '10-03-2011', percentage: '74 %' },
-      // { Class: '12', Board: 'CBSE', SchoolName: 'DPSG', StartDate: '10-03-2012', EndDate: '10-03-2013', percentage: '72 %' },
-    ];
+    // { Class: '10', Board: 'CBSE', SchoolName: 'DPSG', StartDate: '10-03-2010', EndDate: '10-03-2011', percentage: '74 %' },
+    // { Class: '12', Board: 'CBSE', SchoolName: 'DPSG', StartDate: '10-03-2012', EndDate: '10-03-2013', percentage: '72 %' },
+  ];
 
   // rowData2 = [];
 
@@ -407,23 +427,30 @@ export class EmployeeComponent implements OnInit {
   public hide: boolean = true;
   public buttonName: any = 'Add New';
   departmentResponse: GetAllLocationResponse[];
+  newDate: Date;
+  maritalStatus = 'Married';
+  employementType = 'Contract';
+  selectedFile: ImageSnippet;
+  universalStatus: UniversalResponse;
 
 
 
   constructor(private formBuilder: FormBuilder, private countryService: AllWeb) {
     this.rowSelection = 'single';
   }
-
+  age: number;
   api: GridApi;
   columnApi: ColumnApi;
   getSchoolResonseData: GetSchoolDataResponse[];
-
+  today;
   ngOnInit() {
-
+    this.today = new Date().toJSON().split('T')[0];
+    this.today = new DatePipe('en-US').transform(this.today, 'dd/MM/yyyy');
     this.basicDetailsForm = this.formBuilder.group({
       empCode: ['', [Validators.required]],
       firstName: ['', [Validators.required]],
-      dateofBirth: ['', [Validators.required]],
+      middleName: [''],
+      dateofBirth: ['', [Validators.required, Validators.max(this.today)]],
       lastName: ['', [Validators.required]],
       designation: ['', [Validators.required]],
       department: ['', [Validators.required]],
@@ -432,10 +459,15 @@ export class EmployeeComponent implements OnInit {
     });
     this.getLocation(1);
     this.onGetSchoolQualification();
+    console.log('this.today ' + this.today);
 
   }
   onRadioClick(value) {
+    this.employementType = value;
     console.log(value);
+  }
+  onMaritalStatusRadioClick(value) {
+    this.maritalStatus = value; console.log(value);
   }
   onAddressGridReady(params) {
     this.addressApi = params.api;
@@ -456,19 +488,39 @@ export class EmployeeComponent implements OnInit {
         data => {
           this.locationResponse = data;
           this.selectedLocationIndex = this.locationResponse.length - 1;
-          this.getAllDepartment(1, this.locationResponse[this.selectedLocationIndex].ID);
         }
 
       );
   }
-  public getSelectedLocation(value): void {
-    this.getAllDepartment(1, value.target.value);
+  onDepartmentClick() {
+    this.getAllDepartment(1, this.locationResponse[this.selectedLocationIndex].id);
 
   }
+  onDesignationClick() {
+    this.getAllDesignation('1', this.departmentResponse[this.selectedDepartmentIndex].id);
+
+  }
+
+  updateCalcs(date: number) {
+    var today = new Date();
+    this.today = new DatePipe('en-US').transform(this.today, 'dd/MM/yyyy');
+    console.log(this.today);
+
+    this.newDate = new Date(date);
+    var diff = Math.abs(this.newDate.getTime() - today.getTime());
+    this.age = (diff / (1000 * 3600 * 24)) / 365.25;
+    console.log('diff: ' + this.age);
+  }
+  public getSelectedLocation(value): void {
+    this.getAllDepartment(1, value.target.value);
+  }
   public getSelectedDepartment(value): void {
-    this.getAllDesignation('1', value.target.value);
+    console.log(value.target.value);
+    //  console.log('value:' + value); this.getAllDesignation('1', value.target.value);
   }
   public getSelectedDesignation(value): void {
+    // console.log(value.target.value);
+    console.log('value:' + value);
   }
   getAllDepartment(UserID: number, LocationID: number) {
     // console.log(UserID, LocationID);
@@ -480,7 +532,6 @@ export class EmployeeComponent implements OnInit {
         data => {
           this.departmentResponse = data;
           this.selectedDepartmentIndex = this.departmentResponse.length - 1;
-          this.getAllDesignation('1', this.departmentResponse[this.selectedDepartmentIndex].id);
         }
 
       );
@@ -502,21 +553,56 @@ export class EmployeeComponent implements OnInit {
 
   }
 
-  onSave() {
+  onSaveClick() {
     this.submitted = true;
-    if (this.basicDetailsForm.invalid) {
-      return;
+    var basicDetailBody = new BasicDetailBody();
+    basicDetailBody.Anniversary = '';
+    basicDetailBody.E_Code = this.basicDetailsForm.controls.empCode.value;
+    basicDetailBody.E_DOB = this.today;
+    basicDetailBody.E_Title = this.basicDetailsForm.controls.title.value;
+    basicDetailBody.E_Location = this.locationResponse[this.selectedLocationIndex].id + '';
+    basicDetailBody.E_Dept = this.locationResponse[this.selectedDepartmentIndex].id + '';
+    basicDetailBody.E_Designaton = this.locationResponse[this.selectedDesignationIndex].id;
+    basicDetailBody.E_EmployementType = this.employementType;
+    basicDetailBody.E_FristName = this.basicDetailsForm.controls.firstName.value;
+    if (this.basicDetailsForm.controls.title.value === 'Mr') {
+      basicDetailBody.E_Gender = 'Male';
     } else {
+      basicDetailBody.E_Gender = 'Female';
+    }
+    basicDetailBody.E_Image = this.url;
+    basicDetailBody.E_LastName = this.basicDetailsForm.controls.lastName.value;
+    basicDetailBody.E_MaritalStatus = this.maritalStatus;
+    basicDetailBody.E_MiddleName = this.basicDetailsForm.controls.middleName.value;
+    basicDetailBody.userID = 1;
+    basicDetailBody.UpdatedBy = '1';
+    console.log(JSON.stringify(basicDetailBody));
+    this.countryService.saveEmployeeBasicDetail(basicDetailBody)
+      .subscribe(
+        data => {
+          this.universalStatus = data;
+          if (this.universalStatus.STATUS === 'Success') {
+            alert(this.universalStatus.MESSAGE);
+          } else {
+            alert(this.universalStatus.MESSAGE);
+          }
+        }
+      );
+
+  }
+  processFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      reader.onload = (_event) => { // called once readAsDataURL is completed
+        this.url = reader.result;
+        console.log(this.url);
+      };
     }
   }
 
   onAddQualification() {
-
-    //this.api.setFocusedCell(this.count, 'Class');
-    //this.api.setFocusedCell(1, 'school');
-    // this.count++;
-
-    let res = this.api.updateRowData({ add: [{ class: 'High School' }],addIndex:0 })
+    let res = this.api.updateRowData({ add: [{ class: 'High School' }], addIndex: 0 })
     // res.add.forEach(function (rowNode) {
     //   console.log('Added Row Node', rowNode);
     // });
@@ -552,7 +638,7 @@ export class EmployeeComponent implements OnInit {
       .subscribe(
         data => {
           this.getSchoolResonseData = data;
-          console.log("key",  this.getSchoolResonseData);
+          console.log("key", this.getSchoolResonseData);
           this.rowData2 = this.getSchoolResonseData;
         }
       );
@@ -638,4 +724,7 @@ export class EmployeeComponent implements OnInit {
 
   get f() { return this.basicDetailsForm.controls; }
 
+}
+class ImageSnippet {
+  constructor(public src: string, public file: File) { }
 }
