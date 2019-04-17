@@ -62,7 +62,7 @@ export class OrganizationComponent implements OnInit {
         }
       },
       {
-        headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, editable: true, width: 120,
+        headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, editable: true, width: 150,
 
         cellStyle: function (params) {
           if (params.value === '') {
@@ -74,7 +74,7 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Description', field: 'LocationDescription', sortable: true, filter: true, editable: true, width: 130,
+        headerName: 'Description', field: 'LocationDescription', sortable: true, filter: true, editable: true, width: 150,
 
         cellStyle: function (params) {
           if (params.value === '') {
@@ -91,21 +91,20 @@ export class OrganizationComponent implements OnInit {
 
       },
 
-      { headerName: '', field: '', width: 467 }
+      { headerName: '', field: '', width:580, }
     ];
     this.rowData;
     this.columnDefs1 = [
       {
-        headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, width: 120,
+
+        headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, width: 150,
         cellRendererFramework: LocationDropdownComponent,
         cellRendererParams: {
           value: 'location'
         }
-
       },
-
       {
-        headerName: 'Department Code', field: 'DepartmentCode', sortable: true, editable: true, filter: true, width: 140,
+        headerName: 'Department Code', field: 'DepartmentCode', sortable: true, editable: true, filter: true, width:150,
         cellStyle: function (params) {
           if (params.value === '') {
             return { outline: '1px solid red' };
@@ -116,7 +115,9 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Department Name', field: 'DepartmentName', sortable: true, editable: true, filter: true, width: 120,
+
+        headerName: 'Department Name', field: 'DepartmentName', sortable: true, editable: true, filter: true, width: 150,
+
         cellStyle: function (params) {
           if (params.value === '') {
             return { outline: '1px solid red' };
@@ -127,7 +128,7 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Description', field: 'Description', sortable: true, editable: true, filter: true, width: 130,
+        headerName: 'Description', field: 'Description', sortable: true, editable: true, filter: true, width: 150,
 
         cellStyle: function (params) {
           if (params.value === '') {
@@ -143,7 +144,7 @@ export class OrganizationComponent implements OnInit {
         }
 
       },
-      { headerName: '', field: '', width: 330 }
+      { headerName: '', field: '',width:400,   }
     ];
 
     this.rowData1 = [
@@ -151,7 +152,7 @@ export class OrganizationComponent implements OnInit {
 
     this.columnDefs2 = [
       {
-        headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, editable: true, width: 120,
+        headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, editable: true, width: 150,
         cellEditor: 'select',
         cellRendererFramework: LocationDropdownComponent
         // cellEditorParams: { values: extractValues(locationMappings) },
@@ -164,7 +165,7 @@ export class OrganizationComponent implements OnInit {
       },
 
       {
-        headerName: 'Department', field: 'DepartmentName', sortable: true, editable: true, filter: true, width: 120,
+        headerName: 'Department', field: 'DepartmentName', sortable: true, editable: true, filter: true, width: 130,
 
         cellEditor: "select",
         // cellEditorParams: { values: extractValues(departmentMappings) },
@@ -176,7 +177,7 @@ export class OrganizationComponent implements OnInit {
         // },
       },
       {
-        headerName: 'Designation Code', field: 'DesignationCode', sortable: true, editable: true, filter: true, width: 140,
+        headerName: 'Designation Code', field: 'DesignationCode', sortable: true, editable: true, filter: true, width: 150,
 
         cellStyle: function (params) {
           if (params.value === '') {
@@ -193,7 +194,7 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Designation', field: 'DesignationName', sortable: true, editable: true, filter: true, width: 140,
+        headerName: 'Designation', field: 'DesignationName', sortable: true, editable: true, filter: true, width: 120,
 
         cellStyle: function (params) {
           if (params.value === '') {
@@ -210,7 +211,7 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Description', field: 'Description', sortable: true, editable: true, filter: true, width: 130,
+        headerName: 'Description', field: 'Description', sortable: true, editable: true, filter: true, width: 150,
 
         cellStyle: function (params) {
           if (params.value === '') {
@@ -226,7 +227,7 @@ export class OrganizationComponent implements OnInit {
         }
 
       },
-      { headerName: '', field: '', width: 180 }
+      { headerName: '', field: '', width:300, }
     ];
 
     this.rowData2 = [

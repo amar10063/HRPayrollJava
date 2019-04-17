@@ -32,4 +32,5 @@ export class ServiceUrls {
     public static getStateDropdown = '/getStateDropDown';
     public static getCityDropdown = '/getCityDropDown';
 
+
 }
