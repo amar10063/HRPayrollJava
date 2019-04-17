@@ -75,8 +75,10 @@ export class CountryComponent implements OnInit {
     },
 
     {
-      id: 1, headerName: 'Country Name', field: 'countryName', sortable: true,
-      filter: true, width: 150, editable: true,
+
+      id: 1, headerName: 'Country Name', field: 'countryName', sortable: true, //cellEditor: "agTextCellEditor",
+
+      filter: true, width: 120, editable: true,
 
       cellStyle: function (params) {
 
@@ -88,7 +90,8 @@ export class CountryComponent implements OnInit {
 
       }
     },
-    { headerName: '', field: '', width: 730, }
+
+    { headerName: '', field: '', width:652, }
   ];
 
   rowData;
@@ -96,7 +99,7 @@ export class CountryComponent implements OnInit {
 
   columnDefs1 = [
     {
-      headerName: 'Country', field: 'countryName', sortable: true, filter: true, width: 120,//singleClickEdit: true,
+      headerName: 'Country', field: 'countryName', sortable: true, filter: true, width: 110,//singleClickEdit: true,
 
       cellRendererFramework: LocationDropdownComponent,
       cellRendererParams: {
@@ -118,7 +121,8 @@ export class CountryComponent implements OnInit {
 
     },
     { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: true },
-    { headerName: '', field: '', width: 610, }
+
+    { headerName: '', field: '',width:512,  }
   ];
 
   rowData1;
@@ -126,7 +130,7 @@ export class CountryComponent implements OnInit {
   columnDefs2 = [
 
     {
-      headerName: 'Country', field: 'countryName', sortable: true, editable: true, filter: true, width: 120, //singleClickEdit: true,
+      headerName: 'Country', field: 'countryName', sortable: true, editable: true, filter: true, width: 110, //singleClickEdit: true,
 
       cellRendererFramework: LocationDropdownComponent,
       cellRendererParams: {
@@ -160,7 +164,8 @@ export class CountryComponent implements OnInit {
 
     { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: true },
 
-    { headerName: '', field: '', width: 490, }
+
+    { headerName: '', field: '', width:392, }
   ];
 
   rowData2;
@@ -214,7 +219,8 @@ export class CountryComponent implements OnInit {
 
     { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: true },
 
-    { headerName: '', field: '', width: 370, }
+
+    { headerName: '', field: '', width:262, }
   ];
 
   rowData3;

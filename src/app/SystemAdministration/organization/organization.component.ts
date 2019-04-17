@@ -62,7 +62,7 @@ export class OrganizationComponent implements OnInit {
         }
       },
       {
-        headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, editable: true, width: 150,
+        headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, editable: true, width: 130,
 
         cellStyle: function (params) {
           if (params.value === '') {
@@ -74,7 +74,7 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Description', field: 'LocationDescription', sortable: true, filter: true, editable: true, width: 150,
+        headerName: 'Description', field: 'LocationDescription', sortable: true, filter: true, editable: true, width: 140,
 
         cellStyle: function (params) {
           if (params.value === '') {
@@ -91,7 +91,7 @@ export class OrganizationComponent implements OnInit {
 
       },
 
-      { headerName: '', field: '', width:580, }
+      { headerName: '', field: '', width:486, }
     ];
     this.rowData;
     this.columnDefs1 = [
@@ -144,7 +144,7 @@ export class OrganizationComponent implements OnInit {
         }
 
       },
-      { headerName: '', field: '',width:400,   }
+      { headerName: '', field: '',width:293,   }
     ];
 
     this.rowData1 = [
@@ -227,7 +227,7 @@ export class OrganizationComponent implements OnInit {
         }
 
       },
-      { headerName: '', field: '', width:300, }
+      { headerName: '', field: '', width:193, }
     ];
 
     this.rowData2 = [
