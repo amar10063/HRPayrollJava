@@ -23,7 +23,17 @@ export class ServiceUrls {
     public static deleteState = '/DeleteState';
     public static deleteCity = '/DeleteCity';
     public static deletePostal = '/DeletePostalCode';
+    public static deleteSchool = '/DeleteSchool';
     public static saveEmployeeAddress = '/SaveAddress';
+    public static graduationAdd = '/AddGraduation';
+    public static getgraduationDetails = '/getGraduationDetails';
+    public static getgraduationdDelete = '/DeleteGraduation';
+    public static getPostGraduationData = '/GetPostGraduationDetail';
+    public static PostGraduationAdd = '/AddPostGraduation';
+    public static getPostGraduationdDelete = '/DeletePostGraduation';
+    public static getOtherEducation = '/getOtherQualificationDetails';
+    public static OtherEducationAdd = '/AddOtherEduQualifiaction'
+    public static OtherEducationDeleted = '/DeleteOtherEduQualifiaction';
     public static updateCountry = '/UpdateCountry';
     public static updateState = '/UpdateState';
     public static updateCity = '/UpdateCity';

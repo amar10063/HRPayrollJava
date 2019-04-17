@@ -11,9 +11,20 @@ import { GetAllLocationResponse } from './EmployeeApiResponse/GetAllLocationResp
 import { GetLocationBody } from 'src/app/SystemAdministration/organization/GetLocationBody';
 import { GetSchoolDataResponse } from '../Education/GetSchoolDataResponse';
 import { GetSchoolModel } from '../Education/GetSchoolModel';
+import { SchoolDeleted } from 'src/app/WebServices/WebServiceBody/EducationBody/SchoolDeleted';
+import { UniversalResponse } from 'src/app/WebServices/WebServiceResponse/UniversalResponse';
+import { GraduationBody } from 'src/app/WebServices/WebServiceBody/EducationBody/GraduationBody';
+import { GraduationDeleted } from 'src/app/WebServices/WebServiceBody/EducationBody/GraduationDeleted';
+import { GetGraduationDetailsResponse } from '../Education/GetGraduationDetailsResponse';
+import { GetPostGraduationDetailsResponse } from '../Education/GetPostGraduationDetailsResponse';
+import { PostGradutationBody } from 'src/app/WebServices/WebServiceBody/EducationBody/PostGradutationBody';
+import { PostGraduationDeleted } from 'src/app/WebServices/WebServiceBody/EducationBody/PostGraduationDeleted';
+import { GetOtherEducationalResponse } from '../Education/GetOtherEducationalResponse';
+import { OtherEducationBody } from 'src/app/WebServices/WebServiceBody/EducationBody/OtherEducationBody';
+import { OtherEducationDeleted } from 'src/app/WebServices/WebServiceBody/EducationBody/OtherEducationDeleted';
 import { BasicDetailBody } from 'src/app/WebServices/WebServiceBody/EmployeeBasicDetail/BasicDetailBody';
 import { DatePipe } from '@angular/common';
-import { UniversalResponse } from 'src/app/WebServices/WebServiceResponse/UniversalResponse';
+
 
 @Component({
   selector: 'app-employee',
@@ -26,6 +37,17 @@ export class EmployeeComponent implements OnInit {
   highSchoolResponse: HighSchoolResponse;
   addressApi: GridApi;
   addressColumnApi: ColumnApi;
+
+  graduationApi: GridApi;
+  graduationColumnApi: ColumnApi;
+
+  postGraduationApi: GridApi;
+  postGraduationColumnApi: ColumnApi;
+  
+  otherApi: GridApi;
+  otherColumnApi: ColumnApi;
+
+
   rowSelection: string;
   submitted = false;
   designationResponse: GetAllLocationResponse[];
@@ -89,8 +111,8 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs2 = [
 
+    { headerName: 'Class', field: 'className', width: 120,editable: true, 
 
-    { headerName: 'Class', field: 'className', width: 100,editable: true,
     cellStyle: function (params) {
       if (params.value === '') {
         // bordercolor: 'red'
@@ -135,14 +157,15 @@ export class EmployeeComponent implements OnInit {
           return { outline: 'white' };
         }
       }
-    },
+    }
+   },
+  //  template: '<input type="date"/>',
+    { headerName: 'Start Date', field: 'startDate', sortable: true, filter: true, width: 120, editable: true,
+    cellStyle: function (params) {
+      if (params.value === '') {
+        // bordercolor: 'red'
+        // alert("Enter Start Date");
 
-    {
-      headerName: 'Start Date', field: 'startDate', sortable: true, filter: true, width: 120, editable: true,
-      cellStyle: function (params) {
-        if (params.value === '') {
-          // bordercolor: 'red'
-          // alert("Enter Start Date");
 
           return { outline: '1px solid red' };
 
@@ -151,6 +174,7 @@ export class EmployeeComponent implements OnInit {
           return { outline: 'white' };
         }
       }
+
     },
     {
       headerName: 'End Date', field: 'endDate', sortable: true, filter: true, width: 120, editable: true,
@@ -199,11 +223,13 @@ export class EmployeeComponent implements OnInit {
 
 
   columnDefs4 = [
-    { headerName: 'Degree', field: 'Degree', width: 100 },
-    { headerName: 'Specialization', field: 'specialization', sortable: true, filter: true, width: 120 },
-    { headerName: 'University', field: 'university', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, editable: true, width: 100 },
+    { headerName: 'Degree', field: 'degree', editable: true, width: 120 },
+    { headerName: 'Specialization', field: 'specialization', sortable: true, filter: true, editable: true, width: 160 },
+
+    { headerName: 'University', field: 'university', sortable: true, filter: true, editable: true, width: 160 },
+    { headerName: 'Start Date', field: 'startdate', sortable: true, filter: true, editable: true, width: 125 },
+    { headerName: 'End Date', field: 'enddate', sortable: true, filter: true, editable: true, width: 125 },
+
     { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, editable: true, width: 120 },
   
     { headerName: '', field: '', width:340, }
@@ -211,37 +237,38 @@ export class EmployeeComponent implements OnInit {
   ];
 
   rowData4 = [
-    { Degree: 'BCA', specialization: 'BCA', university: 'CCSU', StartDate: '10-04-2013', EndDate: '10-04-2016', percentage: '78 %' }
-
+    // { Degree: 'BCA', specialization: 'BCA', university: 'CCSU', StartDate: '10-04-2013', EndDate: '10-04-2016', percentage: '78 %' }
   ];
 
   columnDefs5 = [
-    { headerName: 'Degree', field: 'Degree', editable: true, width: 100 },
-    { headerName: 'Specialization', field: 'specialization', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'University', field: 'university', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, editable: true, width: 100 },
+    { headerName: 'Degree', field: 'degree', editable: true, width: 120 },
+    { headerName: 'Specialization', field: 'specialization', sortable: true, filter: true, editable: true, width: 160 },
+    { headerName: 'University', field: 'university', sortable: true, filter: true, editable: true, width: 160 },
+    { headerName: 'Start Date', field: 'startDate', sortable: true, filter: true, editable: true, width: 125 },
+    { headerName: 'End Date', field: 'endDate', sortable: true, filter: true, editable: true, width: 125 },
+
     { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, editable: true, width: 120 },
     { headerName: '', field: '', width:340, }
   ];
 
   rowData5 = [
-    { Degree: 'MCA', specialization: 'MCA', university: 'AKTU', StartDate: '10-04-2016', EndDate: '10-04-2018', percentage: '76 %' },
+    // { Degree: 'MCA', specialization: 'MCA', university: 'AKTU', StartDate: '10-04-2016', EndDate: '10-04-2018', percentage: '76 %' },
 
   ];
 
   columnDefs6 = [
-    { headerName: 'Degree', field: 'Degree', width: 100 },
-    { headerName: 'Specialization', field: 'specialization', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'University', field: 'university', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: '', field: '', width:340, }
+    { headerName: 'Degree', field: 'degree',editable: true, width: 120 },
+    { headerName: 'Specialization', field: 'specialization', sortable: true, filter: true, editable: true, width: 150 },
+    { headerName: 'University', field: 'university', sortable: true, filter: true, editable: true, width: 160 },
+    { headerName: 'Start Date', field: 'startDate', sortable: true, filter: true, editable: true, width: 150 },
+    { headerName: 'End Date', field: 'endDate', sortable: true, filter: true, editable: true, width: 110 },
+    { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, editable: true, width: 100 },
+    { headerName: '', width: 145 }
+
   ];
 
   rowData6 = [
-    { Degree: 'P.hd', specialization: 'computer science', university: 'AKTU', StartDate: '10-04-2016', EndDate: '10-04-2018', percentage: '76 %' },
+    // { Degree: 'P.hd', specialization: 'computer science', university: 'AKTU', StartDate: '10-04-2016', EndDate: '10-04-2018', percentage: '76 %' },
 
   ];
 
@@ -412,6 +439,7 @@ export class EmployeeComponent implements OnInit {
     { ClassDegree: 'BCA', BoardUniversity: 'CCSU', StartDate: '03-04-2013', EndDate: '03-04-2016', UploadDocument: '' },
     { ClassDegree: 'MCA', BoardUniversity: 'AKTU', StartDate: '03-04-2016', EndDate: '03-04-2018', UploadDocument: '' },
   ];
+
   locationResponse;
   selectedLocationIndex: number;
   selectedDepartmentIndex: number;
@@ -428,13 +456,22 @@ export class EmployeeComponent implements OnInit {
 
 
 
-  constructor(private formBuilder: FormBuilder, private countryService: AllWeb) {
+  constructor(private formBuilder: FormBuilder, private allwebService: AllWeb) {
     this.rowSelection = 'single';
   }
   age: number;
   api: GridApi;
   columnApi: ColumnApi;
   getSchoolResonseData: GetSchoolDataResponse[];
+  getGraduationDetailsResponse: GetGraduationDetailsResponse[];
+  getPostGraduationDetailsResponse: GetPostGraduationDetailsResponse[];
+  getOtherEducationalResponse: GetOtherEducationalResponse[];
+  addNewRowSchool : boolean = false;
+  addNewGraduationRow : boolean = false;
+  addNewPostGraduationRow : boolean = false;
+  addNewOther : boolean = false;
+
+  ngOnInit() {
   today;
   ngOnInit() {
     this.today = new Date().toJSON().split('T')[0];
@@ -452,6 +489,11 @@ export class EmployeeComponent implements OnInit {
     });
     this.getLocation(1);
     this.onGetSchoolQualification();
+    this.onGetGraduational() ;
+    this.onGetPostGraduational();
+    this.onGetOther();
+
+
     console.log('this.today ' + this.today);
 
   }
@@ -476,7 +518,7 @@ export class EmployeeComponent implements OnInit {
   getLocation(UserID: number) {
     var locationBody = new GetLocationBody();
     locationBody.userID = UserID;
-    this.countryService.doGetLocation(locationBody)
+    this.allwebService.doGetLocation(locationBody)
       .subscribe(
         data => {
           this.locationResponse = data;
@@ -520,7 +562,7 @@ export class EmployeeComponent implements OnInit {
     var departmentBody = new GetAllDepartmentBody();
     departmentBody.userID = UserID;
     departmentBody.LocationID = LocationID;
-    this.countryService.getDepartment(departmentBody)
+    this.allwebService.getDepartment(departmentBody)
       .subscribe(
         data => {
           this.departmentResponse = data;
@@ -536,7 +578,7 @@ export class EmployeeComponent implements OnInit {
     designationBody.userID = UserID;
     designationBody.DepartmentID = DepartmentID + '';
 
-    this.countryService.getAllDesignation(designationBody)
+    this.allwebService.getAllDesignation(designationBody)
       .subscribe(
         data => {
           this.designationResponse = data;
@@ -563,6 +605,16 @@ export class EmployeeComponent implements OnInit {
     } else {
       basicDetailBody.E_Gender = 'Female';
     }
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.basicDetailsForm.value));
+  }
+
+  onAddSchoolQualification() {
+    this.addNewRowSchool = true;
+    let res = this.api.updateRowData({ add: [{ class: 'High School' }] });
+    res.add.forEach(function (rowNode) {
+      console.log('Added Row Node', rowNode);
+    });
+  }
     basicDetailBody.E_Image = this.url;
     basicDetailBody.E_LastName = this.basicDetailsForm.controls.lastName.value;
     basicDetailBody.E_MaritalStatus = this.maritalStatus;
@@ -613,6 +665,7 @@ export class EmployeeComponent implements OnInit {
     this.api = params.api;
     this.columnApi = params.columnApi;
   }
+
   onSelectionChanged() {
     const selectedRows = this.api.getSelectedRows();
     let selectedRowsString = '';
@@ -627,82 +680,453 @@ export class EmployeeComponent implements OnInit {
 
   onGetSchoolQualification() {
     var getHighSchoolUserId = new GetSchoolModel();
-    this.countryService.getHighSchoolData(getHighSchoolUserId)
+    this.allwebService.getHighSchoolData(getHighSchoolUserId)
       .subscribe(
         data => {
           this.getSchoolResonseData = data;
+
           console.log("key", this.getSchoolResonseData);
           this.rowData2 = this.getSchoolResonseData;
         }
       );
   }
 
-  onPressEducationalEnter(e) {
-    const keyPressed = e.event.key;
-    if (keyPressed === 'Enter') {
+  onSaveEducationalData() {
       alert('Do you want to save the data.');
-      const highSchool = new HighSchoolBody();
       const selectedNodes = this.api.getSelectedNodes();
-      const selectedData = selectedNodes.map(node => node.data);
-      var highSchoolResonse: HighSchoolResponse;
-      var dataTest: Object;
-      selectedData.map(node => dataTest = node as Object);
-      highSchool.className = dataTest['className'];
-      highSchool.boardName = dataTest['boardName'];
-      highSchool.schoolName = dataTest['schoolName'];
-      highSchool.percentage = dataTest['percentage'];
-      highSchool.endDate = dataTest['endDate'];
-      highSchool.startDate = dataTest['startDate'];
-      if (dataTest['className'] === '') {
-        alert("Enter Class");
-      } else if (dataTest['boardName'] === '') {
-        alert("Enter Board");
-      } else if (dataTest['schoolName'] === '') {
-        alert("Enter School Name");
-      } else if (dataTest['startDate'] === '') {
-        alert("Enter Start Date");
-      } else if (dataTest['endDate'] === '') {
-        alert("Enter End Date");
-      } else if (dataTest['percentage'] === '') {
-        alert("Enter Percentage");
+      if (selectedNodes.length === 0) {
+        alert("Please Select any row.");
       } else {
-        console.log("Sending Data", highSchool);
-        this.countryService.saveHighSchool(highSchool)
-          .subscribe(
-            data => {
-              highSchoolResonse = data;
-              console.log("recived", highSchoolResonse.STATUS);
-              if (highSchoolResonse.STATUS === "Success") {
-                alert(highSchoolResonse.STATUS + " : " + highSchoolResonse.MESSAGE);
-                this.onGetSchoolQualification();
-              } else {
-                alert(highSchoolResonse.STATUS + ' : ' + highSchoolResonse.MESSAGE);
-              }
+          const highSchool = new HighSchoolBody();
+          const selectedData = selectedNodes.map(node => node.data);
+          var highSchoolResonse: HighSchoolResponse;
+          var dataTest: Object;
+          selectedData.map(node => dataTest = node as Object);
+          highSchool.className = dataTest['className'];
+          highSchool.boardName = dataTest['boardName'];
+          highSchool.schoolName = dataTest['schoolName'];
+          highSchool.percentage = dataTest['percentage'];
+          highSchool.endDate = dataTest['endDate'];
+          highSchool.startDate = dataTest['startDate'];
+            console.log("InElseCondit",dataTest['percentage']);
+          if (dataTest['className'] === '') {
+            alert("Enter Class");
+          } else if (dataTest['boardName'] === '') {
+            alert("Enter Board");
+          } else if (dataTest['schoolName'] === '') {
+            alert("Enter School Name");
+          } else if (dataTest['startDate'] === '') {
+            alert("Enter Start Date");
+          } else if (dataTest['endDate'] === '') {
+            alert("Enter End Date");
+          } else if (dataTest['percentage'] === '') {
+            alert("Enter percentage");
+          } else {
+  
+            this.allwebService.saveHighSchool(highSchool)
+              .subscribe(
+                data => {
+                  highSchoolResonse = data;
+                  console.log("recived", highSchoolResonse.STATUS);
+                  if (highSchoolResonse.STATUS === "Success") {
+                    alert(highSchoolResonse.STATUS + " : " + highSchoolResonse.MESSAGE);
+                    this.addNewRowSchool = false;
+                    this.onGetSchoolQualification();
+                  } else {
+                    alert(highSchoolResonse.STATUS + ' : ' + highSchoolResonse.MESSAGE);
+                  }
+                }
+              );
+          }
+      }
+    
+  }
+
+  onDeleteQualification() {
+    var selectedNodes = this.api.getSelectedNodes();
+    var dataTest: Object;
+    const schooldeleted = new SchoolDeleted();
+    var universalResonse: UniversalResponse;
+    const selectedData = selectedNodes.map(node => node.data);
+    selectedData.map(node => dataTest = node as Object);
+    console.log("SDSDSD", selectedData);
+    if (selectedNodes.length === 0) {
+     alert("Please Select any row.");
+    } else {
+      schooldeleted.SchoolID = dataTest['schoolID'];
+      if(schooldeleted.SchoolID === undefined){
+        this.api.removeItems(selectedNodes);
+        this.addNewRowSchool = false;
+      }else{
+        this.allwebService.deleteSchool(schooldeleted)
+        .subscribe(
+          data => {
+            universalResonse = data;
+            console.log("recived", universalResonse.STATUS);
+            if (universalResonse.STATUS === "Success") {
+              this.addNewRowSchool = false;
+              alert(universalResonse.STATUS + " : " + universalResonse.MESSAGE);
+              this.onGetSchoolQualification();
+            } else {
+              alert(universalResonse.STATUS + ' : ' + universalResonse.MESSAGE);
             }
-          );
+          }
+        );
+      }
+    }
+  }
+
+  // 
+  onAddGraduationQualification() {
+    this.addNewGraduationRow = true;
+    // alert("ok");
+    let res = this.graduationApi.updateRowData({ add: [{ Degree: '', specialization: '', university: '', StartDate: '', EndDate: '', percentage: ''}] });
+    res.add.forEach(function (rowNode) {
+      console.log('Added Row Nodes', rowNode);
+    });
+  }
+
+  onGridGraduationReady(params) {
+    this.graduationApi = params.api;
+    this.graduationColumnApi = params.columnApi;
+  }
+
+  onGetGraduational() {
+    var getSchoolModel = new GetSchoolModel();
+    this.allwebService.getgraduational(getSchoolModel)
+      .subscribe(
+        data => {
+          console.log("asdf","QWERT");
+          this.getGraduationDetailsResponse = data;
+          console.log("key",  this.getGraduationDetailsResponse);
+          this.rowData4 = this.getGraduationDetailsResponse;
+        }
+      );
+  }
+
+  onSaveGraduationData() {
+    alert('Do you want to save the data.');
+    const selectedNodes = this.graduationApi.getSelectedNodes();
+    if (selectedNodes.length === 0) {
+      alert("Please Select any row.");
+    } else {
+        const graduationbody = new GraduationBody();
+        const selectedData = selectedNodes.map(node => node.data);
+        var universalResonse: UniversalResponse;
+        var dataTest: Object;
+        selectedData.map(node => dataTest = node as Object);
+        graduationbody.degree = dataTest['degree'];
+        graduationbody.specialization = dataTest['specialization'];
+        graduationbody.university = dataTest['university'];
+        graduationbody.startdate = dataTest['startdate'];
+        graduationbody.enddate = dataTest['enddate'];
+        graduationbody.percentage = dataTest['percentage'];
+        if (dataTest['degree'] === '') {
+          alert("Enter Degree Name");
+        } else if (dataTest['specialization'] === '') {
+          alert("Enter Specialization");
+        } else if (dataTest['university'] === '') {
+          alert("Enter University Name");
+        } else if (dataTest['startdate'] === '') {
+          alert("Enter Start Date");
+        } else if (dataTest['enddate'] === '') {
+          alert("Enter End Date");
+        } else if (dataTest['percentage'] === '') {
+          alert("Enter Percentage");
+        } else {
+          this.allwebService.saveGraduation(graduationbody)
+            .subscribe(
+              data => {
+                universalResonse = data;
+                console.log("recived", universalResonse.STATUS);
+                if (universalResonse.STATUS === "Success") {
+                  alert(universalResonse.STATUS + " : " + universalResonse.MESSAGE);
+                  this.addNewGraduationRow = false;
+                  // this.onGetSchoolQualification();
+                } else {
+                  alert(universalResonse.STATUS + ' : ' + universalResonse.MESSAGE);
+                }
+              }
+            );
+        }
+
+
+
+    }
+  
+  }
+
+  onDeleteGraduationData() {
+    var selectedNodes = this.graduationApi.getSelectedNodes();
+    var dataTest: Object;
+
+    const graduationDeleted = new GraduationDeleted();
+    var universalResonse: UniversalResponse;
+    const selectedData = selectedNodes.map(node => node.data);
+    selectedData.map(node => dataTest = node as Object);
+    console.log("SDSDSD", selectedData);
+    if (selectedNodes.length === 0) {
+     alert("Please Select any row.");
+    } else {
+      graduationDeleted.GraduationID = dataTest['graduationId'];
+      if(graduationDeleted.GraduationID === undefined){
+        console.log("else if","elseif");
+        this.graduationApi.removeItems(selectedNodes);
+        this.addNewGraduationRow = false;
+      }else{
+        console.log("GraduationId",graduationDeleted.GraduationID);
+        this.allwebService.deleteGraduational(graduationDeleted)
+        .subscribe(
+          data => {
+            universalResonse = data;
+            console.log("recived", universalResonse.STATUS);
+            if (universalResonse.STATUS === "Success") {
+              this.addNewGraduationRow = false;
+              alert(universalResonse.STATUS + " : " + universalResonse.MESSAGE);
+              this.onGetGraduational();
+            } else {
+              alert(universalResonse.STATUS + ' : ' + universalResonse.MESSAGE);
+            }
+          }
+        );
+
+      }
+    }
+  }
+
+  //
+  onAddPostGraduationQualification() {
+    this.addNewPostGraduationRow = true;
+    let res = this.postGraduationApi.updateRowData({ add: [{ Degree: '', Specialization: '', University: '', startDate: '', endDate: '', Percentage: ''}] });
+    res.add.forEach(function (rowNode) {
+      console.log('Added Row Nodes', rowNode);
+    });
+  }
+
+  onGridPostGraduationReady(params) {
+    this.postGraduationApi = params.api;
+    this.postGraduationColumnApi = params.columnApi;
+  }
+
+  onGetPostGraduational() {
+    var getSchoolModel = new GetSchoolModel();
+    this.allwebService.getPostgraduational(getSchoolModel)
+      .subscribe(
+        data => {
+          this.getPostGraduationDetailsResponse = data;
+          console.log("key",  this.getPostGraduationDetailsResponse);
+          this.rowData5 = this.getPostGraduationDetailsResponse;
+        }
+      );
+  }
+
+  onSavePostGraduationData() {
+    alert('Do you want to save the data.');
+    const selectedNodes = this.postGraduationApi.getSelectedNodes();
+    if (selectedNodes.length === 0) {
+      alert("Please Select any row.");
+    } else {
+
+        const postGraduationBody = new PostGradutationBody();
+        const selectedData = selectedNodes.map(node => node.data);
+        var universalResonse: UniversalResponse;
+        var dataTest: Object;
+        selectedData.map(node => dataTest = node as Object);
+        postGraduationBody.degree = dataTest['degree'];
+        postGraduationBody.specialization = dataTest['specialization'];
+        postGraduationBody.university = dataTest['university'];
+        postGraduationBody.startDate = dataTest['startDate'];
+        postGraduationBody.endDate = dataTest['endDate'];
+        postGraduationBody.percentage = dataTest['percentage'];
+        if (dataTest['degree'] === '') {
+          alert("Enter Degree Name");
+        } else if (dataTest['specialization'] === '') {
+          alert("Enter Specialization");
+        } else if (dataTest['university'] === '') {
+          alert("Enter University Name");
+        } else if (dataTest['startDate'] === '') {
+          alert("Enter Start Date");
+        } else if (dataTest['endDate'] === '') {
+          alert("Enter End Date");
+        } else if (dataTest['percentage'] === '') {
+          alert("Enter Percentage");
+        } else {
+          this.allwebService.savePostGraduation(postGraduationBody)
+            .subscribe(
+              data => {
+                universalResonse = data;
+                console.log("recived", universalResonse.STATUS);
+                if (universalResonse.STATUS === "Success") {
+                  alert(universalResonse.STATUS + " : " + universalResonse.MESSAGE);
+                  this.addNewPostGraduationRow = false;
+                  this.onGetPostGraduational();
+                } else {
+                  alert(universalResonse.STATUS + ' : ' + universalResonse.MESSAGE);
+                }
+              }
+            );
+        }
+    }
+  }
+
+  onDeletePostGraduationData() {
+    var selectedNodes = this.postGraduationApi.getSelectedNodes();
+    var dataTest: Object;
+
+    const postGraduationDeleted = new PostGraduationDeleted();
+    var universalResonse: UniversalResponse;
+    const selectedData = selectedNodes.map(node => node.data);
+    selectedData.map(node => dataTest = node as Object);
+    console.log("SDSDSD", selectedData);
+    if (selectedNodes.length === 0) {
+     alert("Please Select any row.");
+    } else {
+      postGraduationDeleted.postGraduationId = dataTest['postGraduationID'];
+      if(postGraduationDeleted.postGraduationId === undefined){
+        console.log("else if","elseif");
+        // this.postGraduationApi.removeItems(selectedNodes);
+        this.addNewPostGraduationRow = false;
+      }else{
+        console.log("GraduationId",postGraduationDeleted.postGraduationId);
+        this.allwebService.deletePostGraduational(postGraduationDeleted)
+        .subscribe(
+          data => {
+            universalResonse = data;
+            console.log("recived", universalResonse.STATUS);
+            if (universalResonse.STATUS === "Success") {
+              this.addNewPostGraduationRow = false;
+              this.postGraduationApi.removeItems(selectedNodes);
+              alert(universalResonse.STATUS + " : " + universalResonse.MESSAGE);
+              this.onGetGraduational();
+            } else {
+              alert(universalResonse.STATUS + ' : ' + universalResonse.MESSAGE);
+            }
+          }
+        );
+      }
+    }
+  }
+
+  //
+  onOtherQualification() {
+    this.addNewOther = true;
+    let res = this.otherApi.updateRowData({ add: [{ Degree: '', Specialization: '', University: '', startDate: '', endDate: '', Percentage: ''}] });
+    res.add.forEach(function (rowNode) {
+      console.log('Added Row Nodes', rowNode);
+    });
+  }
+
+  onGridOtherReady(params) {
+    this.otherApi = params.api;
+    this.otherColumnApi = params.columnApi;
+  }
+
+  onGetOther() {
+    var getSchoolModel = new GetSchoolModel();
+    this.allwebService.getOtherEducation(getSchoolModel)
+      .subscribe(
+        data => {
+          this.getOtherEducationalResponse = data;
+          this.rowData6 = this.getOtherEducationalResponse;
+        }
+      );
+  }
+
+  onSaveOtherData() {
+    alert('Do you want to save the data.');
+    const selectedNodes = this.otherApi.getSelectedNodes();
+    if (selectedNodes.length === 0) {
+      alert("Please Select any row.");
+    } else {
+        const otherEducationBody = new OtherEducationBody();
+        const selectedData = selectedNodes.map(node => node.data);
+        var universalResonse: UniversalResponse;
+        var dataTest: Object;
+        selectedData.map(node => dataTest = node as Object);
+        otherEducationBody.degree = dataTest['degree'];
+        otherEducationBody.specialization = dataTest['specialization'];
+        otherEducationBody.university = dataTest['university'];
+        otherEducationBody.startDate = dataTest['startDate'];
+        otherEducationBody.endDate = dataTest['endDate'];
+        otherEducationBody.percentage = dataTest['percentage'];
+        if (dataTest['degree'] === '') {
+          alert("Enter Degree Name");
+        } else if (dataTest['specialization'] === '') {
+          alert("Enter Specialization");
+        } else if (dataTest['university'] === '') {
+          alert("Enter University Name");
+        } else if (dataTest['startDate'] === '') {
+          alert("Enter Start Date");
+        } else if (dataTest['endDate'] === '') {
+          alert("Enter End Date");
+        } else if (dataTest['percentage'] === '') {
+          alert("Enter Percentage");
+        } else {
+          this.allwebService.saveOtherEducation(otherEducationBody)
+            .subscribe(
+              data => {
+                universalResonse = data;
+                console.log("recived", universalResonse.STATUS);
+                if (universalResonse.STATUS === "Success") {
+                  alert(universalResonse.STATUS + " : " + universalResonse.MESSAGE);
+                  this.addNewOther = false;
+                  this.onGetPostGraduational();
+                } else {
+                  alert(universalResonse.STATUS + ' : ' + universalResonse.MESSAGE);
+                }
+              }
+            );
+        }
+
+
+    }
+  }
+
+  onDeleteOtherData() {
+    var selectedNodes = this.otherApi.getSelectedNodes();
+    var dataTest: Object;
+
+    const otherEducationDeleted = new OtherEducationDeleted();
+    var universalResonse: UniversalResponse;
+    const selectedData = selectedNodes.map(node => node.data);
+    selectedData.map(node => dataTest = node as Object);
+    console.log("SDSDSD", selectedData);
+    if (selectedNodes.length === 0) {
+     alert("Please Select any row.");
+    } else {
+      otherEducationDeleted.otherEduQualificationTableID = dataTest['otherEduQualificationTableID'];
+      if(otherEducationDeleted.otherEduQualificationTableID === undefined){
+        console.log("else if","elseif");
+        // this.postGraduationApi.removeItems(selectedNodes);
+        this.addNewOther = false;
+      }else{
+        console.log("GraduationId",otherEducationDeleted.otherEduQualificationTableID);
+        this.allwebService.deleteOtherEducation(otherEducationDeleted)
+        .subscribe(
+          data => {
+            universalResonse = data;
+            console.log("recived", universalResonse.STATUS);
+            if (universalResonse.STATUS === "Success") {
+              this.addNewOther = false;
+              this.postGraduationApi.removeItems(selectedNodes);
+              alert(universalResonse.STATUS + " : " + universalResonse.MESSAGE);
+              this.onGetGraduational();
+            } else {
+              alert(universalResonse.STATUS + ' : ' + universalResonse.MESSAGE);
+            }
+          }
+        );
       }
     }
   }
 
 
-  onDeleteQualification() {
-
-    var selectedNodes = this.api.getSelectedNodes();
-    var dataTest: Object;
-
-
-    const selectedData = selectedNodes.map(node => node.data);
-    selectedData.map(node => dataTest = node as Object);
-    console.log("SDSDSD", selectedData);
 
 
 
-    if (selectedNodes.length === 0) {
-      // alert("Please Select any row.");
-    } else {
-      this.api.removeItems(selectedNodes);
-    }
-  }
+
+
+
 
 
   showhide() {
