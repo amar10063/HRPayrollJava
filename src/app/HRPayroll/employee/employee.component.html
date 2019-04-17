@@ -116,7 +116,8 @@
         </div>
       </div>
   
-      <ag-grid-angular style="width:100%; height: 427px" class="ag-theme-balham" [rowData]="rowData"
+      <ag-grid-angular style="width:100%; height: 320px" class="ag-theme-balham" [rowData]="rowData"
+
         [columnDefs]="columnDefs">
   
       </ag-grid-angular>
@@ -181,6 +182,7 @@
                         [ngClass]="{'is-invalid': submitted && f.empCode.errors}">
                       <div *ngIf="submitted && f.empCode.errors" class="invalid-feedback">
                         <div *ngIf="f.empCode.errors.required" class="errorred">Employee Code is required</div>
+
                       </div>
                     </div>
                     <div class="col-12 col-md-6 p-0">
@@ -386,7 +388,7 @@
                       <label for="pay" class="col-5 col-md-5 pull-left pl-0">Contractor Name:</label>
                       <label for="pay" class="col-5 col-md-5 pull-left pl-0">fateh Singh</label>
                     </div>
-  
+
   
   
                   </div>
@@ -535,9 +537,11 @@
                       </div>
   
                     </div>
+  
                   </div>
                   <div class="col-12 col-md-8 p-0 pull-left">
                     <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
+
                       <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                         New</button>
                       <button type="button" class="payHeadBtn"><i class="fa fa-save" aria-hidden="true"></i>Save
@@ -550,6 +554,7 @@
                 </div>
                 <div class="clearfix"></div>
                 <div class="formBody clearfix pt-0">
+
                   <ag-grid-angular style="width:100%; height: 315px" class="ag-theme-balham " [rowData]="rowData4"
                     [columnDefs]="columnDefs4"></ag-grid-angular>
   
@@ -565,6 +570,7 @@
                   </div>
                 </div>
               </div>
+
               <div id="PostGraduation" class="container tab-pane fade">
                 <div class="container p-0">
                   <div class="col-12 col-md-4 pull-left mt-3 ">
@@ -592,6 +598,7 @@
                 </div>
                 <div class="clearfix"></div>
                 <div class="formBody clearfix pt-0">
+
                   <ag-grid-angular style="width:100%; height: 315px" class="ag-theme-balham" [rowData]="rowData5"
                     [columnDefs]="columnDefs5"></ag-grid-angular>
   
@@ -607,6 +614,7 @@
                   </div>
                 </div>
               </div>
+
               <div id="Other" class="container tab-pane fade">
                 <div class="container p-0">
                   <div class="col-12 col-md-4 pull-left mt-3 ">
@@ -618,6 +626,7 @@
                           <span class="checkmark check1"></span> </label>
                       </div>
   
+
                     </div>
                   </div>
                   <div class="col-12 col-md-8 p-0 pull-left">
@@ -632,6 +641,7 @@
                   </div>
                   <div class="clearfix"></div>
                 </div>
+
                 <div class="clearfix"></div>
                 <div class="formBody clearfix pt-0">
                   <ag-grid-angular style="width:100%; height: 315px" class="ag-theme-balham" [rowData]="rowData6"
