@@ -48,7 +48,7 @@ import { BasicDetailBody } from './WebServiceBody/EmployeeBasicDetail/BasicDetai
   providedIn: 'root'
 })
 export class AllWeb {
-  
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -71,7 +71,7 @@ export class AllWeb {
   getDepartment(departmentBody: GetAllDepartmentBody): Observable<GetAllLocationResponse[]> {
     return this.httpClient.post<GetAllLocationResponse[]>('http://10.10.10.48:8081' + '/getDepartment', JSON.stringify(departmentBody), this.httpOptions);
   }
- 
+
   doDeleteLocation(deleteLocationBody: DeleteLocationBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteLocation, JSON.stringify(deleteLocationBody), this.httpOptions);
   }
@@ -140,7 +140,7 @@ export class AllWeb {
   }
 
   savePostGraduation(postGraduationBody: PostGradutationBody): Observable<any> {
-    console.log("Data sending",postGraduationBody);
+    console.log('Data sending', postGraduationBody);
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.PostGraduationAdd, JSON.stringify(postGraduationBody), this.httpOptions);
   }
 
@@ -153,7 +153,7 @@ export class AllWeb {
   }
 
   saveOtherEducation(otherPostEducation: OtherEducationBody): Observable<any> {
-    console.log("Data sending",otherPostEducation);
+    console.log('Data sending', otherPostEducation);
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.OtherEducationAdd, JSON.stringify(otherPostEducation), this.httpOptions);
   }
 
@@ -174,7 +174,7 @@ export class AllWeb {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deletePostal, JSON.stringify(deletePostalBody), this.httpOptions);
   }
 
-  
+
 
   updateState(updateStateBody: UpdateStateBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.updateState, JSON.stringify(updateStateBody), this.httpOptions);
