@@ -487,12 +487,16 @@
                 </div>
                 <div class="col-12 col-md-6 p-0 pull-left">
                   <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-                    <button type="button" class="payHeadBtn" (click)="onAddQualification()"><i class="fa fa-plus-square"
+                    <button type="button" class="payHeadBtn" (click)="onAddSchoolQualification()"  [disabled]="addNewRowSchool"><i class="fa fa-plus-square"
                         aria-hidden="true"></i>Add
                       New</button>
-                    <button type="button" class="payHeadBtn"><i class="fa fa-save" aria-hidden="true"></i>Save
-                    </button> <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#addNew1"><i
+                    <button type="button" class="payHeadBtn" (click)="onSaveEducationalData()"><i class="fa fa-save" aria-hidden="true"></i>Save
+                    </button>
+                     <button type="button" class="payHeadBtn" (click)="onDeleteQualification()"><i
                         class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+
+                        <!-- data-toggle="modal" data-target="#addNew1" -->
+
                   </div>
                 </div>
                 <div class="clearfix"></div>
@@ -501,7 +505,9 @@
               <div class="formBody clearfix pt-0">
 
                   <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData2"
-                  [columnDefs]="columnDefs2"></ag-grid-angular>
+                  [columnDefs]="columnDefs2" [rowSelection]="rowSelection" (gridReady)="onGridSchoolReady($event)">
+
+                </ag-grid-angular>
 
 
 
@@ -532,11 +538,14 @@
                 </div>
                 <div class="col-12 col-md-6 p-0 pull-left">
                   <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-                    <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+
+                      <button type="button" class="payHeadBtn" (click)="onAddGraduationQualification()"  [disabled]="addNewGraduationRow"><i class="fa fa-plus-square"
+                        aria-hidden="true"></i>Add
                       New</button>
-                    <button type="button" class="payHeadBtn"><i class="fa fa-save" aria-hidden="true"></i>Save
+
+                    <button type="button" class="payHeadBtn" (click)="onSaveGraduationData()"><i class="fa fa-save" aria-hidden="true"></i>Save
                     </button>
-                    <button type="button" class="payHeadBtn"><i class="fa fa-trash"
+                    <button type="button" class="payHeadBtn" (click)="onDeleteGraduationData()"><i class="fa fa-trash"
                         aria-hidden="true"></i>Delete</button>
                   </div>
                 </div>
@@ -544,8 +553,10 @@
               </div>
               <div class="clearfix"></div>
               <div class="formBody clearfix pt-0">
-                <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData4"
-                  [columnDefs]="columnDefs4"></ag-grid-angular>
+
+                  <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData4"
+                  [columnDefs]="columnDefs4" [rowSelection]="rowSelection" (gridReady)="onGridGraduationReady($event)">
+                </ag-grid-angular>
 
               </div>
               <div class="row">
@@ -574,11 +585,11 @@
                 </div>
                 <div class="col-12 col-md-6 p-0 pull-left">
                   <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-                    <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                    <button type="button" class="payHeadBtn" (click)="onAddPostGraduationQualification()" [disabled]="addNewPostGraduationRow"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                       New</button>
-                    <button type="button" class="payHeadBtn"><i class="fa fa-save" aria-hidden="true"></i>Save
+                    <button type="button" class="payHeadBtn" (click)="onSavePostGraduationData()"><i class="fa fa-save" aria-hidden="true"></i>Save
                     </button>
-                    <button type="button" class="payHeadBtn"><i class="fa fa-trash"
+                    <button type="button" class="payHeadBtn" (click)="onDeletePostGraduationData()"><i class="fa fa-trash"
                         aria-hidden="true"></i>Delete</button>
                   </div>
                 </div>
@@ -586,8 +597,10 @@
               </div>
               <div class="clearfix"></div>
               <div class="formBody clearfix pt-0">
+
                 <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData5"
-                  [columnDefs]="columnDefs5"></ag-grid-angular>
+                  [columnDefs]="columnDefs5" [rowSelection]="rowSelection" (gridReady)="onGridPostGraduationReady($event)">
+                </ag-grid-angular>
 
               </div>
               <div class="row">
@@ -616,11 +629,11 @@
                 </div>
                 <div class="col-12 col-md-6 p-0 pull-left">
                   <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-                    <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                    <button type="button" class="payHeadBtn" (click)="onOtherQualification()" [disabled]="addNewOther"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                       New</button>
-                    <button type="button" class="payHeadBtn"><i class="fa fa-save" aria-hidden="true"></i>Save
+                    <button type="button" class="payHeadBtn" (click)="onSaveOtherData()"><i class="fa fa-save" aria-hidden="true"></i>Save
                     </button>
-                    <button type="button" class="payHeadBtn"><i class="fa fa-trash"
+                    <button type="button" class="payHeadBtn" (click)="onDeleteOtherData()"><i class="fa fa-trash"
                         aria-hidden="true"></i>Delete</button>
                   </div>
                 </div>
@@ -629,7 +642,8 @@
               <div class="clearfix"></div>
               <div class="formBody clearfix pt-0">
                 <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData6"
-                  [columnDefs]="columnDefs6"></ag-grid-angular>
+                  [columnDefs]="columnDefs6" [rowSelection]="rowSelection" (gridReady)="onGridOtherReady($event)">
+                </ag-grid-angular>
 
               </div>
               <div class="row">

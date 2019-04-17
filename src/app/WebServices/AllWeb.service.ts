@@ -29,6 +29,16 @@ import { DeletePostalBody } from './WebServiceBody/CountryBody/DeletePostalBody'
 import { UniversalResponse } from './WebServiceResponse/UniversalResponse';
 import { GetSchoolModel } from '../HRPayroll/Education/GetSchoolModel';
 import { GetSchoolDataResponse } from '../HRPayroll/Education/GetSchoolDataResponse';
+import { SchoolDeleted } from './WebServiceBody/EducationBody/SchoolDeleted';
+import { GraduationBody } from './WebServiceBody/EducationBody/GraduationBody';
+import { GraduationDeleted } from './WebServiceBody/EducationBody/GraduationDeleted';
+import { GetGraduationDetailsResponse } from '../HRPayroll/Education/GetGraduationDetailsResponse';
+import { GetPostGraduationDetailsResponse } from '../HRPayroll/Education/GetPostGraduationDetailsResponse';
+import { PostGradutationBody } from './WebServiceBody/EducationBody/PostGradutationBody';
+import { PostGraduationDeleted } from './WebServiceBody/EducationBody/PostGraduationDeleted';
+import { GetOtherEducationalResponse } from '../HRPayroll/Education/GetOtherEducationalResponse';
+import { OtherEducationBody } from './WebServiceBody/EducationBody/OtherEducationBody';
+import { OtherEducationDeleted } from './WebServiceBody/EducationBody/OtherEducationDeleted';
 @Injectable({
   providedIn: 'root'
 })
@@ -95,9 +105,53 @@ export class AllWeb {
   saveHighSchool(highSchool: HighSchoolBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.highSchoolApi, JSON.stringify(highSchool), this.httpOptions);
   }
+
   getHighSchoolData(getSchoolModel: GetSchoolModel): Observable<GetSchoolDataResponse[]> {
     return this.httpClient.post<GetSchoolDataResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getSchoolDataApi, JSON.stringify(getSchoolModel), this.httpOptions);
   }
+
+  deleteSchool(deletedSchool: SchoolDeleted): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteSchool, JSON.stringify(deletedSchool), this.httpOptions);
+  }
+
+  saveGraduation(graduationBody: GraduationBody): Observable<any> {
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.graduationAdd, JSON.stringify(graduationBody), this.httpOptions);
+  }
+
+  getgraduational(getSchoolModel: GetSchoolModel): Observable<GetGraduationDetailsResponse[]> {
+    return this.httpClient.post<GetGraduationDetailsResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getgraduationDetails, JSON.stringify(getSchoolModel), this.httpOptions);
+  }
+
+  deleteGraduational(deletedGRADUATION: GraduationDeleted): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.getgraduationdDelete, JSON.stringify(deletedGRADUATION), this.httpOptions);
+  }
+
+  getPostgraduational(getSchoolModel: GetSchoolModel): Observable<GetPostGraduationDetailsResponse[]> {
+    return this.httpClient.post<GetPostGraduationDetailsResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getPostGraduationData, JSON.stringify(getSchoolModel), this.httpOptions);
+  }
+
+  savePostGraduation(postGraduationBody: PostGradutationBody): Observable<any> {
+    console.log("Data sending",postGraduationBody);
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.PostGraduationAdd, JSON.stringify(postGraduationBody), this.httpOptions);
+  }
+
+  deletePostGraduational(deletedPostGRADUATION: PostGraduationDeleted): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.getPostGraduationdDelete, JSON.stringify(deletedPostGRADUATION), this.httpOptions);
+  }
+
+  getOtherEducation(getSchoolModel: GetSchoolModel): Observable<GetOtherEducationalResponse[]> {
+    return this.httpClient.post<GetOtherEducationalResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getOtherEducation, JSON.stringify(getSchoolModel), this.httpOptions);
+  }
+
+  saveOtherEducation(otherPostEducation: OtherEducationBody): Observable<any> {
+    console.log("Data sending",otherPostEducation);
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.OtherEducationAdd, JSON.stringify(otherPostEducation), this.httpOptions);
+  }
+
+  deleteOtherEducation(otherEducationDeleted: OtherEducationDeleted): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.OtherEducationDeleted, JSON.stringify(otherEducationDeleted), this.httpOptions);
+  }
+
   getPostal(universalBody: UniversalBody): Observable<GetPostalResponse> {
     return this.httpClient.post<GetPostalResponse>(ServiceUrls.baseUrls + ServiceUrls.getPostal, JSON.stringify(universalBody), this.httpOptions);
   }
@@ -110,5 +164,7 @@ export class AllWeb {
   deletePostal(deletePostalBody: DeletePostalBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deletePostal, JSON.stringify(deletePostalBody), this.httpOptions);
   }
+
+  
 
 }
