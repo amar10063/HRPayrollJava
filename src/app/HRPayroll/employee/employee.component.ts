@@ -46,8 +46,6 @@ export class EmployeeComponent implements OnInit {
 
   otherApi: GridApi;
   otherColumnApi: ColumnApi;
-
-
   rowSelection: string;
   submitted = false;
   designationResponse: GetAllLocationResponse[];
@@ -81,11 +79,20 @@ export class EmployeeComponent implements OnInit {
   ];
 
   rowData = [];
-
+  components = {
+    loadingRenderer: function (params) {
+      if (params.value !== undefined) {
+        return params.value;
+      } else {
+        return '<img src="../images/loading.gif">';
+      }
+    }
+  };
   columnDefs1 = [
 
 
     { headerName: 'Status', field: 'status', sortable: true, filter: true, editable: true, width: 100 },
+
     { headerName: 'Address', field: 'address', editable: true, width: 90 },
     { headerName: 'City', field: 'city', sortable: true, filter: true, editable: true, width: 80 },
     { headerName: 'State', field: 'state', sortable: true, filter: true, editable: true, width: 80 },
@@ -100,31 +107,20 @@ export class EmployeeComponent implements OnInit {
   ];
 
   rowData1 = [
-    { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Permanent', ContactNo: '0987654321', EmailID: 'abcd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
-    { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '9876543210', EmailID: 'bcd@gmail.com', EmergencyContactPerson: 'Fateh Singh', EmergencyContactNo: '8459267584' },
-    { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Current', ContactNo: '0987654321', EmailID: 'abc@gmail.com', EmergencyContactPerson: 'Himanshu', EmergencyContactNo: '8459267584' },
-    { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Permanent', ContactNo: '0987654321', EmailID: 'abcd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
-    { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '0987654321', EmailID: 'abc@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
-    { address: 'H221, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Current', ContactNo: '8765432100', EmailID: 'abd@gmail.com9', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
-    { address: 'E210, Sector63', city: 'Noida', state: 'UP', country: 'India', pin: '201301', status: 'Communication', ContactNo: '0987654321', EmailID: 'acd@gmail.com', EmergencyContactPerson: 'Amar Singh', EmergencyContactNo: '8459267584' },
   ];
 
   columnDefs2 = [
 
     {
+
       headerName: 'Class', field: 'className', width:80, editable: true,
 
       cellStyle: function (params) {
         if (params.value === '') {
-          // bordercolor: 'red'
-          // alert("Enter Class Name");
-
           return { outline: '1px solid red' };
-
-          //color: 'red', backgroundColor: 'green',
         } else {
           return { outline: 'white' };
-        }
+        };
       }
 
 
@@ -133,47 +129,28 @@ export class EmployeeComponent implements OnInit {
       headerName: 'Board', field: 'boardName', sortable: true, filter: true, width: 80, editable: true,
       cellStyle: function (params) {
         if (params.value === '') {
-          // bordercolor: 'red'
-          // alert("Enter Board Name");
-
           return { outline: '1px solid red' };
-
-          //color: 'red', backgroundColor: 'green',
         } else {
           return { outline: 'white' };
-        }
+        };
       }
-
-
     },
     {
       headerName: 'School Name', field: 'schoolName', sortable: true, filter: true, width: 130, editable: true,
       cellStyle: function (params) {
         if (params.value === '') {
-          // bordercolor: 'red'
-          // alert("Enter School Name");
-
           return { outline: '1px solid red' };
-
-          //color: 'red', backgroundColor: 'green',
         } else {
           return { outline: 'white' };
         }
       }
 
     },
-    //  template: '<input type="date"/>',
     {
       headerName: 'Start Date', field: 'startDate', sortable: true, filter: true, width: 150, editable: true,
       cellStyle: function (params) {
         if (params.value === '') {
-          // bordercolor: 'red'
-          // alert("Enter Start Date");
-
-
           return { outline: '1px solid red' };
-
-          //color: 'red', backgroundColor: 'green',
         } else {
           return { outline: 'white' };
         }
@@ -184,42 +161,28 @@ export class EmployeeComponent implements OnInit {
       headerName: 'End Date', field: 'endDate', sortable: true, filter: true, width: 150, editable: true,
       cellStyle: function (params) {
         if (params.value === '') {
-          // bordercolor: 'red'
-          // alert("Enter End Date");
-
           return { outline: '1px solid red' };
-
-          //color: 'red', backgroundColor: 'green',
         } else {
           return { outline: 'white' };
         }
       }
-
-
     },
    
     {
       headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, width: 100, editable: true,
       cellStyle: function (params) {
         if (params.value === '') {
-          // bordercolor: 'red'
-          // alert("Enter Percentage");
-
-          // bordercolor: 'red'
-          // alert("Enter Percentage");
           return { outline: '1px solid red' };
-          //color: 'red', backgroundColor: 'green',
         } else {
           return { outline: 'white' };
         }
       }
-
-
     },
+
      { headerName: '', width: 208, }
   ];
 
-  rowData2 = [];
+  rowData2: GetSchoolDataResponse[];
 
 
 
@@ -238,7 +201,6 @@ export class EmployeeComponent implements OnInit {
   ];
 
   rowData4 = [
-    // { Degree: 'BCA', specialization: 'BCA', university: 'CCSU', StartDate: '10-04-2013', EndDate: '10-04-2016', percentage: '78 %' }
   ];
 
   columnDefs5 = [
@@ -253,8 +215,7 @@ export class EmployeeComponent implements OnInit {
   ];
 
   rowData5 = [
-    // { Degree: 'MCA', specialization: 'MCA', university: 'AKTU', StartDate: '10-04-2016', EndDate: '10-04-2018', percentage: '76 %' },
-
+   
   ];
 
   columnDefs6 = [
@@ -269,7 +230,6 @@ export class EmployeeComponent implements OnInit {
   ];
 
   rowData6 = [
-    // { Degree: 'P.hd', specialization: 'computer science', university: 'AKTU', StartDate: '10-04-2016', EndDate: '10-04-2018', percentage: '76 %' },
 
   ];
 
@@ -305,8 +265,7 @@ export class EmployeeComponent implements OnInit {
   ];
 
   rowData8 = [
-    { CompanyName: 'YoekiSoft Pvt Ltd', Designation: 'UI Developer', Department: 'Software Developer', JoiningDate: '01-05-2018', ExitDate: '01-09-2019', Experience: '1 year 4 months', Location: 'noida' },
-
+ 
   ];
 
   columnDefs9 = [
@@ -324,7 +283,6 @@ export class EmployeeComponent implements OnInit {
   ];
 
   rowData9 = [
-    { CertificateName: 'CCNA', StartDate: '10-05-2018', EndDate: '10-10-2018' },
 
   ];
 
@@ -343,10 +301,7 @@ export class EmployeeComponent implements OnInit {
   ];
 
   rowData10 = [
-    { TypeofAccount: 'Salary Account', AccountHolderName: 'Abhishek vats', AccountNumber: '09876543210', IFSC: 'HDFC000003', BranchName: 'Ghaziabad', Primary: 'yes' },
-    { TypeofAccount: 'PF Account', AccountHolderName: 'Abhishek vats', AccountNumber: '09876543210', IFSC: 'HDFC000003', BranchName: 'Ghaziabad', Primary: 'yes' },
-    { TypeofAccount: 'Gratuity Account', AccountHolderName: 'Abhishek vats', AccountNumber: '09876543210', IFSC: 'HDFC000003', BranchName: 'Ghaziabad', Primary: 'yes' },
-
+  
   ];
 
   columnDefs11 = [
@@ -360,8 +315,7 @@ export class EmployeeComponent implements OnInit {
   ];
 
   rowData11 = [
-    { PassportNo: 'PAS96ER0001', ExpiryDate: '28-02-1996', UploadDocument: '', TimetoExpire: '1 year 3 months' },
-
+    
   ];
 
   columnDefs12 = [
@@ -376,8 +330,7 @@ export class EmployeeComponent implements OnInit {
   ];
 
   rowData12 = [
-    { Country: 'Canada', NumberOfVisit: 'Single Visit', ExpiryDate: '28-02-1996', UploadDocument: '', TimetoExpire: '1 year 3 months' },
-
+ 
   ];
 
   columnDefs13 = [
@@ -390,8 +343,7 @@ export class EmployeeComponent implements OnInit {
   ];
 
   rowData13 = [
-    { Documents: 'Curriculum Vitae', CurriculumVitae: 'CV96ER0001', ExpiryDate: '28-02-1996', UploadDocument: '', TimetoExpire: '1 year 3 months' },
-
+ 
   ];
 
   columnDefs14 = [
@@ -405,8 +357,7 @@ export class EmployeeComponent implements OnInit {
   ];
 
   rowData14 = [
-    { DrivingLicence: 'DL96ER0001', ExpiryDate: '28-02-1996', UploadDocument: '', TimetoExpire: '1 year 3 months' },
-
+  
   ];
 
   columnDefs15 = [
@@ -420,8 +371,7 @@ export class EmployeeComponent implements OnInit {
   ];
 
   rowData15 = [
-    { MedicalCertificate: 'MED96ER0001', ExpiryDate: '28-02-1996', UploadDocument: '', TimeDuration: '1 year 3 months' },
-
+   
   ];
 
   columnDefs16 = [
@@ -435,10 +385,7 @@ export class EmployeeComponent implements OnInit {
   ];
 
   rowData16 = [
-    { ClassDegree: '10', BoardUniversity: 'CBSE', StartDate: '03-04-2009', EndDate: '03-04-2010', UploadDocument: '' },
-    { ClassDegree: '12', BoardUniversity: 'CBSE', StartDate: '03-04-2012', EndDate: '03-04-2013', UploadDocument: '' },
-    { ClassDegree: 'BCA', BoardUniversity: 'CCSU', StartDate: '03-04-2013', EndDate: '03-04-2016', UploadDocument: '' },
-    { ClassDegree: 'MCA', BoardUniversity: 'AKTU', StartDate: '03-04-2016', EndDate: '03-04-2018', UploadDocument: '' },
+  
   ];
 
   locationResponse;
@@ -457,12 +404,12 @@ export class EmployeeComponent implements OnInit {
 
 
 
-  constructor(private formBuilder: FormBuilder, private allwebService: AllWeb) {
+  constructor(private formBuilder: FormBuilder, private allwebService: AllWeb, ) {
     this.rowSelection = 'single';
   }
   age: number;
-  api: GridApi;
-  columnApi: ColumnApi;
+  api;
+  columnApi;
   getSchoolResonseData: GetSchoolDataResponse[];
   getGraduationDetailsResponse: GetGraduationDetailsResponse[];
   getPostGraduationDetailsResponse: GetPostGraduationDetailsResponse[];
@@ -478,7 +425,7 @@ export class EmployeeComponent implements OnInit {
     this.today = new Date().toJSON().split('T')[0];
     this.today = new DatePipe('en-US').transform(this.today, 'dd/MM/yyyy');
     this.basicDetailsForm = this.formBuilder.group({
-      empCode: ['', [Validators.required]],
+      empCode: ['', [Validators.required, Validators.pattern('[0-9]{0-10}')]],
       firstName: ['', [Validators.required]],
       middleName: [''],
       dateofBirth: ['', [Validators.required, Validators.max(this.today)]],
@@ -488,12 +435,12 @@ export class EmployeeComponent implements OnInit {
       title: ['Mr', [Validators.required,]],
       location: ['', [Validators.required,]]
     });
-    this.getLocation(1);
-    this.onGetSchoolQualification();
-    this.onGetGraduational();
-    this.onGetPostGraduational();
-    this.onGetOther();
-    console.log('this.today ' + this.today);
+    // this.getLocation(1);
+    // this.onGetSchoolQualification();
+    // this.onGetGraduational();
+    // this.onGetPostGraduational();
+    // this.onGetOther();
+    // console.log('this.today ' + this.today);
 
   }
   onRadioClick(value) {
@@ -649,6 +596,9 @@ export class EmployeeComponent implements OnInit {
   onGridSchoolReady(params) {
     this.api = params.api;
     this.columnApi = params.columnApi;
+    this.api.sizeColumnsToFit();
+
+
   }
 
   onSelectionChanged() {
@@ -669,8 +619,8 @@ export class EmployeeComponent implements OnInit {
       .subscribe(
         data => {
           this.getSchoolResonseData = data;
-          console.log("key", this.getSchoolResonseData);
           this.rowData2 = this.getSchoolResonseData;
+
         }
       );
   }
