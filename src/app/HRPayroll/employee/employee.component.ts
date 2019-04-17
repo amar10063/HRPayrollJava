@@ -22,6 +22,9 @@ import { PostGraduationDeleted } from 'src/app/WebServices/WebServiceBody/Educat
 import { GetOtherEducationalResponse } from '../Education/GetOtherEducationalResponse';
 import { OtherEducationBody } from 'src/app/WebServices/WebServiceBody/EducationBody/OtherEducationBody';
 import { OtherEducationDeleted } from 'src/app/WebServices/WebServiceBody/EducationBody/OtherEducationDeleted';
+import { BasicDetailBody } from 'src/app/WebServices/WebServiceBody/EmployeeBasicDetail/BasicDetailBody';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-employee',
@@ -32,7 +35,6 @@ export class EmployeeComponent implements OnInit {
   basicDetailsForm: FormGroup;
   titles = ['Mr', 'Miss', 'Mrs'];
   highSchoolResponse: HighSchoolResponse;
-
   addressApi: GridApi;
   addressColumnApi: ColumnApi;
 
@@ -45,11 +47,13 @@ export class EmployeeComponent implements OnInit {
   otherApi: GridApi;
   otherColumnApi: ColumnApi;
 
-  rowSelection: string;
 
+  rowSelection: string;
   submitted = false;
   designationResponse: GetAllLocationResponse[];
-  selectedDesignationIndex;
+  selectedDesignationIndex: number;
+  url ;
+
   columnDefs = [
     { headerName: 'Employee Image', field: 'EmpImage', template: '<img src="../assets/images/profile-img-2.png" />', width: 120 },
     { headerName: 'Employee Name', field: 'EmpName', sortable: true, filter: true, editable: true, width: 130 },
@@ -82,12 +86,12 @@ export class EmployeeComponent implements OnInit {
 
 
     { headerName: 'Status', field: 'status', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'Address', field: 'address', editable: true, width: 150 },
-    { headerName: 'City', field: 'city', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'State', field: 'state', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'Country', field: 'country', sortable: true, filter: true, editable: true, width: 90 },
-    { headerName: 'Postal Code', field: 'pin', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'Contact No.', field: 'ContactNo', sortable: true, filter: true, editable: true, width: 100 },
+    { headerName: 'Address', field: 'address', editable: true, width: 120 },
+    { headerName: 'City', field: 'city', sortable: true, filter: true, editable: true, width: 80 },
+    { headerName: 'State', field: 'state', sortable: true, filter: true, editable: true, width: 80 },
+    { headerName: 'Country', field: 'country', sortable: true, filter: true, editable: true, width: 80 },
+    { headerName: 'Postal Code', field: 'pin', sortable: true, filter: true, editable: true, width: 90 },
+    { headerName: 'Contact No.', field: 'ContactNo', sortable: true, filter: true, editable: true, width: 90 },
     { headerName: 'Email ID', field: 'EmailID', sortable: true, filter: true, editable: true, width: 120 },
     { headerName: 'Emergency Contact Person', field: 'EmergencyContactPerson', sortable: true, filter: true, editable: true, width: 120 },
     { headerName: 'Emergency Contact No', field: 'EmergencyContactNo', sortable: true, filter: true, editable: true, width: 120 },
@@ -108,44 +112,50 @@ export class EmployeeComponent implements OnInit {
   columnDefs2 = [
 
     { headerName: 'Class', field: 'className', width: 120,editable: true, 
+
     cellStyle: function (params) {
       if (params.value === '') {
         // bordercolor: 'red'
         // alert("Enter Class Name");
 
-        return { outline: '1px solid red' };
+          return { outline: '1px solid red' };
 
-        //color: 'red', backgroundColor: 'green',
-      } else {
-        return { outline: 'white' };
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
       }
-    }
+
+    
    },
-    { headerName: 'Board', field: 'boardName', sortable: true, filter: true, width: 150,editable: true,
+    { headerName: 'Board', field: 'boardName', sortable: true, filter: true, width: 100,editable: true,
     cellStyle: function (params) {
       if (params.value === '') {
         // bordercolor: 'red'
         // alert("Enter Board Name");
 
-        return { outline: '1px solid red' };
+          return { outline: '1px solid red' };
 
-        //color: 'red', backgroundColor: 'green',
-      } else {
-        return { outline: 'white' };
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
       }
-    }
+
+    
    },
-    { headerName: 'School Name', field: 'schoolName', sortable: true, filter: true, width: 152, editable: true,
+    { headerName: 'School Name', field: 'schoolName', sortable: true, filter: true, width: 150, editable: true,
     cellStyle: function (params) {
       if (params.value === '') {
         // bordercolor: 'red'
         // alert("Enter School Name");
 
-        return { outline: '1px solid red' };
+          return { outline: '1px solid red' };
 
-        //color: 'red', backgroundColor: 'green',
-      } else {
-        return { outline: 'white' };
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
       }
     }
    },
@@ -156,51 +166,58 @@ export class EmployeeComponent implements OnInit {
         // bordercolor: 'red'
         // alert("Enter Start Date");
 
-        return { outline: '1px solid red' };
 
-        //color: 'red', backgroundColor: 'green',
-      } else {
-        return { outline: 'white' };
+          return { outline: '1px solid red' };
+
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
       }
-    }
-   },
-  //  template: '<input type="date"/>',
-    { headerName: 'End Date', field: 'endDate', sortable: true, filter: true, width: 120,editable: true,
-    cellStyle: function (params) {
-      if (params.value === '') {
-        // bordercolor: 'red'
-        // alert("Enter End Date");
 
-        return { outline: '1px solid red' };
+    },
+    {
+      headerName: 'End Date', field: 'endDate', sortable: true, filter: true, width: 120, editable: true,
+      cellStyle: function (params) {
+        if (params.value === '') {
+          // bordercolor: 'red'
+          // alert("Enter End Date");
 
-        //color: 'red', backgroundColor: 'green',
-      } else {
-        return { outline: 'white' };
+          return { outline: '1px solid red' };
+
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
       }
-    }
+
+    
    }, 
     
-    { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, width: 150,editable: true,
+    { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, width: 100,editable: true,
     cellStyle: function (params) {
       if (params.value === '') {
         // bordercolor: 'red'
         // alert("Enter Percentage");
 
-        return { outline: '1px solid red' };
-
-
-        //color: 'red', backgroundColor: 'green',
-      } else {
-        return { outline: 'white' };
+          // bordercolor: 'red'
+          // alert("Enter Percentage");
+          return { outline: '1px solid red' };
+          //color: 'red', backgroundColor: 'green',
+        } else {
+          return { outline: 'white' };
+        }
       }
-    }
+
+    
    },
+   { headerName: '', field: '', width:310, }
   ];
 
   rowData2 = [
-      // { Class: '10', Board: 'CBSE', SchoolName: 'DPSG', StartDate: '10-03-2010', EndDate: '10-03-2011', percentage: '74 %' },
-      // { Class: '12', Board: 'CBSE', SchoolName: 'DPSG', StartDate: '10-03-2012', EndDate: '10-03-2013', percentage: '72 %' },
-    ];
+    // { Class: '10', Board: 'CBSE', SchoolName: 'DPSG', StartDate: '10-03-2010', EndDate: '10-03-2011', percentage: '74 %' },
+    // { Class: '12', Board: 'CBSE', SchoolName: 'DPSG', StartDate: '10-03-2012', EndDate: '10-03-2013', percentage: '72 %' },
+  ];
 
   // rowData2 = [];
 
@@ -212,9 +229,10 @@ export class EmployeeComponent implements OnInit {
     { headerName: 'University', field: 'university', sortable: true, filter: true, editable: true, width: 160 },
     { headerName: 'Start Date', field: 'startdate', sortable: true, filter: true, editable: true, width: 125 },
     { headerName: 'End Date', field: 'enddate', sortable: true, filter: true, editable: true, width: 125 },
-    { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: '', width: 130 }
 
+    { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, editable: true, width: 120 },
+  
+    { headerName: '', field: '', width:340, }
 
   ];
 
@@ -228,8 +246,9 @@ export class EmployeeComponent implements OnInit {
     { headerName: 'University', field: 'university', sortable: true, filter: true, editable: true, width: 160 },
     { headerName: 'Start Date', field: 'startDate', sortable: true, filter: true, editable: true, width: 125 },
     { headerName: 'End Date', field: 'endDate', sortable: true, filter: true, editable: true, width: 125 },
+
     { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: '', width: 130 }
+    { headerName: '', field: '', width:340, }
   ];
 
   rowData5 = [
@@ -245,6 +264,7 @@ export class EmployeeComponent implements OnInit {
     { headerName: 'End Date', field: 'endDate', sortable: true, filter: true, editable: true, width: 110 },
     { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, editable: true, width: 100 },
     { headerName: '', width: 145 }
+
   ];
 
   rowData6 = [
@@ -255,10 +275,10 @@ export class EmployeeComponent implements OnInit {
   columnDefs7 = [
 
     { headerName: 'Institute', field: 'Institute', editable: true, width: 120 },
-    { headerName: 'Course', field: 'Course', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'Course', field: 'Course', sortable: true, filter: true, editable: true, width: 120},
     { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: '', width: 458 }
+    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, editable: true, width: 120},
+    { headerName: '', field: '', width:520, }
 
   ];
 
@@ -271,14 +291,14 @@ export class EmployeeComponent implements OnInit {
   columnDefs8 = [
 
 
-    { headerName: 'Company Name', field: 'CompanyName', editable: true, width: 130 },
-    { headerName: 'Designation', field: 'Designation', sortable: true, filter: true, editable: true, width: 130 },
-    { headerName: 'Department', field: 'Department', sortable: true, filter: true, editable: true, width: 160 },
-    { headerName: 'Joining Date', field: 'JoiningDate', sortable: true, filter: true, editable: true, width: 130 },
-    { headerName: 'Exit Date', field: 'ExitDate', sortable: true, filter: true, editable: true, width: 130 },
-    { headerName: 'Experience', field: 'Experience', sortable: true, filter: true, editable: true, width: 130 },
-    { headerName: 'Location', field: 'Location', sortable: true, filter: true, editable: true, width: 130 },
-
+    { headerName: 'Company Name', field: 'CompanyName', editable: true, width: 120 },
+    { headerName: 'Designation', field: 'Designation', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'Department', field: 'Department', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'Joining Date', field: 'JoiningDate', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'Exit Date', field: 'ExitDate', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'Experience', field: 'Experience', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'Location', field: 'Location', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: '', field: '', width:160, }
 
 
   ];
@@ -291,9 +311,10 @@ export class EmployeeComponent implements OnInit {
   columnDefs9 = [
 
 
-    { headerName: 'Certificate Name', field: 'CertificateName', editable: true, width: 272 },
-    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, editable: true, width: 270 },
-    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, editable: true, width: 270 },
+    { headerName: 'Certificate Name', field: 'CertificateName', editable: true, width: 120 },
+    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: '', field: '', width:640, }
 
 
 
@@ -309,15 +330,15 @@ export class EmployeeComponent implements OnInit {
   columnDefs10 = [
 
 
-    { headerName: 'Type of Account', field: 'TypeofAccount', editable: true, width: 180 },
+    { headerName: 'Type of Account', field: 'TypeofAccount', editable: true, width: 120 },
 
-    { headerName: 'Account Holder Name', field: 'AccountHolderName', sortable: true, filter: true, editable: true, width: 180 },
-    { headerName: 'Account Number', field: 'AccountNumber', sortable: true, filter: true, editable: true, width: 160 },
-    { headerName: 'IFSC', field: 'IFSC', sortable: true, filter: true, editable: true, width: 160 },
-    { headerName: 'Branch Name', field: 'BranchName', sortable: true, filter: true, editable: true, width: 140 },
+    { headerName: 'Account Holder Name', field: 'AccountHolderName', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'Account Number', field: 'AccountNumber', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'IFSC', field: 'IFSC', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'Branch Name', field: 'BranchName', sortable: true, filter: true, editable: true, width: 120 },
     { headerName: 'Primary', field: 'Primary', sortable: true, filter: true, editable: true, width: 120 },
 
-
+    { headerName: '', field: '', width:280, }
   ];
 
   rowData10 = [
@@ -330,11 +351,11 @@ export class EmployeeComponent implements OnInit {
   columnDefs11 = [
 
 
-    { headerName: 'Passport No', field: 'PassportNo', sortable: true, filter: true, editable: true, width: 230 },
-    { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, editable: true, width: 200 },
-    { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, editable: true, width: 200 },
-    { headerName: 'Time Duration', field: 'TimetoExpire', sortable: true, filter: true, editable: true, width: 200 },
-
+    { headerName: 'Passport No', field: 'PassportNo', sortable: true, filter: true, editable: true, width: 110 },
+    { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, editable: true, width: 110 },
+    { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, editable: true, width: 150 },
+    { headerName: 'Time Duration', field: 'TimetoExpire', sortable: true, filter: true, editable: true, width: 150 },
+    { headerName: '', field: '', width:480, }
   ];
 
   rowData11 = [
@@ -345,12 +366,12 @@ export class EmployeeComponent implements OnInit {
   columnDefs12 = [
 
 
-    { headerName: 'Country', field: 'Country', sortable: true, filter: true, editable: true, width: 170 },
-    { headerName: 'Number Of Visit', field: 'NumberOfVisit', sortable: true, filter: true, editable: true, width: 170 },
-    { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, editable: true, width: 160 },
-    { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, editable: true, width: 170 },
-    { headerName: 'Time to Expire', field: 'TimetoExpire', sortable: true, filter: true, editable: true, width: 160 },
-
+    { headerName: 'Country', field: 'Country', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'Number Of Visit', field: 'NumberOfVisit', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, editable: true, width:150 },
+    { headerName: 'Time to Expire', field: 'TimetoExpire', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: '', field: '', width:370, }
   ];
 
   rowData12 = [
@@ -359,11 +380,11 @@ export class EmployeeComponent implements OnInit {
   ];
 
   columnDefs13 = [
-    { headerName: 'Documents', field: 'Documents', editable: true, width: 160 },
-    { headerName: 'Curriculum Vitae', field: 'CurriculumVitae', sortable: true, filter: true, editable: true, width: 160 },
-    { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, editable: true, width: 160 },
-    { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, editable: true, width: 170 },
-    { headerName: 'Time to Expire', field: 'TimetoExpire', sortable: true, filter: true, editable: true, width: 160 },
+    { headerName: 'Documents', field: 'Documents', editable: true, width: 200 },
+    { headerName: 'Curriculum Vitae', field: 'CurriculumVitae', sortable: true, filter: true, editable: true, width: 200 },
+    { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, editable: true, width: 200 },
+    { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, editable: true, width: 200 },
+    { headerName: 'Time to Expire', field: 'TimetoExpire', sortable: true, filter: true, editable: true, width: 200 },
 
   ];
 
@@ -375,11 +396,11 @@ export class EmployeeComponent implements OnInit {
   columnDefs14 = [
 
 
-    { headerName: 'Driving Licence Number', field: 'DrivingLicence', sortable: true, filter: true, editable: true, width: 220 },
-    { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, editable: true, width: 200 },
-    { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, editable: true, width: 210 },
-    { headerName: 'Time Duration', field: 'TimetoExpire', sortable: true, filter: true, editable: true, width: 200 },
-
+    { headerName: 'Driving Licence Number', field: 'DrivingLicence', sortable: true, filter: true, editable: true, width: 150 },
+    { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, editable: true, width: 150 },
+    { headerName: 'Time Duration', field: 'TimetoExpire', sortable: true, filter: true, editable: true, width: 130 },
+    { headerName: '', field: '', width:450, }
   ];
 
   rowData14 = [
@@ -390,11 +411,11 @@ export class EmployeeComponent implements OnInit {
   columnDefs15 = [
 
 
-    { headerName: 'Medical Certificate', field: 'MedicalCertificate', sortable: true, filter: true, editable: true, width: 230 },
-    { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, editable: true, width: 200 },
-    { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, editable: true, width: 200 },
-    { headerName: 'Time Duration', field: 'TimeDuration', sortable: true, filter: true, editable: true, width: 200 },
-
+    { headerName: 'Medical Certificate', field: 'MedicalCertificate', sortable: true, filter: true, editable: true, width: 150 },
+    { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, editable: true, width: 150 },
+    { headerName: 'Time Duration', field: 'TimeDuration', sortable: true, filter: true, editable: true, width: 130 },
+    { headerName: '', field: '', width:450, }
   ];
 
   rowData15 = [
@@ -404,12 +425,12 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs16 = [
 
-    { headerName: 'Class/Degree', field: 'ClassDegree', editable: true, width: 160 },
-    { headerName: 'Board/University', field: 'BoardUniversity', sortable: true, filter: true, editable: true, width: 180 },
-    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, editable: true, width: 160 },
-    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, editable: true, width: 170 },
-    { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, editable: true, width: 160 },
-
+    { headerName: 'Class/Degree', field: 'ClassDegree', editable: true, width: 120 },
+    { headerName: 'Board/University', field: 'BoardUniversity', sortable: true, filter: true, editable: true, width: 140 },
+    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, editable: true, width: 130 },
+    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, editable: true, width: 130 },
+    { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, editable: true, width: 150 },
+    { headerName: '', field: '', width:330, }
   ];
 
   rowData16 = [
@@ -427,13 +448,18 @@ export class EmployeeComponent implements OnInit {
   public hide: boolean = true;
   public buttonName: any = 'Add New';
   departmentResponse: GetAllLocationResponse[];
+  newDate: Date;
+  maritalStatus = 'Married';
+  employementType = 'Contract';
+  selectedFile: ImageSnippet;
+  universalStatus: UniversalResponse;
 
 
 
   constructor(private formBuilder: FormBuilder, private allwebService: AllWeb) {
     this.rowSelection = 'single';
   }
-
+  age: number;
   api: GridApi;
   columnApi: ColumnApi;
   getSchoolResonseData: GetSchoolDataResponse[];
@@ -446,15 +472,20 @@ export class EmployeeComponent implements OnInit {
   addNewOther : boolean = false;
 
   ngOnInit() {
+  today;
+  ngOnInit() {
+    this.today = new Date().toJSON().split('T')[0];
+    this.today = new DatePipe('en-US').transform(this.today, 'dd/MM/yyyy');
     this.basicDetailsForm = this.formBuilder.group({
       empCode: ['', [Validators.required]],
       firstName: ['', [Validators.required]],
-      dateofBirth: ['', [Validators.required]],
+      middleName: [''],
+      dateofBirth: ['', [Validators.required, Validators.max(this.today)]],
       lastName: ['', [Validators.required]],
-      designation: ['Select', [Validators.required]],
-      department: ['Select', [Validators.required]],
+      designation: ['', [Validators.required]],
+      department: ['', [Validators.required]],
       title: ['Mr', [Validators.required,]],
-      location: ['Select', [Validators.required,]]
+      location: ['', [Validators.required,]]
     });
     this.getLocation(1);
     this.onGetSchoolQualification();
@@ -463,9 +494,15 @@ export class EmployeeComponent implements OnInit {
     this.onGetOther();
 
 
+    console.log('this.today ' + this.today);
+
   }
   onRadioClick(value) {
+    this.employementType = value;
     console.log(value);
+  }
+  onMaritalStatusRadioClick(value) {
+    this.maritalStatus = value; console.log(value);
   }
   onAddressGridReady(params) {
     this.addressApi = params.api;
@@ -485,22 +522,40 @@ export class EmployeeComponent implements OnInit {
       .subscribe(
         data => {
           this.locationResponse = data;
-          if (this.locationResponse.length > 0) {
-            this.selectedLocationIndex = this.locationResponse.length - 1;
-            this.getAllDepartment(1, this.locationResponse[this.selectedLocationIndex].ID);
-          } else { }
-
+          this.selectedLocationIndex = this.locationResponse.length - 1;
         }
 
       );
   }
-  public getSelectedLocation(value): void {
-    this.getAllDepartment(1, value.target.value);
+  onDepartmentClick() {
+    this.getAllDepartment(1, this.locationResponse[this.selectedLocationIndex].id);
 
   }
-  public getSelectedDepartment(value): void {
-    this.getAllDesignation('1', value.target.value);
+  onDesignationClick() {
+    this.getAllDesignation('1', this.departmentResponse[this.selectedDepartmentIndex].id);
 
+  }
+
+  updateCalcs(date: number) {
+    var today = new Date();
+    this.today = new DatePipe('en-US').transform(this.today, 'dd/MM/yyyy');
+    console.log(this.today);
+
+    this.newDate = new Date(date);
+    var diff = Math.abs(this.newDate.getTime() - today.getTime());
+    this.age = (diff / (1000 * 3600 * 24)) / 365.25;
+    console.log('diff: ' + this.age);
+  }
+  public getSelectedLocation(value): void {
+    this.getAllDepartment(1, value.target.value);
+  }
+  public getSelectedDepartment(value): void {
+    console.log(value.target.value);
+    //  console.log('value:' + value); this.getAllDesignation('1', value.target.value);
+  }
+  public getSelectedDesignation(value): void {
+    // console.log(value.target.value);
+    console.log('value:' + value);
   }
   getAllDepartment(UserID: number, LocationID: number) {
     // console.log(UserID, LocationID);
@@ -512,7 +567,6 @@ export class EmployeeComponent implements OnInit {
         data => {
           this.departmentResponse = data;
           this.selectedDepartmentIndex = this.departmentResponse.length - 1;
-          this.getAllDesignation('1', this.departmentResponse[this.selectedDepartmentIndex].id);
         }
 
       );
@@ -534,17 +588,22 @@ export class EmployeeComponent implements OnInit {
 
   }
 
-  selectedDesignation(args) {
-    this.selectedDesignationIndex = args.target.selectedIndex;
-    // console.log(this.selectedDesignationIndex - 1);
-    //  console.log(args.target.selectedIndex);
-    //  console.log(args.target.options[args.target.selectedIndex].text);
-  }
-  onSave() {
+  onSaveClick() {
     this.submitted = true;
-    if (this.basicDetailsForm.invalid) {
-      return;
+    var basicDetailBody = new BasicDetailBody();
+    basicDetailBody.Anniversary = '';
+    basicDetailBody.E_Code = this.basicDetailsForm.controls.empCode.value;
+    basicDetailBody.E_DOB = this.today;
+    basicDetailBody.E_Title = this.basicDetailsForm.controls.title.value;
+    basicDetailBody.E_Location = this.locationResponse[this.selectedLocationIndex].id + '';
+    basicDetailBody.E_Dept = this.locationResponse[this.selectedDepartmentIndex].id + '';
+    basicDetailBody.E_Designaton = this.locationResponse[this.selectedDesignationIndex].id;
+    basicDetailBody.E_EmployementType = this.employementType;
+    basicDetailBody.E_FristName = this.basicDetailsForm.controls.firstName.value;
+    if (this.basicDetailsForm.controls.title.value === 'Mr') {
+      basicDetailBody.E_Gender = 'Male';
     } else {
+      basicDetailBody.E_Gender = 'Female';
     }
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.basicDetailsForm.value));
   }
@@ -556,6 +615,51 @@ export class EmployeeComponent implements OnInit {
       console.log('Added Row Node', rowNode);
     });
   }
+    basicDetailBody.E_Image = this.url;
+    basicDetailBody.E_LastName = this.basicDetailsForm.controls.lastName.value;
+    basicDetailBody.E_MaritalStatus = this.maritalStatus;
+    basicDetailBody.E_MiddleName = this.basicDetailsForm.controls.middleName.value;
+    basicDetailBody.userID = 1;
+    basicDetailBody.UpdatedBy = '1';
+    console.log(JSON.stringify(basicDetailBody));
+    this.countryService.saveEmployeeBasicDetail(basicDetailBody)
+      .subscribe(
+        data => {
+          this.universalStatus = data;
+          if (this.universalStatus.STATUS === 'Success') {
+            alert(this.universalStatus.MESSAGE);
+          } else {
+            alert(this.universalStatus.MESSAGE);
+          }
+        }
+      );
+
+  }
+  processFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      reader.onload = (_event) => { // called once readAsDataURL is completed
+        this.url = reader.result;
+        console.log(this.url);
+      };
+    }
+  }
+
+  onAddQualification() {
+    let res = this.api.updateRowData({ add: [{ class: 'High School' }], addIndex: 0 })
+    // res.add.forEach(function (rowNode) {
+    //   console.log('Added Row Node', rowNode);
+    // });
+
+    // this.api.setFocusedCell(this.countCountry, "countryCode");
+
+    // this.countCountry++;
+    // var res = this.api.updateRowData({
+    //   add: [{ countryName: '', countryCode: '' }],
+    //   addIndex: 0
+    // })
+  };
 
   onGridSchoolReady(params) {
     this.api = params.api;
@@ -580,6 +684,8 @@ export class EmployeeComponent implements OnInit {
       .subscribe(
         data => {
           this.getSchoolResonseData = data;
+
+          console.log("key", this.getSchoolResonseData);
           this.rowData2 = this.getSchoolResonseData;
         }
       );
@@ -1036,3 +1142,5 @@ export class EmployeeComponent implements OnInit {
   get f() { return this.basicDetailsForm.controls; }
 
 }
+class ImageSnippet {
+  constructor(public src: string, public file: File) { }}

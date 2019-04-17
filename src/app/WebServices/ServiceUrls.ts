@@ -34,4 +34,14 @@ export class ServiceUrls {
     public static getOtherEducation = '/getOtherQualificationDetails';
     public static OtherEducationAdd = '/AddOtherEduQualifiaction'
     public static OtherEducationDeleted = '/DeleteOtherEduQualifiaction';
+    public static updateCountry = '/UpdateCountry';
+    public static updateState = '/UpdateState';
+    public static updateCity = '/UpdateCity';
+    public static updatePostal = '/UpdatePostalCode';
+    public static getCountryDropDown = '/getCountryDropDown';
+    public static getStateDropdown = '/getStateDropDown';
+    public static getCityDropdown = '/getCityDropDown';
+    public static saveEmployeeBasicDetail = '/AddEmployee';
+
+
 }

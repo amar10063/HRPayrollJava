@@ -1058,7 +1058,8 @@ thead>tr>th {
 }
 
 .formBody form {
-    width: 100%
+    width: 100%;
+    height: 350px;
 }
 
 .formBody .form-inline {

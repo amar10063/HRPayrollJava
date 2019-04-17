@@ -13,7 +13,7 @@ import { HighSchoolBody } from './WebServiceBody/EducationBody/HighSchoolBody';
 import { CountryBody } from './WebServiceBody/CountryBody/CountryBody';
 import { CityBody } from './WebServiceBody/CountryBody/CityBody';
 import { StateBody } from './WebServiceBody/CountryBody/StateBody';
-import { CountryDataResponse } from './WebServiceResponse/CountryResponse/GetCountryResponse';
+import { GetCountryResponse } from './WebServiceResponse/CountryResponse/GetCountryResponse';
 import { UniversalBody } from './WebServiceBody/UniversalBody';
 import { PostalBody } from './WebServiceBody/CountryBody/PostalBody';
 import { DeleteCountryBody } from './WebServiceBody/CountryBody/DeleteCountryBody';
@@ -39,10 +39,16 @@ import { PostGraduationDeleted } from './WebServiceBody/EducationBody/PostGradua
 import { GetOtherEducationalResponse } from '../HRPayroll/Education/GetOtherEducationalResponse';
 import { OtherEducationBody } from './WebServiceBody/EducationBody/OtherEducationBody';
 import { OtherEducationDeleted } from './WebServiceBody/EducationBody/OtherEducationDeleted';
+import { UpdateStateBody } from './WebServiceBody/CountryBody/UpadateStateBody';
+import { UpdateCountryBody } from './WebServiceBody/CountryBody/UpdateCountryBody';
+import { UpdateCityBody } from './WebServiceBody/CountryBody/UpdateCityBody';
+import { UpdatePostalBody } from './WebServiceBody/CountryBody/UpdatePostalBody';
+import { BasicDetailBody } from './WebServiceBody/EmployeeBasicDetail/BasicDetailBody';
 @Injectable({
   providedIn: 'root'
 })
 export class AllWeb {
+  
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -53,6 +59,9 @@ export class AllWeb {
   saveCountry(countryBody: CountryBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveCountry, JSON.stringify(countryBody), this.httpOptions);
   }
+  saveEmployeeBasicDetail(basicDetailBody: BasicDetailBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveEmployeeBasicDetail, JSON.stringify(basicDetailBody), this.httpOptions);
+  }
   saveLocation(locationBody: LocationBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddLocation, JSON.stringify(locationBody), this.httpOptions);
   }
@@ -62,7 +71,7 @@ export class AllWeb {
   getDepartment(departmentBody: GetAllDepartmentBody): Observable<GetAllLocationResponse[]> {
     return this.httpClient.post<GetAllLocationResponse[]>('http://10.10.10.48:8081' + '/getDepartment', JSON.stringify(departmentBody), this.httpOptions);
   }
-
+ 
   doDeleteLocation(deleteLocationBody: DeleteLocationBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteLocation, JSON.stringify(deleteLocationBody), this.httpOptions);
   }
@@ -87,8 +96,8 @@ export class AllWeb {
   saveState(stateBody: StateBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveState, JSON.stringify(stateBody), this.httpOptions);
   }
-  getCountries(universalBody: UniversalBody): Observable<CountryDataResponse> {
-    return this.httpClient.post<CountryDataResponse>(ServiceUrls.baseUrls + ServiceUrls.getCountry, JSON.stringify(universalBody), this.httpOptions);
+  getCountries(universalBody: UniversalBody): Observable<GetCountryResponse> {
+    return this.httpClient.post<GetCountryResponse>(ServiceUrls.baseUrls + ServiceUrls.getCountry, JSON.stringify(universalBody), this.httpOptions);
   }
   savePostal(postalBody: PostalBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.savePostal, JSON.stringify(postalBody), this.httpOptions);
@@ -167,4 +176,25 @@ export class AllWeb {
 
   
 
+  updateState(updateStateBody: UpdateStateBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.updateState, JSON.stringify(updateStateBody), this.httpOptions);
+  }
+  updateCountry(updateCountryBody: UpdateCountryBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.updateCountry, JSON.stringify(updateCountryBody), this.httpOptions);
+  }
+  updateCity(updateCityBody: UpdateCityBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.updateCity, JSON.stringify(updateCityBody), this.httpOptions);
+  }
+  updatePostal(updatePostalBody: UpdatePostalBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.updatePostal, JSON.stringify(updatePostalBody), this.httpOptions);
+  }
+  countryDropdown(universalBody: UniversalBody): Observable<GetAllLocationResponse[]> {
+    return this.httpClient.post<GetAllLocationResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getCountryDropDown, JSON.stringify(universalBody), this.httpOptions);
+  }
+  stateDropdown(universalBody: UniversalBody): Observable<GetAllLocationResponse[]> {
+    return this.httpClient.post<GetAllLocationResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getStateDropdown, JSON.stringify(universalBody), this.httpOptions);
+  }
+  cityDropdown(universalBody: UniversalBody): Observable<GetAllLocationResponse[]> {
+    return this.httpClient.post<GetAllLocationResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getCityDropdown, JSON.stringify(universalBody), this.httpOptions);
+  }
 }
