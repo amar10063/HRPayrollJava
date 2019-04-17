@@ -24,5 +24,12 @@ export class ServiceUrls {
     public static deleteCity = '/DeleteCity';
     public static deletePostal = '/DeletePostalCode';
     public static saveEmployeeAddress = '/SaveAddress';
+    public static updateCountry = '/UpdateCountry';
+    public static updateState = '/UpdateState';
+    public static updateCity = '/UpdateCity';
+    public static updatePostal = '/UpdatePostalCode';
+    public static getCountryDropDown = '/getCountryDropDown';
+    public static getStateDropdown = '/getStateDropDown';
+    public static getCityDropdown = '/getCityDropDown';
 
 }
