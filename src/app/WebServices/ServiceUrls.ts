@@ -31,6 +31,7 @@ export class ServiceUrls {
     public static getCountryDropDown = '/getCountryDropDown';
     public static getStateDropdown = '/getStateDropDown';
     public static getCityDropdown = '/getCityDropDown';
+    public static saveEmployeeBasicDetail = '/AddEmployee';
 
 
 }
