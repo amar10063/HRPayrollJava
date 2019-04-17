@@ -1,7 +1,7 @@
 <div>
-  <select class="addrCon formSelect" [(ngModel)]="selectedLevel" id="type" name="type"
+  <select class="addrCon formSelect" [(ngModel)]="selectedLevel" id="type" name="type" (change)='onGroupChange($event)'
     style="background:#ffffffff !important; border:1px solid #ffffffff !important">
-    <option [value]="location" *ngFor="let location of locationResponse; let i = index" [attr.selected]="i">
+    <option [value]="location" *ngFor="let location of locationResponse; let i = index" [attr.selected]="i" [selected]="Select">
       {{location.name}}</option>
   </select>
 </div>
