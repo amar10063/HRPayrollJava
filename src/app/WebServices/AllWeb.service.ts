@@ -44,6 +44,11 @@ import { UpdateCountryBody } from './WebServiceBody/CountryBody/UpdateCountryBod
 import { UpdateCityBody } from './WebServiceBody/CountryBody/UpdateCityBody';
 import { UpdatePostalBody } from './WebServiceBody/CountryBody/UpdatePostalBody';
 import { BasicDetailBody } from './WebServiceBody/EmployeeBasicDetail/BasicDetailBody';
+import { GetProfessionalEducationResponse } from '../HRPayroll/ProfessionalEducation/GetProfessionalEducationResponse';
+import { DeletedProfessionalEducation } from './WebServiceBody/ProfessionalEducation/deletedProfessionalEducation';
+import { ProfessionalBodyUpdate } from './WebServiceBody/ProfessionalEducation/ProfessionalBodyUpdate';
+import { ProfessionalBodySave } from './WebServiceBody/ProfessionalEducation/ProfessionalBodySave';
+
 import { EmployeeAddressBody } from './WebServiceBody/EmployeeAddressBody/EmployeeAddressBody';
 import { EmployeeAddressResponse } from './WebServiceResponse/EmployeeAddressResponse/EmployeeAddressResponse';
 import { DeleteEmployeeAddressBody } from './WebServiceBody/EmployeeAddressBody/DeleteEmployeeAddressBody';
@@ -183,12 +188,28 @@ export class AllWeb {
   }
 
   saveOtherEducation(otherPostEducation: OtherEducationBody): Observable<any> {
-    console.log('Data sending', otherPostEducation);
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.OtherEducationAdd, JSON.stringify(otherPostEducation), this.httpOptions);
   }
 
   deleteOtherEducation(otherEducationDeleted: OtherEducationDeleted): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.OtherEducationDeleted, JSON.stringify(otherEducationDeleted), this.httpOptions);
+  }
+
+  getProfessionalEducation(getSchoolModel: GetSchoolModel): Observable<GetProfessionalEducationResponse[]> {
+    return this.httpClient.post<GetProfessionalEducationResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getProfessionalEducation, JSON.stringify(getSchoolModel), this.httpOptions);
+  }
+
+  saveProfessionalEducation(ProfessionalBodySave: ProfessionalBodySave): Observable<any> {
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.saveProfessionalEducation, JSON.stringify(ProfessionalBodySave), this.httpOptions);
+  }
+
+  updateProfessionalEducation(professionalBodyUpdate: ProfessionalBodyUpdate): Observable<any> {
+    console.log("Keyssss",professionalBodyUpdate);
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.updateProfessionalEducation, JSON.stringify(professionalBodyUpdate), this.httpOptions);
+  }
+
+  deleteProfessionalEducation(deletedProfessionalEducation: DeletedProfessionalEducation): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteProfessionQualification, JSON.stringify(deletedProfessionalEducation), this.httpOptions);
   }
 
   getPostal(universalBody: UniversalBody): Observable<GetPostalResponse> {
@@ -203,8 +224,6 @@ export class AllWeb {
   deletePostal(deletePostalBody: DeletePostalBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deletePostal, JSON.stringify(deletePostalBody), this.httpOptions);
   }
-
-
 
   updateState(updateStateBody: UpdateStateBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.updateState, JSON.stringify(updateStateBody), this.httpOptions);
