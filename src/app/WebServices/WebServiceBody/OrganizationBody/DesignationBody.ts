@@ -1,6 +1,7 @@
 export class DesignationBody {
 
     DepartmentID: number = 1;
+    DesignationID:number;
     DesignationCode: string;
     DesignationName: string;
     Description: string;

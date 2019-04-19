@@ -24,5 +24,6 @@ export class ServiceUrls {
     public static deleteCity = '/DeleteCity';
     public static deletePostal = '/DeletePostalCode';
     public static saveEmployeeAddress = '/SaveAddress';
+    public static updateLocation='/UpdateLocation';
 
 }

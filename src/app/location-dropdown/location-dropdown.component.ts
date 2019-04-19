@@ -4,6 +4,7 @@ import { GetAllDepartmentBody} from '../HRPayroll/employee/EmployeeApiResponse/G
 import { AllWeb } from "src/app/WebServices/AllWeb.service";
 import { GetAllLocationResponse } from '../HRPayroll/employee/EmployeeApiResponse/GetAllLocationResponse';
 import { INoRowsOverlayAngularComp } from 'ag-grid-angular';
+import { ICellRendererParams } from 'ag-grid-community';
 
 @Component({
   selector: 'app-location-dropdown',
@@ -11,9 +12,14 @@ import { INoRowsOverlayAngularComp } from 'ag-grid-angular';
   styleUrls: ['./location-dropdown.component.css']
 })
 export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
-  agInit(params): void {
-    this.getAllLocation();
-    this.getAllDepartment();
+  params:any;
+  selectedLevel:Object={};
+  agInit(params: ICellRendererParams): void {
+    this.params = params['value'];
+    console.log('param: ' + this.params);
+    if (this.params === 'location') { this.getAllLocation(); }
+    else if (this.params === 'department') { this.getAllDepartment(); }
+   
   }
 
   locationResponse: GetAllLocationResponse[];
@@ -23,6 +29,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
   getAllLocation(): any {
     var locationBody = new GetLocationBody();
     locationBody.userID = 1;
+    // console.log("key locationBody", locationBody)
     this.countryService.doGetLocation(locationBody)
       .subscribe(
         data => {
@@ -30,6 +37,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
           var getAllLocationResponse = new GetAllLocationResponse();
           getAllLocationResponse.name = 'Select';
           this.locationResponse[0] = getAllLocationResponse;
+          // console.log("key locationResponse", getAllLocationResponse)
           console.log('data:  ' + JSON.stringify(this.locationResponse));
         }
 
@@ -38,6 +46,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
   getAllDepartment(): any {
     var departmentBody = new  GetAllDepartmentBody();
     departmentBody.userID = 1;
+    //console.log("key locationBody", departmentBody)
     this.countryService.getDepartment(departmentBody)
       .subscribe(
         data => {
@@ -45,6 +54,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
           var getAllLocationResponse = new GetAllLocationResponse();
           getAllLocationResponse.name = 'Select';
           this.locationResponse[0] = getAllLocationResponse;
+         // console.log("key departmentResponse", getAllLocationResponse)
           console.log('data:  ' + JSON.stringify(this.locationResponse));
         }
 
