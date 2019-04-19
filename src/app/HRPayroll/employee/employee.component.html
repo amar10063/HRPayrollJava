@@ -116,7 +116,7 @@
       </div>
     </div>
 
-    <ag-grid-angular style="width:100%; height: 300px" class="ag-theme-balham" [rowData]="rowData"
+    <ag-grid-angular style="width:100%; height: 427px" class="ag-theme-balham" [rowData]="rowData"
       [columnDefs]="columnDefs">
 
     </ag-grid-angular>
@@ -124,7 +124,7 @@
   </div>
 
   <div class="clearfix"></div>
-  <div class="pay-head clearfix mt-3" style="border:1px solid #2e6c71" *ngIf="show" id="payHead">
+  <div class="pay-head clearfix mt-2" style="border:1px solid #2e6c71" *ngIf="show" id="payHead">
     <div class="col-2 col-md-2 p-0 pull-left" style="box-shadow: 1px 1px 1px #c0c1c1;">
       <div class="payHead">
         <ul class="nav navbar-nav" role="tablist">
@@ -132,8 +132,8 @@
                 class="fa fa-info-circle pr-1" aria-hidden="true"></i> Basic Details</a> </li>
           <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#AddressBook"><i class="fa fa-book pr-1"
                 aria-hidden="true"></i> Address Book</a> </li>
-          <li class="nav-item"> <a class="nav-link" data-toggle="tab" (click)="onGetSchoolQualification()"
-              href="#educationalQualifications"><i class="fa fa-graduation-cap pr-1" aria-hidden="true"></i> Educational
+          <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#educationalQualifications"><i
+                class="fa fa-graduation-cap pr-1" aria-hidden="true"></i> Educational
               Qualifications</a> </li>
           <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profQualifications"><i
                 class="fa fa-user-md pr-1" aria-hidden="true"></i> Professional Qualifications</a> </li>
@@ -162,7 +162,7 @@
             </div>
             <div class="col-12 col-md-6 p-0 pull-left">
               <div class="buttonCon pull-right mt-2 mb-2 mr-2 ">
-                <button type="button" class="payHeadBtn" (click)="onSave()"><i class="fa fa-floppy-o"
+                <button type="button" class="payHeadBtn" (click)="onSaveClick()"><i class="fa fa-floppy-o"
                     aria-hidden="true"></i>Save</button>
               </div>
             </div>
@@ -176,12 +176,13 @@
                 <div class="form-inline col-12 col-md-12 p-0">
                   <div class="col-12 col-md-6 p-0">
                     <label for="Employee Code" class="col-5 col-md-5 pl-0">Employee Code:</label>
-                    <input type="text" class="form-control col-12 col-md-6 ptb-4" id="name" name="name"
+                    <input type="number" class="form-control col-12 col-md-6 ptb-4" id="name" name="name"
                       placeholder="Employee Code" formControlName="empCode"
                       [ngClass]="{'is-invalid': submitted && f.empCode.errors}">
                     <div *ngIf="submitted && f.empCode.errors" class="invalid-feedback">
                       <div *ngIf="f.empCode.errors.required" class="errorred">Employee Code is required</div>
                     </div>
+
                   </div>
                   <div class="col-12 col-md-6 p-0">
                     <label for="pay" class="col-5 col-md-5 pull-left pl-0">Title:</label>
@@ -211,11 +212,14 @@
                   </div>
                   <div class="col-12 col-md-6 p-0">
                     <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Date of Birth:</label>
-                    <input type="date" class="form-control addrCon formSelect col-7 col-md-7" name="name"
-                      placeholder="dd/mm/yyyy" formControlName="dateofBirth"
-                      [ngClass]="{'is-invalid': submitted && f.dateofBirth.errors}">
+                    <input type="date" class="form-control addrCon formSelect col-7 col-md-7 no-spin" name="name"
+                      placeholder="dd/mm/yyyy" formControlName="dateofBirth" [ngModel]="today"
+                      [ngClass]="{'is-invalid': submitted && f.dateofBirth.errors}"
+                      (ngModelChange)="updateCalcs($event)" [max]="today">
                     <div *ngIf="submitted && f.dateofBirth.errors" class="invalid-feedback">
                       <div *ngIf="f.dateofBirth.errors.required" class="errorred">Date of Birth is required</div>
+                      <div *ngIf="f.dateofBirth.errors.max" class="errorred">Date of Birth is sfgsfgsf</div>
+
                     </div>
                   </div>
 
@@ -225,12 +229,13 @@
                   <div class="col-12 col-md-6 p-0">
                     <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Middle Name:</label>
                     <input type="text" class="form-control addrCon formSelect col-7 col-md-7" id="name" name="name"
-                      placeholder="Middle Name">
+                      formControlName="middleName" placeholder="Middle Name">
                   </div>
 
                   <div class="col-12 col-md-6 p-0">
                     <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Age:</label>
-                    <label for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">22Years</label>
+                    <label step="0.01" for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">{{age| number:'2.2'}}
+                      year</label>
                   </div>
                 </div>
                 <div class="form-inline col-12 col-md-12 p-0 mt-1">
@@ -250,33 +255,47 @@
                 </div>
 
                 <div class="form-inline col-12 col-md-12 p-0 mt-1">
-
-
-                  <div class="col-12 col-md-6 p-0">
-                    <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Designation:</label>
-                    <select class="form-control addrCon formSelect col-7 col-md-7" [(ngModel)]="selectedLevel" id="type"
-                      name="type" formControlName="designation"
-                      [ngClass]="{'is-invalid': submitted && f.designation.errors}"
-                      style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
-                      <option [ngValue]="null">Select</option>
-                      <option [value]="designation.id" *ngFor="let designation of designationResponse;let i = index"
-                        [attr.selected]="i">
-                        {{designation.name}}</option>
-
-                    </select>
-
-                    <div *ngIf="submitted && f.designation.errors" class="invalid-feedback">
-                      <div *ngIf="f.designation.errors.required" class="errorred">Designation is required</div>
-
+                  <div class="col-12 col-md-6 p-0 mt-1">
+                    <label for="pay" class="col-4 col-md-4 pull-left pl-0">Marital Status:</label>
+                    <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
+                      <div class="form-check checkCol col-6 col-md-6 pull-left pl-4">
+                        <label class="checkBox">Married
+                          <input type="radio" name="radio8" checked="" [value]="Married"
+                            (click)="onMaritalStatusRadioClick('Married')">
+                          <span class="checkmark check mt-1"></span> </label>
+                      </div>
+                      <div class="form-check checkCol col-6 col-md-6 pull-left">
+                        <label class="checkBox">Unmarried
+                          <input type="radio" name="radio8" [value]="UnMarried"
+                            (click)="onMaritalStatusRadioClick('UnMarried')">
+                          <span class="checkmark check mt-1"></span> </label>
+                      </div>
                     </div>
                   </div>
                   <div class="col-12 col-md-6 p-0">
+                    <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Location:</label>
+                    <select class="form-control addrCon formSelect col-7 col-md-7" [(ngModel)]="selectedLevel"
+                      (change)="getSelectedLocation($event)" id="type" name="type" formControlName="location"
+                      [ngClass]="{'is-invalid': submitted && f.location.errors}"
+                      style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
+                      <option [value]="location.id" *ngFor="let location of locationResponse; let i = index"
+                        [attr.selected]="i">
+                        {{location.name}}</option>
+
+                    </select>
+
+                  </div>
+                  <div class="col-12 col-md-6 p-0 mt-1">
+                    <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Email ID:</label>
+                    <label for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">abcd@gmail.com</label>
+
+                  </div>
+                  <div class="col-12 col-md-6 p-0 mt-1">
                     <label for="pay" class="col-5 col-md-5 pull-left pl-0">Department:</label>
                     <select class="form-control addrCon formSelect col-7 col-md-7" id="type" name="type"
                       [(ngModel)]="selectedLevel" (change)="getSelectedDepartment($event)" formControlName="department"
-                      [ngClass]="{'is-invalid': submitted && f.department.errors}"
+                      (click)="onDepartmentClick()" [ngClass]="{'is-invalid': submitted && f.department.errors}"
                       style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
-                      <option [ngValue]="null">Select</option>
                       <option [value]="department.id" *ngFor="let department of departmentResponse;let i = index"
                         [attr.selected]="i">
                         {{department.name}}</option>
@@ -287,57 +306,36 @@
                       <div *ngIf="f.department.errors.required" class="errorred">Department is required</div>
                     </div>
                   </div>
-                </div>
-
-                <div class="form-inline col-12 col-md-12 p-0 mt-1">
-
-                  <div class="col-12 col-md-6 p-0">
-                    <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Email ID:</label>
-                    <label for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">abcd@gmail.com</label>
-
-                  </div>
-                  <div class="col-12 col-md-6 p-0">
-                    <label for="pay" class="col-4 col-md-4 pull-left pl-0">Marital Status:</label>
-                    <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
-                      <div class="form-check checkCol col-6 col-md-6 pull-left pl-3">
-                        <label class="checkBox">Married
-                          <input type="radio" name="radio8" checked>
-                          <span class="checkmark check mt-1"></span> </label>
-                      </div>
-                      <div class="form-check checkCol col-6 col-md-6 pull-left">
-                        <label class="checkBox">Unmarried
-                          <input type="radio" name="radio8">
-                          <span class="checkmark check mt-1"></span> </label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-inline col-12 col-md-12 p-0 mt-1">
-                  <!-- <div class="col-12 col-md-6 p-0">
-                          <label for="pay" class="col-5 col-md-5 pull-left pl-0">Department:</label>
-                          <select class="form-control addrCon formSelect col-7 col-md-7" id="type" name="type" style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
-                            <option>Select</option>
-                            <option>Sales</option>
-                            <option>IT</option>
-                            <option>Finance</option>
-                          </select>
-                        </div> -->
-
-                  <!-- <div class="col-12 col-md-6 p-0">
-                          <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Email ID:</label>
-                          <label for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">abcd@gmail.com</label>
-      
-                        </div> -->
-
-                </div>
-
-                <div class="form-inline col-12 col-md-12 p-0 mt-1">
-                  <div class="col-12 col-md-6 p-0">
+                  <div class="col-12 col-md-6 p-0 mt-1">
                     <label for="pay" class="col-5 col-md-5 pull-left pl-0">Reporting Heirarchy:</label>
                     <label for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">Heirarchy</label>
 
                   </div>
+                  <div class="col-12 col-md-6 p-0 mt-1">
+                    <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Designation:</label>
+                    <select class="form-control addrCon formSelect col-7 col-md-7" [(ngModel)]="selectedLevel" id="type"
+                      name="type" formControlName="designation" (change)="getSelectedDesignation($event)"
+                      (click)="onDesignationClick()" [ngClass]="{'is-invalid': submitted && f.designation.errors}"
+                      style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
+                      <option [value]="designation.id" *ngFor="let designation of designationResponse; let i = index"
+                        [attr.selected]="i">
+                        {{designation.name}}</option>
+
+                    </select>
+
+                    <div *ngIf="submitted && f.designation.errors" class="invalid-feedback">
+                      <div *ngIf="f.designation.errors.required" class="errorred">Designation is required</div>
+
+                    </div>
+                  </div>
+
+
+
+                </div>
+
+
+
+                <div class="form-inline col-12 col-md-12 p-0 ">
 
 
                   <div class="col-12 col-md-6 p-0">
@@ -345,9 +343,6 @@
                     <label for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">dd/mm/yyyy</label>
 
                   </div>
-                </div>
-
-                <div class="form-inline col-12 col-md-12 p-0 mt-1">
                   <div class="col-12 col-md-6 p-0">
                     <label for="pay" class="col-5 col-md-5 pull-left pl-0">Employment Type:</label>
                     <div class="formSelect clearfix col-7 col-md-7 pull-left p-0">
@@ -365,22 +360,9 @@
 
                     </div>
                   </div>
-
-                  <div class="col-12 col-md-6 p-0">
-                    <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Location:</label>
-                    <select class="form-control addrCon formSelect col-7 col-md-7" [(ngModel)]="selectedLevel"
-                      (change)="getSelectedLocation($event)" id="type" name="type" formControlName="location"
-                      [ngClass]="{'is-invalid': submitted && f.location.errors}"
-                      style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
-                      <option [ngValue]="null">Select</option>
-                      <option [value]="location.id" *ngFor="let location of locationResponse; let i = index">
-                        {{location.name}}</option>
-
-                    </select>
-
-                  </div>
-
                 </div>
+
+
                 <div class="form-inline col-12 col-md-12 p-0 mt-1">
                   <div class="col-12 col-md-6 p-0">
                     <label for="pay" class="col-5 col-md-5 pull-left pl-0">Contractor Name:</label>
@@ -394,10 +376,16 @@
 
 
               </div>
-              <div class="col-1 col-md-1 pull-left p-0 empPhoto">
-                <img src="../assets/images/profile-image.png" alt="profile Image" />
-
+              <div class="col-12 col-md-1 p-0 pull-left">
+                <div class="col-1 col-md-1 pull-left p-0 empPhoto">
+                  <img [src]="url" alt="profile Image" style="height:80px;" />
+                </div>
+                <div class="col-1 col-md-1 pull-left p-0 mt-1">
+                  <input #imageInput type="file" accept="image/*" (change)="processFile($event)" class="col-md-12"
+                    style="font-size: 10px; width: 73px;padding: 2px;">
+                </div>
               </div>
+
 
               <div class="clearfix"></div>
 
@@ -405,43 +393,52 @@
 
           </div>
         </div>
+
+
+
+
+
+
+
         <div id="AddressBook" class="container tab-pane fade">
           <div class="col-12 col-md-12 p-0">
-            <div class="col-12 col-md-6 pull-left mt-3 ">
+            <div class="col-12 col-md-4 pull-left mt-3 ">
               <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
               <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                 <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                   <label class="checkBox">
-                    <input type="checkbox" name="checkbox" checked>
+                    <input type="checkbox" name="checkbox" (ngModelChange)="onAddressFilterChange($event)"
+                    [ngModel]="addressFilter">
                     <span class="checkmark check1"></span> </label>
                 </div>
 
               </div>
             </div>
-            <div class="col-12 col-md-6 p-0 pull-left">
-              <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-                <button type="button" class="payHeadBtn" (click)="onAddAddress()"><i class="fa fa-plus-square"
-                    aria-hidden="true"></i>Add
-                  New</button>
-                <button type="button" class="payHeadBtn"><i class="fa fa-save" aria-hidden="true"></i>Save
-                </button>
-                <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
-              </div>
+            <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
+              <button type="button" class="payHeadBtn" (click)="onAddAddress()" [disabled]="addAddressToggleButton"><i
+                  class="fa fa-plus-square" aria-hidden="true"></i>Add
+                New</button>
+              <button type="button" class="payHeadBtn" (click)="onSaveUpdateAddress()" [disabled]="saveAddressToggleButton"><i
+                  class="fa fa-save" aria-hidden="true"></i>{{saveUpdateAddress}}
+              </button>
+              <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#deleteAddress"
+                [disabled]="deleteAddressToggleButton"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+            </div>
+            <div class="clearfix"></div>
+            <div class="formBody clearfix pt-0">
+              <ag-grid-angular style="width:100%; height: 221px" class="ag-theme-balham" [rowData]="rowData1"
+                [components]="components" [columnDefs]="columnDefs1" [animateRows]="true" [rowSelection]="rowSelection"
+                (gridReady)="onAddressGridReady($event)" (selectionChanged)="onAddressSelectionChanged($event)"></ag-grid-angular>
+
+
             </div>
             <div class="clearfix"></div>
           </div>
-          <div class="clearfix"></div>
-          <div class="formBody clearfix pt-0">
-            <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData1"
-              [columnDefs]="columnDefs1" [animateRows]="true" [rowSelection]="rowSelection"
-              (gridReady)="onAddressGridReady($event)" (cellKeyDown)="
-                onAddressCellKeyDown($event)"></ag-grid-angular>
 
-          </div>
           <div class="row">
-            <div class="col-md-12 col-sm-6 col-xs-12 p-0">
+            <div class="col-md-12 col-sm-6 col-xs-12 ">
 
-              <div class="form group col-md-2 pull-right">
+              <div class="form group col-md-2 pull-right p-0">
                 <span class="fa fa-angle-double-left  previous round" title="Older" id="nextprev"></span>
                 <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of
                   100</label>
@@ -451,10 +448,20 @@
             </div>
           </div>
         </div>
+
+
+
+
+
+
+
+
         <div id="educationalQualifications" class="container tab-pane fade p-0">
           <div class="col-2 col-md-12 p-0 pull-left" style="box-shadow: 1px 1px 1px #c0c1c1;">
             <div class="payHead">
               <div class="qualifications">
+
+
                 <ul class="nav navbar-nav" role="tablist">
                   <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#Highschool"><i class="pr-1"
                         aria-hidden="true"></i>School</a> </li>
@@ -473,7 +480,7 @@
           <div class="tab-content">
             <div id="Highschool" class="container tab-pane active">
               <div class="container p-0">
-                <div class="col-12 col-md-6 pull-left mt-3 ">
+                <div class="col-12 col-md-4 pull-left mt-3 ">
                   <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
                   <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                     <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
@@ -483,27 +490,32 @@
                     </div>
 
                   </div>
+
                 </div>
-                <div class="col-12 col-md-6 p-0 pull-left">
+                <div class="col-12 col-md-8 p-0 pull-left">
                   <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-                    <button type="button" class="payHeadBtn" (click)="onAddQualification()"><i class="fa fa-plus-square"
-                        aria-hidden="true"></i>Add
+                    <button type="button" class="payHeadBtn" (click)="onAddSchoolQualification()"
+                      [disabled]="addNewRowSchool"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                       New</button>
-                    <button type="button" class="payHeadBtn"><i class="fa fa-save" aria-hidden="true"></i>Save
-                    </button> <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#addNew1"><i
-                        class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                    <button type="button" class="payHeadBtn"><i class="fa fa-save" aria-hidden="true"
+                        (click)="onSaveEducationalData()"></i>Save
+                    </button> <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#addNew1"
+                      (click)="onDeleteQualification()"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
                   </div>
                 </div>
                 <div class="clearfix"></div>
               </div>
               <div class="clearfix"></div>
               <div class="formBody clearfix pt-0">
-                <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData2"
-                [columnDefs]="columnDefs2"></ag-grid-angular>
+                <ag-grid-angular style="width:100%; height:322px" class="ag-theme-balham" [rowData]="rowData2"
+                  [animateRows]="true" [columnDefs]="columnDefs2" [rowSelection]="rowSelection"
+                  (gridReady)="onGridSchoolReady($event)">
+                </ag-grid-angular>
+
               </div>
               <div class="row">
-                <div class="col-md-12 col-sm-6 col-xs-12 p-0">
-                  <div class="form group col-md-2 pull-right">
+                <div class="col-md-12 col-sm-6 col-xs-12 ">
+                  <div class="form group col-md-2 pull-right p-0">
                     <span class="fa fa-angle-double-left  previous round" title="Older" id="nextprev"></span>
                     <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of
                       100</label>
@@ -514,7 +526,7 @@
             </div>
             <div id="Graduation" class="container tab-pane fade">
               <div class="container p-0">
-                <div class="col-12 col-md-6 pull-left mt-3 ">
+                <div class="col-12 col-md-4 pull-left mt-3 ">
                   <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
                   <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                     <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
@@ -525,13 +537,15 @@
 
                   </div>
                 </div>
-                <div class="col-12 col-md-6 p-0 pull-left">
+                <div class="col-12 col-md-8 p-0 pull-left">
                   <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-                    <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                    <button type="button" class="payHeadBtn" (click)="onAddGraduationQualification()"
+                      [disabled]="addNewGraduationRow"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                       New</button>
-                    <button type="button" class="payHeadBtn"><i class="fa fa-save" aria-hidden="true"></i>Save
+                    <button type="button" class="payHeadBtn" (click)="onSaveGraduationData()"><i class="fa fa-save"
+                        aria-hidden="true"></i>Save
                     </button>
-                    <button type="button" class="payHeadBtn"><i class="fa fa-trash"
+                    <button type="button" class="payHeadBtn" (click)="onDeleteGraduationData()"><i class="fa fa-trash"
                         aria-hidden="true"></i>Delete</button>
                   </div>
                 </div>
@@ -539,13 +553,14 @@
               </div>
               <div class="clearfix"></div>
               <div class="formBody clearfix pt-0">
-                <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData4"
-                  [columnDefs]="columnDefs4"></ag-grid-angular>
+                <ag-grid-angular style="width:100%; height: 315px" class="ag-theme-balham " [rowData]="rowData4"
+                  [columnDefs]="columnDefs4" [rowSelection]="rowSelection" (gridReady)="onGridGraduationReady($event)">
+                </ag-grid-angular>
 
               </div>
               <div class="row">
-                <div class="col-md-12 col-sm-6 col-xs-12 p-0">
-                  <div class="form group col-md-2 pull-right">
+                <div class="col-md-12 col-sm-6 col-xs-12 ">
+                  <div class="form group col-md-2 pull-right p-0">
                     <span class="fa fa-angle-double-left  previous round" title="Older" id="nextprev"></span>
                     <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of
                       100</label>
@@ -556,7 +571,7 @@
             </div>
             <div id="PostGraduation" class="container tab-pane fade">
               <div class="container p-0">
-                <div class="col-12 col-md-6 pull-left mt-3 ">
+                <div class="col-12 col-md-4 pull-left mt-3 ">
                   <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
                   <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                     <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
@@ -567,27 +582,30 @@
 
                   </div>
                 </div>
-                <div class="col-12 col-md-6 p-0 pull-left">
+                <div class="col-12 col-md-8 p-0 pull-left">
                   <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-                    <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                    <button type="button" class="payHeadBtn" (click)="onAddPostGraduationQualification()"
+                      [disabled]="addNewPostGraduationRow"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                       New</button>
-                    <button type="button" class="payHeadBtn"><i class="fa fa-save" aria-hidden="true"></i>Save
+                    <button type="button" class="payHeadBtn" (click)="onSavePostGraduationData()"><i class="fa fa-save"
+                        aria-hidden="true"></i>Save
                     </button>
-                    <button type="button" class="payHeadBtn"><i class="fa fa-trash"
-                        aria-hidden="true"></i>Delete</button>
+                    <button type="button" class="payHeadBtn" (click)="onDeletePostGraduationData()"><i
+                        class="fa fa-trash" aria-hidden="true"></i>Delete</button>
                   </div>
                 </div>
                 <div class="clearfix"></div>
               </div>
               <div class="clearfix"></div>
               <div class="formBody clearfix pt-0">
-                <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData5"
-                  [columnDefs]="columnDefs5"></ag-grid-angular>
+                <ag-grid-angular style="width:100%; height: 315px" class="ag-theme-balham" [rowData]="rowData5"
+                  [columnDefs]="columnDefs5" [rowSelection]="rowSelection"
+                  (gridReady)="onGridPostGraduationReady($event)"></ag-grid-angular>
 
               </div>
               <div class="row">
-                <div class="col-md-12 col-sm-6 col-xs-12 p-0">
-                  <div class="form group col-md-2 pull-right">
+                <div class="col-md-12 col-sm-6 col-xs-12 ">
+                  <div class="form group col-md-2 pull-right p-0">
                     <span class="fa fa-angle-double-left  previous round" title="Older" id="nextprev"></span>
                     <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of
                       100</label>
@@ -598,7 +616,7 @@
             </div>
             <div id="Other" class="container tab-pane fade">
               <div class="container p-0">
-                <div class="col-12 col-md-6 pull-left mt-3 ">
+                <div class="col-12 col-md-4 pull-left mt-3 ">
                   <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
                   <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                     <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
@@ -609,13 +627,15 @@
 
                   </div>
                 </div>
-                <div class="col-12 col-md-6 p-0 pull-left">
+                <div class="col-12 col-md-8 p-0 pull-left">
                   <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-                    <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                    <button type="button" class="payHeadBtn" (click)="onOtherQualification()"
+                      [disabled]="addNewOther"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                       New</button>
-                    <button type="button" class="payHeadBtn"><i class="fa fa-save" aria-hidden="true"></i>Save
+                    <button type="button" class="payHeadBtn" (click)="onSaveOtherData()"><i class="fa fa-save"
+                        aria-hidden="true"></i>Save
                     </button>
-                    <button type="button" class="payHeadBtn"><i class="fa fa-trash"
+                    <button type="button" class="payHeadBtn" (click)="onDeleteOtherData()"><i class="fa fa-trash"
                         aria-hidden="true"></i>Delete</button>
                   </div>
                 </div>
@@ -623,13 +643,14 @@
               </div>
               <div class="clearfix"></div>
               <div class="formBody clearfix pt-0">
-                <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData6"
-                  [columnDefs]="columnDefs6"></ag-grid-angular>
+                <ag-grid-angular style="width:100%; height: 315px" class="ag-theme-balham" [rowData]="rowData6"
+                  [columnDefs]="columnDefs6" [rowSelection]="rowSelection" (gridReady)="onGridOtherReady($event)">
+                </ag-grid-angular>
 
               </div>
               <div class="row">
-                <div class="col-md-12 col-sm-6 col-xs-12 p-0">
-                  <div class="form group col-md-2 pull-right">
+                <div class="col-md-12 col-sm-6 col-xs-12 ">
+                  <div class="form group col-md-2 pull-right p-0">
                     <span class="fa fa-angle-double-left  previous round" title="Older" id="nextprev"></span>
                     <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of
                       100</label>
@@ -642,79 +663,101 @@
         </div>
         <div id="profQualifications" class="container tab-pane fade">
           <div class="col-12 col-md-12 p-0">
-            <div class="col-12 col-md-6 pull-left mt-3 ">
+            <div class="col-12 col-md-4 pull-left mt-3 ">
               <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
               <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                 <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                   <label class="checkBox">
-                    <input type="checkbox" name="checkbox" checked>
+
+                    <input type="checkbox" name="checkbox" (ngModelChange)="onCheckedBoxChange($event)"
+                      [ngModel]="checkedStatus">
                     <span class="checkmark check1"></span> </label>
                 </div>
-
               </div>
             </div>
-            <div class="col-12 col-md-6 p-0 pull-left">
+            
+            <div class="col-12 col-md-8 p-0 pull-left">
               <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-                <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+
+                <button type="button" class="payHeadBtn" (click)="onProfessionalQualification()"
+                  [disabled]="addNewProfessionalQualification"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                   New</button>
-                <button type="button" class="payHeadBtn"><i class="fa fa-save" aria-hidden="true"></i>Save
+                <button type="button" class="payHeadBtn" (click)="onSaveUpdateProfessionalEducationData()"
+                  [disabled]="editProfessionalQualification"><i class="fa fa-save"
+                    aria-hidden="true"></i>{{saveUpdateProfessional}}
                 </button>
-                <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                <button type="button" data-toggle="modal" data-target="#addNew1" class="payHeadBtn"
+                  [disabled]="deleteNewProfessionalQualification"><i class="fa fa-trash"
+                    aria-hidden="true"></i>Delete</button>
               </div>
             </div>
 
             <div class="formBody clearfix pt-0" style="clear: both;">
-              <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData7"
-                [columnDefs]="columnDefs7"></ag-grid-angular>
+
+              <ag-grid-angular style="width:100%; height: 315px" class="ag-theme-balham" [rowData]="rowData7"
+                [columnDefs]="columnDefs7" [rowSelection]="rowSelection"
+                (gridReady)="onGridProfessionalQualificationReady($event)"
+                (selectionChanged)="onProfessionalSelectionChanged($event)"></ag-grid-angular>
 
             </div>
             <div class="row">
-              <div class="col-md-12 col-sm-6 col-xs-12 p-0">
-                <div class="form group col-md-2 pull-right">
-                  <span class="fa fa-angle-double-left  previous round" title="Older" id="nextprev"></span>
-                  <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of
-                    100</label>
-                  <span class="fa fa-angle-double-right  next round" title="Newer" id="nextprev"></span>
+              <div class="col-md-12 col-sm-6 col-xs-12 ">
+                <div class="form group col-md-2 pull-right p-0">
+                  <span class="fa fa-angle-double-left  previous round" title="Older" (click)="previousDataProfessional()" id="nextprev"></span>
+                  <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1- {{ShowLimitedProfessionalQualification}} of
+                    {{ToalProfessionalQualification}}</label>
+                  <span class="fa fa-angle-double-right  next round" title="Newer" (click)="NextDataProfessional()" id="nextprev"></span>
                 </div>
               </div>
 
             </div>
           </div>
         </div>
+
         <div id="experience" class="container tab-pane fade">
           <div class="col-12 col-md-12 p-0">
-            <div class="col-12 col-md-6 pull-left mt-3 ">
+            <div class="col-12 col-md-4 pull-left mt-3 ">
               <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
               <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                 <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                   <label class="checkBox">
-                    <input type="checkbox" name="checkbox" checked>
+                    <input type="checkbox" name="checkbox" (ngModelChange)="onEmpFilterChange($event)"
+                      [ngModel]="empFilter">
                     <span class="checkmark check1"></span> </label>
                 </div>
 
+
               </div>
+
             </div>
-            <div class="col-12 col-md-6 p-0 pull-left">
+            <div class="col-12 col-md-8 p-0 pull-left">
               <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-                <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                <button type="button" class="payHeadBtn" (click)="onAddEmpExperience()"
+                  [disabled]="addExperienceToggleButton"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                   New</button>
-                <button type="button" class="payHeadBtn"><i class="fa fa-save" aria-hidden="true"></i>Save
+                <button type="button" class="payHeadBtn" (click)="onSaveUpdateEmpExperience()"
+                  [disabled]="saveExperienceToggleButton"><i class="fa fa-save"
+                    aria-hidden="true"></i>{{saveUpdateExperience}}
                 </button>
-                <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                <button type="button" class="payHeadBtn" [disabled]="deleteExperienceToggleButton" data-toggle="modal"
+                  data-target="#deleteExperience"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
               </div>
+
             </div>
-            <div class="clearfix"></div>
           </div>
 
           <div class="formBody clearfix pt-0" style="clear: both;">
 
-            <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData8"
-              [columnDefs]="columnDefs8"></ag-grid-angular>
+            <ag-grid-angular style="width:100%; height: 347px" class="ag-theme-balham" [rowData]="rowData8"
+              [columnDefs]="columnDefs8" [animateRows]="true" [rowSelection]="rowSelection"
+              (gridReady)="onEmpExperienceGridReady($event)"
+              (selectionChanged)="onEmpExperienceSelectionChanged($event)"></ag-grid-angular>
+
 
           </div>
           <div class="row">
-            <div class="col-md-12 col-sm-6 col-xs-12 p-0">
-              <div class="form group col-md-2 pull-right">
+            <div class="col-md-12 col-sm-6 col-xs-12 ">
+              <div class="form group col-md-2 pull-right p-0">
                 <span class="fa fa-angle-double-left  previous round" title="Older" id="nextprev"></span>
                 <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of
                   100</label>
@@ -725,9 +768,15 @@
           </div>
         </div>
 
+
+
+
+
+
+
         <div id="skills" class="container tab-pane fade">
           <div class="col-12 col-md-12 p-0">
-            <div class="col-12 col-md-6 pull-left mt-3 ">
+            <div class="col-12 col-md-4 pull-left mt-3 ">
               <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
               <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                 <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
@@ -738,7 +787,7 @@
 
               </div>
             </div>
-            <div class="col-12 col-md-6 p-0 pull-left">
+            <div class="col-12 col-md-8 p-0 pull-left">
               <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
                 <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                   New</button>
@@ -830,7 +879,7 @@
         </div>
         <div id="achievements" class="container tab-pane fade">
           <div class="col-12 col-md-12 p-0">
-            <div class="col-12 col-md-6 pull-left mt-3 ">
+            <div class="col-12 col-md-4 pull-left mt-3 ">
               <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
               <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                 <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
@@ -841,7 +890,7 @@
 
               </div>
             </div>
-            <div class="col-12 col-md-6 p-0 pull-left">
+            <div class="col-12 col-md-8 p-0 pull-left">
               <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
                 <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                   New</button>
@@ -854,13 +903,13 @@
           </div>
           <div class="formBody clearfix pt-0" style="clear: both;">
 
-            <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData9"
+            <ag-grid-angular style="width:100%; height: 347px" class="ag-theme-balham" [rowData]="rowData9"
               [columnDefs]="columnDefs9"></ag-grid-angular>
 
           </div>
           <div class="row">
-            <div class="col-md-12 col-sm-6 col-xs-12 p-0">
-              <div class="form group col-md-2 pull-right">
+            <div class="col-md-12 col-sm-6 col-xs-12 ">
+              <div class="form group col-md-2 pull-right p-0">
                 <span class="fa fa-angle-double-left  previous round" title="Older" id="nextprev"></span>
                 <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of
                   100</label>
@@ -872,7 +921,7 @@
         </div>
         <div id="bankDetails" class="container tab-pane fade">
           <div class="col-12 col-md-12 p-0">
-            <div class="col-12 col-md-6 pull-left mt-3 ">
+            <div class="col-12 col-md-4 pull-left mt-3 ">
               <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
               <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                 <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
@@ -883,7 +932,7 @@
 
               </div>
             </div>
-            <div class="col-12 col-md-6 p-0 pull-left">
+            <div class="col-12 col-md-8 p-0 pull-left">
               <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
                 <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                   New</button>
@@ -896,13 +945,13 @@
           </div>
           <div class="formBody clearfix pt-0" style="clear: both;">
 
-            <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData10"
+            <ag-grid-angular style="width:100%; height: 347px" class="ag-theme-balham" [rowData]="rowData10"
               [columnDefs]="columnDefs10"></ag-grid-angular>
 
           </div>
           <div class="row">
-            <div class="col-md-12 col-sm-6 col-xs-12 p-0">
-              <div class="form group col-md-2 pull-right">
+            <div class="col-md-12 col-sm-6 col-xs-12 ">
+              <div class="form group col-md-2 pull-right p-0">
                 <span class="fa fa-angle-double-left  previous round" title="Older" id="nextprev"></span>
                 <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of
                   100</label>
@@ -912,8 +961,6 @@
 
           </div>
         </div>
-
-
         <div id="documents" class="container tab-pane fade p-0">
           <div class="col-12 col-md-12 p-0 pull-left" style="box-shadow: 1px 1px 1px #c0c1c1;">
             <div class="payHead">
@@ -943,7 +990,7 @@
           <div class="tab-content">
             <div id="Passport" class="container tab-pane active">
               <div class="col-12 col-md-12 p-0">
-                <div class="col-12 col-md-6 pull-left mt-3 ">
+                <div class="col-12 col-md-4 pull-left mt-3 ">
                   <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
                   <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                     <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
@@ -954,7 +1001,7 @@
 
                   </div>
                 </div>
-                <div class="col-12 col-md-6 p-0 pull-left">
+                <div class="col-12 col-md-8 p-0 pull-left">
                   <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
                     <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                       New</button>
@@ -968,13 +1015,13 @@
               </div>
               <div class="clearfix"></div>
               <div class="formBody clearfix pt-0" style="clear: both;">
-                <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData11"
+                <ag-grid-angular style="width:100%; height: 315px" class="ag-theme-balham" [rowData]="rowData11"
                   [columnDefs]="columnDefs11"></ag-grid-angular>
 
               </div>
               <div class="row">
-                <div class="col-md-12 col-sm-6 col-xs-12 p-0">
-                  <div class="form group col-md-2 pull-right">
+                <div class="col-md-12 col-sm-6 col-xs-12 ">
+                  <div class="form group col-md-2 pull-right p-0">
                     <span class="fa fa-angle-double-left  previous round" title="Older" id="nextprev"></span>
                     <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of
                       100</label>
@@ -987,7 +1034,7 @@
 
             <div id="Visa" class="container tab-pane fade">
               <div class="col-12 col-md-12 p-0">
-                <div class="col-12 col-md-6 pull-left mt-3 ">
+                <div class="col-12 col-md-4 pull-left mt-3 ">
                   <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
                   <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                     <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
@@ -998,7 +1045,7 @@
 
                   </div>
                 </div>
-                <div class="col-12 col-md-6 p-0 pull-left">
+                <div class="col-12 col-md-8 p-0 pull-left">
                   <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
                     <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                       New</button>
@@ -1012,13 +1059,13 @@
               </div>
               <div class="clearfix"></div>
               <div class="formBody clearfix pt-0">
-                <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData12"
+                <ag-grid-angular style="width:100%; height: 315px" class="ag-theme-balham" [rowData]="rowData12"
                   [columnDefs]="columnDefs12"></ag-grid-angular>
 
               </div>
               <div class="row">
-                <div class="col-md-12 col-sm-6 col-xs-12 p-0">
-                  <div class="form group col-md-2 pull-right">
+                <div class="col-md-12 col-sm-6 col-xs-12 ">
+                  <div class="form group col-md-2 pull-right p-0">
                     <span class="fa fa-angle-double-left  previous round" title="Older" id="nextprev"></span>
                     <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of
                       100</label>
@@ -1039,7 +1086,7 @@
             </div>
             <div id="DrivingLicence" class="container tab-pane fade">
               <div class="col-12 col-md-12 p-0">
-                <div class="col-12 col-md-6 pull-left mt-3 ">
+                <div class="col-12 col-md-4 pull-left mt-3 ">
                   <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
                   <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                     <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
@@ -1050,7 +1097,7 @@
 
                   </div>
                 </div>
-                <div class="col-12 col-md-6 p-0 pull-left">
+                <div class="col-12 col-md-8 p-0 pull-left">
                   <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
                     <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                       New</button>
@@ -1064,13 +1111,13 @@
               </div>
               <div class="clearfix"></div>
               <div class="formBody clearfix pt-0">
-                <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData14"
+                <ag-grid-angular style="width:100%; height: 315px" class="ag-theme-balham" [rowData]="rowData14"
                   [columnDefs]="columnDefs14"></ag-grid-angular>
 
               </div>
               <div class="row">
-                <div class="col-md-12 col-sm-6 col-xs-12 p-0">
-                  <div class="form group col-md-2 pull-right">
+                <div class="col-md-12 col-sm-6 col-xs-12 ">
+                  <div class="form group col-md-2 pull-right p-0">
                     <span class="fa fa-angle-double-left  previous round" title="Older" id="nextprev"></span>
                     <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of
                       100</label>
@@ -1081,7 +1128,7 @@
             </div>
             <div id="MedicalCertificate" class="container tab-pane fade">
               <div class="col-12 col-md-12 p-0">
-                <div class="col-12 col-md-6 pull-left mt-3 ">
+                <div class="col-12 col-md-4 pull-left mt-3 ">
                   <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
                   <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                     <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
@@ -1092,7 +1139,7 @@
 
                   </div>
                 </div>
-                <div class="col-12 col-md-6 p-0 pull-left">
+                <div class="col-12 col-md-8 p-0 pull-left">
                   <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
                     <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                       New</button>
@@ -1106,13 +1153,13 @@
               </div>
               <div class="clearfix"></div>
               <div class="formBody clearfix pt-0">
-                <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData15"
+                <ag-grid-angular style="width:100%; height: 315px" class="ag-theme-balham" [rowData]="rowData15"
                   [columnDefs]="columnDefs15"></ag-grid-angular>
 
               </div>
               <div class="row">
-                <div class="col-md-12 col-sm-6 col-xs-12 p-0">
-                  <div class="form group col-md-2 pull-right">
+                <div class="col-md-12 col-sm-6 col-xs-12 ">
+                  <div class="form group col-md-2 pull-right p-0">
                     <span class="fa fa-angle-double-left  previous round" title="Older" id="nextprev"></span>
                     <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of
                       100</label>
@@ -1123,7 +1170,7 @@
             </div>
             <div id="EducationalCertificate" class="container tab-pane fade">
               <div class="col-12 col-md-12 p-0">
-                <div class="col-12 col-md-6 pull-left mt-3 ">
+                <div class="col-12 col-md-4 pull-left mt-3 ">
                   <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
                   <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                     <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
@@ -1134,7 +1181,7 @@
 
                   </div>
                 </div>
-                <div class="col-12 col-md-6 p-0 pull-left">
+                <div class="col-12 col-md-8 p-0 pull-left">
                   <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
                     <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                       New</button>
@@ -1148,13 +1195,13 @@
               </div>
               <div class="clearfix"></div>
               <div class="formBody clearfix pt-0">
-                <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData16"
+                <ag-grid-angular style="width:100%; height: 315px" class="ag-theme-balham" [rowData]="rowData16"
                   [columnDefs]="columnDefs16"></ag-grid-angular>
 
               </div>
               <div class="row">
-                <div class="col-md-12 col-sm-6 col-xs-12 p-0">
-                  <div class="form group col-md-2 pull-right">
+                <div class="col-md-12 col-sm-6 col-xs-12 ">
+                  <div class="form group col-md-2 pull-right p-0">
                     <span class="fa fa-angle-double-left  previous round" title="Older" id="nextprev"></span>
                     <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of
                       100</label>
@@ -1422,6 +1469,8 @@
     </div>
 
   </div>
+
+
   <div class="modal fade" id="addNew">
     <div class="modal-dialog modal-dialog-centered" id="addpopUp">
       <div class="modal-content">
@@ -1446,7 +1495,6 @@
       </div>
     </div>
   </div>
-
   <div class="modal fade" id="addNew1">
     <div class="modal-dialog modal-dialog-centered" id="Div3">
       <div class="modal-content">
@@ -1459,11 +1507,53 @@
         </div>
         <div class="modal-footer">
 
-          <button type="button" id="btnSave" class="btn btn-submit" (click)="onDeleteQualification()"
+          <button type="button" id="btnSave" class="btn btn-submit" (click)="onDeleteProfessionalEducation()"
             style="padding:4px;" data-dismiss="modal">OK</button>
           <button type="button" id="btnSave" class="btn btn-submit" onclick="" style="padding:4px;"
             data-dismiss="modal">CANCLE</button>
         </div>
       </div>
     </div>
+  </div>
+  <div class="modal fade" id="deleteAddress">
+    <div class="modal-dialog modal-dialog-centered" id="Div3">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5>Address</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+
+        </div>
+        <div class="modal-footer">
+
+          <button type="button" id="btnSave" class="btn btn-submit" (click)="onDeleteAddress()" style="padding:4px;"
+            data-dismiss="modal">OK</button>
+          <button type="button" id="btnSave" class="btn btn-submit" onclick="" style="padding:4px;"
+            data-dismiss="modal">CANCEL</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="deleteExperience">
+    <div class="modal-dialog modal-dialog-centered" id="Div3">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5>Experience</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+
+        </div>
+        <div class="modal-footer">
+
+          <button type="button" id="btnSave" class="btn btn-submit" (click)="onDeleteExperience()" style="padding:4px;"
+            data-dismiss="modal">OK</button>
+          <button type="button" id="btnSave" class="btn btn-submit" onclick="" style="padding:4px;"
+            data-dismiss="modal">CANCEL</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   </div>

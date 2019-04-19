@@ -12,7 +12,7 @@ export class GeneralComponent implements OnInit {
     { headerName: 'Language Code', field: 'languageCode', sortable: true, filter: true, editable:true, width: 120 },
     { headerName: 'Language', field: 'language', sortable: true, filter: true, editable:true, width: 120 },
     { headerName: 'Description', field: 'description', sortable: true, filter: true, editable:true, width: 130 },
-    { headerName: '', field: '', width: 370 }
+    { headerName: '', field: '', width:422, }
    ];
 
   rowData = [
@@ -24,11 +24,11 @@ export class GeneralComponent implements OnInit {
   ];
 
   columnDefs1 = [
-    { headerName: 'Country', field: 'country', sortable: true, filter: true, editable:true, width: 100 },
-    { headerName: 'Currency Code', field: 'currencyCode', sortable: true, filter: true, editable:true, width: 120 },
+    { headerName: 'Country', field: 'country', sortable: true, filter: true, editable:true, width:100 },
+    { headerName: 'Currency Code', field: 'currencyCode', sortable: true, filter: true, editable:true, width:120 },
     { headerName: 'Currency', field: 'currency', sortable: true, filter: true, editable:true, width: 120 },
     { headerName: 'Description', field: 'description', sortable: true, filter: true, editable:true, width: 130 },
-    { headerName: '', field: '', width: 370 }
+    { headerName: '', field: '', width:422, }
   ];
 
   rowData1 = [
@@ -43,7 +43,7 @@ export class GeneralComponent implements OnInit {
     { headerName: 'Country', field: 'country', sortable: true, filter: true, editable:true, width: 100 },
     { headerName: 'Time Zone', field: 'timezone', sortable: true, filter: true, editable:true, width: 120 },
     {headerName: 'Description', field: 'description', sortable: true, filter: true, editable:true, width: 130 },
-    { headerName: '', field: '', width: 490 }
+    { headerName: '', field: '', width:542, }
   ];
 
   rowData2 = [

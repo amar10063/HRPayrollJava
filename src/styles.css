@@ -11,5 +11,7 @@ body {
     font-size:10px;
 }
 
-
+.no-spin::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
 
