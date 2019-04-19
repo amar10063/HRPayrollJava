@@ -1,7 +1,7 @@
 import { GridApi, ColumnApi, CellComp } from 'ag-grid-community';
 import { HighSchoolBody } from '../../WebServices/WebServiceBody/EducationBody/HighSchoolBody';
 import { HighSchoolResponse } from '../../WebServices/WebServiceResponse/EducationResponse/HighSchoolResponse';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { from } from 'rxjs';
 import { AllWeb } from 'src/app/WebServices/AllWeb.service';
@@ -24,7 +24,10 @@ import { OtherEducationBody } from 'src/app/WebServices/WebServiceBody/Education
 import { OtherEducationDeleted } from 'src/app/WebServices/WebServiceBody/EducationBody/OtherEducationDeleted';
 import { BasicDetailBody } from 'src/app/WebServices/WebServiceBody/EmployeeBasicDetail/BasicDetailBody';
 import { DatePipe } from '@angular/common';
-
+import { GetProfessionalEducationResponse } from '../ProfessionalEducation/GetProfessionalEducationResponse';
+import { ProfessionalBodySave } from 'src/app/WebServices/WebServiceBody/ProfessionalEducation/ProfessionalBodySave';
+import { DeletedProfessionalEducation } from 'src/app/WebServices/WebServiceBody/ProfessionalEducation/deletedProfessionalEducation';
+import { ProfessionalBodyUpdate } from 'src/app/WebServices/WebServiceBody/ProfessionalEducation/ProfessionalBodyUpdate';
 
 @Component({
   selector: 'app-employee',
@@ -38,6 +41,8 @@ export class EmployeeComponent implements OnInit {
   addressApi: GridApi;
   addressColumnApi: ColumnApi;
 
+  checkedStatus = false;
+
   graduationApi: GridApi;
   graduationColumnApi: ColumnApi;
 
@@ -46,6 +51,9 @@ export class EmployeeComponent implements OnInit {
 
   otherApi: GridApi;
   otherColumnApi: ColumnApi;
+
+  professionalQualificationApi: GridApi;
+  professionalQualificationColumnApi: ColumnApi;
 
 
   rowSelection: string;
@@ -275,16 +283,16 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs7 = [
 
-    { headerName: 'Institute', field: 'Institute', editable: true, width: 120 },
-    { headerName: 'Course', field: 'Course', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'Institute', field: 'institute', editable: true, width: 120 },
+    { headerName: 'Course', field: 'course', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'Start Date', field: 'startDate', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'End Date', field: 'endDate', sortable: true, filter: true, editable: true, width: 120 },
     { headerName: '', field: '', width: 520, }
 
   ];
 
   rowData7 = [
-    { Institute: 'Ducat', Course: 'Ruby', StartDate: '10-01-2018', EndDate: '10-06-2018' },
+    // { Institute: 'Ducat', Course: 'Ruby', StartDate: '10-01-2018', EndDate: '10-06-2018' },
 
   ];
 
@@ -444,6 +452,9 @@ export class EmployeeComponent implements OnInit {
   locationResponse;
   selectedLocationIndex: number;
   selectedDepartmentIndex: number;
+  public selectedRowsProfessional:any[];
+  saveUpdateProfessional: string;
+  nodeSelectButWhere:string;
 
   public show: boolean = false;
   public hide: boolean = true;
@@ -467,13 +478,16 @@ export class EmployeeComponent implements OnInit {
   getGraduationDetailsResponse: GetGraduationDetailsResponse[];
   getPostGraduationDetailsResponse: GetPostGraduationDetailsResponse[];
   getOtherEducationalResponse: GetOtherEducationalResponse[];
+  getProfessionalEducationResponse:GetProfessionalEducationResponse[];
   addNewRowSchool: boolean = false;
   addNewGraduationRow: boolean = false;
   addNewPostGraduationRow: boolean = false;
   addNewOther: boolean = false;
-
-
+  addNewProfessionalQualification: boolean = false;
+  editProfessionalQualification: boolean = false;
+  deleteNewProfessionalQualification: boolean = false;
   today;
+
   ngOnInit() {
     this.today = new Date().toJSON().split('T')[0];
     this.today = new DatePipe('en-US').transform(this.today, 'dd/MM/yyyy');
@@ -493,6 +507,7 @@ export class EmployeeComponent implements OnInit {
     this.onGetGraduational();
     this.onGetPostGraduational();
     this.onGetOther();
+    this.onGetProfessionalEducation();
     console.log('this.today ' + this.today);
 
   }
@@ -625,13 +640,7 @@ export class EmployeeComponent implements OnInit {
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.basicDetailsForm.value));
   }
 
-  onAddSchoolQualification() {
-    this.addNewRowSchool = true;
-    let res = this.api.updateRowData({ add: [{ class: 'High School' }] });
-    res.add.forEach(function (rowNode) {
-      console.log('Added Row Node', rowNode);
-    });
-  }
+
 
 
 
@@ -646,11 +655,6 @@ export class EmployeeComponent implements OnInit {
     }
   }
 
-  onGridSchoolReady(params) {
-    this.api = params.api;
-    this.columnApi = params.columnApi;
-  }
-
   onSelectionChanged() {
     const selectedRows = this.api.getSelectedRows();
     let selectedRowsString = '';
@@ -663,13 +667,26 @@ export class EmployeeComponent implements OnInit {
     document.querySelector('#selectedRows').innerHTML = selectedRowsString;
   }
 
+  // Education - School
+  onAddSchoolQualification() {
+    this.addNewRowSchool = true;
+    let res = this.api.updateRowData({ add: [{ class: 'High School' }] });
+    res.add.forEach(function (rowNode) {
+      console.log('Added Row Node', rowNode);
+    });
+  }
+
+  onGridSchoolReady(params) {
+    this.api = params.api;
+    this.columnApi = params.columnApi;
+  }
+
   onGetSchoolQualification() {
     var getHighSchoolUserId = new GetSchoolModel();
     this.allwebService.getHighSchoolData(getHighSchoolUserId)
       .subscribe(
         data => {
           this.getSchoolResonseData = data;
-          console.log("key", this.getSchoolResonseData);
           this.rowData2 = this.getSchoolResonseData;
         }
       );
@@ -760,7 +777,7 @@ export class EmployeeComponent implements OnInit {
     }
   }
 
-  // 
+  // Educational - Graduation
   onAddGraduationQualification() {
     this.addNewGraduationRow = true;
     // alert("ok");
@@ -780,9 +797,7 @@ export class EmployeeComponent implements OnInit {
     this.allwebService.getgraduational(getSchoolModel)
       .subscribe(
         data => {
-          console.log("asdf", "QWERT");
           this.getGraduationDetailsResponse = data;
-          console.log("key", this.getGraduationDetailsResponse);
           this.rowData4 = this.getGraduationDetailsResponse;
         }
       );
@@ -878,7 +893,7 @@ export class EmployeeComponent implements OnInit {
     }
   }
 
-  //
+  // Educational - PostGraduation
   onAddPostGraduationQualification() {
     this.addNewPostGraduationRow = true;
     let res = this.postGraduationApi.updateRowData({ add: [{ Degree: '', Specialization: '', University: '', startDate: '', endDate: '', Percentage: '' }] });
@@ -898,7 +913,6 @@ export class EmployeeComponent implements OnInit {
       .subscribe(
         data => {
           this.getPostGraduationDetailsResponse = data;
-          console.log("key", this.getPostGraduationDetailsResponse);
           this.rowData5 = this.getPostGraduationDetailsResponse;
         }
       );
@@ -991,7 +1005,7 @@ export class EmployeeComponent implements OnInit {
     }
   }
 
-  //
+  // Educational - Others
   onOtherQualification() {
     this.addNewOther = true;
     let res = this.otherApi.updateRowData({ add: [{ Degree: '', Specialization: '', University: '', startDate: '', endDate: '', Percentage: '' }] });
@@ -1104,11 +1118,228 @@ export class EmployeeComponent implements OnInit {
     }
   }
 
+  // Professional Education
+  onProfessionalQualification(){
+    this.addNewProfessionalQualification = true;
+    this.editProfessionalQualification = false;
+    let res = this.professionalQualificationApi.updateRowData({ add: [{ institute: '', course: '', startDate: '', endDate: ''}] });
+    res.add.forEach(function (rowNode) {
+      console.log('Added Row Nodes', rowNode);
+    });
+    this.nodeSelectButWhere = "Add";
+  }
+
+  onGridProfessionalQualificationReady(params) {
+    this.professionalQualificationApi = params.api;
+    this.professionalQualificationColumnApi = params.columnApi;
+  }
+
+  onGetProfessionalEducation() {
+    var getSchoolModel = new GetSchoolModel();
+    this.allwebService.getProfessionalEducation(getSchoolModel)
+      .subscribe(
+        data => {
+         
+          this.getProfessionalEducationResponse = data;
+
+          console.log("AAAAA",this.getProfessionalEducationResponse);
+          if(this.getProfessionalEducationResponse.length === 0){
+          
+            this.saveUpdateProfessional="Save";
+            this.editProfessionalQualification = false;
+            this.addNewProfessionalQualification = false;
+            this.deleteNewProfessionalQualification = true;
+          }else{
+            this.saveUpdateProfessional="Save";
+            this.editProfessionalQualification = true;
+            this.addNewProfessionalQualification = false;
+            this.deleteNewProfessionalQualification = true;
+            this.rowData7 = this.getProfessionalEducationResponse;
+          }
 
 
+          // console.log("QWERTYUI",this.getProfessionalEducationResponse.length);
+          
+        }
+      );
+  }
 
+  onSaveUpdateProfessionalEducationData(){
+    if(this.saveUpdateProfessional==="Save"){
+      this.onSaveProfessionalEducationData();
+    }else{
+      this.onUpdateProfessionalEducationData();
+    }
+  }
 
+  onSaveProfessionalEducationData() {
+    console.log("Logs",this.selectedRowsProfessional);
+    if(this.selectedRowsProfessional === undefined){
+      alert("Please enter input valid data then hit save.")
+    }else{
+      alert('Do you want to save the data.');
+      const selectedNodes = this.professionalQualificationApi.getSelectedNodes();
+      if (selectedNodes.length === 0) {
+        alert("Please Input Valid Data");
+      } else {
+        const professionalBodySave= new ProfessionalBodySave();
+        const selectedData = selectedNodes.map(node => node.data);
+        var universalResonse: UniversalResponse;
+        var dataTest: Object;
+        selectedData.map(node => dataTest = node as Object);
+        professionalBodySave.institute = dataTest['institute'];
+        professionalBodySave.course = dataTest['course'];
+        professionalBodySave.startDate = dataTest['startDate'];
+        professionalBodySave.endDate = dataTest['endDate'];
+        if (dataTest['institute'] === '') {
+          alert("Enter Institute Name");
+        } else if (dataTest['course'] === '') {
+          alert("Enter Course");
+        } else if (dataTest['startDate'] === '') {
+          alert("Enter Start Date");
+        } else if (dataTest['endDate'] === '') {
+          alert("Enter End Date");
+        } else {
+          this.allwebService.saveProfessionalEducation(professionalBodySave)
+            .subscribe(
+              data => {
+                universalResonse = data;
+                console.log("recived", universalResonse.STATUS);
+                if (universalResonse.STATUS === "Success") {
+                  alert(universalResonse.STATUS + " : " + universalResonse.MESSAGE);
+                  this.addNewProfessionalQualification = false;
+                  this.onGetProfessionalEducation();
+                  this.nodeSelectButWhere = "Update"
+                } else {
+                  alert(universalResonse.STATUS + ' : ' + universalResonse.MESSAGE);
+                }
+              }
+            );
+        }
+      }
+    }
+  }
 
+  onUpdateProfessionalEducationData() {
+    this.editProfessionalQualification = false;
+    if(this.selectedRowsProfessional === undefined){
+      alert("Please enter input valid data then hit save.")
+    }else{
+      alert('Do you want to save the data.');
+      const selectedNodes = this.professionalQualificationApi.getSelectedNodes();
+      if (selectedNodes.length === 0) {
+        alert("Please Input Valid Data");
+      } else {
+        const professionalBodyUpdate = new ProfessionalBodyUpdate();
+        const selectedData = selectedNodes.map(node => node.data);
+        var universalResonse: UniversalResponse;
+        var dataTest: Object;
+        selectedData.map(node => dataTest = node as Object);
+
+        var startDteSplitted = dataTest['startDate'].split("T")[0].split("-"); 
+        var startDated =  startDteSplitted[2]+"/"+ startDteSplitted[1]+"/"+ startDteSplitted[0];
+        var endDteSplitted = dataTest['endDate'].split("T")[0].split("-"); 
+        var endDated =  endDteSplitted[2]+"/"+ endDteSplitted[1]+"/"+ endDteSplitted[0];
+
+        professionalBodyUpdate.institute = dataTest['institute'];
+        professionalBodyUpdate.course = dataTest['course'];
+        professionalBodyUpdate.startDate = startDated;
+        professionalBodyUpdate.endDate = endDated;
+
+        professionalBodyUpdate.qId = dataTest['qId'];
+        if (dataTest['institute'] === '') {
+          alert("Enter Institute Name");
+        } else if (dataTest['course'] === '') {
+          alert("Enter Course");
+        } else if (dataTest['startDate'] === '') {
+          alert("Enter Start Date");
+        } else if (dataTest['endDate'] === '') {
+          alert("Enter End Date");
+        } else {
+          console.log("Key",professionalBodyUpdate);
+          this.allwebService.updateProfessionalEducation(professionalBodyUpdate)
+            .subscribe(
+              data => {
+                universalResonse = data;
+                console.log("recived", universalResonse.STATUS);
+                if (universalResonse.STATUS === "Success") {
+                  alert(universalResonse.STATUS + " : " + universalResonse.MESSAGE);
+                  this.addNewProfessionalQualification = false;
+                  this.onGetProfessionalEducation();
+                  this.nodeSelectButWhere = "Update"
+                } else {
+                  alert(universalResonse.STATUS + ' : ' + universalResonse.MESSAGE);
+                }
+              }
+            );
+        }
+      }
+    }
+  }
+
+  onDeleteProfessionalEducation() {
+    var selectedNodes = this.professionalQualificationApi.getSelectedNodes();
+    var dataTest: Object;
+    const deletedProfessionalEducation = new DeletedProfessionalEducation();
+    var universalResonse: UniversalResponse;
+    const selectedData = selectedNodes.map(node => node.data);
+    selectedData.map(node => dataTest = node as Object);
+    if (selectedNodes.length === 0) {
+      alert("Please Select any row.");
+    } else {
+      deletedProfessionalEducation.qId = dataTest['qId'];
+      if (deletedProfessionalEducation.qId === undefined) {
+        alert("Please Select valid row.");
+        this.addNewProfessionalQualification = false;
+      } else {
+        this.allwebService.deleteProfessionalEducation(deletedProfessionalEducation)
+          .subscribe(
+            data => {
+              universalResonse = data;
+              if (universalResonse.STATUS === "Success") {
+                this.addNewProfessionalQualification = false;
+                // alert(universalResonse.STATUS + " : " + universalResonse.MESSAGE);
+                this.professionalQualificationApi.removeItems(selectedNodes);
+                this.onGetProfessionalEducation();
+
+                if(this.checkedStatus===true){
+                  this.checkedStatus=false;
+                }
+
+              } else {
+                // alert(universalResonse.STATUS + ' : ' + universalResonse.MESSAGE);
+              }
+            }
+          );
+      }
+    }
+  }
+
+  onProfessionalSelectionChanged() {
+    this.selectedRowsProfessional = this.professionalQualificationApi.getSelectedRows();
+    if(this.selectedRowsProfessional.length === 1){
+      this.deleteNewProfessionalQualification = false;
+      if(this.nodeSelectButWhere === "Add"){
+        this.saveUpdateProfessional="Save";
+        this.nodeSelectButWhere = "Update"
+      }else if(this.nodeSelectButWhere === undefined){
+        this.saveUpdateProfessional="Update";
+        this.editProfessionalQualification = false;
+      }
+    }
+  }
+
+  onCheckedBoxChange(eve: any) {
+    if(this.checkedStatus===false){
+      this.professionalQualificationApi.selectAll();
+      this.checkedStatus=true;
+      this.deleteNewProfessionalQualification = false;
+    }else{
+      this.professionalQualificationApi.deselectAll();
+      this.checkedStatus=false;
+      this.deleteNewProfessionalQualification = true;
+    }
+  }
 
 
 
