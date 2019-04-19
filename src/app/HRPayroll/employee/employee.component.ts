@@ -319,8 +319,6 @@ export class EmployeeComponent implements OnInit {
       }
     },
 
-
-
     { headerName: '', width: 208, }
   ];
 
@@ -1234,8 +1232,6 @@ export class EmployeeComponent implements OnInit {
     this.api = params.api;
     this.columnApi = params.columnApi;
     this.api.sizeColumnsToFit();
-
-
   }
 
   onSelectionChanged() {
@@ -1257,11 +1253,6 @@ export class EmployeeComponent implements OnInit {
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
-  }
-
-  onGridSchoolReady(params) {
-    this.api = params.api;
-    this.columnApi = params.columnApi;
   }
 
   onGetSchoolQualification() {
