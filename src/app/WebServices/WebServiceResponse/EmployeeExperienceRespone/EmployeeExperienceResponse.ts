@@ -1,6 +1,4 @@
-import { NgModel } from '@angular/forms';
-
-export class  EmployeeExperienceResponse  //extends NgModel
+export class  EmployeeExperienceResponse  
 {
     id: number;
     location: string;

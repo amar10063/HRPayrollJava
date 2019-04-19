@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GridApi, ColumnApi, GridOptions } from 'ag-grid-community';
+import { GridApi, ColumnApi, GridOptions, } from 'ag-grid-community';
+
 import { AllWeb } from 'src/app/WebServices/AllWeb.service';
 import { CountryBody } from '../../WebServices/WebServiceBody/CountryBody/CountryBody';
 import { UniversalResponse } from '../../WebServices/WebServiceResponse/UniversalResponse';
@@ -30,30 +31,29 @@ import { UpdatePostalBody } from 'src/app/WebServices/WebServiceBody/CountryBody
 export class CountryComponent implements OnInit {
   columnDefs1; rowData1;
   type: string = '';
-  gridOptions: any;
+  gridOptions = {} as GridOptions;
+  public selectedCountryId: number;
   constructor(private allWeb: AllWeb) {
     this.gridOptions = {
-      context: {
-        componentParent: this
-      }
+      context: { componentParent: this }
     };
     this.rowSelection = 'single';
+    this.editType = 'fullRow';
     this.columnDefs1 = [
       {
         headerName: 'Country', field: 'countryName', sortable: true, filter: true, width: 110,
         cellRendererSelector: function (params) {
-          var moodDetails = {
-            component: 'moodCellRenderer'
-          };
-
-          var genderDetails = {
+          var locationDetails = {
             component: 'locationFramework',
             params: { value: 'country' }
           };
-
           if (params.data.stateName === '')
-            return genderDetails;
+            return locationDetails;
           else
+
+            // if (params.data.stateName.length > 0)
+            //   return locationDetails;
+            // else
             return null;
 
         }
@@ -109,6 +109,8 @@ export class CountryComponent implements OnInit {
 
   rowSelection: string;
   rowDeselection: string
+  private editType;
+
   columnDefs = [
     {
       id: 0, headerName: 'Country Code', field: 'countryCode', sortable: true, filter: true, width: 120, editable: true,
@@ -278,19 +280,32 @@ export class CountryComponent implements OnInit {
     this.getPostal();
 
   }
+  onStateSelectionChanged(event) { 
+    const selectedNodes = this.stateApi.getSelectedNodes();
+
+    const delteStateBody = new DeleteStateBody();
+    const selectedData = selectedNodes.map(node => node.data);
+    var dataTest: Object;
+    selectedData.map(node => dataTest = node as Object);
+    if (selectedData.length === 0) {
+      alert("Please select a row");
+    }
+  }
   getStates() {
 
     this.allWeb.getStates(this.universalBody)
       .subscribe(
         data => {
           this.getStateResponse = data;
-          console.log("getted",this.getStateResponse);
           this.rowData1 = this.getStateResponse;
         }
       );
   }
-  updateData(locationResponse) {
-    console.log('hbdjhhjd');
+  updateData(event, value) {
+    if (value === 'country') {
+      this.selectedCountryId = event;
+      console.log("getted", event);
+    }
   }
   getCity() {
     this.allWeb.getCity(this.universalBody)
@@ -326,17 +341,7 @@ export class CountryComponent implements OnInit {
 
   onAddState() {
     this.type = 'add';
-    // this.columnDefs1.cellRendererSelector = function (params) {
-    //   var genderDetails = {
-    //     component: 'locationFramework',
-    //     params: { value: 'country' }
-    //   };
-    //   if (this.type === 'add')
-    //     return genderDetails;
-    //   else
-    //     return null;
 
-    // },
     this.stateApi.setFocusedCell(this.countState, 'countryName');
     this.countState++;
     let res = this.stateApi.updateRowData({ add: [{ stateName: '', countryName: '', description: '' }], addIndex: 0 });
@@ -576,9 +581,7 @@ export class CountryComponent implements OnInit {
     }
     stateBody.StateName = dataTest['stateName'];
     stateBody.Description = dataTest['description'];
-    var country = dataTest['countryName']
-    alert(country);
-
+    stateBody.CountryID = this.selectedCountryId;
     if (dataTest['stateName'] === '') {
       alert("Enter state name");
       this.StateToggleButton = true;

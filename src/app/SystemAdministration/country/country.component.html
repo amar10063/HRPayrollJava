@@ -110,7 +110,9 @@
 
             <ag-grid-angular style="width:100%; height: 221px" class="ag-theme-balham" [rowData]="rowData1"
               [columnDefs]="columnDefs1" [animateRows]="true" [rowSelection]="rowSelection" [gridOptions]="gridOptions"
-              (gridReady)="onStateGridReady($event)" [frameworkComponents]="frameworkComponents" (cellKeyDown)="
+              (selectionChanged)="onStateSelectionChanged($event)" [editType]="editType"
+              (gridReady)="onStateGridReady($event)" [frameworkComponents]="frameworkComponents" 
+              (cellKeyDown)="
               onStateCellKeyDown($event)"></ag-grid-angular>
 
           </div>
