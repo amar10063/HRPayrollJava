@@ -379,13 +379,11 @@ export class EmployeeComponent implements OnInit {
 
   columnDefs7 = [
 
-
-
-    { headerName: 'Institute', field: 'Institute', editable: true, width: 100 },
-    { headerName: 'Course', field: 'Course', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: '', field: '', width: 458, }
+    { headerName: 'Institute', field: 'institute', editable: true, width: 120 },
+    { headerName: 'Course', field: 'course', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'Start Date', field: 'startDate', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'End Date', field: 'endDate', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: '', field: '', width: 520, }
 
   ];
 
@@ -606,6 +604,8 @@ export class EmployeeComponent implements OnInit {
   selectedDepartmentIndex: number;
   public selectedRowsProfessional:any[];
   saveUpdateProfessional: string;
+  ToalProfessionalQualification:any;
+  ShowLimitedProfessionalQualification:any;
   nodeSelectButWhere:string;
 
   public show: boolean = false;
@@ -1697,7 +1697,7 @@ export class EmployeeComponent implements OnInit {
   onProfessionalQualification(){
     this.addNewProfessionalQualification = true;
     this.editProfessionalQualification = false;
-    let res = this.professionalQualificationApi.updateRowData({ add: [{ institute: '', course: '', startDate: '', endDate: ''}] });
+    let res = this.professionalQualificationApi.updateRowData({ add: [{ institute: '', course: '', startDate: '', endDate: ''}] , addIndex: 0 });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Nodes', rowNode);
     });
@@ -1719,12 +1719,20 @@ export class EmployeeComponent implements OnInit {
 
           console.log("AAAAA",this.getProfessionalEducationResponse);
           if(this.getProfessionalEducationResponse.length === 0){
-          
+            this.ToalProfessionalQualification = this.getProfessionalEducationResponse.length;
             this.saveUpdateProfessional="Save";
             this.editProfessionalQualification = false;
             this.addNewProfessionalQualification = false;
             this.deleteNewProfessionalQualification = true;
           }else{
+
+            if(this.getProfessionalEducationResponse.length >= 50){
+              this.ShowLimitedProfessionalQualification = 50;
+            }else{
+              this.ShowLimitedProfessionalQualification =this.getProfessionalEducationResponse.length;
+            }
+
+            this.ToalProfessionalQualification = this.getProfessionalEducationResponse.length;
             this.saveUpdateProfessional="Save";
             this.editProfessionalQualification = true;
             this.addNewProfessionalQualification = false;
