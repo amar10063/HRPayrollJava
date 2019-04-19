@@ -48,6 +48,14 @@ import { GetProfessionalEducationResponse } from '../HRPayroll/ProfessionalEduca
 import { DeletedProfessionalEducation } from './WebServiceBody/ProfessionalEducation/deletedProfessionalEducation';
 import { ProfessionalBodyUpdate } from './WebServiceBody/ProfessionalEducation/ProfessionalBodyUpdate';
 import { ProfessionalBodySave } from './WebServiceBody/ProfessionalEducation/ProfessionalBodySave';
+
+import { EmployeeAddressBody } from './WebServiceBody/EmployeeAddressBody/EmployeeAddressBody';
+import { EmployeeAddressResponse } from './WebServiceResponse/EmployeeAddressResponse/EmployeeAddressResponse';
+import { DeleteEmployeeAddressBody } from './WebServiceBody/EmployeeAddressBody/DeleteEmployeeAddressBody';
+import { EmployeeExperienceBody } from './WebServiceBody/EmployeeExperienceBody/EmployeeExperienceBody';
+import { EmployeeExperienceResponse } from './WebServiceResponse/EmployeeExperienceRespone/EmployeeExperienceResponse';
+import {  DeleteEmployeeExperienceBody } from './WebServiceBody/EmployeeExperienceBody/DeleteEmployeeExperienceBody';
+import { UpdateEmployeeExperienceBody } from './WebServiceBody/EmployeeExperienceBody/UpdateEmployeeExperienceBody';
 @Injectable({
   providedIn: 'root'
 })
@@ -63,6 +71,29 @@ export class AllWeb {
   saveCountry(countryBody: CountryBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveCountry, JSON.stringify(countryBody), this.httpOptions);
   }
+  saveEmpolyeeAddress(employeeAddressBody: EmployeeAddressBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveEmployeeAddress, JSON.stringify(employeeAddressBody), this.httpOptions);
+  }
+
+  saveEmpExperience(employeeExperienceBody: EmployeeExperienceBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveEmpExperience, JSON.stringify(employeeExperienceBody), this.httpOptions);
+  }
+  getEmpolyeeExperience(universalBody: UniversalBody): Observable<EmployeeExperienceResponse[]> {
+    return this.httpClient.post<EmployeeExperienceResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getEmpExperience, JSON.stringify(universalBody), this.httpOptions);
+  }
+  updateEmpExperience(updateEmployeeExperienceBody: UpdateEmployeeExperienceBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.updateEmpExperience, JSON.stringify(updateEmployeeExperienceBody), this.httpOptions);
+  }
+  deleteEmpExperience(deleteEmployeeExperienceBody: DeleteEmployeeExperienceBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteEmpExperience, JSON.stringify(deleteEmployeeExperienceBody), this.httpOptions);
+  }
+  getEmpolyeeAddress(universalBody: UniversalBody): Observable<EmployeeAddressResponse[]> {
+    return this.httpClient.post<EmployeeAddressResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getEmployeeAddress, JSON.stringify(universalBody), this.httpOptions);
+  }
+  deleteEmpolyeeAddress(deleteEmployeeAddressBody: DeleteEmployeeAddressBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteEmployeeAddress, JSON.stringify(deleteEmployeeAddressBody), this.httpOptions);
+  }
+
   saveEmployeeBasicDetail(basicDetailBody: BasicDetailBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveEmployeeBasicDetail, JSON.stringify(basicDetailBody), this.httpOptions);
   }
@@ -193,8 +224,6 @@ export class AllWeb {
   deletePostal(deletePostalBody: DeletePostalBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deletePostal, JSON.stringify(deletePostalBody), this.httpOptions);
   }
-
-
 
   updateState(updateStateBody: UpdateStateBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.updateState, JSON.stringify(updateStateBody), this.httpOptions);

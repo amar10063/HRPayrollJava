@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GetLocationBody } from '../SystemAdministration/organization/GetLocationBody';
 import { GetAllDepartmentBody } from '../HRPayroll/employee/EmployeeApiResponse/GetAllDepartmentBody'
-import { AllWeb } from "src/app/WebServices/AllWeb.service";
+import { AllWeb } from 'src/app/WebServices/AllWeb.service';
 import { GetAllLocationResponse } from '../HRPayroll/employee/EmployeeApiResponse/GetAllLocationResponse';
 import { INoRowsOverlayAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams } from 'ag-grid-community';
@@ -14,27 +14,27 @@ import { GetCountryResponse } from '../WebServices/WebServiceResponse/CountryRes
   styleUrls: ['./location-dropdown.component.css']
 })
 export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
-
+  locationResponse: GetAllLocationResponse[];
   params: any;
-  selectedLevel: Object = {};
+  selectedValue;
+  action;
   agInit(params: ICellRendererParams): void {
     this.params = params['value'];
-    console.log('param: ' + this.params);
-    if (this.params === 'location') { this.getAllLocation(); }
-    else if (this.params === 'department') { this.getAllDepartment(); }
+    console.log('this.params: ' + this.params);
 
-    else if (this.params === 'country') { this.getAllCountry(); }
 
-    else if (this.params === 'state') {
+    if (this.params === 'location') {
+      this.getAllLocation();
+    } else if (this.params === 'department') {
+      this.getAllDepartment();
+    } else if (this.params === 'country') {
+      this.getAllCountry();
+    } else if (this.params === 'state') {
       this.getAllState();
-    }
-    else if (this.params === 'city') {
+    } else if (this.params === 'city') {
       this.getAllCity();
     }
   }
-
-  locationResponse: GetAllLocationResponse[];
-
   constructor(private countryService: AllWeb) {
   }
 
@@ -48,7 +48,6 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
           var getAllLocationResponse = new GetAllLocationResponse();
           getAllLocationResponse.name = 'Select';
           this.locationResponse[0] = getAllLocationResponse;
-          console.log('data:  ' + JSON.stringify(this.locationResponse));
         }
 
       );
@@ -63,7 +62,6 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
           var getAllLocationResponse = new GetAllLocationResponse();
           getAllLocationResponse.name = 'Select';
           this.locationResponse[0] = getAllLocationResponse;
-          console.log('data:  ' + JSON.stringify(this.locationResponse));
         }
 
       );
@@ -74,12 +72,20 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
       .subscribe(
         data => {
           this.locationResponse = data;
+          console.log('this.pa: ' + JSON.stringify(data));
           var getAllLocationResponse = new GetAllLocationResponse();
           getAllLocationResponse.name = 'Select';
           this.locationResponse[0] = getAllLocationResponse;
-          console.log('data:  ' + JSON.stringify(this.locationResponse));
+          //console.log('data:  ' + JSON.stringify(this.locationResponse));
         }
       );
+  }
+  getSelectedValue(event) {
+    console.log('dropdownvalue: ' + event.target.value);
+    //this.params.setValue(event.target.value);
+    // console.log('getValue: ' + this.params.getValue());
+
+
   }
   getAllState(): any {
     const universalBody = new UniversalBody();
@@ -90,7 +96,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
           var getAllLocationResponse = new GetAllLocationResponse();
           getAllLocationResponse.name = 'Select';
           this.locationResponse[0] = getAllLocationResponse;
-          console.log('data:  ' + JSON.stringify(this.locationResponse));
+
         }
       );
   }
@@ -104,12 +110,8 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
           var getAllLocationResponse = new GetAllLocationResponse();
           getAllLocationResponse.name = 'Select';
           this.locationResponse[0] = getAllLocationResponse;
-          console.log('data:  ' + JSON.stringify(this.locationResponse));
         }
       );
   }
-  onGroupChange($event)
-  {
-   // this.selectedLevel =event.target.value;
-  }
+
 }
