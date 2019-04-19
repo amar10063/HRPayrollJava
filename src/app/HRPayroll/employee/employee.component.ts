@@ -38,6 +38,7 @@ import { EmployeeExperienceBody } from 'src/app/WebServices/WebServiceBody/Emplo
 import { EmployeeExperienceResponse } from 'src/app/WebServices/WebServiceResponse/EmployeeExperienceRespone/EmployeeExperienceResponse';
 import { DeleteEmployeeExperienceBody } from 'src/app/WebServices/WebServiceBody/EmployeeExperienceBody/DeleteEmployeeExperienceBody';
 import { UpdateEmployeeExperienceBody } from 'src/app/WebServices/WebServiceBody/EmployeeExperienceBody/UpdateEmployeeExperienceBody';
+import { UpdateEmployeeAddressBody } from 'src/app/WebServices/WebServiceBody/EmployeeAddressBody/UpdateEmployeeAddressBody';
 
 
 @Component({
@@ -45,6 +46,7 @@ import { UpdateEmployeeExperienceBody } from 'src/app/WebServices/WebServiceBody
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.css']
 })
+
 export class EmployeeComponent implements OnInit {
   basicDetailsForm: FormGroup;
   titles = ['Mr', 'Miss', 'Mrs'];
@@ -55,10 +57,16 @@ export class EmployeeComponent implements OnInit {
   empExperienceColumnApi: ColumnApi;
   editExperience: boolean = false;
 
+  editAddress: boolean = false;
+  saveUpdateAddress: string;
+  selectedRowAddress: any[];
+  nodeAddressSelectButWhere: string;
+
   saveUpdateExperience: string;
   selectedRowExperience: any[];
   nodeExpSelectButWhere: string;
-
+  empExperienceCheckedStatus = false;
+  empAddressCheckedStatus = false;
 
   checkedStatus = false;
 
@@ -604,9 +612,9 @@ export class EmployeeComponent implements OnInit {
   locationResponse;
   selectedLocationIndex: number;
   selectedDepartmentIndex: number;
-  public selectedRowsProfessional:any[];
+  public selectedRowsProfessional: any[];
   saveUpdateProfessional: string;
-  nodeSelectButWhere:string;
+  nodeSelectButWhere: string;
 
   public show: boolean = false;
   public hide: boolean = true;
@@ -622,21 +630,22 @@ export class EmployeeComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private allwebService: AllWeb, ) {
     this.rowSelection = 'single';
   }
+
   age: number;
   api;
   columnApi;
   getSchoolResonseData: GetSchoolDataResponse[];
-  addAddressToggleButton;
-  saveAddressToggleButton;
-  deleteAddressToggleButton;
+  addAddressToggleButton = false;
+  saveAddressToggleButton = false;
+  deleteAddressToggleButton = false;
 
-  addExperienceToggleButton;
-  saveExperienceToggleButton;
-  deleteExperienceToggleButton
+  addExperienceToggleButton = false;
+  saveExperienceToggleButton = false;
+  deleteExperienceToggleButton = false
   getGraduationDetailsResponse: GetGraduationDetailsResponse[];
   getPostGraduationDetailsResponse: GetPostGraduationDetailsResponse[];
   getOtherEducationalResponse: GetOtherEducationalResponse[];
-  getProfessionalEducationResponse:GetProfessionalEducationResponse[];
+  getProfessionalEducationResponse: GetProfessionalEducationResponse[];
   addNewRowSchool: boolean = false;
   addNewGraduationRow: boolean = false;
   addNewPostGraduationRow: boolean = false;
@@ -695,84 +704,183 @@ export class EmployeeComponent implements OnInit {
     this.addressApi = params.api;
     this.addressColumnApi = params.columnApi;
   }
+
   onEmpExperienceGridReady(params) {
     this.empExperienceApi = params.api;
     this.empExperienceColumnApi = params.columnApi;
   }
+
   onAddAddress() {
 
     let res = this.addressApi.updateRowData({ add: [{ address: '', city: '', state: '', country: '', pin_code: '', address_Status: '', contact_No: '', email_ID: '', emergency_contact_person: '', emergency_contact_number: '' }], addIndex: 0 });
-
+    this.addAddressToggleButton = true;
+    this.editAddress = false;
+    this.nodeAddressSelectButWhere = "Add";
   }
 
+  onSaveUpdateAddress() {
+
+    if (this.saveUpdateAddress === "Save") {
+      this.onSaveAddress();
+    } 
+    else {
+      alert("Update");
+      this.onUpdateAddress();
+    }
+  }
+  
+  onUpdateAddress() {
+    if (this.selectedRowAddress === undefined) {
+      alert("Please enter input valid data then hit update")
+    } else {
+      const updateEmployeeAddressBody = new UpdateEmployeeAddressBody();
+      const selectedNodes = this.addressApi.getSelectedNodes();
+
+      const selectedData = selectedNodes.map(node => node.data);
+      var dataTest: Object;
+      selectedData.map(node => dataTest = node as Object);
+
+      if (selectedData.length === 0) {
+        alert("Please select a row");
+      }
+      updateEmployeeAddressBody.address_Status = dataTest['address_Status'];
+      updateEmployeeAddressBody.address = dataTest['address'];
+
+      updateEmployeeAddressBody.city = dataTest['city'];
+
+      updateEmployeeAddressBody.state = dataTest['state'];
+      updateEmployeeAddressBody.country = dataTest['country'];
+      updateEmployeeAddressBody.pin_code = dataTest['pin_code'];
+      updateEmployeeAddressBody.contact_No = dataTest['contact_No'];
+      updateEmployeeAddressBody.email_ID = dataTest['email_ID'];
+      updateEmployeeAddressBody.emergency_contact_person = dataTest['emergency_contact_person'];
+      updateEmployeeAddressBody.emergency_contact_number = dataTest['emergency_contact_number'];
+
+      if (dataTest['address_Status'] === '') {
+        alert("Enter status ");
+      }
+      else if (dataTest['address'] === '') {
+        alert("Enter address ");
+      }
+      // else if (dataTest['city'] === '') {
+      //   alert("Enter city ");
+      // }
+      // else if (dataTest['state'] === '') {
+      //   alert("Enter state ");
+      // }
+      // else if (dataTest['country'] === '') {
+      //   alert("Enter country ");
+      // }
+      else if (dataTest['pin_code'] === '') {
+        alert("Enter pincode ");
+      }
+      else if (dataTest['contact_No'] === '') {
+        alert("Enter contact number ");
+      }
+      else if (dataTest['email_ID'] === '') {
+        alert("Enter email id ");
+      }
+      else if (dataTest['emergency_contact_person'] === '') {
+        alert("Enter emergency contact person ");
+      }
+      else if (dataTest['emergency_contact_number'] === '') {
+        alert("Enter emergency contact number ");
+      }
+      else {
+        updateEmployeeAddressBody.a_ID = dataTest['id'];
+        if (updateEmployeeAddressBody.a_ID === undefined) {
+          this.addressApi.removeItems(selectedNodes);
+          this.addAddressToggleButton = false;
+        }
+        else {
+          this.allwebService.updateEmployeeAddress(updateEmployeeAddressBody)
+            .subscribe(
+              data => {
+                this.universalResponse = data;
+                alert(this.universalResponse.MESSAGE);
+                if (this.universalResponse.STATUS === 'Success') {
+                  this.getEmployeeAddress();
+                }
+              }
+            );
+        }
+      }
+    }
+  }
 
   onSaveAddress() {
-    const employeeAddressBody = new EmployeeAddressBody();
-    const selectedNodes = this.addressApi.getSelectedNodes();
-
-    const selectedData = selectedNodes.map(node => node.data);
-    var dataTest: Object;
-    selectedData.map(node => dataTest = node as Object);
-
-    if (selectedData.length === 0) {
-      alert("Please select a row");
-    }
-    employeeAddressBody.address_Status = dataTest['address_Status'];
-    employeeAddressBody.address = dataTest['address'];
-
-    employeeAddressBody.city = dataTest['city'];
-
-    employeeAddressBody.state = dataTest['state'];
-    employeeAddressBody.country = dataTest['country'];
-    employeeAddressBody.pin_code = dataTest['pin_code'];
-    employeeAddressBody.contact_No = dataTest['contact_No'];
-    employeeAddressBody.email_ID = dataTest['email_ID'];
-    employeeAddressBody.emergency_contact_person = dataTest['emergency_contact_person'];
-    employeeAddressBody.emergency_contact_number = dataTest['emergency_contact_number'];
-
-    if (dataTest['address_Status'] === '') {
-      alert("Enter status ");
-    }
-    else if (dataTest['address'] === '') {
-      alert("Enter address ");
-    }
-    // else if (dataTest['city'] === '') {
-    //   alert("Enter city ");
-    // }
-    // else if (dataTest['state'] === '') {
-    //   alert("Enter state ");
-    // }
-    // else if (dataTest['country'] === '') {
-    //   alert("Enter country ");
-    // }
-    else if (dataTest['pin_code'] === '') {
-      alert("Enter pincode ");
-    }
-    else if (dataTest['contact_No'] === '') {
-      alert("Enter contact number ");
-    }
-    else if (dataTest['email_ID'] === '') {
-      alert("Enter email id ");
-    }
-    else if (dataTest['emergency_contact_person'] === '') {
-      alert("Enter emergency contact person ");
-    }
-    else if (dataTest['emergency_contact_number'] === '') {
-      alert("Enter emergency contact number ");
-    }
+    if (this.selectedRowAddress === undefined) {
+      alert("Please enter input valid data then hit save.")
+    } 
     else {
-      this.allwebService.saveEmpolyeeAddress(employeeAddressBody)
-        .subscribe(
-          data => {
-            this.universalResponse = data;
+      const employeeAddressBody = new EmployeeAddressBody();
+      const selectedNodes = this.addressApi.getSelectedNodes();
 
-            alert(this.universalResponse.MESSAGE);
+      const selectedData = selectedNodes.map(node => node.data);
+      var dataTest: Object;
+      selectedData.map(node => dataTest = node as Object);
 
-            if (this.universalResponse.STATUS === 'Success') {
-              this.getEmployeeAddress();
+      if (selectedData.length === 0) {
+        alert("Please select a row");
+      }
+
+      employeeAddressBody.address_Status = dataTest['address_Status'];
+      employeeAddressBody.address = dataTest['address'];
+
+      employeeAddressBody.city = dataTest['city'];
+
+      employeeAddressBody.state = dataTest['state'];
+      employeeAddressBody.country = dataTest['country'];
+      employeeAddressBody.pin_code = dataTest['pin_code'];
+      employeeAddressBody.contact_No = dataTest['contact_No'];
+      employeeAddressBody.email_ID = dataTest['email_ID'];
+      employeeAddressBody.emergency_contact_person = dataTest['emergency_contact_person'];
+      employeeAddressBody.emergency_contact_number = dataTest['emergency_contact_number'];
+
+      if (dataTest['address_Status'] === '') {
+        alert("Enter status ");
+      }
+      else if (dataTest['address'] === '') {
+        alert("Enter address ");
+      }
+      // else if (dataTest['city'] === '') {
+      //   alert("Enter city ");
+      // }
+      // else if (dataTest['state'] === '') {
+      //   alert("Enter state ");
+      // }
+      // else if (dataTest['country'] === '') {
+      //   alert("Enter country ");
+      // }
+      else if (dataTest['pin_code'] === '') {
+        alert("Enter pincode ");
+      }
+      else if (dataTest['contact_No'] === '') {
+        alert("Enter contact number ");
+      }
+      else if (dataTest['email_ID'] === '') {
+        alert("Enter email id ");
+      }
+      else if (dataTest['emergency_contact_person'] === '') {
+        alert("Enter emergency contact person ");
+      }
+      else if (dataTest['emergency_contact_number'] === '') {
+        alert("Enter emergency contact number ");
+      }
+      else {
+        this.allwebService.saveEmpolyeeAddress(employeeAddressBody)
+          .subscribe(
+            data => {
+              this.universalResponse = data;
+
+              alert(this.universalResponse.MESSAGE);
+
+              if (this.universalResponse.STATUS === 'Success') {
+                this.getEmployeeAddress();
+              }
             }
-          }
-        );
+          );
+      }
     }
   }
 
@@ -782,29 +890,23 @@ export class EmployeeComponent implements OnInit {
       .subscribe(
         data => {
           this.employeeeAddressResponse = data;
-          //this.rowData1 = this.employeeeAddressResponse;
-          //console.log(this.employeeeAddressResponse);
           if (this.employeeeAddressResponse.length === 0) {
 
-            //this.saveUpdateExperience="Save";
-            //this.editExperience = false;
+            this.saveUpdateAddress = "Save";
+            this.editAddress = false;
             this.addAddressToggleButton = false;
             this.deleteAddressToggleButton = true;
           } else {
-            // this.saveUpdateExperience="Save";
-            //this.editExperience = true;
+            this.saveUpdateAddress = "Save";
+            this.editAddress = true;
             this.addAddressToggleButton = false;
             this.deleteAddressToggleButton = true;
             this.rowData1 = this.employeeeAddressResponse;
           }
+          //console.log(this.employeeeAddressResponse);
         }
+
       )
-
-
-
-
-
-
   }
 
   onDeleteAddress() {
@@ -820,6 +922,7 @@ export class EmployeeComponent implements OnInit {
       if (deleteEmployeeAddressBody.a_ID === undefined) {
 
         this.addressApi.removeItems(selectedNodes);
+        this.addAddressToggleButton = false;
       } else {
 
         this.allwebService.deleteEmpolyeeAddress(deleteEmployeeAddressBody)
@@ -827,29 +930,47 @@ export class EmployeeComponent implements OnInit {
             data => {
               this.universalResponse = data;
               alert(this.universalResponse.MESSAGE);
-              this.addressApi.removeItems(selectedNodes);
+              if (this.universalResponse.STATUS === 'Success') {
+                this.addressApi.removeItems(selectedNodes);
+                this.addAddressToggleButton = false;
+
+              }
+
             }
           );
       }
     }
 
   }
-  onAddressSelectionChanged() {
-    const selectedNodes = this.addressApi.getSelectedNodes();
-    const selectedData = selectedNodes.map(node => node.data);
 
-    if (selectedData.length !== 0) {
-      alert("Please select a row");
-      this.addAddressToggleButton = true;
+  onAddressSelectionChanged() {
+    this.selectedRowAddress = this.addressApi.getSelectedRows();
+    if (this.selectedRowAddress.length === 1) {
       this.deleteAddressToggleButton = false;
+
+      console.log("NodeBut Where", this.nodeAddressSelectButWhere);
+
+      if (this.nodeAddressSelectButWhere === "Add") {
+        this.saveUpdateAddress = "Save";
+        this.nodeAddressSelectButWhere = "Update";
+      } else if (this.nodeAddressSelectButWhere === undefined) {
+        this.saveUpdateAddress = "Edit";
+        this.editAddress = false;
+      }
     }
-    else {
-      alert("row");
-      this.addAddressToggleButton = false;
-      this.addAddressToggleButton = false;
+  }
+
+  onAddressFilterChange() {
+    if (this.empAddressCheckedStatus === false) {
+      this.addressApi.selectAll();
+      this.empAddressCheckedStatus = true;
+      this.deleteAddressToggleButton = false;
+      this.addAddressToggleButton = true;
+    } else {
+      this.addressApi.deselectAll();
+      this.empAddressCheckedStatus = false;
       this.deleteAddressToggleButton = true;
     }
-
   }
 
   getLocation(UserID: number) {
@@ -865,12 +986,10 @@ export class EmployeeComponent implements OnInit {
   }
   onAddEmpExperience() {
 
-
     let res = this.empExperienceApi.updateRowData({ add: [{ companyName: '', designation: '', department: '', joiningDate: '', exitDate: '', experience: '', location: '', }], addIndex: 0 });
     this.addExperienceToggleButton = true;
     this.editExperience = false;
     this.nodeExpSelectButWhere = "Add";
-
 
   }
   onSaveUpdateEmpExperience() {
@@ -884,12 +1003,13 @@ export class EmployeeComponent implements OnInit {
     }
 
   }
+
   onUpdateEmpExperience() {
 
     this.editExperience = false;
 
     if (this.selectedRowExperience === undefined) {
-      alert("Please enter input valid data then hit save.")
+      alert("Please enter input valid data then hit update.")
     } else {
 
       const updateEmployeeExperienceBody = new UpdateEmployeeExperienceBody();
@@ -907,8 +1027,6 @@ export class EmployeeComponent implements OnInit {
 
       updateEmployeeExperienceBody.department = dataTest['department'];
 
-      //updateEmployeeExperienceBody.joiningDate = dataTest['joiningDate'];
-      //updateEmployeeExperienceBody.exitDate = dataTest['exitDate'];
 
       var startDteSplitted = dataTest['joiningDate'].split("T")[0].split("-");
       var startDated = startDteSplitted[2] + "/" + startDteSplitted[1] + "/" + startDteSplitted[0];
@@ -971,10 +1089,12 @@ export class EmployeeComponent implements OnInit {
       }
     }
   }
+
   onSaveEmpExperience() {
     if (this.selectedRowExperience === undefined) {
       alert("Please enter input valid data then hit save.")
-    } else {
+    } 
+    else {
       const employeeExperienceBody = new EmployeeExperienceBody();
       const selectedNodes = this.empExperienceApi.getSelectedNodes();
 
@@ -1036,6 +1156,7 @@ export class EmployeeComponent implements OnInit {
       }
     }
   }
+
   onDeleteExperience() {
     const selectedNodes = this.empExperienceApi.getSelectedNodes();
     var dataTest: Object;
@@ -1049,7 +1170,7 @@ export class EmployeeComponent implements OnInit {
       deleteEmployeeExperiencebody.expId = dataTest['id'];
 
       if (deleteEmployeeExperiencebody.expId === undefined) {
-
+        this.addExperienceToggleButton = false;
         this.empExperienceApi.removeItems(selectedNodes);
       }
       else {
@@ -1070,6 +1191,7 @@ export class EmployeeComponent implements OnInit {
     }
 
   }
+
   getEmployeeExperience() {
 
     const universalBody = new UniversalBody();
@@ -1095,25 +1217,37 @@ export class EmployeeComponent implements OnInit {
         }
       )
   }
+
   onEmpExperienceSelectionChanged() {
     this.selectedRowExperience = this.empExperienceApi.getSelectedRows();
     if (this.selectedRowExperience.length === 1) {
+
       this.deleteExperienceToggleButton = false;
       console.log("NodeBut Where", this.nodeExpSelectButWhere);
 
       if (this.nodeExpSelectButWhere === "Add") {
         this.saveUpdateExperience = "Save";
         this.nodeExpSelectButWhere = "Update"
-      } else if (this.nodeExpSelectButWhere === undefined) {
-        this.saveUpdateExperience = "Update";
+      } 
+      else if (this.nodeExpSelectButWhere === undefined) {
+        this.saveUpdateExperience = "Edit";
         this.editExperience = false;
       }
-
     }
-
   }
+
   onEmpFilterChange(event) {
-    alert("Check");
+    alert("checked");
+    if (this.empExperienceCheckedStatus === false) {
+      this.empExperienceApi.selectAll();
+      this.empExperienceCheckedStatus = true;
+      this.deleteExperienceToggleButton = false;
+    } else {
+      this.empExperienceApi.deselectAll();
+      this.empExperienceCheckedStatus = false;
+      this.deleteExperienceToggleButton = true;
+      this.addExperienceToggleButton = true;
+    }
   }
   onDepartmentClick() {
     this.getAllDepartment(1, this.locationResponse[this.selectedLocationIndex].id);
@@ -1694,10 +1828,10 @@ export class EmployeeComponent implements OnInit {
   }
 
   // Professional Education
-  onProfessionalQualification(){
+  onProfessionalQualification() {
     this.addNewProfessionalQualification = true;
     this.editProfessionalQualification = false;
-    let res = this.professionalQualificationApi.updateRowData({ add: [{ institute: '', course: '', startDate: '', endDate: ''}] });
+    let res = this.professionalQualificationApi.updateRowData({ add: [{ institute: '', course: '', startDate: '', endDate: '' }] });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Nodes', rowNode);
     });
@@ -1714,18 +1848,18 @@ export class EmployeeComponent implements OnInit {
     this.allwebService.getProfessionalEducation(getSchoolModel)
       .subscribe(
         data => {
-         
+
           this.getProfessionalEducationResponse = data;
 
-          console.log("AAAAA",this.getProfessionalEducationResponse);
-          if(this.getProfessionalEducationResponse.length === 0){
-          
-            this.saveUpdateProfessional="Save";
+          console.log("AAAAA", this.getProfessionalEducationResponse);
+          if (this.getProfessionalEducationResponse.length === 0) {
+
+            this.saveUpdateProfessional = "Save";
             this.editProfessionalQualification = false;
             this.addNewProfessionalQualification = false;
             this.deleteNewProfessionalQualification = true;
-          }else{
-            this.saveUpdateProfessional="Save";
+          } else {
+            this.saveUpdateProfessional = "Save";
             this.editProfessionalQualification = true;
             this.addNewProfessionalQualification = false;
             this.deleteNewProfessionalQualification = true;
@@ -1734,30 +1868,30 @@ export class EmployeeComponent implements OnInit {
 
 
           // console.log("QWERTYUI",this.getProfessionalEducationResponse.length);
-          
+
         }
       );
   }
 
-  onSaveUpdateProfessionalEducationData(){
-    if(this.saveUpdateProfessional==="Save"){
+  onSaveUpdateProfessionalEducationData() {
+    if (this.saveUpdateProfessional === "Save") {
       this.onSaveProfessionalEducationData();
-    }else{
+    } else {
       this.onUpdateProfessionalEducationData();
     }
   }
 
   onSaveProfessionalEducationData() {
-    console.log("Logs",this.selectedRowsProfessional);
-    if(this.selectedRowsProfessional === undefined){
+    console.log("Logs", this.selectedRowsProfessional);
+    if (this.selectedRowsProfessional === undefined) {
       alert("Please enter input valid data then hit save.")
-    }else{
+    } else {
       alert('Do you want to save the data.');
       const selectedNodes = this.professionalQualificationApi.getSelectedNodes();
       if (selectedNodes.length === 0) {
         alert("Please Input Valid Data");
       } else {
-        const professionalBodySave= new ProfessionalBodySave();
+        const professionalBodySave = new ProfessionalBodySave();
         const selectedData = selectedNodes.map(node => node.data);
         var universalResonse: UniversalResponse;
         var dataTest: Object;
@@ -1797,9 +1931,9 @@ export class EmployeeComponent implements OnInit {
 
   onUpdateProfessionalEducationData() {
     this.editProfessionalQualification = false;
-    if(this.selectedRowsProfessional === undefined){
+    if (this.selectedRowsProfessional === undefined) {
       alert("Please enter input valid data then hit save.")
-    }else{
+    } else {
       alert('Do you want to save the data.');
       const selectedNodes = this.professionalQualificationApi.getSelectedNodes();
       if (selectedNodes.length === 0) {
@@ -1811,10 +1945,10 @@ export class EmployeeComponent implements OnInit {
         var dataTest: Object;
         selectedData.map(node => dataTest = node as Object);
 
-        var startDteSplitted = dataTest['startDate'].split("T")[0].split("-"); 
-        var startDated =  startDteSplitted[2]+"/"+ startDteSplitted[1]+"/"+ startDteSplitted[0];
-        var endDteSplitted = dataTest['endDate'].split("T")[0].split("-"); 
-        var endDated =  endDteSplitted[2]+"/"+ endDteSplitted[1]+"/"+ endDteSplitted[0];
+        var startDteSplitted = dataTest['startDate'].split("T")[0].split("-");
+        var startDated = startDteSplitted[2] + "/" + startDteSplitted[1] + "/" + startDteSplitted[0];
+        var endDteSplitted = dataTest['endDate'].split("T")[0].split("-");
+        var endDated = endDteSplitted[2] + "/" + endDteSplitted[1] + "/" + endDteSplitted[0];
 
         professionalBodyUpdate.institute = dataTest['institute'];
         professionalBodyUpdate.course = dataTest['course'];
@@ -1831,7 +1965,7 @@ export class EmployeeComponent implements OnInit {
         } else if (dataTest['endDate'] === '') {
           alert("Enter End Date");
         } else {
-          console.log("Key",professionalBodyUpdate);
+          console.log("Key", professionalBodyUpdate);
           this.allwebService.updateProfessionalEducation(professionalBodyUpdate)
             .subscribe(
               data => {
@@ -1877,8 +2011,8 @@ export class EmployeeComponent implements OnInit {
                 this.professionalQualificationApi.removeItems(selectedNodes);
                 this.onGetProfessionalEducation();
 
-                if(this.checkedStatus===true){
-                  this.checkedStatus=false;
+                if (this.checkedStatus === true) {
+                  this.checkedStatus = false;
                 }
 
               } else {
@@ -1892,26 +2026,26 @@ export class EmployeeComponent implements OnInit {
 
   onProfessionalSelectionChanged() {
     this.selectedRowsProfessional = this.professionalQualificationApi.getSelectedRows();
-    if(this.selectedRowsProfessional.length === 1){
+    if (this.selectedRowsProfessional.length === 1) {
       this.deleteNewProfessionalQualification = false;
-      if(this.nodeSelectButWhere === "Add"){
-        this.saveUpdateProfessional="Save";
+      if (this.nodeSelectButWhere === "Add") {
+        this.saveUpdateProfessional = "Save";
         this.nodeSelectButWhere = "Update"
-      }else if(this.nodeSelectButWhere === undefined){
-        this.saveUpdateProfessional="Update";
+      } else if (this.nodeSelectButWhere === undefined) {
+        this.saveUpdateProfessional = "Update";
         this.editProfessionalQualification = false;
       }
     }
   }
 
   onCheckedBoxChange(eve: any) {
-    if(this.checkedStatus===false){
+    if (this.checkedStatus === false) {
       this.professionalQualificationApi.selectAll();
-      this.checkedStatus=true;
+      this.checkedStatus = true;
       this.deleteNewProfessionalQualification = false;
-    }else{
+    } else {
       this.professionalQualificationApi.deselectAll();
-      this.checkedStatus=false;
+      this.checkedStatus = false;
       this.deleteNewProfessionalQualification = true;
     }
   }

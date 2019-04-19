@@ -56,6 +56,7 @@ import { EmployeeExperienceBody } from './WebServiceBody/EmployeeExperienceBody/
 import { EmployeeExperienceResponse } from './WebServiceResponse/EmployeeExperienceRespone/EmployeeExperienceResponse';
 import {  DeleteEmployeeExperienceBody } from './WebServiceBody/EmployeeExperienceBody/DeleteEmployeeExperienceBody';
 import { UpdateEmployeeExperienceBody } from './WebServiceBody/EmployeeExperienceBody/UpdateEmployeeExperienceBody';
+import { UpdateEmployeeAddressBody } from './WebServiceBody/EmployeeAddressBody/UpdateEmployeeAddressBody';
 @Injectable({
   providedIn: 'root'
 })
@@ -93,7 +94,9 @@ export class AllWeb {
   deleteEmpolyeeAddress(deleteEmployeeAddressBody: DeleteEmployeeAddressBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteEmployeeAddress, JSON.stringify(deleteEmployeeAddressBody), this.httpOptions);
   }
-
+  updateEmployeeAddress(updateEmployeeAddressBody: UpdateEmployeeAddressBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.updateEmployeeAddress, JSON.stringify(updateEmployeeAddressBody), this.httpOptions);
+  }
   saveEmployeeBasicDetail(basicDetailBody: BasicDetailBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveEmployeeBasicDetail, JSON.stringify(basicDetailBody), this.httpOptions);
   }

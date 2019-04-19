@@ -51,6 +51,7 @@ export class ServiceUrls {
     public static saveEmployeeBasicDetail = '/AddEmployee';
     public static getEmployeeAddress = '/getAddressBook';
     public static deleteEmployeeAddress ='/DeleteAddress';
+    public static updateEmployeeAddress = '/UpdateAddress';
     public static saveEmpExperience ='/AddEmployeeExperience';
     public static getEmpExperience ='/getEmployeeExperienceData';
     public static deleteEmpExperience = '/DeleteEmployeeExperience';
