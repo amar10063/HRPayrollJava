@@ -694,7 +694,6 @@
             <div class="formBody clearfix pt-0" style="clear: both;">
 
               <ag-grid-angular style="width:100%; height: 315px" class="ag-theme-balham" [rowData]="rowData7"
-
                 [columnDefs]="columnDefs7" [rowSelection]="rowSelection"
                 (gridReady)="onGridProfessionalQualificationReady($event)"
                 (selectionChanged)="onProfessionalSelectionChanged($event)"></ag-grid-angular>
@@ -1469,6 +1468,8 @@
     </div>
 
   </div>
+
+
   <div class="modal fade" id="addNew">
     <div class="modal-dialog modal-dialog-centered" id="addpopUp">
       <div class="modal-content">
@@ -1493,7 +1494,6 @@
       </div>
     </div>
   </div>
-
   <div class="modal fade" id="addNew1">
     <div class="modal-dialog modal-dialog-centered" id="Div3">
       <div class="modal-content">
@@ -1513,46 +1513,46 @@
         </div>
       </div>
     </div>
-    <div class="modal fade" id="deleteAddress">
-      <div class="modal-dialog modal-dialog-centered" id="Div3">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5>Address</h5>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-          <div class="modal-body">
+  </div>
+  <div class="modal fade" id="deleteAddress">
+    <div class="modal-dialog modal-dialog-centered" id="Div3">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5>Address</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
 
-          </div>
-          <div class="modal-footer">
+        </div>
+        <div class="modal-footer">
 
-            <button type="button" id="btnSave" class="btn btn-submit" (click)="onDeleteAddress()" style="padding:4px;"
-              data-dismiss="modal">OK</button>
-            <button type="button" id="btnSave" class="btn btn-submit" onclick="" style="padding:4px;"
-              data-dismiss="modal">CANCEL</button>
-          </div>
+          <button type="button" id="btnSave" class="btn btn-submit" (click)="onDeleteAddress()" style="padding:4px;"
+            data-dismiss="modal">OK</button>
+          <button type="button" id="btnSave" class="btn btn-submit" onclick="" style="padding:4px;"
+            data-dismiss="modal">CANCEL</button>
         </div>
       </div>
     </div>
+  </div>
+  <div class="modal fade" id="deleteExperience">
+    <div class="modal-dialog modal-dialog-centered" id="Div3">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5>Experience</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
 
+        </div>
+        <div class="modal-footer">
 
-
-    <div class="modal fade" id="deleteExperience">
-      <div class="modal-dialog modal-dialog-centered" id="Div3">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5>Experience</h5>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-          <div class="modal-body">
-
-          </div>
-          <div class="modal-footer">
-
-            <button type="button" id="btnSave" class="btn btn-submit" (click)="onDeleteExperience()"
-              style="padding:4px;" data-dismiss="modal">OK</button>
-            <button type="button" id="btnSave" class="btn btn-submit" onclick="" style="padding:4px;"
-              data-dismiss="modal">CANCEL</button>
-          </div>
+          <button type="button" id="btnSave" class="btn btn-submit" (click)="onDeleteExperience()" style="padding:4px;"
+            data-dismiss="modal">OK</button>
+          <button type="button" id="btnSave" class="btn btn-submit" onclick="" style="padding:4px;"
+            data-dismiss="modal">CANCEL</button>
         </div>
       </div>
     </div>
+  </div>
+  
+  </div>
