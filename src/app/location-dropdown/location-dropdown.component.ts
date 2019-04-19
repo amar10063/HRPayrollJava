@@ -18,10 +18,11 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
   params: any;
   selectedValue;
   action;
+  context;
   agInit(params: ICellRendererParams): void {
     this.params = params['value'];
     console.log('this.params: ' + this.params);
-
+    this.context = params.context;
 
     if (this.params === 'location') {
       this.getAllLocation();
@@ -81,11 +82,14 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
       );
   }
   getSelectedValue(event) {
-    console.log('dropdownvalue: ' + event.target.value);
-    //this.params.setValue(event.target.value);
-    // console.log('getValue: ' + this.params.getValue());
-
-
+    if (this.params === 'country') {
+      this.context.componentParent.selectedCountryId=event.target.value;
+      console.log("getted", this.context.componentParent.selectedCountryId);
+    } else if (this.params === 'state') {
+      this.context.componentParent.updateData(event.target.value,'state');
+    } else if (this.params === 'city') {
+      this.context.componentParent.updateData(event.target.value,'city');
+    }
   }
   getAllState(): any {
     const universalBody = new UniversalBody();
