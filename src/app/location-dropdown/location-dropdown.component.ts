@@ -77,7 +77,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
           var getAllLocationResponse = new GetAllLocationResponse();
           getAllLocationResponse.name = 'Select';
           this.locationResponse[0] = getAllLocationResponse;
-          console.log('data:  ' + JSON.stringify(this.locationResponse));
+          //console.log('data:  ' + JSON.stringify(this.locationResponse));
         }
       );
   }
@@ -90,7 +90,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
           var getAllLocationResponse = new GetAllLocationResponse();
           getAllLocationResponse.name = 'Select';
           this.locationResponse[0] = getAllLocationResponse;
-          console.log('data:  ' + JSON.stringify(this.locationResponse));
+          //console.log('data:  ' + JSON.stringify(this.locationResponse));
         }
       );
   }
@@ -104,12 +104,16 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
           var getAllLocationResponse = new GetAllLocationResponse();
           getAllLocationResponse.name = 'Select';
           this.locationResponse[0] = getAllLocationResponse;
-          console.log('data:  ' + JSON.stringify(this.locationResponse));
+          //console.log('data:  ' + JSON.stringify(this.locationResponse));
         }
       );
   }
-  onGroupChange($event)
+  
+  onGroupChange(event)
   {
-   // this.selectedLevel =event.target.value;
+    this.selectedLevel = event.target.value;
+    alert(this.selectedLevel);
+    //alert(event.target.value);
+    
   }
 }

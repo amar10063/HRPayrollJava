@@ -24,6 +24,16 @@ import { OtherEducationBody } from 'src/app/WebServices/WebServiceBody/Education
 import { OtherEducationDeleted } from 'src/app/WebServices/WebServiceBody/EducationBody/OtherEducationDeleted';
 import { BasicDetailBody } from 'src/app/WebServices/WebServiceBody/EmployeeBasicDetail/BasicDetailBody';
 import { DatePipe } from '@angular/common';
+import { UniversalResponse } from 'src/app/WebServices/WebServiceResponse/UniversalResponse';
+import { EmployeeAddressBody } from 'src/app/WebServices/WebServiceBody/EmployeeAddressBody/EmployeeAddressBody';
+import { UniversalBody } from 'src/app/WebServices/WebServiceBody/UniversalBody';
+import { EmployeeAddressResponse } from 'src/app/WebServices/WebServiceResponse/EmployeeAddressResponse/EmployeeAddressResponse';
+import { DeleteEmployeeAddressBody } from 'src/app/WebServices/WebServiceBody/EmployeeAddressBody/DeleteEmployeeAddressBody';
+import { LocationDropdownComponent } from 'src/app/location-dropdown/location-dropdown.component';
+import { EmployeeExperienceBody } from 'src/app/WebServices/WebServiceBody/EmployeeExperienceBody/EmployeeExperienceBody';
+import { EmployeeExperienceResponse } from 'src/app/WebServices/WebServiceResponse/EmployeeExperienceRespone/EmployeeExperienceResponse';
+import { DeleteEmployeeExperienceBody } from 'src/app/WebServices/WebServiceBody/EmployeeExperienceBody/DeleteEmployeeExperienceBody';
+import { UpdateEmployeeExperienceBody } from 'src/app/WebServices/WebServiceBody/EmployeeExperienceBody/UpdateEmployeeExperienceBody';
 
 
 @Component({
@@ -37,6 +47,14 @@ export class EmployeeComponent implements OnInit {
   highSchoolResponse: HighSchoolResponse;
   addressApi: GridApi;
   addressColumnApi: ColumnApi;
+  empExperienceApi: GridApi;
+  empExperienceColumnApi: ColumnApi;
+  editExperience :boolean = false;
+
+  saveUpdateExperience: string;
+  selectedRowExperience: any[];
+  nodeExpSelectButWhere: string;
+
 
   graduationApi: GridApi;
   graduationColumnApi: ColumnApi;
@@ -50,6 +68,10 @@ export class EmployeeComponent implements OnInit {
   submitted = false;
   designationResponse: GetAllLocationResponse[];
   selectedDesignationIndex: number;
+  universalResponse: UniversalResponse;
+  employeeeAddressResponse: EmployeeAddressResponse[];
+  employeeExperienceResponse: EmployeeExperienceResponse[];
+
   url;
 
   columnDefs = [
@@ -91,27 +113,130 @@ export class EmployeeComponent implements OnInit {
   columnDefs1 = [
 
 
-    { headerName: 'Status', field: 'status', sortable: true, filter: true, editable: true, width: 100 },
+    {
+      headerName: 'Status', field: 'address_Status', sortable: true, filter: true, editable: true, width: 100,
 
-    { headerName: 'Address', field: 'address', editable: true, width: 90 },
-    { headerName: 'City', field: 'city', sortable: true, filter: true, editable: true, width: 80 },
-    { headerName: 'State', field: 'state', sortable: true, filter: true, editable: true, width: 80 },
-    { headerName: 'Country', field: 'country', sortable: true, filter: true, editable: true, width: 80 },
-    { headerName: 'Postal Code', field: 'pin', sortable: true, filter: true, editable: true, width: 80 },
-    { headerName: 'Contact No.', field: 'ContactNo', sortable: true, filter: true, editable: true, width: 80 },
-    { headerName: 'Email ID', field: 'EmailID', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'Emergency Contact Person', field: 'EmergencyContactPerson', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'Emergency Contact No', field: 'EmergencyContactNo', sortable: true, filter: true, editable: true, width: 100 },
 
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+
+    },
+    {
+      headerName: 'Address', field: 'address', editable: true, width: 150,
+
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+    {
+      headerName: 'City', field: 'city', sortable: true, filter: true, width: 100,
+      //editable:true,
+      cellRendererFramework: LocationDropdownComponent,
+      cellRendererParams: {
+        value: 'city'
+      }
+
+
+    },
+    {
+      headerName: 'State', field: 'state', sortable: true, filter: true, width: 100,
+
+      cellRendererFramework: LocationDropdownComponent,
+      cellRendererParams: {
+        value: 'state'
+      }
+
+
+    },
+
+    {
+      headerName: 'Country', field: 'country', sortable: true, filter: true, width: 90,
+
+      cellRendererFramework: LocationDropdownComponent,
+      cellRendererParams: {
+        value: 'country'
+      }
+
+    },
+    {
+      headerName: 'Postal Code', field: 'pin_code', sortable: true, filter: true, editable: true, width: 100,
+
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+
+    },
+    {
+      headerName: 'Contact No.', field: 'contact_No', sortable: true, filter: true, editable: true, width: 100,
+
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+    {
+      headerName: 'Email ID', field: 'email_ID', sortable: true, filter: true, editable: true, width: 120,
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+    {
+      headerName: 'Emergency Contact Person', field: 'emergency_contact_person', sortable: true, filter: true, editable: true, width: 120,
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+    {
+      headerName: 'Emergency Contact No', field: 'emergency_contact_number', sortable: true, filter: true, editable: true, width: 120,
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
 
   ];
 
-  rowData1 = [
-  ];
+  rowData1;
+
 
   columnDefs2 = [
 
     {
+
 
       headerName: 'Class', field: 'className', width:80, editable: true,
 
@@ -124,6 +249,7 @@ export class EmployeeComponent implements OnInit {
       }
 
 
+
     },
     {
       headerName: 'Board', field: 'boardName', sortable: true, filter: true, width: 80, editable: true,
@@ -134,6 +260,7 @@ export class EmployeeComponent implements OnInit {
           return { outline: 'white' };
         };
       }
+
     },
     {
       headerName: 'School Name', field: 'schoolName', sortable: true, filter: true, width: 130, editable: true,
@@ -166,18 +293,21 @@ export class EmployeeComponent implements OnInit {
           return { outline: 'white' };
         }
       }
+
     },
    
     {
       headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, width: 100, editable: true,
       cellStyle: function (params) {
         if (params.value === '') {
+
           return { outline: '1px solid red' };
         } else {
           return { outline: 'white' };
         }
       }
     },
+
 
      { headerName: '', width: 208, }
   ];
@@ -196,6 +326,7 @@ export class EmployeeComponent implements OnInit {
 
     { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, editable: true, width: 120 },
 
+
     { headerName: '', field: '', width:155, }
 
   ];
@@ -211,6 +342,7 @@ export class EmployeeComponent implements OnInit {
     { headerName: 'End Date', field: 'endDate', sortable: true, filter: true, editable: true, width: 150 },
 
     { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, editable: true, width: 120 },
+
     { headerName: '', field: '', width: 152, }
   ];
 
@@ -225,6 +357,7 @@ export class EmployeeComponent implements OnInit {
     { headerName: 'Start Date', field: 'startDate', sortable: true, filter: true, editable: true, width: 150 },
     { headerName: 'End Date', field: 'endDate', sortable: true, filter: true, editable: true, width: 150 },
     { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, editable: true, width: 120 },
+
     { headerName: '', width: 152, }
 
   ];
@@ -234,6 +367,7 @@ export class EmployeeComponent implements OnInit {
   ];
 
   columnDefs7 = [
+
 
     { headerName: 'Institute', field: 'Institute', editable: true, width: 100 },
     { headerName: 'Course', field: 'Course', sortable: true, filter: true, editable: true, width: 100 },
@@ -252,21 +386,91 @@ export class EmployeeComponent implements OnInit {
   columnDefs8 = [
 
 
-    { headerName: 'Company Name', field: 'CompanyName', editable: true, width: 120 },
-    { headerName: 'Designation', field: 'Designation', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: 'Department', field: 'Department', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'Joining Date', field: 'JoiningDate', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'Exit Date', field: 'ExitDate', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'Experience', field: 'Experience', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'Location', field: 'Location', sortable: true, filter: true, editable: true, width: 100 },
-    { headerName: '', field: '', width: 98, }
+    {
+      headerName: 'Company Name', field: 'companyName', editable: true, width: 120,
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+    {
+      headerName: 'Designation', field: 'designation', sortable: true, filter: true, editable: true, width: 120,
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+    {
+      headerName: 'Department', field: 'department', sortable: true, filter: true, editable: true, width: 120,
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+    {
+      headerName: 'Joining Date', field: 'joiningDate', sortable: true, filter: true, editable: true, width: 120,
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+    {
+      headerName: 'Exit Date', field: 'exitDate', sortable: true, filter: true, editable: true, width: 120,
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+    {
+      headerName: 'Experience', field: 'experience', sortable: true, filter: true, editable: true, width: 120,
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+    {
+      headerName: 'Location', field: 'location', sortable: true, filter: true, editable: true, width: 120,
+      cellStyle: function (params) {
+        if (params.value === '') {
+
+          return { outline: '1px solid red' };
+        } else {
+          return { outline: 'white' };
+        }
+      }
+    },
+    { headerName: '', field: '', width: 160, }
+
 
 
   ];
 
-  rowData8 = [
- 
-  ];
+  rowData8;
 
   columnDefs9 = [
 
@@ -274,6 +478,7 @@ export class EmployeeComponent implements OnInit {
     { headerName: 'Certificate Name', field: 'CertificateName', editable: true, width: 120 },
     { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, editable: true, width: 120 },
     { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, editable: true, width: 120 },
+
     { headerName: '', field: '', width: 538, }
 
 
@@ -297,6 +502,7 @@ export class EmployeeComponent implements OnInit {
     { headerName: 'Branch Name', field: 'BranchName', sortable: true, filter: true, editable: true, width: 120 },
     { headerName: 'Primary', field: 'Primary', sortable: true, filter: true, editable: true, width: 80 },
 
+
     { headerName: '', field: '', width: 235, }
   ];
 
@@ -311,6 +517,7 @@ export class EmployeeComponent implements OnInit {
     { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, editable: true, width: 110 },
     { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, editable: true, width: 150 },
     { headerName: 'Time Duration', field: 'TimetoExpire', sortable: true, filter: true, editable: true, width: 150 },
+
     { headerName: '', field: '', width: 378, }
   ];
 
@@ -324,6 +531,7 @@ export class EmployeeComponent implements OnInit {
     { headerName: 'Country', field: 'Country', sortable: true, filter: true, editable: true, width: 100 },
     { headerName: 'Number Of Visit', field: 'NumberOfVisit', sortable: true, filter: true, editable: true, width: 120 },
     { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, editable: true, width: 120 },
+
     { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, editable: true, width: 140 },
     { headerName: 'Time to Expire', field: 'TimetoExpire', sortable: true, filter: true, editable: true, width: 120 },
     { headerName: '', field: '', width: 298, }
@@ -353,6 +561,7 @@ export class EmployeeComponent implements OnInit {
     { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, editable: true, width: 120 },
     { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, editable: true, width: 150 },
     { headerName: 'Time Duration', field: 'TimetoExpire', sortable: true, filter: true, editable: true, width: 130 },
+
     { headerName: '', field: '', width: 348, }
   ];
 
@@ -367,6 +576,7 @@ export class EmployeeComponent implements OnInit {
     { headerName: 'Expiry Date', field: 'ExpiryDate', sortable: true, filter: true, editable: true, width: 120 },
     { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, editable: true, width: 150 },
     { headerName: 'Time Duration', field: 'TimeDuration', sortable: true, filter: true, editable: true, width: 130 },
+
     { headerName: '', field: '', width: 348, }
   ];
 
@@ -381,6 +591,7 @@ export class EmployeeComponent implements OnInit {
     { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, editable: true, width: 130 },
     { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, editable: true, width: 130 },
     { headerName: 'Upload Document', field: 'UploadDocument', sortable: true, filter: true, editable: true, width: 150 },
+
     { headerName: '', field: '', width: 248, }
   ];
 
@@ -411,6 +622,13 @@ export class EmployeeComponent implements OnInit {
   api;
   columnApi;
   getSchoolResonseData: GetSchoolDataResponse[];
+  addAddressToggleButton;
+  saveAddressToggleButton;
+  deleteAddressToggleButton;
+
+  addExperienceToggleButton;
+  saveExperienceToggleButton;
+  deleteExperienceToggleButton
   getGraduationDetailsResponse: GetGraduationDetailsResponse[];
   getPostGraduationDetailsResponse: GetPostGraduationDetailsResponse[];
   getOtherEducationalResponse: GetOtherEducationalResponse[];
@@ -435,12 +653,23 @@ export class EmployeeComponent implements OnInit {
       title: ['Mr', [Validators.required,]],
       location: ['', [Validators.required,]]
     });
-    // this.getLocation(1);
-    // this.onGetSchoolQualification();
-    // this.onGetGraduational();
-    // this.onGetPostGraduational();
-    // this.onGetOther();
-    // console.log('this.today ' + this.today);
+    this.getLocation(1);
+    this.onGetSchoolQualification();
+    this.getEmployeeExperience();
+
+    this.getEmployeeAddress();
+
+    this.saveUpdateExperience = 'save';
+
+    console.log('this.today ' + this.today);
+    this.addAddressToggleButton = false;
+    this.saveAddressToggleButton = false;
+    this.deleteAddressToggleButton = false;
+
+    this.saveExperienceToggleButton = false;
+    this.addExperienceToggleButton = false;
+    this.deleteExperienceToggleButton = false;
+
 
   }
   onRadioClick(value) {
@@ -454,13 +683,164 @@ export class EmployeeComponent implements OnInit {
     this.addressApi = params.api;
     this.addressColumnApi = params.columnApi;
   }
-  onAddAddress() {
-    alert('add');
-    let res = this.addressApi.updateRowData({ add: [{ address: '', city: '', state: '', country: '', pin: '', status: '', ContactNo: '', EmailID: '', EmergencyContactPerson: '', EmergencyContactNo: '' }] });
-    res.add.forEach(function (rowNode) {
-      console.log('Added Row Node', rowNode);
-    });
+  onEmpExperienceGridReady(params) {
+    this.empExperienceApi = params.api;
+    this.empExperienceColumnApi = params.columnApi;
   }
+  onAddAddress() {
+    
+    let res = this.addressApi.updateRowData({ add: [{ address: '', city: '', state: '', country: '', pin_code: '', address_Status: '', contact_No: '', email_ID: '', emergency_contact_person: '', emergency_contact_number: '' }], addIndex: 0 });
+
+  }
+
+
+  onSaveAddress() {
+    const employeeAddressBody = new EmployeeAddressBody();
+    const selectedNodes = this.addressApi.getSelectedNodes();
+
+    const selectedData = selectedNodes.map(node => node.data);
+    var dataTest: Object;
+    selectedData.map(node => dataTest = node as Object);
+
+    if (selectedData.length === 0) {
+      alert("Please select a row");
+    }
+    employeeAddressBody.address_Status = dataTest['address_Status'];
+    employeeAddressBody.address = dataTest['address'];
+
+    employeeAddressBody.city = dataTest['city'];
+
+    employeeAddressBody.state = dataTest['state'];
+    employeeAddressBody.country = dataTest['country'];
+    employeeAddressBody.pin_code = dataTest['pin_code'];
+    employeeAddressBody.contact_No = dataTest['contact_No'];
+    employeeAddressBody.email_ID = dataTest['email_ID'];
+    employeeAddressBody.emergency_contact_person = dataTest['emergency_contact_person'];
+    employeeAddressBody.emergency_contact_number = dataTest['emergency_contact_number'];
+
+    if (dataTest['address_Status'] === '') {
+      alert("Enter status ");
+    }
+    else if (dataTest['address'] === '') {
+      alert("Enter address ");
+    }
+    // else if (dataTest['city'] === '') {
+    //   alert("Enter city ");
+    // }
+    // else if (dataTest['state'] === '') {
+    //   alert("Enter state ");
+    // }
+    // else if (dataTest['country'] === '') {
+    //   alert("Enter country ");
+    // }
+    else if (dataTest['pin_code'] === '') {
+      alert("Enter pincode ");
+    }
+    else if (dataTest['contact_No'] === '') {
+      alert("Enter contact number ");
+    }
+    else if (dataTest['email_ID'] === '') {
+      alert("Enter email id ");
+    }
+    else if (dataTest['emergency_contact_person'] === '') {
+      alert("Enter emergency contact person ");
+    }
+    else if (dataTest['emergency_contact_number'] === '') {
+      alert("Enter emergency contact number ");
+    }
+    else {
+      this.countryService.saveEmpolyeeAddress(employeeAddressBody)
+        .subscribe(
+          data => {
+            this.universalResponse = data;
+
+            alert(this.universalResponse.MESSAGE);
+
+            if (this.universalResponse.STATUS === 'Success') {
+              this.getEmployeeAddress();
+            }
+          }
+        );
+    }
+  }
+
+  getEmployeeAddress() {
+    const universalBody = new UniversalBody();
+    this.countryService.getEmpolyeeAddress(universalBody)
+      .subscribe(
+        data => {
+          this.employeeeAddressResponse = data;
+          //this.rowData1 = this.employeeeAddressResponse;
+          //console.log(this.employeeeAddressResponse);
+          if(this.employeeeAddressResponse.length === 0)
+          {
+          
+            //this.saveUpdateExperience="Save";
+            //this.editExperience = false;
+            this.addAddressToggleButton = false;
+            this.deleteAddressToggleButton = true;
+          }else{
+           // this.saveUpdateExperience="Save";
+            //this.editExperience = true;
+            this.addAddressToggleButton = false;
+            this.deleteAddressToggleButton = true;
+            this.rowData1 = this.employeeeAddressResponse;
+          }
+        }
+      )
+
+      
+    
+    
+
+     
+  }
+
+  onDeleteAddress() {
+    const selectedNodes = this.addressApi.getSelectedNodes();
+    var dataTest: Object;
+    const deleteEmployeeAddressBody = new DeleteEmployeeAddressBody();
+    const selectedData = selectedNodes.map(node => node.data);
+    selectedData.map(node => dataTest = node as Object);
+    if (selectedNodes.length === 0) {
+      alert("Please Select a row");
+    } else {
+      deleteEmployeeAddressBody.a_ID = dataTest['id'];
+      if (deleteEmployeeAddressBody.a_ID === undefined) {
+        
+        this.addressApi.removeItems(selectedNodes);
+      } else {
+
+        this.countryService.deleteEmpolyeeAddress(deleteEmployeeAddressBody)
+          .subscribe(
+            data => {
+              this.universalResponse = data;
+              alert(this.universalResponse.MESSAGE);
+              this.addressApi.removeItems(selectedNodes);
+            }
+          );
+      }
+    }
+
+  }
+  onAddressSelectionChanged() {
+    const selectedNodes = this.addressApi.getSelectedNodes();
+    const selectedData = selectedNodes.map(node => node.data);
+
+    if (selectedData.length !== 0) {
+      alert("Please select a row");
+      this.addAddressToggleButton = true;
+      this.deleteAddressToggleButton = false;
+    }
+    else {
+      alert("row");
+      this.addAddressToggleButton = false;
+      this.addAddressToggleButton = false;
+      this.deleteAddressToggleButton = true;
+    }
+
+  }
+
   getLocation(UserID: number) {
     var locationBody = new GetLocationBody();
     locationBody.userID = UserID;
@@ -470,8 +850,262 @@ export class EmployeeComponent implements OnInit {
           this.locationResponse = data;
           this.selectedLocationIndex = this.locationResponse.length - 1;
         }
-
       );
+  }
+  onAddEmpExperience() {
+    
+    
+    let res = this.empExperienceApi.updateRowData({ add: [{ companyName: '', designation: '', department: '', joiningDate: '', exitDate: '', experience: '', location: '', }], addIndex: 0 });
+    this.addExperienceToggleButton = true;
+    this.editExperience = false;
+    this.nodeExpSelectButWhere = "Add";
+
+
+  }
+  onSaveUpdateEmpExperience()
+  {
+    
+      if(this.saveUpdateExperience==="Save"){
+        this.onSaveEmpExperience();
+      }else{
+        alert("Update");
+
+       this.onUpdateEmpExperience();
+      }
+    
+  }
+  onUpdateEmpExperience(){
+    
+    this.editExperience = false;
+
+    if(this.selectedRowExperience === undefined){
+      alert("Please enter input valid data then hit save.")
+    }else{
+
+      const updateEmployeeExperienceBody = new UpdateEmployeeExperienceBody();
+    const selectedNodes = this.empExperienceApi.getSelectedNodes();
+
+    const selectedData = selectedNodes.map(node => node.data);
+    var dataTest: Object;
+    selectedData.map(node => dataTest = node as Object);
+
+    if (selectedData.length === 0) {
+      alert("Please select a row");
+    }
+    updateEmployeeExperienceBody.companyName = dataTest['companyName'];
+    updateEmployeeExperienceBody.designation = dataTest['designation'];
+
+    updateEmployeeExperienceBody.department = dataTest['department'];
+
+    //updateEmployeeExperienceBody.joiningDate = dataTest['joiningDate'];
+    //updateEmployeeExperienceBody.exitDate = dataTest['exitDate'];
+
+    var startDteSplitted = dataTest['joiningDate'].split("T")[0].split("-"); 
+        var startDated =  startDteSplitted[2]+"/"+ startDteSplitted[1]+"/"+ startDteSplitted[0];
+        var endDteSplitted = dataTest['exitDate'].split("T")[0].split("-"); 
+        var endDated =  endDteSplitted[2]+"/"+ endDteSplitted[1]+"/"+ endDteSplitted[0];
+
+    updateEmployeeExperienceBody.experience = dataTest['experience'];
+    updateEmployeeExperienceBody.location = dataTest['location'];
+    updateEmployeeExperienceBody.joiningDate = startDated;
+    updateEmployeeExperienceBody.exitDate = endDated;
+
+
+    if (dataTest['companyName'] === '') {
+      alert("Enter company name ");
+    }
+    else if (dataTest['designation'] === '') {
+      alert("Enter designation ");
+    }
+
+    else if (dataTest['department'] === '') {
+      alert("Enter department ");
+    }
+    else if (dataTest['joiningDate'] === '') {
+      alert("Enter joiningDate ");
+    }
+    else if (dataTest['exitDate'] === '') {
+      alert("Enter exitDate ");
+    }
+    else if (dataTest['experience'] === '') {
+      alert("Enter experience");
+    }
+    else if (dataTest['location'] === '') {
+      alert("Enter location ");
+    }
+    else {
+      updateEmployeeExperienceBody.expId = dataTest['id'];
+
+      if (updateEmployeeExperienceBody.expId === undefined) {
+        alert("undefined");
+        this.empExperienceApi.removeItems(selectedNodes);
+      }
+      else {
+      //alert(JSON.stringify(updateEmployeeExperienceBody));
+
+      this.countryService.updateEmpExperience(updateEmployeeExperienceBody)
+        .subscribe(
+          data => {
+            this.universalResponse = data;
+
+            alert(this.universalResponse.MESSAGE);
+
+            if (this.universalResponse.STATUS === 'Success') {
+              alert("success");
+              this.addExperienceToggleButton = false;
+              this.getEmployeeExperience();
+            }
+          }
+        );
+    }
+  }
+    }
+  }
+  onSaveEmpExperience() {
+    if(this.selectedRowExperience === undefined){
+      alert("Please enter input valid data then hit save.")
+    }else{
+    const employeeExperienceBody = new EmployeeExperienceBody();
+    const selectedNodes = this.empExperienceApi.getSelectedNodes();
+
+    const selectedData = selectedNodes.map(node => node.data);
+    var dataTest: Object;
+    selectedData.map(node => dataTest = node as Object);
+
+    if (selectedData.length === 0) {
+      alert("Please select a row");
+    }
+    employeeExperienceBody.companyName = dataTest['companyName'];
+    employeeExperienceBody.designation = dataTest['designation'];
+
+    employeeExperienceBody.department = dataTest['department'];
+
+    employeeExperienceBody.joiningDate = dataTest['joiningDate'];
+    employeeExperienceBody.exitDate = dataTest['exitDate'];
+    employeeExperienceBody.experience = dataTest['experience'];
+    employeeExperienceBody.location = dataTest['location'];
+
+
+    if (dataTest['companyName'] === '') {
+      alert("Enter company name ");
+    }
+    else if (dataTest['designation'] === '') {
+      alert("Enter designation ");
+    }
+
+    else if (dataTest['department'] === '') {
+      alert("Enter department ");
+    }
+    else if (dataTest['joiningDate'] === '') {
+      alert("Enter joiningDate ");
+    }
+    else if (dataTest['exitDate'] === '') {
+      alert("Enter exitDate ");
+    }
+    else if (dataTest['experience'] === '') {
+      alert("Enter experience");
+    }
+    else if (dataTest['location'] === '') {
+      alert("Enter location ");
+    }
+    else {
+      
+      this.countryService.saveEmpExperience(employeeExperienceBody)
+        .subscribe(
+          data => {
+            this.universalResponse = data;
+
+            alert(this.universalResponse.MESSAGE);
+
+            if (this.universalResponse.STATUS === 'Success') {
+              alert("success");
+              this.getEmployeeExperience();
+            }
+          }
+        );
+    }
+  }
+  }
+  onDeleteExperience() {
+    const selectedNodes = this.empExperienceApi.getSelectedNodes();
+    var dataTest: Object;
+    const deleteEmployeeExperiencebody = new DeleteEmployeeExperienceBody();
+    const selectedData = selectedNodes.map(node => node.data);
+    selectedData.map(node => dataTest = node as Object);
+    if (selectedNodes.length === 0) {
+      alert("Please Select a row");
+    }
+    else {
+      deleteEmployeeExperiencebody.expId = dataTest['id'];
+
+      if (deleteEmployeeExperiencebody.expId === undefined) {
+        
+        this.empExperienceApi.removeItems(selectedNodes);
+      }
+      else {
+        this.countryService.deleteEmpExperience(deleteEmployeeExperiencebody)
+          .subscribe(
+            data => {
+              this.universalResponse = data;
+              alert(this.universalResponse.MESSAGE);
+              if (this.universalResponse.STATUS === 'Success') {
+                this.empExperienceApi.removeItems(selectedNodes);
+                this.addExperienceToggleButton = false;
+               
+              }
+              
+            }
+          );
+      }
+    }
+
+  }
+  getEmployeeExperience() {
+
+    const universalBody = new UniversalBody();
+    this.countryService.getEmpolyeeExperience(universalBody)
+      .subscribe(
+        data => {
+          this.employeeExperienceResponse = data;
+          
+          if(this.employeeExperienceResponse.length === 0)
+          {
+          
+            this.saveUpdateExperience="Save";
+            this.editExperience = false;
+            this.addExperienceToggleButton = false;
+            this.deleteExperienceToggleButton = true;
+          }else{
+            this.saveUpdateExperience="Save";
+            this.editExperience = true;
+            this.addExperienceToggleButton = false;
+            this.deleteExperienceToggleButton = true;
+            this.rowData8 = this.employeeExperienceResponse;
+          }        
+          //console.log(this.employeeeAddressResponse);
+        }
+      )
+  }
+  onEmpExperienceSelectionChanged() {
+    this.selectedRowExperience = this.empExperienceApi.getSelectedRows();
+    if(this.selectedRowExperience.length === 1){
+      this.deleteExperienceToggleButton = false;
+      console.log("NodeBut Where",this.nodeExpSelectButWhere);
+
+      if(this.nodeExpSelectButWhere === "Add"){
+        this.saveUpdateExperience="Save";
+        this.nodeExpSelectButWhere = "Update"
+      }else if(this.nodeExpSelectButWhere === undefined){
+        this.saveUpdateExperience="Update";
+        this.editExperience = false;
+      }
+
+    }
+
+  }
+  onEmpFilterChange(event)
+  {
+     alert("Check");    
   }
   onDepartmentClick() {
     this.getAllDepartment(1, this.locationResponse[this.selectedLocationIndex].id);
