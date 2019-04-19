@@ -238,6 +238,7 @@ export class EmployeeComponent implements OnInit {
     {
 
 
+
       headerName: 'Class', field: 'className', width:80, editable: true,
 
       cellStyle: function (params) {
@@ -295,7 +296,7 @@ export class EmployeeComponent implements OnInit {
       }
 
     },
-   
+
     {
       headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, width: 100, editable: true,
       cellStyle: function (params) {
@@ -307,6 +308,7 @@ export class EmployeeComponent implements OnInit {
         }
       }
     },
+
 
 
      { headerName: '', width: 208, }
@@ -325,6 +327,7 @@ export class EmployeeComponent implements OnInit {
     { headerName: 'End Date', field: 'enddate', sortable: true, filter: true, editable: true, width: 150 },
 
     { headerName: 'Percentage', field: 'percentage', sortable: true, filter: true, editable: true, width: 120 },
+
 
 
     { headerName: '', field: '', width:155, }
@@ -347,7 +350,7 @@ export class EmployeeComponent implements OnInit {
   ];
 
   rowData5 = [
-   
+
   ];
 
   columnDefs6 = [
@@ -468,6 +471,9 @@ export class EmployeeComponent implements OnInit {
 
 
 
+  rowData8 = [
+
+
   ];
 
   rowData8;
@@ -507,7 +513,7 @@ export class EmployeeComponent implements OnInit {
   ];
 
   rowData10 = [
-  
+
   ];
 
   columnDefs11 = [
@@ -522,7 +528,7 @@ export class EmployeeComponent implements OnInit {
   ];
 
   rowData11 = [
-    
+
   ];
 
   columnDefs12 = [
@@ -538,7 +544,7 @@ export class EmployeeComponent implements OnInit {
   ];
 
   rowData12 = [
- 
+
   ];
 
   columnDefs13 = [
@@ -551,7 +557,7 @@ export class EmployeeComponent implements OnInit {
   ];
 
   rowData13 = [
- 
+
   ];
 
   columnDefs14 = [
@@ -566,7 +572,7 @@ export class EmployeeComponent implements OnInit {
   ];
 
   rowData14 = [
-  
+
   ];
 
   columnDefs15 = [
@@ -581,7 +587,7 @@ export class EmployeeComponent implements OnInit {
   ];
 
   rowData15 = [
-   
+
   ];
 
   columnDefs16 = [
@@ -596,7 +602,7 @@ export class EmployeeComponent implements OnInit {
   ];
 
   rowData16 = [
-  
+
   ];
 
   locationResponse;
@@ -610,7 +616,6 @@ export class EmployeeComponent implements OnInit {
   newDate: Date;
   maritalStatus = 'Married';
   employementType = 'Contract';
-  selectedFile: ImageSnippet;
   universalStatus: UniversalResponse;
 
 
@@ -641,7 +646,7 @@ export class EmployeeComponent implements OnInit {
   today;
   ngOnInit() {
     this.today = new Date().toJSON().split('T')[0];
-    this.today = new DatePipe('en-US').transform(this.today, 'dd/MM/yyyy');
+    //this.today = new DatePipe('en-US').transform(this.today, 'dd/MM/yyyy');
     this.basicDetailsForm = this.formBuilder.group({
       empCode: ['', [Validators.required, Validators.pattern('[0-9]{0-10}')]],
       firstName: ['', [Validators.required]],
@@ -655,6 +660,10 @@ export class EmployeeComponent implements OnInit {
     });
     this.getLocation(1);
     this.onGetSchoolQualification();
+    this.onGetGraduational();
+    this.onGetPostGraduational();
+    this.onGetOther();
+    console.log('this.today ' + this.today);
     this.getEmployeeExperience();
 
     this.getEmployeeAddress();
@@ -1118,7 +1127,7 @@ export class EmployeeComponent implements OnInit {
 
   updateCalcs(date: number) {
     var today = new Date();
-    this.today = new DatePipe('en-US').transform(this.today, 'dd/MM/yyyy');
+    // this.today = new DatePipe('en-US').transform(this.today, 'dd/MM/yyyy');
     console.log(this.today);
 
     this.newDate = new Date(date);
@@ -1131,10 +1140,8 @@ export class EmployeeComponent implements OnInit {
   }
   public getSelectedDepartment(value): void {
     console.log(value.target.value);
-    //  console.log('value:' + value); this.getAllDesignation('1', value.target.value);
   }
   public getSelectedDesignation(value): void {
-    // console.log(value.target.value);
     console.log('value:' + value);
   }
   getAllDepartment(UserID: number, LocationID: number) {
@@ -1171,9 +1178,11 @@ export class EmployeeComponent implements OnInit {
   onSaveClick() {
     this.submitted = true;
     var basicDetailBody = new BasicDetailBody();
+    var parsedate = new DatePipe('en-US').transform(this.today, 'dd/MM/yyyy');
+
     basicDetailBody.Anniversary = '';
     basicDetailBody.E_Code = this.basicDetailsForm.controls.empCode.value;
-    basicDetailBody.E_DOB = this.today;
+    basicDetailBody.E_DOB = parsedate;
     basicDetailBody.E_Title = this.basicDetailsForm.controls.title.value;
     basicDetailBody.E_Location = this.locationResponse[this.selectedLocationIndex].id + '';
     basicDetailBody.E_Dept = this.locationResponse[this.selectedDepartmentIndex].id + '';
@@ -1213,8 +1222,6 @@ export class EmployeeComponent implements OnInit {
       console.log('Added Row Node', rowNode);
     });
   }
-
-
 
   processFile(event) {
     if (event.target.files && event.target.files[0]) {
@@ -1344,7 +1351,7 @@ export class EmployeeComponent implements OnInit {
     }
   }
 
-  // 
+
   onAddGraduationQualification() {
     this.addNewGraduationRow = true;
     // alert("ok");
@@ -1710,6 +1717,5 @@ export class EmployeeComponent implements OnInit {
   get f() { return this.basicDetailsForm.controls; }
 
 }
-class ImageSnippet {
-  constructor(public src: string, public file: File) { }
-}
+
+
