@@ -1,4 +1,4 @@
 export class UniversalBody
 {
-    userID: number = 1;
+    userID: string = "1";
 }

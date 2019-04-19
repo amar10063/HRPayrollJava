@@ -262,7 +262,6 @@ export class CountryComponent implements OnInit {
     this.getCity();
     this.getCountries();
     this.getStates();
-
   }
   getStates()
   {
@@ -271,6 +270,7 @@ export class CountryComponent implements OnInit {
       .subscribe(
         data => {
           this.getStateResponse = data;
+          console.log("getted",this.getStateResponse);
           this.rowData1 = this.getStateResponse;
         }
       );

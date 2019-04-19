@@ -1,17 +1,18 @@
 export class EmployeeAddressBody {
-    Address: string;
-    City: string;
-    State: string;
-    Country: string;
-    Pin_code: string;
-    Address_Status: string;
-    Contact_No: string;
-    Email_ID: string;
-    Emergency_contact_person: string;
-    Emergency_contact_number: string;
-    eid: number;
-    userID: number;
-    UpdatedBy: string;
+    //id: number =1;
+    address: string;
+    city: string;
+    state: string;
+    country: string;
+    pin_code: string;
+    address_Status: string;
+    contact_No: string;
+    email_ID: string;
+    emergency_contact_person: string;
+    emergency_contact_number: string;
+    eid: number=1;
+    userID: number =1;
+    updatedBy: string ="1";
 
     // Address":"E 210 Sector 63",
     // "City":"Noida",

@@ -32,6 +32,11 @@ export class ServiceUrls {
     public static getStateDropdown = '/getStateDropDown';
     public static getCityDropdown = '/getCityDropDown';
     public static saveEmployeeBasicDetail = '/AddEmployee';
-
+    public static getEmployeeAddress = '/getAddressBook';
+    public static deleteEmployeeAddress ='/DeleteAddress';
+    public static saveEmpExperience ='/AddEmployeeExperience';
+    public static getEmpExperience ='/getEmployeeExperienceData';
+    public static deleteEmpExperience = '/DeleteEmployeeExperience';
+    public static updateEmpExperience ='/UpdateEmployeeExperience';
 
 }
