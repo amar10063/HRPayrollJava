@@ -24,7 +24,6 @@ import { OtherEducationBody } from 'src/app/WebServices/WebServiceBody/Education
 import { OtherEducationDeleted } from 'src/app/WebServices/WebServiceBody/EducationBody/OtherEducationDeleted';
 import { BasicDetailBody } from 'src/app/WebServices/WebServiceBody/EmployeeBasicDetail/BasicDetailBody';
 import { DatePipe } from '@angular/common';
-import { UniversalResponse } from 'src/app/WebServices/WebServiceResponse/UniversalResponse';
 import { EmployeeAddressBody } from 'src/app/WebServices/WebServiceBody/EmployeeAddressBody/EmployeeAddressBody';
 import { UniversalBody } from 'src/app/WebServices/WebServiceBody/UniversalBody';
 import { EmployeeAddressResponse } from 'src/app/WebServices/WebServiceResponse/EmployeeAddressResponse/EmployeeAddressResponse';
@@ -49,7 +48,7 @@ export class EmployeeComponent implements OnInit {
   addressColumnApi: ColumnApi;
   empExperienceApi: GridApi;
   empExperienceColumnApi: ColumnApi;
-  editExperience :boolean = false;
+  editExperience: boolean = false;
 
   saveUpdateExperience: string;
   selectedRowExperience: any[];
@@ -239,7 +238,7 @@ export class EmployeeComponent implements OnInit {
 
 
 
-      headerName: 'Class', field: 'className', width:80, editable: true,
+      headerName: 'Class', field: 'className', width: 80, editable: true,
 
       cellStyle: function (params) {
         if (params.value === '') {
@@ -311,7 +310,7 @@ export class EmployeeComponent implements OnInit {
 
 
 
-     { headerName: '', width: 208, }
+    { headerName: '', width: 208, }
   ];
 
   rowData2: GetSchoolDataResponse[];
@@ -330,7 +329,7 @@ export class EmployeeComponent implements OnInit {
 
 
 
-    { headerName: '', field: '', width:155, }
+    { headerName: '', field: '', width: 155, }
 
   ];
 
@@ -387,7 +386,6 @@ export class EmployeeComponent implements OnInit {
 
 
   columnDefs8 = [
-
 
     {
       headerName: 'Company Name', field: 'companyName', editable: true, width: 120,
@@ -467,13 +465,6 @@ export class EmployeeComponent implements OnInit {
         }
       }
     },
-    { headerName: '', field: '', width: 160, }
-
-
-
-  rowData8 = [
-
-
   ];
 
   rowData8;
@@ -486,11 +477,6 @@ export class EmployeeComponent implements OnInit {
     { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, editable: true, width: 120 },
 
     { headerName: '', field: '', width: 538, }
-
-
-
-
-
   ];
 
   rowData9 = [
@@ -697,7 +683,7 @@ export class EmployeeComponent implements OnInit {
     this.empExperienceColumnApi = params.columnApi;
   }
   onAddAddress() {
-    
+
     let res = this.addressApi.updateRowData({ add: [{ address: '', city: '', state: '', country: '', pin_code: '', address_Status: '', contact_No: '', email_ID: '', emergency_contact_person: '', emergency_contact_number: '' }], addIndex: 0 });
 
   }
@@ -758,7 +744,7 @@ export class EmployeeComponent implements OnInit {
       alert("Enter emergency contact number ");
     }
     else {
-      this.countryService.saveEmpolyeeAddress(employeeAddressBody)
+      this.allwebService.saveEmpolyeeAddress(employeeAddressBody)
         .subscribe(
           data => {
             this.universalResponse = data;
@@ -775,21 +761,20 @@ export class EmployeeComponent implements OnInit {
 
   getEmployeeAddress() {
     const universalBody = new UniversalBody();
-    this.countryService.getEmpolyeeAddress(universalBody)
+    this.allwebService.getEmpolyeeAddress(universalBody)
       .subscribe(
         data => {
           this.employeeeAddressResponse = data;
           //this.rowData1 = this.employeeeAddressResponse;
           //console.log(this.employeeeAddressResponse);
-          if(this.employeeeAddressResponse.length === 0)
-          {
-          
+          if (this.employeeeAddressResponse.length === 0) {
+
             //this.saveUpdateExperience="Save";
             //this.editExperience = false;
             this.addAddressToggleButton = false;
             this.deleteAddressToggleButton = true;
-          }else{
-           // this.saveUpdateExperience="Save";
+          } else {
+            // this.saveUpdateExperience="Save";
             //this.editExperience = true;
             this.addAddressToggleButton = false;
             this.deleteAddressToggleButton = true;
@@ -798,11 +783,11 @@ export class EmployeeComponent implements OnInit {
         }
       )
 
-      
-    
-    
 
-     
+
+
+
+
   }
 
   onDeleteAddress() {
@@ -816,11 +801,11 @@ export class EmployeeComponent implements OnInit {
     } else {
       deleteEmployeeAddressBody.a_ID = dataTest['id'];
       if (deleteEmployeeAddressBody.a_ID === undefined) {
-        
+
         this.addressApi.removeItems(selectedNodes);
       } else {
 
-        this.countryService.deleteEmpolyeeAddress(deleteEmployeeAddressBody)
+        this.allwebService.deleteEmpolyeeAddress(deleteEmployeeAddressBody)
           .subscribe(
             data => {
               this.universalResponse = data;
@@ -862,8 +847,8 @@ export class EmployeeComponent implements OnInit {
       );
   }
   onAddEmpExperience() {
-    
-    
+
+
     let res = this.empExperienceApi.updateRowData({ add: [{ companyName: '', designation: '', department: '', joiningDate: '', exitDate: '', experience: '', location: '', }], addIndex: 0 });
     this.addExperienceToggleButton = true;
     this.editExperience = false;
@@ -871,169 +856,168 @@ export class EmployeeComponent implements OnInit {
 
 
   }
-  onSaveUpdateEmpExperience()
-  {
-    
-      if(this.saveUpdateExperience==="Save"){
-        this.onSaveEmpExperience();
-      }else{
-        alert("Update");
+  onSaveUpdateEmpExperience() {
 
-       this.onUpdateEmpExperience();
-      }
-    
+    if (this.saveUpdateExperience === "Save") {
+      this.onSaveEmpExperience();
+    } else {
+      alert("Update");
+
+      this.onUpdateEmpExperience();
+    }
+
   }
-  onUpdateEmpExperience(){
-    
+  onUpdateEmpExperience() {
+
     this.editExperience = false;
 
-    if(this.selectedRowExperience === undefined){
+    if (this.selectedRowExperience === undefined) {
       alert("Please enter input valid data then hit save.")
-    }else{
+    } else {
 
       const updateEmployeeExperienceBody = new UpdateEmployeeExperienceBody();
-    const selectedNodes = this.empExperienceApi.getSelectedNodes();
+      const selectedNodes = this.empExperienceApi.getSelectedNodes();
 
-    const selectedData = selectedNodes.map(node => node.data);
-    var dataTest: Object;
-    selectedData.map(node => dataTest = node as Object);
+      const selectedData = selectedNodes.map(node => node.data);
+      var dataTest: Object;
+      selectedData.map(node => dataTest = node as Object);
 
-    if (selectedData.length === 0) {
-      alert("Please select a row");
-    }
-    updateEmployeeExperienceBody.companyName = dataTest['companyName'];
-    updateEmployeeExperienceBody.designation = dataTest['designation'];
+      if (selectedData.length === 0) {
+        alert("Please select a row");
+      }
+      updateEmployeeExperienceBody.companyName = dataTest['companyName'];
+      updateEmployeeExperienceBody.designation = dataTest['designation'];
 
-    updateEmployeeExperienceBody.department = dataTest['department'];
+      updateEmployeeExperienceBody.department = dataTest['department'];
 
-    //updateEmployeeExperienceBody.joiningDate = dataTest['joiningDate'];
-    //updateEmployeeExperienceBody.exitDate = dataTest['exitDate'];
+      //updateEmployeeExperienceBody.joiningDate = dataTest['joiningDate'];
+      //updateEmployeeExperienceBody.exitDate = dataTest['exitDate'];
 
-    var startDteSplitted = dataTest['joiningDate'].split("T")[0].split("-"); 
-        var startDated =  startDteSplitted[2]+"/"+ startDteSplitted[1]+"/"+ startDteSplitted[0];
-        var endDteSplitted = dataTest['exitDate'].split("T")[0].split("-"); 
-        var endDated =  endDteSplitted[2]+"/"+ endDteSplitted[1]+"/"+ endDteSplitted[0];
+      var startDteSplitted = dataTest['joiningDate'].split("T")[0].split("-");
+      var startDated = startDteSplitted[2] + "/" + startDteSplitted[1] + "/" + startDteSplitted[0];
+      var endDteSplitted = dataTest['exitDate'].split("T")[0].split("-");
+      var endDated = endDteSplitted[2] + "/" + endDteSplitted[1] + "/" + endDteSplitted[0];
 
-    updateEmployeeExperienceBody.experience = dataTest['experience'];
-    updateEmployeeExperienceBody.location = dataTest['location'];
-    updateEmployeeExperienceBody.joiningDate = startDated;
-    updateEmployeeExperienceBody.exitDate = endDated;
+      updateEmployeeExperienceBody.experience = dataTest['experience'];
+      updateEmployeeExperienceBody.location = dataTest['location'];
+      updateEmployeeExperienceBody.joiningDate = startDated;
+      updateEmployeeExperienceBody.exitDate = endDated;
 
 
-    if (dataTest['companyName'] === '') {
-      alert("Enter company name ");
-    }
-    else if (dataTest['designation'] === '') {
-      alert("Enter designation ");
-    }
+      if (dataTest['companyName'] === '') {
+        alert("Enter company name ");
+      }
+      else if (dataTest['designation'] === '') {
+        alert("Enter designation ");
+      }
 
-    else if (dataTest['department'] === '') {
-      alert("Enter department ");
-    }
-    else if (dataTest['joiningDate'] === '') {
-      alert("Enter joiningDate ");
-    }
-    else if (dataTest['exitDate'] === '') {
-      alert("Enter exitDate ");
-    }
-    else if (dataTest['experience'] === '') {
-      alert("Enter experience");
-    }
-    else if (dataTest['location'] === '') {
-      alert("Enter location ");
-    }
-    else {
-      updateEmployeeExperienceBody.expId = dataTest['id'];
-
-      if (updateEmployeeExperienceBody.expId === undefined) {
-        alert("undefined");
-        this.empExperienceApi.removeItems(selectedNodes);
+      else if (dataTest['department'] === '') {
+        alert("Enter department ");
+      }
+      else if (dataTest['joiningDate'] === '') {
+        alert("Enter joiningDate ");
+      }
+      else if (dataTest['exitDate'] === '') {
+        alert("Enter exitDate ");
+      }
+      else if (dataTest['experience'] === '') {
+        alert("Enter experience");
+      }
+      else if (dataTest['location'] === '') {
+        alert("Enter location ");
       }
       else {
-      //alert(JSON.stringify(updateEmployeeExperienceBody));
+        updateEmployeeExperienceBody.expId = dataTest['id'];
 
-      this.countryService.updateEmpExperience(updateEmployeeExperienceBody)
-        .subscribe(
-          data => {
-            this.universalResponse = data;
+        if (updateEmployeeExperienceBody.expId === undefined) {
+          alert("undefined");
+          this.empExperienceApi.removeItems(selectedNodes);
+        }
+        else {
+          //alert(JSON.stringify(updateEmployeeExperienceBody));
 
-            alert(this.universalResponse.MESSAGE);
+          this.allwebService.updateEmpExperience(updateEmployeeExperienceBody)
+            .subscribe(
+              data => {
+                this.universalResponse = data;
 
-            if (this.universalResponse.STATUS === 'Success') {
-              alert("success");
-              this.addExperienceToggleButton = false;
-              this.getEmployeeExperience();
-            }
-          }
-        );
-    }
-  }
+                alert(this.universalResponse.MESSAGE);
+
+                if (this.universalResponse.STATUS === 'Success') {
+                  alert("success");
+                  this.addExperienceToggleButton = false;
+                  this.getEmployeeExperience();
+                }
+              }
+            );
+        }
+      }
     }
   }
   onSaveEmpExperience() {
-    if(this.selectedRowExperience === undefined){
+    if (this.selectedRowExperience === undefined) {
       alert("Please enter input valid data then hit save.")
-    }else{
-    const employeeExperienceBody = new EmployeeExperienceBody();
-    const selectedNodes = this.empExperienceApi.getSelectedNodes();
+    } else {
+      const employeeExperienceBody = new EmployeeExperienceBody();
+      const selectedNodes = this.empExperienceApi.getSelectedNodes();
 
-    const selectedData = selectedNodes.map(node => node.data);
-    var dataTest: Object;
-    selectedData.map(node => dataTest = node as Object);
+      const selectedData = selectedNodes.map(node => node.data);
+      var dataTest: Object;
+      selectedData.map(node => dataTest = node as Object);
 
-    if (selectedData.length === 0) {
-      alert("Please select a row");
-    }
-    employeeExperienceBody.companyName = dataTest['companyName'];
-    employeeExperienceBody.designation = dataTest['designation'];
+      if (selectedData.length === 0) {
+        alert("Please select a row");
+      }
+      employeeExperienceBody.companyName = dataTest['companyName'];
+      employeeExperienceBody.designation = dataTest['designation'];
 
-    employeeExperienceBody.department = dataTest['department'];
+      employeeExperienceBody.department = dataTest['department'];
 
-    employeeExperienceBody.joiningDate = dataTest['joiningDate'];
-    employeeExperienceBody.exitDate = dataTest['exitDate'];
-    employeeExperienceBody.experience = dataTest['experience'];
-    employeeExperienceBody.location = dataTest['location'];
+      employeeExperienceBody.joiningDate = dataTest['joiningDate'];
+      employeeExperienceBody.exitDate = dataTest['exitDate'];
+      employeeExperienceBody.experience = dataTest['experience'];
+      employeeExperienceBody.location = dataTest['location'];
 
 
-    if (dataTest['companyName'] === '') {
-      alert("Enter company name ");
-    }
-    else if (dataTest['designation'] === '') {
-      alert("Enter designation ");
-    }
+      if (dataTest['companyName'] === '') {
+        alert("Enter company name ");
+      }
+      else if (dataTest['designation'] === '') {
+        alert("Enter designation ");
+      }
 
-    else if (dataTest['department'] === '') {
-      alert("Enter department ");
-    }
-    else if (dataTest['joiningDate'] === '') {
-      alert("Enter joiningDate ");
-    }
-    else if (dataTest['exitDate'] === '') {
-      alert("Enter exitDate ");
-    }
-    else if (dataTest['experience'] === '') {
-      alert("Enter experience");
-    }
-    else if (dataTest['location'] === '') {
-      alert("Enter location ");
-    }
-    else {
-      
-      this.countryService.saveEmpExperience(employeeExperienceBody)
-        .subscribe(
-          data => {
-            this.universalResponse = data;
+      else if (dataTest['department'] === '') {
+        alert("Enter department ");
+      }
+      else if (dataTest['joiningDate'] === '') {
+        alert("Enter joiningDate ");
+      }
+      else if (dataTest['exitDate'] === '') {
+        alert("Enter exitDate ");
+      }
+      else if (dataTest['experience'] === '') {
+        alert("Enter experience");
+      }
+      else if (dataTest['location'] === '') {
+        alert("Enter location ");
+      }
+      else {
 
-            alert(this.universalResponse.MESSAGE);
+        this.allwebService.saveEmpExperience(employeeExperienceBody)
+          .subscribe(
+            data => {
+              this.universalResponse = data;
 
-            if (this.universalResponse.STATUS === 'Success') {
-              alert("success");
-              this.getEmployeeExperience();
+              alert(this.universalResponse.MESSAGE);
+
+              if (this.universalResponse.STATUS === 'Success') {
+                alert("success");
+                this.getEmployeeExperience();
+              }
             }
-          }
-        );
+          );
+      }
     }
-  }
   }
   onDeleteExperience() {
     const selectedNodes = this.empExperienceApi.getSelectedNodes();
@@ -1048,11 +1032,11 @@ export class EmployeeComponent implements OnInit {
       deleteEmployeeExperiencebody.expId = dataTest['id'];
 
       if (deleteEmployeeExperiencebody.expId === undefined) {
-        
+
         this.empExperienceApi.removeItems(selectedNodes);
       }
       else {
-        this.countryService.deleteEmpExperience(deleteEmployeeExperiencebody)
+        this.allwebService.deleteEmpExperience(deleteEmployeeExperiencebody)
           .subscribe(
             data => {
               this.universalResponse = data;
@@ -1060,9 +1044,9 @@ export class EmployeeComponent implements OnInit {
               if (this.universalResponse.STATUS === 'Success') {
                 this.empExperienceApi.removeItems(selectedNodes);
                 this.addExperienceToggleButton = false;
-               
+
               }
-              
+
             }
           );
       }
@@ -1072,49 +1056,47 @@ export class EmployeeComponent implements OnInit {
   getEmployeeExperience() {
 
     const universalBody = new UniversalBody();
-    this.countryService.getEmpolyeeExperience(universalBody)
+    this.allwebService.getEmpolyeeExperience(universalBody)
       .subscribe(
         data => {
           this.employeeExperienceResponse = data;
-          
-          if(this.employeeExperienceResponse.length === 0)
-          {
-          
-            this.saveUpdateExperience="Save";
+
+          if (this.employeeExperienceResponse.length === 0) {
+
+            this.saveUpdateExperience = "Save";
             this.editExperience = false;
             this.addExperienceToggleButton = false;
             this.deleteExperienceToggleButton = true;
-          }else{
-            this.saveUpdateExperience="Save";
+          } else {
+            this.saveUpdateExperience = "Save";
             this.editExperience = true;
             this.addExperienceToggleButton = false;
             this.deleteExperienceToggleButton = true;
             this.rowData8 = this.employeeExperienceResponse;
-          }        
+          }
           //console.log(this.employeeeAddressResponse);
         }
       )
   }
   onEmpExperienceSelectionChanged() {
     this.selectedRowExperience = this.empExperienceApi.getSelectedRows();
-    if(this.selectedRowExperience.length === 1){
+    if (this.selectedRowExperience.length === 1) {
       this.deleteExperienceToggleButton = false;
-      console.log("NodeBut Where",this.nodeExpSelectButWhere);
+      console.log("NodeBut Where", this.nodeExpSelectButWhere);
 
-      if(this.nodeExpSelectButWhere === "Add"){
-        this.saveUpdateExperience="Save";
+      if (this.nodeExpSelectButWhere === "Add") {
+        this.saveUpdateExperience = "Save";
         this.nodeExpSelectButWhere = "Update"
-      }else if(this.nodeExpSelectButWhere === undefined){
-        this.saveUpdateExperience="Update";
+      } else if (this.nodeExpSelectButWhere === undefined) {
+        this.saveUpdateExperience = "Update";
         this.editExperience = false;
       }
 
     }
 
   }
-  onEmpFilterChange(event)
-  {
-     alert("Check");    
+  onEmpFilterChange(event) {
+    alert("Check");
   }
   onDepartmentClick() {
     this.getAllDepartment(1, this.locationResponse[this.selectedLocationIndex].id);
