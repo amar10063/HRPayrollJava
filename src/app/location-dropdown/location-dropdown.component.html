@@ -4,6 +4,7 @@
     style="background:#ffffffff !important; border:1px solid #ffffffff !important;">
     <option [value]="location.id" *ngFor="let location of locationResponse; let i = index" [attr.selected]="i"
       [selected]="Select">
+
       {{location.name}}</option>
   </select>
 </div>

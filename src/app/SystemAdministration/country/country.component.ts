@@ -273,6 +273,7 @@ export class CountryComponent implements OnInit {
   ngOnInit() {
     this.getCountries();
     this.getStates();
+
     this.getCity();
     this.getPostal();
 
@@ -283,6 +284,7 @@ export class CountryComponent implements OnInit {
       .subscribe(
         data => {
           this.getStateResponse = data;
+          console.log("getted",this.getStateResponse);
           this.rowData1 = this.getStateResponse;
         }
       );

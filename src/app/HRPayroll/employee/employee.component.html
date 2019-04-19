@@ -395,6 +395,15 @@
 
 
               </div>
+              <div class="col-12 col-md-8 p-0 pull-left">
+                <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
+                  <button type="button" class="payHeadBtn" (click)="onAddAddress()" [disabled]="addAddressToggleButton"><i class="fa fa-plus-square"
+                      aria-hidden="true"></i>Add
+                    New</button>
+                  <button type="button" class="payHeadBtn" (click)="onSaveAddress()" [disabled]="saveAddressToggleButton"><i class="fa fa-save" aria-hidden="true"></i>Save
+                  </button>
+                  <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#deleteAddress" [disabled]="deleteAddressToggleButton"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                </div>
               <div class="col-1 col-md-1 pull-left p-0 empPhoto">
                 <img [src]="url" alt="profile Image" style="height:80px;" />
               </div>
@@ -425,15 +434,13 @@
 
               </div>
             </div>
-            <div class="col-12 col-md-8 p-0 pull-left">
-              <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-                <button type="button" class="payHeadBtn" (click)="onAddAddress()"><i class="fa fa-plus-square"
-                    aria-hidden="true"></i>Add
-                  New</button>
-                <button type="button" class="payHeadBtn"><i class="fa fa-save" aria-hidden="true"></i>Save
-                </button>
-                <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
-              </div>
+            <div class="clearfix"></div>
+            <div class="formBody clearfix pt-0">
+              <ag-grid-angular style="width:100%; height: 350px" class="ag-theme-balham" [rowData]="rowData1"
+                [columnDefs]="columnDefs1" [animateRows]="true" [rowSelection]="rowSelection"
+                (gridReady)="onAddressGridReady($event)" (selectionChanged)="onAddressSelectionChanged($event)"></ag-grid-angular>
+  
+
             </div>
             <div class="clearfix"></div>
           </div>
@@ -514,7 +521,7 @@
               </div>
               <div class="clearfix"></div>
               <div class="formBody clearfix pt-0">
-                <ag-grid-angular style="width:100%; height: 221px" class="ag-theme-balham" [rowData]="rowData2"
+                <ag-grid-angular style="width:100%; height:322px" class="ag-theme-balham" [rowData]="rowData2"
                   [animateRows]="true" [columnDefs]="columnDefs2" [rowSelection]="rowSelection"
                   (gridReady)="onGridSchoolReady($event)">
                 </ag-grid-angular>
@@ -667,42 +674,40 @@
               </div>
             </div>
           </div>
+          <div id="experience" class="container tab-pane fade">
+            <div class="col-12 col-md-12 p-0">
+              <div class="col-12 col-md-4 pull-left mt-3 ">
+                <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
+                <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
+                  <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
+                    <label class="checkBox">
+                      <input type="checkbox" name="checkbox" (ngModelChange)="onEmpFilterChange($event)" [ngModel]="empFilter">
+                      <span class="checkmark check1"></span> </label>
+                  </div>
+  
 
+                </div>
 
-
-
-
-
-
-
-
-        </div>
-        <div id="profQualifications" class="container tab-pane fade">
-          <div class="col-12 col-md-12 p-0">
-            <div class="col-12 col-md-4 pull-left mt-3 ">
-              <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
-              <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
-                <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
-                  <label class="checkBox">
-                    <input type="checkbox" name="checkbox" checked>
-                    <span class="checkmark check1"></span> </label>
+              </div>
+              <div class="col-12 col-md-8 p-0 pull-left">
+                <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
+                  <button type="button" class="payHeadBtn" (click)="onAddEmpExperience()" [disabled]="addExperienceToggleButton"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                    New</button>
+                  <button type="button" class="payHeadBtn" (click)="onSaveUpdateEmpExperience()" [disabled]="saveExperienceToggleButton"><i class="fa fa-save" aria-hidden="true"></i>{{saveUpdateExperience}}
+                  </button>
+                  <button type="button" class="payHeadBtn" [disabled]="deleteExperienceToggleButton" data-toggle="modal" data-target="#deleteExperience"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
                 </div>
 
               </div>
             </div>
-            <div class="col-12 col-md-8 p-0 pull-left">
-              <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-                <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
-                  New</button>
-                <button type="button" class="payHeadBtn"><i class="fa fa-save" aria-hidden="true"></i>Save
-                </button>
-                <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
-              </div>
-            </div>
 
             <div class="formBody clearfix pt-0" style="clear: both;">
-              <ag-grid-angular style="width:100%; height: 347px" class="ag-theme-balham" [rowData]="rowData7"
-                [columnDefs]="columnDefs7"></ag-grid-angular>
+  
+              <ag-grid-angular style="width:100%; height: 347px" class="ag-theme-balham" [rowData]="rowData8"
+                [columnDefs]="columnDefs8" [animateRows]="true" [rowSelection]="rowSelection"
+                (gridReady)="onEmpExperienceGridReady($event)" (selectionChanged)="onEmpExperienceSelectionChanged($event)"
+                ></ag-grid-angular>
+  
 
             </div>
             <div class="row">
@@ -1503,4 +1508,47 @@
         </div>
       </div>
     </div>
-  </div>
+    <div class="modal fade" id="deleteAddress">
+      <div class="modal-dialog modal-dialog-centered" id="Div3">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5>Address</h5>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+  
+          </div>
+          <div class="modal-footer">
+  
+            <button type="button" id="btnSave" class="btn btn-submit" (click)="onDeleteAddress()"
+              style="padding:4px;" data-dismiss="modal">OK</button>
+            <button type="button" id="btnSave" class="btn btn-submit" onclick="" style="padding:4px;"
+              data-dismiss="modal">CANCEL</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+   
+    <div class="modal fade" id="deleteExperience">
+      <div class="modal-dialog modal-dialog-centered" id="Div3">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5>Experience</h5>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+  
+          </div>
+          <div class="modal-footer">
+  
+            <button type="button" id="btnSave" class="btn btn-submit" (click)="onDeleteExperience()"
+              style="padding:4px;" data-dismiss="modal">OK</button>
+            <button type="button" id="btnSave" class="btn btn-submit" onclick="" style="padding:4px;"
+              data-dismiss="modal">CANCEL</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
