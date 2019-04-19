@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GridApi, ColumnApi, CellComp } from 'ag-grid-community';
+import { GridApi, ColumnApi, GridOptions } from 'ag-grid-community';
 import { AllWeb } from 'src/app/WebServices/AllWeb.service';
 import { CountryBody } from '../../WebServices/WebServiceBody/CountryBody/CountryBody';
 import { UniversalResponse } from '../../WebServices/WebServiceResponse/UniversalResponse';
@@ -20,20 +20,69 @@ import { UpdateStateBody } from 'src/app/WebServices/WebServiceBody/CountryBody/
 import { UpdateCountryBody } from 'src/app/WebServices/WebServiceBody/CountryBody/UpdateCountryBody';
 import { UpdateCityBody } from 'src/app/WebServices/WebServiceBody/CountryBody/UpdateCityBody';
 import { UpdatePostalBody } from 'src/app/WebServices/WebServiceBody/CountryBody/UpdatePostalBody';
+
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
   styleUrls: ['./country.component.css']
 })
+
 export class CountryComponent implements OnInit {
+  columnDefs1; rowData1;
+  type: string = '';
+  gridOptions: any;
   constructor(private allWeb: AllWeb) {
+    this.gridOptions = {
+      context: {
+        componentParent: this
+      }
+    };
     this.rowSelection = 'single';
+    this.columnDefs1 = [
+      {
+        headerName: 'Country', field: 'countryName', sortable: true, filter: true, width: 110,
+        cellRendererSelector: function (params) {
+          var moodDetails = {
+            component: 'moodCellRenderer'
+          };
 
-    //this.topOptions.api.push(this.topOptions);
+          var genderDetails = {
+            component: 'locationFramework',
+            params: { value: 'country' }
+          };
 
+          if (params.data.stateName === '')
+            return genderDetails;
+          else
+            return null;
 
+        }
+
+      },
+      {
+        headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: true, width: 120,
+        cellStyle: function (params) {
+          if (params.value === '') {
+            return { outline: '1px solid red' };
+
+          } else {
+            return { outline: 'white' };
+          }
+        }
+
+      },
+      { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: true },
+
+      { headerName: '', field: '', width: 512, }
+    ];
+
+    this.rowData1;
 
   }
+  frameworkComponents = {
+    locationFramework: LocationDropdownComponent
+  };
+  createKey: any;
   api;
   columnApi;
 
@@ -76,10 +125,8 @@ export class CountryComponent implements OnInit {
 
     {
 
-      id: 1, headerName: 'Country Name', field: 'countryName', sortable: true, //cellEditor: "agTextCellEditor",
-
+      id: 1, headerName: 'Country Name', field: 'countryName', sortable: true,
       filter: true, width: 120, editable: true,
-
       cellStyle: function (params) {
 
         if (params.value === '') {
@@ -91,41 +138,12 @@ export class CountryComponent implements OnInit {
       }
     },
 
-    { headerName: '', field: '', width:652, }
+    { headerName: '', field: '', width: 652, }
   ];
 
   rowData;
 
 
-  columnDefs1 = [
-    {
-      headerName: 'Country', field: 'countryName', sortable: true, filter: true, width: 110,//singleClickEdit: true,
-
-      cellRendererFramework: LocationDropdownComponent,
-      cellRendererParams: {
-        value: 'country'
-      }
-
-    },
-    {
-      headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: true, width: 120,
-
-      cellStyle: function (params) {
-        if (params.value === '') {
-          return { outline: '1px solid red' };
-
-        } else {
-          return { outline: 'white' };
-        }
-      }
-
-    },
-    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: true },
-
-    { headerName: '', field: '',width:512,  }
-  ];
-
-  rowData1;
 
   columnDefs2 = [
 
@@ -165,7 +183,7 @@ export class CountryComponent implements OnInit {
     { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: true },
 
 
-    { headerName: '', field: '', width:392, }
+    { headerName: '', field: '', width: 392, }
   ];
 
   rowData2;
@@ -174,8 +192,6 @@ export class CountryComponent implements OnInit {
 
     {
       headerName: 'Country', field: 'countryName', sortable: true, editable: true, filter: true, width: 120,
-      // singleClickEdit: true,
-
       cellRendererFramework: LocationDropdownComponent,
       cellRendererParams: {
         value: 'country'
@@ -183,8 +199,6 @@ export class CountryComponent implements OnInit {
     },
     {
       headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: true, width: 120,
-      //singleClickEdit: true,
-
       cellRendererFramework: LocationDropdownComponent,
       cellRendererParams: {
         value: 'state'
@@ -193,9 +207,6 @@ export class CountryComponent implements OnInit {
     },
     {
       headerName: 'City', field: 'cityName', sortable: true, filter: true, editable: true, width: 120,
-      //singleClickEdit: true,
-
-
       cellRendererFramework: LocationDropdownComponent,
       cellRendererParams: {
         value: 'city'
@@ -204,12 +215,9 @@ export class CountryComponent implements OnInit {
     },
     {
       headerName: 'Postal Code', field: 'postalCode', sortable: true, filter: true, editable: true, width: 120,
-
       cellStyle: function (params) {
         if (params.value === '') {
-
           return { outline: '1px solid red' };
-
         } else {
           return { outline: 'white' };
         }
@@ -218,9 +226,6 @@ export class CountryComponent implements OnInit {
     },
 
     { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: true },
-
-
-    { headerName: '', field: '', width:262, }
   ];
 
   rowData3;
@@ -228,7 +233,6 @@ export class CountryComponent implements OnInit {
   columnDefs4 = [
     { headerName: 'Department', field: 'department', sortable: true, filter: true, editable: true, width: 500 },
     { headerName: 'Designation', field: 'designation', sortable: true, filter: true, editable: true, width: 500 },
-    { headerName: '', field: '', }
   ];
 
   rowData4 = [
@@ -242,7 +246,6 @@ export class CountryComponent implements OnInit {
   columnDefs5 = [
     { headerName: 'Language', field: 'language', sortable: true, filter: true, editable: true, width: 120 },
     { headerName: 'Language Code', field: 'languageCode', sortable: true, editable: true, filter: true, width: 120 },
-    { headerName: '', field: '', width: 600 }
   ];
 
   rowData5 = [
@@ -262,8 +265,13 @@ export class CountryComponent implements OnInit {
   countCity = 0;
   countPostal = 0;
   universalBody = new UniversalBody();
+  getContext() {
+    return {
+      createKey: this.createKey
+    };
+  }
   ngOnInit() {
-    this.getCountries(); 
+    this.getCountries();
     this.getStates();
     this.getCity();
     this.getPostal();
@@ -278,6 +286,9 @@ export class CountryComponent implements OnInit {
           this.rowData1 = this.getStateResponse;
         }
       );
+  }
+  updateData(locationResponse) {
+    console.log('hbdjhhjd');
   }
   getCity() {
     this.allWeb.getCity(this.universalBody)
@@ -302,8 +313,7 @@ export class CountryComponent implements OnInit {
 
   onAddContry() {
 
-    this.api.setFocusedCell(this.countCountry, "countryCode");
-
+    this.api.setFocusedCell(this.countCountry, 'countryCode');
     this.countCountry++;
     var res = this.api.updateRowData({
       add: [{ countryName: '', countryCode: '' }],
@@ -313,11 +323,24 @@ export class CountryComponent implements OnInit {
   }
 
   onAddState() {
+    this.type = 'add';
+    // this.columnDefs1.cellRendererSelector = function (params) {
+    //   var genderDetails = {
+    //     component: 'locationFramework',
+    //     params: { value: 'country' }
+    //   };
+    //   if (this.type === 'add')
+    //     return genderDetails;
+    //   else
+    //     return null;
 
-    this.stateApi.setFocusedCell(this.countState, "countryName");
+    // },
+    this.stateApi.setFocusedCell(this.countState, 'countryName');
     this.countState++;
-    let res = this.stateApi.updateRowData({ add: [{ stateName: '', countryName: 'Select', description: '' }], addIndex: 0 });
+    let res = this.stateApi.updateRowData({ add: [{ stateName: '', countryName: '', description: '' }], addIndex: 0 });
+
     res.add.forEach(function (rowNode) {
+
       console.log('Added Row Node', rowNode);
     });
     this.StateToggleButton = true;
@@ -325,7 +348,7 @@ export class CountryComponent implements OnInit {
   }
 
   onAddCity() {
-    this.cityApi.setFocusedCell(this.countCity, "countryName");
+    this.cityApi.setFocusedCell(this.countCity, 'countryName');
     this.countCity++;
     let res = this.cityApi.updateRowData({ add: [{ stateName: '', cityName: '', countryName: '', description: '' }], addIndex: 0 });
     res.add.forEach(function (rowNode) {
@@ -335,7 +358,7 @@ export class CountryComponent implements OnInit {
 
   }
   onAddPostal() {
-    this.postalApi.setFocusedCell(this.countPostal, "countryName");
+    this.postalApi.setFocusedCell(this.countPostal, 'countryName');
     this.countPostal++;
 
     let res = this.postalApi.updateRowData({ add: [{ cityName: '', stateName: '', countryName: '', postalCode: '', description: '' }], addIndex: 0 });
@@ -810,7 +833,6 @@ export class CountryComponent implements OnInit {
                 }
 
               );
-
           }
         }
       }

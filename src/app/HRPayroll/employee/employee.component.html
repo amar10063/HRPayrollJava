@@ -212,10 +212,10 @@
                   </div>
                   <div class="col-12 col-md-6 p-0">
                     <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Date of Birth:</label>
-                    <input type="date" class="form-control addrCon formSelect col-7 col-md-7" name="name"
-                      placeholder="yyyy/MM/dd" formControlName="dateofBirth"
+                    <input type="date" class="form-control addrCon formSelect col-7 col-md-7 no-spin" name="name"
+                      placeholder="dd/mm/yyyy" formControlName="dateofBirth" [ngModel]="today"
                       [ngClass]="{'is-invalid': submitted && f.dateofBirth.errors}"
-                      [ngModel]="today | date:'dd/MM/yyyy'" (ngModelChange)="updateCalcs($event)" [max]="today">
+                      (ngModelChange)="updateCalcs($event)" [max]="today">
                     <div *ngIf="submitted && f.dateofBirth.errors" class="invalid-feedback">
                       <div *ngIf="f.dateofBirth.errors.required" class="errorred">Date of Birth is required</div>
                       <div *ngIf="f.dateofBirth.errors.max" class="errorred">Date of Birth is sfgsfgsf</div>
