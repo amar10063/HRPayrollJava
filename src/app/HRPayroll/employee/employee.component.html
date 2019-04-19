@@ -311,7 +311,6 @@
                     <label for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">Heirarchy</label>
 
                   </div>
-
                   <div class="col-12 col-md-6 p-0 mt-1">
                     <label for="pay" class="col-5 col-md-5 pl-0 pull-left">Designation:</label>
                     <select class="form-control addrCon formSelect col-7 col-md-7" [(ngModel)]="selectedLevel" id="type"
@@ -335,24 +334,6 @@
                 </div>
 
 
-                <div class="form-inline col-12 col-md-12 p-0 mt-1">
-                  <!-- <div class="col-12 col-md-6 p-0">
-                          <label for="pay" class="col-5 col-md-5 pull-left pl-0">Department:</label>
-                          <select class="form-control addrCon formSelect col-7 col-md-7" id="type" name="type" style="background:#f5f5f5 !important; border:1px solid #ced4da !important">
-                            <option>Select</option>
-                            <option>Sales</option>
-                            <option>IT</option>
-                            <option>Finance</option>
-                          </select>
-                        </div> -->
-
-                  <!-- <div class="col-12 col-md-6 p-0">
-                          <label for="pay" class="col-lg-5 col-md-5 pull-left pl-0">Email ID:</label>
-                          <label for="pay" class="addrCon formSelect col-7 col-md-7 pl-0">abcd@gmail.com</label>
-      
-                        </div> -->
-
-                </div>
 
                 <div class="form-inline col-12 col-md-12 p-0 ">
 
@@ -395,25 +376,16 @@
 
 
               </div>
-              <div class="col-12 col-md-8 p-0 pull-left">
-                <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-                  <button type="button" class="payHeadBtn" (click)="onAddAddress()" [disabled]="addAddressToggleButton"><i class="fa fa-plus-square"
-                      aria-hidden="true"></i>Add
-                    New</button>
-                  <button type="button" class="payHeadBtn" (click)="onSaveAddress()" [disabled]="saveAddressToggleButton"><i class="fa fa-save" aria-hidden="true"></i>Save
-                  </button>
-                  <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#deleteAddress" [disabled]="deleteAddressToggleButton"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+              <div class="col-12 col-md-1 p-0 pull-left">
+                <div class="col-1 col-md-1 pull-left p-0 empPhoto">
+                  <img [src]="url" alt="profile Image" style="height:80px;" />
                 </div>
-              <div class="col-1 col-md-1 pull-left p-0 empPhoto">
-                <img [src]="url" alt="profile Image" style="height:80px;" />
+                <div class="col-1 col-md-1 pull-left p-0 mt-1">
+                  <input #imageInput type="file" accept="image/*" (change)="processFile($event)" class="col-md-12"
+                    style="font-size: 10px; width: 73px;padding: 2px;">
+                </div>
               </div>
-              <div class="col-1 col-md-1 pull-left p-0 mt-1">
-                <input #imageInput type="file" accept="image/*" (change)="processFile($event)" class="col-md-12" style="font-size: 10px;
-  width: 73px;
-  padding: 2px;
 
-">
-              </div>
 
               <div class="clearfix"></div>
 
@@ -421,6 +393,13 @@
 
           </div>
         </div>
+
+
+
+
+
+
+
         <div id="AddressBook" class="container tab-pane fade">
           <div class="col-12 col-md-12 p-0">
             <div class="col-12 col-md-4 pull-left mt-3 ">
@@ -434,23 +413,27 @@
 
               </div>
             </div>
+            <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
+              <button type="button" class="payHeadBtn" (click)="onAddAddress()" [disabled]="addAddressToggleButton"><i
+                  class="fa fa-plus-square" aria-hidden="true"></i>Add
+                New</button>
+              <button type="button" class="payHeadBtn" (click)="onSaveAddress()" [disabled]="saveAddressToggleButton"><i
+                  class="fa fa-save" aria-hidden="true"></i>Save
+              </button>
+              <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#deleteAddress"
+                [disabled]="deleteAddressToggleButton"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+            </div>
             <div class="clearfix"></div>
             <div class="formBody clearfix pt-0">
-              <ag-grid-angular style="width:100%; height: 350px" class="ag-theme-balham" [rowData]="rowData1"
-                [columnDefs]="columnDefs1" [animateRows]="true" [rowSelection]="rowSelection"
-                (gridReady)="onAddressGridReady($event)" (selectionChanged)="onAddressSelectionChanged($event)"></ag-grid-angular>
-  
+              <ag-grid-angular style="width:100%; height: 221px" class="ag-theme-balham" [rowData]="rowData1"
+                [components]="components" [columnDefs]="columnDefs1" [animateRows]="true" [rowSelection]="rowSelection"
+                (gridReady)="onAddressGridReady($event)" (cellKeyDown)="onAddressCellKeyDown($event)"></ag-grid-angular>
+
 
             </div>
             <div class="clearfix"></div>
           </div>
-          <div class="clearfix"></div>
-          <div class="formBody clearfix pt-0 pb-2">
-            <ag-grid-angular style="width:100%; height: 221px" class="ag-theme-balham" [rowData]="rowData1"
-              [components]="components" [columnDefs]="columnDefs1" [animateRows]="true" [rowSelection]="rowSelection"
-              (gridReady)="onAddressGridReady($event)" (cellKeyDown)="onAddressCellKeyDown($event)"></ag-grid-angular>
 
-          </div>
           <div class="row">
             <div class="col-md-12 col-sm-6 col-xs-12 ">
 
@@ -464,6 +447,14 @@
             </div>
           </div>
         </div>
+
+
+
+
+
+
+
+
         <div id="educationalQualifications" class="container tab-pane fade p-0">
           <div class="col-2 col-md-12 p-0 pull-left" style="box-shadow: 1px 1px 1px #c0c1c1;">
             <div class="payHead">
@@ -484,12 +475,6 @@
               </div>
             </div>
           </div>
-
-
-
-
-
-
 
           <div class="tab-content">
             <div id="Highschool" class="container tab-pane active">
@@ -674,40 +659,42 @@
               </div>
             </div>
           </div>
-          <div id="experience" class="container tab-pane fade">
-            <div class="col-12 col-md-12 p-0">
-              <div class="col-12 col-md-4 pull-left mt-3 ">
-                <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
-                <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
-                  <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
-                    <label class="checkBox">
-                      <input type="checkbox" name="checkbox" (ngModelChange)="onEmpFilterChange($event)" [ngModel]="empFilter">
-                      <span class="checkmark check1"></span> </label>
-                  </div>
-  
-
-                </div>
-
-              </div>
-              <div class="col-12 col-md-8 p-0 pull-left">
-                <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-                  <button type="button" class="payHeadBtn" (click)="onAddEmpExperience()" [disabled]="addExperienceToggleButton"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
-                    New</button>
-                  <button type="button" class="payHeadBtn" (click)="onSaveUpdateEmpExperience()" [disabled]="saveExperienceToggleButton"><i class="fa fa-save" aria-hidden="true"></i>{{saveUpdateExperience}}
-                  </button>
-                  <button type="button" class="payHeadBtn" [disabled]="deleteExperienceToggleButton" data-toggle="modal" data-target="#deleteExperience"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+        </div>
+        <div id="profQualifications" class="container tab-pane fade">
+          <div class="col-12 col-md-12 p-0">
+            <div class="col-12 col-md-4 pull-left mt-3 ">
+              <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
+              <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
+                <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
+                  <label class="checkBox">
+                    <input type="checkbox" name="checkbox" (ngModelChange)="onCheckedBoxChange($event)"
+                      [ngModel]="checkedStatus">
+                    <span class="checkmark check1"></span> </label>
                 </div>
 
               </div>
             </div>
+            <div class="col-12 col-md-8 p-0 pull-left">
+              <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
+                <button type="button" class="payHeadBtn" (click)="onProfessionalQualification()"
+                  [disabled]="addNewProfessionalQualification"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                  New</button>
+                <button type="button" class="payHeadBtn" (click)="onSaveUpdateProfessionalEducationData()"
+                  [disabled]="editProfessionalQualification"><i class="fa fa-save"
+                    aria-hidden="true"></i>{{saveUpdateProfessional}}
+                </button>
+                <button type="button" data-toggle="modal" data-target="#addNew1" class="payHeadBtn"
+                  [disabled]="deleteNewProfessionalQualification"><i class="fa fa-trash"
+                    aria-hidden="true"></i>Delete</button>
+              </div>
+            </div>
 
             <div class="formBody clearfix pt-0" style="clear: both;">
-  
-              <ag-grid-angular style="width:100%; height: 347px" class="ag-theme-balham" [rowData]="rowData8"
-                [columnDefs]="columnDefs8" [animateRows]="true" [rowSelection]="rowSelection"
-                (gridReady)="onEmpExperienceGridReady($event)" (selectionChanged)="onEmpExperienceSelectionChanged($event)"
-                ></ag-grid-angular>
-  
+
+              <ag-grid-angular style="width:100%; height: 315px" class="ag-theme-balham" [rowData]="rowData7"
+                [columnDefs]="columnDefs7" [rowSelection]="rowSelection"
+                (gridReady)="onGridProfessionalQualificationReady($event)"
+                (selectionChanged)="onProfessionalSelectionChanged($event)"></ag-grid-angular>
 
             </div>
             <div class="row">
@@ -723,6 +710,7 @@
             </div>
           </div>
         </div>
+
         <div id="experience" class="container tab-pane fade">
           <div class="col-12 col-md-12 p-0">
             <div class="col-12 col-md-4 pull-left mt-3 ">
@@ -730,28 +718,38 @@
               <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                 <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                   <label class="checkBox">
-                    <input type="checkbox" name="checkbox" checked>
+                    <input type="checkbox" name="checkbox" (ngModelChange)="onEmpFilterChange($event)"
+                      [ngModel]="empFilter">
                     <span class="checkmark check1"></span> </label>
                 </div>
 
+
               </div>
+
             </div>
             <div class="col-12 col-md-8 p-0 pull-left">
               <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-                <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                <button type="button" class="payHeadBtn" (click)="onAddEmpExperience()"
+                  [disabled]="addExperienceToggleButton"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                   New</button>
-                <button type="button" class="payHeadBtn"><i class="fa fa-save" aria-hidden="true"></i>Save
+                <button type="button" class="payHeadBtn" (click)="onSaveUpdateEmpExperience()"
+                  [disabled]="saveExperienceToggleButton"><i class="fa fa-save"
+                    aria-hidden="true"></i>{{saveUpdateExperience}}
                 </button>
-                <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                <button type="button" class="payHeadBtn" [disabled]="deleteExperienceToggleButton" data-toggle="modal"
+                  data-target="#deleteExperience"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
               </div>
+
             </div>
-            <div class="clearfix"></div>
           </div>
 
           <div class="formBody clearfix pt-0" style="clear: both;">
 
             <ag-grid-angular style="width:100%; height: 347px" class="ag-theme-balham" [rowData]="rowData8"
-              [columnDefs]="columnDefs8"></ag-grid-angular>
+              [columnDefs]="columnDefs8" [animateRows]="true" [rowSelection]="rowSelection"
+              (gridReady)="onEmpExperienceGridReady($event)"
+              (selectionChanged)="onEmpExperienceSelectionChanged($event)"></ag-grid-angular>
+
 
           </div>
           <div class="row">
@@ -766,6 +764,12 @@
 
           </div>
         </div>
+
+
+
+
+
+
 
         <div id="skills" class="container tab-pane fade">
           <div class="col-12 col-md-12 p-0">
@@ -954,8 +958,6 @@
 
           </div>
         </div>
-
-
         <div id="documents" class="container tab-pane fade p-0">
           <div class="col-12 col-md-12 p-0 pull-left" style="box-shadow: 1px 1px 1px #c0c1c1;">
             <div class="payHead">
@@ -1516,12 +1518,12 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
-  
+
           </div>
           <div class="modal-footer">
-  
-            <button type="button" id="btnSave" class="btn btn-submit" (click)="onDeleteAddress()"
-              style="padding:4px;" data-dismiss="modal">OK</button>
+
+            <button type="button" id="btnSave" class="btn btn-submit" (click)="onDeleteAddress()" style="padding:4px;"
+              data-dismiss="modal">OK</button>
             <button type="button" id="btnSave" class="btn btn-submit" onclick="" style="padding:4px;"
               data-dismiss="modal">CANCEL</button>
           </div>
@@ -1530,7 +1532,7 @@
     </div>
 
 
-   
+
     <div class="modal fade" id="deleteExperience">
       <div class="modal-dialog modal-dialog-centered" id="Div3">
         <div class="modal-content">
@@ -1539,10 +1541,10 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
-  
+
           </div>
           <div class="modal-footer">
-  
+
             <button type="button" id="btnSave" class="btn btn-submit" (click)="onDeleteExperience()"
               style="padding:4px;" data-dismiss="modal">OK</button>
             <button type="button" id="btnSave" class="btn btn-submit" onclick="" style="padding:4px;"
@@ -1551,4 +1553,3 @@
         </div>
       </div>
     </div>
-
