@@ -673,9 +673,9 @@
                       [ngModel]="checkedStatus">
                     <span class="checkmark check1"></span> </label>
                 </div>
-
               </div>
             </div>
+            
             <div class="col-12 col-md-8 p-0 pull-left">
               <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
 
@@ -703,10 +703,10 @@
             <div class="row">
               <div class="col-md-12 col-sm-6 col-xs-12 ">
                 <div class="form group col-md-2 pull-right p-0">
-                  <span class="fa fa-angle-double-left  previous round" title="Older" id="nextprev"></span>
-                  <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of
-                    100</label>
-                  <span class="fa fa-angle-double-right  next round" title="Newer" id="nextprev"></span>
+                  <span class="fa fa-angle-double-left  previous round" title="Older" (click)="previousDataProfessional()" id="nextprev"></span>
+                  <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1- {{ShowLimitedProfessionalQualification}} of
+                    {{ToalProfessionalQualification}}</label>
+                  <span class="fa fa-angle-double-right  next round" title="Newer" (click)="NextDataProfessional()" id="nextprev"></span>
                 </div>
               </div>
 
