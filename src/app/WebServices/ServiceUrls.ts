@@ -25,6 +25,7 @@ export class ServiceUrls {
     public static deletePostal = '/DeletePostalCode';
     public static deleteSchool = '/DeleteSchool';
     public static saveEmployeeAddress = '/SaveAddress';
+    public static updateLocation='/UpdateLocation';
     public static graduationAdd = '/AddGraduation';
     public static getgraduationDetails = '/getGraduationDetails';
     public static getgraduationdDelete = '/DeleteGraduation';

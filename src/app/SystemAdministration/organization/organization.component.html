@@ -30,7 +30,8 @@
                     <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                       <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                         <label class="checkBox">
-                          <input type="checkbox" name="checkbox" checked>
+                          <input type="checkbox" name="checkbox" (ngModelChange)="onCheckedBoxChange($event)"
+                      [ngModel]="checkedStatus">
                           <span class="checkmark check1"></span> </label>
                       </div>
                       
@@ -38,18 +39,23 @@
                 </div>
                 <div class="col-12 col-md-5 p-0 pull-left">
               <div class="buttonCon pull-right mt-1 mb-2 mr-2 ">
-                <button type="button" class="payHeadBtn" (click)="onAddLocation()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                <button type="button" class="payHeadBtn"[disabled]="addNewLocationRow" (click)="onAddLocation()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                   New</button>
-                  <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                  <button type="button" class="payHeadBtn"[disabled]="editLocation" (click)="onSaveUpdateLocationData()"><i class="fa fa-save"
+                    aria-hidden="true"></i>{{saveUpdateLocation}}
+                </button>
+                  <button type="button" class="payHeadBtn"[disabled]="deleteNewLocation" data-toggle="modal" data-target="#addNew1" (click)="onDeleteLocation()">
+                    <i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
                 </div>
               </div>
               <div class="clearfix"></div>
             </div>
               <div class="clearfix"></div>
           <div class="formBody clearfix pt-0 pb-2">
-            <ag-grid-angular style="width:100%; height: 221px" class="ag-theme-balham" [rowData]="rowData"
-              [columnDefs]="columnDefs" [rowSelection]="rowSelection" (gridReady)="onGridLocationReady($event)" (cellKeyDown)="
-              onLocationCellKeyDown($event)"></ag-grid-angular>
+            <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData"
+              [columnDefs]="columnDefs" [rowSelection]="rowSelection" (gridReady)="onGridLocationReady($event)" (selectionChanged)="
+              onLocationSelectionChanged($event)"></ag-grid-angular>
+
 
           </div>
           <div class="row mb-1" >
@@ -69,7 +75,8 @@
                     <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                       <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                         <label class="checkBox">
-                          <input type="checkbox" name="checkbox" checked>
+                          <input type="checkbox" name="checkbox" (ngModelChange)="onCheckedBoxChangeDepartment($event)"
+                      [ngModel]="checkedStatus">
                           <span class="checkmark check1"></span> </label>
                       </div>
                       
@@ -77,9 +84,13 @@
                 </div>
                 <div class="col-12 col-md-5 p-0 pull-left">
               <div class="buttonCon pull-right mt-1 mb-2 mr-2 ">
-                <button type="button" class="payHeadBtn" (click)="onAddDepartment()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                <button type="button" class="payHeadBtn"[disabled]="addNewDepartmentRow" (click)="onAddDepartment()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                   New</button>
-                  <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                  <button type="button" class="payHeadBtn" [disabled]="editDepartment"(click)="onSaveUpdateDepartmentData()"><i class="fa fa-save"
+                    aria-hidden="true"></i>{{saveUpdateDepartment}}
+                </button>
+                  <button type="button" class="payHeadBtn" [disabled]="deleteNewDepartment"data-toggle="modal" data-target="#addNew1" (click)="onDeleteDepartment()">
+                    <i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
                 </div>
               </div>
               <div class="clearfix"></div>
@@ -87,9 +98,10 @@
               <div class="clearfix"></div>
           <div class="formBody clearfix pt-0 pb-2">
 
-            <ag-grid-angular style="width:100%; height: 221px" class="ag-theme-balham" [rowData]="rowData1"
-              [columnDefs]="columnDefs1" [rowSelection]="rowSelection" (gridReady)="onGridDepartmentReady($event)" (cellKeyDown)="
-              onDepartmentCellKeyDown($event)"></ag-grid-angular>
+            <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData1"
+              [columnDefs]="columnDefs1" [rowSelection]="rowSelection" (gridReady)="onGridDepartmentReady($event)" (selectionChanged)="
+              onDepartmentSelectionChanged($event)"></ag-grid-angular>
+
 
           </div>
           <div class="row mb-1" >
@@ -109,7 +121,8 @@
                     <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                       <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                         <label class="checkBox">
-                          <input type="checkbox" name="checkbox" checked>
+                          <input type="checkbox" name="checkbox" (ngModelChange)="onCheckedBoxChangeDesignation($event)"
+                      [ngModel]="checkedStatus">
                           <span class="checkmark check1"></span> </label>
                       </div>
                       
@@ -117,9 +130,12 @@
                 </div>
                 <div class="col-12 col-md-5 p-0 pull-left">
               <div class="buttonCon pull-right mt-1 mb-2 mr-2 ">
-                <button type="button" class="payHeadBtn" (click)="onAddDesignation()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                <button type="button" class="payHeadBtn"[disabled]="addNewDesignationRow" (click)="onAddDesignation()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                   New</button>
-                  <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                  <button type="button" class="payHeadBtn"[disabled]="editDesignation" (click)="onSaveUpdateDesignationData()"><i class="fa fa-save"
+                    aria-hidden="true"></i>{{saveUpdateDesignation}}
+                </button>
+                  <button type="button" class="payHeadBtn"[disabled]="deleteNewDesignation" data-toggle="modal" data-target="#addNew1" (click)="onDeleteDesignation()"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
                 </div>
               </div>
               <div class="clearfix"></div>
@@ -128,8 +144,8 @@
           <div class="formBody clearfix pt-0 pb-2">
             <ag-grid-angular style="width:100%; height: 221px" class="ag-theme-balham" [rowData]="rowData2"
               [columnDefs]="columnDefs2"
-              [rowSelection]="rowSelection" (gridReady)="onGridDesignationReady($event)" (cellKeyDown)="
-              onDesignationCellKeyDown($event)"></ag-grid-angular>
+              [rowSelection]="rowSelection" (gridReady)="onGridDesignationReady($event)" (selectionChanged)="
+              onDesignationSelectionChanged($event)"></ag-grid-angular>
           </div>
           <div class="row mb-1" >
             <div class="col-md-12 col-sm-6 col-xs-12">
@@ -143,6 +159,27 @@
         </div>
         
         
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="addNew1">
+  <div class="modal-dialog modal-dialog-centered" id="Div3">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>Departments</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" id="btnSave" class="btn btn-submit" (click)="onDeleteLocation()"
+          style="padding:4px;" data-dismiss="modal">OK</button>
+        <button type="button" id="btnSave" class="btn btn-submit" onclick="" style="padding:4px;"
+          data-dismiss="modal">CANCLE</button>
       </div>
     </div>
   </div>

@@ -29,6 +29,8 @@ import { DeletePostalBody } from './WebServiceBody/CountryBody/DeletePostalBody'
 import { UniversalResponse } from './WebServiceResponse/UniversalResponse';
 import { GetSchoolModel } from '../HRPayroll/Education/GetSchoolModel';
 import { GetSchoolDataResponse } from '../HRPayroll/Education/GetSchoolDataResponse';
+import {GetDesignationResponse} from '../WebServices/WebServiceResponse/OrganizationResponse/GetDesignationResponse';
+import { GetDepartmentResponse } from '../SystemAdministration/organization/DepartmentResponse';
 import { SchoolDeleted } from './WebServiceBody/EducationBody/SchoolDeleted';
 import { GraduationBody } from './WebServiceBody/EducationBody/GraduationBody';
 import { GraduationDeleted } from './WebServiceBody/EducationBody/GraduationDeleted';
@@ -106,8 +108,14 @@ export class AllWeb {
   doGetLocation(getLocationBody: GetLocationBody): Observable<GetAllLocationResponse[]> {
     return this.httpClient.post<GetAllLocationResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getLocation, JSON.stringify(getLocationBody), this.httpOptions);
   }
+  updateLocation(updateLocationBody: LocationBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>('http://10.10.10.48:8081' + '/UpdateLocation', JSON.stringify(updateLocationBody), this.httpOptions);
+  }
   getDepartment(departmentBody: GetAllDepartmentBody): Observable<GetAllLocationResponse[]> {
     return this.httpClient.post<GetAllLocationResponse[]>('http://10.10.10.48:8081' + '/getDepartment', JSON.stringify(departmentBody), this.httpOptions);
+  }
+  getDepartmentByUserId(getDepartmentBody: UniversalBody): Observable<GetDepartmentResponse[]> {
+    return this.httpClient.post<GetDepartmentResponse[]>('http://10.10.10.48:8081' + '/getDeptByUser', JSON.stringify(getDepartmentBody), this.httpOptions);
   }
 
   doDeleteLocation(deleteLocationBody: DeleteLocationBody): Observable<any> {
@@ -119,6 +127,9 @@ export class AllWeb {
   deleteDepartment(deleteDepartmentBody: DeleteDepartmentBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteDepartment, JSON.stringify(deleteDepartmentBody), this.httpOptions);
   }
+  updateDepartment(updateDepartmentBody: DepartmentBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>('http://10.10.10.48:8081' + '/UpdateDepartment', JSON.stringify(updateDepartmentBody), this.httpOptions);
+  }
   saveDesignation(designationBody: DesignationBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddDesignation, JSON.stringify(designationBody), this.httpOptions);
   }
@@ -127,6 +138,12 @@ export class AllWeb {
   }
   getAllDesignation(designationBody: GetAllDesignationBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.getAllDesignation, JSON.stringify(designationBody), this.httpOptions);
+  }
+  getDesignationByUserId(getDesignationBody: UniversalBody): Observable<GetDesignationResponse[]> {
+    return this.httpClient.post<GetDesignationResponse[]>('http://10.10.10.48:8081' + '/getDesignationDataByUser', JSON.stringify(getDesignationBody), this.httpOptions);
+  }
+  updateDesignation(updateDesignationBody: DesignationBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>('http://10.10.10.48:8081' + '/UpdateDesignation', JSON.stringify(updateDesignationBody), this.httpOptions);
   }
   saveCity(cityBody: CityBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveCity, JSON.stringify(cityBody), this.httpOptions);
