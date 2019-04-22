@@ -7,7 +7,7 @@ import { INoRowsOverlayAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams } from 'ag-grid-community';
 
 import { UniversalBody } from '../WebServices/WebServiceBody/UniversalBody';
-import { GetCountryResponse } from '../WebServices/WebServiceResponse/CountryResponse/GetCountryResponse';
+
 
 @Component({
   selector: 'app-location-dropdown',
@@ -17,17 +17,10 @@ import { GetCountryResponse } from '../WebServices/WebServiceResponse/CountryRes
 export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
   params:any;
   selectedLevel:Object={};
-  agInit(params: ICellRendererParams): void {
-    this.params = params['value'];
-    console.log('param: ' + this.params);
-    if (this.params === 'location') { this.getAllLocation(); }
-    else if (this.params === 'department') { this.getAllDepartment(); }
-   
-  }
+  
 
 
   locationResponse: GetAllLocationResponse[];
-  params: any;
   selectedValue;
   action;
   context;
@@ -52,8 +45,8 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
   }
 
   getAllLocation(): any {
-    var locationBody = new GetLocationBody();
-    locationBody.userID = 1;
+    var locationBody = new UniversalBody();
+    locationBody.userID = '1';
     // console.log("key locationBody", locationBody)
     this.countryService.doGetLocation(locationBody)
       .subscribe(

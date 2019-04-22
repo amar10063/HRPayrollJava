@@ -377,14 +377,15 @@
 
               </div>
               <div class="col-12 col-md-1 p-0 pull-left">
-                <div class="col-1 col-md-1 pull-left p-0 empPhoto">
+                <div class="col-12 col-md-12 pull-left p-0 empPhoto">
                   <img [src]="url" alt="profile Image" style="height:80px;" />
                 </div>
-                <div class="col-1 col-md-1 pull-left p-0 mt-1">
+                <div class="col-12 col-md-12 pull-left p-0 mt-1">
                   <input #imageInput type="file" accept="image/*" (change)="processFile($event)" class="col-md-12"
                     style="font-size: 10px; width: 73px;padding: 2px;">
                 </div>
               </div>
+
 
 
               <div class="clearfix"></div>
@@ -392,11 +393,8 @@
             </form>
 
           </div>
+          
         </div>
-
-
-
-
 
 
 
@@ -408,7 +406,7 @@
                 <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                   <label class="checkBox">
                     <input type="checkbox" name="checkbox" (ngModelChange)="onAddressFilterChange($event)"
-                    [ngModel]="addressFilter">
+                      [ngModel]="addressFilter">
                     <span class="checkmark check1"></span> </label>
                 </div>
 
@@ -418,8 +416,8 @@
               <button type="button" class="payHeadBtn" (click)="onAddAddress()" [disabled]="addAddressToggleButton"><i
                   class="fa fa-plus-square" aria-hidden="true"></i>Add
                 New</button>
-              <button type="button" class="payHeadBtn" (click)="onSaveUpdateAddress()" [disabled]="saveAddressToggleButton"><i
-                  class="fa fa-save" aria-hidden="true"></i>{{saveUpdateAddress}}
+              <button type="button" class="payHeadBtn" (click)="onSaveUpdateAddress()"
+                [disabled]="saveAddressToggleButton"><i class="fa fa-save" aria-hidden="true"></i>{{saveUpdateAddress}}
               </button>
               <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#deleteAddress"
                 [disabled]="deleteAddressToggleButton"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
@@ -428,7 +426,8 @@
             <div class="formBody clearfix pt-0">
               <ag-grid-angular style="width:100%; height: 221px" class="ag-theme-balham" [rowData]="rowData1"
                 [components]="components" [columnDefs]="columnDefs1" [animateRows]="true" [rowSelection]="rowSelection"
-                (gridReady)="onAddressGridReady($event)" (selectionChanged)="onAddressSelectionChanged($event)"></ag-grid-angular>
+                (gridReady)="onAddressGridReady($event)" (selectionChanged)="onAddressSelectionChanged($event)">
+              </ag-grid-angular>
 
 
             </div>
@@ -485,7 +484,7 @@
                   <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                     <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                       <label class="checkBox">
-                        <input type="checkbox" name="checkbox" checked>
+                        <input type="checkbox" name="checkbox">
                         <span class="checkmark check1"></span> </label>
                     </div>
 
@@ -531,7 +530,7 @@
                   <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                     <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                       <label class="checkBox">
-                        <input type="checkbox" name="checkbox" checked>
+                        <input type="checkbox" name="checkbox">
                         <span class="checkmark check1"></span> </label>
                     </div>
 
@@ -576,7 +575,7 @@
                   <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                     <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                       <label class="checkBox">
-                        <input type="checkbox" name="checkbox" checked>
+                        <input type="checkbox" name="checkbox">
                         <span class="checkmark check1"></span> </label>
                     </div>
 
@@ -621,7 +620,7 @@
                   <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                     <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                       <label class="checkBox">
-                        <input type="checkbox" name="checkbox" checked>
+                        <input type="checkbox" name="checkbox">
                         <span class="checkmark check1"></span> </label>
                     </div>
 
@@ -675,7 +674,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="col-12 col-md-8 p-0 pull-left">
               <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
 
@@ -703,10 +702,13 @@
             <div class="row">
               <div class="col-md-12 col-sm-6 col-xs-12 ">
                 <div class="form group col-md-2 pull-right p-0">
-                  <span class="fa fa-angle-double-left  previous round" title="Older" (click)="previousDataProfessional()" id="nextprev"></span>
-                  <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1- {{ShowLimitedProfessionalQualification}} of
+                  <span class="fa fa-angle-double-left  previous round" title="Older"
+                    (click)="previousDataProfessional()" id="nextprev"></span>
+                  <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-
+                    {{ShowLimitedProfessionalQualification}} of
                     {{ToalProfessionalQualification}}</label>
-                  <span class="fa fa-angle-double-right  next round" title="Newer" (click)="NextDataProfessional()" id="nextprev"></span>
+                  <span class="fa fa-angle-double-right  next round" title="Newer" (click)="NextDataProfessional()"
+                    id="nextprev"></span>
                 </div>
               </div>
 
@@ -884,7 +886,7 @@
               <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                 <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                   <label class="checkBox">
-                    <input type="checkbox" name="checkbox" checked>
+                    <input type="checkbox" name="checkbox">
                     <span class="checkmark check1"></span> </label>
                 </div>
 
@@ -926,7 +928,7 @@
               <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                 <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                   <label class="checkBox">
-                    <input type="checkbox" name="checkbox" checked>
+                    <input type="checkbox" name="checkbox">
                     <span class="checkmark check1"></span> </label>
                 </div>
 
@@ -995,7 +997,7 @@
                   <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                     <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                       <label class="checkBox">
-                        <input type="checkbox" name="checkbox" checked>
+                        <input type="checkbox" name="checkbox">
                         <span class="checkmark check1"></span> </label>
                     </div>
 
@@ -1039,7 +1041,7 @@
                   <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                     <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                       <label class="checkBox">
-                        <input type="checkbox" name="checkbox" checked>
+                        <input type="checkbox" name="checkbox">
                         <span class="checkmark check1"></span> </label>
                     </div>
 
@@ -1091,7 +1093,7 @@
                   <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                     <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                       <label class="checkBox">
-                        <input type="checkbox" name="checkbox" checked>
+                        <input type="checkbox" name="checkbox">
                         <span class="checkmark check1"></span> </label>
                     </div>
 
@@ -1133,7 +1135,7 @@
                   <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                     <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                       <label class="checkBox">
-                        <input type="checkbox" name="checkbox" checked>
+                        <input type="checkbox" name="checkbox">
                         <span class="checkmark check1"></span> </label>
                     </div>
 
@@ -1175,7 +1177,7 @@
                   <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                     <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                       <label class="checkBox">
-                        <input type="checkbox" name="checkbox" checked>
+                        <input type="checkbox" name="checkbox">
                         <span class="checkmark check1"></span> </label>
                     </div>
 
@@ -1555,5 +1557,5 @@
       </div>
     </div>
   </div>
-  
-  </div>
+
+</div>

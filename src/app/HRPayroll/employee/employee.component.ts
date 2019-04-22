@@ -975,8 +975,8 @@ export class EmployeeComponent implements OnInit {
   }
 
   getLocation(UserID: number) {
-    var locationBody = new GetLocationBody();
-    locationBody.userID = UserID;
+    var locationBody = new UniversalBody();
+    locationBody.userID = UserID+'';
     this.allwebService.doGetLocation(locationBody)
       .subscribe(
         data => {
