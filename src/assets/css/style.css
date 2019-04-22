@@ -10,7 +10,10 @@ p {
     line-height: 1.2;
     color: #3e3e3e;
 }
-
+.btn{ font-size:11px !important}
+.modal-title img{ width:70% !important}
+.modal-footer {
+    padding: 0.5rem 1rem 1rem !important;}
 .templateBg {
     background: #398d94 !important;
 }
@@ -1467,7 +1470,7 @@ select.addrCon {
 
 .modal-title {
     margin: 0 auto;
-    padding-bottom: 20px !important;
+ 
 }
 
 .close {
@@ -1477,11 +1480,12 @@ select.addrCon {
     color: #fff !important;
     opacity: 1 !important;
     border: 1px solid #b3ced0 !important;
-    padding: 0px 4px 5px !important;
+    padding: 0px 4px 3px !important;
     border-radius: 4px !important;
-    line-height: 22px !important;
-    font-size: 24px !important;
+    line-height: 16px !important;
+    font-size: 16px !important;
 }
+
 
 .close:hover,
 .close:focus {
@@ -1527,11 +1531,11 @@ select.addrCon {
 }
 
 .modal-body {
-    font-size: 1.2rem;
+    font-size: 11px;
     color: #275e63;
-    font-weight: 600;
+    font-weight: bold !important;
     text-align: center;
-    padding-top: 30px !important;
+    padding-top: 20px !important;
 }
 
 .modal-footer {
