@@ -105,7 +105,7 @@ export class AllWeb {
   saveLocation(locationBody: LocationBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddLocation, JSON.stringify(locationBody), this.httpOptions);
   }
-  doGetLocation(getLocationBody: GetLocationBody): Observable<GetAllLocationResponse[]> {
+  doGetLocation(getLocationBody: UniversalBody): Observable<GetAllLocationResponse[]> {
     return this.httpClient.post<GetAllLocationResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getLocation, JSON.stringify(getLocationBody), this.httpOptions);
   }
   updateLocation(updateLocationBody: LocationBody): Observable<UniversalResponse> {
