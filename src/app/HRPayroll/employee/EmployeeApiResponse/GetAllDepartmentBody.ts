@@ -1,4 +1,4 @@
 export class GetAllDepartmentBody {
-    userID: string;
-    LocationID: string;
+    userID: number;
+    LocationID: number=1;
 }
