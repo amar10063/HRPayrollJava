@@ -749,20 +749,19 @@ a.nav-link {
 .buttonCon .btn {
     color: #fff;
     border-radius: .17rem;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     padding: .21rem .75rem;
     font-size: 10px;
-=======
+
     padding: .2rem .60rem;
    font-size:10px;
->>>>>>> 124869151689a80ae51dad7a21ce1f94245b8c2f
-=======
+
+
 
     padding: .21rem .75rem;
     font-size: 10px;
 
->>>>>>> 3c30b0e61611b2b57fb1624fc28240948d73a0aa
+
     font-weight: 600;
     margin-right: 5px
 }
@@ -1058,7 +1057,8 @@ thead>tr>th {
 }
 
 .formBody form {
-    width: 100%
+    width: 100%;
+    height: 350px;
 }
 
 .formBody .form-inline {
@@ -2337,7 +2337,7 @@ a:hover {
 .employeebkgcolour {
     background-color: #e7eeef;
     border-radius: 5px;
-    padding: 12px 5px 5px 15px;
+    padding: 12px 12px 5px 12px;
 }
 
 .editicon {

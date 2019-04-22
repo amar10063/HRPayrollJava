@@ -1,4 +1,5 @@
 export class LocationBody {
+    LocationID:number;
     LocationCode: string;
     LocationName: string;
     LocationDescription: string;

@@ -3,4 +3,7 @@ export class GetAllLocationResponse {
     name: string;
     code: string;
     description: string;
+    locationID: number;
+    departmentID: number;
+    
 }
