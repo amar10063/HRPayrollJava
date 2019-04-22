@@ -394,6 +394,7 @@ export class EmployeeComponent implements OnInit {
     { headerName: '', field: '', width: 520, }
 
   ];
+ 
 
   rowData7 = [
     // { Institute: 'Ducat', Course: 'Ruby', StartDate: '10-01-2018', EndDate: '10-06-2018' },
@@ -2037,6 +2038,7 @@ export class EmployeeComponent implements OnInit {
 
   onProfessionalSelectionChanged() {
     this.selectedRowsProfessional = this.professionalQualificationApi.getSelectedRows();
+    this.rowSelection = "multiple";
     if (this.selectedRowsProfessional.length === 1) {
       this.deleteNewProfessionalQualification = false;
       if (this.nodeSelectButWhere === "Add") {
@@ -2046,6 +2048,7 @@ export class EmployeeComponent implements OnInit {
         this.saveUpdateProfessional = "Update";
         this.editProfessionalQualification = false;
       }
+      
     }
   }
 
