@@ -14,4 +14,10 @@ body {
 .no-spin::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
-
+  .ag-theme-balham .ag-row-selected {
+    background-color: #c2dcde !important;
+}
+.ag-theme-balham .ag-row-selected {
+    border-color: #bdc3c3 !important;
+}
+.liSelected{background-color: #c2dcde !important;}
