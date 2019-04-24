@@ -798,73 +798,13 @@
                     <ul class="list-group" *ngIf="skillResponse">
 
 
-                        <li class="list-item" *ngFor="let skill of skillResponse">
-                            <div class="skillList"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                        <li class="list-item" *ngFor="let skill of skillResponse" >
+                            <div class="skillList" (click)="activateClass(skill)"  [ngClass]="{'active': skill.active}"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
                               <label>{{skill.skills}}</label>
                             </div>
                           </li>
 
-                      
-                      <li class="list-item">
-                        <div class="skillList"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                          <label>C#</label>
-                        </div>
-                      </li>
-                      <li class="list-item" >
-                        <div class="skillList"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                          <label>MVC</label>
-                        </div>
-                      </li>
-                      <li class="list-item">
-                        <div class="skillList"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                          <label>Java</label>
-                        </div>
-                      </li>
-                      <li class="list-item">
-                        <div class="skillList"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                          <label>HTML</label>
-                        </div>
-                      </li>
-                      <li class="list-item">
-                        <div class="skillList"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                          <label>CSS</label>
-                        </div>
-                      </li>
-                      <li class="list-item">
-                        <div class="skillList"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                          <label>SCSS</label>
-                        </div>
-                      </li>
-                      <li class="list-item">
-                        <div class="skillList"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                          <label>Angular 4</label>
-                        </div>
-                      </li>
-                      <li class="list-item">
-                        <div class="skillList"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                          <label>Angular 5</label>
-                        </div>
-                      </li>
-                      <li class="list-item">
-                        <div class="skillList"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                          <label>Angular 6</label>
-                        </div>
-                      </li>
-                      <li class="list-item">
-                        <div class="skillList"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                          <label>Angular 7</label>
-                        </div>
-                      </li>
-                      <li class="list-item">
-                        <div class="skillList"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                          <label>React</label>
-                        </div>
-                      </li>
-                      <li class="list-item">
-                        <div class="skillList"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                          <label>SQL</label>
-                        </div>
-                      </li>
+                     
                     </ul>
                   </div>
                 </div>
