@@ -59,6 +59,10 @@ import { EmployeeExperienceResponse } from './WebServiceResponse/EmployeeExperie
 import {  DeleteEmployeeExperienceBody } from './WebServiceBody/EmployeeExperienceBody/DeleteEmployeeExperienceBody';
 import { UpdateEmployeeExperienceBody } from './WebServiceBody/EmployeeExperienceBody/UpdateEmployeeExperienceBody';
 import { UpdateEmployeeAddressBody } from './WebServiceBody/EmployeeAddressBody/UpdateEmployeeAddressBody';
+import { SkillBody } from './WebServiceBody/SkillsBody/SkillBody';
+import { SkillResponse } from './WebServiceResponse/SkillResponse/SkillResponse';
+import { AchievementBody } from './WebServiceBody/AchievementBody/AchievementBody';
+import { AchievementResponse } from './WebServiceResponse/AchievementResponse/AchievementResponse';
 @Injectable({
   providedIn: 'root'
 })
@@ -266,4 +270,22 @@ export class AllWeb {
   cityDropdown(universalBody: UniversalBody): Observable<GetAllLocationResponse[]> {
     return this.httpClient.post<GetAllLocationResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getCityDropdown, JSON.stringify(universalBody), this.httpOptions);
   }
+
+
+
+  saveSkills(skillBody: SkillBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.addSkills, JSON.stringify(skillBody), this.httpOptions);
+  }
+  getSkills(universalBody: UniversalBody): Observable<SkillResponse[]> {
+    return this.httpClient.post<SkillResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getSkillsData, JSON.stringify(universalBody), this.httpOptions);
+  }
+  saveAchievement(achievementBody: AchievementBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.addAchievements, JSON.stringify(achievementBody), this.httpOptions);
+  }
+  getAchievement(universalBody: UniversalBody): Observable<AchievementResponse[]> {
+    return this.httpClient.post<AchievementResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getAchievement, JSON.stringify(universalBody), this.httpOptions);
+  }
+ 
+
+
 }

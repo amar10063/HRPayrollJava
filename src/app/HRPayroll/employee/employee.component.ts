@@ -39,6 +39,10 @@ import { EmployeeExperienceResponse } from 'src/app/WebServices/WebServiceRespon
 import { DeleteEmployeeExperienceBody } from 'src/app/WebServices/WebServiceBody/EmployeeExperienceBody/DeleteEmployeeExperienceBody';
 import { UpdateEmployeeExperienceBody } from 'src/app/WebServices/WebServiceBody/EmployeeExperienceBody/UpdateEmployeeExperienceBody';
 import { UpdateEmployeeAddressBody } from 'src/app/WebServices/WebServiceBody/EmployeeAddressBody/UpdateEmployeeAddressBody';
+import { SkillResponse } from 'src/app/WebServices/WebServiceResponse/SkillResponse/SkillResponse';
+import { SkillBody } from 'src/app/WebServices/WebServiceBody/SkillsBody/SkillBody';
+import { AchievementBody } from 'src/app/WebServices/WebServiceBody/AchievementBody/AchievementBody';
+import { AchievementResponse } from 'src/app/WebServices/WebServiceResponse/AchievementResponse/AchievementResponse';
 
 
 @Component({
@@ -81,6 +85,9 @@ export class EmployeeComponent implements OnInit {
 
   professionalQualificationApi: GridApi;
   professionalQualificationColumnApi: ColumnApi;
+
+  achievementApi: GridApi;
+  achievementColumnApi: ColumnApi;
 
   rowSelection: string;
   submitted = false;
@@ -488,9 +495,9 @@ export class EmployeeComponent implements OnInit {
   columnDefs9 = [
 
 
-    { headerName: 'Certificate Name', field: 'CertificateName', editable: true, width: 120 },
-    { headerName: 'Start Date', field: 'StartDate', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'End Date', field: 'EndDate', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'Certificate Name', field: 'certificateName', editable: true, width: 120 },
+    { headerName: 'Start Date', field: 'startDate', sortable: true, filter: true, editable: true, width: 120 },
+    { headerName: 'End Date', field: 'endDate', sortable: true, filter: true, editable: true, width: 120 },
 
     { headerName: '', field: '', width: 538, }
   ];
@@ -647,6 +654,7 @@ export class EmployeeComponent implements OnInit {
   getPostGraduationDetailsResponse: GetPostGraduationDetailsResponse[];
   getOtherEducationalResponse: GetOtherEducationalResponse[];
   getProfessionalEducationResponse: GetProfessionalEducationResponse[];
+  getachievementResponse: AchievementResponse[];
   addNewRowSchool: boolean = false;
   addNewGraduationRow: boolean = false;
   addNewPostGraduationRow: boolean = false;
@@ -692,7 +700,13 @@ export class EmployeeComponent implements OnInit {
     this.addExperienceToggleButton = false;
     this.deleteExperienceToggleButton = false;
 
-
+    this.addAchievementToggleButton = false;
+    this.saveAchievementToggleButton = false;
+    this.deleteAchievementToggleButton = false;
+ 
+    this.getAchievements();
+    this.getAllSkills();
+ 
   }
   onRadioClick(value) {
     this.employementType = value;
@@ -1996,6 +2010,7 @@ export class EmployeeComponent implements OnInit {
       }
     }
   }
+  
 
   onDeleteProfessionalEducation() {
     var selectedNodes = this.professionalQualificationApi.getSelectedNodes();
@@ -2060,6 +2075,149 @@ export class EmployeeComponent implements OnInit {
       this.deleteNewProfessionalQualification = true;
     }
   }
+
+
+
+  //Skills
+
+  skill : string;
+  skillResponse : SkillResponse[] ;
+
+  onSkillsSaveClick(){
+    var skillBody = new SkillBody();
+    skillBody.Skills = this.skill;
+    skillBody.userID = "1";
+    skillBody.UpdatedBy = "1";
+    this.allwebService.saveSkills(skillBody)
+    .subscribe(
+      data =>{
+        this.universalResponse =data;
+        alert(this.universalResponse.MESSAGE)
+        if(this.universalResponse.STATUS ==='Success')
+        {
+          this.getAllSkills();
+        }
+      }
+    );
+     
+
+  }
+
+  getAllSkills() {
+    const universalBody = new UniversalBody();
+    this.allwebService.getSkills(universalBody)
+      .subscribe(
+        data => {
+          this.skillResponse = data;
+        }
+      )
+  }
+
+
+  //Achievements/Certificates
+
+  public selectedRowsAchievement: any[];
+  deleteNewAchievement: boolean = false;
+  saveUpdateAchievement: string;
+  nodeAchievementSelectButWhere: string;
+  updateAchievement : boolean = false;
+  addAchievementToggleButton = false;
+  saveAchievementToggleButton = false;
+  deleteAchievementToggleButton = false;
+  
+  onAddAchievementsClick(){
+    let res = this.achievementApi.updateRowData({ add: [{ certificateName: '', startDate: '', endDate: ''}], addIndex: 0 });
+  }
+
+  onAchievementGridReady(params){
+    this.achievementApi = params.api;
+    this.achievementColumnApi = params.columnApi;
+  }
+
+  onAchievementSelectionChanged(){
+    this.selectedRowsAchievement = this.achievementApi.getSelectedRows();
+    if (this.selectedRowsAchievement.length === 1) {
+      this.deleteNewAchievement = false;
+      if (this.nodeAchievementSelectButWhere === "Add") {
+        this.saveUpdateAchievement = "Save";
+        this.nodeAchievementSelectButWhere = "Update"
+      } else if (this.nodeAchievementSelectButWhere === undefined) {
+        this.saveUpdateAchievement = "Update";
+      } 
+    }
+  }
+  
+  getAchievements() {
+    var universalBody = new UniversalBody();
+    
+    this.allwebService.getAchievement(universalBody)
+      .subscribe(
+        data => {
+          this.getachievementResponse = data;
+         
+          if(this.getachievementResponse.length === 0){
+            this.saveUpdateAchievement = "Save";
+            this.updateAchievement = false;
+            this.addAchievementToggleButton = false;
+            this.deleteAchievementToggleButton = true;
+            console.log("achivementededed","this.getachievementResponse");
+          } else {
+            this.saveUpdateAchievement = "Save";
+            this.updateAchievement = true;
+            this.addAchievementToggleButton = false;
+            this.deleteAchievementToggleButton = true;
+            this.rowData9 = this.getachievementResponse;
+            console.log("achivement",this.rowData9);
+          }
+        }       
+      );
+  }
+
+
+  onSaveAchievement() {
+    
+    const achievementBody = new AchievementBody();
+    const selectedNodes = this.achievementApi.getSelectedNodes();
+
+    const selectedData = selectedNodes.map(node => node.data);
+    var dataTest: Object;
+    if (this.selectedRowsAchievement === undefined) {
+      alert("Please enter input valid data then hit save.")
+    }
+   
+    selectedData.map(node => dataTest = node as Object);
+
+    achievementBody.certificateName = dataTest['certificateName'];
+    achievementBody.startDate = dataTest['startDate'];
+    achievementBody.endDate = dataTest['endDate'];
+
+    if (dataTest['certificateName'] === '') {
+      alert("Enter CertificateName ");
+    }
+    else if (dataTest['startDate'] === '') {
+      alert("Enter StartDate ");
+    }
+    
+    else if (dataTest['endDate'] === '') {
+      alert("Enter EndDate ");
+    }
+    
+    else {
+      this.allwebService.saveAchievement(achievementBody)
+        .subscribe(
+          data => {
+            this.universalResponse = data;
+
+            alert(this.universalResponse.MESSAGE);
+
+            if (this.universalResponse.STATUS === 'Success') {
+              this.getAchievements();
+            }
+          }
+        );
+    }
+  
+}
 
 
 
