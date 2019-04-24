@@ -67,14 +67,17 @@ export class EmployeeComponent implements OnInit {
   nodeExpSelectButWhere: string;
   empExperienceCheckedStatus = false;
   empAddressCheckedStatus = false;
+  addressFilter :boolean;
+
+  empFilter:boolean;
 
   checkedStatus = false;
 
-  ShowLimitedAddress: any;
-  TotalAddress: any;
+  ShowLimitedAddress: any =0;
+  TotalAddress: any =0;
 
-  ShowLimitedExperience: any;
-  TotalExperience: any;
+  ShowLimitedExperience: any =0;
+  TotalExperience: any =0;
 
   graduationApi: GridApi;
   graduationColumnApi: ColumnApi;
@@ -954,29 +957,23 @@ export class EmployeeComponent implements OnInit {
     selectedData.map(node => dataTest = node as Object);
     var l = selectedData.length;
     var i: number;
-    let deleteid: string ="0";
+    let deleteid: string ="abc";
     
     var addressid: string ;
    
     for (i = 0; i < l; i++) {
-      // console.log("IDsvalue",this.addressApi.getDisplayedRowAtIndex(i).data['id'])
-     let  rowNode1 = this.addressApi.getDisplayedRowAtIndex(i);
       
-     // deleteid = deleteid +"," + rowNode; 
-      //console.log(rowNode1.data.id);
+     let  rowNode1 = this.addressApi.getDisplayedRowAtIndex(i);
      
       addressid = String(rowNode1.data.id);
        deleteid = deleteid +"," + addressid;
-     alert(deleteid);
+     //alert(deleteid);
     }
-  
+    var splitId = deleteid.split("T")[0].split("abc,");
+    var empAddressId =  splitId[1] ;
 
+    alert(empAddressId);
 
-
-
-
-    
-    alert(deleteid);
     if (selectedNodes.length === 0) {
       alert("Please Select a row");
     } else {
@@ -1010,7 +1007,8 @@ export class EmployeeComponent implements OnInit {
     this.rowSelection = "multiple";
     if (this.selectedRowAddress.length === 1) {
       this.deleteAddressToggleButton = false;
-     // this.empAddressCheckedStatus = false;
+      this.addressFilter = false;
+      this.empAddressCheckedStatus =false;
 
       console.log("NodeBut Where", this.nodeAddressSelectButWhere);
 
@@ -1025,7 +1023,10 @@ export class EmployeeComponent implements OnInit {
   }
 
   onAddressFilterChange() {
+    
+
     if (this.empAddressCheckedStatus === false) {
+
       this.addressApi.selectAll();
       this.empAddressCheckedStatus = true;
       this.deleteAddressToggleButton = false;
@@ -1035,6 +1036,7 @@ export class EmployeeComponent implements OnInit {
       this.empAddressCheckedStatus = false;
       this.deleteAddressToggleButton = true;
     }
+    
   }
 
   getLocation(UserID: number) {
@@ -1221,11 +1223,32 @@ export class EmployeeComponent implements OnInit {
   }
 
   onDeleteExperience() {
+
     const selectedNodes = this.empExperienceApi.getSelectedNodes();
     var dataTest: Object;
     const deleteEmployeeExperiencebody = new DeleteEmployeeExperienceBody();
     const selectedData = selectedNodes.map(node => node.data);
     selectedData.map(node => dataTest = node as Object);
+
+    // var l = selectedData.length;
+    // var i: number;
+    // let deleteid: string ="abc";
+    
+    // var empid: string ;
+   
+    // for (i = 0; i < l; i++) {
+      
+    //  let  rowNode1 = this.empExperienceApi.getDisplayedRowAtIndex(i);
+      
+    //   empid = String(rowNode1.data.id);
+    //    deleteid = deleteid +"," + empid;
+    //  //alert(deleteid);
+    // }
+    // var splitId = deleteid.split("T")[0].split("abc,");
+    // var empExpId =  splitId[1];
+
+    // alert(empExpId);
+
     if (selectedNodes.length === 0) {
       alert("Please Select a row");
     }
@@ -1297,6 +1320,9 @@ export class EmployeeComponent implements OnInit {
 
       this.deleteExperienceToggleButton = false;
       console.log("NodeBut Where", this.nodeExpSelectButWhere);
+      this.empFilter = false;
+      this.empExperienceCheckedStatus = false;
+
 
       if (this.nodeExpSelectButWhere === "Add") {
         this.saveUpdateExperience = "Save";
