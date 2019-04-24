@@ -952,23 +952,20 @@ export class EmployeeComponent implements OnInit {
     const deleteEmployeeAddressBody = new DeleteEmployeeAddressBody();
     const selectedData = selectedNodes.map(node => node.data);
     selectedData.map(node => dataTest = node as Object);
-    var l = selectedNodes.length;
+    var l = selectedData.length;
     var i: number;
     let deleteid: string ="0";
-    let deleteID2  : string;
     
-    var valuesOfNode:number;
-    
+    var addressid: string ;
    
-    for (i = 0; i <= l; i++) {
+    for (i = 0; i < l; i++) {
       // console.log("IDsvalue",this.addressApi.getDisplayedRowAtIndex(i).data['id'])
-     var  rowNode = this.addressApi.getDisplayedRowAtIndex(i);
+     let  rowNode1 = this.addressApi.getDisplayedRowAtIndex(i);
       
      // deleteid = deleteid +"," + rowNode; 
-      
-
-     var addressid: string ;
-      addressid = rowNode.data.id;
+      //console.log(rowNode1.data.id);
+     
+      addressid = String(rowNode1.data.id);
        deleteid = deleteid +"," + addressid;
      alert(deleteid);
     }
@@ -1013,6 +1010,7 @@ export class EmployeeComponent implements OnInit {
     this.rowSelection = "multiple";
     if (this.selectedRowAddress.length === 1) {
       this.deleteAddressToggleButton = false;
+     // this.empAddressCheckedStatus = false;
 
       console.log("NodeBut Where", this.nodeAddressSelectButWhere);
 
