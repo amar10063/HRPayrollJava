@@ -63,6 +63,8 @@ import { SkillBody } from './WebServiceBody/SkillsBody/SkillBody';
 import { SkillResponse } from './WebServiceResponse/SkillResponse/SkillResponse';
 import { AchievementBody } from './WebServiceBody/AchievementBody/AchievementBody';
 import { AchievementResponse } from './WebServiceResponse/AchievementResponse/AchievementResponse';
+import { UpdateAchievementBody } from './WebServiceBody/AchievementBody/UpdateAchievementBody';
+import { DeleteAchievementBody } from './WebServiceBody/AchievementBody/DeleteAchievementBody';
 @Injectable({
   providedIn: 'root'
 })
@@ -285,7 +287,10 @@ export class AllWeb {
   getAchievement(universalBody: UniversalBody): Observable<AchievementResponse[]> {
     return this.httpClient.post<AchievementResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getAchievement, JSON.stringify(universalBody), this.httpOptions);
   }
- 
-
-
+  updateAchievement(updateAchievementBody: UpdateAchievementBody): Observable<any> {
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.updateAchievements, JSON.stringify(updateAchievementBody), this.httpOptions);
+  }
+  deleteAchievement(deleteAchievementBody: DeleteAchievementBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteAchievements, JSON.stringify(deleteAchievementBody), this.httpOptions);
+  }
 }
