@@ -52,6 +52,7 @@ import { AchievementResponse } from 'src/app/WebServices/WebServiceResponse/Achi
 })
 
 export class EmployeeComponent implements OnInit {
+
   basicDetailsForm: FormGroup;
   titles = ['Mr', 'Miss', 'Mrs'];
   highSchoolResponse: HighSchoolResponse;
@@ -105,6 +106,11 @@ export class EmployeeComponent implements OnInit {
   universalResponse: UniversalResponse;
   employeeeAddressResponse: EmployeeAddressResponse[];
   employeeExperienceResponse: EmployeeExperienceResponse[];
+
+  activateClass(skill){
+    skill.active = !skill.active; 
+  
+  }
 
   url;
 
