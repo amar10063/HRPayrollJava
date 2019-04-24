@@ -160,7 +160,7 @@ export class OrganizationComponent implements OnInit {
         }
 
       },
-      { headerName: '', field: '', width: 293, }
+      { headerName: '', field: '', width: 382, }
     ];
 
     this.rowData1;
@@ -168,7 +168,7 @@ export class OrganizationComponent implements OnInit {
 
     this.columnDefs2 = [
       {
-        headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, editable: true, width: 150,
+        headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, editable: true, width: 120,
         cellEditor: 'select',
         cellRendererFramework: LocationDropdownComponent,
         cellRendererParams: {
@@ -240,7 +240,7 @@ export class OrganizationComponent implements OnInit {
         }
 
       },
-      { headerName: '', field: '', width: 193, }
+      { headerName: '', field: '', width: 243, }
     ];
 
     this.rowData2;
