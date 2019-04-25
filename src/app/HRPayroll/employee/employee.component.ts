@@ -1063,14 +1063,14 @@ export class EmployeeComponent implements OnInit {
         this.saveUpdateAddress = "Save";
         this.nodeAddressSelectButWhere = "Edit";
       } else if (this.nodeAddressSelectButWhere === undefined) {
-        this.saveUpdateAddress = "Edit";
+        this.saveUpdateAddress = "Update";
     
         this.saveAddressToggleButton = false;
       }
       else if(this.nodeAddressSelectButWhere ==='Update')
       {
         this.saveAddressToggleButton = false;
-        this.saveUpdateAddress = 'Edit';
+        this.saveUpdateAddress = 'Update';
       }
     }
   }
@@ -1090,6 +1090,7 @@ export class EmployeeComponent implements OnInit {
       this.addressFilter = false;
       this.empAddressCheckedStatus = false;
       this.deleteAddressToggleButton = true;
+
     }
 
   }
@@ -1389,14 +1390,14 @@ this.saveExperienceToggleButton =false;
         this.nodeExpSelectButWhere = "Edit"
       }
       else if (this.nodeExpSelectButWhere === undefined) {
-        this.saveUpdateExperience = "Edit";
+        this.saveUpdateExperience = "Update";
         
         this.saveExperienceToggleButton = false
       }
       else if(this.nodeExpSelectButWhere ==='Update')
       {
         this.saveExperienceToggleButton = false;
-        this.saveUpdateExperience = 'Edit';
+        this.saveUpdateExperience = 'Update';
       }
     }
   }
