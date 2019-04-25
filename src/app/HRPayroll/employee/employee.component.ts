@@ -1085,7 +1085,7 @@ export class EmployeeComponent implements OnInit {
       this.addressFilter = false;
       this.empAddressCheckedStatus = false;
       this.deleteAddressToggleButton = true;
-
+      this.addAddressToggleButton = false;
     }
 
   }
@@ -1400,16 +1400,18 @@ export class EmployeeComponent implements OnInit {
   onEmpFilterChange(event) {
 
     if (this.empExperienceCheckedStatus === false) {
+      
       this.empExperienceApi.selectAll();
       this.empFilter = true;
       this.empExperienceCheckedStatus = true;
       this.deleteExperienceToggleButton = false;
+      this.addExperienceToggleButton= true;
     } else {
       this.empExperienceApi.deselectAll();
       this.empFilter = false;
       this.empExperienceCheckedStatus = false;
       this.deleteExperienceToggleButton = true;
-      this.addExperienceToggleButton = true;
+      this.addExperienceToggleButton = false;
     }
   }
   universalDelete() {
