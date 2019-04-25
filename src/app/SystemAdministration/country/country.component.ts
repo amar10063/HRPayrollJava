@@ -280,19 +280,14 @@ export class CountryComponent implements OnInit {
     this.getPostal();
 
   }
-  onStateSelectionChanged(event) { 
+  onStateSelectionChanged(event) {
     const selectedNodes = this.stateApi.getSelectedNodes();
-
-    const delteStateBody = new DeleteStateBody();
     const selectedData = selectedNodes.map(node => node.data);
     var dataTest: Object;
     selectedData.map(node => dataTest = node as Object);
-    if (selectedData.length === 0) {
-      alert("Please select a row");
-    }
+    console.log('dataTest: ');
   }
   getStates() {
-
     this.allWeb.getStates(this.universalBody)
       .subscribe(
         data => {
@@ -304,7 +299,7 @@ export class CountryComponent implements OnInit {
   updateData(event, value) {
     if (value === 'country') {
       this.selectedCountryId = event;
-      console.log("getted", event);
+      console.log('getted', event);
     }
   }
   getCity() {
@@ -400,8 +395,8 @@ export class CountryComponent implements OnInit {
             data => {
               this.universalResponse = data;
 
-              alert(this.universalResponse.MESSAGE);
               if (this.universalResponse.STATUS === 'Success') {
+                alert(this.universalResponse.MESSAGE);
                 var res = this.api.updateRowData({ remove: selectedData });
               }
             }
@@ -527,44 +522,42 @@ export class CountryComponent implements OnInit {
     const countryBody = new CountryBody();
     const universalBody = new UniversalBody();
     const selectedNodes = this.api.getSelectedNodes();
-
+    let countryArray: CountryBody[];
     const selectedData = selectedNodes.map(node => node.data);
     var dataTest: Object;
     selectedData.map(node => dataTest = node as Object);
     if (selectedData.length === 0) {
       alert("Please select a row");
-    }
-    countryBody.CountryCode = dataTest['countryCode'];
-    countryBody.CountryName = dataTest['countryName'];
+    } else {
+      countryBody.CountryCode = dataTest['countryCode'];
+      countryBody.CountryName = dataTest['countryName'];
+      countryArray.push(countryBody);
+      console.log('countryArray:  ' + countryArray);
+      if (dataTest['countryCode'] === '') {
+        alert("Enter country code");
+      } else if (dataTest['countryName'] === '') {
+        alert("Enter country name");
+      } else {
+        this.allWeb.saveCountry(countryBody)
+          .subscribe(
+            data => {
+              this.universalResponse = data;
 
-    if (dataTest['countryCode'] === '') {
-      alert("Enter country code");
+              alert(this.universalResponse.MESSAGE);
 
-    }
-    else if (dataTest['countryName'] === '') {
-      alert("Enter country name");
+              if (this.universalResponse.STATUS === 'Success') {
 
-    }
+                this.getCountries();
 
-    else {
-      this.allWeb.saveCountry(countryBody)
-        .subscribe(
-          data => {
-            this.universalResponse = data;
-
-            alert(this.universalResponse.MESSAGE);
-
-            if (this.universalResponse.STATUS === 'Success') {
-
-              this.getCountries();
-
+              }
             }
-          }
 
 
-        );
+          );
 
+      }
     }
+
   }
 
   onSaveState() {
@@ -673,6 +666,7 @@ export class CountryComponent implements OnInit {
     this.postalColomnApi = params.columnApi;
   }
   onSelectionChanged() {
+
     const selectedRows = this.api.getSelectedRows();
     let selectedRowsString = '';
     selectedRows.forEach(function (selectedRow, index) {
@@ -681,7 +675,6 @@ export class CountryComponent implements OnInit {
       }
       selectedRowsString += selectedRow.athlete;
     });
-    //document.querySelector('#selectedRows').innerHTML = selectedRowsString;
   }
 
   onSavePostal() {
