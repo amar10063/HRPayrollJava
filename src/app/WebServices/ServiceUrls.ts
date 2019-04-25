@@ -58,4 +58,12 @@ export class ServiceUrls {
     public static deleteEmpExperience = '/DeleteEmployeeExperience';
     public static updateEmpExperience ='/UpdateEmployeeExperience';
 
+
+    
+    public static addSkills = '/AddSkills';
+    public static getSkillsData = '/getSkillsData';
+
+    public static addAchievements = '/AddAchievements';
+    public static getAchievement = '/getAchiementsData';
+
 }

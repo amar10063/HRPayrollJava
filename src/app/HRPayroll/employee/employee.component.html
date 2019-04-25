@@ -116,7 +116,7 @@
       </div>
     </div>
 
-    <ag-grid-angular style="width:100%; height: 427px" class="ag-theme-balham" [rowData]="rowData"
+    <ag-grid-angular style="width:100%; height: 320px" class="ag-theme-balham" [rowData]="rowData"
       [columnDefs]="columnDefs">
 
     </ag-grid-angular>
@@ -421,7 +421,7 @@
             </div>
             <div class="clearfix"></div>
             <div class="formBody clearfix pt-0">
-              <ag-grid-angular style="width:100%; height: 221px" class="ag-theme-balham" [rowData]="rowData1"
+              <ag-grid-angular style="width:100%; height: 359px" class="ag-theme-balham" [rowData]="rowData1"
                 [components]="components" [columnDefs]="columnDefs1" [animateRows]="true" [rowSelection]="rowSelection"
                 (gridReady)="onAddressGridReady($event)" (selectionChanged)="onAddressSelectionChanged($event)">
               </ag-grid-angular>
@@ -541,7 +541,7 @@
               </div>
               <div class="clearfix"></div>
               <div class="formBody clearfix pt-0">
-                <ag-grid-angular style="width:100%; height: 315px" class="ag-theme-balham " [rowData]="rowData4"
+                <ag-grid-angular style="width:100%; height: 322px" class="ag-theme-balham " [rowData]="rowData4"
                   [columnDefs]="columnDefs4" [rowSelection]="rowSelection" (gridReady)="onGridGraduationReady($event)">
                 </ag-grid-angular>
 
@@ -586,7 +586,7 @@
               </div>
               <div class="clearfix"></div>
               <div class="formBody clearfix pt-0">
-                <ag-grid-angular style="width:100%; height: 315px" class="ag-theme-balham" [rowData]="rowData5"
+                <ag-grid-angular style="width:100%; height: 322px" class="ag-theme-balham" [rowData]="rowData5"
                   [columnDefs]="columnDefs5" [rowSelection]="rowSelection"
                   (gridReady)="onGridPostGraduationReady($event)"></ag-grid-angular>
 
@@ -631,7 +631,7 @@
               </div>
               <div class="clearfix"></div>
               <div class="formBody clearfix pt-0">
-                <ag-grid-angular style="width:100%; height: 315px" class="ag-theme-balham" [rowData]="rowData6"
+                <ag-grid-angular style="width:100%; height: 322px" class="ag-theme-balham" [rowData]="rowData6"
                   [columnDefs]="columnDefs6" [rowSelection]="rowSelection" (gridReady)="onGridOtherReady($event)">
                 </ag-grid-angular>
 
@@ -682,7 +682,7 @@
 
             <div class="formBody clearfix pt-0" style="clear: both;">
 
-              <ag-grid-angular style="width:100%; height: 315px" class="ag-theme-balham" [rowData]="rowData7"
+              <ag-grid-angular style="width:100%; height: 352px" class="ag-theme-balham" [rowData]="rowData7"
                 [columnDefs]="columnDefs7" [rowSelection]="rowSelection"
                 (gridReady)="onGridProfessionalQualificationReady($event)"
                 (selectionChanged)="onProfessionalSelectionChanged($event)"></ag-grid-angular>
@@ -774,7 +774,10 @@
             </div>
             <div class="col-12 col-md-8 p-0 pull-left">
               <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-                <button type="button" class="payHeadBtn"><i class="fa fa-save" aria-hidden="true"></i>Save
+
+                <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                  New</button>
+                <button type="button" class="payHeadBtn" (click)="onSkillsSaveClick()"><i class="fa fa-save" aria-hidden="true"></i>Save
                 </button>
                 <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
               </div>
@@ -788,71 +791,20 @@
                   <div class="form-inline col-12 col-md-12 p-0">
                     <div class="col-12 col-md-12 p-0">
                       <label for="Skills" class="col-12 col-md-2 pl-0">Skills:</label>
-                      <input type="text" class="form-control col-12 col-md-9 ptb-4" name="name" placeholder="Skills">
+                      <input type="text" class="form-control col-12 col-md-9 ptb-4" name="name" placeholder="Skills" [(ngModel)]="skill">
                     </div>
                   </div>
                   <div class="form-inline col-12 col-md-12 p-0" id="skillsList">
-                    <ul class="list-group">
-                      <li class="list-item">
-                        <div class="skillList"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                          <label>C#</label>
-                        </div>
-                      </li>
-                      <li class="list-item">
-                        <div class="skillList"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                          <label>MVC</label>
-                        </div>
-                      </li>
-                      <li class="list-item">
-                        <div class="skillList"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                          <label>Java</label>
-                        </div>
-                      </li>
-                      <li class="list-item">
-                        <div class="skillList"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                          <label>HTML</label>
-                        </div>
-                      </li>
-                      <li class="list-item">
-                        <div class="skillList"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                          <label>CSS</label>
-                        </div>
-                      </li>
-                      <li class="list-item">
-                        <div class="skillList"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                          <label>SCSS</label>
-                        </div>
-                      </li>
-                      <li class="list-item">
-                        <div class="skillList"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                          <label>Angular 4</label>
-                        </div>
-                      </li>
-                      <li class="list-item">
-                        <div class="skillList"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                          <label>Angular 5</label>
-                        </div>
-                      </li>
-                      <li class="list-item">
-                        <div class="skillList"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                          <label>Angular 6</label>
-                        </div>
-                      </li>
-                      <li class="list-item">
-                        <div class="skillList"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                          <label>Angular 7</label>
-                        </div>
-                      </li>
-                      <li class="list-item">
-                        <div class="skillList"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                          <label>React</label>
-                        </div>
-                      </li>
-                      <li class="list-item">
-                        <div class="skillList"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                          <label>SQL</label>
-                        </div>
-                      </li>
+                    <ul class="list-group" *ngIf="skillResponse">
+
+
+                        <li class="list-item" *ngFor="let skill of skillResponse" >
+                            <div class="skillList" (click)="activateClass(skill)"  [ngClass]="{'active': skill.active}"> <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                              <label>{{skill.skills}}</label>
+                            </div>
+                          </li>
+
+                     
                     </ul>
                   </div>
                 </div>
@@ -874,20 +826,21 @@
               </div>
             </div>
             <div class="col-12 col-md-8 p-0 pull-left">
-              <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-                <button type="button" class="payHeadBtn"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
-                  New</button>
-                <button type="button" class="payHeadBtn"><i class="fa fa-save" aria-hidden="true"></i>Save
-                </button>
-                <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
+                  <button type="button" class="payHeadBtn" (click)="onAddAchievementsClick()" ><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                    New</button>
+                  <button type="button" class="payHeadBtn" (click)="onSaveAchievement()"><i class="fa fa-save" aria-hidden="true"></i>{{saveUpdateAchievement}}
+                  </button>
+                  <button type="button" class="payHeadBtn"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>              
+                </div>
               </div>
-            </div>
             <div class="clearfix"></div>
           </div>
           <div class="formBody clearfix pt-0" style="clear: both;">
 
-            <ag-grid-angular style="width:100%; height: 347px" class="ag-theme-balham" [rowData]="rowData9"
-              [columnDefs]="columnDefs9"></ag-grid-angular>
+              <ag-grid-angular style="width:100%; height: 347px" class="ag-theme-balham" [rowData]="rowData9"
+              [columnDefs]="columnDefs9" [rowSelection]="rowSelection" (gridReady)="onAchievementGridReady($event)" 
+              (selectionChanged)="onAchievementSelectionChanged($event)"></ag-grid-angular>
 
           </div>
           <div class="row">
