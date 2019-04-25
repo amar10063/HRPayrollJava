@@ -31,6 +31,7 @@ import { UpdatePostalBody } from 'src/app/WebServices/WebServiceBody/CountryBody
 export class CountryComponent implements OnInit {
   columnDefs1;
    rowData1;
+
   type: string = '';
   gridOptions = {} as GridOptions;
   public selectedCountryId: number;
@@ -51,10 +52,6 @@ export class CountryComponent implements OnInit {
           if (params.data.stateName === '')
             return locationDetails;
           else
-
-            // if (params.data.stateName.length > 0)
-            //   return locationDetails;
-            // else
             return null;
 
         }
@@ -718,26 +715,34 @@ export class CountryComponent implements OnInit {
 
 
   }
+  countryArray: CountryBody[] = [];
 
   onSaveCountry() {
-    if (this.selectedRowCountry === undefined) {
-      alert('Please enter input valid data then hit save.')
-    }
-    else {
-      const countryBody = new CountryBody();
 
-      const selectedNodes = this.api.getSelectedNodes();
+    const countryBody = new CountryBody();
+    const universalBody = new UniversalBody();
+    const selectedNodes = this.api.getSelectedNodes();
+    const selectedData = selectedNodes.map(node => node.data);
+    var dataTest: Object;
+    selectedData.map(node => dataTest = node as Object);
 
-      const selectedData = selectedNodes.map(node => node.data);
-      var dataTest: Object;
-      selectedData.map(node => dataTest = node as Object);
-      if (selectedData.length === 0) {
-        alert("Please select a row");
+    if (selectedData.length === 0) {
+      alert('Please select a row');
+    } else {
+      for (let selectedNode of selectedData) {
+        countryBody.CountryCode = selectedNode['countryCode'];
+        countryBody.CountryName = selectedNode['countryName'];
+        this.countryArray.push(countryBody);
+        //var jsonData = JSON.stringify(this.countryArray);
+      }
+      console.log('countryArray:  ' + JSON.stringify(this.countryArray));
+      if (dataTest['countryCode'] === '') {
+        alert("Enter country code");
+      } else if (dataTest['countryName'] === '') {
+        alert("Enter country name");
       } else {
         countryBody.CountryCode = dataTest['countryCode'];
         countryBody.CountryName = dataTest['countryName'];
-
-
         if (dataTest['countryCode'] === '') {
           alert("Enter country code");
         } else if (dataTest['countryName'] === '') {
@@ -975,6 +980,7 @@ export class CountryComponent implements OnInit {
     else {
       this.cityToggleButton = false;
       this.allWeb.saveCity(cityBody)
+
         .subscribe(
           data => {
             this.universalResponse = data;
@@ -1380,20 +1386,6 @@ function lookupKey(mappings, name) {
     }
   }
 }
-var stateMappings = {
-  up: "Uttar Pradesh",
-  ap: "Arunachal Pradesh",
-  wb: "West Bengal",
-  jk: "Jammu & Kashmir",
-  ke: "Kerala"
-};
 
-var cityMappings = {
-  gzb: "Ghaziabad",
-  no: "Noida",
-  be: "Bengal",
-  hy: "Hyderabad",
-  se: "Secundrabad"
-};
 
 
