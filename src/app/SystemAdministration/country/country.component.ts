@@ -29,6 +29,7 @@ import { UpdatePostalBody } from 'src/app/WebServices/WebServiceBody/CountryBody
 })
 
 export class CountryComponent implements OnInit {
+
   columnDefs1; rowData1;
   type: string = '';
   gridOptions = {} as GridOptions;
@@ -50,10 +51,6 @@ export class CountryComponent implements OnInit {
           if (params.data.stateName === '')
             return locationDetails;
           else
-
-            // if (params.data.stateName.length > 0)
-            //   return locationDetails;
-            // else
             return null;
 
         }
@@ -275,7 +272,7 @@ export class CountryComponent implements OnInit {
   ngOnInit() {
     this.getCountries();
     this.getStates();
-    
+
 
     this.getCity();
     this.getPostal();
@@ -518,22 +515,26 @@ export class CountryComponent implements OnInit {
 
 
   }
+  countryArray: CountryBody[] = [];
 
   onSaveCountry() {
     const countryBody = new CountryBody();
     const universalBody = new UniversalBody();
     const selectedNodes = this.api.getSelectedNodes();
-    let countryArray: CountryBody[];
     const selectedData = selectedNodes.map(node => node.data);
     var dataTest: Object;
     selectedData.map(node => dataTest = node as Object);
+
     if (selectedData.length === 0) {
-      alert("Please select a row");
+      alert('Please select a row');
     } else {
-      countryBody.CountryCode = dataTest['countryCode'];
-      countryBody.CountryName = dataTest['countryName'];
-      countryArray.push(countryBody);
-      console.log('countryArray:  ' + countryArray);
+      for (let selectedNode of selectedData) {
+        countryBody.CountryCode = selectedNode['countryCode'];
+        countryBody.CountryName = selectedNode['countryName'];
+        this.countryArray.push(countryBody);
+        //var jsonData = JSON.stringify(this.countryArray);
+      }
+      console.log('countryArray:  ' + JSON.stringify(this.countryArray));
       if (dataTest['countryCode'] === '') {
         alert("Enter country code");
       } else if (dataTest['countryName'] === '') {
@@ -573,15 +574,11 @@ export class CountryComponent implements OnInit {
     if (selectedData.length === 0) {
       alert("Please select a row");
     }
-    stateBody.StateName = dataTest['stateName'];
-    stateBody.Description = dataTest['description'];
-    stateBody.CountryID = this.selectedCountryId;
-    if (dataTest['stateName'] === '') {
-      alert("Enter state name");
-      this.StateToggleButton = true;
-    }
     else {
-
+      stateBody.StateName = dataTest['stateName'];
+      stateBody.Description = dataTest['description'];
+      stateBody.CountryID = this.selectedCountryId+'';
+      console.log(JSON.stringify(stateBody));
       this.StateToggleButton = false;
       this.allWeb.saveState(stateBody)
         .subscribe(
