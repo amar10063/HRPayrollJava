@@ -275,6 +275,7 @@ export class CountryComponent implements OnInit {
   ngOnInit() {
     this.getCountries();
     this.getStates();
+    
 
     this.getCity();
     this.getPostal();
