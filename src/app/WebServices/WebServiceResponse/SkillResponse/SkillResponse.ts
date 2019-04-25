@@ -1,5 +1,5 @@
 export class SkillResponse
 {
-    public sid : number;
-    public skills : string;
+     sid : number;
+     skills : string;
 }
