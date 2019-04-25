@@ -77,6 +77,7 @@ export class EmployeeComponent implements OnInit {
 
   empFilter: boolean;
 
+
   checkedStatus = false;
 
   ShowLimitedAddress: any = 0;
@@ -658,7 +659,7 @@ export class EmployeeComponent implements OnInit {
   }
 
   age: number;
-  api;
+  Schoolapi;
   columnApi;
   getSchoolResonseData: GetSchoolDataResponse[];
   addAddressToggleButton = false;
@@ -680,7 +681,9 @@ export class EmployeeComponent implements OnInit {
   addNewProfessionalQualification: boolean = false;
   editProfessionalQualification: boolean = false;
   deleteNewProfessionalQualification: boolean = false;
+  deleteSchoolQualification: boolean = false;
   today;
+
 
 
   skill : string;
@@ -694,7 +697,6 @@ export class EmployeeComponent implements OnInit {
   addAchievementToggleButton = false;
   saveAchievementToggleButton = false;
   deleteAchievementToggleButton = false;
- 
 
 
   ngOnInit() {
@@ -781,7 +783,7 @@ export class EmployeeComponent implements OnInit {
 
   onUpdateAddress() {
     if (this.selectedRowAddress === undefined) {
-      alert("Please enter input valid data then hit update")
+      alert("Please enter input valid data then hit Edit")
     } else {
       const updateEmployeeAddressBody = new UpdateEmployeeAddressBody();
       const selectedNodes = this.addressApi.getSelectedNodes();
@@ -1057,7 +1059,7 @@ export class EmployeeComponent implements OnInit {
 
       if (this.nodeAddressSelectButWhere === "Add") {
         this.saveUpdateAddress = "Save";
-        this.nodeAddressSelectButWhere = "Update";
+        this.nodeAddressSelectButWhere = "Edit";
       } else if (this.nodeAddressSelectButWhere === undefined) {
         this.saveUpdateAddress = "Edit";
     
@@ -1125,7 +1127,7 @@ export class EmployeeComponent implements OnInit {
     
 this.saveExperienceToggleButton =false;
     if (this.selectedRowExperience === undefined) {
-      alert("Please enter input valid data then hit update.")
+      alert("Please enter input valid data then hit Edit.")
     } else {
 
       const updateEmployeeExperienceBody = new UpdateEmployeeExperienceBody();
@@ -1382,7 +1384,7 @@ this.saveExperienceToggleButton =false;
 
       if (this.nodeExpSelectButWhere === "Add") {
         this.saveUpdateExperience = "Save";
-        this.nodeExpSelectButWhere = "Update"
+        this.nodeExpSelectButWhere = "Edit"
       }
       else if (this.nodeExpSelectButWhere === undefined) {
         this.saveUpdateExperience = "Edit";
@@ -1542,13 +1544,13 @@ this.saveExperienceToggleButton =false;
 
 
   onGridSchoolReady(params) {
-    this.api = params.api;
+    this.Schoolapi = params.api;
     this.columnApi = params.columnApi;
-    this.api.sizeColumnsToFit();
+    this.Schoolapi.sizeColumnsToFit();
   }
 
   onSelectionChanged() {
-    const selectedRows = this.api.getSelectedRows();
+    const selectedRows = this.Schoolapi.getSelectedRows();
     let selectedRowsString = '';
     selectedRows.forEach(function (selectedRow, index) {
       if (index !== 0) {
@@ -1562,7 +1564,7 @@ this.saveExperienceToggleButton =false;
   // Education - School
   onAddSchoolQualification() {
     this.addNewRowSchool = true;
-    let res = this.api.updateRowData({ add: [{ class: 'High School' }] });
+    let res = this.Schoolapi.updateRowData({ add: [{ class: 'High School' }] });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
@@ -1582,7 +1584,7 @@ this.saveExperienceToggleButton =false;
 
   onSaveEducationalData() {
     alert('Do you want to save the data.');
-    const selectedNodes = this.api.getSelectedNodes();
+    const selectedNodes = this.Schoolapi.getSelectedNodes();
     if (selectedNodes.length === 0) {
       alert("Please Select any row.");
     } else {
@@ -1632,7 +1634,7 @@ this.saveExperienceToggleButton =false;
   }
 
   onDeleteQualification() {
-    var selectedNodes = this.api.getSelectedNodes();
+    var selectedNodes = this.Schoolapi.getSelectedNodes();
     var dataTest: Object;
     const schooldeleted = new SchoolDeleted();
     var universalResonse: UniversalResponse;
@@ -1644,7 +1646,7 @@ this.saveExperienceToggleButton =false;
     } else {
       schooldeleted.SchoolID = dataTest['schoolID'];
       if (schooldeleted.SchoolID === undefined) {
-        this.api.removeItems(selectedNodes);
+        this.Schoolapi.removeItems(selectedNodes);
         this.addNewRowSchool = false;
       } else {
         this.allwebService.deleteSchool(schooldeleted)
@@ -1656,14 +1658,34 @@ this.saveExperienceToggleButton =false;
                 this.addNewRowSchool = false;
                 alert(universalResonse.STATUS + " : " + universalResonse.MESSAGE);
                 this.onGetSchoolQualification();
+
+                if (this.checkedStatusSchool === true) {
+                  this.checkedStatusSchool = false;
+                }
+
               } else {
-                alert(universalResonse.STATUS + ' : ' + universalResonse.MESSAGE);
+                // alert(universalResonse.STATUS + ' : ' + universalResonse.MESSAGE);
               }
             }
           );
       }
     }
   }
+
+  onCheckedBoxSchoolChange(eve: any) {
+    if (this.checkedStatusSchool === false) {
+      console.log("checkedSchool",this.checkedStatusSchool);
+      this.Schoolapi.selectAll();
+      this.checkedStatusSchool = true;
+      this.deleteSchoolQualification = false;
+    }else if (this.checkedStatusSchool === true) {
+      this.Schoolapi.deselectAll();
+      this.checkedStatusSchool = false;
+      this.deleteSchoolQualification = true;
+    }
+
+  }
+  
 
 
   onAddGraduationQualification() {
@@ -2049,7 +2071,7 @@ this.saveExperienceToggleButton =false;
 
             this.ToalProfessionalQualification = this.getProfessionalEducationResponse.length;
             this.saveUpdateProfessional = "Save";
-
+        
             this.editProfessionalQualification = true;
             this.addNewProfessionalQualification = false;
             this.deleteNewProfessionalQualification = true;
@@ -2108,7 +2130,7 @@ this.saveExperienceToggleButton =false;
                   alert(universalResonse.STATUS + " : " + universalResonse.MESSAGE);
                   this.addNewProfessionalQualification = false;
                   this.onGetProfessionalEducation();
-                  this.nodeSelectButWhere = "Update"
+                  this.nodeSelectButWhere = "Edit"
                 } else {
                   alert(universalResonse.STATUS + ' : ' + universalResonse.MESSAGE);
                 }
@@ -2164,8 +2186,8 @@ this.saveExperienceToggleButton =false;
                 if (universalResonse.STATUS === "Success") {
                   alert(universalResonse.STATUS + " : " + universalResonse.MESSAGE);
                   this.addNewProfessionalQualification = false;
+                  this.nodeSelectButWhere = "Edit"
                   this.onGetProfessionalEducation();
-                  this.nodeSelectButWhere = "Update"
                 } else {
                   alert(universalResonse.STATUS + ' : ' + universalResonse.MESSAGE);
                 }
@@ -2175,7 +2197,6 @@ this.saveExperienceToggleButton =false;
       }
     }
   }
-
 
   onDeleteProfessionalEducation() {
     var selectedNodes = this.professionalQualificationApi.getSelectedNodes();
@@ -2190,6 +2211,7 @@ this.saveExperienceToggleButton =false;
       deletedProfessionalEducation.qId = dataTest['qId'];
       if (deletedProfessionalEducation.qId === undefined) {
         alert("Please Select valid row.");
+        this.professionalQualificationApi.removeItems(selectedNodes);
         this.addNewProfessionalQualification = false;
       } else {
         this.allwebService.deleteProfessionalEducation(deletedProfessionalEducation)
@@ -2202,8 +2224,8 @@ this.saveExperienceToggleButton =false;
                 this.professionalQualificationApi.removeItems(selectedNodes);
                 this.onGetProfessionalEducation();
 
-                if (this.checkedStatus === true) {
-                  this.checkedStatus = false;
+                if (this.checkedStatusProfessional === true) {
+                  this.checkedStatusProfessional = false;
                 }
 
               } else {
@@ -2219,33 +2241,39 @@ this.saveExperienceToggleButton =false;
     this.selectedRowsProfessional = this.professionalQualificationApi.getSelectedRows();
     this.rowSelection = "multiple";
     if (this.selectedRowsProfessional.length === 1) {
+      this.checkedStatusProfessional = false;
       this.deleteNewProfessionalQualification = false;
+      console.log("selectedProfessional",this.nodeSelectButWhere);
       if (this.nodeSelectButWhere === "Add") {
         this.saveUpdateProfessional = "Save";
-        this.nodeSelectButWhere = "Update"
+        this.nodeSelectButWhere = "Edit"
       } else if (this.nodeSelectButWhere === undefined) {
-        this.saveUpdateProfessional = "Update";
+        this.saveUpdateProfessional = "Edit";
+        this.editProfessionalQualification = false;
+      } else if (this.nodeSelectButWhere === "Edit") {
+        this.saveUpdateProfessional = "Edit";
         this.editProfessionalQualification = false;
       }
 
     }
   }
 
-  onCheckedBoxChange(eve: any) {
-    if (this.checkedStatus === false) {
+  onCheckedBoxProfessionalChange(eve: any) {
+    if (this.checkedStatusProfessional === false) {
       this.professionalQualificationApi.selectAll();
-      this.checkedStatus = true;
+      this.checkedStatusProfessional = true;
       this.deleteNewProfessionalQualification = false;
-    } else {
+    } else if (this.checkedStatusProfessional === true) {
       this.professionalQualificationApi.deselectAll();
-      this.checkedStatus = false;
+      this.checkedStatusProfessional = false;
       this.deleteNewProfessionalQualification = true;
-    }
+    } 
   }
 
 
 
   //Skills
+
 
   skill: string;
   skillResponse: SkillResponse[];
@@ -2283,6 +2311,7 @@ this.saveExperienceToggleButton =false;
 
   //Achievements/Certificates
 
+
   public selectedRowsAchievement: any[];
   deleteNewAchievement: boolean = false;
   saveUpdateAchievement: string;
@@ -2312,8 +2341,9 @@ this.saveExperienceToggleButton =false;
       this.deleteNewAchievement = false;
       if (this.nodeAchievementSelectButWhere === "Add") {
         this.saveUpdateAchievement = "Save";
-        this.nodeAchievementSelectButWhere = "Update"
+        this.nodeAchievementSelectButWhere = "Edit"
       } else if (this.nodeAchievementSelectButWhere === undefined) {
+
         this.saveUpdateAchievement = "Update";
       }
     }
