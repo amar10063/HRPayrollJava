@@ -108,6 +108,8 @@ export class EmployeeComponent implements OnInit {
   universalResponse: UniversalResponse;
   employeeeAddressResponse: EmployeeAddressResponse[];
   employeeExperienceResponse: EmployeeExperienceResponse[];
+  checkedStatusSchool: boolean;
+  checkedStatusProfessional: boolean;
 
   activateClass(skill){
     skill.active = !skill.active; 
@@ -2275,8 +2277,7 @@ this.saveExperienceToggleButton =false;
   //Skills
 
 
-  skill: string;
-  skillResponse: SkillResponse[];
+  
 
   onSkillsSaveClick() {
 
@@ -2312,15 +2313,7 @@ this.saveExperienceToggleButton =false;
   //Achievements/Certificates
 
 
-  public selectedRowsAchievement: any[];
-  deleteNewAchievement: boolean = false;
-  saveUpdateAchievement: string;
-  nodeAchievementSelectButWhere: string;
-  updateAchievement: boolean = false;
-  addAchievementToggleButton = false;
-  saveAchievementToggleButton = false;
-  deleteAchievementToggleButton = false;
-
+  
   
   onAddAchievementsClick(){
     this.addAchievementToggleButton = true;
