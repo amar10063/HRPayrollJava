@@ -43,6 +43,8 @@ import { SkillResponse } from 'src/app/WebServices/WebServiceResponse/SkillRespo
 import { SkillBody } from 'src/app/WebServices/WebServiceBody/SkillsBody/SkillBody';
 import { AchievementBody } from 'src/app/WebServices/WebServiceBody/AchievementBody/AchievementBody';
 import { AchievementResponse } from 'src/app/WebServices/WebServiceResponse/AchievementResponse/AchievementResponse';
+import { UpdateAchievementBody } from 'src/app/WebServices/WebServiceBody/AchievementBody/UpdateAchievementBody';
+import { DeleteAchievementBody } from 'src/app/WebServices/WebServiceBody/AchievementBody/DeleteAchievementBody';
 
 
 @Component({
@@ -52,6 +54,7 @@ import { AchievementResponse } from 'src/app/WebServices/WebServiceResponse/Achi
 })
 
 export class EmployeeComponent implements OnInit {
+
   basicDetailsForm: FormGroup;
   titles = ['Mr', 'Miss', 'Mrs'];
   highSchoolResponse: HighSchoolResponse;
@@ -104,6 +107,11 @@ export class EmployeeComponent implements OnInit {
   universalResponse: UniversalResponse;
   employeeeAddressResponse: EmployeeAddressResponse[];
   employeeExperienceResponse: EmployeeExperienceResponse[];
+
+  activateClass(skill){
+    skill.active = !skill.active; 
+  
+  }
 
   url;
 
@@ -673,6 +681,21 @@ export class EmployeeComponent implements OnInit {
   editProfessionalQualification: boolean = false;
   deleteNewProfessionalQualification: boolean = false;
   today;
+
+
+  skill : string;
+  skillResponse : SkillResponse[] ;
+
+  public selectedRowsAchievement: any[];
+  deleteNewAchievement: boolean = false;
+  saveUpdateAchievement: string;
+  nodeAchievementSelectButWhere: string;
+  updateAchievement : boolean = false;
+  addAchievementToggleButton = false;
+  saveAchievementToggleButton = false;
+  deleteAchievementToggleButton = false;
+ 
+
 
   ngOnInit() {
     this.today = new Date().toJSON().split('T')[0];
@@ -1392,11 +1415,16 @@ this.saveExperienceToggleButton =false;
   universalDelete() {
     const experienceSelectedNodes = this.empExperienceApi.getSelectedNodes();
     const addressSelectedNodes = this.addressApi.getSelectedNodes();
+    const acheivementSelectedNode = this.achievementApi.getSelectedNodes();
     if (addressSelectedNodes.length !== 0) {
       this.onDeleteAddress();
     }
     else if (experienceSelectedNodes.length !== 0) {
       this.onDeleteExperience();
+    }
+    else if(acheivementSelectedNode.length !== 0)
+    {
+      this.onDeleteAchievement();
     }
   }
 
@@ -2223,6 +2251,7 @@ this.saveExperienceToggleButton =false;
   skillResponse: SkillResponse[];
 
   onSkillsSaveClick() {
+
     var skillBody = new SkillBody();
     skillBody.Skills = this.skill;
     skillBody.userID = "1";
@@ -2263,11 +2292,16 @@ this.saveExperienceToggleButton =false;
   saveAchievementToggleButton = false;
   deleteAchievementToggleButton = false;
 
-  onAddAchievementsClick() {
-    let res = this.achievementApi.updateRowData({ add: [{ certificateName: '', startDate: '', endDate: '' }], addIndex: 0 });
+  
+  onAddAchievementsClick(){
+    this.addAchievementToggleButton = true;
+    this.updateAchievement = false;
+    this.nodeAchievementSelectButWhere = "Add";    
+    let res = this.achievementApi.updateRowData({ add: [{ certificateName: '', startDate: '', endDate: ''}], addIndex: 0 });
   }
 
-  onAchievementGridReady(params) {
+
+  onAchievementGridReady(params){
     this.achievementApi = params.api;
     this.achievementColumnApi = params.columnApi;
   }
@@ -2311,6 +2345,13 @@ this.saveExperienceToggleButton =false;
       );
   }
 
+  onSaveUpdateAchievement() {
+    if (this.saveUpdateAchievement === "Save") {
+      this.onSaveAchievement();
+    } else {
+      this.onUpdateAchievement();
+    }
+  } 
 
   onSaveAchievement() {
 
@@ -2355,10 +2396,104 @@ this.saveExperienceToggleButton =false;
         );
     }
 
+  
   }
 
+  onUpdateAchievement(){
+    this.updateAchievement = false;
+    if (this.selectedRowsAchievement === undefined) {
+      alert("Please enter input valid data then hit save.")
+    } else {
+      alert('Do you want to save the data.');
+      const selectedNodes = this.achievementApi.getSelectedNodes();
+      if (selectedNodes.length === 0) {
+        alert("Please Input Valid Data");
+      } else {
+        const achievementBodyUpdate = new UpdateAchievementBody();
+        const selectedData = selectedNodes.map(node => node.data);
+        var universalResonse: UniversalResponse;
+        var dataTest: Object;
+        selectedData.map(node => dataTest = node as Object);
 
+        var startDteSplitted = dataTest['startDate'].split("T")[0].split("-");
+        var startDated = startDteSplitted[2] + "/" + startDteSplitted[1] + "/" + startDteSplitted[0];
+        var endDteSplitted = dataTest['endDate'].split("T")[0].split("-");
+        var endDated = endDteSplitted[2] + "/" + endDteSplitted[1] + "/" + endDteSplitted[0];
 
+        achievementBodyUpdate.cId = dataTest['cid'];
+        achievementBodyUpdate.certificateName = dataTest['certificateName'];
+        achievementBodyUpdate.startDate = startDated;
+        achievementBodyUpdate.endDate = endDated;
+        
+        
+        if (dataTest['certificateName'] === '') {
+          alert("Enter Certificate Name");
+        } else if (dataTest['course'] === '') {
+          alert("Enter Course");
+        } else if (dataTest['startDate'] === '') {
+          alert("Enter Start Date");
+        } else if (dataTest['endDate'] === '') {
+          alert("Enter End Date");
+        } else {
+          console.log("Key", achievementBodyUpdate);
+          this.allwebService.updateAchievement(achievementBodyUpdate)
+            .subscribe(
+              data => {
+                universalResonse = data;
+                console.log("recived", universalResonse.STATUS);
+                if (universalResonse.STATUS === "Success") {
+                  alert(universalResonse.STATUS + " : " + universalResonse.MESSAGE);
+                  this.addNewProfessionalQualification = false;
+                  this.onGetProfessionalEducation();
+                  this.nodeAchievementSelectButWhere = "Update"
+                } else {
+                  alert(universalResonse.STATUS + ' : ' + universalResonse.MESSAGE);
+                }
+              }
+            );
+        }
+      }
+    }
+  }
+
+  onDeleteAchievement(){
+
+    var selectedNodes = this.achievementApi.getSelectedNodes();
+    var dataTest: Object;
+    const deletedAchievement = new DeleteAchievementBody();
+    var universalResonse: UniversalResponse;
+    const selectedData = selectedNodes.map(node => node.data);
+    selectedData.map(node => dataTest = node as Object);
+    if (selectedNodes.length === 0) {
+      alert("Please Select any row.");
+    } else {
+      deletedAchievement.cId = dataTest['cid'];
+      if (deletedAchievement.cId === undefined) {
+        alert("Please Select valid row.");
+        this.addAchievementToggleButton = false;
+      } else {
+        this.allwebService.deleteAchievement(deletedAchievement)
+          .subscribe(
+            data => {
+              universalResonse = data;
+              if (universalResonse.STATUS === "Success") {
+                this.addAchievementToggleButton = false;
+                this.achievementApi.removeItems(selectedNodes);
+                this.getAchievements();
+
+                if (this.checkedStatus === true) {
+                  this.checkedStatus = false;
+                }
+
+              } else {
+                // alert(universalResonse.STATUS + ' : ' + universalResonse.MESSAGE);
+              }
+            }
+          );
+      }
+    }
+
+  }
 
   showhide() {
     this.show = true;
