@@ -178,58 +178,6 @@ export class CountryComponent implements OnInit {
   rowDeselection: string
   private editType;
 
-  columnDefs1;
-  rowData1;
-
-  type: string = '';
-  gridOptions = {} as GridOptions;
-  public selectedCountryId: number;
-  constructor(private allWeb: AllWeb) {
-    this.gridOptions = {
-      context: { componentParent: this }
-    };
-    this.rowSelection = 'single';
-    this.editType = 'fullRow';
-    this.columnDefs1 = [
-      {
-        headerName: 'Country', field: 'countryName', sortable: true, filter: true, width: 110,
-        cellRendererSelector: function (params) {
-          var locationDetails = {
-            component: 'locationFramework',
-            params: { value: 'country' }
-          };
-          if (params.data.stateName === '')
-            return locationDetails;
-          else
-            return null;
-
-        }
-
-      },
-      {
-        headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: true, width: 120,
-        cellStyle: function (params) {
-          if (params.value === '') {
-            return { outline: '1px solid red' };
-
-          } else {
-            return { outline: 'white' };
-          }
-        }
-
-      },
-      { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: true },
-
-      { headerName: '', field: '', width: 512, }
-    ];
-
-    this.rowData1;
-
-  }
-  frameworkComponents = {
-    locationFramework: LocationDropdownComponent
-  };
-
   columnDefs = [
     {
       id: 0, headerName: 'Country Code', field: 'countryCode', sortable: true, filter: true, width: 120, editable: true,
