@@ -11,6 +11,8 @@ export class ServiceUrls {
     public static DeleteDepartment = '/DeleteDepartment';
     public static AddDesignation = '/SaveMultipleDesignation';
     public static DeleteDesignation = '/DeleteDesignation';
+    
+    
     public static saveCountry = '/AddCountry';
     public static saveCity = '/AddCity';
     public static getCountry = '/GetCountryByUserID';
