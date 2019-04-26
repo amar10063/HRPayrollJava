@@ -5,7 +5,13 @@ body {
     overflow-x: hidden;
     overflow-y: hidden;
 }
-button:disabled{opacity:.3}
+.ag-theme-balham .sick-days-warning {
+    background-color: sandybrown !important;
+}
+.ag-theme-balham .sick-days-breach {
+    background-color: #e5ece9 !important;
+}
+.ag-theme-balham .ag-row-selected{ background-color: #87aeaa !important;}
 .errorred{
     color: red !important ;
     font-size:10px;
@@ -15,7 +21,7 @@ button:disabled{opacity:.3}
     -webkit-appearance: none;
   }
   .ag-theme-balham .ag-row-selected {
-    background-color: #c2dcde !important;
+    background-color: #c2dcde ;
 }
 .ag-theme-balham .ag-row-selected {
     border-color: #bdc3c3 !important;

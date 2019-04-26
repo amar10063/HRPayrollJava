@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { GridApi, ColumnApi, CellComp, GridOptions } from 'ag-grid-community';
 import { AllWeb } from "src/app/WebServices/AllWeb.service";
 import { LocationResponse } from './LocationResponse';
@@ -48,7 +48,7 @@ export class OrganizationComponent implements OnInit {
   getAllLocationResponse: GetAllLocationResponse[];
   getDepartmentResponse: GetDepartmentResponse[];
   getDesignationResponse: GetDesignationResponse[];
-  gridOptions: GridOptions;
+  gridOptions;
   addNewLocationRow: boolean = false;
   addNewDepartmentRow: boolean = false;
   addNewDesignationRow: boolean = false;
@@ -58,24 +58,16 @@ export class OrganizationComponent implements OnInit {
   deleteNewLocation: boolean = false;
   deleteNewDepartment: boolean = false;
   deleteNewDesignation: boolean = false;
+  rowClassRules: { "sick-days-warning": (params: any) => boolean; "sick-days-breach": string; };
 
 
   constructor(private countryService: AllWeb) {
+
     //this.frameworkComponents = { genderCellRenderer: LocationDropdownComponent };
     this.rowSelection = 'single';
     this.columnDefs = [
       {
-        headerName: 'Location Code', field: 'code', sortable: true, filter: true, editable: true, width: 120,
-        cellStyle: function (params) {
-          if (params.value === '') {
-            return { outline: '1px solid red' };
-          } else {
-            return { outline: 'white' };
-          }
-        }
-      },
-      {
-        headerName: 'Location Name', field: 'name', sortable: true, filter: true, editable: true, width: 120,
+        headerName: 'Hidden', field: 'hidden', sortable: true, filter: true, editable: true,  width: 150,
 
 
         cellStyle: function (params) {
@@ -88,7 +80,30 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Description', field: 'description', sortable: true, filter: true, editable: true, width: 130,
+        headerName: 'Location Code', field: 'code', sortable: true, filter: true, editable: true, width: 150,
+        cellStyle: function (params) {
+          if (params.value === '') {
+            return { outline: '1px solid red' };
+          } else {
+            return { outline: 'white' };
+          }
+        }
+      },
+      {
+        headerName: 'Location Name', field: 'name', sortable: true, filter: true, editable: true, width: 150,
+
+
+        cellStyle: function (params) {
+          if (params.value === '') {
+            return { outline: '1px solid red' };
+          } else {
+            return { outline: 'white' };
+          }
+        }
+
+      },
+      {
+        headerName: 'Description', field: 'description', sortable: true, filter: true, editable: true, width: 230,
 
 
         cellStyle: function (params) {
@@ -105,7 +120,7 @@ export class OrganizationComponent implements OnInit {
         }
 
       },
-
+     
       { headerName: '', field: '', width: 486, }
     ];
     this.rowData;
@@ -268,14 +283,30 @@ export class OrganizationComponent implements OnInit {
     this.getDesignation(1);
   }
   onAddLocation() {
+    // var dataTest: Object;
+    // const selectedNodes = this.api.getSelectedNodes();
+    // const selectedData = selectedNodes.map(node => node.data);
 
     var res = this.api.updateRowData({
-      add: [{ LocationCode: '', LocationName: '', LocationDescription: '' }],
-      addIndex: 0
+      add: [{hidden: '11', LocationCode: '', LocationName: '', LocationDescription: '' }],
+      addIndex: 0,
     });
-    this.addNewLocationRow = true;
+
+    this.rowClassRules = {
+   
+      "sick-days-warning": function(params) {
+        console.log("1");
+        var numSickDays = params.data.hidden;
+        return numSickDays > 5 && numSickDays <= 7;
+      },
+      "sick-days-breach": "data.hidden > 8"
+    };
+    this.addNewLocationRow = false;
     this.nodeSelectButWhere = "Add";
   }
+
+
+
   onAddDepartment() {
 
     var res = this.departmentApi.updateRowData({
@@ -355,6 +386,7 @@ export class OrganizationComponent implements OnInit {
     if (selectedNodes.length === 0) {
       alert("Please Select any row.");
     } else {
+      // console.log("selecxtetydgdghj",selectedNodes.length);
       deleteLocationBody.LocationID = dataTest['id'];
       if (deleteLocationBody.LocationID === undefined) {
         this.addNewLocationRow = false;
@@ -438,7 +470,9 @@ export class OrganizationComponent implements OnInit {
     this.countryService.doGetLocation(getLocationBody)
       .subscribe(
         data => {
+
           this.getAllLocationResponse = data;
+          
           console.log("AAAAA", this.getAllLocationResponse.length);
           if (this.getAllLocationResponse.length === 0) {
 
@@ -820,8 +854,10 @@ export class OrganizationComponent implements OnInit {
       }
     }
   }
+  
   onLocationSelectionChanged() {
     this.selectedRowsLocation = this.api.getSelectedRows();
+    this.rowSelection = "multiple";
     if (this.selectedRowsLocation.length === 1) {
       this.deleteNewLocation = false;
       console.log("NodeBut Where", this.nodeSelectButWhere);
