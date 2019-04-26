@@ -1,4 +1,5 @@
-export class UniversalBody
-{
-    userID: string = "1";
+export class UniversalBody {
+    public userID: string;
+    public countryID: string;
+    public stateID: string;
 }
