@@ -65,6 +65,7 @@ import { AchievementBody } from './WebServiceBody/AchievementBody/AchievementBod
 import { AchievementResponse } from './WebServiceResponse/AchievementResponse/AchievementResponse';
 import { UpdateAchievementBody } from './WebServiceBody/AchievementBody/UpdateAchievementBody';
 import { DeleteAchievementBody } from './WebServiceBody/AchievementBody/DeleteAchievementBody';
+import { UniversalJsonBody } from './WebServiceBody/UniversalJsonBody';
 @Injectable({
   providedIn: 'root'
 })
@@ -136,8 +137,8 @@ export class AllWeb {
   updateDepartment(updateDepartmentBody: DepartmentBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>('http://10.10.10.48:8081' + '/UpdateDepartment', JSON.stringify(updateDepartmentBody), this.httpOptions);
   }
-  saveDesignation(designationBody: DesignationBody): Observable<any> {
-    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddDesignation, JSON.stringify(designationBody), this.httpOptions);
+  saveDesignation(jsonData: UniversalJsonBody): Observable<any> {
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddDesignation, JSON.stringify(jsonData), this.httpOptions);
   }
   deleteDesignation(deleteDesignationBody: DeleteDesignationBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteDesignation, JSON.stringify(deleteDesignationBody), this.httpOptions);
