@@ -29,6 +29,67 @@ import { UpdatePostalBody } from 'src/app/WebServices/WebServiceBody/CountryBody
 })
 
 export class CountryComponent implements OnInit {
+  columnDefs1;
+  rowData1;
+
+  type: string = '';
+  gridOptions = {} as GridOptions;
+  public selectedCountryId: number;
+  private rowClassRules;
+ 
+  constructor(private allWeb: AllWeb) {
+    this.rowClassRules = {
+      "sick-days-warning": function(params) {
+        var numSickDays = params.data.countryName;
+        return numSickDays > 5 && numSickDays <= 7;
+      },
+      "sick-days-breach": "data.sickDays > 8"
+    };
+    this.gridOptions = {
+      context: { componentParent: this }
+    };
+    this.rowSelection = 'single';
+    this.editType = 'fullRow';
+    this.columnDefs1 = [
+      {
+        headerName: 'Country', field: 'countryName', sortable: true, filter: true, width: 110,
+        cellRendererSelector: function (params) {
+          var locationDetails = {
+            component: 'locationFramework',
+            params: { value: 'country' }
+          };
+          if (params.data.stateName === '')
+            return locationDetails;
+          else
+            return null;
+
+        }
+
+      },
+      {
+        headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: true, width: 120,
+        cellStyle: function (params) {
+          if (params.value === '') {
+            return { outline: '1px solid red' };
+
+          } else {
+            return { outline: 'white' };
+          }
+        }
+
+      },
+      { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: true },
+
+      { headerName: '', field: '', width: 512, }
+    ];
+
+    this.rowData1;
+
+  }
+  frameworkComponents = {
+    locationFramework: LocationDropdownComponent
+  };
+
   createKey: any;
   api;
   columnApi;
@@ -47,6 +108,7 @@ export class CountryComponent implements OnInit {
 
   cityCheckedStatus = false;
   cityFilter: boolean;
+
 
   postalCheckedStatus = false;
   postalFilter: boolean;
@@ -533,7 +595,6 @@ export class CountryComponent implements OnInit {
 
   onAddState() {
     this.type = 'add';
-
     this.stateApi.setFocusedCell(this.countState, 'countryName');
     this.countState++;
     let res = this.stateApi.updateRowData({ add: [{ stateName: '', countryName: '', description: '' }], addIndex: 0 });
@@ -563,7 +624,6 @@ export class CountryComponent implements OnInit {
   onAddPostal() {
     this.postalApi.setFocusedCell(this.countPostal, 'countryName');
     this.countPostal++;
-
     let res = this.postalApi.updateRowData({ add: [{ cityName: '', stateName: '', countryName: '', postalCode: '', description: '' }], addIndex: 0 });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
@@ -1153,6 +1213,7 @@ export class CountryComponent implements OnInit {
               this.universalResponse = data;
 
               alert(this.universalResponse.MESSAGE);
+
 
               if (this.universalResponse.STATUS === 'Success') {
 
