@@ -5,5 +5,5 @@ export class GetAllLocationResponse {
     description: string;
     locationID: number;
     departmentID: number;
-    
+
 }

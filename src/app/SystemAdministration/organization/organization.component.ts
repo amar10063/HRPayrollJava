@@ -6,7 +6,7 @@ import { from } from 'rxjs';
 import { GetLocationBody } from './GetLocationBody';
 import { GetAllLocationResponse } from 'src/app/HRPayroll/employee/EmployeeApiResponse/GetAllLocationResponse';
 import { LocationDropdownComponent } from 'src/app/location-dropdown/location-dropdown.component';
-import { DeleteLocationBody } from 'src/app/WebServices/WebServiceBody/OrganizationBody/DeleteLocationBody';
+
 import { DeleteDesignationBody } from 'src/app/WebServices/WebServiceBody/OrganizationBody/DeleteDesignationBody';
 import { LocationBody } from 'src/app/WebServices/WebServiceBody/OrganizationBody/LocationBody';
 import { DepartmentBody } from 'src/app/WebServices/WebServiceBody/OrganizationBody/DepartmentBody';
@@ -19,6 +19,7 @@ import { GetDepartmentResponse } from './DepartmentResponse';
 import { UniversalResponse } from 'src/app/WebServices/WebServiceResponse/UniversalResponse';
 import { DesignationResponse } from 'src/app/WebServices/WebServiceResponse/OrganizationResponse/DesignationResponse';
 import { UniversalJsonBody } from 'src/app/WebServices/WebServiceBody/UniversalJsonBody';
+import { DeleteLocationBody } from 'src/app/WebServices/WebServiceBody/OrganizationBody/DeleteLocationBody';
 
 @Component({
   selector: 'app-organization',
@@ -53,14 +54,15 @@ export class OrganizationComponent implements OnInit {
   gridOptions: GridOptions;
 
   addNewLocationRow: boolean = true;
-  // addNewLocationRow: boolean = false;
+  editLocation: boolean = true;
+  deleteNewLocation: boolean = true;
 
   addNewDepartmentRow: boolean = false;
   addNewDesignationRow: boolean = false;
-  editLocation: boolean = true;
+
   editDepartment: boolean = false;
   editDesignation: boolean = false;
-  deleteNewLocation: boolean = true;
+ 
   deleteNewDepartment: boolean = false;
   deleteNewDesignation: boolean = false;
 
@@ -277,10 +279,16 @@ export class OrganizationComponent implements OnInit {
   public selectedRowsLocation: any[];
   public selectedRowsDepartment: any[];
   public selectedRowsDesignation: any[];
+  arrDesignationSave : DesignationBody[] = [];
+  arrLocationDelete : DeleteLocationBody[] = [];
   saveUpdateLocation: string;
   saveUpdateDepartment: string;
   saveUpdateDesignation: string;
   nodeSelectButWhere: string;
+
+  ShowLimitedLocation: number=0;
+  ToalLocation: number=0;
+  ShowLocation: number=0;
 
 
   count = 1;
@@ -292,18 +300,25 @@ export class OrganizationComponent implements OnInit {
     this.getDesignation(1);
   }
 
-  onAddLocation() {
-    // var dataTest: Object;
-    // const selectedNodes = this.api.getSelectedNodes();
-    // const selectedData = selectedNodes.map(node => node.data);
 
+
+
+
+
+
+  onGridLocationReady(params) {
+    this.locationApi = params.api;
+    this.columnApi = params.columnApi;
+    params.locationApi.sizeColumnsToFit();
+  }
+
+  onAddLocation() {
     var res = this.locationApi.updateRowData({
       add: [{hidden: '11', LocationCode: '', LocationName: '', LocationDescription: '' }],
       addIndex: 0,
     });
 
     this.rowClassRules = {
-   
       "sick-days-warning": function(params) {
         console.log("1");
         var numSickDays = params.data.hidden;
@@ -311,194 +326,84 @@ export class OrganizationComponent implements OnInit {
       },
       "sick-days-breach": "data.hidden > 8"
     };
+
     this.addNewLocationRow = false;
     this.editLocation = false;
     this.deleteNewLocation = false;
-
     this.nodeSelectButWhere = "Add";
   }
 
-
-
-  onAddDepartment() {
-
-    var res = this.departmentApi.updateRowData({
-      add: [{ LocationName: '', DepartmentCode: '', DepartmentName: '', Description: '', }],
-      addIndex: 0
-    });
-    this.addNewDepartmentRow = true;
-  }
-
-  onGridLocationReady(params) {
-    this.locationApi = params.api;
-    this.columnApi = params.columnApi;
-    params.locationApi.sizeColumnsToFit();
-  }
-  onGridDepartmentReady(params) {
-    this.departmentApi = params.api;
-    this.departmentColumnApi = params.columnApi;
-    this.gridOptions = params.gridOptions;
-    params.api.sizeColumnsToFit();
-  }
-  onGridDesignationReady(params) {
-    this.designationApi = params.api;
-    this.designationColumnApi = params.columnApi;
-    params.api.sizeColumnsToFit();
-  }
-  onSelectionChanged() {
-    const selectedRows = this.locationApi.getSelectedRows();
-    let selectedRowsString = '';
-    selectedRows.forEach(function (selectedRow, index) {
-      if (index !== 0) {
-        selectedRowsString += ', ';
-      }
-      selectedRowsString += selectedRow.athlete;
-    });
-    document.querySelector('#selectedRows').innerHTML = selectedRowsString;
-  }
-  onSelectionDepartmentChanged() {
-    const selectedRows = this.departmentApi.getSelectedRows();
-    let selectedRowsString = '';
-    selectedRows.forEach(function (selectedRow, index) {
-      if (index !== 0) {
-        selectedRowsString += ', ';
-      }
-      selectedRowsString += selectedRow.athlete;
-    });
-    document.querySelector('#selectedRows').innerHTML = selectedRowsString;
-  }
-  onSelectionDesignationChanged() {
-    const selectedRows = this.designationApi.getSelectedRows();
-    let selectedRowsString = '';
-    selectedRows.forEach(function (selectedRow, index) {
-      if (index !== 0) {
-        selectedRowsString += ', ';
-      }
-      selectedRowsString += selectedRow.athlete;
-    });
-    document.querySelector('#selectedRows').innerHTML = selectedRowsString;
-  }
-  onEmpFilterChange(event) {
-    alert("Check");
-  }
   onDeleteLocation() {
-
+    const universalJsonBody = new UniversalJsonBody();
     const selectedNodes = this.locationApi.getSelectedNodes();
+    const selectedData = selectedNodes.map(node => node.data);
     var dataTest: Object;
-   
     var locationResponse: LocationResponse;
     const deleteLocationBody = new DeleteLocationBody();
-    const selectedData = selectedNodes.map(node => node.data);
     selectedData.map(node => dataTest = node as Object);
     if (selectedNodes.length === 0) {
       alert("Please Select any row.");
     } else {
-      // console.log("selecxtetydgdghj",selectedNodes.length);
-      deleteLocationBody.LocationID = dataTest['id'];
-      if (deleteLocationBody.LocationID === undefined) {
-        this.addNewLocationRow = false;
-      } else {
-        console.log("key", deleteLocationBody.LocationID);
-        this.countryService.doDeleteLocation(deleteLocationBody)
-          .subscribe(
-            data => {
-              locationResponse = data;
-              this.locationApi.removeItems(selectedNodes);
-              console.log("key", LocationResponse);
-              alert(locationResponse.MESSAGE);
-            }
-
-          );
+      for (let selectedNode of selectedData) {
+        const deleteLocationBody = new DeleteLocationBody();
+        deleteLocationBody.locationId= selectedNode['id']; 
+        this.arrLocationDelete.push(deleteLocationBody);
+        var jsonData = JSON.stringify(this.arrLocationDelete);
+      }
+      jsonData = jsonData.replace(/"/g, "'"); 
+      deleteLocationBody.locationId = dataTest['id'];
+      // deleteLocationBody.userId = dataTest['designationName']  
+      if (dataTest['id'] === '') {
+        alert("Plesae choose appropiate field");
+      }
+      else {
+            universalJsonBody.jsonData = jsonData;
+            console.log("deletedDatainElse", universalJsonBody.jsonData);
+            this.countryService.doDeleteLocation(universalJsonBody)
+              .subscribe(
+                data => {
+                  locationResponse = data;
+                  //console.log("key", LocationResponse);
+                  alert(locationResponse.MESSAGE);
+                  if (locationResponse.STATUS === 'Success') {
+                      this.arrLocationDelete =[];
+                      this.getLocation(1);
+                  }
+                }
+              );
       }
     }
   }
 
-  onDeleteDepartment() {
-    const selectedNodes = this.departmentApi.getSelectedNodes();
-    var dataTest: Object;
-    var locationResponse: LocationResponse;
-    const deleteDepartment = new DeleteDepartmentBody();
-    const selectedData = selectedNodes.map(node => node.data);
-    selectedData.map(node => dataTest = node as Object);
-    console.log("key", selectedNodes);
-    if (selectedNodes.length === 0) {
-      alert("Please Select any row.");
-    } else {
-      deleteDepartment.DepartmentID = dataTest['departmentID'];
-      if (deleteDepartment.DepartmentID === undefined) {
-        this.addNewDepartmentRow = false;
-      } else {
-        console.log("key dept. ID", deleteDepartment.DepartmentID);
-        this.countryService.deleteDepartment(deleteDepartment)
-          .subscribe(
-            data => {
-              locationResponse = data;
-              this.departmentApi.removeItems(selectedNodes);
-              console.log("key response", LocationResponse);
-              alert(locationResponse.MESSAGE);
-            }
-
-          );
-      }
-    }
-  }
-  
-
-//  arrDesignationDelete : DeleteDesignationBody[] = [];
-
-  onDeleteDesignation() {
-    const selectedNodes = this.designationApi.getSelectedNodes();
-    var dataTest: Object;
-    var locationResponse: LocationResponse;
-    const deleteDesignationBody = new DeleteDesignationBody();
-    const selectedData = selectedNodes.map(node => node.data);
-    selectedData.map(node => dataTest = node as Object);
-    console.log("key deleteBody", selectedNodes);
-    
-    if (selectedData.length === 0) {
-      alert("Please Select any row.");
-    } else {
-      deleteDesignationBody.DesignationID = dataTest['designationID'];
-      if (deleteDesignationBody.DesignationID === undefined) {
-        this.addNewDesignationRow = false;
-      } else {
-        console.log("key desig. ID", deleteDesignationBody.DesignationID);
-        this.countryService.deleteDesignation(deleteDesignationBody)
-          .subscribe(
-            data => {
-              locationResponse = data;
-              this.designationApi.removeItems(selectedNodes);
-              console.log("key deleteresponse", LocationResponse);
-              alert(locationResponse.MESSAGE);
-            }
-
-          );
-      }
-    }
-  }
-  
   getLocation(UserID: number) {
     var getLocationBody = new UniversalBody();
     getLocationBody.userID = UserID + '';
     this.countryService.doGetLocation(getLocationBody)
       .subscribe(
         data => {
-
           this.getAllLocationResponse = data;
           if (this.getAllLocationResponse.length === 0) {
+            this.ToalLocation = this.getAllLocationResponse.length;
             this.saveUpdateLocation = "Save";
             this.editLocation = false;
             this.addNewLocationRow = false;
             this.deleteNewLocation = true;
             this.selectAllLocation = true;
           } else {
+            if (this.getAllLocationResponse.length >= 50) {
+              this.ShowLimitedLocation = 50;
+              this.ShowLocation = 1;
+            } else {
+              this.ShowLimitedLocation = this.getAllLocationResponse.length;
+              this.ShowLocation = 1;
+            }
+            this.ToalLocation = this.getAllLocationResponse.length;
             this.saveUpdateLocation = "Save";
             this.selectAllLocation = false;
-
             this.addNewLocationRow = false;
             this.editLocation = true;
             this.deleteNewLocation = true;
-
+          
             this.rowData = this.getAllLocationResponse;
           }
         }
@@ -545,9 +450,7 @@ export class OrganizationComponent implements OnInit {
   }
 
   onUpdateLocationData() {
-
     this.editLocation = false;
-
     if (this.selectedRowsLocation === undefined) {
       alert("Please enter input valid data then hit save.")
     } else {
@@ -598,6 +501,184 @@ export class OrganizationComponent implements OnInit {
     }
   }
 
+  onLocationSelectionChanged() {
+    this.selectedRowsLocation = this.locationApi.getSelectedRows();
+    this.rowSelection = "multiple";
+    if (this.selectedRowsLocation.length === 1) {
+      this.deleteNewLocation = false;
+      if (this.nodeSelectButWhere === "Add") {
+        this.saveUpdateLocation = "Save";
+        this.nodeSelectButWhere = "Update"
+      } else if (this.nodeSelectButWhere === undefined) {
+        this.saveUpdateLocation = "Update";
+        this.editLocation = false;
+        this.checkedStatus = false
+      }
+    }
+  }
+
+  onCheckedBoxLocationChange(eve: any) {
+    if (this.checkedStatus === false) {
+      this.locationApi.selectAll();
+      this.checkedStatus = true;
+      this.deleteNewLocation = false;
+    } else {
+      this.locationApi.deselectAll();
+      this.checkedStatus = false;
+      this.deleteNewLocation = true;
+    }
+  }
+
+
+
+
+
+  universalDeleteOrganizaion() {
+    const LocationNode = this.locationApi.getSelectedNodes();
+    const DepartmentNode = this.departmentApi.getSelectedNodes();
+    const esignationNode = this.designationApi.getSelectedNodes();
+    if (LocationNode.length !== 0) {
+      this.onDeleteLocation();
+    }
+    else if (DepartmentNode.length !== 0) {
+      // this.onDeleteExperience();
+    }
+    else if (esignationNode.length !== 0) {
+      // this.onDeleteAchievement();
+    }
+  }
+
+
+
+
+
+
+
+
+
+  onAddDepartment() {
+
+    var res = this.departmentApi.updateRowData({
+      add: [{ LocationName: '', DepartmentCode: '', DepartmentName: '', Description: '', }],
+      addIndex: 0
+    });
+    this.addNewDepartmentRow = true;
+  }
+
+  onGridDepartmentReady(params) {
+    this.departmentApi = params.api;
+    this.departmentColumnApi = params.columnApi;
+    this.gridOptions = params.gridOptions;
+    params.api.sizeColumnsToFit();
+  }
+
+  onGridDesignationReady(params) {
+    this.designationApi = params.api;
+    this.designationColumnApi = params.columnApi;
+    params.api.sizeColumnsToFit();
+  }
+
+  onSelectionChanged() {
+    const selectedRows = this.locationApi.getSelectedRows();
+    let selectedRowsString = '';
+    selectedRows.forEach(function (selectedRow, index) {
+      if (index !== 0) {
+        selectedRowsString += ', ';
+      }
+      selectedRowsString += selectedRow.athlete;
+    });
+    document.querySelector('#selectedRows').innerHTML = selectedRowsString;
+  }
+
+  onSelectionDepartmentChanged() {
+    const selectedRows = this.departmentApi.getSelectedRows();
+    let selectedRowsString = '';
+    selectedRows.forEach(function (selectedRow, index) {
+      if (index !== 0) {
+        selectedRowsString += ', ';
+      }
+      selectedRowsString += selectedRow.athlete;
+    });
+    document.querySelector('#selectedRows').innerHTML = selectedRowsString;
+  }
+
+  onSelectionDesignationChanged() {
+    const selectedRows = this.designationApi.getSelectedRows();
+    let selectedRowsString = '';
+    selectedRows.forEach(function (selectedRow, index) {
+      if (index !== 0) {
+        selectedRowsString += ', ';
+      }
+      selectedRowsString += selectedRow.athlete;
+    });
+    document.querySelector('#selectedRows').innerHTML = selectedRowsString;
+  }
+
+  onEmpFilterChange(event) {
+    alert("Check");
+  }
+
+  onDeleteDepartment() {
+    const selectedNodes = this.departmentApi.getSelectedNodes();
+    var dataTest: Object;
+    var locationResponse: LocationResponse;
+    const deleteDepartment = new DeleteDepartmentBody();
+    const selectedData = selectedNodes.map(node => node.data);
+    selectedData.map(node => dataTest = node as Object);
+    console.log("key", selectedNodes);
+    if (selectedNodes.length === 0) {
+      alert("Please Select any row.");
+    } else {
+      deleteDepartment.DepartmentID = dataTest['departmentID'];
+      if (deleteDepartment.DepartmentID === undefined) {
+        this.addNewDepartmentRow = false;
+      } else {
+        console.log("key dept. ID", deleteDepartment.DepartmentID);
+        this.countryService.deleteDepartment(deleteDepartment)
+          .subscribe(
+            data => {
+              locationResponse = data;
+              this.departmentApi.removeItems(selectedNodes);
+              console.log("key response", LocationResponse);
+              alert(locationResponse.MESSAGE);
+            }
+
+          );
+      }
+    }
+  }
+
+  onDeleteDesignation() {
+    const selectedNodes = this.designationApi.getSelectedNodes();
+    var dataTest: Object;
+    var locationResponse: LocationResponse;
+    const deleteDesignationBody = new DeleteDesignationBody();
+    const selectedData = selectedNodes.map(node => node.data);
+    selectedData.map(node => dataTest = node as Object);
+    console.log("key deleteBody", selectedNodes);
+    
+    if (selectedData.length === 0) {
+      alert("Please Select any row.");
+    } else {
+      deleteDesignationBody.DesignationID = dataTest['designationID'];
+      if (deleteDesignationBody.DesignationID === undefined) {
+        this.addNewDesignationRow = false;
+      } else {
+        console.log("key desig. ID", deleteDesignationBody.DesignationID);
+        this.countryService.deleteDesignation(deleteDesignationBody)
+          .subscribe(
+            data => {
+              locationResponse = data;
+              this.designationApi.removeItems(selectedNodes);
+              console.log("key deleteresponse", LocationResponse);
+              alert(locationResponse.MESSAGE);
+            }
+
+          );
+      }
+    }
+  }
+  
   getDepartment(UserID: number) {
     var getDepartmentBody = new UniversalBody();
     getDepartmentBody.userID = UserID + '';
@@ -622,6 +703,7 @@ export class OrganizationComponent implements OnInit {
         }
       );
   }
+
   onSaveUpdateDepartmentData() {
     if (this.saveUpdateDepartment === "Save") {
       this.onSaveDepartment();
@@ -629,8 +711,8 @@ export class OrganizationComponent implements OnInit {
       this.onUpdateDepartmentData();
     }
   }
-  onSaveDepartment() {
 
+  onSaveDepartment() {
     var getDepartmentBody = new UniversalBody();
     const departmentBody = new DepartmentBody();
     const selectedNodes = this.departmentApi.getSelectedNodes();
@@ -673,6 +755,7 @@ export class OrganizationComponent implements OnInit {
         );
     }
   }
+
   onUpdateDepartmentData() {
     this.editDepartment = false;
     if (this.selectedRowsDepartment === undefined) {
@@ -749,7 +832,7 @@ export class OrganizationComponent implements OnInit {
       );
   }
 
-onAddDesignation() {
+  onAddDesignation() {
     this.nodeSelectButWhere = "Add";
     let res = this.designationApi.updateRowData({ add: [{ LocationName: '', DepartmentName: '', DesignationCode: '', DesignationName: '', Description: '' }], addIndex: 0 });
     res.add.forEach(function (rowNode) {
@@ -767,8 +850,6 @@ onAddDesignation() {
     }
   }
 
-  arrDesignationSave : DesignationBody[] = [];
-
   onSaveDesignation() {
     
     const designationBody = new DesignationBody();
@@ -781,21 +862,16 @@ onAddDesignation() {
 
     if (selectedData.length === 0) {
       alert('Please select a row');
-    } else {
-      console.log("selected data length", selectedData);
-            
+    } else {       
       for (let selectedNode of selectedData) {
-        console.log("selected node length", selectedNode);
+        // const designationBody = new DesignationBody();
         designationBody.designationCode = selectedNode['designationCode'];
         designationBody.designationName = selectedNode['designationName'];
         designationBody.description = selectedNode['description'];
         this.arrDesignationSave.push(designationBody);
-        console.log("array data", this.arrDesignationSave); 
         var jsonData = JSON.stringify(this.arrDesignationSave);
       }
-      console.log("jsonData--------",jsonData);
       jsonData = jsonData.replace(/"/g, "'");
-      console.log("jsonfreshData--------",jsonData);
       
       designationBody.designationCode = dataTest['designationCode'];
       designationBody.designationName = dataTest['designationName'];
@@ -816,14 +892,13 @@ onAddDesignation() {
           .subscribe(
             data => {
               locationResponse = data;
-              //console.log("key", LocationResponse);
               alert(locationResponse.MESSAGE);
               if (locationResponse.STATUS === 'Success') {
                 this.arrDesignationSave =[];
                 this.addNewDepartmentRow = false;
                 this.getDesignation(1);
-                  this.nodeSelectButWhere = undefined;
-                  this.addNewDesignationRow = false;
+                this.nodeSelectButWhere = undefined;
+                this.addNewDesignationRow = false;
               }
             }
 
@@ -831,9 +906,6 @@ onAddDesignation() {
       }
     }
   }
-
-
-
 
   onUpdateDesignationData() {
 
@@ -889,25 +961,6 @@ onAddDesignation() {
     }
   }
 
-  onLocationSelectionChanged() {
-
-    this.selectedRowsLocation = this.locationApi.getSelectedRows();
-    this.rowSelection = "multiple";
-    if (this.selectedRowsLocation.length === 1) {
-      this.deleteNewLocation = false;
-      console.log("NodeBut Where", this.nodeSelectButWhere);
-
-      if (this.nodeSelectButWhere === "Add") {
-        this.saveUpdateLocation = "Save";
-        this.nodeSelectButWhere = "Update"
-      } else if (this.nodeSelectButWhere === undefined) {
-        this.saveUpdateLocation = "Update";
-        this.editLocation = false;
-
-      }
-
-    }
-  }
   onDepartmentSelectionChanged() {
     this.selectedRowsDepartment = this.departmentApi.getSelectedRows();
     if (this.selectedRowsDepartment.length === 1) {
@@ -924,6 +977,7 @@ onAddDesignation() {
 
     }
   }
+
   onDesignationSelectionChanged() {
     this.selectedRowsDesignation = this.designationApi.getSelectedRows();
     if (this.selectedRowsDesignation.length === 1) {
@@ -941,17 +995,7 @@ onAddDesignation() {
 
     }
   }
-  onCheckedBoxLocationChange(eve: any) {
-    if (this.checkedStatus === false) {
-      this.locationApi.selectAll();
-      this.checkedStatus = true;
-      this.deleteNewLocation = false;
-    } else {
-      this.locationApi.deselectAll();
-      this.checkedStatus = false;
-      this.deleteNewLocation = true;
-    }
-  }
+  
   onCheckedBoxChangeDepartment(eve: any) {
     if (this.checkedStatus === false) {
       this.departmentApi.selectAll();
@@ -963,6 +1007,7 @@ onAddDesignation() {
       this.deleteNewDepartment = true;
     }
   }
+
   onCheckedBoxChangeDesignation(eve: any) {
     if (this.checkedStatus === false) {
       this.designationApi.selectAll();
@@ -977,4 +1022,5 @@ onAddDesignation() {
 
 
   }
+
 }

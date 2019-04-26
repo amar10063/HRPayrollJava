@@ -647,8 +647,9 @@ export class EmployeeComponent implements OnInit {
   selectedDepartmentIndex: number;
   public selectedRowsProfessional: any[];
   saveUpdateProfessional: string;
-  ToalProfessionalQualification: any;
-  ShowLimitedProfessionalQualification: any;
+  ShowProfessionalQualification:number=0
+  ToalProfessionalQualification:number=0
+  ShowLimitedProfessionalQualification:number=0
   nodeSelectButWhere: string;
 
 
@@ -2087,7 +2088,9 @@ export class EmployeeComponent implements OnInit {
 
             if (this.getProfessionalEducationResponse.length >= 50) {
               this.ShowLimitedProfessionalQualification = 50;
+              this.ShowProfessionalQualification = 1;
             } else {
+              this.ShowProfessionalQualification = 1;
               this.ShowLimitedProfessionalQualification = this.getProfessionalEducationResponse.length;
             }
 
