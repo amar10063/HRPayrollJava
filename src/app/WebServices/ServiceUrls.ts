@@ -9,7 +9,6 @@ export class ServiceUrls {
     public static DeleteLocation = '/DeleteLocation';
     public static AddDepartment = '/AddDepartment';
     public static DeleteDepartment = '/DeleteDepartment';
-
     public static AddDesignation = '/SaveMultipleDesignation';
     public static DeleteDesignation = '/DeleteDesignation';
     

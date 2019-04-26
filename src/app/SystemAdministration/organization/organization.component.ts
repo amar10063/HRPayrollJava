@@ -442,6 +442,9 @@ export class OrganizationComponent implements OnInit {
       }
     }
   }
+  
+
+//  arrDesignationDelete : DeleteDesignationBody[] = [];
 
   onDeleteDesignation() {
     const selectedNodes = this.designationApi.getSelectedNodes();
@@ -451,6 +454,7 @@ export class OrganizationComponent implements OnInit {
     const selectedData = selectedNodes.map(node => node.data);
     selectedData.map(node => dataTest = node as Object);
     console.log("key deleteBody", selectedNodes);
+    
     if (selectedData.length === 0) {
       alert("Please Select any row.");
     } else {
@@ -884,7 +888,7 @@ onAddDesignation() {
       }
     }
   }
-  
+
   onLocationSelectionChanged() {
 
     this.selectedRowsLocation = this.locationApi.getSelectedRows();

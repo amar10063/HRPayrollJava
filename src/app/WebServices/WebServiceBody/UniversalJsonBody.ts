@@ -1,4 +1,4 @@
 export class UniversalJsonBody
 {
-jsonData: string;
+    jsonData: string;
 }
