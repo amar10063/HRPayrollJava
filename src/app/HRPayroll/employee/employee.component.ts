@@ -2276,11 +2276,13 @@ this.saveExperienceToggleButton =false;
 
   //Skills
 
-
-  
+  onSkillsSaveEnter(event){
+    if(event.keyCode == 13) {
+      this.onSkillsSaveClick();
+    }
+  }
 
   onSkillsSaveClick() {
-
     var skillBody = new SkillBody();
     skillBody.Skills = this.skill;
     skillBody.userID = "1";
@@ -2295,8 +2297,6 @@ this.saveExperienceToggleButton =false;
           }
         }
       );
-
-
   }
 
   getAllSkills() {
@@ -2311,9 +2311,7 @@ this.saveExperienceToggleButton =false;
 
 
   //Achievements/Certificates
-
-
-  
+ 
   
   onAddAchievementsClick(){
     this.addAchievementToggleButton = true;
