@@ -10,7 +10,7 @@ export class ServiceUrls {
     public static AddDepartment = '/AddDepartment';
     public static DeleteDepartment = '/DeleteDepartment';
     public static AddDesignation = '/SaveMultipleDesignation';
-    public static DeleteDesignation = '/DeleteDesignation';
+    public static DeleteDesignation = '/DeleteMultipleDesignation';
     public static saveCountry = '/AddCountry';
     public static saveCity = '/AddCity';
     public static getCountry = '/GetCountryByUserID';
