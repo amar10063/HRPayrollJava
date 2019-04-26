@@ -807,6 +807,7 @@ export class CountryComponent implements OnInit {
 
   onSaveCountry() {
     const countryBody = new CountryBody();
+    const universalJsonBody = new UniversalJsonBody();
 
     const selectedNodes = this.api.getSelectedNodes();
     const selectedData = selectedNodes.map(node => node.data);
@@ -832,8 +833,6 @@ export class CountryComponent implements OnInit {
       } else if (dataTest['countryName'] === '') {
         alert("Enter country name");
       } else {
-        
-        
         
           universalJsonBody.jsonData = jsonData;
           this.allWeb.saveCountry(universalJsonBody)
@@ -1103,8 +1102,8 @@ export class CountryComponent implements OnInit {
 
   onSaveCity() {
     const cityBody = new CityBody();
-    const universalBody = new UniversalBody();
-    universalBody.userID = '1';
+    const universalJsonBody = new UniversalJsonBody();
+  
 
 
     const selectedNodes = this.cityApi.getSelectedNodes();
@@ -1131,7 +1130,6 @@ export class CountryComponent implements OnInit {
 
     }
     else {
-
       universalJsonBody.jsonData = jsonData;
       this.allWeb.saveCity(universalJsonBody)
         .subscribe(
