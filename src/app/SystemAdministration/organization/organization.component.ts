@@ -3,7 +3,6 @@ import { GridApi, ColumnApi, CellComp, GridOptions } from 'ag-grid-community';
 import { AllWeb } from "src/app/WebServices/AllWeb.service";
 import { LocationResponse } from './LocationResponse';
 import { from } from 'rxjs';
-import { DesignationResponse } from './DesignationResponse';
 import { GetLocationBody } from './GetLocationBody';
 import { GetAllLocationResponse } from 'src/app/HRPayroll/employee/EmployeeApiResponse/GetAllLocationResponse';
 import { LocationDropdownComponent } from 'src/app/location-dropdown/location-dropdown.component';
@@ -18,6 +17,7 @@ import { UniversalBody } from 'src/app/WebServices/WebServiceBody/UniversalBody'
 import { GetDesignationResponse } from 'src/app/WebServices/WebServiceResponse/OrganizationResponse/GetDesignationResponse';
 import { GetDepartmentResponse } from './DepartmentResponse';
 import { UniversalResponse } from 'src/app/WebServices/WebServiceResponse/UniversalResponse';
+import { DesignationResponse } from 'src/app/WebServices/WebServiceResponse/OrganizationResponse/DesignationResponse';
 
 @Component({
   selector: 'app-organization',
@@ -315,15 +315,7 @@ export class OrganizationComponent implements OnInit {
     });
     this.addNewDepartmentRow = true;
   }
-  onAddDesignation() {
 
-    let res = this.designationApi.updateRowData({ add: [{ LocationName: '', DepartmentName: '', DesignationCode: '', DesignationName: '', Description: '' }], addIndex: 0 });
-
-    res.add.forEach(function (rowNode) {
-      console.log('Added Row Node', rowNode);
-    });
-    this.addNewDesignationRow = true;
-  }
   onGridLocationReady(params) {
     this.api = params.api;
     this.columnApi = params.columnApi;
@@ -443,7 +435,7 @@ export class OrganizationComponent implements OnInit {
     const selectedData = selectedNodes.map(node => node.data);
     selectedData.map(node => dataTest = node as Object);
     console.log("key deleteBody", selectedNodes);
-    if (selectedNodes.length === 0) {
+    if (selectedData.length === 0) {
       alert("Please Select any row.");
     } else {
       deleteDesignationBody.DesignationID = dataTest['designationID'];
@@ -725,6 +717,11 @@ export class OrganizationComponent implements OnInit {
   }
 
   getDesignation(UserID: number) {
+
+    this.editDesignation = true;
+    this.addNewDesignationRow = true;
+    this.deleteNewDesignation = true;
+
     var getDesignationBody = new UniversalBody();
     getDesignationBody.userID = UserID + '';
     this.countryService.getDesignationByUserId(getDesignationBody)
@@ -735,19 +732,30 @@ export class OrganizationComponent implements OnInit {
           if (this.getDesignationResponse.length === 0) {
 
             this.saveUpdateDesignation = "Save";
-            this.editDesignation = false;
-            this.addNewDesignationRow = false;
-            this.deleteNewDesignation = true;
+             this.editDesignation = false;
+             this.addNewDesignationRow = false;
+             this.deleteNewDesignation = true;
           } else {
             this.saveUpdateDesignation = "Save";
-            this.editDesignation = true;
-            this.addNewDesignationRow = false;
-            this.deleteNewDesignation = true;
+             this.editDesignation = true;
+             this.addNewDesignationRow = false;
+             this.deleteNewDesignation = true;
             this.rowData2 = this.getDesignationResponse;
           }
         }
       );
   }
+
+onAddDesignation() {
+    this.nodeSelectButWhere = "Add";
+    let res = this.designationApi.updateRowData({ add: [{ LocationName: '', DepartmentName: '', DesignationCode: '', DesignationName: '', Description: '' }], addIndex: 0 });
+    res.add.forEach(function (rowNode) {
+      console.log('Added Row Node', rowNode);
+    });
+    //this.addNewDesignationRow = true;
+    this.editDesignation = false;
+  }
+
   onSaveUpdateDesignationData() {
     if (this.saveUpdateDesignation === "Save") {
       this.onSaveDesignation();
@@ -755,6 +763,9 @@ export class OrganizationComponent implements OnInit {
       this.onUpdateDesignationData();
     }
   }
+
+  arrDesignation : DesignationBody[] = [];
+
   onSaveDesignation() {
     var getDesignationBody = new UniversalBody();
     const designationBody = new DesignationBody();
@@ -762,45 +773,65 @@ export class OrganizationComponent implements OnInit {
     const selectedData = selectedNodes.map(node => node.data);
     var dataTest: Object;
     selectedData.map(node => dataTest = node as Object);
-    designationBody.DesignationCode = dataTest['designationCode'];
-    designationBody.DesignationName = dataTest['designationName']
-    designationBody.Description = dataTest['description']
 
-    if (dataTest['designationCode'] === '') {
-      alert("Plesae Enter Designation Code");
-    }
-    else if (dataTest['designationName'] === '') {
-      alert("Please Enter Designation");
-    }
-    else if (dataTest['description'] === '') {
-      alert("Please Enter Description");
-    }
-    else {
+    if (selectedData.length === 0) {
+      alert('Please select a row');
+    } else {
+      console.log("selected data length", selectedData);
+            
+      for (let selectedNode of selectedData) {
+        console.log("selected node length", selectedNode);
+        designationBody.DesignationCode = selectedNode['designationCode'];
+        designationBody.DesignationName = selectedNode['designationName'];
+        designationBody.Description = selectedNode['description'];
+        this.arrDesignation.push(designationBody);
+        //var jsonData = JSON.stringify(this.countryArray);
+        console.log("array data", this.arrDesignation);
+  
+      }
+    
 
-      this.countryService.saveDesignation(designationBody)
+      designationBody.DesignationCode = dataTest['designationCode'];
+      designationBody.DesignationName = dataTest['designationName'];
+      designationBody.Description = dataTest['description'];
+      
+      if (dataTest['designationCode'] === '') {
+        alert("Plesae Enter Designation Code");
+      }
+      else if (dataTest['designationName'] === '') {
+        alert("Please Enter Designation");
+      }
+      else if (dataTest['description'] === '') {
+        alert("Please Enter Description");
+      }
+      else {
 
-        .subscribe(
-          data => {
-            this.locationResponse = data;
-            //console.log("key", LocationResponse);
-            alert(this.locationResponse.MESSAGE);
-            if (this.locationResponse.STATUS === 'Success') {
-              this.addNewDepartmentRow = false;
-              this.countryService.getDesignationByUserId(getDesignationBody)
-                .subscribe(
-                  data => {
-                    this.getDesignationResponse = data;
-                    this.rowData2 = this.getDesignationResponse;
-                  }
+        this.countryService.saveDesignation(designationBody)
 
-                )
+          .subscribe(
+            data => {
+              this.locationResponse = data;
+              //console.log("key", LocationResponse);
+              alert(this.locationResponse.MESSAGE);
+              if (this.locationResponse.STATUS === 'Success') {
+                this.addNewDepartmentRow = false;
+                this.countryService.getDesignationByUserId(getDesignationBody)
+                  .subscribe(
+                    data => {
+                      this.getDesignationResponse = data;
+                      this.rowData2 = this.getDesignationResponse;
+                    }
+                  )
+                  this.nodeSelectButWhere = undefined;
+                  this.addNewDesignationRow = false;
+              }
             }
-          }
 
-        );
+          );
+      }
     }
-
   }
+
   onUpdateDesignationData() {
 
     this.editDesignation = false;
