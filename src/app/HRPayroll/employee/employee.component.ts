@@ -2300,7 +2300,6 @@ export class EmployeeComponent implements OnInit {
 
 
   onSkillsSaveClick() {
-
     var skillBody = new SkillBody();
     skillBody.Skills = this.skill;
     skillBody.userID = "1";
@@ -2315,8 +2314,6 @@ export class EmployeeComponent implements OnInit {
           }
         }
       );
-
-
   }
 
   getAllSkills() {
@@ -2331,11 +2328,9 @@ export class EmployeeComponent implements OnInit {
 
 
   //Achievements/Certificates
-
-
-
-
-  onAddAchievementsClick() {
+ 
+  
+  onAddAchievementsClick(){
     this.addAchievementToggleButton = true;
     this.updateAchievement = false;
     this.nodeAchievementSelectButWhere = "Add";
