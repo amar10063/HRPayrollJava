@@ -30,7 +30,7 @@
                     <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                       <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                         <label class="checkBox">
-                          <input type="checkbox" name="checkbox" (ngModelChange)="onCheckedBoxChange($event)"
+                          <input type="checkbox" [disabled]="selectAllLocation" name="checkbox" (ngModelChange)="onCheckedBoxLocationChange($event)"
                       [ngModel]="checkedStatus">
                           <span class="checkmark check1"></span> </label>
                       </div>
