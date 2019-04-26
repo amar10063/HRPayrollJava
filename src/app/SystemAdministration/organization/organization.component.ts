@@ -26,7 +26,7 @@ import { UniversalResponse } from 'src/app/WebServices/WebServiceResponse/Univer
 })
 export class OrganizationComponent implements OnInit {
   checkedStatus = false;
-  api: GridApi;
+  locationApi: GridApi;
   columnApi: ColumnApi;
 
   departmentApi: GridApi;
@@ -35,7 +35,7 @@ export class OrganizationComponent implements OnInit {
   designationApi: GridApi;
   designationColumnApi: ColumnApi;
 
-  locationResponse: LocationResponse;
+ 
   designationResponse: DesignationResponse;
   universalResponse: UniversalResponse;
   private frameworkComponents;
@@ -49,15 +49,19 @@ export class OrganizationComponent implements OnInit {
   getDepartmentResponse: GetDepartmentResponse[];
   getDesignationResponse: GetDesignationResponse[];
   gridOptions: GridOptions;
-  addNewLocationRow: boolean = false;
+
+  addNewLocationRow: boolean = true;
+  // addNewLocationRow: boolean = false;
+
   addNewDepartmentRow: boolean = false;
   addNewDesignationRow: boolean = false;
-  editLocation: boolean = false;
+  editLocation: boolean = true;
   editDepartment: boolean = false;
   editDesignation: boolean = false;
-  deleteNewLocation: boolean = false;
+  deleteNewLocation: boolean = true;
   deleteNewDepartment: boolean = false;
   deleteNewDesignation: boolean = false;
+  selectAllLocation: boolean = true;
 
 
   constructor(private countryService: AllWeb) {
@@ -267,13 +271,21 @@ export class OrganizationComponent implements OnInit {
     this.getDepartment(1);
     this.getDesignation(1);
   }
-  onAddLocation() {
 
-    var res = this.api.updateRowData({
-      add: [{ LocationCode: '', LocationName: '', LocationDescription: '' }],
-      addIndex: 0
+
+  // this.addNewLocationRow = true;
+  // this.editLocation = false;
+  // this.deleteNewLocation = true;
+
+  onAddLocation() {
+    var res = this.locationApi.updateRowData({
+      add: [{ LocationCode: '', LocationName: '', LocationDescription: '' }],addIndex: 0
     });
-    this.addNewLocationRow = true;
+    
+    this.addNewLocationRow = false;
+    this.editLocation = false;
+    this.deleteNewLocation = false;
+    
     this.nodeSelectButWhere = "Add";
   }
   onAddDepartment() {
@@ -294,9 +306,9 @@ export class OrganizationComponent implements OnInit {
     this.addNewDesignationRow = true;
   }
   onGridLocationReady(params) {
-    this.api = params.api;
+    this.locationApi = params.api;
     this.columnApi = params.columnApi;
-    params.api.sizeColumnsToFit();
+    params.locationApi.sizeColumnsToFit();
   }
   onGridDepartmentReady(params) {
     this.departmentApi = params.api;
@@ -310,7 +322,7 @@ export class OrganizationComponent implements OnInit {
     params.api.sizeColumnsToFit();
   }
   onSelectionChanged() {
-    const selectedRows = this.api.getSelectedRows();
+    const selectedRows = this.locationApi.getSelectedRows();
     let selectedRowsString = '';
     selectedRows.forEach(function (selectedRow, index) {
       if (index !== 0) {
@@ -347,8 +359,9 @@ export class OrganizationComponent implements OnInit {
   }
   onDeleteLocation() {
 
-    const selectedNodes = this.api.getSelectedNodes();
+    const selectedNodes = this.locationApi.getSelectedNodes();
     var dataTest: Object;
+    var locationResponse: LocationResponse;
     const deleteLocationBody = new DeleteLocationBody();
     const selectedData = selectedNodes.map(node => node.data);
     selectedData.map(node => dataTest = node as Object);
@@ -363,10 +376,10 @@ export class OrganizationComponent implements OnInit {
         this.countryService.doDeleteLocation(deleteLocationBody)
           .subscribe(
             data => {
-              this.locationResponse = data;
-              this.api.removeItems(selectedNodes);
+              locationResponse = data;
+              this.locationApi.removeItems(selectedNodes);
               console.log("key", LocationResponse);
-              alert(this.locationResponse.MESSAGE);
+              alert(locationResponse.MESSAGE);
             }
 
           );
@@ -374,10 +387,10 @@ export class OrganizationComponent implements OnInit {
     }
   }
 
-
   onDeleteDepartment() {
     const selectedNodes = this.departmentApi.getSelectedNodes();
     var dataTest: Object;
+    var locationResponse: LocationResponse;
     const deleteDepartment = new DeleteDepartmentBody();
     const selectedData = selectedNodes.map(node => node.data);
     selectedData.map(node => dataTest = node as Object);
@@ -393,10 +406,10 @@ export class OrganizationComponent implements OnInit {
         this.countryService.deleteDepartment(deleteDepartment)
           .subscribe(
             data => {
-              this.locationResponse = data;
+              locationResponse = data;
               this.departmentApi.removeItems(selectedNodes);
               console.log("key response", LocationResponse);
-              alert(this.locationResponse.MESSAGE);
+              alert(locationResponse.MESSAGE);
             }
 
           );
@@ -407,6 +420,7 @@ export class OrganizationComponent implements OnInit {
   onDeleteDesignation() {
     const selectedNodes = this.designationApi.getSelectedNodes();
     var dataTest: Object;
+    var locationResponse: LocationResponse;
     const deleteDesignationBody = new DeleteDesignationBody();
     const selectedData = selectedNodes.map(node => node.data);
     selectedData.map(node => dataTest = node as Object);
@@ -422,16 +436,17 @@ export class OrganizationComponent implements OnInit {
         this.countryService.deleteDesignation(deleteDesignationBody)
           .subscribe(
             data => {
-              this.locationResponse = data;
+              locationResponse = data;
               this.designationApi.removeItems(selectedNodes);
               console.log("key deleteresponse", LocationResponse);
-              alert(this.locationResponse.MESSAGE);
+              alert(locationResponse.MESSAGE);
             }
 
           );
       }
     }
   }
+  
   getLocation(UserID: number) {
     var getLocationBody = new UniversalBody();
     getLocationBody.userID = UserID + '';
@@ -439,24 +454,26 @@ export class OrganizationComponent implements OnInit {
       .subscribe(
         data => {
           this.getAllLocationResponse = data;
-          console.log("AAAAA", this.getAllLocationResponse.length);
           if (this.getAllLocationResponse.length === 0) {
-
             this.saveUpdateLocation = "Save";
             this.editLocation = false;
             this.addNewLocationRow = false;
             this.deleteNewLocation = true;
+            this.selectAllLocation = true;
           } else {
             this.saveUpdateLocation = "Save";
-            this.editLocation = true;
+            this.selectAllLocation = false;
+
             this.addNewLocationRow = false;
+            this.editLocation = true;
             this.deleteNewLocation = true;
+
             this.rowData = this.getAllLocationResponse;
           }
         }
       );
-
   }
+
   onSaveUpdateLocationData() {
     if (this.saveUpdateLocation === "Save") {
       this.onSaveLocation();
@@ -464,54 +481,38 @@ export class OrganizationComponent implements OnInit {
       this.onUpdateLocationData();
     }
   }
+
   onSaveLocation() {
-
+    const selectedNodes = this.locationApi.getSelectedNodes();
     const locationBody = new LocationBody();
-    const getLocationBody = new UniversalBody();
-    const selectedNodes = this.api.getSelectedNodes();
-
     const selectedData = selectedNodes.map(node => node.data);
     var dataTest: Object;
+    var locationResponse: LocationResponse;
     selectedData.map(node => dataTest = node as Object);
     locationBody.LocationCode = dataTest['code'];
     locationBody.LocationName = dataTest['name'];
     locationBody.LocationDescription = dataTest['description']
-
     if (dataTest['code'] === '') {
       alert("Plesae Enter Location code");
-    }
-    else if (dataTest['name'] === '') {
+    }else if (dataTest['name'] === '') {
       alert("Please Enter Location Name");
-    }
-    else if (dataTest['description'] === '') {
+    }else if (dataTest['description'] === '') {
       alert("Please Enter Description");
-    }
-    else {
+    }else {
       this.countryService.saveLocation(locationBody)
         .subscribe(
           data => {
-            this.locationResponse = data;
-
-            alert(this.locationResponse.MESSAGE);
-
-            if (this.locationResponse.STATUS === 'Success') {
+            locationResponse = data;
+            alert(locationResponse.MESSAGE);
+            if (locationResponse.STATUS === 'Success') {
               this.addNewLocationRow = false;
-
-
-              this.countryService.doGetLocation(getLocationBody)
-                .subscribe(
-                  data => {
-                    this.getAllLocationResponse = data;
-                    this.addNewLocationRow = false;
-                    this.rowData1 = this.getAllLocationResponse;
-                  }
-                )
+              this.getLocation(1); 
             }
           }
-
         );
     }
   }
+
   onUpdateLocationData() {
 
     this.editLocation = false;
@@ -520,7 +521,7 @@ export class OrganizationComponent implements OnInit {
       alert("Please enter input valid data then hit save.")
     } else {
       alert('Do you want to save the data.');
-      const selectedNodes = this.api.getSelectedNodes();
+      const selectedNodes = this.locationApi.getSelectedNodes();
       if (selectedNodes.length === 0) {
         alert("Please Input Valid Data");
       } else {
@@ -565,6 +566,7 @@ export class OrganizationComponent implements OnInit {
       }
     }
   }
+
   getDepartment(UserID: number) {
     var getDepartmentBody = new UniversalBody();
     getDepartmentBody.userID = UserID + '';
@@ -572,7 +574,7 @@ export class OrganizationComponent implements OnInit {
       .subscribe(
         data => {
           this.getDepartmentResponse = data;
-          console.log("AAAAA", this.getDepartmentResponse.length);
+          // console.log("AAAAA", this.getDepartmentResponse.length);
           if (this.getDepartmentResponse.length === 0) {
 
             this.saveUpdateDepartment = "Save";
@@ -604,6 +606,7 @@ export class OrganizationComponent implements OnInit {
     console.log("key", selectedNodes);
     const selectedData = selectedNodes.map(node => node.data);
     var dataTest: Object;
+    var locationResponse: LocationResponse;
     selectedData.map(node => dataTest = node as Object);
     departmentBody.DepartmentCode = dataTest['departmentCode'];
     departmentBody.DepartmentName = dataTest['departmentName']
@@ -623,7 +626,7 @@ export class OrganizationComponent implements OnInit {
           data => {
             this.universalResponse = data;
             alert(this.universalResponse.MESSAGE);
-            if (this.locationResponse.STATUS === 'Success') {
+            if (locationResponse.STATUS === 'Success') {
               this.addNewDepartmentRow = false;
               this.countryService.getDepartmentByUserId(getDepartmentBody)
                 .subscribe(
@@ -697,7 +700,7 @@ export class OrganizationComponent implements OnInit {
       .subscribe(
         data => {
           this.getDesignationResponse = data;
-          console.log("AAAAA", this.getDesignationResponse.length);
+          // console.log("AAAAA", this.getDesignationResponse.length);
           if (this.getDesignationResponse.length === 0) {
 
             this.saveUpdateDesignation = "Save";
@@ -727,6 +730,7 @@ export class OrganizationComponent implements OnInit {
     const selectedNodes = this.designationApi.getSelectedNodes();
     const selectedData = selectedNodes.map(node => node.data);
     var dataTest: Object;
+    var locationResponse: LocationResponse;
     selectedData.map(node => dataTest = node as Object);
     designationBody.DesignationCode = dataTest['designationCode'];
     designationBody.DesignationName = dataTest['designationName']
@@ -747,10 +751,10 @@ export class OrganizationComponent implements OnInit {
 
         .subscribe(
           data => {
-            this.locationResponse = data;
+            locationResponse = data;
             //console.log("key", LocationResponse);
-            alert(this.locationResponse.MESSAGE);
-            if (this.locationResponse.STATUS === 'Success') {
+            alert(locationResponse.MESSAGE);
+            if (locationResponse.STATUS === 'Success') {
               this.addNewDepartmentRow = false;
               this.countryService.getDesignationByUserId(getDesignationBody)
                 .subscribe(
@@ -821,7 +825,7 @@ export class OrganizationComponent implements OnInit {
     }
   }
   onLocationSelectionChanged() {
-    this.selectedRowsLocation = this.api.getSelectedRows();
+    this.selectedRowsLocation = this.locationApi.getSelectedRows();
     if (this.selectedRowsLocation.length === 1) {
       this.deleteNewLocation = false;
       console.log("NodeBut Where", this.nodeSelectButWhere);
@@ -870,13 +874,13 @@ export class OrganizationComponent implements OnInit {
 
     }
   }
-  onCheckedBoxChange(eve: any) {
+  onCheckedBoxLocationChange(eve: any) {
     if (this.checkedStatus === false) {
-      this.api.selectAll();
+      this.locationApi.selectAll();
       this.checkedStatus = true;
       this.deleteNewLocation = false;
     } else {
-      this.api.deselectAll();
+      this.locationApi.deselectAll();
       this.checkedStatus = false;
       this.deleteNewLocation = true;
     }
@@ -887,7 +891,7 @@ export class OrganizationComponent implements OnInit {
       this.checkedStatus = true;
       this.deleteNewDepartment = false;
     } else {
-      this.api.deselectAll();
+      this.locationApi.deselectAll();
       this.checkedStatus = false;
       this.deleteNewDepartment = true;
     }
@@ -898,7 +902,7 @@ export class OrganizationComponent implements OnInit {
       this.checkedStatus = true;
       this.deleteNewDesignation = false;
     } else {
-      this.api.deselectAll();
+      this.locationApi.deselectAll();
       this.checkedStatus = false;
       this.deleteNewDesignation = true;
     }
