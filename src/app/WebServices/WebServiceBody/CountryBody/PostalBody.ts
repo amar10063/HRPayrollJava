@@ -1,9 +1,7 @@
 export class PostalBody {
     postalCode: number ;
-    //CreatedBy: string = '1';
-    UpdatedBy: string = '1';
-    Description:string;
-    CityID: number = 1;
-    userID: number = 1;
+    description:string;
+    cityID: number = 3;
+    userId: number = 1;
 
 }
