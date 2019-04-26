@@ -15,9 +15,9 @@ import { UniversalBody } from '../WebServices/WebServiceBody/UniversalBody';
   styleUrls: ['./location-dropdown.component.css']
 })
 export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
-  params:any;
-  selectedLevel:Object={};
-  
+  params: any;
+  selectedLevel: Object = {};
+
 
 
   locationResponse: GetAllLocationResponse[];
@@ -70,7 +70,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
           this.locationResponse = data;
           var getAllLocationResponse = new GetAllLocationResponse();
           getAllLocationResponse.name = 'Select';
-          this.locationResponse[0] = getAllLocationResponse;
+          this.locationResponse.push(getAllLocationResponse);
 
         }
 
@@ -82,22 +82,17 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
       .subscribe(
         data => {
           this.locationResponse = data;
-          console.log('this.pa: ' + JSON.stringify(data));
-          var getAllLocationResponse = new GetAllLocationResponse();
-          getAllLocationResponse.name = 'Select';
-          this.locationResponse[0] = getAllLocationResponse;
-          //console.log('data:  ' + JSON.stringify(this.locationResponse));
+          this.context.componentParent.selectedCountryId = this.locationResponse[0].id;
         }
       );
   }
   getSelectedValue(event) {
     if (this.params === 'country') {
-      this.context.componentParent.selectedCountryId=event.target.value;
-      console.log("getted", this.context.componentParent.selectedCountryId);
+      this.context.componentParent.selectedCountryId = event.target.value;
     } else if (this.params === 'state') {
-      this.context.componentParent.updateData(event.target.value,'state');
+      this.context.componentParent.selectedStateId = event.target.value;
     } else if (this.params === 'city') {
-      this.context.componentParent.updateData(event.target.value,'city');
+      this.context.componentParent.selectedCityId = event.target.value;
     }
   }
   getAllState(): any {
@@ -106,9 +101,6 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
       .subscribe(
         data => {
           this.locationResponse = data;
-          var getAllLocationResponse = new GetAllLocationResponse();
-          getAllLocationResponse.name = 'Select';
-          this.locationResponse[0] = getAllLocationResponse;
 
         }
       );
