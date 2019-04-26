@@ -422,7 +422,7 @@
             <div class="clearfix"></div>
             <div class="formBody clearfix pt-0">
               <ag-grid-angular style="width:100%; height: 359px" class="ag-theme-balham" [rowData]="rowData1"
-                [components]="components" [columnDefs]="columnDefs1" [animateRows]="true" [rowSelection]="rowSelection"
+              [gridOptions]="gridOptions"[components]="components" [columnDefs]="columnDefs1" [animateRows]="true" [rowSelection]="rowSelection"[frameworkComponents]="frameworkComponents"
                 (gridReady)="onAddressGridReady($event)" (selectionChanged)="onAddressSelectionChanged($event)">
               </ag-grid-angular>
 

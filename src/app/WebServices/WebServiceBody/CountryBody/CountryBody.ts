@@ -3,6 +3,6 @@ export class CountryBody {
     CountryCode: string;
     CreatedBy: string = '1';
     UpdatedBy: string = '1';
-    Description: string = 'Country Name';
+    Description: string ='Country Name';
     userID: number = 1;
 }
