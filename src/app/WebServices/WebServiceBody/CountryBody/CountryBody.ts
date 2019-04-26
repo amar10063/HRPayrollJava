@@ -1,8 +1,8 @@
 export class CountryBody {
-    CountryName: string;
-    CountryCode: string;
-    CreatedBy: string = '1';
-    UpdatedBy: string = '1';
-    Description: string ='Country Name';
-    userID: number = 1;
+    countryName: string;
+    countryCode: string;
+   // CreatedBy: string = '1';
+   // UpdatedBy: string = '1';
+   descpition: string ='';
+   userId: string = '1';
 }

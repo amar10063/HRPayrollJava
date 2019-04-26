@@ -777,6 +777,7 @@ export class EmployeeComponent implements OnInit {
 
     this.saveAddressToggleButton = false;
     this.nodeAddressSelectButWhere = "Add";
+    this.saveUpdateAddress = 'Save';
   }
 
   onSaveUpdateAddress() {
@@ -1048,10 +1049,17 @@ export class EmployeeComponent implements OnInit {
     this.selectedRowAddress = this.addressApi.getSelectedRows();
     this.rowSelection = "multiple";
     if (this.selectedRowAddress.length === 1) {
+      if (this.getEmployeeAddress.length === 1) {
+        this.deleteAddressToggleButton = false;
+        this.addressFilter = true;
+        this.empAddressCheckedStatus = false;
+
+      }
+      else {
       this.deleteAddressToggleButton = false;
       this.addressFilter = false;
       this.empAddressCheckedStatus = false;
-
+      }
       console.log("NodeBut Where", this.nodeAddressSelectButWhere);
 
       if (this.nodeAddressSelectButWhere === "Add") {
@@ -1067,6 +1075,10 @@ export class EmployeeComponent implements OnInit {
         this.saveAddressToggleButton = false;
         this.saveUpdateAddress = 'Update';
       }
+    }
+    else if (this.selectedRowAddress.length >= 1) {
+      this.saveAddressToggleButton = true;
+
     }
   }
 
@@ -1106,7 +1118,8 @@ export class EmployeeComponent implements OnInit {
     let res = this.empExperienceApi.updateRowData({ add: [{ companyName: '', designation: '', department: '', joiningDate: '', exitDate: '', experience: '', location: '', }], addIndex: 0 });
     this.addExperienceToggleButton = true;
     this.saveExperienceToggleButton = false;
-    this.nodeExpSelectButWhere = "Add";
+    this.nodeExpSelectButWhere = 'Add';
+    this.saveUpdateExperience = 'Save';
 
   }
   onSaveUpdateEmpExperience() {
@@ -1373,12 +1386,18 @@ export class EmployeeComponent implements OnInit {
   onEmpExperienceSelectionChanged() {
     this.selectedRowExperience = this.empExperienceApi.getSelectedRows();
     if (this.selectedRowExperience.length === 1) {
+      if (this.employeeExperienceResponse.length === 1) {
+        this.deleteExperienceToggleButton = false;
+        this.empFilter = true;
+        this.empExperienceCheckedStatus = false;
+      }
+      else {
 
       this.deleteExperienceToggleButton = false;
       console.log("NodeBut Where", this.nodeExpSelectButWhere);
       this.empFilter = false;
       this.empExperienceCheckedStatus = false;
-
+      }
 
       if (this.nodeExpSelectButWhere === "Add") {
         this.saveUpdateExperience = "Save";
@@ -1393,6 +1412,10 @@ export class EmployeeComponent implements OnInit {
       else if (this.nodeExpSelectButWhere === 'Update') {
         this.saveExperienceToggleButton = false;
         this.saveUpdateExperience = 'Update';
+      }
+      else if (this.selectedRowExperience.length >= 1) {
+        this.saveExperienceToggleButton = true;
+  
       }
     }
   }
@@ -2277,7 +2300,6 @@ export class EmployeeComponent implements OnInit {
 
 
   onSkillsSaveClick() {
-
     var skillBody = new SkillBody();
     skillBody.Skills = this.skill;
     skillBody.userID = "1";
@@ -2292,8 +2314,6 @@ export class EmployeeComponent implements OnInit {
           }
         }
       );
-
-
   }
 
   getAllSkills() {
@@ -2308,11 +2328,9 @@ export class EmployeeComponent implements OnInit {
 
 
   //Achievements/Certificates
-
-
-
-
-  onAddAchievementsClick() {
+ 
+  
+  onAddAchievementsClick(){
     this.addAchievementToggleButton = true;
     this.updateAchievement = false;
     this.nodeAchievementSelectButWhere = "Add";
