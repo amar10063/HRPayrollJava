@@ -21,6 +21,9 @@ import { UpdateStateBody } from 'src/app/WebServices/WebServiceBody/CountryBody/
 import { UpdateCountryBody } from 'src/app/WebServices/WebServiceBody/CountryBody/UpdateCountryBody';
 import { UpdateCityBody } from 'src/app/WebServices/WebServiceBody/CountryBody/UpdateCityBody';
 import { UpdatePostalBody } from 'src/app/WebServices/WebServiceBody/CountryBody/UpdatePostalBody';
+import { UniversalJsonBody } from 'src/app/WebServices/WebServiceBody/UniversalJsonBody';
+
+
 
 @Component({
   selector: 'app-country',
@@ -36,10 +39,10 @@ export class CountryComponent implements OnInit {
   gridOptions = {} as GridOptions;
   public selectedCountryId: number;
   private rowClassRules;
- 
+
   constructor(private allWeb: AllWeb) {
     this.rowClassRules = {
-      "sick-days-warning": function(params) {
+      "sick-days-warning": function (params) {
         var numSickDays = params.data.countryName;
         return numSickDays > 5 && numSickDays <= 7;
       },
@@ -96,9 +99,6 @@ export class CountryComponent implements OnInit {
 
 
 
-  StateToggleButton = false;
-  cityToggleButton = false;
-  postalToggleButton = false;
 
   countryCheckedStatus = false;
   countryFilter: boolean;
@@ -177,6 +177,8 @@ export class CountryComponent implements OnInit {
   rowSelection: string;
   rowDeselection: string
   private editType;
+  countryArray: CountryBody[] = [];
+  cityArray: CityBody[] = [];
 
   columnDefs = [
     {
@@ -372,10 +374,16 @@ export class CountryComponent implements OnInit {
     this.selectedRowState = this.stateApi.getSelectedRows();
     this.rowSelection = 'multiple';
     if (this.selectedRowState.length === 1) {
+      if (this.getStateResponse.length === 1) {
+        this.deleteStateToggleButton = false;
+        this.stateFilter = true;
+        this.stateCheckedStatus = false;
+      }
+      else {
       this.deleteStateToggleButton = false;
       this.stateFilter = false;
       this.stateCheckedStatus = false;
-
+      }
       if (this.nodeStateSelect === 'Add') {
         this.saveUpdateState = "Save";
         this.nodeStateSelect = "Edit";
@@ -389,6 +397,10 @@ export class CountryComponent implements OnInit {
         this.saveUpdateState = 'Update';
 
       }
+    }
+    else if (this.selectedRowState.length >= 1) {
+      this.saveStateToggleButton = true;
+
     }
   }
 
@@ -503,6 +515,7 @@ export class CountryComponent implements OnInit {
 
   }
 
+
   onAddContry() {
 
     this.api.setFocusedCell(this.countCountry, 'countryCode');
@@ -514,22 +527,23 @@ export class CountryComponent implements OnInit {
 
 
     this.saveCountryToggleButton = false;
-    this.nodeCountrySelect = "Add";
+    this.nodeCountrySelect = 'Add';
     this.addCountryToggleButton = true;
+    this.saveUpdateCountry = 'Save';
   }
 
   onCountryFilterChange() {
 
 
     if (this.countryCheckedStatus === false) {
-      
-     
-        this.api.selectAll();
+
+
+      this.api.selectAll();
       this.countryFilter = true;
       this.countryCheckedStatus = true;
       this.deleteCountryToggleButton = false;
       this.addCountryToggleButton = true;
-      
+
     } else {
       this.api.deselectAll();
       this.countryFilter = false;
@@ -554,6 +568,7 @@ export class CountryComponent implements OnInit {
     this.saveStateToggleButton = false;
     this.nodeStateSelect = "Add";
     this.addStateToggleButton = true;
+    this.saveUpdateState = 'Save';
 
   }
 
@@ -568,6 +583,7 @@ export class CountryComponent implements OnInit {
     this.saveCityToggleButton = false;
     this.nodeCitySelect = "Add";
     this.addCityToggleButton = true;
+    this.saveUpdateCity = 'Save';
   }
   onAddPostal() {
     this.postalApi.setFocusedCell(this.countPostal, 'countryName');
@@ -579,6 +595,7 @@ export class CountryComponent implements OnInit {
     this.savePostalToggleButton = false;
     this.nodePostalSelect = "Add";
     this.addCountryToggleButton = true;
+    this.saveUpdatePostal = 'Save';
   }
 
   universalDelete() {
@@ -765,12 +782,13 @@ export class CountryComponent implements OnInit {
 
 
   }
-  countryArray: CountryBody[] = [];
+  
 
   onSaveCountry() {
 
+    
     const countryBody = new CountryBody();
-    const universalBody = new UniversalBody();
+    const universalJsonBody = new UniversalJsonBody();
     const selectedNodes = this.api.getSelectedNodes();
     const selectedData = selectedNodes.map(node => node.data);
     var dataTest: Object;
@@ -778,41 +796,43 @@ export class CountryComponent implements OnInit {
 
     if (selectedData.length === 0) {
       alert('Please select a row');
+
     } else {
       for (let selectedNode of selectedData) {
-        countryBody.CountryCode = selectedNode['countryCode'];
-        countryBody.CountryName = selectedNode['countryName'];
+        countryBody.countryName = selectedNode['countryName'];
+        countryBody.countryCode = selectedNode['countryCode'];
         this.countryArray.push(countryBody);
-        //var jsonData = JSON.stringify(this.countryArray);
+        var jsonData = JSON.stringify(this.countryArray);
+        jsonData = jsonData.replace(/"/g, "'");
+
       }
-      console.log('countryArray:  ' + JSON.stringify(this.countryArray));
+      console.log('json DAta  ' + jsonData);
       if (dataTest['countryCode'] === '') {
         alert("Enter country code");
       } else if (dataTest['countryName'] === '') {
         alert("Enter country name");
       } else {
-        countryBody.CountryCode = dataTest['countryCode'];
-        countryBody.CountryName = dataTest['countryName'];
-        if (dataTest['countryCode'] === '') {
-          alert("Enter country code");
-        } else if (dataTest['countryName'] === '') {
-          alert("Enter country name");
-        } else {
-          this.allWeb.saveCountry(countryBody)
+        
+        
+        
+          universalJsonBody.jsonData = jsonData;
+          this.allWeb.saveCountry(universalJsonBody)
             .subscribe(
+
               data => {
                 this.universalResponse = data;
 
                 alert(this.universalResponse.MESSAGE);
 
-                if (this.universalResponse.STATUS === 'Success') {
+                if (this.universalResponse.STATUS.trim() === 'Success') {
 
                   this.getCountries();
 
                 }
+                this.countryArray =[];
               }
             );
-        }
+        
       }
     }
   }
@@ -889,11 +909,12 @@ export class CountryComponent implements OnInit {
       stateBody.CountryID = this.selectedCountryId + '';
       if (dataTest['stateName'] === '') {
         alert("Enter state name");
-        this.StateToggleButton = true;
+        this.addStateToggleButton = true;
+
       }
       else {
 
-        this.StateToggleButton = false;
+
         this.allWeb.saveState(stateBody)
           .subscribe(
             data => {
@@ -936,7 +957,7 @@ export class CountryComponent implements OnInit {
 
       if (dataTest['stateName'] === '') {
         alert("Enter state name");
-        this.StateToggleButton = true;
+        this.addStateToggleButton = true;
       }
       else {
         updateStateBody.CountryID = dataTest['countryID'];
@@ -948,7 +969,7 @@ export class CountryComponent implements OnInit {
         }
         else {
 
-          this.StateToggleButton = false;
+
           this.allWeb.updateState(updateStateBody)
             .subscribe(
               data => {
@@ -1031,10 +1052,17 @@ export class CountryComponent implements OnInit {
     this.selectedRowPostal = this.postalApi.getSelectedRows();
     this.rowSelection = 'multiple';
     if (this.selectedRowPostal.length === 1) {
+      if (this.getPostalResponse.length === 1) {
+        this.deletePostalToggleButton = false;
+        this.postalFilter = true;
+        this.postalCheckedStatus = false;
+      }
+      else {
+      
       this.deletePostalToggleButton = false;
       this.postalFilter = false;
       this.postalCheckedStatus = false;
-
+      }
       if (this.nodePostalSelect === 'Add') {
         this.saveUpdatePostal = 'Save';
         this.nodePostalSelect = 'Edit';
@@ -1049,12 +1077,16 @@ export class CountryComponent implements OnInit {
 
       }
     }
+    else if (this.selectedRowPostal.length >= 1) {
+      this.savePostalToggleButton = true;
+
+    }
   }
 
 
   onSaveCity() {
     const cityBody = new CityBody();
-    const universalBody = new UniversalBody();
+    const universalJsonBody = new UniversalJsonBody();
 
     const selectedNodes = this.cityApi.getSelectedNodes();
 
@@ -1064,43 +1096,58 @@ export class CountryComponent implements OnInit {
     if (selectedData.length === 0) {
       alert("Please select a row");
     }
-    cityBody.CityName = dataTest['cityName'];
-    cityBody.Description = dataTest['description'];
+   else{
+    for (let selectedNode of selectedData) {
+      cityBody.cityName = selectedNode['cityName'];
+      cityBody.description = selectedNode['description'];
+      this.cityArray.push(cityBody);
+      var jsonData = JSON.stringify(this.cityArray);
+      jsonData = jsonData.replace(/"/g, "'");
+
+    }
+   
 
     if (dataTest['cityName'] === '') {
       alert("Enter city name");
 
     }
     else {
-      this.cityToggleButton = false;
-      this.allWeb.saveCity(cityBody)
 
+      universalJsonBody.jsonData = jsonData;
+      this.allWeb.saveCity(universalJsonBody)
         .subscribe(
+
           data => {
             this.universalResponse = data;
 
             alert(this.universalResponse.MESSAGE);
 
-            if (this.universalResponse.STATUS === 'Success') {
+            if (this.universalResponse.STATUS.trim() === 'Success') {
 
               this.getCity();
-              this.addCityToggleButton = false;
 
             }
+            this.cityArray =[];
           }
-
         );
     }
+   }
 
   }
   onCitySelectionChanged() {
     this.selectedRowCity = this.cityApi.getSelectedRows();
     this.rowSelection = "multiple";
     if (this.selectedRowCity.length === 1) {
+      if (this.getCityResponse.length === 1) {
+        this.deleteCityToggleButton = false;
+        this.cityFilter = true;
+        this.cityCheckedStatus = false;
+      }
+      else {
       this.deleteCityToggleButton = false;
       this.cityFilter = false;
       this.cityCheckedStatus = false;
-
+      }
       if (this.nodeCitySelect === "Add") {
         this.saveUpdateCity = "Save";
         this.nodeCitySelect = "Edit";
@@ -1112,6 +1159,10 @@ export class CountryComponent implements OnInit {
       else if (this.nodeCitySelect === 'Update') {
         this.saveCityToggleButton = false;
         this.saveUpdateCity = 'Update';
+
+      }
+      else if (this.selectedRowCity.length >= 1) {
+        this.saveCityToggleButton = true;
 
       }
     }
@@ -1198,15 +1249,15 @@ export class CountryComponent implements OnInit {
     this.selectedRowCountry = this.api.getSelectedRows();
     this.rowSelection = 'multiple';
     if (this.selectedRowCountry.length === 1) {
-      if(this.countryDataResponse.length ===1){
+      if (this.countryDataResponse.length === 1) {
         this.deleteCountryToggleButton = false;
-      this.countryFilter = true;
-      this.countryCheckedStatus = false;
+        this.countryFilter = true;
+        this.countryCheckedStatus = false;
       }
-      else{
-      this.deleteCountryToggleButton = false;
-      this.countryFilter = false;
-      this.countryCheckedStatus = false;
+      else {
+        this.deleteCountryToggleButton = false;
+        this.countryFilter = false;
+        this.countryCheckedStatus = false;
       }
 
       if (this.nodeCountrySelect === "Add") {
@@ -1223,11 +1274,15 @@ export class CountryComponent implements OnInit {
 
       }
     }
+    else if (this.selectedRowCountry.length >= 1) {
+      this.saveCountryToggleButton = true;
+
+    }
   }
 
   onSavePostal() {
     const postalBody = new PostalBody();
-    const universalBody = new UniversalBody();
+    const universalJsonBody = new UniversalJsonBody();
     const selectedNodes = this.postalApi.getSelectedNodes();
 
     const selectedData = selectedNodes.map(node => node.data);
@@ -1244,7 +1299,7 @@ export class CountryComponent implements OnInit {
 
     }
     else {
-      this.postalToggleButton = false;
+
       this.allWeb.savePostal(postalBody)
         .subscribe(
           data => {
@@ -1292,7 +1347,7 @@ export class CountryComponent implements OnInit {
         this.addPostalToggleButton = false;
       }
       else {
-        this.postalToggleButton = false;
+
         this.allWeb.updatePostal(updatePostalBody)
           .subscribe(
             data => {
