@@ -157,8 +157,8 @@ export class AllWeb {
   saveState(stateBody: StateBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveState, JSON.stringify(stateBody), this.httpOptions);
   }
-  getCountries(universalBody: UniversalBody): Observable<GetCountryResponse> {
-    return this.httpClient.post<GetCountryResponse>(ServiceUrls.baseUrls + ServiceUrls.getCountry, JSON.stringify(universalBody), this.httpOptions);
+  getCountries(universalBody: UniversalBody): Observable<GetCountryResponse[]> {
+    return this.httpClient.post<GetCountryResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getCountry, JSON.stringify(universalBody), this.httpOptions);
   }
   savePostal(postalBody: PostalBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.savePostal, JSON.stringify(postalBody), this.httpOptions);
@@ -166,11 +166,11 @@ export class AllWeb {
   deleteCountry(deleteCountryBody: DeleteCountryBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteCountry, JSON.stringify(deleteCountryBody), this.httpOptions);
   }
-  getStates(universalBody: UniversalBody): Observable<GetStateResponse> {
-    return this.httpClient.post<GetStateResponse>(ServiceUrls.baseUrls + ServiceUrls.getState, JSON.stringify(universalBody), this.httpOptions);
+  getStates(universalBody: UniversalBody): Observable<GetStateResponse[]> {
+    return this.httpClient.post<GetStateResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getState, JSON.stringify(universalBody), this.httpOptions);
   }
-  getCity(universalBody: UniversalBody): Observable<GetCityResponse> {
-    return this.httpClient.post<GetCityResponse>(ServiceUrls.baseUrls + ServiceUrls.getCity, JSON.stringify(universalBody), this.httpOptions);
+  getCity(universalBody: UniversalBody): Observable<GetCityResponse[]> {
+    return this.httpClient.post<GetCityResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getCity, JSON.stringify(universalBody), this.httpOptions);
   }
   saveHighSchool(highSchool: HighSchoolBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.highSchoolApi, JSON.stringify(highSchool), this.httpOptions);
@@ -238,8 +238,8 @@ export class AllWeb {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteProfessionQualification, JSON.stringify(deletedProfessionalEducation), this.httpOptions);
   }
 
-  getPostal(universalBody: UniversalBody): Observable<GetPostalResponse> {
-    return this.httpClient.post<GetPostalResponse>(ServiceUrls.baseUrls + ServiceUrls.getPostal, JSON.stringify(universalBody), this.httpOptions);
+  getPostal(universalBody: UniversalBody): Observable<GetPostalResponse[]> {
+    return this.httpClient.post<GetPostalResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getPostal, JSON.stringify(universalBody), this.httpOptions);
   }
   deleteState(deleteStateBody: DeleteStateBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteState, JSON.stringify(deleteStateBody), this.httpOptions);
