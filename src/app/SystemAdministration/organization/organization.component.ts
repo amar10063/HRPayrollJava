@@ -18,6 +18,7 @@ import { GetDesignationResponse } from 'src/app/WebServices/WebServiceResponse/O
 import { GetDepartmentResponse } from './DepartmentResponse';
 import { UniversalResponse } from 'src/app/WebServices/WebServiceResponse/UniversalResponse';
 import { DesignationResponse } from 'src/app/WebServices/WebServiceResponse/OrganizationResponse/DesignationResponse';
+import { UniversalJsonBody } from 'src/app/WebServices/WebServiceBody/UniversalJsonBody';
 
 @Component({
   selector: 'app-organization',
@@ -395,6 +396,9 @@ export class OrganizationComponent implements OnInit {
       }
     }
   }
+  
+
+//  arrDesignationDelete : DeleteDesignationBody[] = [];
 
   onDeleteDesignation() {
     const selectedNodes = this.designationApi.getSelectedNodes();
@@ -403,6 +407,7 @@ export class OrganizationComponent implements OnInit {
     const selectedData = selectedNodes.map(node => node.data);
     selectedData.map(node => dataTest = node as Object);
     console.log("key deleteBody", selectedNodes);
+    
     if (selectedData.length === 0) {
       alert("Please Select any row.");
     } else {
@@ -730,14 +735,16 @@ onAddDesignation() {
     }
   }
 
-  arrDesignation : DesignationBody[] = [];
+  arrDesignationSave : DesignationBody[] = [];
 
   onSaveDesignation() {
     var getDesignationBody = new UniversalBody();
     const designationBody = new DesignationBody();
+    const universalJsonBody = new UniversalJsonBody();
     const selectedNodes = this.designationApi.getSelectedNodes();
     const selectedData = selectedNodes.map(node => node.data);
     var dataTest: Object;
+    var locationResponse: LocationResponse;
     selectedData.map(node => dataTest = node as Object);
 
     if (selectedData.length === 0) {
@@ -747,19 +754,20 @@ onAddDesignation() {
             
       for (let selectedNode of selectedData) {
         console.log("selected node length", selectedNode);
-        designationBody.DesignationCode = selectedNode['designationCode'];
-        designationBody.DesignationName = selectedNode['designationName'];
-        designationBody.Description = selectedNode['description'];
-        this.arrDesignation.push(designationBody);
-        //var jsonData = JSON.stringify(this.countryArray);
-        console.log("array data", this.arrDesignation);
-  
+        designationBody.designationCode = selectedNode['designationCode'];
+        designationBody.designationName = selectedNode['designationName'];
+        designationBody.description = selectedNode['description'];
+        this.arrDesignationSave.push(designationBody);
+        console.log("array data", this.arrDesignationSave); 
+        var jsonData = JSON.stringify(this.arrDesignationSave);
       }
-    
-
-      designationBody.DesignationCode = dataTest['designationCode'];
-      designationBody.DesignationName = dataTest['designationName'];
-      designationBody.Description = dataTest['description'];
+      console.log("jsonData--------",jsonData);
+      jsonData = jsonData.replace(/"/g, "'");
+      console.log("jsonfreshData--------",jsonData);
+      
+      designationBody.designationCode = dataTest['designationCode'];
+      designationBody.designationName = dataTest['designationName'];
+      designationBody.description = dataTest['description'];
       
       if (dataTest['designationCode'] === '') {
         alert("Plesae Enter Designation Code");
@@ -771,23 +779,17 @@ onAddDesignation() {
         alert("Please Enter Description");
       }
       else {
-
-        this.countryService.saveDesignation(designationBody)
-
+        universalJsonBody.jsonData = jsonData;
+        this.countryService.saveDesignation(universalJsonBody)
           .subscribe(
             data => {
-              this.locationResponse = data;
+              locationResponse = data;
               //console.log("key", LocationResponse);
-              alert(this.locationResponse.MESSAGE);
-              if (this.locationResponse.STATUS === 'Success') {
+              alert(locationResponse.MESSAGE);
+              if (locationResponse.STATUS === 'Success') {
+                this.arrDesignationSave =[];
                 this.addNewDepartmentRow = false;
-                this.countryService.getDesignationByUserId(getDesignationBody)
-                  .subscribe(
-                    data => {
-                      this.getDesignationResponse = data;
-                      this.rowData2 = this.getDesignationResponse;
-                    }
-                  )
+                this.getDesignation(1);
                   this.nodeSelectButWhere = undefined;
                   this.addNewDesignationRow = false;
               }
@@ -819,10 +821,10 @@ onAddDesignation() {
 
         console.log("Key", selectedData);
 
-        updateDesignationBody.DesignationCode = dataTest['designationCode'];
-        updateDesignationBody.DesignationName = dataTest['designationName'];
-        updateDesignationBody.Description = dataTest['description'];
-        updateDesignationBody.DesignationID = dataTest['designationID'];
+        updateDesignationBody.designationCode = dataTest['designationCode'];
+        updateDesignationBody.designationName = dataTest['designationName'];
+        updateDesignationBody.description = dataTest['description'];
+        //updateDesignationBody.DesignationID = dataTest['designationID'];
         if (dataTest['designationCode'] === '') {
           alert("Enter Location Code");
         } else if (dataTest['designationName'] === '') {
@@ -851,6 +853,7 @@ onAddDesignation() {
       }
     }
   }
+
   onLocationSelectionChanged() {
     this.selectedRowsLocation = this.api.getSelectedRows();
     if (this.selectedRowsLocation.length === 1) {
