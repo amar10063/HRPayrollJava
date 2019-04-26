@@ -32,87 +32,27 @@ import { UniversalJsonBody } from 'src/app/WebServices/WebServiceBody/UniversalJ
 })
 
 export class CountryComponent implements OnInit {
-  columnDefs1;
-  rowData1;
+  columnDefs; columnDefs1; columnDefs2; columnDefs3; columnDefs4; columnDefs5;
+  rowData; rowData1; rowData2; rowData3; rowData4; rowData5;
 
-  type: string = '';
-  gridOptions = {} as GridOptions;
-  public selectedCountryId: number;
-  private rowClassRules;
-
-  constructor(private allWeb: AllWeb) {
-    this.rowClassRules = {
-      "sick-days-warning": function (params) {
-        var numSickDays = params.data.countryName;
-        return numSickDays > 5 && numSickDays <= 7;
-      },
-      "sick-days-breach": "data.sickDays > 8"
-    };
-    this.gridOptions = {
-      context: { componentParent: this }
-    };
-    this.rowSelection = 'single';
-    this.editType = 'fullRow';
-    this.columnDefs1 = [
-      {
-        headerName: 'Country', field: 'countryName', sortable: true, filter: true, width: 110,
-        cellRendererSelector: function (params) {
-          var locationDetails = {
-            component: 'locationFramework',
-            params: { value: 'country' }
-          };
-          if (params.data.stateName === '')
-            return locationDetails;
-          else
-            return null;
-
-        }
-
-      },
-      {
-        headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: true, width: 120,
-        cellStyle: function (params) {
-          if (params.value === '') {
-            return { outline: '1px solid red' };
-
-          } else {
-            return { outline: 'white' };
-          }
-        }
-
-      },
-      { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: true },
-
-      { headerName: '', field: '', width: 512, }
-    ];
-
-    this.rowData1;
-
-  }
   frameworkComponents = {
     locationFramework: LocationDropdownComponent
   };
-
   createKey: any;
   api;
   columnApi;
-
-
-
+  StateToggleButton = false;
+  cityToggleButton = false;
+  postalToggleButton = false;
 
   countryCheckedStatus = false;
   countryFilter: boolean;
-
   stateCheckedStatus = false;
   stateFilter: boolean;
-
   cityCheckedStatus = false;
   cityFilter: boolean;
-
-
   postalCheckedStatus = false;
   postalFilter: boolean;
-
   addCountryToggleButton = false;
   saveCountryToggleButton = false;
   deleteCountryToggleButton = false;
@@ -160,173 +100,15 @@ export class CountryComponent implements OnInit {
 
   stateApi: GridApi;
   stateColumnApi: ColumnApi;
-
   cityApi: GridApi;
   cityColumnApi: ColumnApi
-
   postalApi: GridApi;
   postalColomnApi: ColumnApi;
-
   universalResponse: UniversalResponse;
-
   countryDataResponse: GetCountryResponse[];
   getStateResponse: GetStateResponse[];
   getCityResponse: GetCityResponse[];
   getPostalResponse: GetPostalResponse[];
-
-  rowSelection: string;
-  rowDeselection: string
-  private editType;
-  countryArray: CountryBody[] = [];
-  cityArray: CityBody[] = [];
-
-  columnDefs = [
-    {
-      id: 0, headerName: 'Country Code', field: 'countryCode', sortable: true, filter: true, width: 120, editable: true,
-      cellStyle: function (params) {
-        if (params.value === '') {
-          //this.ToggleButton = true;
-          return { outline: '1px solid red' };
-        } else {
-          return { outline: 'white' };
-        }
-      }
-
-    },
-
-    {
-
-      id: 1, headerName: 'Country Name', field: 'countryName', sortable: true,
-      filter: true, width: 120, editable: true,
-      cellStyle: function (params) {
-
-        if (params.value === '') {
-          return { outline: '1px solid red' };
-        } else {
-          return { outline: 'white' };
-        }
-
-      }
-    },
-
-    { headerName: '', field: '', width: 652, }
-  ];
-
-  rowData;
-
-
-
-  columnDefs2 = [
-
-    {
-      headerName: 'Country', field: 'countryName', sortable: true, editable: true, filter: true, width: 110, //singleClickEdit: true,
-
-      cellRendererFramework: LocationDropdownComponent,
-      cellRendererParams: {
-        value: 'country'
-      }
-    },
-    {
-      headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: true, width: 120, //singleClickEdit: true,
-
-      cellRendererFramework: LocationDropdownComponent,
-      cellRendererParams: {
-        value: 'state'
-      }
-    },
-    {
-      headerName: 'City', field: 'cityName', sortable: true, filter: true, editable: true, width: 120, singleClickEdit: true,
-
-
-      cellStyle: function (params) {
-        if (params.value === '') {
-
-          return { outline: '1px solid red' };
-
-
-        } else {
-          return { outline: 'white' };
-        }
-      }
-
-    },
-
-    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: true },
-
-
-    { headerName: '', field: '', width: 392, }
-  ];
-
-  rowData2;
-
-  columnDefs3 = [
-
-    {
-      headerName: 'Country', field: 'countryName', sortable: true, editable: true, filter: true, width: 120,
-      cellRendererFramework: LocationDropdownComponent,
-      cellRendererParams: {
-        value: 'country'
-      }
-    },
-    {
-      headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: true, width: 120,
-      cellRendererFramework: LocationDropdownComponent,
-      cellRendererParams: {
-        value: 'state'
-      }
-
-    },
-    {
-      headerName: 'City', field: 'cityName', sortable: true, filter: true, editable: true, width: 120,
-      cellRendererFramework: LocationDropdownComponent,
-      cellRendererParams: {
-        value: 'city'
-      }
-
-    },
-    {
-      headerName: 'Postal Code', field: 'postalCode', sortable: true, filter: true, editable: true, width: 120,
-      cellStyle: function (params) {
-        if (params.value === '') {
-          return { outline: '1px solid red' };
-        } else {
-          return { outline: 'white' };
-        }
-      }
-
-    },
-
-    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: true },
-  ];
-
-  rowData3;
-
-  columnDefs4 = [
-    { headerName: 'Department', field: 'department', sortable: true, filter: true, editable: true, width: 500 },
-    { headerName: 'Designation', field: 'designation', sortable: true, filter: true, editable: true, width: 500 },
-  ];
-
-  rowData4 = [
-    { department: 'IT', designation: 'Software Developer' },
-    { department: 'Finance', designation: 'Software Developer' },
-    { department: 'AX', designation: 'AX Technical' },
-    { department: 'Medical', designation: 'Doctor' },
-    { department: 'Accounts', designation: 'Accountant' }
-  ];
-
-  columnDefs5 = [
-    { headerName: 'Language', field: 'language', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'Language Code', field: 'languageCode', sortable: true, editable: true, filter: true, width: 120 },
-  ];
-
-  rowData5 = [
-    { language: 'English', languageCode: '001' },
-    { language: 'Hindi', languageCode: '002' },
-    { language: 'Urdu', languageCode: '003' },
-    { language: 'Arabic', languageCode: '004' },
-    { language: 'French', languageCode: '005' }
-  ];
-
   public show = false;
   public hide = true;
   public buttonName: any = 'Add New';
@@ -336,10 +118,239 @@ export class CountryComponent implements OnInit {
   countCity = 0;
   countPostal = 0;
   universalBody = new UniversalBody();
-  getContext() {
-    return {
-      createKey: this.createKey
+
+  rowSelection: string;
+  rowDeselection: string
+  private editType;
+  countryArray: CountryBody[] = [];
+  cityArray: CityBody[] = [];
+
+  type: string = '';
+  gridOptions = {} as GridOptions;
+  public selectedCountryId: number;
+  private rowClassRules;
+
+  constructor(private allWeb: AllWeb) {
+    this.gridOptions = {
+      context: { componentParent: this }
     };
+    this.rowSelection = 'single';
+    this.editType = 'fullRow';
+    this.columnDefs = [
+      {
+        id: 0, headerName: 'Country Code', field: 'countryCode', sortable: true, filter: true, width: 120, editable: true,
+        cellStyle: function (params) {
+          if (params.value === '') {
+            //this.ToggleButton = true;
+            return { outline: '1px solid red' };
+          } else {
+            return { outline: 'white' };
+          }
+        }
+
+      },
+
+      {
+
+        id: 1, headerName: 'Country Name', field: 'countryName', sortable: true,
+        filter: true, width: 120, editable: true,
+        cellStyle: function (params) {
+
+          if (params.value === '') {
+            return { outline: '1px solid red' };
+          } else {
+            return { outline: 'white' };
+          }
+
+        }
+      },
+
+      { headerName: '', field: 'hidden', width: 652, }
+    ];
+
+    this.rowData;
+    this.columnDefs1 = [
+      {
+        headerName: 'Country', field: 'countryName', sortable: true, filter: true, width: 210,
+        cellRendererSelector: function (params) {
+          var locationDetails = {
+            component: 'locationFramework',
+            params: { value: 'country' }
+          };
+          if (params.data.hidden === 'hidden')
+            return locationDetails;
+          else
+            return null;
+
+        }
+
+      },
+      {
+        headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: false, width: 220,
+        cellStyle: function (params) {
+          if (params.value === '') {
+            return { outline: '1px solid red' };
+
+          } else {
+            return { outline: 'white' };
+          }
+        }
+
+      },
+      { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 250, editable: false },
+
+      { headerName: '', field: 'hidden', hide: true }
+    ];
+    this.rowData1;
+
+
+
+    this.columnDefs2 = [
+
+      {
+        headerName: 'Country', field: 'countryName', sortable: true, editable: false, filter: true, width: 110, //
+
+        cellRendererSelector: function (params) {
+          var locationDetails = {
+            component: 'locationFramework',
+            params: { value: 'country' }
+          };
+          if (params.data.hidden === 'hidden')
+            return locationDetails;
+          else
+            return null;
+
+        }
+      },
+      {
+        headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: false, width: 120, //singleClickEdit: true,
+
+        cellRendererSelector: function (params) {
+          var locationDetails = {
+            component: 'locationFramework',
+            params: { value: 'state' }
+          };
+          if (params.data.hidden === 'hidden')
+            return locationDetails;
+          else
+            return null;
+
+        }
+      },
+      {
+        headerName: 'City', field: 'cityName', sortable: true, filter: true, editable: false, width: 120, singleClickEdit: true,
+
+
+        cellStyle: function (params) {
+          if (params.value === '') {
+
+            return { outline: '1px solid red' };
+
+
+          } else {
+            return { outline: 'white' };
+          }
+        }
+
+      },
+
+      { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: false },
+
+
+      { headerName: '', field: 'hidden', hide: true, }
+    ];
+
+    this.rowData2;
+
+    this.columnDefs3 = [
+
+      {
+        headerName: 'Country', field: 'countryName', sortable: true, editable: false, filter: true, width: 120,
+        cellRendererSelector: function (params) {
+          var locationDetails = {
+            component: 'locationFramework',
+            params: { value: 'country' }
+          };
+          if (params.data.hidden === 'hidden')
+            return locationDetails;
+          else
+            return null;
+
+        }
+      },
+      {
+        headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: false, width: 120,
+        cellRendererSelector: function (params) {
+          var locationDetails = {
+            component: 'locationFramework',
+            params: { value: 'state' }
+          };
+          if (params.data.hidden === 'hidden')
+            return locationDetails;
+          else
+            return null;
+
+        }
+
+      },
+      {
+        headerName: 'City', field: 'cityName', sortable: true, filter: true, editable: false, width: 120,
+        cellRendererSelector: function (params) {
+          var locationDetails = {
+            component: 'locationFramework',
+            params: { value: 'city' }
+          };
+          if (params.data.hidden === 'hidden')
+            return locationDetails;
+          else
+            return null;
+
+        }
+
+      },
+      {
+        headerName: 'Postal Code', field: 'postalCode', sortable: true, filter: true, editable: false, width: 120,
+        cellStyle: function (params) {
+          if (params.value === '') {
+            return { outline: '1px solid red' };
+          } else {
+            return { outline: 'white' };
+          }
+        }
+
+      },
+
+      { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: false },
+      { headerName: '', field: 'hidden', hide: true },
+
+    ];
+
+    this.rowData3;
+
+
+
+
+    this.columnDefs4 = [
+      { headerName: 'Department', field: 'department', sortable: true, filter: true, editable: true, width: 500 },
+      { headerName: 'Designation', field: 'designation', sortable: true, filter: true, editable: true, width: 500 },
+    ];
+
+    this.rowData4 = [
+    ];
+
+    this.columnDefs5 = [
+      { headerName: 'Language', field: 'language', sortable: true, filter: true, editable: true, width: 120 },
+      { headerName: 'Language Code', field: 'languageCode', sortable: true, editable: true, filter: true, width: 120 },
+    ];
+
+    this.rowData5 = [
+      { language: 'English', languageCode: '001' },
+      { language: 'Hindi', languageCode: '002' },
+      { language: 'Urdu', languageCode: '003' },
+      { language: 'Arabic', languageCode: '004' },
+      { language: 'French', languageCode: '005' }
+    ];
+
   }
   ngOnInit() {
     this.saveUpdateCountry = 'Save';
@@ -368,11 +379,17 @@ export class CountryComponent implements OnInit {
     this.getCity();
     this.getPostal();
 
-  }
+  } rowNodeIndex: number;
+
 
   onStateSelectionChanged(event) {
     this.selectedRowState = this.stateApi.getSelectedRows();
-    this.rowSelection = 'multiple';
+    const selectedNodes = this.stateApi.getSelectedNodes();
+    const selectedData = selectedNodes.map(node => node.data);
+    var dataTest: Object;
+    selectedData.map(node => dataTest = node as Object);
+    this.stateApi.stopEditing();
+
     if (this.selectedRowState.length === 1) {
       if (this.getStateResponse.length === 1) {
         this.deleteStateToggleButton = false;
@@ -383,19 +400,20 @@ export class CountryComponent implements OnInit {
       this.deleteStateToggleButton = false;
       this.stateFilter = false;
       this.stateCheckedStatus = false;
+
       }
       if (this.nodeStateSelect === 'Add') {
-        this.saveUpdateState = "Save";
-        this.nodeStateSelect = "Edit";
-      } else if (this.nodeStateSelect === undefined) {
-        this.saveUpdateState = "Update";
+        this.saveUpdateState = 'Save';
+        this.nodeStateSelect = 'Edit';
 
+      } else if (this.nodeStateSelect === undefined) {
+        if (this.nodeStateSelect === 'Edit') {
+          this.saveUpdateState = 'Update';
+        } else { this.saveUpdateState = 'Edit'; }
         this.saveStateToggleButton = false;
-      }
-      else if (this.nodeStateSelect === 'Update') {
+      } else if (this.nodeStateSelect === 'Update') {
         this.saveStateToggleButton = false;
         this.saveUpdateState = 'Update';
-
       }
     }
     else if (this.selectedRowState.length >= 1) {
@@ -405,10 +423,13 @@ export class CountryComponent implements OnInit {
   }
 
   getStates() {
-    this.allWeb.getStates(this.universalBody)
+    const universalBody = new UniversalBody();
+    universalBody.userID = '1';
+    this.allWeb.getStates(universalBody)
       .subscribe(
         data => {
           this.getStateResponse = data;
+          console.log(JSON.stringify(this.getStateResponse));
 
           if (this.getStateResponse.length === 0) {
 
@@ -445,7 +466,8 @@ export class CountryComponent implements OnInit {
     }
   }
   getCity() {
-    this.allWeb.getCity(this.universalBody)
+    const universalBody = new UniversalBody();
+    universalBody.userID = '1'; this.allWeb.getCity(universalBody)
       .subscribe(
         data => {
           this.getCityResponse = data;
@@ -481,13 +503,13 @@ export class CountryComponent implements OnInit {
       );
   }
   getPostal() {
-    this.allWeb.getPostal(this.universalBody)
+    const universalBody = new UniversalBody();
+    universalBody.userID = '1';
+    this.allWeb.getPostal(universalBody)
       .subscribe(
         data => {
           this.getPostalResponse = data;
-
           if (this.getPostalResponse.length === 0) {
-
             this.TotalPostal = this.getPostalResponse.length;
             this.saveUpdatePostal = 'Save';
 
@@ -524,8 +546,6 @@ export class CountryComponent implements OnInit {
       add: [{ countryName: '', countryCode: '' }],
       addIndex: 0
     });
-
-
     this.saveCountryToggleButton = false;
     this.nodeCountrySelect = 'Add';
     this.addCountryToggleButton = true;
@@ -559,7 +579,7 @@ export class CountryComponent implements OnInit {
     this.type = 'add';
     this.stateApi.setFocusedCell(this.countState, 'countryName');
     this.countState++;
-    let res = this.stateApi.updateRowData({ add: [{ stateName: '', countryName: '', description: '' }], addIndex: 0 });
+    let res = this.stateApi.updateRowData({ add: [{ stateName: '', countryName: '', description: '', hidden: 'hidden' }], addIndex: 0 });
 
     res.add.forEach(function (rowNode) {
 
@@ -574,8 +594,11 @@ export class CountryComponent implements OnInit {
 
   onAddCity() {
     this.cityApi.setFocusedCell(this.countCity, 'countryName');
+    this.cityApi.getColumnDef('cityName').editable = true;
+    this.cityApi.getColumnDef('description').editable = true;
+
     this.countCity++;
-    let res = this.cityApi.updateRowData({ add: [{ stateName: '', cityName: '', countryName: '', description: '' }], addIndex: 0 });
+    let res = this.cityApi.updateRowData({ add: [{ stateName: 'vdfg', cityName: '', countryName: '', description: '', hidden: 'hidden' }], addIndex: 0 });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
@@ -588,7 +611,7 @@ export class CountryComponent implements OnInit {
   onAddPostal() {
     this.postalApi.setFocusedCell(this.countPostal, 'countryName');
     this.countPostal++;
-    let res = this.postalApi.updateRowData({ add: [{ cityName: '', stateName: '', countryName: '', postalCode: '', description: '' }], addIndex: 0 });
+    let res = this.postalApi.updateRowData({ add: [{ cityName: '', stateName: '', countryName: '', postalCode: '', description: '', hidden: 'hidden' }], addIndex: 0 });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
@@ -688,8 +711,6 @@ export class CountryComponent implements OnInit {
                 this.getStates();
 
               }
-
-
             }
           );
       }
@@ -785,10 +806,8 @@ export class CountryComponent implements OnInit {
   
 
   onSaveCountry() {
-
-    
     const countryBody = new CountryBody();
-    const universalJsonBody = new UniversalJsonBody();
+
     const selectedNodes = this.api.getSelectedNodes();
     const selectedData = selectedNodes.map(node => node.data);
     var dataTest: Object;
@@ -802,6 +821,7 @@ export class CountryComponent implements OnInit {
         countryBody.countryName = selectedNode['countryName'];
         countryBody.countryCode = selectedNode['countryCode'];
         this.countryArray.push(countryBody);
+
         var jsonData = JSON.stringify(this.countryArray);
         jsonData = jsonData.replace(/"/g, "'");
 
@@ -895,7 +915,8 @@ export class CountryComponent implements OnInit {
     }
     else {
       const stateBody = new StateBody();
-      const universalBody = new UniversalBody();
+      const universalBody = new UniversalBody(); universalBody.userID = '1';
+
       const selectedNodes = this.stateApi.getSelectedNodes();
 
       const selectedData = selectedNodes.map(node => node.data);
@@ -942,9 +963,7 @@ export class CountryComponent implements OnInit {
     }
     else {
       const updateStateBody = new UpdateStateBody();
-
       const selectedNodes = this.stateApi.getSelectedNodes();
-
       const selectedData = selectedNodes.map(node => node.data);
       var dataTest: Object;
       selectedData.map(node => dataTest = node as Object);
@@ -953,8 +972,6 @@ export class CountryComponent implements OnInit {
       }
       updateStateBody.StateName = dataTest['stateName'];
       updateStateBody.Description = dataTest['description'];
-
-
       if (dataTest['stateName'] === '') {
         alert("Enter state name");
         this.addStateToggleButton = true;
@@ -1086,7 +1103,9 @@ export class CountryComponent implements OnInit {
 
   onSaveCity() {
     const cityBody = new CityBody();
-    const universalJsonBody = new UniversalJsonBody();
+    const universalBody = new UniversalBody();
+    universalBody.userID = '1';
+
 
     const selectedNodes = this.cityApi.getSelectedNodes();
 
@@ -1259,19 +1278,16 @@ export class CountryComponent implements OnInit {
         this.countryFilter = false;
         this.countryCheckedStatus = false;
       }
-
       if (this.nodeCountrySelect === "Add") {
         this.saveUpdateCountry = "Save";
         this.nodeCountrySelect = "Edit";
       } else if (this.nodeCountrySelect === undefined) {
         this.saveUpdateCountry = "Update";
-
         this.saveCountryToggleButton = false;
       }
       else if (this.nodeCountrySelect === 'Update') {
         this.saveCountryToggleButton = false;
         this.saveUpdateCountry = 'Update';
-
       }
     }
     else if (this.selectedRowCountry.length >= 1) {
@@ -1282,7 +1298,10 @@ export class CountryComponent implements OnInit {
 
   onSavePostal() {
     const postalBody = new PostalBody();
-    const universalJsonBody = new UniversalJsonBody();
+    const universalBody = new UniversalBody();
+    universalBody.userID = '1';
+
+
     const selectedNodes = this.postalApi.getSelectedNodes();
 
     const selectedData = selectedNodes.map(node => node.data);
@@ -1342,8 +1361,6 @@ export class CountryComponent implements OnInit {
       updatePostalBody.pid = dataTest['pID'];
       updatePostalBody.CityID = dataTest['cityID'];
       if (updatePostalBody.pid === undefined) {
-
-
         this.addPostalToggleButton = false;
       }
       else {
@@ -1371,6 +1388,7 @@ export class CountryComponent implements OnInit {
 
   getCountries() {
     const universalBody = new UniversalBody();
+    universalBody.userID = '1';
     this.allWeb.getCountries(universalBody)
       .subscribe(
         data => {
@@ -1417,10 +1435,22 @@ export class CountryComponent implements OnInit {
   }
 
   onSaveUpdateState() {
-    if (this.saveUpdateState === "Save") {
+    if (this.saveUpdateState === 'Save') {
       this.onSaveState();
     }
-    else {
+    else if (this.saveUpdateState === 'Edit') {
+      this.stateApi.setFocusedCell(0, "stateName");
+      this.stateApi.getColumnDef('stateName').editable = true;
+      this.stateApi.getColumnDef('description').editable = true;
+      const selectedNodes = this.stateApi.getSelectedNodes();
+      const selectedData = selectedNodes.map(node => node.data);
+      var dataTest: Object;
+      selectedData.map(node => dataTest = node as Object);
+      var res1 = this.stateApi.updateRowData({ remove: selectedData });
+      let res = this.stateApi.updateRowData({ add: [{ stateName: dataTest['stateName'], countryName: dataTest['countryName'], description: 'description', hidden: 'hidden' }], addIndex: 0 });
+      this.saveUpdateState = "Update";
+      this.nodeStateSelect = "Update";
+    } else if (this.saveUpdateState === "Update") {
       this.onUpdateState();
     }
 
