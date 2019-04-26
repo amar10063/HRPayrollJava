@@ -65,6 +65,7 @@ import { AchievementBody } from './WebServiceBody/AchievementBody/AchievementBod
 import { AchievementResponse } from './WebServiceResponse/AchievementResponse/AchievementResponse';
 import { UpdateAchievementBody } from './WebServiceBody/AchievementBody/UpdateAchievementBody';
 import { DeleteAchievementBody } from './WebServiceBody/AchievementBody/DeleteAchievementBody';
+import { UniversalJsonBody } from './WebServiceBody/UniversalJsonBody';
 @Injectable({
   providedIn: 'root'
 })
@@ -77,8 +78,8 @@ export class AllWeb {
   };
   constructor(private httpClient: HttpClient) {
   }
-  saveCountry(countryBody: CountryBody): Observable<UniversalResponse> {
-    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveCountry, JSON.stringify(countryBody), this.httpOptions);
+  saveCountry(countryJsonBody: UniversalJsonBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveCountry, JSON.stringify(countryJsonBody), this.httpOptions);
   }
   saveEmpolyeeAddress(employeeAddressBody: EmployeeAddressBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveEmployeeAddress, JSON.stringify(employeeAddressBody), this.httpOptions);
@@ -151,8 +152,8 @@ export class AllWeb {
   updateDesignation(updateDesignationBody: DesignationBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>('http://10.10.10.48:8081' + '/UpdateDesignation', JSON.stringify(updateDesignationBody), this.httpOptions);
   }
-  saveCity(cityBody: CityBody): Observable<UniversalResponse> {
-    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveCity, JSON.stringify(cityBody), this.httpOptions);
+  saveCity(universalJsonBody: UniversalJsonBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveCity, JSON.stringify(universalJsonBody), this.httpOptions);
   }
   saveState(stateBody: StateBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveState, JSON.stringify(stateBody), this.httpOptions);
