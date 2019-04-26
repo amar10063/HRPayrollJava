@@ -30,12 +30,21 @@ import { UpdatePostalBody } from 'src/app/WebServices/WebServiceBody/CountryBody
 
 export class CountryComponent implements OnInit {
   columnDefs1;
-   rowData1;
+  rowData1;
 
   type: string = '';
   gridOptions = {} as GridOptions;
   public selectedCountryId: number;
+  private rowClassRules;
+ 
   constructor(private allWeb: AllWeb) {
+    this.rowClassRules = {
+      "sick-days-warning": function(params) {
+        var numSickDays = params.data.countryName;
+        return numSickDays > 5 && numSickDays <= 7;
+      },
+      "sick-days-breach": "data.sickDays > 8"
+    };
     this.gridOptions = {
       context: { componentParent: this }
     };
@@ -97,7 +106,7 @@ export class CountryComponent implements OnInit {
   stateFilter: boolean;
 
   cityCheckedStatus = false;
-  cityFilter: boolean;  
+  cityFilter: boolean;
 
   addCountryToggleButton = false;
   saveCountryToggleButton = false;
@@ -113,7 +122,7 @@ export class CountryComponent implements OnInit {
 
   addPostalToggleButton = false;
   savePostalToggleButton = false;
-  deletePostalToggleButton =false;
+  deletePostalToggleButton = false;
 
   selectedRowCountry: any[];
   nodeCountrySelect: string;
@@ -440,7 +449,7 @@ export class CountryComponent implements OnInit {
             this.rowData1 = this.getStateResponse;
           }
 
-        
+
 
         }
       );
@@ -492,7 +501,6 @@ export class CountryComponent implements OnInit {
 
   onAddState() {
     this.type = 'add';
-
     this.stateApi.setFocusedCell(this.countState, 'countryName');
     this.countState++;
     let res = this.stateApi.updateRowData({ add: [{ stateName: '', countryName: '', description: '' }], addIndex: 0 });
@@ -514,7 +522,7 @@ export class CountryComponent implements OnInit {
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
-   
+
     this.saveCityToggleButton = false;
     this.nodeCitySelect = "Add";
     this.addCityToggleButton = true;
@@ -522,7 +530,6 @@ export class CountryComponent implements OnInit {
   onAddPostal() {
     this.postalApi.setFocusedCell(this.countPostal, 'countryName');
     this.countPostal++;
-
     let res = this.postalApi.updateRowData({ add: [{ cityName: '', stateName: '', countryName: '', postalCode: '', description: '' }], addIndex: 0 });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
@@ -836,7 +843,7 @@ export class CountryComponent implements OnInit {
       }
       stateBody.StateName = dataTest['stateName'];
       stateBody.Description = dataTest['description'];
-      stateBody.CountryID = this.selectedCountryId;
+      stateBody.CountryID = this.selectedCountryId + '';
       if (dataTest['stateName'] === '') {
         alert("Enter state name");
         this.StateToggleButton = true;
@@ -999,8 +1006,7 @@ export class CountryComponent implements OnInit {
     }
 
   }
-  onCitySelectionChanged()
-  {
+  onCitySelectionChanged() {
     this.selectedRowCity = this.cityApi.getSelectedRows();
     this.rowSelection = "multiple";
     if (this.selectedRowCity.length === 1) {
@@ -1023,8 +1029,7 @@ export class CountryComponent implements OnInit {
       }
     }
   }
-  onSaveUpdateCity()
-  {
+  onSaveUpdateCity() {
     if (this.saveUpdateCity === "Save") {
       this.onSaveCity();
     }
@@ -1033,10 +1038,9 @@ export class CountryComponent implements OnInit {
     }
 
   }
-  onUpdateCity()
-  {
+  onUpdateCity() {
     const updateCityBody = new UpdateCityBody();
-    
+
     const selectedNodes = this.cityApi.getSelectedNodes();
 
     const selectedData = selectedNodes.map(node => node.data);
@@ -1054,34 +1058,34 @@ export class CountryComponent implements OnInit {
     }
     else {
       updateCityBody.StateID = dataTest['countryID'];
-        updateCityBody.CityID = dataTest['cityID'];
-        if (updateCityBody.CityID === undefined) {
+      updateCityBody.CityID = dataTest['cityID'];
+      if (updateCityBody.CityID === undefined) {
 
-         
-          this.addCityToggleButton = false;
-        }
-        else {
 
-          this.addCityToggleButton = false;
-      
-      this.allWeb.updateCity(updateCityBody)
-        .subscribe(
-          data => {
-            this.universalResponse = data;
+        this.addCityToggleButton = false;
+      }
+      else {
 
-            alert(this.universalResponse.MESSAGE);
+        this.addCityToggleButton = false;
 
-            if (this.universalResponse.STATUS === 'Success') {
+        this.allWeb.updateCity(updateCityBody)
+          .subscribe(
+            data => {
+              this.universalResponse = data;
 
-              this.getCity();
-              this.addCityToggleButton = false;
+              alert(this.universalResponse.MESSAGE);
 
+              if (this.universalResponse.STATUS === 'Success') {
+
+                this.getCity();
+                this.addCityToggleButton = false;
+
+              }
             }
-          }
 
-        );
+          );
+      }
     }
-  }
   }
   onGridReady(params) {
     this.api = params.api;
