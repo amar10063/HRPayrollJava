@@ -48,14 +48,14 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
 
   getAllLocation(): any {
     var locationBody = new UniversalBody();
-    locationBody.userID = '1';
+    locationBody.userId = '1';
     // console.log("key locationBody", locationBody)
     this.countryService.doGetLocation(locationBody)
       .subscribe(
         data => {
           this.locationResponse = data;
           var getAllLocationResponse = new GetAllLocationResponse();
-          getAllLocationResponse.name = 'Select';
+          getAllLocationResponse.commonName = 'Select';
           this.locationResponse[0] = getAllLocationResponse;
 
         }
@@ -71,7 +71,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
         data => {
           this.locationResponse = data;
           var getAllLocationResponse = new GetAllLocationResponse();
-          getAllLocationResponse.name = 'Select';
+          getAllLocationResponse.commonName = 'Select';
           this.locationResponse.push(getAllLocationResponse);
 
         }
@@ -111,24 +111,24 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
   }
   getAllCountry(): any {
     const universalBody = new UniversalBody();
-    universalBody.userID = '1';
+    universalBody.userId = '1';
     this.countryService.countryDropdown(universalBody)
       .subscribe(
         data => {
           this.locationResponse = data;
-          this.context.componentParent.selectedCountryId = this.locationResponse[0].id;
+          this.context.componentParent.selectedCountryId = this.locationResponse[0].commonId;
         }
       );
   }
   getAllState(countryID): any {
     var universalBody = new UniversalBody();
-    universalBody.userID = '1';
+    universalBody.userId = '1';
     universalBody.countryID = countryID + '';
     this.countryService.stateDropdown(universalBody)
       .subscribe(
         data => {
           this.locationResponse = data;
-          this.context.componentParent.selectedStateId = this.locationResponse[0].id;
+          this.context.componentParent.selectedStateId = this.locationResponse[0].commonId;
 
         }
       );
@@ -136,14 +136,14 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
 
   getAllCity(stateID): any {
     var universalBody = new UniversalBody();
-    universalBody.userID = '1';
+    universalBody.userId = '1';
     universalBody.stateID = stateID + '';
     console.log('zxcasczx  :' + JSON.stringify(universalBody));
     this.countryService.cityDropdown(universalBody)
       .subscribe(
         data => {
           this.locationResponse = data;
-          this.context.componentParent.selectedCityId = this.locationResponse[0].id;
+          this.context.componentParent.selectedCityId = this.locationResponse[0].commonId;
 
         }
       );

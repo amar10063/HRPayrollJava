@@ -429,7 +429,7 @@ export class CountryComponent implements OnInit {
 
   getStates() {
     const universalBody = new UniversalBody();
-    universalBody.userID = '1';
+    universalBody.userId = '1';
     this.allWeb.getStates(universalBody)
       .subscribe(
         data => {
@@ -472,7 +472,7 @@ export class CountryComponent implements OnInit {
   }
   getCity() {
     const universalBody = new UniversalBody();
-    universalBody.userID = '1'; this.allWeb.getCity(universalBody)
+    universalBody.userId = '1'; this.allWeb.getCity(universalBody)
       .subscribe(
         data => {
           this.getCityResponse = data;
@@ -509,7 +509,7 @@ export class CountryComponent implements OnInit {
   }
   getPostal() {
     const universalBody = new UniversalBody();
-    universalBody.userID = '1';
+    universalBody.userId = '1';
     this.allWeb.getPostal(universalBody)
       .subscribe(
         data => {
@@ -954,7 +954,7 @@ export class CountryComponent implements OnInit {
     }
     else {
       const stateBody = new StateBody();
-      const universalBody = new UniversalBody(); universalBody.userID = '1';
+      const universalBody = new UniversalBody(); universalBody.userId = '1';
 
       const selectedNodes = this.stateApi.getSelectedNodes();
 
@@ -1435,7 +1435,7 @@ export class CountryComponent implements OnInit {
 
   getCountries() {
     const universalBody = new UniversalBody();
-    universalBody.userID = '1';
+    universalBody.userId = '1';
     this.allWeb.getCountries(universalBody)
       .subscribe(
         data => {
