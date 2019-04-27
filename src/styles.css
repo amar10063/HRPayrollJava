@@ -5,6 +5,7 @@ body {
     overflow-x: hidden;
     overflow-y: hidden;
 }
+button:disabled{opacity:.3}
 .ag-theme-balham .sick-days-warning {
     background-color: sandybrown !important;
 }

@@ -1,6 +1,6 @@
 export class DeleteLocationBody {
   
-    LocationID:number;
-    userID:number=1;
+    locationId: number;
+    userId: number=1;
    
 }

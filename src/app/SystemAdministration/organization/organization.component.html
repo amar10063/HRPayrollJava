@@ -39,12 +39,12 @@
                 </div>
                 <div class="col-12 col-md-5 p-0 pull-left">
               <div class="buttonCon pull-right mt-1 mb-2 mr-2 ">
-                <button type="button" class="payHeadBtn"[disabled]="addNewLocationRow" (click)="onAddLocation()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                <button type="button" class="payHeadBtn" [disabled]="addNewLocationRow" (click)="onAddLocation()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                   New</button>
-                  <button type="button" class="payHeadBtn"[disabled]="editLocation" (click)="onSaveUpdateLocationData()"><i class="fa fa-save"
+                  <button type="button" class="payHeadBtn" [disabled]="editLocation" (click)="onSaveUpdateLocationData()"><i class="fa fa-save"
                     aria-hidden="true"></i>{{saveUpdateLocation}}
                 </button>
-                  <button type="button" class="payHeadBtn"[disabled]="deleteNewLocation" data-toggle="modal" data-target="#addNew1" (click)="onDeleteLocation()">
+                  <button type="button" class="payHeadBtn" [disabled]="deleteNewLocation" data-toggle="modal" data-target="#addNew1">
                     <i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
                 </div>
               </div>
@@ -56,13 +56,16 @@
               [columnDefs]="columnDefs" [rowSelection]="rowSelection" [rowClassRules]="rowClassRules" (gridReady)="onGridLocationReady($event)" (selectionChanged)="
               onLocationSelectionChanged($event)"></ag-grid-angular>
 
-
           </div>
           <div class="row mb-1" >
             <div class="col-md-12 col-sm-6 col-xs-12">
               <div class="form group col-md-2 pull-right p-0" >
                   <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
-                <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">1-50 of 100</label>
+
+                  <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;"> {{ShowLocation}} - 
+                    {{ShowLimitedLocation}} of
+                    {{ToalLocation}}</label>
+
                 <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
               </div>  
               </div>
