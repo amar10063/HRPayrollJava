@@ -279,12 +279,13 @@ export class OrganizationComponent implements OnInit {
   arrLocationSave : LocationBody[] = [];
   saveUpdateLocation: string;
   saveUpdateDepartment: string;
-  saveUpdateDesignation: string;
+  saveUpdateDesignation: string = "Save";
   nodeSelectButWhere: string;
   
   totalData : number;
-  startPosition : number;
-  endPosition : number;
+  startPositionDesignation : number;
+  endPositionDesignation : number;
+
 
   ShowLimitedLocation: number=0;
   ToalLocation: number=0;
@@ -596,6 +597,7 @@ export class OrganizationComponent implements OnInit {
     document.querySelector('#selectedRows').innerHTML = selectedRowsString;
   }
 
+
   onSelectionDesignationChanged() {
     (document.getElementById("selectAllDesignationCheckBox") as HTMLInputElement).checked = false;
   
@@ -645,6 +647,24 @@ export class OrganizationComponent implements OnInit {
   }
   
  
+
+  universalDeleteOrganizaion() {
+    const LocationNode = this.locationApi.getSelectedNodes();
+    const DepartmentNode = this.departmentApi.getSelectedNodes();
+    const DesignationNode = this.designationApi.getSelectedNodes();
+   
+    if (LocationNode.length !== 0) {
+      this.onDeleteLocation();
+    }
+    else if (DepartmentNode.length !== 0) {
+      // this.onDeleteExperience();
+    }
+    else if (DesignationNode.length !== 0) {
+       this.onDeleteDesignation();
+    }
+  }
+    
+
 
   onDeleteDesignation() {
     const selectedNodes = this.designationApi.getSelectedNodes();
@@ -818,9 +838,67 @@ export class OrganizationComponent implements OnInit {
     }
   }
 
+  
+  onLocationSelectionChanged() {
+    this.selectedRowsLocation = this.locationApi.getSelectedRows();
+    if (this.selectedRowsLocation.length === 1) {
+      this.deleteNewLocation = false;
+      console.log("NodeBut Where", this.nodeSelectButWhere);
+
+      if (this.nodeSelectButWhere === "Add") {
+        this.saveUpdateLocation = "Save";
+        this.nodeSelectButWhere = "Update"
+      } else if (this.nodeSelectButWhere === undefined) {
+        this.saveUpdateLocation = "Update";
+        this.editLocation = false;
+
+      }
+
+    }
+  }
+  onDepartmentSelectionChanged() {
+    this.selectedRowsDepartment = this.departmentApi.getSelectedRows();
+    if (this.selectedRowsDepartment.length === 1) {
+      this.deleteNewDepartment = false;
+      console.log("NodeBut Where", this.nodeSelectButWhere);
+
+      if (this.nodeSelectButWhere === "Add") {
+        this.saveUpdateDepartment = "Save";
+        this.nodeSelectButWhere = "Update"
+      } else if (this.nodeSelectButWhere === undefined) {
+        this.saveUpdateDepartment = "Update";
+        this.editDepartment = false;
+      }
+
+    }
+  }
+  
+  onCheckedBoxChange(eve: any) {
+    if (this.checkedStatus === false) {
+      this.locationApi.selectAll();
+      this.checkedStatus = true;
+      this.deleteNewLocation = false;
+    } else {
+      this.locationApi.deselectAll();
+      this.checkedStatus = false;
+      this.deleteNewLocation = true;
+    }
+  }
+  onCheckedBoxChangeDepartment(eve: any) {
+    if (this.checkedStatus === false) {
+      this.departmentApi.selectAll();
+      this.checkedStatus = true;
+      this.deleteNewDepartment = false;
+    } else {
+      this.locationApi.deselectAll();
+      this.checkedStatus = false;
+      this.deleteNewDepartment = true;
+    }
+  }
+
   getDesignation(UserID: number) {
 
-    this.editDesignation = true;
+    this.editDesignation = false;
     this.addNewDesignationRow = true;
     this.deleteNewDesignation = true;
 
@@ -838,7 +916,14 @@ export class OrganizationComponent implements OnInit {
              this.addNewDesignationRow = false;
              this.deleteNewDesignation = true;
           } else {
-
+            if(this.getDesignationResponse.length <= 50){
+              this.startPositionDesignation = 1;
+              this.endPositionDesignation = this.getDesignationResponse.length;
+            }else{
+              this.startPositionDesignation = 1;
+              this.endPositionDesignation = 50;
+              
+            }
             this.totalData = this.getDesignationResponse.length;
             console.log("data length", this.getDesignationResponse.length);
             this.saveUpdateDesignation = "Save";
@@ -851,14 +936,49 @@ export class OrganizationComponent implements OnInit {
       );
   }
 
-onAddDesignation() {
+  onAddDesignation() {
     this.nodeSelectButWhere = "Add";
+    this.editDesignation= false;
     let res = this.designationApi.updateRowData({ add: [{ LocationName: '', DepartmentName: '', DesignationCode: '', DesignationName: '', Description: '' }], addIndex: 0 });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
+
+
+    const universalJsonBody = new UniversalJsonBody();
+    const selectedNodes = this.designationApi.getSelectedNodes();
+    const selectedData = selectedNodes.map(node => node.data);
+    var dataTest: Object;
+    var locationResponse: LocationResponse;
+    selectedData.map(node => dataTest = node as Object);
+
+   
+            
+      for (let selectedNode of selectedData) {
+        console.log("selected node length", selectedNode);
+        const designationBody = new DesignationBody();
+        designationBody.designationCode = selectedNode['designationCode'];
+        designationBody.designationName = selectedNode['designationName'];
+        designationBody.description = selectedNode['description'];
+        this.arrDesignationSave.push(designationBody);
+        console.log("array data", this.arrDesignationSave); 
+      //  var jsonData = JSON.stringify(this.arrDesignationSave);
+      }
+      
+      
+      
+      if (dataTest['designationCode'] === '') {
+        alert("Plesae Enter Designation Code");
+      }
+      else if (dataTest['designationName'] === '') {
+        alert("Please Enter Designation");
+      }
+      else if (dataTest['description'] === '') {
+        alert("Please Enter Description");
+      }
     //this.addNewDesignationRow = true;
     this.editDesignation = false;
+    
   }
 
   onSaveUpdateDesignationData() {
@@ -870,8 +990,8 @@ onAddDesignation() {
   }
 
   onSaveDesignation() {
+    this.designationApi.tabToNextCell();
     var getDesignationBody = new UniversalBody();
-    const designationBody = new DesignationBody();
     const universalJsonBody = new UniversalJsonBody();
     const selectedNodes = this.designationApi.getSelectedNodes();
     const selectedData = selectedNodes.map(node => node.data);
@@ -886,6 +1006,7 @@ onAddDesignation() {
             
       for (let selectedNode of selectedData) {
         console.log("selected node length", selectedNode);
+        const designationBody = new DesignationBody();
         designationBody.designationCode = selectedNode['designationCode'];
         designationBody.designationName = selectedNode['designationName'];
         designationBody.description = selectedNode['description'];
@@ -897,9 +1018,6 @@ onAddDesignation() {
       jsonData = jsonData.replace(/"/g, "'");
       console.log("jsonfreshData--------",jsonData);
       
-      designationBody.designationCode = dataTest['designationCode'];
-      designationBody.designationName = dataTest['designationName'];
-      designationBody.description = dataTest['description'];
       
       if (dataTest['designationCode'] === '') {
         alert("Plesae Enter Designation Code");
@@ -940,7 +1058,6 @@ onAddDesignation() {
     if (this.selectedRowsDesignation === undefined) {
       alert("Please enter input valid data then hit save.")
     } else {
-      alert('Do you want to save the data.');
       const selectedNodes = this.designationApi.getSelectedNodes();
       if (selectedNodes.length === 0) {
         alert("Please Input Valid Data");
@@ -987,6 +1104,56 @@ onAddDesignation() {
     }
   }
 
+  onDeleteDesignation() {
+    const selectedNodes = this.designationApi.getSelectedNodes();
+    const universalJsonBody = new UniversalJsonBody();
+    var dataTest: Object;
+    // const deleteDesignationBody = new DeleteDesignationBody();
+    const selectedData = selectedNodes.map(node => node.data);
+    selectedData.map(node => dataTest = node as Object);
+    console.log("key deleteBody", selectedNodes);
+    
+    if (selectedData.length === 0) {
+      alert("Please Select any row.");
+    } else {
+
+      for (let selectedNode of selectedData) {
+        const deleteDesignationBody = new DeleteDesignationBody();
+        deleteDesignationBody.designationId = selectedNode['designationID'];
+        this.arrDesignationDelete.push(deleteDesignationBody);
+        var jsonData = JSON.stringify(this.arrDesignationDelete);
+
+      }
+
+      jsonData = jsonData.replace(/"/g, "'");
+      
+      
+        universalJsonBody.jsonData = jsonData;
+        console.log("key and values", universalJsonBody );
+        this.countryService.deleteDesignation(universalJsonBody)
+          .subscribe(
+            data => {
+              this.locationResponse = data;
+              if(this.locationResponse.STATUS === "Success"){
+                this.designationApi.removeItems(selectedNodes);
+                console.log("key deleteresponse", LocationResponse);
+                //alert(this.locationResponse.MESSAGE);
+                this.getDesignation(1);
+              }
+              this.arrDesignationDelete = [];
+            }
+
+          );
+      
+    }
+  }
+  
+  onSelectionDesignationChanged() {
+    const selectedRows = this.designationApi.getSelectedRows();
+    let selectedRowsString = '';
+    selectedRows.forEach(function (selectedRow, index) {
+      if (index !== 0) {
+        selectedRowsString += ', ';
   
 
   onDepartmentSelectionChanged() {
@@ -1002,25 +1169,29 @@ onAddDesignation() {
         this.saveUpdateDepartment = "Update";
         this.editDepartment = false;
       }
-
-    }
+      selectedRowsString += selectedRow.athlete;
+    });
+    document.querySelector('#selectedRows').innerHTML = selectedRowsString;
   }
 
-  onDesignationSelectionChanged() {
 
-    this.selectAllDesignationCheckBox = false;
-    console.log("select checkbox", this.selectAllDesignationCheckBox);
+  onDesignationSelectionChanged() {
+    this.editDesignation = false;
     this.selectedRowsDesignation = this.designationApi.getSelectedRows();    
     if (this.selectedRowsDesignation.length === 1) {
       this.deleteNewDesignation = false;
+      this.selectAllDesignationCheckBox = false;
       console.log("NodeBut Where", this.nodeSelectButWhere);
-
       if (this.nodeSelectButWhere === "Add") {
         this.saveUpdateDesignation = "Save";
         this.nodeSelectButWhere = "Update"
       } else if (this.nodeSelectButWhere === undefined) {
         this.saveUpdateDesignation = "Update";
         this.editDesignation = false;
+      }
+      else if (this.nodeSelectButWhere === "Update") {
+        this.editDesignation = false;
+        this.saveUpdateDesignation = "Update";
       }
     }
   }
@@ -1039,22 +1210,19 @@ onAddDesignation() {
     }
   }
 
+
   onCheckedBoxChangeDesignation(eve: any) {
     if (this.checkedStatus === false) {
-      this.selectAllDesignationCheckBox = true;
       this.designationApi.selectAll();
       this.checkedStatus = true;
       this.deleteNewDesignation = false;
       this.editDesignation = true;
-      console.log("select checkbox", this.selectAllDesignationCheckBox);
-    
+      this.selectAllDesignationCheckBox = true;
     } else {
-      this.selectAllDesignationCheckBox = false;
       this.designationApi.deselectAll();
       this.checkedStatus = false;
       this.deleteNewDesignation = true;
-      console.log("select checkbox", this.selectAllDesignationCheckBox);
-    
+      this.selectAllDesignationCheckBox = false;     
     }
   }
 }
