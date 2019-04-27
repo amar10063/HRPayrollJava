@@ -15,19 +15,20 @@ export class ServiceUrls {
     public static AddDepartment = '/AddDepartment';
     public static DeleteDepartment = '/DeleteDepartment';
     public static AddDesignation = '/SaveMultipleDesignation';
-    public static DeleteDesignation = '/DeleteDesignation';
+    public static DeleteDesignation = '/DeleteMultipleDesignation';
+    
     public static saveCountry = '/SaveMultipleCountry';
     public static saveCity = '/SaveMultipleCity';
     public static getCountry = '/GetCountryByUserID';
     public static saveState = '/AddState';
-    public static savePostal = '/AddPostalCode';
-    public static deleteCountry = '/DeleteCountry';
+    public static savePostal = '/SaveMultiplePostalCode';
+    public static deleteCountry = '/DeleteMultipleCountry';
     public static getState = '/getState';
     public static getCity = '/getCity';
     public static getPostal = '/getPostalCode';
     public static deleteState = '/DeleteState';
-    public static deleteCity = '/DeleteCity';
-    public static deletePostal = '/DeletePostalCode';
+    public static deleteCity = '/DeleteMultipleCity';
+    public static deletePostal = '/DeleteMultiplePostalCode';
     public static deleteSchool = '/DeleteSchool';
     public static saveEmployeeAddress = '/SaveAddress';
     public static updateLocation='/UpdateLocation';

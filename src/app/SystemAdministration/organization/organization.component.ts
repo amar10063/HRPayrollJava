@@ -66,10 +66,11 @@ export class OrganizationComponent implements OnInit {
   deleteNewDepartment: boolean = false;
   deleteNewDesignation: boolean = false;
 
-  selectAllLocation: boolean = true;
-
-  rowClassRules: { "sick-days-warning": (params: any) => boolean; "sick-days-breach": string; };
-
+  arrDesignationSave : DesignationBody[] = [];
+  arrDesignationDelete : DeleteDesignationBody[] = [];
+  selectAllDesignationCheckBox : boolean = false;
+  rowClassRules;
+  selectAllLocation: boolean;
 
 
   constructor(private countryService: AllWeb) {
@@ -285,6 +286,10 @@ export class OrganizationComponent implements OnInit {
   saveUpdateDepartment: string;
   saveUpdateDesignation: string;
   nodeSelectButWhere: string;
+  
+  totalData : number;
+  startPosition : number;
+  endPosition : number;
 
   ShowLimitedLocation: number=0;
   ToalLocation: number=0;
@@ -333,6 +338,73 @@ export class OrganizationComponent implements OnInit {
     this.nodeSelectButWhere = "Add";
   }
 
+
+
+  onAddDepartment() {
+
+    var res = this.departmentApi.updateRowData({
+      add: [{ LocationName: '', DepartmentCode: '', DepartmentName: '', Description: '', }],
+      addIndex: 0
+    });
+    this.addNewDepartmentRow = true;
+  }
+
+  onGridLocationReady(params) {
+    this.locationApi = params.api;
+    this.columnApi = params.columnApi;
+    params.locationApi.sizeColumnsToFit();
+  }
+  onGridDepartmentReady(params) {
+    this.departmentApi = params.api;
+    this.departmentColumnApi = params.columnApi;
+    this.gridOptions = params.gridOptions;
+    params.api.sizeColumnsToFit();
+  }
+  onGridDesignationReady(params) {
+    this.designationApi = params.api;
+    this.designationColumnApi = params.columnApi;
+    params.api.sizeColumnsToFit();
+  }
+  onSelectionChanged() {
+    const selectedRows = this.locationApi.getSelectedRows();
+    let selectedRowsString = '';
+    selectedRows.forEach(function (selectedRow, index) {
+      if (index !== 0) {
+        selectedRowsString += ', ';
+      }
+      selectedRowsString += selectedRow.athlete;
+    });
+    document.querySelector('#selectedRows').innerHTML = selectedRowsString;
+  }
+  onSelectionDepartmentChanged() {
+    const selectedRows = this.departmentApi.getSelectedRows();
+    let selectedRowsString = '';
+    selectedRows.forEach(function (selectedRow, index) {
+      if (index !== 0) {
+        selectedRowsString += ', ';
+      }
+      selectedRowsString += selectedRow.athlete;
+    });
+    document.querySelector('#selectedRows').innerHTML = selectedRowsString;
+  }
+
+
+  onSelectionDesignationChanged() {
+    (document.getElementById("selectAllDesignationCheckBox") as HTMLInputElement).checked = false;
+  
+    const selectedRows = this.designationApi.getSelectedRows();
+    let selectedRowsString = '';
+    selectedRows.forEach(function (selectedRow, index) {
+      if (index !== 0) {
+        selectedRowsString += ', ';
+      }
+      selectedRowsString += selectedRow.athlete;
+    });
+    document.querySelector('#selectedRows').innerHTML = selectedRowsString;
+  }
+  onEmpFilterChange(event) {
+    alert("Check");
+  }
   onDeleteLocation() {
     const universalJsonBody = new UniversalJsonBody();
     const selectedNodes = this.locationApi.getSelectedNodes();
@@ -371,6 +443,69 @@ export class OrganizationComponent implements OnInit {
                   }
                 }
               );
+    }
+  }
+  
+
+  universalDeleteOrganizaion() {
+    const LocationNode = this.locationApi.getSelectedNodes();
+    const DepartmentNode = this.departmentApi.getSelectedNodes();
+    const DesignationNode = this.designationApi.getSelectedNodes();
+   
+    if (LocationNode.length !== 0) {
+      this.onDeleteLocation();
+    }
+    else if (DepartmentNode.length !== 0) {
+      // this.onDeleteExperience();
+    }
+    else if (DesignationNode.length !== 0) {
+       this.onDeleteDesignation();
+    }
+  }
+
+  
+  onDeleteDesignation() {
+    const selectedNodes = this.designationApi.getSelectedNodes();
+    const universalJsonBody = new UniversalJsonBody();
+    var dataTest: Object;
+    var locationResponse: LocationResponse;
+    const deleteDesignationBody = new DeleteDesignationBody();
+    const selectedData = selectedNodes.map(node => node.data);
+    selectedData.map(node => dataTest = node as Object);
+    console.log("key deleteBody", selectedNodes);
+    
+    if (selectedData.length === 0) {
+      alert("Please Select any row.");
+    } else {
+
+      for (let selectedNode of selectedData) {
+        deleteDesignationBody.designationId = selectedNode['designationID'];
+        this.arrDesignationDelete.push(deleteDesignationBody);
+        var jsonData = JSON.stringify(this.arrDesignationDelete);
+      }
+
+      jsonData = jsonData.replace(/"/g, "'");
+      
+      deleteDesignationBody.designationId = dataTest['designationID'];
+      if (deleteDesignationBody.designationId === undefined) {
+      this.addNewDesignationRow = false;
+      } else {
+        universalJsonBody.jsonData = jsonData;
+        console.log("key and values", universalJsonBody );
+        this.countryService.deleteDesignation(universalJsonBody)
+          .subscribe(
+            data => {
+              locationResponse = data;
+              if(locationResponse.STATUS === "Success"){
+                this.designationApi.removeItems(selectedNodes);
+                console.log("key deleteresponse", LocationResponse);
+                //alert(this.locationResponse.MESSAGE);
+                this.getDesignation(1);
+              }
+              this.arrDesignationDelete = [];
+            }
+
+          );
       }
     }
   }
@@ -822,6 +957,9 @@ export class OrganizationComponent implements OnInit {
              this.addNewDesignationRow = false;
              this.deleteNewDesignation = true;
           } else {
+
+            this.totalData = this.getDesignationResponse.length;
+            console.log("data length", this.getDesignationResponse.length);
             this.saveUpdateDesignation = "Save";
              this.editDesignation = true;
              this.addNewDesignationRow = false;
@@ -849,6 +987,7 @@ export class OrganizationComponent implements OnInit {
       this.onUpdateDesignationData();
     }
   }
+
 
   onSaveDesignation() {
     
@@ -894,12 +1033,14 @@ export class OrganizationComponent implements OnInit {
               locationResponse = data;
               alert(locationResponse.MESSAGE);
               if (locationResponse.STATUS === 'Success') {
-                this.arrDesignationSave =[];
                 this.addNewDepartmentRow = false;
-                this.getDesignation(1);
+
                 this.nodeSelectButWhere = undefined;
                 this.addNewDesignationRow = false;
               }
+              this.arrDesignationSave =[];
+              this.arrDesignationSave.length = 0;
+              this.getDesignation(1);
             }
 
           );
@@ -979,7 +1120,10 @@ export class OrganizationComponent implements OnInit {
   }
 
   onDesignationSelectionChanged() {
-    this.selectedRowsDesignation = this.designationApi.getSelectedRows();
+
+    this.selectAllDesignationCheckBox = false;
+    console.log("select checkbox", this.selectAllDesignationCheckBox);
+    this.selectedRowsDesignation = this.designationApi.getSelectedRows();    
     if (this.selectedRowsDesignation.length === 1) {
       this.deleteNewDesignation = false;
       console.log("NodeBut Where", this.nodeSelectButWhere);
@@ -990,9 +1134,7 @@ export class OrganizationComponent implements OnInit {
       } else if (this.nodeSelectButWhere === undefined) {
         this.saveUpdateDesignation = "Update";
         this.editDesignation = false;
-
       }
-
     }
   }
   
@@ -1010,17 +1152,21 @@ export class OrganizationComponent implements OnInit {
 
   onCheckedBoxChangeDesignation(eve: any) {
     if (this.checkedStatus === false) {
+      this.selectAllDesignationCheckBox = true;
       this.designationApi.selectAll();
       this.checkedStatus = true;
       this.deleteNewDesignation = false;
+      this.editDesignation = true;
+      console.log("select checkbox", this.selectAllDesignationCheckBox);
+    
     } else {
-      this.locationApi.deselectAll();
+      this.selectAllDesignationCheckBox = false;
+      this.designationApi.deselectAll();
       this.checkedStatus = false;
       this.deleteNewDesignation = true;
+      console.log("select checkbox", this.selectAllDesignationCheckBox);
+    
     }
-
-
-
   }
 
 }

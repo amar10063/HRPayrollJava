@@ -142,7 +142,7 @@ export class AllWeb {
   saveDesignation(jsonData: UniversalJsonBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddDesignation, JSON.stringify(jsonData), this.httpOptions);
   }
-  deleteDesignation(deleteDesignationBody: DeleteDesignationBody): Observable<any> {
+  deleteDesignation(deleteDesignationBody: UniversalJsonBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteDesignation, JSON.stringify(deleteDesignationBody), this.httpOptions);
   }
   getAllDesignation(designationBody: GetAllDesignationBody): Observable<any> {
@@ -163,11 +163,11 @@ export class AllWeb {
   getCountries(universalBody: UniversalBody): Observable<GetCountryResponse[]> {
     return this.httpClient.post<GetCountryResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getCountry, JSON.stringify(universalBody), this.httpOptions);
   }
-  savePostal(postalBody: PostalBody): Observable<UniversalResponse> {
-    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.savePostal, JSON.stringify(postalBody), this.httpOptions);
+  savePostal(universalJsonBody: UniversalJsonBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.savePostal, JSON.stringify(universalJsonBody), this.httpOptions);
   }
-  deleteCountry(deleteCountryBody: DeleteCountryBody): Observable<UniversalResponse> {
-    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteCountry, JSON.stringify(deleteCountryBody), this.httpOptions);
+  deleteCountry(universalJsonBody: UniversalJsonBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteCountry, JSON.stringify(universalJsonBody), this.httpOptions);
   }
   getStates(universalBody: UniversalBody): Observable<GetStateResponse[]> {
     return this.httpClient.post<GetStateResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getState, JSON.stringify(universalBody), this.httpOptions);
@@ -247,11 +247,11 @@ export class AllWeb {
   deleteState(deleteStateBody: DeleteStateBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteState, JSON.stringify(deleteStateBody), this.httpOptions);
   }
-  deleteCity(deleteCityBody: DeleteCityBody): Observable<UniversalResponse> {
-    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteCity, JSON.stringify(deleteCityBody), this.httpOptions);
+  deleteCity(universalJsonBody: UniversalJsonBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteCity, JSON.stringify(universalJsonBody), this.httpOptions);
   }
-  deletePostal(deletePostalBody: DeletePostalBody): Observable<UniversalResponse> {
-    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deletePostal, JSON.stringify(deletePostalBody), this.httpOptions);
+  deletePostal(universalJsonBody: UniversalJsonBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deletePostal, JSON.stringify(universalJsonBody), this.httpOptions);
   }
 
   updateState(updateStateBody: UpdateStateBody): Observable<UniversalResponse> {
