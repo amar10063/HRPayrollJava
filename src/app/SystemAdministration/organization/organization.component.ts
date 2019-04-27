@@ -67,6 +67,8 @@ export class OrganizationComponent implements OnInit {
   arrDesignationSave : DesignationBody[] = [];
   arrDesignationDelete : DeleteDesignationBody[] = [];
   selectAllDesignationCheckBox : boolean = false;
+  rowClassRules;
+  selectAllLocation: boolean;
 
 
   constructor(private countryService: AllWeb) {
@@ -409,11 +411,7 @@ export class OrganizationComponent implements OnInit {
         this.countryService.doDeleteLocation(deleteLocationBody)
           .subscribe(
             data => {
-<<<<<<< HEAD
-              this.locationResponse = data;
-=======
               locationResponse = data;
->>>>>>> cd52793d0a6455163a5274f877657447286cd0ae
               this.locationApi.removeItems(selectedNodes);
               console.log("key", LocationResponse);
               alert(locationResponse.MESSAGE);
@@ -503,8 +501,8 @@ export class OrganizationComponent implements OnInit {
         this.countryService.deleteDesignation(universalJsonBody)
           .subscribe(
             data => {
-              this.locationResponse = data;
-              if(this.locationResponse.STATUS === "Success"){
+              locationResponse = data;
+              if(locationResponse.STATUS === "Success"){
                 this.designationApi.removeItems(selectedNodes);
                 console.log("key deleteresponse", LocationResponse);
                 //alert(this.locationResponse.MESSAGE);

@@ -1337,8 +1337,7 @@ export class CountryComponent implements OnInit {
   onSavePostal() {
     
     const postalBody = new PostalBody();
-    const universalBody = new UniversalBody();
-    universalBody.userID = '1';
+    const universalJsonBody = new UniversalJsonBody();
 
 
     const selectedNodes = this.postalApi.getSelectedNodes();
