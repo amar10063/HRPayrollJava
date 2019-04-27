@@ -16,21 +16,33 @@ import { TaxComponent } from './SystemADministration/tax/tax.component';
 import { GeneralComponent } from './SystemAdministration/general/general.component';
 
 const routes: Routes = [
-{ path: '', redirectTo: '/login', pathMatch: 'full' },
-{ path: 'dashboard', component: DashboardComponent },
-{ path: 'login', component: LoginComponent},
-{ path: 'forgetpassword', component: ForgetpasswordComponent },
-{ path: 'employee', component: EmployeeComponent },
-{ path: 'hrmodule', component: HrmoduleComponent },
-{ path: 'self-service', component: SelfServiceComponent },
-{ path: 'system-administration', component: SystemAdminModuleComponent },
-{ path: 'country', component: CountryComponent },
-{ path: 'Setup', component: SetupComponent },
-{ path: 'global-search', component: GlobalSearchComponent },
-{ path: 'organization', component: OrganizationComponent },
-{ path: 'payroll', component: PayrollComponent },
-{ path: 'tax', component: TaxComponent },
-{ path: 'general', component: GeneralComponent }
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'forgetpassword', component: ForgetpasswordComponent },
+
+  // { path: 'hrmodule',  component: HrmoduleComponent },
+  {
+    path: 'hrmodule',
+    children: [{ path: '', component: HrmoduleComponent },
+    { path: 'employee', component: EmployeeComponent },
+    { path: 'Setup', component: SetupComponent },
+    ]
+  },
+  { path: 'self-service', component: SelfServiceComponent },
+  {
+    path: 'system-administration',
+    children: [
+      { path: '', component: SystemAdminModuleComponent },
+      { path: 'organization', component: OrganizationComponent },
+      { path: 'country', component: CountryComponent },
+      { path: 'payroll', component: PayrollComponent },
+      { path: 'tax', component: TaxComponent },
+    ]
+  },
+  
+  { path: 'global-search', component: GlobalSearchComponent },
+  { path: 'general', component: GeneralComponent }
 ];
 
 @NgModule({

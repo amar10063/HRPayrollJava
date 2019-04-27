@@ -109,14 +109,19 @@ export class AllWeb {
   saveEmployeeBasicDetail(basicDetailBody: BasicDetailBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveEmployeeBasicDetail, JSON.stringify(basicDetailBody), this.httpOptions);
   }
-  saveLocation(locationBody: LocationBody): Observable<any> {
-    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddLocation, JSON.stringify(locationBody), this.httpOptions);
+
+  saveLocation(jsonData: UniversalJsonBody): Observable<any> {
+    console.log("SaveLocationData",jsonData);
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddLocation, JSON.stringify(jsonData), this.httpOptions);
   }
+
   doGetLocation(getLocationBody: UniversalBody): Observable<GetAllLocationResponse[]> {
     return this.httpClient.post<GetAllLocationResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getLocation, JSON.stringify(getLocationBody), this.httpOptions);
   }
-  updateLocation(updateLocationBody: LocationBody): Observable<UniversalResponse> {
-    return this.httpClient.post<UniversalResponse>('http://10.10.10.48:8081' + '/UpdateLocation', JSON.stringify(updateLocationBody), this.httpOptions);
+
+  updateLocation(jsonData: UniversalJsonBody): Observable<any> {
+    console.log("Dataaaaaaaaaa",jsonData);
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.UpdateLocation, JSON.stringify(jsonData), this.httpOptions);
   }
   getDepartment(departmentBody: GetAllDepartmentBody): Observable<GetAllLocationResponse[]> {
     return this.httpClient.post<GetAllLocationResponse[]>('http://10.10.10.48:8081' + '/getDepartment', JSON.stringify(departmentBody), this.httpOptions);
@@ -125,8 +130,7 @@ export class AllWeb {
     return this.httpClient.post<GetDepartmentResponse[]>('http://10.10.10.48:8081' + '/getDeptByUser', JSON.stringify(getDepartmentBody), this.httpOptions);
   }
 
-  doDeleteLocation(jsonData: DeleteLocationBody): Observable<any> {
-    console.log("DataDeleteion",jsonData);
+  doDeleteLocation(jsonData: UniversalJsonBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteLocation, JSON.stringify(jsonData), this.httpOptions);
   }
 
@@ -158,8 +162,8 @@ export class AllWeb {
   saveCity(universalJsonBody: UniversalJsonBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveCity, JSON.stringify(universalJsonBody), this.httpOptions);
   }
-  saveState(stateBody: StateBody): Observable<UniversalResponse> {
-    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveState, JSON.stringify(stateBody), this.httpOptions);
+  saveState(universalJsonBody: UniversalJsonBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveState, JSON.stringify(universalJsonBody), this.httpOptions);
   }
   getCountries(universalBody: UniversalBody): Observable<GetCountryResponse[]> {
     return this.httpClient.post<GetCountryResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getCountry, JSON.stringify(universalBody), this.httpOptions);
@@ -245,8 +249,8 @@ export class AllWeb {
   getPostal(universalBody: UniversalBody): Observable<GetPostalResponse[]> {
     return this.httpClient.post<GetPostalResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getPostal, JSON.stringify(universalBody), this.httpOptions);
   }
-  deleteState(deleteStateBody: DeleteStateBody): Observable<UniversalResponse> {
-    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteState, JSON.stringify(deleteStateBody), this.httpOptions);
+  deleteState(universalJsonBody: UniversalJsonBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteState, JSON.stringify(universalJsonBody), this.httpOptions);
   }
   deleteCity(universalJsonBody: UniversalJsonBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteCity, JSON.stringify(universalJsonBody), this.httpOptions);

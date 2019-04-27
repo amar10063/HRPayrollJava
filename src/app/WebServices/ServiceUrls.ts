@@ -2,7 +2,10 @@ export class ServiceUrls {
     public static baseUrls = 'http://10.10.10.48:8081';
     public static highSchoolApi = '/AddSchool';
     public static getSchoolDataApi = '/getSchool';
-    public static AddLocation = '/AddLocation';
+    // public static AddLocation = '/AddLocation';
+
+    public static AddLocation = '/SaveMultipleeLocation';
+    public static UpdateLocation = '/UpdateMultipleLocation';
 
     public static getLocation = '/getLocation';
     
@@ -20,13 +23,13 @@ export class ServiceUrls {
     public static saveCountry = '/SaveMultipleCountry';
     public static saveCity = '/SaveMultipleCity';
     public static getCountry = '/GetCountryByUserID';
-    public static saveState = '/AddState';
+    public static saveState = '/SaveMultipleState';
     public static savePostal = '/SaveMultiplePostalCode';
     public static deleteCountry = '/DeleteMultipleCountry';
     public static getState = '/getState';
     public static getCity = '/getCity';
     public static getPostal = '/getPostalCode';
-    public static deleteState = '/DeleteState';
+    public static deleteState = '/DeleteMultipleState';
     public static deleteCity = '/DeleteMultipleCity';
     public static deletePostal = '/DeleteMultiplePostalCode';
     public static deleteSchool = '/DeleteSchool';

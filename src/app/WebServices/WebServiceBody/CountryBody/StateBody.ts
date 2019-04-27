@@ -1,9 +1,9 @@
 export class StateBody {
 
-    StateName: string;
-    UpdatedBy: string = '1';
-    CountryID: string ;
-    Description: string;
-    userID: number = 1;
+    stateName: string;
+   
+    countryId: string ;
+    description: string;
+    userId: string = '1';
 
 }

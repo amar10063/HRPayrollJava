@@ -1,5 +1,6 @@
-export class UniversalBody {
-    public userID: string;
-    public countryID: string;
-    public stateID: string;
+export class UniversalBody
+{
+    userID: string = "1";
+    countryID: string;
+    stateID: string;
 }

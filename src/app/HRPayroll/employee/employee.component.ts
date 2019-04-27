@@ -647,9 +647,9 @@ export class EmployeeComponent implements OnInit {
   selectedDepartmentIndex: number;
   public selectedRowsProfessional: any[];
   saveUpdateProfessional: string;
-  ShowProfessionalQualification:number=0
-  ToalProfessionalQualification:number=0
-  ShowLimitedProfessionalQualification:number=0
+  ShowProfessionalQualification: number = 0
+  ToalProfessionalQualification: number = 0
+  ShowLimitedProfessionalQualification: number = 0
   nodeSelectButWhere: string;
 
 
@@ -1057,9 +1057,9 @@ export class EmployeeComponent implements OnInit {
 
       }
       else {
-      this.deleteAddressToggleButton = false;
-      this.addressFilter = false;
-      this.empAddressCheckedStatus = false;
+        this.deleteAddressToggleButton = false;
+        this.addressFilter = false;
+        this.empAddressCheckedStatus = false;
       }
       console.log("NodeBut Where", this.nodeAddressSelectButWhere);
 
@@ -1068,7 +1068,7 @@ export class EmployeeComponent implements OnInit {
         this.nodeAddressSelectButWhere = "Edit";
       } else if (this.nodeAddressSelectButWhere === undefined) {
         this.saveUpdateAddress = "Update";
-    
+
 
         this.saveAddressToggleButton = false;
       }
@@ -1103,6 +1103,13 @@ export class EmployeeComponent implements OnInit {
 
   }
 
+
+
+
+
+
+
+  
   getLocation(UserID: number) {
     var locationBody = new UniversalBody();
     locationBody.userID = UserID + '';
@@ -1394,10 +1401,10 @@ export class EmployeeComponent implements OnInit {
       }
       else {
 
-      this.deleteExperienceToggleButton = false;
-      console.log("NodeBut Where", this.nodeExpSelectButWhere);
-      this.empFilter = false;
-      this.empExperienceCheckedStatus = false;
+        this.deleteExperienceToggleButton = false;
+        console.log("NodeBut Where", this.nodeExpSelectButWhere);
+        this.empFilter = false;
+        this.empExperienceCheckedStatus = false;
       }
 
       if (this.nodeExpSelectButWhere === "Add") {
@@ -1406,7 +1413,7 @@ export class EmployeeComponent implements OnInit {
       }
       else if (this.nodeExpSelectButWhere === undefined) {
         this.saveUpdateExperience = "Update";
-        
+
 
         this.saveExperienceToggleButton = false
       }
@@ -1416,7 +1423,7 @@ export class EmployeeComponent implements OnInit {
       }
       else if (this.selectedRowExperience.length >= 1) {
         this.saveExperienceToggleButton = true;
-  
+
       }
     }
   }
@@ -1424,12 +1431,12 @@ export class EmployeeComponent implements OnInit {
   onEmpFilterChange(event) {
 
     if (this.empExperienceCheckedStatus === false) {
-      
+
       this.empExperienceApi.selectAll();
       this.empFilter = true;
       this.empExperienceCheckedStatus = true;
       this.deleteExperienceToggleButton = false;
-      this.addExperienceToggleButton= true;
+      this.addExperienceToggleButton = true;
     } else {
       this.empExperienceApi.deselectAll();
       this.empFilter = false;
@@ -2331,9 +2338,9 @@ export class EmployeeComponent implements OnInit {
 
 
   //Achievements/Certificates
- 
-  
-  onAddAchievementsClick(){
+
+
+  onAddAchievementsClick() {
     this.addAchievementToggleButton = true;
     this.updateAchievement = false;
     this.nodeAchievementSelectButWhere = "Add";

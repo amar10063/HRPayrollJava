@@ -1,9 +1,9 @@
 export class GetAllLocationResponse {
-    id: number;
+    // id: number;
     name: string;
     code: string;
-    description: string;
-    locationID: number;
-    departmentID: number;
+    descriprion: string;
+    id: number;
+    // departmentID: number;
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GetLocationBody } from '../SystemAdministration/organization/GetLocationBody';
-import { GetAllDepartmentBody } from '../HRPayroll/employee/EmployeeApiResponse/GetAllDepartmentBody'
+import { GetAllDepartmentBody } from '../HRPayroll/employee/EmployeeApiResponse/GetAllDepartmentBody';
 import { AllWeb } from 'src/app/WebServices/AllWeb.service';
 import { GetAllLocationResponse } from '../HRPayroll/employee/EmployeeApiResponse/GetAllLocationResponse';
 import { INoRowsOverlayAngularComp } from 'ag-grid-angular';
@@ -24,13 +24,14 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
   selectedValue;
   action;
   context;
-  selectedClick = false;
-  normalClcik = false;
+  normalStateClcik; normalCityClcik;
+  normalCountryClcik;
   agInit(params: ICellRendererParams): void {
     this.params = params['value'];
     console.log('this.params: ' + this.params);
     this.context = params.context;
-
+    this.normalStateClcik = false; this.normalCityClcik = false;
+    this.normalCountryClcik = false;
     if (this.params === 'location') {
       this.getAllLocation();
     } else if (this.params === 'department') {
@@ -38,9 +39,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
     } else if (this.params === 'country') {
       this.getAllCountry();
     } else if (this.params === 'state') {
-      //this.getAllState(this.context.componentParent.selectedCountryId);
     } else if (this.params === 'city') {
-      // this.getAllCity();
     }
   }
   constructor(private countryService: AllWeb) {
@@ -80,34 +79,41 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
   }
 
   onClick() {
-    this.normalClcik = true;
-    this.selectedClick = false;
-    if (this.selectedClick = true) {
-      if (this.params === 'country') {
-        // this.context.componentParent.selectedCountryId = event.target.value;
-        // console.log(event.target.value);
-      } else if (this.params === 'state') {
+   // this.normalCityClcik = false; this.normalStateClcik = false;
+    console.log(this.normalStateClcik + " cdscs " + this.normalCityClcik);
+    if (this.params === 'country') {
+      // this.context.componentParent.selectedCountryId = event.target.value;
+      // console.log(event.target.value);
+      this.normalStateClcik = false;
+      this.normalCityClcik = false;
+
+    } else if (this.params === 'state') {
+      if (this.normalStateClcik === false) {
         this.getAllState(this.context.componentParent.selectedCountryId);
-        //  this.context.componentParent.selectedStateId = event.target.value;
-      } else if (this.params === 'city') {
+        this.normalStateClcik = true;
+      }
+    } else if (this.params === 'city') {
+      if (this.normalCityClcik === false) {
         this.getAllCity(this.context.componentParent.selectedStateId);
-        //  this.context.componentParent.selectedCityId = event.target.value;
+        this.normalCityClcik = true;
       }
     }
   }
   getSelectedValue(event) {
-    this.selectedClick = true; this.normalClcik = false;
+    this.normalCityClcik = false; this.normalStateClcik = false;
+    console.log(this.normalStateClcik + "  " + this.normalCityClcik);
+    if (this.params === 'country') {
+      this.normalStateClcik = false;
+      this.context.componentParent.selectedCountryId = event.target.value;
+    } else if (this.params === 'state') {
+      this.normalCityClcik = false; this.normalStateClcik = false;
+      this.context.componentParent.selectedStateId = event.target.value;
+    } else if (this.params === 'city') {
+    this.normalCityClcik = false; this.normalStateClcik = false;
 
-    if (this.normalClcik = true) {
-      if (this.params === 'country') {
-        this.context.componentParent.selectedCountryId = event.target.value;
-      } else if (this.params === 'state') {
-        this.context.componentParent.selectedStateId = event.target.value;
-        console.log(event.target.value);
-      } else if (this.params === 'city') {
-        this.context.componentParent.selectedCityId = event.target.value;
-      }
+      this.context.componentParent.selectedCityId = event.target.value;
     }
+
   }
   getAllCountry(): any {
     const universalBody = new UniversalBody();
