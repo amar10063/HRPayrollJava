@@ -738,9 +738,9 @@ export class CountryComponent implements OnInit {
         deleteCityBody.cityId =rowNode1.data.cityID;
         deleteCityArray.push(deleteCityBody);
         
-        
+        var jsonData1 = JSON.stringify(deleteCityArray);  
       }
-      var jsonData1 = JSON.stringify(deleteCityArray);
+      
        jsonData1 = jsonData1.replace(/"/g, "'");
       alert(jsonData1);
       universalJsonBody.jsonData = jsonData1;
@@ -750,13 +750,11 @@ export class CountryComponent implements OnInit {
               this.universalResponse = data;
               alert(this.universalResponse.MESSAGE);
               if (this.universalResponse.STATUS === 'Success') {
+               
                 this.cityApi.removeItems(selectedNodes);
                 this.addCityToggleButton = false;
                 this.getCity();
-
               }
-
-
             }
           );
       
@@ -791,14 +789,7 @@ export class CountryComponent implements OnInit {
       alert(jsonData);
      
         universalJsonBody.jsonData = jsonData;
-      // deletePostalBody.pid = dataTest['pID'];
-
-
-      // if (deletePostalBody.pid === undefined) {
-      //   this.addPostalToggleButton = false;
-      //   this.cityApi.removeItems(selectedNodes);
-      // }
-      // else {
+      
         this.allWeb.deletePostal(universalJsonBody)
 
           .subscribe(
@@ -806,6 +797,7 @@ export class CountryComponent implements OnInit {
               this.universalResponse = data;
               alert(this.universalResponse.MESSAGE);
               if (this.universalResponse.STATUS === 'Success') {
+                
                 this.postalApi.removeItems(selectedNodes);
                 this.addPostalToggleButton = false;
                 this.getPostal();
