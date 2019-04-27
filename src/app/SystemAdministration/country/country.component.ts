@@ -516,6 +516,7 @@ export class CountryComponent implements OnInit {
       .subscribe(
         data => {
           this.getPostalResponse = data;
+          console.log('this.getPostalResponse:  ' + JSON.stringify(this.getPostalResponse));
           if (this.getPostalResponse.length === 0) {
             this.TotalPostal = this.getPostalResponse.length;
             this.saveUpdatePostal = 'Save';
@@ -1187,8 +1188,15 @@ export class CountryComponent implements OnInit {
 
   }
   onPostalSelectionChanged() {
+
+
     this.selectedRowPostal = this.postalApi.getSelectedRows();
-    this.rowSelection = 'multiple';
+    const selectedNodes = this.postalApi.getSelectedNodes();
+    const selectedData = selectedNodes.map(node => node.data);
+    var dataTest: Object;
+    selectedData.map(node => dataTest = node as Object);
+    this.postalApi.stopEditing();
+
     if (this.selectedRowPostal.length === 1) {
       if (this.getPostalResponse.length === 1) {
         this.deletePostalToggleButton = false;
@@ -1196,30 +1204,145 @@ export class CountryComponent implements OnInit {
         this.postalCheckedStatus = false;
       }
       else {
-
         this.deletePostalToggleButton = false;
         this.postalFilter = false;
         this.postalCheckedStatus = false;
+
       }
       if (this.nodePostalSelect === 'Add') {
         this.saveUpdatePostal = 'Save';
-        this.nodePostalSelect = 'Update';
+        this.nodePostalSelect = 'Edit';
+
       } else if (this.nodePostalSelect === undefined) {
-        this.saveUpdatePostal = 'Update';
-
+        if (this.nodePostalSelect === 'Edit') {
+          this.saveUpdatePostal = 'Update';
+        } else { this.saveUpdatePostal = 'Edit'; }
         this.savePostalToggleButton = false;
-      }
-      else if (this.nodePostalSelect === 'Update') {
+      } else if (this.nodePostalSelect === 'Update') {
         this.savePostalToggleButton = false;
         this.saveUpdatePostal = 'Update';
-
       }
     }
     else if (this.selectedRowPostal.length >= 1) {
       this.savePostalToggleButton = true;
 
     }
+
+
+
+
+
+    // this.selectedRowPostal = this.postalApi.getSelectedRows();
+    // this.rowSelection = 'multiple';
+    // if (this.selectedRowPostal.length === 1) {
+    //   if (this.getPostalResponse.length === 1) {
+    //     this.deletePostalToggleButton = false;
+    //     this.postalFilter = true;
+    //     this.postalCheckedStatus = false;
+    //   }
+    //   else {
+
+    //     this.deletePostalToggleButton = false;
+    //     this.postalFilter = false;
+    //     this.postalCheckedStatus = false;
+    //   }
+    //   if (this.nodePostalSelect === 'Add') {
+    //     this.saveUpdatePostal = 'Save';
+    //     this.nodePostalSelect = 'Update';
+    //   } else if (this.nodePostalSelect === undefined) {
+    //     this.saveUpdatePostal = 'Update';
+
+    //     this.savePostalToggleButton = false;
+    //   }
+    //   else if (this.nodePostalSelect === 'Update') {
+    //     this.savePostalToggleButton = false;
+    //     this.saveUpdatePostal = 'Update';
+
+    //   }
+    // }
+    // else if (this.selectedRowPostal.length >= 1) {
+    //   this.savePostalToggleButton = true;
+
+    // }
   }
+  // onPostalSelectionChanged() {
+
+
+  //   this.selectedRowPostal = this.postalApi.getSelectedRows();
+  //   const selectedNodes = this.postalApi.getSelectedNodes();
+  //   const selectedData = selectedNodes.map(node => node.data);
+  //   var dataTest: Object;
+  //   selectedData.map(node => dataTest = node as Object);
+  //   this.postalApi.stopEditing();
+
+  //   if (this.selectedRowPostal.length === 1) {
+  //     if (this.getPostalResponse.length === 1) {
+  //       this.deletePostalToggleButton = false;
+  //       this.postalFilter = true;
+  //       this.postalCheckedStatus = false;
+  //     }
+  //     else {
+  //       this.deletePostalToggleButton = false;
+  //       this.postalFilter = false;
+  //       this.postalCheckedStatus = false;
+
+  //     }
+  //     if (this.nodePostalSelect === 'Add') {
+  //       this.saveUpdatePostal = 'Save';
+  //       this.nodePostalSelect = 'Edit';
+
+  //     } else if (this.nodePostalSelect === undefined) {
+  //       if (this.nodePostalSelect === 'Edit') {
+  //         this.saveUpdatePostal = 'Update';
+  //       } else { this.saveUpdatePostal = 'Edit'; }
+  //       this.savePostalToggleButton = false;
+  //     } else if (this.nodePostalSelect === 'Update') {
+  //       this.savePostalToggleButton = false;
+  //       this.saveUpdatePostal = 'Update';
+  //     }
+  //   }
+  //   else if (this.selectedRowPostal.length >= 1) {
+  //     this.savePostalToggleButton = true;
+
+  //   }
+
+  // }
+
+
+  // onPostalSelectionChanged() {
+  //   this.selectedRowPostal = this.postalApi.getSelectedRows();
+  //   this.rowSelection = 'multiple';
+  //   if (this.selectedRowPostal.length === 1) {
+  //     if (this.getPostalResponse.length === 1) {
+  //       this.deletePostalToggleButton = false;
+  //       this.postalFilter = true;
+  //       this.postalCheckedStatus = false;
+  //     }
+  //     else {
+
+  //       this.deletePostalToggleButton = false;
+  //       this.postalFilter = false;
+  //       this.postalCheckedStatus = false;
+  //     }
+  //     if (this.nodePostalSelect === 'Add') {
+  //       this.saveUpdatePostal = 'Save';
+  //       this.nodePostalSelect = 'Update';
+  //     } else if (this.nodePostalSelect === undefined) {
+  //       this.saveUpdatePostal = 'Update';
+
+  //       this.savePostalToggleButton = false;
+  //     }
+  //     else if (this.nodePostalSelect === 'Update') {
+  //       this.savePostalToggleButton = false;
+  //       this.saveUpdatePostal = 'Update';
+
+  //     }
+  //   }
+  //   else if (this.selectedRowPostal.length >= 1) {
+  //     this.savePostalToggleButton = true;
+
+  //   }
+  // }
 
   public selectedStateId: number;
   public selectedCityId: number
@@ -1273,6 +1396,13 @@ export class CountryComponent implements OnInit {
 
   onCitySelectionChanged() {
     this.selectedRowCity = this.cityApi.getSelectedRows();
+    const selectedNodes = this.cityApi.getSelectedNodes();
+    const selectedData = selectedNodes.map(node => node.data);
+    var dataTest: Object;
+    selectedData.map(node => dataTest = node as Object);
+    this.cityApi.stopEditing();
+
+    //this.selectedRowCity = this.cityApi.getSelectedRows();
     this.rowSelection = "multiple";
     if (this.selectedRowCity.length === 1) {
       if (this.getCityResponse.length === 1) {
@@ -1284,25 +1414,60 @@ export class CountryComponent implements OnInit {
         this.deleteCityToggleButton = false;
         this.cityFilter = false;
         this.cityCheckedStatus = false;
-      }
-      if (this.nodeCitySelect === "Add") {
-        this.saveUpdateCity = "Save";
-        this.nodeCitySelect = "Update";
-      } else if (this.nodeCitySelect === undefined) {
-        this.saveUpdateCity = "Update";
 
-        this.saveCityToggleButton = false;
       }
-      else if (this.nodeCitySelect === 'Update') {
+      if (this.nodeCitySelect === 'Add') {
+        this.saveUpdateCity = 'Save';
+        this.nodeCitySelect = 'Edit';
+
+      } else if (this.nodeCitySelect === undefined) {
+        if (this.nodeCitySelect === 'Edit') {
+          this.saveUpdateCity = 'Update';
+        } else { this.saveUpdateCity = 'Edit'; }
+        this.saveCityToggleButton = false;
+      } else if (this.nodeCitySelect === 'Update') {
         this.saveCityToggleButton = false;
         this.saveUpdateCity = 'Update';
-
-      }
-      else if (this.selectedRowCity.length >= 1) {
-        this.saveCityToggleButton = true;
-
       }
     }
+    else if (this.selectedRowCity.length >= 1) {
+      this.saveCityToggleButton = true;
+
+    }
+
+
+
+
+
+    // if (this.selectedRowCity.length === 1) {
+    //   if (this.getCityResponse.length === 1) {
+    //     this.deleteCityToggleButton = false;
+    //     this.cityFilter = true;
+    //     this.cityCheckedStatus = false;
+    //   }
+    //   else {
+    //     this.deleteCityToggleButton = false;
+    //     this.cityFilter = false;
+    //     this.cityCheckedStatus = false;
+    //   }
+    //   if (this.nodeCitySelect === "Add") {
+    //     this.saveUpdateCity = "Save";
+    //     this.nodeCitySelect = "Update";
+    //   } else if (this.nodeCitySelect === undefined) {
+    //     this.saveUpdateCity = "Update";
+
+    //     this.saveCityToggleButton = false;
+    //   }
+    //   else if (this.nodeCitySelect === 'Update') {
+    //     this.saveCityToggleButton = false;
+    //     this.saveUpdateCity = 'Update';
+
+    //   }
+    //   else if (this.selectedRowCity.length >= 1) {
+    //     this.saveCityToggleButton = true;
+
+    //   }
+    // }
   }
 
   onSaveUpdateCity() {
@@ -1310,7 +1475,19 @@ export class CountryComponent implements OnInit {
     if (this.saveUpdateCity === "Save") {
       this.onSaveCity();
     }
-    else {
+    else if (this.saveUpdateCity === 'Edit') {
+      this.cityApi.setFocusedCell(0, "stateName");
+      this.cityApi.getColumnDef('cityName').editable = true;
+      this.cityApi.getColumnDef('description').editable = true;
+      const selectedNodes = this.cityApi.getSelectedNodes();
+      const selectedData = selectedNodes.map(node => node.data);
+      var dataTest: Object;
+      selectedData.map(node => dataTest = node as Object);
+      var res1 = this.cityApi.updateRowData({ remove: selectedData });
+      let res = this.cityApi.updateRowData({ add: [{ stateName: '', cityName: dataTest['cityName'], countryName: '', description: dataTest['description'], hidden: 'hidden' }], addIndex: 0 });
+      this.saveUpdateCity = "Update";
+      this.nodeCitySelect = "Update";
+    } else if (this.saveUpdateCity === "Update") {
       this.onUpdateCity();
     }
     this.addPostalToggleButton = false;
@@ -1335,7 +1512,7 @@ export class CountryComponent implements OnInit {
 
     }
     else {
-      updateCityBody.StateID = dataTest['countryID'];
+      updateCityBody.StateID = this.selectedStateId
       updateCityBody.CityID = dataTest['cityID'];
       if (updateCityBody.CityID === undefined) {
 
@@ -1480,6 +1657,9 @@ export class CountryComponent implements OnInit {
     if (selectedData.length === 0) {
       alert("Please select a row");
     }
+    updatePostalBody.CityID = this.selectedCityId + '';
+
+    updatePostalBody.CityID = this.selectedCityId + '';
     updatePostalBody.postalCode = dataTest['postalCode'];
     updatePostalBody.Description = dataTest['description'];
 
@@ -1489,7 +1669,7 @@ export class CountryComponent implements OnInit {
     }
     else {
       updatePostalBody.pid = dataTest['pID'];
-      updatePostalBody.CityID = dataTest['cityID'];
+      updatePostalBody.CityID = this.selectedCityId + '';
       if (updatePostalBody.pid === undefined) {
         this.addPostalToggleButton = false;
       }
@@ -1595,7 +1775,22 @@ export class CountryComponent implements OnInit {
     if (this.saveUpdatePostal === 'Save') {
       this.onSavePostal();
     }
-    else {
+    else if (this.saveUpdatePostal === 'Edit') {
+      this.postalApi.setFocusedCell(0, "countryName");
+      //  this.postalApi.getColumnDef('stateName').editable = true;
+      // this.postalApi.getColumnDef('countryName').editable = true;
+      this.postalApi.getColumnDef('description').editable = true;
+      //  this.postalApi.getColumnDef('cityName').editable = true;
+      this.postalApi.getColumnDef('postalCode').editable = true;
+      const selectedNodes = this.postalApi.getSelectedNodes();
+      const selectedData = selectedNodes.map(node => node.data);
+      var dataTest: Object;
+      selectedData.map(node => dataTest = node as Object);
+      var res1 = this.postalApi.updateRowData({ remove: selectedData });
+      let res = this.postalApi.updateRowData({ add: [{ stateName: dataTest['stateName'], countryName: dataTest['countryName'], description: 'description', cityName: dataTest['cityName'], postalCode: dataTest['postalCode'], hidden: 'hidden' }], addIndex: 0 });
+      this.saveUpdatePostal = "Update";
+      this.nodePostalSelect = "Update";
+    } else if (this.saveUpdatePostal === "Update") {
       this.onUpdatePostal();
     }
     this.addPostalToggleButton = false;

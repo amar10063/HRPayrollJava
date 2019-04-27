@@ -6,6 +6,6 @@ export class UpdateStateBody
     CountryID: string ;
     Description: string = 'State Name';
     userID: number = 1;
-    StateID: number ;
+    StateID: string ;
 
 }
