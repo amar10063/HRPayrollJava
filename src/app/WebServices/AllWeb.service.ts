@@ -157,8 +157,8 @@ export class AllWeb {
   saveCity(universalJsonBody: UniversalJsonBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveCity, JSON.stringify(universalJsonBody), this.httpOptions);
   }
-  saveState(stateBody: StateBody): Observable<UniversalResponse> {
-    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveState, JSON.stringify(stateBody), this.httpOptions);
+  saveState(universalJsonBody: UniversalJsonBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveState, JSON.stringify(universalJsonBody), this.httpOptions);
   }
   getCountries(universalBody: UniversalBody): Observable<GetCountryResponse[]> {
     return this.httpClient.post<GetCountryResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getCountry, JSON.stringify(universalBody), this.httpOptions);
@@ -244,8 +244,8 @@ export class AllWeb {
   getPostal(universalBody: UniversalBody): Observable<GetPostalResponse[]> {
     return this.httpClient.post<GetPostalResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getPostal, JSON.stringify(universalBody), this.httpOptions);
   }
-  deleteState(deleteStateBody: DeleteStateBody): Observable<UniversalResponse> {
-    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteState, JSON.stringify(deleteStateBody), this.httpOptions);
+  deleteState(universalJsonBody: UniversalJsonBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteState, JSON.stringify(universalJsonBody), this.httpOptions);
   }
   deleteCity(universalJsonBody: UniversalJsonBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deleteCity, JSON.stringify(universalJsonBody), this.httpOptions);
