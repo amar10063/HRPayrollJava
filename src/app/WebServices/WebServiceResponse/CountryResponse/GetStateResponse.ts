@@ -1,7 +1,7 @@
-export class GetStateResponse{
+export class GetStateResponse {
     stateName: string;
     description: string;
     countryID: number;
-    countryName:string;
-    stateID: number;   
+    countryName: string;
+    stateID: number;
 }

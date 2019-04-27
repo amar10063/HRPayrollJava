@@ -125,9 +125,11 @@ export class AllWeb {
     return this.httpClient.post<GetDepartmentResponse[]>('http://10.10.10.48:8081' + '/getDeptByUser', JSON.stringify(getDepartmentBody), this.httpOptions);
   }
 
-  doDeleteLocation(deleteLocationBody: DeleteLocationBody): Observable<any> {
-    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteLocation, JSON.stringify(deleteLocationBody), this.httpOptions);
+  doDeleteLocation(jsonData: DeleteLocationBody): Observable<any> {
+    console.log("DataDeleteion",jsonData);
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteLocation, JSON.stringify(jsonData), this.httpOptions);
   }
+
   saveDepartment(departmentBody: DepartmentBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddDepartment, JSON.stringify(departmentBody), this.httpOptions);
   }
@@ -140,7 +142,7 @@ export class AllWeb {
   saveDesignation(jsonData: UniversalJsonBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddDesignation, JSON.stringify(jsonData), this.httpOptions);
   }
-  deleteDesignation(deleteDesignationBody: DeleteDesignationBody): Observable<any> {
+  deleteDesignation(deleteDesignationBody: UniversalJsonBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteDesignation, JSON.stringify(deleteDesignationBody), this.httpOptions);
   }
   getAllDesignation(designationBody: GetAllDesignationBody): Observable<any> {

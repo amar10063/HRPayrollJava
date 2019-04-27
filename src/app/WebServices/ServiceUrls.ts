@@ -3,14 +3,20 @@ export class ServiceUrls {
     public static highSchoolApi = '/AddSchool';
     public static getSchoolDataApi = '/getSchool';
     public static AddLocation = '/AddLocation';
+
     public static getLocation = '/getLocation';
+    
     public static getAllDesignation = '/getDesignation';
     public static getAllDepartment: '/getDepartment';
-    public static DeleteLocation = '/DeleteLocation';
+
+    // public static DeleteLocation = '/DeleteLocation';
+    public static DeleteLocation = '/DeleteMultipleLocation';
+
     public static AddDepartment = '/AddDepartment';
     public static DeleteDepartment = '/DeleteDepartment';
     public static AddDesignation = '/SaveMultipleDesignation';
-    public static DeleteDesignation = '/DeleteDesignation';
+    public static DeleteDesignation = '/DeleteMultipleDesignation';
+    
     public static saveCountry = '/SaveMultipleCountry';
     public static saveCity = '/SaveMultipleCity';
     public static getCountry = '/GetCountryByUserID';
