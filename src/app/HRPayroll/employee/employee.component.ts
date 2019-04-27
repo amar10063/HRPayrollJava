@@ -1105,7 +1105,7 @@ export class EmployeeComponent implements OnInit {
 
   getLocation(UserID: number) {
     var locationBody = new UniversalBody();
-    locationBody.userID = UserID + '';
+    locationBody.userId = UserID + '';
     this.allwebService.doGetLocation(locationBody)
       .subscribe(
         data => {
@@ -1458,7 +1458,7 @@ export class EmployeeComponent implements OnInit {
 
   }
   onDesignationClick() {
-    this.getAllDesignation('1', this.departmentResponse[this.selectedDepartmentIndex].id);
+    this.getAllDesignation('1', this.departmentResponse[this.selectedDepartmentIndex].commonId);
 
   }
 
