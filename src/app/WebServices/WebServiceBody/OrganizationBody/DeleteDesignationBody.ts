@@ -1,6 +1,6 @@
 export class DeleteDesignationBody {
   
-    DesignationID:number;
-    userID:number=1;
+    designationId:number;
+    userId:string="1";
    
 }

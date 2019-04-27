@@ -140,7 +140,7 @@ export class AllWeb {
   saveDesignation(jsonData: UniversalJsonBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddDesignation, JSON.stringify(jsonData), this.httpOptions);
   }
-  deleteDesignation(deleteDesignationBody: DeleteDesignationBody): Observable<any> {
+  deleteDesignation(deleteDesignationBody: UniversalJsonBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteDesignation, JSON.stringify(deleteDesignationBody), this.httpOptions);
   }
   getAllDesignation(designationBody: GetAllDesignationBody): Observable<any> {
