@@ -113,6 +113,7 @@ export class AllWeb {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddLocation, JSON.stringify(locationBody), this.httpOptions);
   }
   doGetLocation(getLocationBody: UniversalBody): Observable<GetAllLocationResponse[]> {
+    console.log("locationBody",getLocationBody);
     return this.httpClient.post<GetAllLocationResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getLocation, JSON.stringify(getLocationBody), this.httpOptions);
   }
   updateLocation(updateLocationBody: LocationBody): Observable<UniversalResponse> {
@@ -125,7 +126,7 @@ export class AllWeb {
     return this.httpClient.post<GetDepartmentResponse[]>('http://10.10.10.48:8081' + '/getDeptByUser', JSON.stringify(getDepartmentBody), this.httpOptions);
   }
 
-  doDeleteLocation(jsonData: DeleteLocationBody): Observable<any> {
+  doDeleteLocation(jsonData: UniversalJsonBody): Observable<any> {
     console.log("DataDeleteion",jsonData);
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteLocation, JSON.stringify(jsonData), this.httpOptions);
   }

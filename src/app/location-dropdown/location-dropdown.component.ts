@@ -55,7 +55,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
         data => {
           this.locationResponse = data;
           var getAllLocationResponse = new GetAllLocationResponse();
-          getAllLocationResponse.name = 'Select';
+          getAllLocationResponse.commonName = 'Select';
           this.locationResponse[0] = getAllLocationResponse;
 
         }
@@ -71,7 +71,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
         data => {
           this.locationResponse = data;
           var getAllLocationResponse = new GetAllLocationResponse();
-          getAllLocationResponse.name = 'Select';
+          getAllLocationResponse.commonName = 'Select';
           this.locationResponse.push(getAllLocationResponse);
 
         }
@@ -116,7 +116,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
       .subscribe(
         data => {
           this.locationResponse = data;
-          this.context.componentParent.selectedCountryId = this.locationResponse[0].id;
+          this.context.componentParent.selectedCountryId = this.locationResponse[0].commonId;
         }
       );
   }
@@ -128,7 +128,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
       .subscribe(
         data => {
           this.locationResponse = data;
-          this.context.componentParent.selectedStateId = this.locationResponse[0].id;
+          this.context.componentParent.selectedStateId = this.locationResponse[0].commonId;
 
         }
       );
@@ -143,7 +143,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
       .subscribe(
         data => {
           this.locationResponse = data;
-          this.context.componentParent.selectedCityId = this.locationResponse[0].id;
+          this.context.componentParent.selectedCityId = this.locationResponse[0].commonId;
 
         }
       );
