@@ -1,6 +1,6 @@
 <div  >
   <select class="addrCon formSelect" [(ngModel)]="selectedLevel" id="type" name="type" [value]="selectedValue"
-    (change)="getSelectedValue($event)" 
+    (change)="getSelectedValue($event)" (click)="onClick()"
     style="background:#ffffffff !important; border:1px solid #ffffffff !important;">
     <option [value]="location.id" *ngFor="let location of locationResponse; let i = index" [attr.selected]="i"
       [selected]="Select">

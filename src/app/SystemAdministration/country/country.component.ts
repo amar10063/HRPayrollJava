@@ -21,6 +21,9 @@ import { UpdateStateBody } from 'src/app/WebServices/WebServiceBody/CountryBody/
 import { UpdateCountryBody } from 'src/app/WebServices/WebServiceBody/CountryBody/UpdateCountryBody';
 import { UpdateCityBody } from 'src/app/WebServices/WebServiceBody/CountryBody/UpdateCityBody';
 import { UpdatePostalBody } from 'src/app/WebServices/WebServiceBody/CountryBody/UpdatePostalBody';
+import { UniversalJsonBody } from 'src/app/WebServices/WebServiceBody/UniversalJsonBody';
+
+
 
 @Component({
   selector: 'app-country',
@@ -29,90 +32,28 @@ import { UpdatePostalBody } from 'src/app/WebServices/WebServiceBody/CountryBody
 })
 
 export class CountryComponent implements OnInit {
-  columnDefs1;
-  rowData1;
+  columnDefs; columnDefs1; columnDefs2; columnDefs3; columnDefs4; columnDefs5;
+  rowData; rowData1; rowData2; rowData3; rowData4; rowData5;
 
-  type: string = '';
-  gridOptions = {} as GridOptions;
-  public selectedCountryId: number;
-  private rowClassRules;
- 
-  constructor(private allWeb: AllWeb) {
-    this.rowClassRules = {
-      "sick-days-warning": function(params) {
-        var numSickDays = params.data.countryName;
-        return numSickDays > 5 && numSickDays <= 7;
-      },
-      "sick-days-breach": "data.sickDays > 8"
-    };
-    this.gridOptions = {
-      context: { componentParent: this }
-    };
-    this.rowSelection = 'single';
-    this.editType = 'fullRow';
-    this.columnDefs1 = [
-      {
-        headerName: 'Country', field: 'countryName', sortable: true, filter: true, width: 110,
-        cellRendererSelector: function (params) {
-          var locationDetails = {
-            component: 'locationFramework',
-            params: { value: 'country' }
-          };
-          if (params.data.stateName === '')
-            return locationDetails;
-          else
-            return null;
 
-        }
-
-      },
-      {
-        headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: true, width: 120,
-        cellStyle: function (params) {
-          if (params.value === '') {
-            return { outline: '1px solid red' };
-
-          } else {
-            return { outline: 'white' };
-          }
-        }
-
-      },
-      { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: true },
-
-      { headerName: '', field: '', width: 512, }
-    ];
-
-    this.rowData1;
-
-  }
   frameworkComponents = {
     locationFramework: LocationDropdownComponent
   };
-
   createKey: any;
   api;
   columnApi;
-
-
-
   StateToggleButton = false;
   cityToggleButton = false;
   postalToggleButton = false;
 
   countryCheckedStatus = false;
   countryFilter: boolean;
-
   stateCheckedStatus = false;
   stateFilter: boolean;
-
   cityCheckedStatus = false;
   cityFilter: boolean;
-
-
   postalCheckedStatus = false;
   postalFilter: boolean;
-
   addCountryToggleButton = false;
   saveCountryToggleButton = false;
   deleteCountryToggleButton = false;
@@ -160,171 +101,15 @@ export class CountryComponent implements OnInit {
 
   stateApi: GridApi;
   stateColumnApi: ColumnApi;
-
   cityApi: GridApi;
   cityColumnApi: ColumnApi
-
   postalApi: GridApi;
   postalColomnApi: ColumnApi;
-
   universalResponse: UniversalResponse;
-
   countryDataResponse: GetCountryResponse[];
   getStateResponse: GetStateResponse[];
   getCityResponse: GetCityResponse[];
   getPostalResponse: GetPostalResponse[];
-
-  rowSelection: string;
-  rowDeselection: string
-  private editType;
-
-  columnDefs = [
-    {
-      id: 0, headerName: 'Country Code', field: 'countryCode', sortable: true, filter: true, width: 120, editable: true,
-      cellStyle: function (params) {
-        if (params.value === '') {
-          //this.ToggleButton = true;
-          return { outline: '1px solid red' };
-        } else {
-          return { outline: 'white' };
-        }
-      }
-
-    },
-
-    {
-
-      id: 1, headerName: 'Country Name', field: 'countryName', sortable: true,
-      filter: true, width: 120, editable: true,
-      cellStyle: function (params) {
-
-        if (params.value === '') {
-          return { outline: '1px solid red' };
-        } else {
-          return { outline: 'white' };
-        }
-
-      }
-    },
-
-    { headerName: '', field: '', width: 652, }
-  ];
-
-  rowData;
-
-
-
-  columnDefs2 = [
-
-    {
-      headerName: 'Country', field: 'countryName', sortable: true, editable: true, filter: true, width: 110, //singleClickEdit: true,
-
-      cellRendererFramework: LocationDropdownComponent,
-      cellRendererParams: {
-        value: 'country'
-      }
-    },
-    {
-      headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: true, width: 120, //singleClickEdit: true,
-
-      cellRendererFramework: LocationDropdownComponent,
-      cellRendererParams: {
-        value: 'state'
-      }
-    },
-    {
-      headerName: 'City', field: 'cityName', sortable: true, filter: true, editable: true, width: 120, singleClickEdit: true,
-
-
-      cellStyle: function (params) {
-        if (params.value === '') {
-
-          return { outline: '1px solid red' };
-
-
-        } else {
-          return { outline: 'white' };
-        }
-      }
-
-    },
-
-    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: true },
-
-
-    { headerName: '', field: '', width: 392, }
-  ];
-
-  rowData2;
-
-  columnDefs3 = [
-
-    {
-      headerName: 'Country', field: 'countryName', sortable: true, editable: true, filter: true, width: 120,
-      cellRendererFramework: LocationDropdownComponent,
-      cellRendererParams: {
-        value: 'country'
-      }
-    },
-    {
-      headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: true, width: 120,
-      cellRendererFramework: LocationDropdownComponent,
-      cellRendererParams: {
-        value: 'state'
-      }
-
-    },
-    {
-      headerName: 'City', field: 'cityName', sortable: true, filter: true, editable: true, width: 120,
-      cellRendererFramework: LocationDropdownComponent,
-      cellRendererParams: {
-        value: 'city'
-      }
-
-    },
-    {
-      headerName: 'Postal Code', field: 'postalCode', sortable: true, filter: true, editable: true, width: 120,
-      cellStyle: function (params) {
-        if (params.value === '') {
-          return { outline: '1px solid red' };
-        } else {
-          return { outline: 'white' };
-        }
-      }
-
-    },
-
-    { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: true },
-  ];
-
-  rowData3;
-
-  columnDefs4 = [
-    { headerName: 'Department', field: 'department', sortable: true, filter: true, editable: true, width: 500 },
-    { headerName: 'Designation', field: 'designation', sortable: true, filter: true, editable: true, width: 500 },
-  ];
-
-  rowData4 = [
-    { department: 'IT', designation: 'Software Developer' },
-    { department: 'Finance', designation: 'Software Developer' },
-    { department: 'AX', designation: 'AX Technical' },
-    { department: 'Medical', designation: 'Doctor' },
-    { department: 'Accounts', designation: 'Accountant' }
-  ];
-
-  columnDefs5 = [
-    { headerName: 'Language', field: 'language', sortable: true, filter: true, editable: true, width: 120 },
-    { headerName: 'Language Code', field: 'languageCode', sortable: true, editable: true, filter: true, width: 120 },
-  ];
-
-  rowData5 = [
-    { language: 'English', languageCode: '001' },
-    { language: 'Hindi', languageCode: '002' },
-    { language: 'Urdu', languageCode: '003' },
-    { language: 'Arabic', languageCode: '004' },
-    { language: 'French', languageCode: '005' }
-  ];
-
   public show = false;
   public hide = true;
   public buttonName: any = 'Add New';
@@ -334,10 +119,243 @@ export class CountryComponent implements OnInit {
   countCity = 0;
   countPostal = 0;
   universalBody = new UniversalBody();
-  getContext() {
-    return {
-      createKey: this.createKey
+
+  rowSelection: string;
+  rowDeselection: string
+  private editType;
+  countryArray: CountryBody[] = [];
+  cityArray: CityBody[] = [];
+  postalArray: PostalBody[] = [];
+  
+
+  type: string = '';
+  gridOptions = {} as GridOptions;
+  public selectedCountryId: number;
+  private rowClassRules;
+
+  constructor(private allWeb: AllWeb) {
+    this.gridOptions = {
+      context: { componentParent: this }
     };
+    this.rowSelection = 'single';
+    this.editType = 'fullRow';
+    this.columnDefs = [
+      {
+        id: 0, headerName: 'Country Code', field: 'countryCode', sortable: true, filter: true, width: 120, editable: true,
+        cellStyle: function (params) {
+          if (params.value === '') {
+            //this.ToggleButton = true;
+            return { outline: '1px solid red' };
+          } else {
+            return { outline: 'white' };
+          }
+        }
+
+      },
+
+      {
+
+        id: 1, headerName: 'Country Name', field: 'countryName', sortable: true,
+        filter: true, width: 120, editable: true,
+        cellStyle: function (params) {
+
+          if (params.value === '') {
+            return { outline: '1px solid red' };
+          } else {
+            return { outline: 'white' };
+          }
+
+        }
+      },
+
+      { headerName: '', field: 'hidden', width: 652, }
+    ];
+
+    this.rowData;
+    this.columnDefs1 = [
+      {
+        headerName: 'Country', field: 'countryName', sortable: true, filter: true, width: 210,
+        cellRendererSelector: function (params) {
+          var locationDetails = {
+            component: 'locationFramework',
+            params: { value: 'country' }
+          };
+          if (params.data.hidden === 'hidden')
+            return locationDetails;
+          else
+            return null;
+
+        }
+
+      },
+      {
+        headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: false, width: 220,
+        cellStyle: function (params) {
+          if (params.value === '') {
+            return { outline: '1px solid red' };
+
+          } else {
+            return { outline: 'white' };
+          }
+        }
+
+      },
+      { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 250, editable: false },
+
+      { headerName: '', field: 'hidden', hide: true }
+    ];
+    this.rowData1;
+
+
+
+    this.columnDefs2 = [
+
+      {
+        headerName: 'Country', field: 'countryName', sortable: true, editable: false, filter: true, width: 110, //
+
+        cellRendererSelector: function (params) {
+          var locationDetails = {
+            component: 'locationFramework',
+            params: { value: 'country' }
+          };
+          if (params.data.hidden === 'hidden')
+            return locationDetails;
+          else
+            return null;
+
+        }
+      },
+      {
+        headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: false, width: 120, //singleClickEdit: true,
+
+        cellRendererSelector: function (params) {
+          var locationDetails = {
+            component: 'locationFramework',
+            params: { value: 'state' }
+          };
+          if (params.data.hidden === 'hidden')
+            return locationDetails;
+          else
+            return null;
+
+        }
+      },
+      {
+        headerName: 'City', field: 'cityName', sortable: true, filter: true, editable: false, width: 120, singleClickEdit: true,
+
+
+        cellStyle: function (params) {
+          if (params.value === '') {
+
+            return { outline: '1px solid red' };
+
+
+          } else {
+            return { outline: 'white' };
+          }
+        }
+
+      },
+
+      { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: false },
+
+
+
+      { headerName: '', field: 'hidden', hide: true, }
+    ];
+
+    this.rowData2;
+
+    this.columnDefs3 = [
+
+      {
+        headerName: 'Country', field: 'countryName', sortable: true, editable: false, filter: true, width: 120,
+        cellRendererSelector: function (params) {
+          var locationDetails = {
+            component: 'locationFramework',
+            params: { value: 'country' }
+          };
+          if (params.data.hidden === 'hidden')
+            return locationDetails;
+          else
+            return null;
+
+        }
+      },
+      {
+        headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: false, width: 120,
+        cellRendererSelector: function (params) {
+          var locationDetails = {
+            component: 'locationFramework',
+            params: { value: 'state' }
+          };
+          if (params.data.hidden === 'hidden')
+            return locationDetails;
+          else
+            return null;
+
+        }
+
+      },
+      {
+        headerName: 'City', field: 'cityName', sortable: true, filter: true, editable: false, width: 120,
+        cellRendererSelector: function (params) {
+          var locationDetails = {
+            component: 'locationFramework',
+            params: { value: 'city' }
+          };
+          if (params.data.hidden === 'hidden')
+            return locationDetails;
+          else
+            return null;
+
+        }
+
+
+      },
+      {
+        headerName: 'Postal Code', field: 'postalCode', sortable: true, filter: true, editable: false, width: 120,
+        cellStyle: function (params) {
+          if (params.value === '') {
+            return { outline: '1px solid red' };
+          } else {
+            return { outline: 'white' };
+          }
+        }
+
+      },
+
+      { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: false },
+      { headerName: '', field: 'hidden', hide: true },
+
+    ];
+
+    this.rowData3;
+
+
+
+
+    this.columnDefs4 = [
+      { headerName: 'Department', field: 'department', sortable: true, filter: true, editable: true, width: 500 },
+      { headerName: 'Designation', field: 'designation', sortable: true, filter: true, editable: true, width: 500 },
+    ];
+
+    this.rowData4 = [
+    ];
+
+    this.columnDefs5 = [
+      { headerName: 'Language', field: 'language', sortable: true, filter: true, editable: true, width: 120 },
+      { headerName: 'Language Code', field: 'languageCode', sortable: true, editable: true, filter: true, width: 120 },
+    ];
+
+    this.rowData5 = [
+      { language: 'English', languageCode: '001' },
+      { language: 'Hindi', languageCode: '002' },
+      { language: 'Urdu', languageCode: '003' },
+      { language: 'Arabic', languageCode: '004' },
+      { language: 'French', languageCode: '005' }
+    ];
+
   }
   ngOnInit() {
     this.saveUpdateCountry = 'Save';
@@ -366,37 +384,57 @@ export class CountryComponent implements OnInit {
     this.getCity();
     this.getPostal();
 
-  }
+  } rowNodeIndex: number;
+
 
   onStateSelectionChanged(event) {
     this.selectedRowState = this.stateApi.getSelectedRows();
-    this.rowSelection = 'multiple';
+    const selectedNodes = this.stateApi.getSelectedNodes();
+    const selectedData = selectedNodes.map(node => node.data);
+    var dataTest: Object;
+    selectedData.map(node => dataTest = node as Object);
+    this.stateApi.stopEditing();
+
     if (this.selectedRowState.length === 1) {
+      if (this.getStateResponse.length === 1) {
+        this.deleteStateToggleButton = false;
+        this.stateFilter = true;
+        this.stateCheckedStatus = false;
+      }
+      else {
       this.deleteStateToggleButton = false;
       this.stateFilter = false;
       this.stateCheckedStatus = false;
 
-      if (this.nodeStateSelect === 'Add') {
-        this.saveUpdateState = "Save";
-        this.nodeStateSelect = "Edit";
-      } else if (this.nodeStateSelect === undefined) {
-        this.saveUpdateState = "Update";
-
-        this.saveStateToggleButton = false;
       }
-      else if (this.nodeStateSelect === 'Update') {
+      if (this.nodeStateSelect === 'Add') {
+        this.saveUpdateState = 'Save';
+        this.nodeStateSelect = 'Edit';
+
+      } else if (this.nodeStateSelect === undefined) {
+        if (this.nodeStateSelect === 'Edit') {
+          this.saveUpdateState = 'Update';
+        } else { this.saveUpdateState = 'Edit'; }
+        this.saveStateToggleButton = false;
+      } else if (this.nodeStateSelect === 'Update') {
         this.saveStateToggleButton = false;
         this.saveUpdateState = 'Update';
-
       }
+    }
+    else if (this.selectedRowState.length >= 1) {
+      this.saveStateToggleButton = true;
+
     }
   }
 
   getStates() {
-    this.allWeb.getStates(this.universalBody)
+    const universalBody = new UniversalBody();
+    universalBody.userID = '1';
+    this.allWeb.getStates(universalBody)
       .subscribe(
         data => {
           this.getStateResponse = data;
+          console.log(JSON.stringify(this.getStateResponse));
 
           if (this.getStateResponse.length === 0) {
 
@@ -433,7 +471,8 @@ export class CountryComponent implements OnInit {
     }
   }
   getCity() {
-    this.allWeb.getCity(this.universalBody)
+    const universalBody = new UniversalBody();
+    universalBody.userID = '1'; this.allWeb.getCity(universalBody)
       .subscribe(
         data => {
           this.getCityResponse = data;
@@ -469,13 +508,13 @@ export class CountryComponent implements OnInit {
       );
   }
   getPostal() {
-    this.allWeb.getPostal(this.universalBody)
+    const universalBody = new UniversalBody();
+    universalBody.userID = '1';
+    this.allWeb.getPostal(universalBody)
       .subscribe(
         data => {
           this.getPostalResponse = data;
-
           if (this.getPostalResponse.length === 0) {
-
             this.TotalPostal = this.getPostalResponse.length;
             this.saveUpdatePostal = 'Save';
 
@@ -503,6 +542,7 @@ export class CountryComponent implements OnInit {
 
   }
 
+
   onAddContry() {
 
     this.api.setFocusedCell(this.countCountry, 'countryCode');
@@ -511,25 +551,24 @@ export class CountryComponent implements OnInit {
       add: [{ countryName: '', countryCode: '' }],
       addIndex: 0
     });
-
-
     this.saveCountryToggleButton = false;
-    this.nodeCountrySelect = "Add";
+    this.nodeCountrySelect = 'Add';
     this.addCountryToggleButton = true;
+    this.saveUpdateCountry = 'Save';
   }
 
   onCountryFilterChange() {
 
 
     if (this.countryCheckedStatus === false) {
-      
-     
-        this.api.selectAll();
+
+
+      this.api.selectAll();
       this.countryFilter = true;
       this.countryCheckedStatus = true;
       this.deleteCountryToggleButton = false;
       this.addCountryToggleButton = true;
-      
+
     } else {
       this.api.deselectAll();
       this.countryFilter = false;
@@ -545,7 +584,7 @@ export class CountryComponent implements OnInit {
     this.type = 'add';
     this.stateApi.setFocusedCell(this.countState, 'countryName');
     this.countState++;
-    let res = this.stateApi.updateRowData({ add: [{ stateName: '', countryName: '', description: '' }], addIndex: 0 });
+    let res = this.stateApi.updateRowData({ add: [{ stateName: '', countryName: '', description: '', hidden: 'hidden' }], addIndex: 0 });
 
     res.add.forEach(function (rowNode) {
 
@@ -554,13 +593,17 @@ export class CountryComponent implements OnInit {
     this.saveStateToggleButton = false;
     this.nodeStateSelect = "Add";
     this.addStateToggleButton = true;
+    this.saveUpdateState = 'Save';
 
   }
 
   onAddCity() {
     this.cityApi.setFocusedCell(this.countCity, 'countryName');
+    this.cityApi.getColumnDef('cityName').editable = true;
+    this.cityApi.getColumnDef('description').editable = true;
+
     this.countCity++;
-    let res = this.cityApi.updateRowData({ add: [{ stateName: '', cityName: '', countryName: '', description: '' }], addIndex: 0 });
+    let res = this.cityApi.updateRowData({ add: [{ stateName: 'vdfg', cityName: '', countryName: '', description: '', hidden: 'hidden' }], addIndex: 0 });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
@@ -568,17 +611,19 @@ export class CountryComponent implements OnInit {
     this.saveCityToggleButton = false;
     this.nodeCitySelect = "Add";
     this.addCityToggleButton = true;
+    this.saveUpdateCity = 'Save';
   }
   onAddPostal() {
     this.postalApi.setFocusedCell(this.countPostal, 'countryName');
     this.countPostal++;
-    let res = this.postalApi.updateRowData({ add: [{ cityName: '', stateName: '', countryName: '', postalCode: '', description: '' }], addIndex: 0 });
+    let res = this.postalApi.updateRowData({ add: [{ cityName: '', stateName: '', countryName: '', postalCode: '', description: '', hidden: 'hidden' }], addIndex: 0 });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
     this.savePostalToggleButton = false;
     this.nodePostalSelect = "Add";
     this.addCountryToggleButton = true;
+    this.saveUpdatePostal = 'Save';
   }
 
   universalDelete() {
@@ -599,27 +644,38 @@ export class CountryComponent implements OnInit {
       this.onDeletePostal();
     }
   }
-
+  
   onDeleteCountry() {
 
     const selectedNodes = this.api.getSelectedNodes();
-
-    const deleteCountryBody = new DeleteCountryBody();
+     const deleteArray: DeleteCountryBody[] = [];
+    const universalJsonBody = new UniversalJsonBody();
+    
     const selectedData = selectedNodes.map(node => node.data);
     var dataTest: Object;
     selectedData.map(node => dataTest = node as Object);
+    var l  = selectedData.length;
+    
     if (selectedData.length === 0) {
       alert("Please select a row");
     }
     else {
-      deleteCountryBody.CountryID = dataTest['countryID'];
-
-      if (deleteCountryBody.CountryID === undefined) {
-        this.addCountryToggleButton = false;
-        this.api.removeItems(selectedNodes);
+      
+      for (var i = 0; i < l; i++) {
+        const deleteCountryBody = new DeleteCountryBody();
+        let rowNode1 = this.api.getDisplayedRowAtIndex(i);
+  
+        deleteCountryBody.countryId =rowNode1.data.countryID;
+        deleteArray.push(deleteCountryBody);
+        alert(deleteArray);
+        
       }
-      else {
-        this.allWeb.deleteCountry(deleteCountryBody)
+      var jsonData = JSON.stringify(deleteArray);
+       jsonData = jsonData.replace(/"/g, "'");
+      alert(jsonData);
+     
+        universalJsonBody.jsonData = jsonData;
+        this.allWeb.deleteCountry(universalJsonBody)
           .subscribe(
             data => {
               this.universalResponse = data;
@@ -635,7 +691,7 @@ export class CountryComponent implements OnInit {
             }
           );
       }
-    }
+    
     this.saveCountryToggleButton = true;
     this.deleteCountryToggleButton = true;
 
@@ -671,8 +727,6 @@ export class CountryComponent implements OnInit {
                 this.getStates();
 
               }
-
-
             }
           );
       }
@@ -684,25 +738,33 @@ export class CountryComponent implements OnInit {
 
   onDeleteCity() {
 
-    const selectedNodes = this.cityApi.getSelectedNodes();
 
-    const deleteCityBody = new DeleteCityBody();
+    const selectedNodes = this.cityApi.getSelectedNodes();
+    const deleteCityArray: DeleteCityBody[] = [];
+    
+    const universalJsonBody = new UniversalJsonBody();
     const selectedData = selectedNodes.map(node => node.data);
     var dataTest: Object;
+     let l = selectedData.length;
     selectedData.map(node => dataTest = node as Object);
     if (selectedData.length === 0) {
       alert("Please select a row");
     }
-    else {
-      deleteCityBody.CityID = dataTest['cityID'];
-
-
-      if (deleteCityBody.CityID === undefined) {
-        this.addCityToggleButton = false;
-        this.cityApi.removeItems(selectedNodes);
+    else{
+      for (var i = 0; i < l; i++) {
+        const deleteCityBody = new DeleteCityBody();
+        let rowNode1 = this.cityApi.getDisplayedRowAtIndex(i);
+  
+        deleteCityBody.cityId =rowNode1.data.cityID;
+        deleteCityArray.push(deleteCityBody);
+        
+        
       }
-      else {
-        this.allWeb.deleteCity(deleteCityBody)
+      var jsonData1 = JSON.stringify(deleteCityArray);
+       jsonData1 = jsonData1.replace(/"/g, "'");
+      alert(jsonData1);
+      universalJsonBody.jsonData = jsonData1;
+        this.allWeb.deleteCity(universalJsonBody)
           .subscribe(
             data => {
               this.universalResponse = data;
@@ -717,7 +779,7 @@ export class CountryComponent implements OnInit {
 
             }
           );
-      }
+      
     }
     this.saveCityToggleButton = true;
     this.deleteCityToggleButton = true;
@@ -725,52 +787,68 @@ export class CountryComponent implements OnInit {
   }
   onDeletePostal() {
     const selectedNodes = this.postalApi.getSelectedNodes();
-
-    const deletePostalBody = new DeletePostalBody();
+    const deletePostalArray: DeletePostalBody[] = [];
+    const universalJsonBody = new UniversalJsonBody();
     const selectedData = selectedNodes.map(node => node.data);
     var dataTest: Object;
+    var l = selectedData.length;
     selectedData.map(node => dataTest = node as Object);
     if (selectedData.length === 0) {
       alert("Please select a row");
     }
     else {
-      deletePostalBody.pid = dataTest['pID'];
-
-
-      if (deletePostalBody.pid === undefined) {
-        this.addPostalToggleButton = false;
-        this.cityApi.removeItems(selectedNodes);
+      for (var i = 0; i < l; i++) {
+        const deletePostalBody = new DeletePostalBody();
+        let rowNode1 = this.postalApi.getDisplayedRowAtIndex(i);
+  
+        deletePostalBody.postalId =rowNode1.data.pID;
+        deletePostalArray.push(deletePostalBody);
+        alert(deletePostalArray);
+        
       }
-      else {
-        this.allWeb.deletePostal(deletePostalBody)
+      var jsonData = JSON.stringify(deletePostalArray);
+       jsonData = jsonData.replace(/"/g, "'");
+      alert(jsonData);
+     
+        universalJsonBody.jsonData = jsonData;
+      // deletePostalBody.pid = dataTest['pID'];
+
+
+      // if (deletePostalBody.pid === undefined) {
+      //   this.addPostalToggleButton = false;
+      //   this.cityApi.removeItems(selectedNodes);
+      // }
+      // else {
+        this.allWeb.deletePostal(universalJsonBody)
+
           .subscribe(
             data => {
               this.universalResponse = data;
               alert(this.universalResponse.MESSAGE);
               if (this.universalResponse.STATUS === 'Success') {
-                this.cityApi.removeItems(selectedNodes);
+                this.postalApi.removeItems(selectedNodes);
                 this.addPostalToggleButton = false;
                 this.getPostal();
 
               }
-
+              
 
             }
           );
       }
-    }
+    
     this.savePostalToggleButton = true;
     this.deletePostalToggleButton = true;
 
 
 
   }
-  countryArray: CountryBody[] = [];
+  
 
   onSaveCountry() {
-
     const countryBody = new CountryBody();
-    const universalBody = new UniversalBody();
+    const universalJsonBody = new UniversalJsonBody();
+
     const selectedNodes = this.api.getSelectedNodes();
     const selectedData = selectedNodes.map(node => node.data);
     var dataTest: Object;
@@ -778,41 +856,42 @@ export class CountryComponent implements OnInit {
 
     if (selectedData.length === 0) {
       alert('Please select a row');
+
     } else {
       for (let selectedNode of selectedData) {
-        countryBody.CountryCode = selectedNode['countryCode'];
-        countryBody.CountryName = selectedNode['countryName'];
+        countryBody.countryName = selectedNode['countryName'];
+        countryBody.countryCode = selectedNode['countryCode'];
         this.countryArray.push(countryBody);
-        //var jsonData = JSON.stringify(this.countryArray);
+
+        var jsonData = JSON.stringify(this.countryArray);
+        jsonData = jsonData.replace(/"/g, "'");
+
       }
-      console.log('countryArray:  ' + JSON.stringify(this.countryArray));
+      console.log('json DAta  ' + jsonData);
       if (dataTest['countryCode'] === '') {
         alert("Enter country code");
       } else if (dataTest['countryName'] === '') {
         alert("Enter country name");
       } else {
-        countryBody.CountryCode = dataTest['countryCode'];
-        countryBody.CountryName = dataTest['countryName'];
-        if (dataTest['countryCode'] === '') {
-          alert("Enter country code");
-        } else if (dataTest['countryName'] === '') {
-          alert("Enter country name");
-        } else {
-          this.allWeb.saveCountry(countryBody)
+
+          universalJsonBody.jsonData = jsonData;
+          this.allWeb.saveCountry(universalJsonBody)
             .subscribe(
+
               data => {
                 this.universalResponse = data;
 
                 alert(this.universalResponse.MESSAGE);
 
-                if (this.universalResponse.STATUS === 'Success') {
+                if (this.universalResponse.STATUS.trim() === 'Success') {
 
                   this.getCountries();
 
                 }
+                this.countryArray =[];
               }
             );
-        }
+        
       }
     }
   }
@@ -875,7 +954,8 @@ export class CountryComponent implements OnInit {
     }
     else {
       const stateBody = new StateBody();
-      const universalBody = new UniversalBody();
+      const universalBody = new UniversalBody(); universalBody.userID = '1';
+
       const selectedNodes = this.stateApi.getSelectedNodes();
 
       const selectedData = selectedNodes.map(node => node.data);
@@ -889,11 +969,12 @@ export class CountryComponent implements OnInit {
       stateBody.CountryID = this.selectedCountryId + '';
       if (dataTest['stateName'] === '') {
         alert("Enter state name");
-        this.StateToggleButton = true;
+        this.addStateToggleButton = true;
+
       }
       else {
 
-        this.StateToggleButton = false;
+
         this.allWeb.saveState(stateBody)
           .subscribe(
             data => {
@@ -921,9 +1002,7 @@ export class CountryComponent implements OnInit {
     }
     else {
       const updateStateBody = new UpdateStateBody();
-
       const selectedNodes = this.stateApi.getSelectedNodes();
-
       const selectedData = selectedNodes.map(node => node.data);
       var dataTest: Object;
       selectedData.map(node => dataTest = node as Object);
@@ -932,11 +1011,9 @@ export class CountryComponent implements OnInit {
       }
       updateStateBody.StateName = dataTest['stateName'];
       updateStateBody.Description = dataTest['description'];
-
-
       if (dataTest['stateName'] === '') {
         alert("Enter state name");
-        this.StateToggleButton = true;
+        this.addStateToggleButton = true;
       }
       else {
         updateStateBody.CountryID = dataTest['countryID'];
@@ -948,7 +1025,7 @@ export class CountryComponent implements OnInit {
         }
         else {
 
-          this.StateToggleButton = false;
+
           this.allWeb.updateState(updateStateBody)
             .subscribe(
               data => {
@@ -1031,13 +1108,20 @@ export class CountryComponent implements OnInit {
     this.selectedRowPostal = this.postalApi.getSelectedRows();
     this.rowSelection = 'multiple';
     if (this.selectedRowPostal.length === 1) {
+      if (this.getPostalResponse.length === 1) {
+        this.deletePostalToggleButton = false;
+        this.postalFilter = true;
+        this.postalCheckedStatus = false;
+      }
+      else {
+      
       this.deletePostalToggleButton = false;
       this.postalFilter = false;
       this.postalCheckedStatus = false;
-
+      }
       if (this.nodePostalSelect === 'Add') {
         this.saveUpdatePostal = 'Save';
-        this.nodePostalSelect = 'Edit';
+        this.nodePostalSelect = 'Update';
       } else if (this.nodePostalSelect === undefined) {
         this.saveUpdatePostal = 'Update';
 
@@ -1049,12 +1133,18 @@ export class CountryComponent implements OnInit {
 
       }
     }
+    else if (this.selectedRowPostal.length >= 1) {
+      this.savePostalToggleButton = true;
+
+    }
   }
 
 
   onSaveCity() {
     const cityBody = new CityBody();
-    const universalBody = new UniversalBody();
+    const universalJsonBody = new UniversalJsonBody();
+  
+
 
     const selectedNodes = this.cityApi.getSelectedNodes();
 
@@ -1064,46 +1154,60 @@ export class CountryComponent implements OnInit {
     if (selectedData.length === 0) {
       alert("Please select a row");
     }
-    cityBody.CityName = dataTest['cityName'];
-    cityBody.Description = dataTest['description'];
+   else{
+    for (let selectedNode of selectedData) {
+      cityBody.cityName = selectedNode['cityName'];
+      cityBody.description = selectedNode['description'];
+      this.cityArray.push(cityBody);
+      var jsonData = JSON.stringify(this.cityArray);
+      jsonData = jsonData.replace(/"/g, "'");
+
+    }
+   
 
     if (dataTest['cityName'] === '') {
       alert("Enter city name");
 
     }
     else {
-      this.cityToggleButton = false;
-      this.allWeb.saveCity(cityBody)
-
+      universalJsonBody.jsonData = jsonData;
+      this.allWeb.saveCity(universalJsonBody)
         .subscribe(
+
           data => {
             this.universalResponse = data;
 
             alert(this.universalResponse.MESSAGE);
 
-            if (this.universalResponse.STATUS === 'Success') {
+            if (this.universalResponse.STATUS.trim() === 'Success') {
 
               this.getCity();
-              this.addCityToggleButton = false;
 
             }
+            this.cityArray =[];
           }
-
         );
     }
+   }
 
   }
   onCitySelectionChanged() {
     this.selectedRowCity = this.cityApi.getSelectedRows();
     this.rowSelection = "multiple";
     if (this.selectedRowCity.length === 1) {
+      if (this.getCityResponse.length === 1) {
+        this.deleteCityToggleButton = false;
+        this.cityFilter = true;
+        this.cityCheckedStatus = false;
+      }
+      else {
       this.deleteCityToggleButton = false;
       this.cityFilter = false;
       this.cityCheckedStatus = false;
-
+      }
       if (this.nodeCitySelect === "Add") {
         this.saveUpdateCity = "Save";
-        this.nodeCitySelect = "Edit";
+        this.nodeCitySelect = "Update";
       } else if (this.nodeCitySelect === undefined) {
         this.saveUpdateCity = "Update";
 
@@ -1112,6 +1216,10 @@ export class CountryComponent implements OnInit {
       else if (this.nodeCitySelect === 'Update') {
         this.saveCityToggleButton = false;
         this.saveUpdateCity = 'Update';
+
+      }
+      else if (this.selectedRowCity.length >= 1) {
+        this.saveCityToggleButton = true;
 
       }
     }
@@ -1198,36 +1306,41 @@ export class CountryComponent implements OnInit {
     this.selectedRowCountry = this.api.getSelectedRows();
     this.rowSelection = 'multiple';
     if (this.selectedRowCountry.length === 1) {
-      if(this.countryDataResponse.length ===1){
+      if (this.countryDataResponse.length === 1) {
         this.deleteCountryToggleButton = false;
-      this.countryFilter = true;
-      this.countryCheckedStatus = false;
+        this.countryFilter = true;
+        this.countryCheckedStatus = false;
       }
-      else{
-      this.deleteCountryToggleButton = false;
-      this.countryFilter = false;
-      this.countryCheckedStatus = false;
+      else {
+        this.deleteCountryToggleButton = false;
+        this.countryFilter = false;
+        this.countryCheckedStatus = false;
       }
-
       if (this.nodeCountrySelect === "Add") {
         this.saveUpdateCountry = "Save";
-        this.nodeCountrySelect = "Edit";
+        this.nodeCountrySelect = "Update";
       } else if (this.nodeCountrySelect === undefined) {
         this.saveUpdateCountry = "Update";
-
         this.saveCountryToggleButton = false;
       }
       else if (this.nodeCountrySelect === 'Update') {
         this.saveCountryToggleButton = false;
         this.saveUpdateCountry = 'Update';
-
       }
+    }
+    else if (this.selectedRowCountry.length >= 1) {
+      this.saveCountryToggleButton = true;
+
     }
   }
 
   onSavePostal() {
+    
     const postalBody = new PostalBody();
     const universalBody = new UniversalBody();
+    universalBody.userID = '1';
+
+
     const selectedNodes = this.postalApi.getSelectedNodes();
 
     const selectedData = selectedNodes.map(node => node.data);
@@ -1236,33 +1349,42 @@ export class CountryComponent implements OnInit {
     if (selectedData.length === 0) {
       alert("Please select a row");
     }
-    postalBody.postalCode = dataTest['postalCode'];
-    postalBody.Description = dataTest['description'];
+    else {
+      for (let selectedNode of selectedData) {
+        postalBody.postalCode = selectedNode['postalCode'];
+        postalBody.description = selectedNode['description'];
+        this.postalArray.push(postalBody);
+        var jsonData = JSON.stringify(this.postalArray);
+        jsonData = jsonData.replace(/"/g, "'");
+
+      }
+    
 
     if (dataTest['postalCode'] === '') {
       alert("Enter postal code");
 
     }
     else {
-      this.postalToggleButton = false;
-      this.allWeb.savePostal(postalBody)
-        .subscribe(
-          data => {
-            this.universalResponse = data;
 
-            alert(this.universalResponse.MESSAGE);
+      universalJsonBody.jsonData = jsonData;
+          this.allWeb.savePostal(universalJsonBody)
+            .subscribe(
 
-            if (this.universalResponse.STATUS === 'Success') {
+              data => {
+                this.universalResponse = data;
 
-              this.getPostal();
+                alert(this.universalResponse.MESSAGE);
 
-            }
+                if (this.universalResponse.STATUS.trim() === 'Success') {
 
-          }
+                 this.getPostal();
 
-        );
+                }
+                this.postalArray =[];
+              }
+            );
     }
-
+  }
   }
 
   onUpdatePostal() {
@@ -1287,12 +1409,10 @@ export class CountryComponent implements OnInit {
       updatePostalBody.pid = dataTest['pID'];
       updatePostalBody.CityID = dataTest['cityID'];
       if (updatePostalBody.pid === undefined) {
-
-
         this.addPostalToggleButton = false;
       }
       else {
-        this.postalToggleButton = false;
+
         this.allWeb.updatePostal(updatePostalBody)
           .subscribe(
             data => {
@@ -1316,6 +1436,7 @@ export class CountryComponent implements OnInit {
 
   getCountries() {
     const universalBody = new UniversalBody();
+    universalBody.userID = '1';
     this.allWeb.getCountries(universalBody)
       .subscribe(
         data => {
@@ -1352,6 +1473,7 @@ export class CountryComponent implements OnInit {
       );
   }
   onSaveUpdateCountry() {
+    this.api.tabToNextCell();
     if (this.saveUpdateCountry === "Save") {
       this.onSaveCountry();
     }
@@ -1362,16 +1484,31 @@ export class CountryComponent implements OnInit {
   }
 
   onSaveUpdateState() {
+    this.stateApi.tabToNextCell();
     if (this.saveUpdateState === "Save") {
+
       this.onSaveState();
     }
-    else {
+    else if (this.saveUpdateState === 'Edit') {
+      this.stateApi.setFocusedCell(0, "stateName");
+      this.stateApi.getColumnDef('stateName').editable = true;
+      this.stateApi.getColumnDef('description').editable = true;
+      const selectedNodes = this.stateApi.getSelectedNodes();
+      const selectedData = selectedNodes.map(node => node.data);
+      var dataTest: Object;
+      selectedData.map(node => dataTest = node as Object);
+      var res1 = this.stateApi.updateRowData({ remove: selectedData });
+      let res = this.stateApi.updateRowData({ add: [{ stateName: dataTest['stateName'], countryName: dataTest['countryName'], description: 'description', hidden: 'hidden' }], addIndex: 0 });
+      this.saveUpdateState = "Update";
+      this.nodeStateSelect = "Update";
+    } else if (this.saveUpdateState === "Update") {
       this.onUpdateState();
     }
 
   }
 
   onSaveUpdatePostal() {
+    this.postalApi.tabToNextCell();
     if (this.saveUpdatePostal === 'Save') {
       this.onSavePostal();
     }
@@ -1379,10 +1516,12 @@ export class CountryComponent implements OnInit {
       this.onUpdatePostal();
     }
   }
+  
 
 
 
 }
+
 
 
 

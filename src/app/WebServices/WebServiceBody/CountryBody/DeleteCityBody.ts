@@ -1,4 +1,4 @@
 export class DeleteCityBody {
-    CityID: number;
+    cityId: number;
     userID: number = 1;
 }
