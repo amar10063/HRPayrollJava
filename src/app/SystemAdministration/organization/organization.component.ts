@@ -368,7 +368,7 @@ export class OrganizationComponent implements OnInit {
 
   getLocation(UserID: number) {
     var getLocationBody = new UniversalBody();
-    getLocationBody.userId = UserID + '';
+    getLocationBody.userID = UserID + '';
     this.countryService.doGetLocation(getLocationBody)
       .subscribe(
         data => {
@@ -842,7 +842,7 @@ export class OrganizationComponent implements OnInit {
 
   getDepartment(UserID: number) {
     var getDepartmentBody = new UniversalBody();
-    getDepartmentBody.userId = UserID + '';
+    getDepartmentBody.userID = UserID + '';
     this.countryService.getDepartmentByUserId(getDepartmentBody)
       .subscribe(
         data => {
@@ -975,7 +975,7 @@ export class OrganizationComponent implements OnInit {
     this.deleteNewDesignation = true;
 
     var getDesignationBody = new UniversalBody();
-    getDesignationBody.userId = UserID + '';
+    getDesignationBody.userID = UserID + '';
     this.countryService.getDesignationByUserId(getDesignationBody)
       .subscribe(
         data => {

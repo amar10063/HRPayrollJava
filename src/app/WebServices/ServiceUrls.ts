@@ -20,13 +20,13 @@ export class ServiceUrls {
     public static saveCountry = '/SaveMultipleCountry';
     public static saveCity = '/SaveMultipleCity';
     public static getCountry = '/GetCountryByUserID';
-    public static saveState = '/AddState';
+    public static saveState = '/SaveMultipleState';
     public static savePostal = '/SaveMultiplePostalCode';
     public static deleteCountry = '/DeleteMultipleCountry';
     public static getState = '/getState';
     public static getCity = '/getCity';
     public static getPostal = '/getPostalCode';
-    public static deleteState = '/DeleteState';
+    public static deleteState = '/DeleteMultipleState';
     public static deleteCity = '/DeleteMultipleCity';
     public static deletePostal = '/DeleteMultiplePostalCode';
     public static deleteSchool = '/DeleteSchool';
