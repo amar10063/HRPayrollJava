@@ -109,15 +109,19 @@ export class AllWeb {
   saveEmployeeBasicDetail(basicDetailBody: BasicDetailBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveEmployeeBasicDetail, JSON.stringify(basicDetailBody), this.httpOptions);
   }
-  saveLocation(locationBody: LocationBody): Observable<any> {
-    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddLocation, JSON.stringify(locationBody), this.httpOptions);
+
+  saveLocation(jsonData: UniversalJsonBody): Observable<any> {
+    console.log("SaveLocationData",jsonData);
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddLocation, JSON.stringify(jsonData), this.httpOptions);
   }
+
   doGetLocation(getLocationBody: UniversalBody): Observable<GetAllLocationResponse[]> {
-    console.log("locationBody",getLocationBody);
     return this.httpClient.post<GetAllLocationResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getLocation, JSON.stringify(getLocationBody), this.httpOptions);
   }
-  updateLocation(updateLocationBody: LocationBody): Observable<UniversalResponse> {
-    return this.httpClient.post<UniversalResponse>('http://10.10.10.48:8081' + '/UpdateLocation', JSON.stringify(updateLocationBody), this.httpOptions);
+
+  updateLocation(jsonData: UniversalJsonBody): Observable<any> {
+    console.log("Dataaaaaaaaaa",jsonData);
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.UpdateLocation, JSON.stringify(jsonData), this.httpOptions);
   }
   getDepartment(departmentBody: GetAllDepartmentBody): Observable<GetAllLocationResponse[]> {
     return this.httpClient.post<GetAllLocationResponse[]>('http://10.10.10.48:8081' + '/getDepartment', JSON.stringify(departmentBody), this.httpOptions);
@@ -127,7 +131,6 @@ export class AllWeb {
   }
 
   doDeleteLocation(jsonData: UniversalJsonBody): Observable<any> {
-    console.log("DataDeleteion",jsonData);
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteLocation, JSON.stringify(jsonData), this.httpOptions);
   }
 

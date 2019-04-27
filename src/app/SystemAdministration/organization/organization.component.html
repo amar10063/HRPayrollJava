@@ -169,19 +169,20 @@
 <div class="modal fade" id="addNew1">
   <div class="modal-dialog modal-dialog-centered" id="Div3">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5>Departments</h5>
+     <div class="modal-header">
+        <h4 class="modal-title"><img src="../assets/images/del-icon.png" alt="Delete" /></h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
-      <div class="modal-body">
-
-      </div>
-      <div class="modal-footer">
-
-        <button type="button" id="btnSave" class="btn btn-submit" (click)="universalDeleteOrganizaion()"
-          style="padding:4px;" data-dismiss="modal">OK</button>
-        <button type="button" id="btnSave" class="btn btn-submit" onclick="" style="padding:4px;"
-          data-dismiss="modal">CANCLE</button>
+    <div class="modal-body">
+      Are you sure you want to delete this?
+    </div>
+    <div class="modal-footer">
+  
+    <button type="button" id="btnSave" class="btn btn-submit" onclick="" style="padding:4px;"
+      data-dismiss="modal">CANCEL</button>
+  
+    <button type="button" id="btnSave" class="btn btn-submit" (click)="universalDeleteOrganizaion()"
+      style="padding:4px;" data-dismiss="modal">DELETE</button>
       </div>
     </div>
   </div>
