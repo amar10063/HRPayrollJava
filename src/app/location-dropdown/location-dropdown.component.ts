@@ -48,7 +48,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
 
   getAllLocation(): any {
     var locationBody = new UniversalBody();
-    locationBody.userId = '1';
+    locationBody.userID = '1';
     // console.log("key locationBody", locationBody)
     this.countryService.doGetLocation(locationBody)
       .subscribe(
@@ -111,7 +111,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
   }
   getAllCountry(): any {
     const universalBody = new UniversalBody();
-    universalBody.userId = '1';
+    universalBody.userID = '1';
     this.countryService.countryDropdown(universalBody)
       .subscribe(
         data => {
@@ -122,7 +122,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
   }
   getAllState(countryID): any {
     var universalBody = new UniversalBody();
-    universalBody.userId = '1';
+    universalBody.userID = '1';
     universalBody.countryID = countryID + '';
     this.countryService.stateDropdown(universalBody)
       .subscribe(
@@ -136,7 +136,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
 
   getAllCity(stateID): any {
     var universalBody = new UniversalBody();
-    universalBody.userId = '1';
+    universalBody.userID = '1';
     universalBody.stateID = stateID + '';
     console.log('zxcasczx  :' + JSON.stringify(universalBody));
     this.countryService.cityDropdown(universalBody)
