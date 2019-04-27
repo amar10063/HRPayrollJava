@@ -1,9 +1,9 @@
 export class GetAllLocationResponse {
     // id: number;
-    commonName: string;
-    commonCode: string;
-    commonDescription: string;
-    commonId: number;
+    name: string;
+    code: string;
+    descriprion: string;
+    id: number;
     // departmentID: number;
 
 }

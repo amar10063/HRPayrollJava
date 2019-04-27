@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GetLocationBody } from '../SystemAdministration/organization/GetLocationBody';
-import { GetAllDepartmentBody } from '../HRPayroll/employee/EmployeeApiResponse/GetAllDepartmentBody'
+import { GetAllDepartmentBody } from '../HRPayroll/employee/EmployeeApiResponse/GetAllDepartmentBody';
 import { AllWeb } from 'src/app/WebServices/AllWeb.service';
 import { GetAllLocationResponse } from '../HRPayroll/employee/EmployeeApiResponse/GetAllLocationResponse';
 import { INoRowsOverlayAngularComp } from 'ag-grid-angular';
@@ -24,8 +24,8 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
   selectedValue;
   action;
   context;
-  selectedClick = false;
-  normalClcik = false;
+  normalStateClcik = false; normalCityClcik = false;
+  normalCountryClcik = false;
   agInit(params: ICellRendererParams): void {
     this.params = params['value'];
     console.log('this.params: ' + this.params);
@@ -55,7 +55,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
         data => {
           this.locationResponse = data;
           var getAllLocationResponse = new GetAllLocationResponse();
-          getAllLocationResponse.commonName = 'Select';
+          getAllLocationResponse.name = 'Select';
           this.locationResponse[0] = getAllLocationResponse;
 
         }
@@ -71,7 +71,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
         data => {
           this.locationResponse = data;
           var getAllLocationResponse = new GetAllLocationResponse();
-          getAllLocationResponse.commonName = 'Select';
+          getAllLocationResponse.name = 'Select';
           this.locationResponse.push(getAllLocationResponse);
 
         }
@@ -80,34 +80,32 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
   }
 
   onClick() {
-    this.normalClcik = true;
-    this.selectedClick = false;
-    if (this.selectedClick = true) {
-      if (this.params === 'country') {
-        // this.context.componentParent.selectedCountryId = event.target.value;
-        // console.log(event.target.value);
-      } else if (this.params === 'state') {
+    if (this.params === 'country') {
+      // this.context.componentParent.selectedCountryId = event.target.value;
+      // console.log(event.target.value);
+    } else if (this.params === 'state') {
+      if (this.normalStateClcik == false) {
         this.getAllState(this.context.componentParent.selectedCountryId);
-        //  this.context.componentParent.selectedStateId = event.target.value;
-      } else if (this.params === 'city') {
-        this.getAllCity(this.context.componentParent.selectedStateId);
-        //  this.context.componentParent.selectedCityId = event.target.value;
       }
+      this.normalStateClcik = true;
+    } else if (this.params === 'city') {
+      if (this.normalCityClcik == false) {
+        this.getAllCity(this.context.componentParent.selectedStateId);
+      }
+      this.normalCityClcik = true;
     }
   }
   getSelectedValue(event) {
-    this.selectedClick = true; this.normalClcik = false;
-
-    if (this.normalClcik = true) {
-      if (this.params === 'country') {
-        this.context.componentParent.selectedCountryId = event.target.value;
-      } else if (this.params === 'state') {
-        this.context.componentParent.selectedStateId = event.target.value;
-        console.log(event.target.value);
-      } else if (this.params === 'city') {
-        this.context.componentParent.selectedCityId = event.target.value;
-      }
+    if (this.params === 'country') {
+      this.context.componentParent.selectedCountryId = event.target.value;
+      this.normalStateClcik = false;
+    } else if (this.params === 'state') {
+      this.context.componentParent.selectedStateId = event.target.value;
+      this.normalCityClcik = false;
+    } else if (this.params === 'city') {
+      this.context.componentParent.selectedCityId = event.target.value;
     }
+
   }
   getAllCountry(): any {
     const universalBody = new UniversalBody();
@@ -116,7 +114,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
       .subscribe(
         data => {
           this.locationResponse = data;
-          this.context.componentParent.selectedCountryId = this.locationResponse[0].commonId;
+          this.context.componentParent.selectedCountryId = this.locationResponse[0].id;
         }
       );
   }
@@ -128,7 +126,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
       .subscribe(
         data => {
           this.locationResponse = data;
-          this.context.componentParent.selectedStateId = this.locationResponse[0].commonId;
+          this.context.componentParent.selectedStateId = this.locationResponse[0].id;
 
         }
       );
@@ -143,7 +141,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
       .subscribe(
         data => {
           this.locationResponse = data;
-          this.context.componentParent.selectedCityId = this.locationResponse[0].commonId;
+          this.context.componentParent.selectedCityId = this.locationResponse[0].id;
 
         }
       );
