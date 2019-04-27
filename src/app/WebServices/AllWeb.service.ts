@@ -125,7 +125,7 @@ export class AllWeb {
     return this.httpClient.post<GetDepartmentResponse[]>('http://10.10.10.48:8081' + '/getDeptByUser', JSON.stringify(getDepartmentBody), this.httpOptions);
   }
 
-  doDeleteLocation(jsonData: UniversalJsonBody): Observable<any> {
+  doDeleteLocation(jsonData: DeleteLocationBody): Observable<any> {
     console.log("DataDeleteion",jsonData);
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteLocation, JSON.stringify(jsonData), this.httpOptions);
   }
