@@ -546,6 +546,10 @@ export class CountryComponent implements OnInit {
 
 
   onAddContry() {
+    this.saveCountryToggleButton = false;
+        this.nodeCountrySelect = 'Add';
+       
+        this.saveUpdateCountry = 'Save';
 
     this.api.setFocusedCell(this.countCountry, 'countryCode');
     this.countCountry++;
@@ -553,11 +557,101 @@ export class CountryComponent implements OnInit {
       add: [{ countryName: '', countryCode: '' }],
       addIndex: 0
     });
-    this.saveCountryToggleButton = false;
-    this.nodeCountrySelect = 'Add';
-    this.addCountryToggleButton = true;
-    this.saveUpdateCountry = 'Save';
+
+    const selectedNodes = this.api.getSelectedNodes();
+    const selectedData = selectedNodes.map(node => node.data);
+    var dataTest: Object;
+    selectedData.map(node => dataTest = node as Object);
+    const countryBody = new CountryBody();
+    
+      if (dataTest['countryCode'] === '') {
+        alert("Enter country code");
+        this.api.tabToNextCell();
+      } else if (dataTest['countryName'] === '') {
+        alert("Enter country name");
+
+      } else {
+        this.addCountryToggleButton= false;
+        
+        for (let selectedNode of selectedData) {
+        countryBody.countryName = selectedNode['countryName'];
+        countryBody.countryCode = selectedNode['countryCode'];
+        this.countryArray.push(countryBody);
+
+        // var jsonData = JSON.stringify(this.countryArray);
+        // jsonData = jsonData.replace(/"/g, "'");
+        }
+        
+    }
+  //   this.saveCountryToggleButton = false;
+  //   this.nodeCountrySelect = 'Add';
+  //  // this.addCountryToggleButton = true;
+  //   this.saveUpdateCountry = 'Save';
   }
+
+  onSaveCountry() {
+    const countryBody = new CountryBody();
+    const universalJsonBody = new UniversalJsonBody();
+
+    const selectedNodes = this.api.getSelectedNodes();
+    const selectedData = selectedNodes.map(node => node.data);
+    var dataTest: Object;
+    selectedData.map(node => dataTest = node as Object);
+
+    if (selectedData.length === 0) {
+      alert('Please select a row');
+
+    } else {
+      if (dataTest['countryCode'] === '') {
+        alert("Enter country code");
+      } else if (dataTest['countryName'] === '') {
+        alert("Enter country name");
+      } else {
+      for (let selectedNode of selectedData) {
+        countryBody.countryName = selectedNode['countryName'];
+        countryBody.countryCode = selectedNode['countryCode'];
+        this.countryArray.push(countryBody);
+
+        var jsonData = JSON.stringify(this.countryArray);
+        jsonData = jsonData.replace(/"/g, "'");
+
+      }
+     
+          universalJsonBody.jsonData = jsonData;
+          this.allWeb.saveCountry(universalJsonBody)
+            .subscribe(
+
+              data => {
+                this.universalResponse = data;
+
+                alert(this.universalResponse.MESSAGE);
+
+                if (this.universalResponse.STATUS.trim() === 'Success') {
+
+                  this.getCountries();
+
+                }
+                this.countryArray =[];
+              }
+            );
+        
+      }
+
+    }
+  }
+  // onAddContry() {
+
+  //   this.api.setFocusedCell(this.countCountry, 'countryCode');
+  //   this.countCountry++;
+  //   var res = this.api.updateRowData({
+  //     add: [{ countryName: '', countryCode: '' }],
+  //     addIndex: 0
+  //   });
+  //   this.saveCountryToggleButton = false;
+  //   this.nodeCountrySelect = 'Add';
+  //   this.addCountryToggleButton = true;
+  //   this.saveUpdateCountry = 'Save';
+  // }
 
   onCountryFilterChange() {
 
@@ -909,6 +1003,7 @@ export class CountryComponent implements OnInit {
   }
 
 
+
   onSaveCountry() {
     const countryBody = new CountryBody();
     const universalJsonBody = new UniversalJsonBody();
@@ -957,8 +1052,8 @@ export class CountryComponent implements OnInit {
 
       }
 
-    }
-  }
+  //   }
+  // }
 
   onUpdateCountry() {
     if (this.selectedRowCountry === undefined) {
