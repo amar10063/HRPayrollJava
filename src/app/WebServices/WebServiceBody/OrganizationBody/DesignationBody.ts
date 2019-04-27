@@ -1,4 +1,4 @@
-export class DesignationBody {
+    export class DesignationBody {
 
     departmentId: number = 1;
     designationCode: string;
@@ -6,8 +6,8 @@ export class DesignationBody {
     description: string;
     userId: number = 1;
     
-    //DesignationID:number;
+    designationId:number = 1;
+    //updatedBy: string = "1";
     //CreatedBy: string = "1";
-    //UpdatedBy: string = "1";
     
 }

@@ -152,7 +152,8 @@ export class AllWeb {
     return this.httpClient.post<GetDesignationResponse[]>('http://10.10.10.48:8081' + '/getDesignationDataByUser', JSON.stringify(getDesignationBody), this.httpOptions);
   }
   updateDesignation(updateDesignationBody: DesignationBody): Observable<UniversalResponse> {
-    return this.httpClient.post<UniversalResponse>('http://10.10.10.48:8081' + '/UpdateDesignation', JSON.stringify(updateDesignationBody), this.httpOptions);
+    console.log("update checking", updateDesignationBody);
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.updateDesignation, JSON.stringify(updateDesignationBody), this.httpOptions);
   }
   saveCity(universalJsonBody: UniversalJsonBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveCity, JSON.stringify(universalJsonBody), this.httpOptions);
