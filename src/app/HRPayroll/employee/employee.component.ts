@@ -1465,7 +1465,7 @@ export class EmployeeComponent implements OnInit {
 
   }
   onDesignationClick() {
-    this.getAllDesignation('1', this.departmentResponse[this.selectedDepartmentIndex].commonId);
+    this.getAllDesignation('1', this.departmentResponse[this.selectedDepartmentIndex].id);
 
   }
 
