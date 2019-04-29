@@ -9,10 +9,9 @@
         background: #1d8c81;
         border: none;
         color: #fff;
-        line-height: 17px;
+        line-height: 20px;
         padding-top: 0px;}
-        #tt::placeholder {
-          
+        #tt::placeholder {          
             opacity: 1; /* Firefox */
             font-size:11px;
             padding:2px;
