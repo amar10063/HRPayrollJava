@@ -57,7 +57,7 @@ export class CountryComponent implements OnInit {
   addCountryToggleButton = false;
   saveCountryToggleButton = false;
   deleteCountryToggleButton = false;
-
+  private defaultColDef;
   addStateToggleButton = false;
   saveStateToggleButton = false;
   deleteStateToggleButton = false;
@@ -142,7 +142,7 @@ export class CountryComponent implements OnInit {
     this.editType = 'fullRow';
     this.columnDefs = [
       {
-        id: 0, headerName: 'Country Code', field: 'countryCode', sortable: true, filter: true, width: 120, editable: true,
+        id: 0, headerName: 'Country Code', field: 'countryCode', sortable: true, filter: true,  editable: true,
         cellStyle: function (params) {
           if (params.value === '') {
             //this.ToggleButton = true;
@@ -157,7 +157,7 @@ export class CountryComponent implements OnInit {
       {
 
         id: 1, headerName: 'Country Name', field: 'countryName', sortable: true,
-        filter: true, width: 120, editable: true,
+        filter: true,  editable: true,
         cellStyle: function (params) {
 
           if (params.value === '') {
@@ -169,13 +169,14 @@ export class CountryComponent implements OnInit {
         }
       },
 
-      { headerName: '', field: 'hidden', width: 652, }
+      { headerName: '', field: 'hidden',  }
     ];
-
+    this.defaultColDef = { resizable: true };
+    
     this.rowData;
     this.columnDefs1 = [
       {
-        headerName: 'Country', field: 'countryName', sortable: true, filter: true, width: 210,
+        headerName: 'Country', field: 'countryName', sortable: true, filter: true,
         cellRendererSelector: function (params) {
           var locationDetails = {
             component: 'locationFramework',
@@ -190,7 +191,7 @@ export class CountryComponent implements OnInit {
 
       },
       {
-        headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: false, width: 220,
+        headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: false, 
         cellStyle: function (params) {
           if (params.value === '') {
             return { outline: '1px solid red' };
@@ -201,7 +202,7 @@ export class CountryComponent implements OnInit {
         }
 
       },
-      { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 250, editable: false },
+      { headerName: 'Description', field: 'description', sortable: true, filter: true, editable: false },
 
       { headerName: '', field: 'hidden', hide: true }
     ];
@@ -212,7 +213,7 @@ export class CountryComponent implements OnInit {
     this.columnDefs2 = [
 
       {
-        headerName: 'Country', field: 'countryName', sortable: true, editable: false, filter: true, width: 110, //
+        headerName: 'Country', field: 'countryName', sortable: true, editable: false, filter: true, //
 
         cellRendererSelector: function (params) {
           var locationDetails = {
@@ -227,7 +228,7 @@ export class CountryComponent implements OnInit {
         }
       },
       {
-        headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: false, width: 120, //singleClickEdit: true,
+        headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: false,  
 
         cellRendererSelector: function (params) {
           var locationDetails = {
@@ -242,7 +243,7 @@ export class CountryComponent implements OnInit {
         }
       },
       {
-        headerName: 'City', field: 'cityName', sortable: true, filter: true, editable: false, width: 120, singleClickEdit: true,
+        headerName: 'City', field: 'cityName', sortable: true, filter: true, editable: false,  singleClickEdit: true,
 
 
         cellStyle: function (params) {
@@ -258,7 +259,7 @@ export class CountryComponent implements OnInit {
 
       },
 
-      { headerName: 'Description', field: 'description', sortable: true, filter: true, width: 150, editable: false },
+      { headerName: 'Description', field: 'description', sortable: true, filter: true, editable: false },
 
 
 
