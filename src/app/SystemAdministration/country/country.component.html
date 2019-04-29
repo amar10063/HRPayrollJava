@@ -9,45 +9,16 @@
 
 
   <div class="clearfix"></div>
-  <div class="pay-head clearfix mt-3" id="country2">
-    <!-- <div class="col-12 col-md-2 p-0 pull-left" style="box-shadow: 1px 1px 1px #c0c1c1;">
-    <div class="payHead">
+  <div class="" id="country2">
    
-    </div>
-    </div> -->
     <div class="col-12 col-md-12 pull-left p-0">
       <div class="tab-content col-md-12 col-12 p-0">
-        <div id="country1" class="container tab-pane active">
+        <div id="country1" class="">
 
-          <div class="col-12 col-md-12 p-0">
-            <!-- <div class="col-12 col-md-6 pull-left mt-3 ">
-    <label for="Select All" class="col-4 col-md-2 pull-left p-0">Select All:</label>
-    <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
-    <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
-    <label class="checkBox">
-    <input type="checkbox" name="checkbox" checked>
-    <span class="checkmark check1"></span> </label>
-    </div>
-    
-    </div>
-    </div> -->
-            <!-- <div class="col-12 col-md-6 p-0 pull-left">
-    <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-    <button type="button" class="payHeadBtn" (click)="onAddClick()" [disabled]="ToggleButton"><i class="fa fa-plus-square"
-    aria-hidden="true"></i>Add
-    New</button>
-    <button type="button" class="payHeadBtn" (click)="onDeleteCountry()"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
-    </div>
-    </div> -->
-            <div class="clearfix"></div>
-          </div>
+         
           <div class="clearfix"></div>
-          <div class="formBody clearfix pt-0">
-            <!-- <ag-grid-angular style="width:100%; height: auto" class="ag-theme-balham" [rowData]="rowData"
-    [columnDefs]="columnDefs" [animateRows]="true" [rowSelection]="rowSelection" 
-    (selectionChanged)="onSelectionChanged($event)" (gridReady)="onGridReady($event)" (cellKeyDown)="
-    onCellKeyDown($event)"></ag-grid-angular> -->
-
+          <div class=" clearfix pt-0">
+          
 
             <div class="clearfix"></div>
             <div class="pay-head clearfix mt-2" style="border:1px solid #2e6c71" id="country3">
@@ -70,7 +41,7 @@
                   <div id="country" class="container tab-pane active">
 
                     <div class="col-12 col-md-12 p-0">
-                      <div class="col-12 col-md-4 pull-left mt-3 ">
+                      <div class="col-12 col-md-4 pull-left mt-2 ">
                         <label for="Select All" class="col-4 col-md-3 pull-left p-0">Select All:</label>
                         <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                           <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
@@ -83,9 +54,9 @@
                         </div>
                       </div>
                       <div class="col-12 col-md-8 p-0 pull-left">
-                        <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
+                        <div class="buttonCon pull-right mt-1 mb-2 mr-1 ">
                           <button type="button" class="payHeadBtn" (click)="onAddContry()"
-                            [disabled]="addCountryToggleButton"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                            [disabled]="addCountryToggleButton"><i class="fa fa-plus-square" aria-hidden="true" title="Add New"></i>Add
                             New</button>
 
                           <button type="button" class="payHeadBtn" (click)="onSaveUpdateCountry()"
@@ -95,14 +66,16 @@
                           <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#addNew2"
                             [disabled]="deleteCountryToggleButton"><i class="fa fa-trash"
                               aria-hidden="true"></i>Delete</button>
+                          <button type="button" class="payHeadBtn"><i class="fa fa-upload" aria-hidden="true"></i>Import</button>
+                          <button type="button" class="payHeadBtn"><i class="fa fa-download" aria-hidden="true"></i>Export</button>
                         </div>
                       </div>
                       <div class="clearfix"></div>
                     </div>
                     <div class="clearfix"></div>
                     <div class="formBody clearfix pt-0 pb-2">
-                      <ag-grid-angular style="width:100%; height: 221px" class="ag-theme-balham" [rowData]="rowData"
-                        [rowClassRules]="rowClassRules" [columnDefs]="columnDefs" [animateRows]="true"
+                      <ag-grid-angular style="width:100%; height: 395px" class="ag-theme-balham" [rowData]="rowData"
+                        [rowClassRules]="rowClassRules" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [animateRows]="true"
                         [rowSelection]="rowSelection" (selectionChanged)="onSelectionChanged($event)"
                         (gridReady)="onGridReady($event)"></ag-grid-angular>
 
@@ -149,6 +122,8 @@
                           <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#addNew2"
                             [disabled]="deleteStateToggleButton"><i class="fa fa-trash"
                               aria-hidden="true"></i>Delete</button>
+                              <button type="button" class="payHeadBtn"><i class="fa fa-upload" aria-hidden="true"></i>Import</button>
+                              <button type="button" class="payHeadBtn"><i class="fa fa-download" aria-hidden="true"></i>Export</button>
                         </div>
                       </div>
                       <div class="clearfix"></div>
@@ -156,7 +131,7 @@
                     <div class="clearfix"></div>
                     <div class="formBody clearfix pt-0 pb-2">
 
-                      <ag-grid-angular style="width:100%; height: 221px" class="ag-theme-balham" [rowData]="rowData1"
+                      <ag-grid-angular style="width:100%; height: 321px" class="ag-theme-balham" [rowData]="rowData1"
                         [columnDefs]="columnDefs1" [animateRows]="true" [rowSelection]="rowSelection" [frameworkComponents]="frameworkComponents"[singleClickEdit]="true"
                         [gridOptions]="gridOptions" (selectionChanged)="onStateSelectionChanged($event)"
                          (gridReady)="onStateGridReady($event)"
@@ -203,6 +178,8 @@
                           <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#addNew2"
                             [disabled]="deleteCityToggleButton"><i class="fa fa-trash"
                               aria-hidden="true"></i>Delete</button>
+                              <button type="button" class="payHeadBtn"><i class="fa fa-upload" aria-hidden="true"></i>Import</button>
+                              <button type="button" class="payHeadBtn"><i class="fa fa-download" aria-hidden="true"></i>Export</button>
                         </div>
                       </div>
                       <div class="clearfix"></div>
@@ -255,6 +232,8 @@
                           <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#addNew2"
                             [disabled]="deletePostalToggleButton"><i class="fa fa-trash"
                               aria-hidden="true"></i>Delete</button>
+                              <button type="button" class="payHeadBtn"><i class="fa fa-upload" aria-hidden="true"></i>Import</button>
+                              <button type="button" class="payHeadBtn"><i class="fa fa-download" aria-hidden="true"></i>Export</button>
                         </div>
                       </div>
                       <div class="clearfix"></div>
