@@ -116,6 +116,7 @@ export class AllWeb {
   }
 
   doGetLocation(getLocationBody: UniversalBody): Observable<GetAllLocationResponse[]> {
+    console.log("Message",getLocationBody);
     return this.httpClient.post<GetAllLocationResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getLocation, JSON.stringify(getLocationBody), this.httpOptions);
   }
 

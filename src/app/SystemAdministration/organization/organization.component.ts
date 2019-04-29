@@ -26,7 +26,7 @@ import { UniversalJsonBody } from 'src/app/WebServices/WebServiceBody/UniversalJ
   styleUrls: ['./organization.component.css']
 })
 export class OrganizationComponent implements OnInit {
-  checkedStatus = false;
+  checkedLocationStatus = false;
   locationApi: GridApi;
   columnApi: ColumnApi;
 
@@ -277,10 +277,10 @@ export class OrganizationComponent implements OnInit {
   public selectedRowsDesignation: any[];
   arrLocationDelete: DeleteLocationBody[] = [];
   arrLocationSave: LocationBody[] = [];
-  saveUpdateLocation: string;
+  // saveUpdateLocation: string;
   saveUpdateDepartment: string;
   saveUpdateDesignation: string = "Save";
-  nodeSelectButWhere: string;
+  nodeSelectButWhere: string = "Update";
 
   totalData: number;
   startPositionDesignation: number;
@@ -323,10 +323,11 @@ export class OrganizationComponent implements OnInit {
     this.addNewLocationRow = false;
     this.editLocation = false;
     this.deleteNewLocation = false;
-    this.nodeSelectButWhere = "Add";
+    this.nodeSelectButWhere = "Save";
   }
 
   getLocation(UserID: number) {
+    
     var getLocationBody = new UniversalBody();
     getLocationBody.userID = UserID + '';
     this.countryService.doGetLocation(getLocationBody)
@@ -335,7 +336,7 @@ export class OrganizationComponent implements OnInit {
           this.getAllLocationResponse = data;
           if (this.getAllLocationResponse.length === 0) {
             this.ToalLocation = this.getAllLocationResponse.length;
-            this.saveUpdateLocation = "Save";
+            // this.saveUpdateLocation = "Save";
             this.editLocation = false;
             this.addNewLocationRow = false;
             this.deleteNewLocation = true;
@@ -349,7 +350,7 @@ export class OrganizationComponent implements OnInit {
               this.ShowLocation = 1;
             }
             this.ToalLocation = this.getAllLocationResponse.length;
-            this.saveUpdateLocation = "Save";
+            // this.saveUpdateLocation = "Save";
             this.selectAllLocation = false;
             this.addNewLocationRow = false;
             this.editLocation = true;
@@ -362,13 +363,7 @@ export class OrganizationComponent implements OnInit {
   }
 
 
-  onSaveUpdateLocationData() {
-    if (this.saveUpdateLocation === "Save") {
-      this.onSaveLocation("1");
-    } else {
-      this.onUpdateLocationData("1");
-    }
-  }
+ 
 
   onDeleteLocation() {
     const universalJsonBody = new UniversalJsonBody();
@@ -392,6 +387,7 @@ export class OrganizationComponent implements OnInit {
       // deleteLocationBody.userId = dataTest['designationName']  
       if (dataTest['id'] === '') {
         alert("Plesae choose appropiate field");
+        this.checkedLocationStatus = false;
       }
       else {
         universalJsonBody.jsonData = jsonData;
@@ -404,6 +400,7 @@ export class OrganizationComponent implements OnInit {
               if (locationResponse.STATUS === 'Success') {
                 this.arrLocationDelete = [];
                 this.getLocation(1);
+                this.checkedLocationStatus = false;
               }
             }
           );
@@ -446,6 +443,8 @@ export class OrganizationComponent implements OnInit {
               this.addNewLocationRow = false;
               this.arrLocationSave = [];
               this.getLocation(1);
+
+              this.nodeSelectButWhere = "Update";
             }
           }
         );
@@ -488,39 +487,59 @@ export class OrganizationComponent implements OnInit {
               this.addNewLocationRow = false;
               this.arrLocationSave = [];
               this.getLocation(1);
+
+              this.nodeSelectButWhere = "Update";
             }
           }
         );
     }
   }
 
-  onCheckedBoxLocationChange(eve: any) {
-    if (this.checkedStatus === false) {
-      this.locationApi.selectAll();
-      this.checkedStatus = true;
-      this.deleteNewLocation = false;
-    } else {
-      this.locationApi.deselectAll();
-      this.checkedStatus = false;
-      this.deleteNewLocation = true;
+  onSaveUpdateLocationData() {
+    if (this.nodeSelectButWhere === "Save") {
+      this.onSaveLocation("1");
+    } else if(this.nodeSelectButWhere === "Update")  {
+      this.onUpdateLocationData("1");
     }
   }
 
-  // onLocationSelectionChanged() {
-  //   this.selectedRowsLocation = this.locationApi.getSelectedRows();
-  //   this.rowSelection = "multiple";
-  //   if (this.selectedRowsLocation.length === 1) {
-  //     this.deleteNewLocation = false;
-  //     if (this.nodeSelectButWhere === "Add") {
-  //       this.saveUpdateLocation = "Save";
-  //       this.nodeSelectButWhere = "Update"
-  //     } else if (this.nodeSelectButWhere === undefined) {
-  //       this.saveUpdateLocation = "Update";
-  //       this.editLocation = false;
-  //       this.checkedStatus = false
-  //     }
-  //   }
-  // }
+  onLocationSelectionChanged() {
+    this.selectedRowsLocation = this.locationApi.getSelectedRows();
+    this.rowSelection = "multiple";   
+    if (this.selectedRowsLocation.length >= 1) {
+      this.deleteNewLocation = false;    
+      this.editLocation = false;
+      if (this.nodeSelectButWhere === "Save") {
+        this.nodeSelectButWhere = "Save"
+      } else {
+        // alert(this.nodeSelectButWhere);
+        this.nodeSelectButWhere = "Update"
+        this.editLocation = false;
+        
+        // alert(this.checkedLocationStatus);
+        if(this.checkedLocationStatus === true){
+          alert("sadfgdsdfg");
+          this.checkedLocationStatus=true;
+        }
+
+      }
+    } 
+  }
+
+
+
+  onCheckedBoxLocationChange(eve: any) {
+    if (this.checkedLocationStatus === false) {
+      this.locationApi.selectAll();
+      this.checkedLocationStatus = true;
+      this.deleteNewLocation = false;
+    } else {
+      this.locationApi.deselectAll();
+      this.checkedLocationStatus = false;
+      this.deleteNewLocation = true;
+      this.editLocation = true;
+    }
+  }
 
 
 
@@ -803,24 +822,6 @@ export class OrganizationComponent implements OnInit {
     }
   }
 
-
-  onLocationSelectionChanged() {
-    this.selectedRowsLocation = this.locationApi.getSelectedRows();
-    if (this.selectedRowsLocation.length === 1) {
-      this.deleteNewLocation = false;
-      console.log("NodeBut Where", this.nodeSelectButWhere);
-
-      if (this.nodeSelectButWhere === "Add") {
-        this.saveUpdateLocation = "Save";
-        this.nodeSelectButWhere = "Update"
-      } else if (this.nodeSelectButWhere === undefined) {
-        this.saveUpdateLocation = "Update";
-        this.editLocation = false;
-
-      }
-
-    }
-  }
   onDepartmentSelectionChanged() {
     this.selectedRowsDepartment = this.departmentApi.getSelectedRows();
     if (this.selectedRowsDepartment.length === 1) {
@@ -838,17 +839,7 @@ export class OrganizationComponent implements OnInit {
     }
   }
 
-  onCheckedBoxChange(eve: any) {
-    if (this.checkedStatus === false) {
-      this.locationApi.selectAll();
-      this.checkedStatus = true;
-      this.deleteNewLocation = false;
-    } else {
-      this.locationApi.deselectAll();
-      this.checkedStatus = false;
-      this.deleteNewLocation = true;
-    }
-  }
+
 
 
   getDesignation(UserID: number) {
