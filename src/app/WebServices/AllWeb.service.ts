@@ -136,6 +136,7 @@ export class AllWeb {
   }
 
   saveDepartment(universalJsonBody: UniversalJsonBody): Observable<any> {
+    alert(JSON.stringify(universalJsonBody));
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddDepartment, JSON.stringify(universalJsonBody), this.httpOptions);
   }
   deleteDepartment(universalJsonBody: UniversalJsonBody): Observable<any> {
