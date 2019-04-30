@@ -1,10 +1,10 @@
 <div class="container-fluid gridBody">
 
   <div class="buttonCon pull-right">
-    <button type="button" class="btn templateBg"><img src="../assets/images/back-icon.png" alt="home" />Back</button>
-    <button type="button" class="btn templateBg"><img src="../assets/images/home-icon.png" alt="home" />Home</button>
+    <button type="button" class="btn templateBg" title="Back" ><img src="../assets/images/back-icon.png" alt="home"/>Back</button>
+    <button type="button" class="btn templateBg" title="Home"><img src="../assets/images/home-icon.png" alt="home" />Home</button>
   </div>
-  <h5>System Administration</h5>
+  <h5 title="System Administration">System Administration</h5>
 
 
 
@@ -25,13 +25,13 @@
               <div class="col-12 col-md-2 p-0 pull-left" style="box-shadow: 1px 1px 1px #c0c1c1;">
                 <div class="payHead">
                   <ul class="nav navbar-nav" role="tablist">
-                    <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#country"><i
+                    <li class="nav-item" title="Country"> <a class="nav-link active" data-toggle="tab" href="#country"><i
                           class="fa fa-globe" aria-hidden="true"></i> Country</a> </li>
-                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#state"><i class="fa fa-map pr-1"
+                    <li class="nav-item" title="State"> <a class="nav-link" data-toggle="tab" href="#state"><i class="fa fa-map pr-1"
                           aria-hidden="true"></i> State</a> </li>
-                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#city"><i
+                    <li class="nav-item" title="City"> <a class="nav-link" data-toggle="tab" href="#city"><i
                           class="fa fa-map-marker pr-1" aria-hidden="true"></i> City</a> </li>
-                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#postal"><i
+                    <li class="nav-item" title="Postal Code"> <a class="nav-link" data-toggle="tab" href="#postal"><i
                           class="fa fa-th-large pr-1" aria-hidden="true"></i> Postal Code</a> </li>
                   </ul>
                 </div>
@@ -48,7 +48,7 @@
                             <label class="checkBox">
                               <input type="checkbox" name="checkbox" (ngModelChange)="onCountryFilterChange($event)"
                                 [ngModel]="countryFilter">
-                              <span class="checkmark check1"></span> </label>
+                              <span class="checkmark check1" title="Select All"></span> </label>
                           </div>
 
                         </div>
@@ -56,21 +56,20 @@
                       <div class="col-12 col-md-8 p-0 pull-left">
                         <div class="buttonCon pull-right mt-1 mb-2 mr-1 ">
                           <button type="button" class="payHeadBtn" (click)="onAddContry()"
-                            [disabled]="addCountryToggleButton"><i class="fa fa-plus-square" aria-hidden="true"
-                              title="Add New"></i>Add
+
+                            [disabled]="addCountryToggleButton" title="Add New"><i class="fa fa-plus-square" aria-hidden="true" ></i>Add
                             New</button>
 
                           <button type="button" class="payHeadBtn" (click)="onSaveUpdateCountry()"
-                            [disabled]="saveCountryToggleButton"><i class="fa fa-save"
-                              aria-hidden="true"></i>{{saveUpdateCountry}}
+                            [disabled]="saveCountryToggleButton" title="Save"><i class="fa fa-save"
+                              aria-hidden="true" ></i>{{saveUpdateCountry}}
                           </button>
                           <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#addNew2"
-                            [disabled]="deleteCountryToggleButton"><i class="fa fa-trash"
-                              aria-hidden="true"></i>Delete</button>
-                          <button type="button" class="payHeadBtn"><i class="fa fa-upload"
-                              aria-hidden="true"></i>Import</button>
-                          <button type="button" class="payHeadBtn"><i class="fa fa-download"
-                              aria-hidden="true"></i>Export</button>
+
+                            [disabled]="deleteCountryToggleButton" title="Delete"><i class="fa fa-trash"
+                              aria-hidden="true" ></i>Delete</button>
+                          <button type="button" class="payHeadBtn" title="Import"><i class="fa fa-upload" aria-hidden="true" ></i>Import</button>
+                          <button type="button" class="payHeadBtn" title="Export"><i class="fa fa-download" aria-hidden="true" ></i>Export</button>
                         </div>
                       </div>
                       <div class="clearfix"></div>
@@ -107,7 +106,7 @@
                             <label class="checkBox">
                               <input type="checkbox" name="checkbox" (ngModelChange)="onStateFilterChange($event)"
                                 [ngModel]="stateFilter">
-                              <span class="checkmark check1"></span> </label>
+                              <span class="checkmark check1" title="Select All"></span> </label>
                           </div>
 
 
@@ -117,20 +116,19 @@
                       <div class="col-12 col-md-8 p-0 pull-left">
                         <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
                           <button type="button" class="payHeadBtn" (click)="onAddState()"
-                            [disabled]="addStateToggleButton"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                            [disabled]="addStateToggleButton" title="Add New"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                             New</button>
 
                           <button type="button" class="payHeadBtn" (click)="onSaveUpdateState()"
-                            [disabled]="saveStateToggleButton"><i class="fa fa-save"
+                            [disabled]="saveStateToggleButton" title="Save"><i class="fa fa-save"
                               aria-hidden="true"></i>{{saveUpdateState}}
                           </button>
                           <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#addNew2"
                             [disabled]="deleteStateToggleButton"><i class="fa fa-trash"
-                              aria-hidden="true"></i>Delete</button>
-                          <button type="button" class="payHeadBtn"><i class="fa fa-upload"
-                              aria-hidden="true"></i>Import</button>
-                          <button type="button" class="payHeadBtn"><i class="fa fa-download"
-                              aria-hidden="true"></i>Export</button>
+
+                              aria-hidden="true" title="Delete"></i>Delete</button>
+                              <button type="button" class="payHeadBtn" title="Import"><i class="fa fa-upload" aria-hidden="true"></i>Import</button>
+                              <button type="button" class="payHeadBtn" title="Export"><i class="fa fa-download" aria-hidden="true"></i>Export</button>
                         </div>
                       </div>
                       <div class="clearfix"></div>
@@ -171,7 +169,7 @@
                             <label class="checkBox">
                               <input type="checkbox" name="checkbox" (ngModelChange)="onCityFilterChange($event)"
                                 [ngModel]="cityFilter">
-                              <span class="checkmark check1"></span> </label>
+                              <span class="checkmark check1" title="Select All"></span> </label>
                           </div>
 
                         </div>
@@ -179,19 +177,18 @@
                       <div class="col-12 col-md-8 p-0 pull-left">
                         <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
                           <button type="button" class="payHeadBtn" (click)="onAddCity()"
-                            [disabled]="addCityToggleButton"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                            [disabled]="addCityToggleButton" title="Add New"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                             New</button>
                           <button type="button" class="payHeadBtn" (click)="onSaveUpdateCity()"
-                            [disabled]="saveCityToggleButton"><i class="fa fa-save"
+                            [disabled]="saveCityToggleButton" Title="Save"><i class="fa fa-save"
                               aria-hidden="true"></i>{{saveUpdateCity}}
                           </button>
                           <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#addNew2"
-                            [disabled]="deleteCityToggleButton"><i class="fa fa-trash"
+                            [disabled]="deleteCityToggleButton" Title="Delete"><i class="fa fa-trash"
                               aria-hidden="true"></i>Delete</button>
-                          <button type="button" class="payHeadBtn"><i class="fa fa-upload"
-                              aria-hidden="true"></i>Import</button>
-                          <button type="button" class="payHeadBtn"><i class="fa fa-download"
-                              aria-hidden="true"></i>Export</button>
+
+                              <button type="button" class="payHeadBtn" title="Import"><i class="fa fa-upload" aria-hidden="true"></i>Import</button>
+                              <button type="button" class="payHeadBtn" title="Export"><i class="fa fa-download" aria-hidden="true"></i>Export</button>
                         </div>
                       </div>
                       <div class="clearfix"></div>
@@ -229,7 +226,7 @@
                             <label class="checkBox">
                               <input type="checkbox" name="checkbox" (ngModelChange)="onPostalFilterChange($event)"
                                 [ngModel]="postalFilter">
-                              <span class="checkmark check1"></span> </label>
+                              <span class="checkmark check1" title="Select All"></span> </label>
                           </div>
 
                         </div>
@@ -238,20 +235,19 @@
                       <div class="col-12 col-md-8 p-0 pull-left">
                         <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
                           <button type="button" class="payHeadBtn" (click)="onAddPostal()"
-                            [disabled]="addPostalToggleButton"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                            [disabled]="addPostalToggleButton" title="Add New"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                             New</button>
                           <button type="button" class="payHeadBtn" (click)="onSaveUpdatePostal()"
-                            [disabled]="savePostalToggleButton"><i class="fa fa-save"
+                            [disabled]="savePostalToggleButton" title="Save"><i class="fa fa-save"
                               aria-hidden="true"></i>{{saveUpdatePostal}}
 
                           </button>
                           <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#addNew2"
-                            [disabled]="deletePostalToggleButton"><i class="fa fa-trash"
+                            [disabled]="deletePostalToggleButton" title="Delete"><i class="fa fa-trash"
                               aria-hidden="true"></i>Delete</button>
-                          <button type="button" class="payHeadBtn"><i class="fa fa-upload"
-                              aria-hidden="true"></i>Import</button>
-                          <button type="button" class="payHeadBtn"><i class="fa fa-download"
-                              aria-hidden="true"></i>Export</button>
+
+                              <button type="button" class="payHeadBtn" title="Import"><i class="fa fa-upload" aria-hidden="true"></i>Import</button>
+                              <button type="button" class="payHeadBtn" title="Export" ><i class="fa fa-download" aria-hidden="true"></i>Export</button>
                         </div>
                       </div>
                       <div class="clearfix"></div>
