@@ -31,7 +31,7 @@
                       <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                         <label class="checkBox">
                           <input type="checkbox" [disabled]="selectAllLocation" name="checkbox" (ngModelChange)="onCheckedBoxLocationChange($event)"
-                      [ngModel]="checkedStatus">
+                      [ngModel]="checkedLocationStatus">
                           <span class="checkmark check1"></span> </label>
                       </div>
                       
@@ -42,8 +42,8 @@
                 <button type="button" class="payHeadBtn" [disabled]="addNewLocationRow" (click)="onAddLocation()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                   New</button>
                   <button type="button" class="payHeadBtn" [disabled]="editLocation" (click)="onSaveUpdateLocationData()"><i class="fa fa-save"
-                    aria-hidden="true"></i>{{saveUpdateLocation}}
-                </button>
+                    aria-hidden="true"></i>Save</button>
+                <!-- {{saveUpdateLocation}} -->
                   <button type="button" class="payHeadBtn" [disabled]="deleteNewLocation" data-toggle="modal" data-target="#addNew1">
                     <i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
                     <button type="button" class="payHeadBtn"><i class="fa fa-upload" aria-hidden="true"></i>Import</button>
