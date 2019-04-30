@@ -6,7 +6,7 @@
     description: string;
     userId: number = 1;
     
-    designationId:number = 1;
+    designationId:number;
     //updatedBy: string = "1";
     //CreatedBy: string = "1";
     

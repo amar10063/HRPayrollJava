@@ -144,9 +144,11 @@ export class AllWeb {
     return this.httpClient.post<UniversalResponse>('http://10.10.10.48:8081' + '/UpdateDepartment', JSON.stringify(updateDepartmentBody), this.httpOptions);
   }
   saveDesignation(jsonData: UniversalJsonBody): Observable<any> {
+    console.log("delete data",jsonData);
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddDesignation, JSON.stringify(jsonData), this.httpOptions);
   }
   deleteDesignation(deleteDesignationBody: UniversalJsonBody): Observable<any> {
+    console.log("delete data",deleteDesignationBody);
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteDesignation, JSON.stringify(deleteDesignationBody), this.httpOptions);
   }
   getAllDesignation(designationBody: GetAllDesignationBody): Observable<any> {
@@ -155,7 +157,7 @@ export class AllWeb {
   getDesignationByUserId(getDesignationBody: UniversalBody): Observable<GetDesignationResponse[]> {
     return this.httpClient.post<GetDesignationResponse[]>('http://10.10.10.48:8081' + '/getDesignationDataByUser', JSON.stringify(getDesignationBody), this.httpOptions);
   }
-  updateDesignation(updateDesignationBody: DesignationBody): Observable<UniversalResponse> {
+  updateDesignation(updateDesignationBody: UniversalJsonBody): Observable<UniversalResponse> {
     console.log("update checking", updateDesignationBody);
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.updateDesignation, JSON.stringify(updateDesignationBody), this.httpOptions);
   }

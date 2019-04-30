@@ -125,7 +125,7 @@
                     <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                       <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                         <label class="checkBox">
-                          <input type="checkbox" name="checkbox" [ngModel] = "selectAllDesignationCheckBox" 
+                          <input type="checkbox" name="checkbox" [ngModel] = "checkedStatus" 
                           (ngModelChange)="onCheckedBoxChangeDesignation($event)">
                           <span class="checkmark check1"></span> </label>
                       </div>
@@ -137,7 +137,7 @@
                 <button type="button" class="payHeadBtn"[disabled]="addNewDesignationRow" (click)="onAddDesignation()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                   New</button>
                   <button type="button" class="payHeadBtn"[disabled]="editDesignation" (click)="onSaveUpdateDesignationData()"><i class="fa fa-save"
-                    aria-hidden="true"></i>{{saveUpdateDesignation}}
+                    aria-hidden="true"></i>Save
                 </button>
                   <button type="button" class="payHeadBtn"[disabled]="deleteNewDesignation" data-toggle="modal" data-target="#addNew1"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
                 </div>
@@ -155,7 +155,7 @@
             <div class="col-md-12 col-sm-6 col-xs-12">
               <div class="form group col-md-2 pull-right p-0" >
                   <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
-                <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">{{startPositionDesignation}}-{{endPositionDesignation}} of {{totalData}}</label>
+                <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">{{startPositionDesignation}} - {{endPositionDesignation}} of {{totalData}}</label>
                 <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
               </div>  
               </div>
