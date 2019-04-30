@@ -28,3 +28,4 @@ button:disabled{opacity:.3}
     border-color: #bdc3c3 !important;
 }
 .liSelected{background-color: #c2dcde !important;}
+.ag-header-cell-menu-button{opacity:1 !important}

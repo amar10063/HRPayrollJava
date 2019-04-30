@@ -35,12 +35,12 @@ export class OrganizationComponent implements OnInit {
 
   designationApi: GridApi;
   designationColumnApi: ColumnApi;
-
+  private defaultColDef;
   locationResponse: LocationResponse;
   designationResponse: DesignationResponse;
   universalResponse: UniversalResponse;
   private frameworkComponents;
-
+ 
   rowSelection: string;
   columnDefs: any; columnDefs1: any;
   columnDefs2: any;
@@ -71,10 +71,11 @@ export class OrganizationComponent implements OnInit {
 
   constructor(private countryService: AllWeb) {
     //this.frameworkComponents = { genderCellRenderer: LocationDropdownComponent };
+    //this.gridApi.sizeColumnsToFit();
     this.rowSelection = 'multiple';
     this.columnDefs = [
       {
-        headerName: 'Hidden', field: 'hidden', hide: true, sortable: true, filter: true, editable: true, width: 150,
+        headerName: 'Hidden', field: 'hidden', hide: true, sortable: true, filter: true, editable: true, 
 
 
         cellStyle: function (params) {
@@ -87,7 +88,8 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Location Code', field: 'code', sortable: true, filter: true, editable: true, width: 120,
+        headerName: 'Location Code', field: 'code', sortable: true, filter: true, editable: true, width:250, minWidth: 50,
+        maxWidth: 300,
         cellStyle: function (params) {
           if (params.value === '') {
             return { outline: '1px solid red' };
@@ -97,7 +99,8 @@ export class OrganizationComponent implements OnInit {
         }
       },
       {
-        headerName: 'Location Name', field: 'name', sortable: true, filter: true, editable: true, width: 120,
+        headerName: 'Location Name', field: 'name', sortable: true, filter: true, editable: true, width:250, minWidth: 50,
+        maxWidth: 300,
 
 
         cellStyle: function (params) {
@@ -110,7 +113,8 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Description', field: 'description', sortable: true, filter: true, editable: true, width: 130,
+        headerName: 'Description', field: 'description', sortable: true, filter: true, editable: true, width:300, minWidth: 50,
+        maxWidth: 500,
 
 
         cellStyle: function (params) {
@@ -128,19 +132,22 @@ export class OrganizationComponent implements OnInit {
 
       },
 
-      { headerName: '', field: '', width: 486, }
+    
     ];
+    this.defaultColDef = { resizable: true };
     this.rowData;
     this.columnDefs1 = [
       {
-        headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, width: 120,
+        headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, width:150, minWidth: 50,
+        maxWidth: 300,
         cellRendererFramework: LocationDropdownComponent,
         cellRendererParams: {
           value: 'location'
         }
       },
       {
-        headerName: 'Department Code', field: 'departmentCode', sortable: true, editable: true, filter: true, width: 140,
+        headerName: 'Department Code', field: 'departmentCode', sortable: true, editable: true, width:250,  minWidth: 50,
+        maxWidth: 300, filter: true, 
 
         cellStyle: function (params) {
           if (params.value === '') {
@@ -152,7 +159,8 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Department Name', field: 'departmentName', sortable: true, editable: true, filter: true, width: 120,
+        headerName: 'Department Name', field: 'departmentName', sortable: true, width:150,  minWidth: 50,
+        maxWidth: 300, editable: true, filter: true, 
 
 
         cellStyle: function (params) {
@@ -165,7 +173,8 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Description', field: 'description', sortable: true, editable: true, filter: true, width: 130,
+        headerName: 'Description', field: 'description', sortable: true, width:250,  minWidth: 50,
+        maxWidth: 300, editable: true, filter: true, 
 
 
         cellStyle: function (params) {
@@ -182,15 +191,17 @@ export class OrganizationComponent implements OnInit {
         }
 
       },
-      { headerName: '', field: '', width: 382, }
+      // { headerName: '', field: '',  }
     ];
-
+    this.defaultColDef = { resizable: true };
+  
     this.rowData1;
 
 
     this.columnDefs2 = [
       {
-        headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, editable: true, width: 120,
+        headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, editable: true, width:150, minWidth: 50,
+        maxWidth: 300,
         cellEditor: 'select',
         cellRendererFramework: LocationDropdownComponent,
         cellRendererParams: {
@@ -200,7 +211,8 @@ export class OrganizationComponent implements OnInit {
       },
 
       {
-        headerName: 'Department', field: 'DepartmentName', sortable: true, editable: true, filter: true, width: 120,
+        headerName: 'Department', field: 'DepartmentName', sortable: true, editable: true, filter: true, width:150, minWidth: 50,
+        maxWidth: 300,
 
         cellEditor: "select",
         cellRendererFramework: LocationDropdownComponent,
@@ -210,7 +222,8 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Designation Code', field: 'designationCode', sortable: true, editable: true, filter: true, width: 140,
+        headerName: 'Designation Code', field: 'designationCode', sortable: true, editable: true, filter: true, width:150, minWidth: 50,
+        maxWidth: 300,
 
 
         cellStyle: function (params) {
@@ -228,7 +241,8 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Designation', field: 'designationName', sortable: true, editable: true, filter: true, width: 140,
+        headerName: 'Designation', field: 'designationName', sortable: true, editable: true, filter: true, width:150, minWidth: 50,
+        maxWidth: 300,
 
         cellStyle: function (params) {
           if (params.value === '') {
@@ -245,7 +259,8 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Description', field: 'description', sortable: true, editable: true, filter: true, width: 130,
+        headerName: 'Description', field: 'description', sortable: true, editable: true, filter: true,width:220, minWidth: 50,
+        maxWidth: 300,
 
 
         cellStyle: function (params) {
@@ -262,9 +277,9 @@ export class OrganizationComponent implements OnInit {
         }
 
       },
-      { headerName: '', field: '', width: 243, }
+     
     ];
-
+    this.defaultColDef = { resizable: true };
     this.rowData2;
 
   }
@@ -1129,7 +1144,10 @@ export class OrganizationComponent implements OnInit {
     });
     document.querySelector('#selectedRows').innerHTML = selectedRowsString;
   }
-
+  onFirstDataRendered(params) {
+    params.api.sizeColumnsToFit();
+  }
+  
   onDesignationSelectionChanged() {
     this.editDesignation = false;
     this.selectedRowsDesignation = this.designationApi.getSelectedRows();
