@@ -111,7 +111,6 @@ export class AllWeb {
   }
 
   saveLocation(jsonData: UniversalJsonBody): Observable<any> {
-    console.log("SaveLocationData",jsonData);
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddLocation, JSON.stringify(jsonData), this.httpOptions);
   }
 

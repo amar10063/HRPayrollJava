@@ -361,7 +361,7 @@ export class OrganizationComponent implements OnInit {
   }
 
   getLocation(UserID: number) {
-
+    console.log("Get Locations","Locationsss");
     var getLocationBody = new UniversalBody();
     getLocationBody.userID = UserID + '';
     this.countryService.doGetLocation(getLocationBody)
@@ -413,8 +413,13 @@ export class OrganizationComponent implements OnInit {
       for (let selectedNode of selectedData) {
         const deleteLocationBody = new DeleteLocationBody();
         deleteLocationBody.locationId = selectedNode['id'];
-        this.arrLocationDelete.push(deleteLocationBody);
-        var jsonData = JSON.stringify(this.arrLocationDelete);
+        if(deleteLocationBody.locationId===undefined){
+          this.locationApi.updateRowData({ remove: selectedData });
+        }else{
+          deleteLocationBody.userId=1;
+          this.arrLocationDelete.push(deleteLocationBody);
+          var jsonData = JSON.stringify(this.arrLocationDelete);
+        }
       }
       jsonData = jsonData.replace(/"/g, "'");
       deleteLocationBody.locationId = dataTest['id'];
@@ -472,13 +477,20 @@ export class OrganizationComponent implements OnInit {
         .subscribe(
           data => {
             locationResponse = data;
-            alert(locationResponse.MESSAGE);
-            if (locationResponse.STATUS === 'Success') {
+            if (locationResponse.STATUS === "Success") {
+              // alert("in Success Methods")
+              if(locationResponse.OUTPUT != '') {
+                alert(locationResponse.OUTPUT+" exists.");
+              }else{
+                alert(locationResponse.MESSAGE);
+                this.getLocation(1);
+                this.locationApi.deselectAll();
+              }
+
               this.addNewLocationRow = false;
               this.arrLocationSave = [];
-              this.getLocation(1);
-
               this.nodeSelectButWhere = "Update";
+
             }
           }
         );
@@ -517,6 +529,7 @@ export class OrganizationComponent implements OnInit {
           data => {
             locationResponse = data;
             alert(locationResponse.MESSAGE);
+            
             if (locationResponse.STATUS === 'Success') {
               this.addNewLocationRow = false;
               this.arrLocationSave = [];
@@ -543,24 +556,23 @@ export class OrganizationComponent implements OnInit {
     if (this.selectedRowsLocation.length >= 1) {
       this.deleteNewLocation = false;
       this.editLocation = false;
+      // alert(this.nodeSelectButWhere);
       if (this.nodeSelectButWhere === "Save") {
         this.nodeSelectButWhere = "Save"
       } else {
-        // alert(this.nodeSelectButWhere);
+      
         this.nodeSelectButWhere = "Update"
         this.editLocation = false;
 
         // alert(this.checkedLocationStatus);
-        if (this.checkedLocationStatus === true) {
-          alert("sadfgdsdfg");
-          this.checkedLocationStatus = true;
-        }
+        // if (this.checkedLocationStatus === true) {
+        //   alert("sadfgdsdfg");
+        //   this.checkedLocationStatus = true;
+        // }
 
       }
     }
   }
-
-
 
   onCheckedBoxLocationChange(eve: any) {
     if (this.checkedLocationStatus === false) {
@@ -572,6 +584,7 @@ export class OrganizationComponent implements OnInit {
       this.checkedLocationStatus = false;
       this.deleteNewLocation = true;
       this.editLocation = true;
+      
     }
   }
 
