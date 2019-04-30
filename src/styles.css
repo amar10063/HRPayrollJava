@@ -5,6 +5,7 @@ body {
     overflow-x: hidden;
     overflow-y: hidden;
 }
+.ag-theme-balham{    font-size: 10px !important;}
 button:disabled{opacity:.3}
 .ag-theme-balham .sick-days-warning {
     background-color: sandybrown !important;
@@ -29,3 +30,4 @@ button:disabled{opacity:.3}
 }
 .liSelected{background-color: #c2dcde !important;}
 .ag-header-cell-menu-button{opacity:1 !important}
+.ag-column-menu-visible{background: #2e6d72 !important; color:#fff !important;}
