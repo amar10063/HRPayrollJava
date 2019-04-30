@@ -405,6 +405,40 @@ export class CountryComponent implements OnInit {
       colKey: 'countryName'
     });
   }
+  rowCityEditingStarted(event) {
+    this.cityApi.getColumnDef('cityName').editable = true;
+    this.cityApi.getColumnDef('description').editable = true;
+    const selectedNodes = this.cityApi.getSelectedNodes();
+    const selectedData = selectedNodes.map(node => node.data);
+    var dataTest: Object;
+    selectedData.map(node => dataTest = node as Object);
+    console.log('datatest:  ' + JSON.stringify(dataTest));
+    var res1 = this.cityApi.updateRowData({ remove: selectedData });
+
+    let res = this.cityApi.updateRowData({ add: [{ stateName: dataTest['stateName'], cityName: dataTest['cityName'], countryName: dataTest['countryName'], description: dataTest['description'], hidden: 'hidden' }], addIndex: event.rowIndex });
+
+    this.cityApi.startEditingCell({
+      rowIndex: event.rowIndex,
+      colKey: 'countryName'
+    });
+  }
+  rowPostalEditingStarted(event) {
+    this.postalApi.getColumnDef('postalCode').editable = true;
+    this.postalApi.getColumnDef('description').editable = true;
+    const selectedNodes = this.postalApi.getSelectedNodes();
+    const selectedData = selectedNodes.map(node => node.data);
+    var dataTest: Object;
+    selectedData.map(node => dataTest = node as Object);
+    console.log('datatest:  ' + JSON.stringify(dataTest));
+    var res1 = this.postalApi.updateRowData({ remove: selectedData });
+
+    let res = this.postalApi.updateRowData({ add: [{ cityName: dataTest['cityName'], stateName: dataTest['stateName'], countryName: dataTest['countryName'], postalCode: dataTest['postalCode'], description: dataTest['description'], hidden: 'hidden' }], addIndex: event.rowIndex });
+
+    this.postalApi.startEditingCell({
+      rowIndex: event.rowIndex,
+      colKey: 'countryName'
+    });
+  }
   onStateSelectionChanged(event) {
     this.selectedRowState = this.stateApi.getSelectedRows();
     const selectedNodes = this.stateApi.getSelectedNodes();
@@ -1432,13 +1466,8 @@ export class CountryComponent implements OnInit {
         this.nodeCitySelect = 'Edit';
 
       } else if (this.nodeCitySelect === undefined) {
-        if (this.nodeCitySelect === 'Edit') {
-          this.saveUpdateCity = 'Update';
-        } else { this.saveUpdateCity = 'Edit'; }
+        this.saveUpdateCity = 'Save';
         this.saveCityToggleButton = false;
-      } else if (this.nodeCitySelect === 'Update') {
-        this.saveCityToggleButton = false;
-        this.saveUpdateCity = 'Update';
       }
     }
     else if (this.selectedRowCity.length >= 1) {
@@ -1486,19 +1515,7 @@ export class CountryComponent implements OnInit {
     if (this.saveUpdateCity === "Save") {
       this.onSaveCity();
     }
-    else if (this.saveUpdateCity === 'Edit') {
-      // this.cityApi.setFocusedCell(0, "stateName");
-      this.cityApi.getColumnDef('cityName').editable = true;
-      this.cityApi.getColumnDef('description').editable = true;
-      const selectedNodes = this.cityApi.getSelectedNodes();
-      const selectedData = selectedNodes.map(node => node.data);
-      var dataTest: Object;
-      selectedData.map(node => dataTest = node as Object);
-      var res1 = this.cityApi.updateRowData({ remove: selectedData });
-      let res = this.cityApi.updateRowData({ add: [{ stateName: '', cityName: dataTest['cityName'], countryName: '', description: dataTest['description'], hidden: 'hidden' }], addIndex: 0 });
-      this.saveUpdateCity = "Update";
-      this.nodeCitySelect = "Update";
-    } else if (this.saveUpdateCity === "Update") {
+    else if (this.saveUpdateCity === "Update") {
       this.onUpdateCity();
     }
     this.addPostalToggleButton = false;
