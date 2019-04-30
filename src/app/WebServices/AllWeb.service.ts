@@ -134,14 +134,16 @@ export class AllWeb {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteLocation, JSON.stringify(jsonData), this.httpOptions);
   }
 
-  saveDepartment(departmentBody: DepartmentBody): Observable<any> {
-    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddDepartment, JSON.stringify(departmentBody), this.httpOptions);
+  saveDepartment(universalJsonBody: UniversalJsonBody): Observable<any> {
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddDepartment, JSON.stringify(universalJsonBody), this.httpOptions);
   }
-  deleteDepartment(deleteDepartmentBody: DeleteDepartmentBody): Observable<any> {
-    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteDepartment, JSON.stringify(deleteDepartmentBody), this.httpOptions);
+  deleteDepartment(universalJsonBody: UniversalJsonBody): Observable<any> {
+    return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteDepartment, JSON.stringify(universalJsonBody), this.httpOptions);
   }
-  updateDepartment(updateDepartmentBody: DepartmentBody): Observable<UniversalResponse> {
-    return this.httpClient.post<UniversalResponse>('http://10.10.10.48:8081' + '/UpdateDepartment', JSON.stringify(updateDepartmentBody), this.httpOptions);
+  updateDepartment(universalJsonBody: UniversalJsonBody): Observable<UniversalResponse> {
+    // alert(JSON.stringify(universalJsonBody));
+    console.log("JSON",universalJsonBody);
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls+ ServiceUrls.updateDepartment, JSON.stringify(universalJsonBody), this.httpOptions);
   }
   saveDesignation(jsonData: UniversalJsonBody): Observable<any> {
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddDesignation, JSON.stringify(jsonData), this.httpOptions);

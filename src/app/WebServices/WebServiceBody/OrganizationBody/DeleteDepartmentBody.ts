@@ -1,6 +1,6 @@
 export class DeleteDepartmentBody {
   
-    DepartmentID:number=1;
-    userID:number=0;
+    departmentId:number;
+    userId:string ='1';
    
 }
