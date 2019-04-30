@@ -138,7 +138,8 @@
                       <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                         <label class="checkBox">
                           <input type="checkbox" name="checkbox" [ngModel] = "checkedStatus" 
-                          (ngModelChange)="onCheckedBoxChangeDesignation($event)">
+
+                          (ngModelChange)="onCheckedBoxChangeDesignation($event)"[disabled]="checkBoxDesignation">
                           <span class="checkmark check1" title="Select All"></span> </label>
                       </div>
                       
