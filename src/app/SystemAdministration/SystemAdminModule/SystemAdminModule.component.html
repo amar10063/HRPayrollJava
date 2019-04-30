@@ -1,6 +1,6 @@
 <div class="container-fluid gridBody">
 
-    <h5>System Administration</h5>
+    <h5 title="System Administration">System Administration</h5>
   
     <div class="center-block">
       <div class="panel-group" role="tablist" aria-multiselectable="true">
@@ -38,7 +38,7 @@
                 <div class="panel-collapse in">
                     <div class="panel-body panel-heading">
                         <h4 class="panel-title" style="display:inline-block">
-                          <a role="button" aria-expanded="true">
+                          <a role="button" aria-expanded="true" title="Setup">
 
                               Setup
 
@@ -47,20 +47,20 @@
                     <ul>
                       <li class="col-md-1">
 
-                        <a [routerLink]="['./country']"> <img src="assets/images/location-icon.png" alt="" />Address</a>
+                        <a [routerLink]="['./country']" title="Address"> <img src="assets/images/location-icon.png" alt="" />Address</a>
         
                       </li>
                       <li>
         
-                          <a [routerLink]="['./organization']"> <img src="assets/images/company-icon.png" alt="" />Organization</a>
+                          <a [routerLink]="['./organization']" title="Organization"> <img src="assets/images/company-icon.png" alt="" />Organization</a>
                         </li>
                         <li>
         
-                            <a [routerLink]="['./payroll']"> <img src="assets/images/payroll-icon.png" alt="" />Payroll</a>
+                            <a [routerLink]="['./payroll']" title="Payroll"> <img src="assets/images/payroll-icon.png" alt="" />Payroll</a>
                           </li>
                           <li>
         
-                              <a [routerLink]="['./tax']"> <img src="assets/images/earning.png" alt="" />Tax</a>
+                              <a [routerLink]="['./tax']" title="Tax"> <img src="assets/images/earning.png" alt="" />Tax</a>
                             </li>
                     </ul>
                   </div>
@@ -72,14 +72,14 @@
                   <div class="panel-collapse in">
                       <div class="panel-body panel-heading">
                           <h4 class="panel-title" style="display:inline-block">
-                            <a role="button" aria-expanded="true">
+                            <a role="button" aria-expanded="true" title="User Control">
                                 User Control
                             </a>
                           </h4>
                       <ul>
                         <li >
           
-                          <a [routerLink]="['/general']"> <img src="assets/images/setup-icon.png" alt="" />General</a>
+                          <a [routerLink]="['/general']" title="General"> <img src="assets/images/setup-icon.png" alt="" />General</a>
           
                         </li>
                       
