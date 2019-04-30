@@ -75,9 +75,13 @@ export class OrganizationComponent implements OnInit {
   arrDepartmentSave: DepartmentBody[] = [];
   arrDepartmentDelete: DeleteDepartmentBody[] = [];
 
+  saveUpdateDepartmentPopup: string;
+  btnSaveUpdateDepartmentPopup: string;
+
   selectAllDesignationCheckBox = false;
 
   selectAllLocation = true;
+  selectAllDepartment = true;
   nodeDepartmentSelect: string;
   checkedStatus = false;
   rowClassRules: { "sick-days-warning": (params: any) => boolean; "sick-days-breach": string; };
@@ -191,18 +195,18 @@ export class OrganizationComponent implements OnInit {
         maxWidth: 300, editable: true, filter: true,
 
 
-        cellStyle: function (params) {
-          if (params.value === '') {
-            // bordercolor: 'red'
-            // alert("Please Enter Description");
+        // cellStyle: function (params) {
+        //   if (params.value === '') {
+        //     // bordercolor: 'red'
+        //     // alert("Please Enter Description");
 
-            return { outline: '1px solid red' };
+        //     return { outline: '1px solid red' };
 
-            //color: 'red', backgroundColor: 'green',
-          } else {
-            return { outline: 'white' };
-          }
-        }
+        //     //color: 'red', backgroundColor: 'green',
+        //   } else {
+        //     return { outline: 'white' };
+        //   }
+        // }
 
       },
       // { headerName: '', field: '',  }
@@ -617,9 +621,9 @@ export class OrganizationComponent implements OnInit {
       alert("Plesae Enter Department Name");
 
     }
-    else if (dataTest['description'] === '') {
-      alert("Please Enter Description");
-    }
+    // else if (dataTest['description'] === '') {
+    //   alert("Please Enter Description");
+    // }
     else {
 
       for (let selectedNode of selectedData) {
@@ -696,6 +700,7 @@ export class OrganizationComponent implements OnInit {
     const selectedNodes = this.departmentApi.getSelectedNodes();
     var dataTest: Object;
     const universalJsonBody = new UniversalJsonBody();
+    var universlResponse = new UniversalResponse();
     const selectedData = selectedNodes.map(node => node.data);
     selectedData.map(node => dataTest = node as Object);
     console.log("key", selectedNodes);
@@ -703,10 +708,10 @@ export class OrganizationComponent implements OnInit {
       alert("Please Select any row.");
     } else {
 
+
       for (let selectedNode of selectedData) {
         const deleteDepartmentBody = new DeleteDepartmentBody();
         deleteDepartmentBody.departmentId = selectedNode['departmentID'];
-
         this.arrDepartmentDelete.push(deleteDepartmentBody);
         var jsonData = JSON.stringify(this.arrDepartmentDelete);
       }
@@ -716,11 +721,9 @@ export class OrganizationComponent implements OnInit {
       this.countryService.deleteDepartment(universalJsonBody)
         .subscribe(
           data => {
-            this.universalResponse = data;
-            //console.log("key", LocationResponse);
-            alert(this.universalResponse.MESSAGE);
+            universlResponse = data;
 
-            if (this.universalResponse.STATUS.trim() === 'Success') {
+            if (universlResponse.STATUS.trim() === 'Success') {
               this.departmentApi.removeItems(selectedNodes);
               this.arrDepartmentDelete = [];
               this.getDepartment('1');
@@ -728,7 +731,7 @@ export class OrganizationComponent implements OnInit {
           }
         );
     }
-
+    this.departmentApi.removeItems(selectedNodes);
 
   }
 
@@ -747,6 +750,7 @@ export class OrganizationComponent implements OnInit {
             this.editDepartment = false;
             this.addNewDepartmentRow = false;
             this.deleteNewDepartment = true;
+            this.selectAllDepartment = true;
           } else {
             if (this.getDepartmentResponse.length >= 50) {
               this.ShowLimitedDepartment = 50;
@@ -757,7 +761,7 @@ export class OrganizationComponent implements OnInit {
             }
             this.ToalDepartment = this.getDepartmentResponse.length;
             this.saveUpdateDepartment = "Save";
-
+            this.selectAllDepartment = false;
             this.addNewDepartmentRow = false;
             this.editDepartment = true;
             this.deleteNewDepartment = true;
@@ -770,7 +774,7 @@ export class OrganizationComponent implements OnInit {
 
   onSaveUpdateDepartmentData() {
     this.departmentApi.tabToNextCell();
-    if (this.nodeDepartmentSelect === "Add") {
+    if (this.nodeDepartmentSelect === 'Add') {
       this.onSaveDepartment('1');
     } else {
       this.onUpdateDepartmentData('1');
@@ -778,6 +782,7 @@ export class OrganizationComponent implements OnInit {
   }
 
   onSaveDepartment(userID: string) {
+
     const universalJsonBody = new UniversalJsonBody();
 
     var getDepartmentBody = new UniversalBody();
@@ -791,9 +796,10 @@ export class OrganizationComponent implements OnInit {
       alert("Enter Department Code");
     } else if (dataTest['departmentName'] === '') {
       alert("Enter Department");
-    } else if (dataTest['description'] === '') {
-      alert("Enter Location Description");
     }
+    // else if (dataTest['description'] === '') {
+    //   alert("Enter Location Description");
+    // }
     else {
       for (let selectedNode of selectedData) {
 
@@ -816,16 +822,35 @@ export class OrganizationComponent implements OnInit {
         .subscribe(
           data => {
             this.universalResponse = data;
-            alert(this.universalResponse.MESSAGE);
-            if (this.universalResponse.STATUS.trim() === 'Success') {
 
-              this.getDepartment('1');
+            if (this.universalResponse.STATUS.trim() === 'Success') {
+              if (this.arrDepartmentSave.length >= 1) {
+                if (this.universalResponse.OUTPUT === '') {
+                  alert(this.universalResponse.MESSAGE);
+                  this.getDepartment('1');
+                }
+                else {
+                  alert(this.universalResponse.MESSAGE + ' ' + this.universalResponse.OUTPUT + ' ' + 'already existed ');
+                }
+              }
+              else {
+                if (this.universalResponse.OUTPUT === '') {
+                  alert(this.universalResponse.MESSAGE);
+                  this.getDepartment('1');
+                }
+                else {
+                  alert(this.universalResponse.OUTPUT + ' ' + 'already existed');
+                }
+              }
+              // this.getDepartment('1');
 
             }
-            this.arrDepartmentSave = [];
+
           }
         );
     }
+    this.arrDepartmentSave = [];
+    this.nodeDepartmentSelect = 'Update';
   }
 
   onUpdateDepartmentData(userID: string) {
@@ -850,9 +875,9 @@ export class OrganizationComponent implements OnInit {
           alert("Enter Department Code");
         } else if (dataTest['departmentName'] === '') {
           alert("Enter Department");
-        } else if (dataTest['description'] === '') {
-          alert("Enter Location Description");
-        }
+        } //else if (dataTest['description'] === '') {
+        //   alert("Enter Location Description");
+        // }
         else {
           for (let selectedNode of selectedData) {
             const updateDepartmentBody = new DepartmentBody();
@@ -880,20 +905,41 @@ export class OrganizationComponent implements OnInit {
                 universalResonse = data;
                 console.log("recived", universalResonse.STATUS);
                 if (universalResonse.STATUS.trim() === "Success") {
-                  console.log(universalResonse.MESSAGE);
-                  alert(universalResonse.STATUS + " if : " + universalResonse.MESSAGE);
-                  this.addNewDepartmentRow = false;
-                  this.getDepartment('1');
-                  this.nodeSelectButWhere = "Update";
-                  this.arrDepartmentSave = [];
-                } else {
-                  alert(universalResonse.STATUS + ' else : ' + universalResonse.MESSAGE);
+
+                  if (this.arrDepartmentSave.length >= 1) {
+                    if (universalResonse.OUTPUT === '') {
+                      alert(universalResonse.MESSAGE);  
+                      this.getDepartment('1');
+                    }
+
+                    else {
+                      alert(universalResonse.MESSAGE + ' ' + universalResonse.OUTPUT + ' ' + 'already existed ');
+
+                    }
+
+                  }
+                  else {
+                    if (universalResonse.OUTPUT === '') {
+                      alert(universalResonse.MESSAGE);
+                      this.getDepartment('1');
+                    }
+
+                    else {
+                      alert(universalResonse.OUTPUT + ' ' + 'already existed');
+
+                    }
+                  }
+                  
+
                 }
+
               }
             );
         }
       }
     }
+    this.arrDepartmentSave = [];
+    this.nodeDepartmentSelect = 'Update';
   }
 
   onDepartmentSelectionChanged() {
@@ -904,29 +950,42 @@ export class OrganizationComponent implements OnInit {
         this.deleteNewDepartment = false;
         this.departmentfilter = true;
         this.departmentCheckedStatus = false;
+        this.editDepartment = false;
       }
       else {
         this.departmentCheckedStatus = false;
         this.departmentfilter = false;
         this.departmentCheckedStatus = false;
         this.deleteNewDepartment = false;
+        this.editDepartment = false;
       }
       if (this.nodeDepartmentSelect === "Add") {
         this.saveUpdateDepartment = "Save";
-        this.nodeDepartmentSelect = "Update";
+        this.saveUpdateDepartmentPopup = 'Do you want to save?';
+        this.btnSaveUpdateDepartmentPopup = 'SAVE';
+        //this.nodeDepartmentSelect = "Update";
       } else if (this.nodeDepartmentSelect === undefined) {
         this.saveUpdateDepartment = "Save";
+        this.saveUpdateDepartmentPopup = 'Do you want to update?';
+        this.btnSaveUpdateDepartmentPopup = 'UPDATE';
         this.editDepartment = false;
       }
       else if (this.nodeDepartmentSelect === 'Update') {
         this.editDepartment = false;
         this.saveUpdateDepartment = 'Save';
+        this.btnSaveUpdateDepartmentPopup = 'UPDATE';
+        this.saveUpdateDepartmentPopup = 'Do you want to update?';
       }
     }
     else if (this.selectedRowsDepartment.length >= 1) {
       this.editDepartment = false;
       this.deleteNewDepartment = false;
+      this.addNewDepartmentRow = false;
 
+    }
+    else if (this.selectedRowsDepartment.length === 0) {
+      this.deleteNewDepartment = true;
+      // this.departmentfilter =false;
     }
   }
 
@@ -1150,6 +1209,21 @@ export class OrganizationComponent implements OnInit {
     }
   }
 
+  universalSaveUpdateOrganizaion() {
+    const LocationNode = this.locationApi.getSelectedNodes();
+    const DepartmentNode = this.departmentApi.getSelectedNodes();
+    const DesignationNode = this.designationApi.getSelectedNodes();
+
+    // if (LocationNode.length !== 0) {
+    //   this.onDeleteLocation();
+    // }
+    if (DepartmentNode.length !== 0) {
+      this.onSaveUpdateDepartmentData();
+    }
+    // else if (DesignationNode.length !== 0) {
+    //   this.onDeleteDesignation();
+    // }
+  }
   onDeleteDesignation() {
     const selectedNodes = this.designationApi.getSelectedNodes();
     const universalJsonBody = new UniversalJsonBody();
@@ -1223,6 +1297,7 @@ export class OrganizationComponent implements OnInit {
       }
     }
   }
+
 
   onCheckedBoxChangeDesignation(eve: any) {
     if (this.checkedStatus === false) {
