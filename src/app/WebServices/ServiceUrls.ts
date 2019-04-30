@@ -77,6 +77,6 @@ export class ServiceUrls {
     public static updateAchievements = '/UpdateAchievements';
     public static deleteAchievements = '/DeleteAchievements';
 
-    public static updateDesignation = '/UpdateDesignation';
+    public static updateDesignation = '/UpdateMultipleDesignation';
     public static updateDepartment ='/UpdateMultipleDepartment';
 }
