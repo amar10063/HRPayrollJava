@@ -133,13 +133,19 @@ export class CountryComponent implements OnInit {
   gridOptions = {} as GridOptions;
   public selectedCountryId: number;
   private rowClassRules;
+  isShowing = false;
+  private overlayNoRowsTemplate;
 
   constructor(private allWeb: AllWeb) {
+
     this.gridOptions = {
       context: { componentParent: this }
     };
     this.rowSelection = 'multiple';
     this.editType = 'fullRow';
+    this.overlayNoRowsTemplate =
+      "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">This is a custom 'no rows' overlay</span>";
+
     this.columnDefs = [
       {
         id: 0, headerName: 'Country Code', field: 'countryCode', sortable: true, filter: true, editable: true, Width: 250, minWidth: 50, maxWidth: 500,
@@ -388,18 +394,19 @@ export class CountryComponent implements OnInit {
     this.getPostal();
 
   }
-  //rowNodeIndex:any;
+  rowNodeIndex: any;
+  newDataTest;
 
   rowEditingStarted(event) {
     this.stateApi.getColumnDef('stateName').editable = true;
     this.stateApi.getColumnDef('description').editable = true;
     const selectedNodes = this.stateApi.getSelectedNodes();
     const selectedData = selectedNodes.map(node => node.data);
-    var dataTest: Object;
-    selectedData.map(node => dataTest = node as Object);
-    console.log('datatest:  ' + JSON.stringify(dataTest));
+    selectedData.map(node => this.newDataTest = node as Object);
     var res1 = this.stateApi.updateRowData({ remove: selectedData });
-    let res = this.stateApi.updateRowData({ add: [{ stateName: dataTest['stateName'], countryName: dataTest['countryName'], description: dataTest['description'], hidden: 'hidden' }], addIndex: event.rowIndex });
+    let res = this.stateApi.updateRowData({ add: [{ stateName: this.newDataTest['stateName'], countryName: this.newDataTest['countryName'], description: this.newDataTest['description'], hidden: 'hidden' }], addIndex: event.rowIndex });
+    this.rowNodeIndex = event.rowIndex;
+
     this.stateApi.startEditingCell({
       rowIndex: event.rowIndex,
       colKey: 'countryName'
@@ -663,20 +670,17 @@ export class CountryComponent implements OnInit {
           jsonData = jsonData.replace(/"/g, "'");
 
         }
-
+        this.isShowing = true;
         universalJsonBody.jsonData = jsonData;
         this.allWeb.saveCountry(universalJsonBody)
           .subscribe(
 
             data => {
+              this.isShowing = false;
               this.universalResponse = data;
-
               alert(this.universalResponse.MESSAGE);
-
               if (this.universalResponse.STATUS.trim() === 'Success') {
-
                 this.getCountries();
-
               }
               this.countryArray = [];
             }
@@ -689,11 +693,7 @@ export class CountryComponent implements OnInit {
   }
 
   onCountryFilterChange() {
-
-
     if (this.countryCheckedStatus === false) {
-
-
       this.api.selectAll();
       this.countryFilter = true;
       this.countryCheckedStatus = true;
@@ -1573,6 +1573,7 @@ export class CountryComponent implements OnInit {
   onGridReady(params) {
     this.api = params.api;
     this.columnApi = params.columnApi;
+
   }
   onStateGridReady(params) {
     this.stateApi = params.api;
@@ -1727,9 +1728,12 @@ export class CountryComponent implements OnInit {
   getCountries() {
     const universalBody = new UniversalBody();
     universalBody.userID = '1';
+    this.isShowing = true;
     this.allWeb.getCountries(universalBody)
       .subscribe(
         data => {
+          this.isShowing = false;
+
           this.countryDataResponse = data;
 
           if (this.countryDataResponse.length === 0) {

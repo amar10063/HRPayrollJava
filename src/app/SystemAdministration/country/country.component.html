@@ -1,8 +1,10 @@
 <div class="container-fluid gridBody">
 
   <div class="buttonCon pull-right">
-    <button type="button" class="btn templateBg" title="Back" ><img src="../assets/images/back-icon.png" alt="home"/>Back</button>
-    <button type="button" class="btn templateBg" title="Home"><img src="../assets/images/home-icon.png" alt="home" />Home</button>
+    <button type="button" class="btn templateBg" title="Back"><img src="../assets/images/back-icon.png"
+        alt="home" />Back</button>
+    <button type="button" class="btn templateBg" title="Home"><img src="../assets/images/home-icon.png"
+        alt="home" />Home</button>
   </div>
   <h5 title="System Administration">System Administration</h5>
 
@@ -25,10 +27,10 @@
               <div class="col-12 col-md-2 p-0 pull-left" style="box-shadow: 1px 1px 1px #c0c1c1;">
                 <div class="payHead">
                   <ul class="nav navbar-nav" role="tablist">
-                    <li class="nav-item" title="Country"> <a class="nav-link active" data-toggle="tab" href="#country"><i
-                          class="fa fa-globe" aria-hidden="true"></i> Country</a> </li>
-                    <li class="nav-item" title="State"> <a class="nav-link" data-toggle="tab" href="#state"><i class="fa fa-map pr-1"
-                          aria-hidden="true"></i> State</a> </li>
+                    <li class="nav-item" title="Country"> <a class="nav-link active" data-toggle="tab"
+                        href="#country"><i class="fa fa-globe" aria-hidden="true"></i> Country</a> </li>
+                    <li class="nav-item" title="State"> <a class="nav-link" data-toggle="tab" href="#state"><i
+                          class="fa fa-map pr-1" aria-hidden="true"></i> State</a> </li>
                     <li class="nav-item" title="City"> <a class="nav-link" data-toggle="tab" href="#city"><i
                           class="fa fa-map-marker pr-1" aria-hidden="true"></i> City</a> </li>
                     <li class="nav-item" title="Postal Code"> <a class="nav-link" data-toggle="tab" href="#postal"><i
@@ -39,7 +41,11 @@
               <div class="col-12 col-md-10 pull-left p-0">
                 <div class="tab-content col-md-12 col-12 p-0">
                   <div id="country" class="container tab-pane active">
-
+                    <div class="col-12 col-md-12" >
+                      <div id ="Payrolloader" style="left: 380px; position: absolute; z-index: 9999; top: 210px;" *ngIf=isShowing>
+                          <img src="{{'assets/images/Spinner.gif'}}">
+                      </div>    
+                    </div>
                     <div class="col-12 col-md-12 p-0">
                       <div class="col-12 col-md-4 pull-left mt-2 ">
                         <label for="Select All" class="col-4 col-md-3 pull-left p-0">Select All:</label>
@@ -56,20 +62,21 @@
                       <div class="col-12 col-md-8 p-0 pull-left">
                         <div class="buttonCon pull-right mt-1 mb-2 mr-1 ">
                           <button type="button" class="payHeadBtn" (click)="onAddContry()"
-
-                            [disabled]="addCountryToggleButton" title="Add New"><i class="fa fa-plus-square" aria-hidden="true" ></i>Add
+                            [disabled]="addCountryToggleButton" title="Add New"><i class="fa fa-plus-square"
+                              aria-hidden="true"></i>Add
                             New</button>
 
                           <button type="button" class="payHeadBtn" (click)="onSaveUpdateCountry()"
                             [disabled]="saveCountryToggleButton" title="Save"><i class="fa fa-save"
-                              aria-hidden="true" ></i>{{saveUpdateCountry}}
+                              aria-hidden="true"></i>{{saveUpdateCountry}}
                           </button>
                           <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#addNew2"
-
                             [disabled]="deleteCountryToggleButton" title="Delete"><i class="fa fa-trash"
-                              aria-hidden="true" ></i>Delete</button>
-                          <button type="button" class="payHeadBtn" title="Import"><i class="fa fa-upload" aria-hidden="true" ></i>Import</button>
-                          <button type="button" class="payHeadBtn" title="Export"><i class="fa fa-download" aria-hidden="true" ></i>Export</button>
+                              aria-hidden="true"></i>Delete</button>
+                          <button type="button" class="payHeadBtn" title="Import"><i class="fa fa-upload"
+                              aria-hidden="true"></i>Import</button>
+                          <button type="button" class="payHeadBtn" title="Export"><i class="fa fa-download"
+                              aria-hidden="true"></i>Export</button>
                         </div>
                       </div>
                       <div class="clearfix"></div>
@@ -77,8 +84,9 @@
                     <div class="clearfix"></div>
                     <div class="formBody clearfix pt-0 pb-2">
                       <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData"
-                        [rowClassRules]="rowClassRules" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef"
-                        [animateRows]="true" [rowSelection]="rowSelection"
+                        [rowClassRules]="rowClassRules" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef"        [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+
+                        [stopEditingWhenGridLosesFocus]="true" [animateRows]="true" [rowSelection]="rowSelection"
                         (selectionChanged)="onSelectionChanged($event)"
                         (firstDataRendered)="onFirstDataRendered($event)" (gridReady)="onGridReady($event)">
                       </ag-grid-angular>
@@ -116,7 +124,8 @@
                       <div class="col-12 col-md-8 p-0 pull-left">
                         <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
                           <button type="button" class="payHeadBtn" (click)="onAddState()"
-                            [disabled]="addStateToggleButton" title="Add New"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                            [disabled]="addStateToggleButton" title="Add New"><i class="fa fa-plus-square"
+                              aria-hidden="true"></i>Add
                             New</button>
 
                           <button type="button" class="payHeadBtn" (click)="onSaveUpdateState()"
@@ -124,11 +133,12 @@
                               aria-hidden="true"></i>{{saveUpdateState}}
                           </button>
                           <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#addNew2"
-                            [disabled]="deleteStateToggleButton"><i class="fa fa-trash"
-
-                              aria-hidden="true" title="Delete"></i>Delete</button>
-                              <button type="button" class="payHeadBtn" title="Import"><i class="fa fa-upload" aria-hidden="true"></i>Import</button>
-                              <button type="button" class="payHeadBtn" title="Export"><i class="fa fa-download" aria-hidden="true"></i>Export</button>
+                            [disabled]="deleteStateToggleButton"><i class="fa fa-trash" aria-hidden="true"
+                              title="Delete"></i>Delete</button>
+                          <button type="button" class="payHeadBtn" title="Import"><i class="fa fa-upload"
+                              aria-hidden="true"></i>Import</button>
+                          <button type="button" class="payHeadBtn" title="Export"><i class="fa fa-download"
+                              aria-hidden="true"></i>Export</button>
                         </div>
                       </div>
                       <div class="clearfix"></div>
@@ -138,8 +148,9 @@
 
                       <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData1"
                         [columnDefs]="columnDefs1" [animateRows]="true" [rowSelection]="rowSelection"
-                        [frameworkComponents]="frameworkComponents" [gridOptions]="gridOptions"
-                        [defaultColDef]="defaultColDef" (cellDoubleClicked)="rowEditingStarted($event)"
+                        [stopEditingWhenGridLosesFocus]="true" [frameworkComponents]="frameworkComponents"
+                        [gridOptions]="gridOptions" [defaultColDef]="defaultColDef"
+                        (cellDoubleClicked)="rowEditingStarted($event)"
                         (firstDataRendered)="onFirstDataRendered($event)"
                         (selectionChanged)="onStateSelectionChanged($event)" (gridReady)="onStateGridReady($event)">
                       </ag-grid-angular>
@@ -177,7 +188,8 @@
                       <div class="col-12 col-md-8 p-0 pull-left">
                         <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
                           <button type="button" class="payHeadBtn" (click)="onAddCity()"
-                            [disabled]="addCityToggleButton" title="Add New"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                            [disabled]="addCityToggleButton" title="Add New"><i class="fa fa-plus-square"
+                              aria-hidden="true"></i>Add
                             New</button>
                           <button type="button" class="payHeadBtn" (click)="onSaveUpdateCity()"
                             [disabled]="saveCityToggleButton" Title="Save"><i class="fa fa-save"
@@ -187,8 +199,10 @@
                             [disabled]="deleteCityToggleButton" Title="Delete"><i class="fa fa-trash"
                               aria-hidden="true"></i>Delete</button>
 
-                              <button type="button" class="payHeadBtn" title="Import"><i class="fa fa-upload" aria-hidden="true"></i>Import</button>
-                              <button type="button" class="payHeadBtn" title="Export"><i class="fa fa-download" aria-hidden="true"></i>Export</button>
+                          <button type="button" class="payHeadBtn" title="Import"><i class="fa fa-upload"
+                              aria-hidden="true"></i>Import</button>
+                          <button type="button" class="payHeadBtn" title="Export"><i class="fa fa-download"
+                              aria-hidden="true"></i>Export</button>
                         </div>
                       </div>
                       <div class="clearfix"></div>
@@ -198,9 +212,10 @@
 
                       <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData2"
                         [columnDefs]="columnDefs2" [animateRows]="true" [defaultColDef]="defaultColDef"
-                        [rowSelection]="rowSelection" [frameworkComponents]="frameworkComponents"
-                        [singleClickEdit]="true" [gridOptions]="gridOptions" (gridReady)="onCityGridReady($event)"
-                        (selectionChanged)="onCitySelectionChanged($event)"(cellDoubleClicked)="rowCityEditingStarted($event)"
+                        [stopEditingWhenGridLosesFocus]="true" [rowSelection]="rowSelection"
+                        [frameworkComponents]="frameworkComponents" [singleClickEdit]="true" [gridOptions]="gridOptions"
+                        (gridReady)="onCityGridReady($event)" (selectionChanged)="onCitySelectionChanged($event)"
+                        (cellDoubleClicked)="rowCityEditingStarted($event)"
                         (firstDataRendered)="onFirstDataRendered($event)">
                       </ag-grid-angular>
                     </div>
@@ -235,7 +250,8 @@
                       <div class="col-12 col-md-8 p-0 pull-left">
                         <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
                           <button type="button" class="payHeadBtn" (click)="onAddPostal()"
-                            [disabled]="addPostalToggleButton" title="Add New"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
+                            [disabled]="addPostalToggleButton" title="Add New"><i class="fa fa-plus-square"
+                              aria-hidden="true"></i>Add
                             New</button>
                           <button type="button" class="payHeadBtn" (click)="onSaveUpdatePostal()"
                             [disabled]="savePostalToggleButton" title="Save"><i class="fa fa-save"
@@ -246,8 +262,10 @@
                             [disabled]="deletePostalToggleButton" title="Delete"><i class="fa fa-trash"
                               aria-hidden="true"></i>Delete</button>
 
-                              <button type="button" class="payHeadBtn" title="Import"><i class="fa fa-upload" aria-hidden="true"></i>Import</button>
-                              <button type="button" class="payHeadBtn" title="Export" ><i class="fa fa-download" aria-hidden="true"></i>Export</button>
+                          <button type="button" class="payHeadBtn" title="Import"><i class="fa fa-upload"
+                              aria-hidden="true"></i>Import</button>
+                          <button type="button" class="payHeadBtn" title="Export"><i class="fa fa-download"
+                              aria-hidden="true"></i>Export</button>
                         </div>
                       </div>
                       <div class="clearfix"></div>
@@ -260,7 +278,8 @@
                         [columnDefs]="columnDefs3" [animateRows]="true" [defaultColDef]="defaultColDef"
                         [rowSelection]="rowSelection" [frameworkComponents]="frameworkComponents"
                         [singleClickEdit]="true" [gridOptions]="gridOptions" (gridReady)="onPostalGridReady($event)"
-                        (selectionChanged)="onPostalSelectionChanged($event)"(cellDoubleClicked)="rowPostalEditingStarted($event)"
+                        [stopEditingWhenGridLosesFocus]="true" (selectionChanged)="onPostalSelectionChanged($event)"
+                        (cellDoubleClicked)="rowPostalEditingStarted($event)"
                         (firstDataRendered)="onFirstDataRendered($event)">
                       </ag-grid-angular>
 
