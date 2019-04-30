@@ -23,15 +23,14 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
   locationResponse: GetAllLocationResponse[];
   selectedValue;
   action;
-  context;
+  context; 
+
   normalStateClcik; normalCityClcik;
   normalCountryClcik;
   agInit(params: ICellRendererParams): void {
     this.params = params['value'];
     console.log('this.params: ' + this.params);
     this.context = params.context;
-    this.normalStateClcik = false; this.normalCityClcik = false;
-    this.normalCountryClcik = false;
     if (this.params === 'location') {
       this.getAllLocation();
     } else if (this.params === 'department') {
@@ -79,38 +78,24 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
   }
 
   onClick() {
-   // this.normalCityClcik = false; this.normalStateClcik = false;
-    console.log(this.normalStateClcik + " cdscs " + this.normalCityClcik);
     if (this.params === 'country') {
-      // this.context.componentParent.selectedCountryId = event.target.value;
-      // console.log(event.target.value);
       this.normalStateClcik = false;
       this.normalCityClcik = false;
-
     } else if (this.params === 'state') {
-      if (this.normalStateClcik === false) {
-        this.getAllState(this.context.componentParent.selectedCountryId);
-        this.normalStateClcik = true;
-      }
+      this.getAllState(this.context.componentParent.selectedCountryId);
+      this.normalStateClcik = true;
     } else if (this.params === 'city') {
-      if (this.normalCityClcik === false) {
-        this.getAllCity(this.context.componentParent.selectedStateId);
-        this.normalCityClcik = true;
-      }
+      this.getAllCity(this.context.componentParent.selectedStateId);
+      this.normalCityClcik = true;
+
     }
   }
   getSelectedValue(event) {
-    this.normalCityClcik = false; this.normalStateClcik = false;
-    console.log(this.normalStateClcik + "  " + this.normalCityClcik);
     if (this.params === 'country') {
-      this.normalStateClcik = false;
       this.context.componentParent.selectedCountryId = event.target.value;
     } else if (this.params === 'state') {
-      this.normalCityClcik = false; this.normalStateClcik = false;
       this.context.componentParent.selectedStateId = event.target.value;
     } else if (this.params === 'city') {
-    this.normalCityClcik = false; this.normalStateClcik = false;
-
       this.context.componentParent.selectedCityId = event.target.value;
     }
 

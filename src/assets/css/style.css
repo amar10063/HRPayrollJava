@@ -1121,15 +1121,17 @@ thead>tr>th {
     margin-top: 0;
     font-family: verdana;
 }
-
+.ag-row-editing {
+  background-color: #5bc0de !important;
+}
 .drop-down select {
     display: none;
 }
-select::-ms-expand {	display: none; }
+/* select::-ms-expand {	display: none; }
 select{
     -webkit-appearance: none;
     appearance: none;
-}
+} */
 .drop-down .select-list {
     position: absolute;
     top: 0;

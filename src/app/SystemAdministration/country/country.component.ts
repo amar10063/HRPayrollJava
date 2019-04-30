@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GridApi, ColumnApi, GridOptions, } from 'ag-grid-community';
+// import 'ag-grid-enterprise';
 
 import { AllWeb } from 'src/app/WebServices/AllWeb.service';
 import { CountryBody } from '../../WebServices/WebServiceBody/CountryBody/CountryBody';
@@ -128,8 +129,7 @@ export class CountryComponent implements OnInit {
   cityArray: CityBody[] = [];
   postalArray: PostalBody[] = [];
 
-
-  type: string = '';
+  type: '';
   gridOptions = {} as GridOptions;
   public selectedCountryId: number;
   private rowClassRules;
@@ -138,7 +138,7 @@ export class CountryComponent implements OnInit {
     this.gridOptions = {
       context: { componentParent: this }
     };
-    this.rowSelection = 'single';
+    this.rowSelection = 'multiple';
     this.editType = 'fullRow';
     this.columnDefs = [
       {
@@ -187,7 +187,7 @@ export class CountryComponent implements OnInit {
           else
             return null;
 
-        }
+        },
 
       },
       {
@@ -387,9 +387,24 @@ export class CountryComponent implements OnInit {
     this.getCity();
     this.getPostal();
 
-  } rowNodeIndex: number;
+  }
+  //rowNodeIndex:any;
 
-
+  rowEditingStarted(event) {
+    this.stateApi.getColumnDef('stateName').editable = true;
+    this.stateApi.getColumnDef('description').editable = true;
+    const selectedNodes = this.stateApi.getSelectedNodes();
+    const selectedData = selectedNodes.map(node => node.data);
+    var dataTest: Object;
+    selectedData.map(node => dataTest = node as Object);
+    console.log('datatest:  ' + JSON.stringify(dataTest));
+    var res1 = this.stateApi.updateRowData({ remove: selectedData });
+    let res = this.stateApi.updateRowData({ add: [{ stateName: dataTest['stateName'], countryName: dataTest['countryName'], description: dataTest['description'], hidden: 'hidden' }], addIndex: event.rowIndex });
+    this.stateApi.startEditingCell({
+      rowIndex: event.rowIndex,
+      colKey: 'countryName'
+    });
+  }
   onStateSelectionChanged(event) {
     this.selectedRowState = this.stateApi.getSelectedRows();
     const selectedNodes = this.stateApi.getSelectedNodes();
@@ -415,14 +430,9 @@ export class CountryComponent implements OnInit {
         this.nodeStateSelect = 'Edit';
 
       } else if (this.nodeStateSelect === undefined) {
-        if (this.nodeStateSelect === 'Edit') {
-          this.saveUpdateState = 'Update';
-        } else { this.saveUpdateState = 'Edit'; }
+          this.saveUpdateState = 'Save';
         this.saveStateToggleButton = false;
-      } else if (this.nodeStateSelect === 'Update') {
-        this.saveStateToggleButton = false;
-        this.saveUpdateState = 'Update';
-      }
+      } 
     }
     else if (this.selectedRowState.length >= 1) {
       this.saveStateToggleButton = true;
@@ -672,7 +682,6 @@ export class CountryComponent implements OnInit {
     this.nodeStateSelect = "Add";
     //  this.addStateToggleButton = true;
     this.saveUpdateState = 'Save';
-    this.type = 'add';
     this.stateApi.setFocusedCell(this.countState, 'countryName');
     this.stateApi.getColumnDef('stateName').editable = true;
     this.stateApi.getColumnDef('description').editable = true;
@@ -1478,7 +1487,7 @@ export class CountryComponent implements OnInit {
       this.onSaveCity();
     }
     else if (this.saveUpdateCity === 'Edit') {
-      this.cityApi.setFocusedCell(0, "stateName");
+      // this.cityApi.setFocusedCell(0, "stateName");
       this.cityApi.getColumnDef('cityName').editable = true;
       this.cityApi.getColumnDef('description').editable = true;
       const selectedNodes = this.cityApi.getSelectedNodes();
@@ -1779,22 +1788,7 @@ export class CountryComponent implements OnInit {
     if (this.saveUpdatePostal === 'Save') {
       this.onSavePostal();
     }
-    else if (this.saveUpdatePostal === 'Edit') {
-      this.postalApi.setFocusedCell(0, "countryName");
-      //  this.postalApi.getColumnDef('stateName').editable = true;
-      // this.postalApi.getColumnDef('countryName').editable = true;
-      this.postalApi.getColumnDef('description').editable = true;
-      //  this.postalApi.getColumnDef('cityName').editable = true;
-      this.postalApi.getColumnDef('postalCode').editable = true;
-      const selectedNodes = this.postalApi.getSelectedNodes();
-      const selectedData = selectedNodes.map(node => node.data);
-      var dataTest: Object;
-      selectedData.map(node => dataTest = node as Object);
-      var res1 = this.postalApi.updateRowData({ remove: selectedData });
-      let res = this.postalApi.updateRowData({ add: [{ stateName: dataTest['stateName'], countryName: dataTest['countryName'], description: 'description', cityName: dataTest['cityName'], postalCode: dataTest['postalCode'], hidden: 'hidden' }], addIndex: 0 });
-      this.saveUpdatePostal = "Update";
-      this.nodePostalSelect = "Update";
-    } else if (this.saveUpdatePostal === "Update") {
+    else if (this.saveUpdatePostal === "Update") {
       this.onUpdatePostal();
     }
     this.addPostalToggleButton = false;
