@@ -147,11 +147,11 @@ export class AllWeb {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls+ ServiceUrls.updateDepartment, JSON.stringify(universalJsonBody), this.httpOptions);
   }
   saveDesignation(jsonData: UniversalJsonBody): Observable<any> {
-    console.log("delete data",jsonData);
+    console.log("saving checking", jsonData);
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.AddDesignation, JSON.stringify(jsonData), this.httpOptions);
   }
   deleteDesignation(deleteDesignationBody: UniversalJsonBody): Observable<any> {
-    console.log("delete data",deleteDesignationBody);
+    console.log("delete checking", deleteDesignationBody);
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.DeleteDesignation, JSON.stringify(deleteDesignationBody), this.httpOptions);
   }
   getAllDesignation(designationBody: GetAllDesignationBody): Observable<any> {
