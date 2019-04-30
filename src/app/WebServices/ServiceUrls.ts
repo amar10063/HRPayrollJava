@@ -15,8 +15,8 @@ export class ServiceUrls {
     // public static DeleteLocation = '/DeleteLocation';
     public static DeleteLocation = '/DeleteMultipleLocation';
 
-    public static AddDepartment = '/AddDepartment';
-    public static DeleteDepartment = '/DeleteDepartment';
+    public static AddDepartment = '/SaveMultipleDepartment';
+    public static DeleteDepartment = '/DeleteMultipleDepartment';
     public static AddDesignation = '/SaveMultipleDesignation';
     public static DeleteDesignation = '/DeleteMultipleDesignation';
     
@@ -78,4 +78,5 @@ export class ServiceUrls {
     public static deleteAchievements = '/DeleteAchievements';
 
     public static updateDesignation = '/UpdateMultipleDesignation';
+    public static updateDepartment ='/UpdateMultipleDepartment';
 }

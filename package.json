@@ -21,6 +21,7 @@
     "@angular/router": "^7.2.9",
     "ag-grid-angular": "^20.2.0",
     "ag-grid-community": "^20.2.0",
+    "ag-grid-enterprise": "^20.2.0",
     "core-js": "^2.5.4",
     "ngx-bootstrap": "^4.0.1",
     "rxjs": "~6.3.3",
