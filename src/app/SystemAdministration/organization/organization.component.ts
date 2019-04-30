@@ -40,7 +40,7 @@ export class OrganizationComponent implements OnInit {
   designationResponse: DesignationResponse;
   universalResponse: UniversalResponse;
   private frameworkComponents;
- 
+
   rowSelection: string;
   columnDefs: any; columnDefs1: any;
   columnDefs2: any;
@@ -74,12 +74,12 @@ export class OrganizationComponent implements OnInit {
   arrDesignationUpdate: DesignationBody[] = [];
   arrDepartmentSave: DepartmentBody[] = [];
   arrDepartmentDelete: DeleteDepartmentBody[] = [];
-  
-  selectAllDesignationCheckBox: boolean = false;
 
-  selectAllLocation: boolean = true;
-  nodeDepartmentSelect: string
+  selectAllDesignationCheckBox = false;
 
+  selectAllLocation = true;
+  nodeDepartmentSelect: string;
+  checkedStatus = false;
   rowClassRules: { "sick-days-warning": (params: any) => boolean; "sick-days-breach": string; };
 
 
@@ -89,7 +89,7 @@ export class OrganizationComponent implements OnInit {
     this.rowSelection = 'multiple';
     this.columnDefs = [
       {
-        headerName: 'Hidden', field: 'hidden', hide: true, sortable: true, filter: true, editable: true, 
+        headerName: 'Hidden', field: 'hidden', hide: true, sortable: true, filter: true, editable: true,
 
 
         cellStyle: function (params) {
@@ -102,7 +102,7 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Location Code', field: 'code', sortable: true, filter: true, editable: true, width:250, minWidth: 50,
+        headerName: 'Location Code', field: 'code', sortable: true, filter: true, editable: true, width: 250, minWidth: 50,
         maxWidth: 300,
         cellStyle: function (params) {
           if (params.value === '') {
@@ -113,7 +113,7 @@ export class OrganizationComponent implements OnInit {
         }
       },
       {
-        headerName: 'Location Name', field: 'name', sortable: true, filter: true, editable: true, width:250, minWidth: 50,
+        headerName: 'Location Name', field: 'name', sortable: true, filter: true, editable: true, width: 250, minWidth: 50,
         maxWidth: 300,
 
 
@@ -127,7 +127,7 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Description', field: 'description', sortable: true, filter: true, editable: true, width:300, minWidth: 50,
+        headerName: 'Description', field: 'description', sortable: true, filter: true, editable: true, width: 300, minWidth: 50,
         maxWidth: 500,
 
 
@@ -146,13 +146,13 @@ export class OrganizationComponent implements OnInit {
 
       },
 
-    
+
     ];
     this.defaultColDef = { resizable: true };
     this.rowData;
     this.columnDefs1 = [
       {
-        headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, width:150, minWidth: 50,
+        headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, width: 150, minWidth: 50,
         maxWidth: 300,
         cellRendererFramework: LocationDropdownComponent,
         cellRendererParams: {
@@ -160,8 +160,8 @@ export class OrganizationComponent implements OnInit {
         }
       },
       {
-        headerName: 'Department Code', field: 'departmentCode', sortable: true, editable: true, width:250,  minWidth: 50,
-        maxWidth: 300, filter: true, 
+        headerName: 'Department Code', field: 'departmentCode', sortable: true, editable: true, width: 250, minWidth: 50,
+        maxWidth: 300, filter: true,
 
         cellStyle: function (params) {
           if (params.value === '') {
@@ -173,8 +173,8 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Department Name', field: 'departmentName', sortable: true, width:150,  minWidth: 50,
-        maxWidth: 300, editable: true, filter: true, 
+        headerName: 'Department Name', field: 'departmentName', sortable: true, width: 150, minWidth: 50,
+        maxWidth: 300, editable: true, filter: true,
 
 
         cellStyle: function (params) {
@@ -187,8 +187,8 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Description', field: 'description', sortable: true, width:250,  minWidth: 50,
-        maxWidth: 300, editable: true, filter: true, 
+        headerName: 'Description', field: 'description', sortable: true, width: 250, minWidth: 50,
+        maxWidth: 300, editable: true, filter: true,
 
 
         cellStyle: function (params) {
@@ -208,13 +208,13 @@ export class OrganizationComponent implements OnInit {
       // { headerName: '', field: '',  }
     ];
     this.defaultColDef = { resizable: true };
-  
+
     this.rowData1;
 
 
     this.columnDefs2 = [
       {
-        headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, editable: true, width:150, minWidth: 50,
+        headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, editable: true, width: 150, minWidth: 50,
         maxWidth: 300,
         cellEditor: 'select',
         cellRendererFramework: LocationDropdownComponent,
@@ -225,7 +225,7 @@ export class OrganizationComponent implements OnInit {
       },
 
       {
-        headerName: 'Department', field: 'DepartmentName', sortable: true, editable: true, filter: true, width:150, minWidth: 50,
+        headerName: 'Department', field: 'DepartmentName', sortable: true, editable: true, filter: true, width: 150, minWidth: 50,
         maxWidth: 300,
 
         cellEditor: "select",
@@ -236,7 +236,7 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Designation Code', field: 'designationCode', sortable: true, editable: true, filter: true, width:150, minWidth: 50,
+        headerName: 'Designation Code', field: 'designationCode', sortable: true, editable: true, filter: true, width: 150, minWidth: 50,
         maxWidth: 300,
 
 
@@ -255,7 +255,7 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Designation', field: 'designationName', sortable: true, editable: true, filter: true, width:150, minWidth: 50,
+        headerName: 'Designation', field: 'designationName', sortable: true, editable: true, filter: true, width: 150, minWidth: 50,
         maxWidth: 300,
 
         cellStyle: function (params) {
@@ -273,14 +273,14 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Description', field: 'description', sortable: true, editable: true, filter: true,width:220, minWidth: 50,
+        headerName: 'Description', field: 'description', sortable: true, editable: true, filter: true, width: 220, minWidth: 50,
         maxWidth: 300,
 
 
         cellStyle: function (params) {
           if (params.value === '') {
             // bordercolor: 'red'
-           // alert("Please Enter Description");
+            // alert("Please Enter Description");
 
             return { outline: '1px solid red' };
 
@@ -291,7 +291,7 @@ export class OrganizationComponent implements OnInit {
         }
 
       },
-     
+
     ];
     this.defaultColDef = { resizable: true };
     this.rowData2;
@@ -314,7 +314,7 @@ export class OrganizationComponent implements OnInit {
 
   totalData: number = 0;
   endPositionDesignation: number = 0;
-  startPositionDesignation:number = 0;
+  startPositionDesignation: number = 0;
 
   ShowLimitedLocation: number = 0;
   ToalLocation: number = 0;
@@ -361,7 +361,7 @@ export class OrganizationComponent implements OnInit {
   }
 
   getLocation(UserID: number) {
-    
+
     var getLocationBody = new UniversalBody();
     getLocationBody.userID = UserID + '';
     this.countryService.doGetLocation(getLocationBody)
@@ -397,7 +397,7 @@ export class OrganizationComponent implements OnInit {
   }
 
 
- 
+
 
   onDeleteLocation() {
     const universalJsonBody = new UniversalJsonBody();
@@ -532,16 +532,16 @@ export class OrganizationComponent implements OnInit {
   onSaveUpdateLocationData() {
     if (this.nodeSelectButWhere === "Save") {
       this.onSaveLocation("1");
-    } else if(this.nodeSelectButWhere === "Update")  {
+    } else if (this.nodeSelectButWhere === "Update") {
       this.onUpdateLocationData("1");
     }
   }
 
   onLocationSelectionChanged() {
     this.selectedRowsLocation = this.locationApi.getSelectedRows();
-    this.rowSelection = "multiple";   
+    this.rowSelection = "multiple";
     if (this.selectedRowsLocation.length >= 1) {
-      this.deleteNewLocation = false;    
+      this.deleteNewLocation = false;
       this.editLocation = false;
       if (this.nodeSelectButWhere === "Save") {
         this.nodeSelectButWhere = "Save"
@@ -549,15 +549,15 @@ export class OrganizationComponent implements OnInit {
         // alert(this.nodeSelectButWhere);
         this.nodeSelectButWhere = "Update"
         this.editLocation = false;
-        
+
         // alert(this.checkedLocationStatus);
-        if(this.checkedLocationStatus === true){
+        if (this.checkedLocationStatus === true) {
           alert("sadfgdsdfg");
-          this.checkedLocationStatus=true;
+          this.checkedLocationStatus = true;
         }
 
       }
-    } 
+    }
   }
 
 
@@ -621,14 +621,14 @@ export class OrganizationComponent implements OnInit {
       alert("Please Enter Description");
     }
     else {
-      
+
       for (let selectedNode of selectedData) {
 
         const departmentBody = new DepartmentBody();
         departmentBody.departmentCode = selectedNode['departmentCode'];
         departmentBody.departmentName = selectedNode['departmentName']
         departmentBody.description = selectedNode['description'];
-        departmentBody.userId ='1';
+        departmentBody.userId = '1';
         this.arrDepartmentSave.push(departmentBody);
 
         var jsonData = JSON.stringify(this.arrDepartmentSave);
@@ -706,32 +706,32 @@ export class OrganizationComponent implements OnInit {
       for (let selectedNode of selectedData) {
         const deleteDepartmentBody = new DeleteDepartmentBody();
         deleteDepartmentBody.departmentId = selectedNode['departmentID'];
-     
+
         this.arrDepartmentDelete.push(deleteDepartmentBody);
         var jsonData = JSON.stringify(this.arrDepartmentDelete);
       }
       jsonData = jsonData.replace(/"/g, "'");
-      
-        universalJsonBody.jsonData = jsonData;
-        this.countryService.deleteDepartment(universalJsonBody)
-          .subscribe(
-            data => {
-              this.universalResponse = data;
-              //console.log("key", LocationResponse);
-              alert(this.universalResponse.MESSAGE);
-              
-              if (this.universalResponse.STATUS.trim() === 'Success') {
-                this.departmentApi.removeItems(selectedNodes);
-                this.arrDepartmentDelete = [];
-                this.getDepartment('1');
-              }
+
+      universalJsonBody.jsonData = jsonData;
+      this.countryService.deleteDepartment(universalJsonBody)
+        .subscribe(
+          data => {
+            this.universalResponse = data;
+            //console.log("key", LocationResponse);
+            alert(this.universalResponse.MESSAGE);
+
+            if (this.universalResponse.STATUS.trim() === 'Success') {
+              this.departmentApi.removeItems(selectedNodes);
+              this.arrDepartmentDelete = [];
+              this.getDepartment('1');
             }
-          );
-      }
+          }
+        );
+    }
 
 
   }
- 
+
 
   getDepartment(UserID: string) {
     var getDepartmentBody = new UniversalBody();
@@ -798,7 +798,7 @@ export class OrganizationComponent implements OnInit {
       for (let selectedNode of selectedData) {
 
         const departmentBody = new DepartmentBody();
-        departmentBody.userId= userID;
+        departmentBody.userId = userID;
         departmentBody.departmentCode = selectedNode['departmentCode'];
         departmentBody.departmentName = selectedNode['departmentName']
         departmentBody.description = selectedNode['description'];
@@ -808,19 +808,19 @@ export class OrganizationComponent implements OnInit {
         jsonData = jsonData.replace(/"/g, "'");
 
       }
-      console.log('jsonData:   '+jsonData);
+      console.log('jsonData:   ' + jsonData);
 
       universalJsonBody.jsonData = jsonData;
-      
+
       this.countryService.saveDepartment(universalJsonBody)
         .subscribe(
           data => {
             this.universalResponse = data;
             alert(this.universalResponse.MESSAGE);
             if (this.universalResponse.STATUS.trim() === 'Success') {
-              
+
               this.getDepartment('1');
-              
+
             }
             this.arrDepartmentSave = [];
           }
@@ -828,14 +828,14 @@ export class OrganizationComponent implements OnInit {
     }
   }
 
-  onUpdateDepartmentData(userID :string) {
+  onUpdateDepartmentData(userID: string) {
 
     this.editDepartment = false;
 
     if (this.selectedRowsDepartment === undefined) {
       alert("Please enter input valid data then hit save.")
     } else {
-     
+
       const selectedNodes = this.departmentApi.getSelectedNodes();
       if (selectedNodes.length === 0) {
         alert("Please Input Valid Data");
@@ -856,23 +856,23 @@ export class OrganizationComponent implements OnInit {
         else {
           for (let selectedNode of selectedData) {
             const updateDepartmentBody = new DepartmentBody();
-           
-             updateDepartmentBody.userId =userID;
-              updateDepartmentBody.departmentCode = selectedNode['departmentCode'];
+
+            updateDepartmentBody.userId = userID;
+            updateDepartmentBody.departmentCode = selectedNode['departmentCode'];
             //  updateDepartmentBody.departmentName =selectedNode
-              updateDepartmentBody.departmentName = selectedNode['departmentName'];
-              updateDepartmentBody.description = selectedNode['description'];
-             updateDepartmentBody.departmentId = selectedNode['departmentID'];
-            
+            updateDepartmentBody.departmentName = selectedNode['departmentName'];
+            updateDepartmentBody.description = selectedNode['description'];
+            updateDepartmentBody.departmentId = selectedNode['departmentID'];
+
             this.arrDepartmentSave.push(updateDepartmentBody);
-    
+
             var jsonData = JSON.stringify(this.arrDepartmentSave);
             jsonData = jsonData.replace(/"/g, "'");
-    
+
           }
-    
+
           universalJsonBody.jsonData = jsonData;
-     
+
           this.countryService.updateDepartment(universalJsonBody)
             .subscribe(
               data => {
@@ -885,7 +885,7 @@ export class OrganizationComponent implements OnInit {
                   this.addNewDepartmentRow = false;
                   this.getDepartment('1');
                   this.nodeSelectButWhere = "Update";
-                  this.arrDepartmentSave=[];
+                  this.arrDepartmentSave = [];
                 } else {
                   alert(universalResonse.STATUS + ' else : ' + universalResonse.MESSAGE);
                 }
@@ -926,7 +926,7 @@ export class OrganizationComponent implements OnInit {
     else if (this.selectedRowsDepartment.length >= 1) {
       this.editDepartment = false;
       this.deleteNewDepartment = false;
-      
+
     }
   }
 
@@ -934,7 +934,7 @@ export class OrganizationComponent implements OnInit {
 
 
   getDesignation(UserID: number) {
-    console.log("in get designation","running");
+    console.log("in get designation", "running");
     this.editDesignation = true;
     this.addNewDesignationRow = true;
     this.deleteNewDesignation = true;
@@ -955,7 +955,7 @@ export class OrganizationComponent implements OnInit {
             this.startPositionDesignation = 1;
             this.endPositionDesignation = this.getDesignationResponse.length;
             this.totalData = this.getDesignationResponse.length;
-            
+
             this.saveUpdateDesignation = "Save";
             this.editDesignation = true;
             this.addNewDesignationRow = false;
@@ -990,7 +990,7 @@ export class OrganizationComponent implements OnInit {
     else if (dataTest['description'] === '') {
       alert("Please Enter Description");
     }
-    else{
+    else {
       for (let selectedNode of selectedData) {
         const designationBody = new DesignationBody();
         designationBody.designationCode = selectedNode['designationCode'];
@@ -1025,7 +1025,7 @@ export class OrganizationComponent implements OnInit {
     if (selectedData.length === 0) {
       alert('Please select a row');
     } else {
-      
+
 
       if (dataTest['designationCode'] === '') {
         alert("Plesae Enter Designation Code");
@@ -1037,7 +1037,7 @@ export class OrganizationComponent implements OnInit {
         alert("Please Enter Description");
       }
       else {
-      
+
         for (let selectedNode of selectedData) {
           const designationBody = new DesignationBody();
           designationBody.designationCode = selectedNode['designationCode'];
@@ -1048,7 +1048,7 @@ export class OrganizationComponent implements OnInit {
           var jsonData = JSON.stringify(this.arrDesignationSave);
         }
         jsonData = jsonData.replace(/"/g, "'");
-        
+
         universalJsonBody.jsonData = jsonData;
         this.countryService.saveDesignation(universalJsonBody)
           .subscribe(
@@ -1071,7 +1071,7 @@ export class OrganizationComponent implements OnInit {
 
   onUpdateDesignationData() {
     this.designationApi.tabToNextCell();
-    
+
     this.editDesignation = false;
 
     if (this.selectedRowsDesignation === undefined) {
@@ -1089,7 +1089,7 @@ export class OrganizationComponent implements OnInit {
         selectedData.map(node => dataTest = node as Object);
 
         console.log("Key", selectedData);
-             
+
         //updateDesignationBody.DesignationID = dataTest['designationID'];
         if (dataTest['designationCode'] === '') {
           alert("Enter Location Code");
@@ -1098,21 +1098,21 @@ export class OrganizationComponent implements OnInit {
         } else if (dataTest['description'] === '') {
           alert("Enter Location Description");
         } else {
-       
+
           for (let selectedNode of selectedData) {
             const updateDesignationBody = new DesignationBody();
             updateDesignationBody.designationCode = selectedNode['designationCode'];
             updateDesignationBody.designationName = selectedNode['designationName'];
             updateDesignationBody.description = selectedNode['description'];
             updateDesignationBody.designationId = selectedNode['designationId'];
-            console.log("Update designation details",updateDesignationBody);
+            console.log("Update designation details", updateDesignationBody);
             this.arrDesignationUpdate.push(updateDesignationBody);
             var jsonData = JSON.stringify(this.arrDesignationUpdate);
           }
           jsonData = jsonData.replace(/"/g, "'");
-          
+
           universalJsonBody.jsonData = jsonData;
-  
+
           this.countryService.updateDesignation(universalJsonBody)
             .subscribe(
               data => {
@@ -1143,7 +1143,7 @@ export class OrganizationComponent implements OnInit {
       this.onDeleteLocation();
     }
     else if (DepartmentNode.length !== 0) {
-     this.onDeleteDepartment();
+      this.onDeleteDepartment();
     }
     else if (DesignationNode.length !== 0) {
       this.onDeleteDesignation();
@@ -1157,7 +1157,7 @@ export class OrganizationComponent implements OnInit {
     // const deleteDesignationBody = new DeleteDesignationBody();
     const selectedData = selectedNodes.map(node => node.data);
     selectedData.map(node => dataTest = node as Object);
-    
+
     if (selectedData.length === 0) {
       alert("Please Select any row.");
     } else {
@@ -1165,7 +1165,7 @@ export class OrganizationComponent implements OnInit {
       for (let selectedNode of selectedData) {
         const deleteDesignationBody = new DeleteDesignationBody();
         deleteDesignationBody.designationId = selectedNode['designationId'];
-        console.log("Delete designation Id",deleteDesignationBody.designationId);
+        console.log("Delete designation Id", deleteDesignationBody.designationId);
         this.arrDesignationDelete.push(deleteDesignationBody);
         var jsonData = JSON.stringify(this.arrDesignationDelete);
 
@@ -1182,7 +1182,7 @@ export class OrganizationComponent implements OnInit {
             if (this.universalResponse.STATUS === "Success") {
               console.log("Delete Status : ", this.universalResponse.STATUS)
               this.designationApi.removeItems(selectedNodes);
-              }
+            }
             this.arrDesignationDelete = [];
           }
 
@@ -1190,7 +1190,7 @@ export class OrganizationComponent implements OnInit {
     }
     this.getDesignation(1);
   }
-  
+
   // onSelectionDesignationChanged() {
   //   console.log("checking function","in onSelectionDesignationChanged function");
   //   const selectedRows = this.designationApi.getSelectedRows();
