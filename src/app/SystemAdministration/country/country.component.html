@@ -75,7 +75,7 @@
                     <div class="clearfix"></div>
                     <div class="formBody clearfix pt-0 pb-2">
                       <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData"
-                        [rowClassRules]="rowClassRules" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [animateRows]="true"
+                        [rowClassRules]="rowClassRules" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [animateRows]="true" 
                         [rowSelection]="rowSelection" (selectionChanged)="onSelectionChanged($event)"  (firstDataRendered)="onFirstDataRendered($event)" 
                         (gridReady)="onGridReady($event)"></ag-grid-angular>
 
@@ -133,7 +133,7 @@
 
                       <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData1"
                         [columnDefs]="columnDefs1" [animateRows]="true" [rowSelection]="rowSelection"
-                        [frameworkComponents]="frameworkComponents" [gridOptions]="gridOptions" [defaultColDef]="defaultColDef"
+                        [frameworkComponents]="frameworkComponents" [gridOptions]="gridOptions" [defaultColDef]="defaultColDef"  [floatingFilter]="true"
                         (cellDoubleClicked)="rowEditingStarted($event)" (firstDataRendered)="onFirstDataRendered($event)"
                         (selectionChanged)="onStateSelectionChanged($event)" (gridReady)="onStateGridReady($event)">
                       </ag-grid-angular>
