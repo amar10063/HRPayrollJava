@@ -46,6 +46,8 @@
                 </button>
                   <button type="button" class="payHeadBtn" [disabled]="deleteNewLocation" data-toggle="modal" data-target="#addNew1">
                     <i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                    <button type="button" class="payHeadBtn"><i class="fa fa-upload" aria-hidden="true"></i>Import</button>
+                    <button type="button" class="payHeadBtn"><i class="fa fa-download" aria-hidden="true"></i>Export</button>
                 </div>
               </div>
               <div class="clearfix"></div>
@@ -53,9 +55,9 @@
               <div class="clearfix"></div>
           <div class="formBody clearfix pt-0 pb-2">
 
-             <ag-grid-angular style="width:100%; height: 221px" class="ag-theme-balham" [rowData]="rowData"
-              [columnDefs]="columnDefs" [rowSelection]="rowSelection" [rowClassRules]="rowClassRules" (gridReady)="onGridLocationReady($event)" (selectionChanged)="
-              onLocationSelectionChanged($event)"></ag-grid-angular>
+             <ag-grid-angular style="width:100%; height: 395px" class="ag-theme-balham" [rowData]="rowData"
+              [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [rowSelection]="rowSelection" [rowClassRules]="rowClassRules" (gridReady)="onGridLocationReady($event)" (selectionChanged)="
+              onLocationSelectionChanged($event)"  (firstDataRendered)="onFirstDataRendered($event)"></ag-grid-angular>
 
           </div>
           <div class="row mb-1" >
@@ -95,6 +97,8 @@
                 </button>
                   <button type="button" class="payHeadBtn" [disabled]="deleteNewDepartment"data-toggle="modal" data-target="#addNew1" (click)="onDeleteDepartment()">
                     <i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                    <button type="button" class="payHeadBtn"><i class="fa fa-upload" aria-hidden="true"></i>Import</button>
+                    <button type="button" class="payHeadBtn"><i class="fa fa-download" aria-hidden="true"></i>Export</button>
                 </div>
               </div>
               <div class="clearfix"></div>
@@ -102,8 +106,8 @@
               <div class="clearfix"></div>
           <div class="formBody clearfix pt-0 pb-2">
 
-            <ag-grid-angular style="width:100%; height: 221px" class="ag-theme-balham" [rowData]="rowData1"
-              [columnDefs]="columnDefs1" [rowSelection]="rowSelection" (gridReady)="onGridDepartmentReady($event)" (selectionChanged)="
+            <ag-grid-angular style="width:100%; height: 395px" class="ag-theme-balham" [rowData]="rowData1"
+              [columnDefs]="columnDefs1" (firstDataRendered)="onFirstDataRendered($event)" [defaultColDef]="defaultColDef" [rowSelection]="rowSelection" (gridReady)="onGridDepartmentReady($event)" (selectionChanged)="
               onDepartmentSelectionChanged($event)"></ag-grid-angular>
 
 
@@ -140,14 +144,16 @@
                     aria-hidden="true"></i>{{saveUpdateDesignation}}
                 </button>
                   <button type="button" class="payHeadBtn"[disabled]="deleteNewDesignation" data-toggle="modal" data-target="#addNew1"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                  <button type="button" class="payHeadBtn"><i class="fa fa-upload" aria-hidden="true"></i>Import</button>
+                  <button type="button" class="payHeadBtn"><i class="fa fa-download" aria-hidden="true"></i>Export</button>
                 </div>
               </div>
               <div class="clearfix"></div>
             </div>
               <div class="clearfix"></div>
           <div class="formBody clearfix pt-0 pb-2">
-            <ag-grid-angular style="width:100%; height: 221px" class="ag-theme-balham" [rowData]="rowData2"
-              [columnDefs]="columnDefs2"
+            <ag-grid-angular style="width:100%; height: 395px" class="ag-theme-balham" [rowData]="rowData2"
+              [columnDefs]="columnDefs2" [defaultColDef]="defaultColDef"  (firstDataRendered)="onFirstDataRendered($event)"
               [rowSelection]="rowSelection" (gridReady)="onGridDesignationReady($event)" (selectionChanged)="
               onDesignationSelectionChanged($event)"></ag-grid-angular>
           </div>
