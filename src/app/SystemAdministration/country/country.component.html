@@ -74,9 +74,9 @@
                     </div>
                     <div class="clearfix"></div>
                     <div class="formBody clearfix pt-0 pb-2">
-                      <ag-grid-angular style="width:100%; height: 395px" class="ag-theme-balham" [rowData]="rowData"
+                      <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData"
                         [rowClassRules]="rowClassRules" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [animateRows]="true"
-                        [rowSelection]="rowSelection" (selectionChanged)="onSelectionChanged($event)"
+                        [rowSelection]="rowSelection" (selectionChanged)="onSelectionChanged($event)"  (firstDataRendered)="onFirstDataRendered($event)" 
                         (gridReady)="onGridReady($event)"></ag-grid-angular>
 
                     </div>
@@ -131,9 +131,9 @@
                     <div class="clearfix"></div>
                     <div class="formBody clearfix pt-0 pb-2">
 
-                      <ag-grid-angular style="width:100%; height: 321px" class="ag-theme-balham" [rowData]="rowData1"
-                        [columnDefs]="columnDefs1" [animateRows]="true" [rowSelection]="rowSelection" [frameworkComponents]="frameworkComponents"[singleClickEdit]="true"
-                        [gridOptions]="gridOptions" (selectionChanged)="onStateSelectionChanged($event)"
+                      <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData1"
+                        [columnDefs]="columnDefs1" [animateRows]="true" [defaultColDef]="defaultColDef" [rowSelection]="rowSelection" [frameworkComponents]="frameworkComponents"[singleClickEdit]="true"
+                        [gridOptions]="gridOptions" (selectionChanged)="onStateSelectionChanged($event)"  (firstDataRendered)="onFirstDataRendered($event)" 
                          (gridReady)="onStateGridReady($event)"
                        ></ag-grid-angular>
 
@@ -186,9 +186,9 @@
                     </div>
                     <div class="clearfix"></div>
                     <div class="formBody clearfix pt-0 pb-2">
-                      <ag-grid-angular style="width:100%; height: 221px" class="ag-theme-balham" [rowData]="rowData2"
-                        [columnDefs]="columnDefs2" [animateRows]="true" [rowSelection]="rowSelection" [frameworkComponents]="frameworkComponents"[singleClickEdit]="true" [gridOptions]="gridOptions"
-                        (gridReady)="onCityGridReady($event)" (selectionChanged)="onCitySelectionChanged($event)">
+                      <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData2"
+                        [columnDefs]="columnDefs2" [animateRows]="true" [defaultColDef]="defaultColDef" [rowSelection]="rowSelection" [frameworkComponents]="frameworkComponents"[singleClickEdit]="true" [gridOptions]="gridOptions"
+                        (gridReady)="onCityGridReady($event)" (selectionChanged)="onCitySelectionChanged($event)"  (firstDataRendered)="onFirstDataRendered($event)" >
                       </ag-grid-angular>
                     </div>
                     <div class="row mb-1">
@@ -241,9 +241,9 @@
                     <div class="clearfix"></div>
                     <div class="formBody clearfix pt-0 pb-2">
 
-                      <ag-grid-angular style="width:100%; height: 221px" class="ag-theme-balham" [rowData]="rowData3"
-                        [columnDefs]="columnDefs3" [animateRows]="true" [rowSelection]="rowSelection"[frameworkComponents]="frameworkComponents"[singleClickEdit]="true" [gridOptions]="gridOptions"
-                        (gridReady)="onPostalGridReady($event)" (selectionChanged)="onPostalSelectionChanged($event)">
+                      <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData3"
+                        [columnDefs]="columnDefs3" [animateRows]="true" [defaultColDef]="defaultColDef" [rowSelection]="rowSelection"[frameworkComponents]="frameworkComponents"[singleClickEdit]="true" [gridOptions]="gridOptions"
+                        (gridReady)="onPostalGridReady($event)" (selectionChanged)="onPostalSelectionChanged($event)"  (firstDataRendered)="onFirstDataRendered($event)" >
                       </ag-grid-angular>
 
                     </div>
