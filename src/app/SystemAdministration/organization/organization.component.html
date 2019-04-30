@@ -81,7 +81,7 @@
                     <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                       <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                         <label class="checkBox">
-                          <input type="checkbox" name="checkbox" (ngModelChange)="onCheckedBoxChangeDepartment($event)"
+                          <input type="checkbox" name="checkbox" [disabled]="selectAllDepartment" (ngModelChange)="onCheckedBoxChangeDepartment($event)"
                       [ngModel]="departmentfilter">
                           <span class="checkmark check1"></span> </label>
                       </div>
@@ -92,10 +92,10 @@
               <div class="buttonCon pull-right mt-1 mb-2 mr-2 ">
                 <button type="button" class="payHeadBtn"[disabled]="addNewDepartmentRow" (click)="onAddDepartment()"><i class="fa fa-plus-square" aria-hidden="true"></i>Add
                   New</button>
-                  <button type="button" class="payHeadBtn" [disabled]="editDepartment"(click)="onSaveUpdateDepartmentData()"><i class="fa fa-save"
+                  <button type="button" class="payHeadBtn" [disabled]="editDepartment" data-toggle="modal" data-target="#saveDataOrganization"><i class="fa fa-save"
                     aria-hidden="true"></i>{{saveUpdateDepartment}}
                 </button>
-                  <button type="button" class="payHeadBtn" [disabled]="deleteNewDepartment"data-toggle="modal" data-target="#addNew1" >
+                  <button type="button" class="payHeadBtn" [disabled]="deleteNewDepartment" data-toggle="modal" data-target="#addNew1" >
                     <i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
                     <button type="button" class="payHeadBtn"><i class="fa fa-upload" aria-hidden="true"></i>Import</button>
                     <button type="button" class="payHeadBtn"><i class="fa fa-download" aria-hidden="true"></i>Export</button>
@@ -191,6 +191,30 @@
 
         <button type="button" id="btnSave" class="btn btn-submit" (click)="universalDeleteOrganizaion()"
           style="padding:4px;" data-dismiss="modal">DELETE</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="saveDataOrganization">
+  <div class="modal-dialog modal-dialog-centered" id="Div3">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><img src="../assets/images/del-icon.png" alt="Delete" /></h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        {{saveUpdateDepartmentPopup}}
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" id="btnSave" class="btn btn-submit" onclick="" style="padding:4px;"
+          data-dismiss="modal">CANCEL</button>
+
+        <button type="button" id="btnSave" class="btn btn-submit" (click)="universalSaveUpdateOrganizaion()"
+          style="padding:4px;" data-dismiss="modal">{{btnSaveUpdateDepartmentPopup}}</button>
 
       </div>
     </div>
