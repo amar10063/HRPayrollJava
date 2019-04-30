@@ -26,7 +26,8 @@ import { TaxComponent } from './SystemADministration/tax/tax.component';
 import { GeneralComponent } from './SystemAdministration/general/general.component';
 import { LocationDropdownComponent } from './location-dropdown/location-dropdown.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,8 +54,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
   ],
   imports: [
     AgGridModule.withComponents([LocationDropdownComponent]), BsDropdownModule.forRoot(),
-    BrowserModule, ReactiveFormsModule, FormsModule,
-    AppRoutingModule,
+    BrowserModule, ReactiveFormsModule, FormsModule, BrowserAnimationsModule,
+    AppRoutingModule, DragDropModule,
     HttpClientModule
 
   ],
