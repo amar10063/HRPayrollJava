@@ -1,10 +1,11 @@
 export class ServiceUrls {
     public static baseUrls = 'http://10.10.10.48:8081';
+
     public static highSchoolApi = '/AddSchool';
     public static getSchoolDataApi = '/getSchool';
     // public static AddLocation = '/AddLocation';
 
-    public static AddLocation = '/SaveMultipleeLocation';
+    public static AddLocation = '/SaveMultipleLocation';
     public static UpdateLocation = '/UpdateMultipleLocation';
 
     public static getLocation = '/getLocation';
