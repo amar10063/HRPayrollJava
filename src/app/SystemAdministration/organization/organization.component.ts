@@ -167,7 +167,7 @@ export class OrganizationComponent implements OnInit {
       },
       {
         headerName: 'Department Code', field: 'departmentCode', sortable: true, editable: true, width: 250, minWidth: 50,
-        maxWidth: 300, filter: true,
+        maxWidth: 300, filter: 'agNumberColumnFilter',
 
         cellStyle: function (params) {
           if (params.value === '') {
