@@ -52,7 +52,7 @@
                         <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
                           <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                             <label class="checkBox">
-                              <input type="checkbox" name="checkbox" (ngModelChange)="onCountryFilterChange($event)"
+                              <input type="checkbox" name="checkbox"  (ngModelChange)="onCountryFilterChange($event)"
                                 [ngModel]="countryFilter">
                               <span class="checkmark check1" title="Select All"></span> </label>
                           </div>
@@ -182,7 +182,7 @@
                           <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                             <label class="checkBox">
                               <input type="checkbox" name="checkbox" (ngModelChange)="onCityFilterChange($event)"
-                                [ngModel]="cityFilter">
+                                [ngModel]="cityFilter" [disabled]="selectAllCity">
                               <span class="checkmark check1" title="Select All"></span> </label>
                           </div>
 
@@ -194,7 +194,8 @@
                             [disabled]="addCityToggleButton" title="Add New"><i class="fa fa-plus-square"
                               aria-hidden="true"></i>Add
                             New</button>
-                          <button type="button" class="payHeadBtn" (click)="onSaveUpdateCity()"
+                          <button type="button" class="payHeadBtn" 
+                          data-toggle="modal" data-target="#saveDataAddress"
                             [disabled]="saveCityToggleButton" Title="Save"><i class="fa fa-save"
                               aria-hidden="true"></i>{{saveUpdateCity}}
                           </button>
@@ -227,7 +228,7 @@
                         <div class="form group col-md-2 pull-right p-0">
                           <span class="fa fa-angle-double-left  previous round" title="Older" id="nextprev"></span>
                           <label class="col-md-6 p-0"
-                            style=" text-align: center; font-size:10px; font-weight:bold;">{{ShowLimitedCity}} of
+                            style=" text-align: center; font-size:10px; font-weight:bold;">{{ShowCity}} -{{ShowLimitedCity}} of
                             {{TotalCity}}</label>
                           <span class="fa fa-angle-double-right  next round" title="Newer" id="nextprev"></span>
                         </div>
@@ -323,6 +324,29 @@
 
                   <button type="button" id="btnSave" class="btn btn-submit" (click)="universalDelete()"
                     style="padding:4px;" data-dismiss="modal">DELETE</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="saveDataAddress">
+            <div class="modal-dialog modal-dialog-centered" id="Div3">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title"><img src="../assets/images/del-icon.png" alt="Delete" /></h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                  {{saveUpdateAddressPopup}}
+                </div>
+                <div class="modal-footer">
+          
+                  <button type="button" id="btnSave" class="btn btn-submit" onclick="" style="padding:4px;"
+                    data-dismiss="modal">CANCEL</button>
+          
+                  <button type="button" id="btnSave" class="btn btn-submit" (click)="universalSaveAddress()"
+                    style="padding:4px;" data-dismiss="modal">{{btnSaveUpdateAddressPopup}}</button>
+          
                 </div>
               </div>
             </div>

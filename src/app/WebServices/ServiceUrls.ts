@@ -54,7 +54,7 @@ export class ServiceUrls {
 
     public static updateCountry = '/UpdateCountry';
     public static updateState = '/UpdateState';
-    public static updateCity = '/UpdateCity';
+    public static updateCity = '/UpdateMultipleCity';
     public static updatePostal = '/UpdatePostalCode';
     public static getCountryDropDown = '/getCountryDropDown';
     public static getStateDropdown = '/getStateDropDown';

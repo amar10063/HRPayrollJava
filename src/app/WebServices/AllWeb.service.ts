@@ -165,6 +165,7 @@ export class AllWeb {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.updateDesignation, JSON.stringify(updateDesignationBody), this.httpOptions);
   }
   saveCity(universalJsonBody: UniversalJsonBody): Observable<UniversalResponse> {
+    //alert(JSON.stringify(universalJsonBody));
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveCity, JSON.stringify(universalJsonBody), this.httpOptions);
   }
   saveState(universalJsonBody: UniversalJsonBody): Observable<UniversalResponse> {
@@ -270,8 +271,9 @@ export class AllWeb {
   updateCountry(updateCountryBody: UpdateCountryBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.updateCountry, JSON.stringify(updateCountryBody), this.httpOptions);
   }
-  updateCity(updateCityBody: UpdateCityBody): Observable<UniversalResponse> {
-    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.updateCity, JSON.stringify(updateCityBody), this.httpOptions);
+  updateCity(universalJsonBody: UniversalJsonBody): Observable<UniversalResponse> {
+    alert(JSON.stringify(universalJsonBody));
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.updateCity, JSON.stringify(universalJsonBody), this.httpOptions);
   }
   updatePostal(updatePostalBody: UpdatePostalBody): Observable<UniversalResponse> {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.updatePostal, JSON.stringify(updatePostalBody), this.httpOptions);
