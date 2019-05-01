@@ -1,9 +1,9 @@
 export class UpdateCountryBody
 {
-    CountryID: number; 
-CountryName:string ;
-CountryCode: string;
-UpdatedBy :string= "1" ;
-Description : string ="Country Name ";
-userID: number =1;
+    countryId: number; 
+    countryName:string ;
+    countryCode: string;
+    //UpdatedBy :string= "1" ;
+    descpition : string ="Country Name ";
+    userId: number =1;
 }
