@@ -24,11 +24,54 @@
               <li><a href="#">  <i class="fa fa-file" aria-hidden="true"></i>Theme Setting</a></li>
               <li><a href="#">  <i class="fa fa-language" aria-hidden="true"></i>Language</a></li>             
               <li class="bgline">Manage</li>
-              <li><a href="#">  <i class="fa fa-lock" aria-hidden="true"></i>Change Password</a></li>
+              <li><a href="#" data-toggle="modal" data-target="#myModal">  <i class="fa fa-lock" aria-hidden="true"></i>Change Password</a></li>
               <li><a href="#">  <i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a></li>
             </ul>
           </div>
     </div>
 </div>
+</div>
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" id="myModel">
+      <div class="modal-body" id="resetbody">
+        <div class="container-fluid  no-padding" >
+          <div class="col-md-12 col-sm-12 col-xs-12 no-padding ">
+              <div class="col-md-12 ">
+                  <div class="head">Reset Your Password</div>
+                  <button class=" closebtn" data-dismiss="modal">X</button>
+                 </div>               
+                  <div class="col-md-12 col-sm-12 col-xs-12 ">
+                    <div class="notetext"> Must contain at least 8 characters, atleast one uppercase letter, atleast one lowercase letter, atleast one number, atleast one special character.</div>      
+                  </div>         
+              <form> 
+              <div class="col-md-12 no-padding" >
 
+                         <label class="col-md-4 col-sm-12 col-xs-12 labeltext no-padding">Old Password</label>
+                         
+                              <input type="text"  placeholder="Enter Old Password" class="col-md-12 col-sm-12 col-xs-12 " />
+                            
+                      </div> 
+                      <div class="col-md-12 no-padding" >
+                          <label class="col-md-4 col-sm-12 col-xs-12 labeltext no-padding">New Password</label>
+                          
+                           <input type="password"   placeholder="Enter New Password " class="col-md-12 col-sm-12 col-xs-12  " />
+                        
+                       </div>
+                       <div class="col-md-12 no-padding">
+                        <label class="col-md-4 col-sm-12 col-xs-12 labeltext no-padding">Confirm Password</label>
+                        
+                         <input type="Password"   placeholder="Enter Confirm Password" class="col-md-12 col-sm-12 col-xs-12 " />
+                     
+                     </div>
+              
+                 <div class=" float-right"> 
+                <button class="btn btn-default btnsave" >SAVE</button>
+               </div>
+           </form>             
+    </div>      
+  </div>
+</div>
+</div>
+</div>
 </div>
