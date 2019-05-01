@@ -35,8 +35,6 @@ import { UniversalJsonBody } from 'src/app/WebServices/WebServiceBody/UniversalJ
 export class CountryComponent implements OnInit {
   columnDefs; columnDefs1; columnDefs2; columnDefs3; columnDefs4; columnDefs5;
   rowData; rowData1; rowData2; rowData3; rowData4; rowData5;
-
-
   frameworkComponents = {
     locationFramework: LocationDropdownComponent
   };
@@ -135,6 +133,7 @@ export class CountryComponent implements OnInit {
   private rowClassRules;
   isShowing = false;
   private overlayNoRowsTemplate;
+  stateData = []; cityData = [];
 
   constructor(private allWeb: AllWeb) {
 
