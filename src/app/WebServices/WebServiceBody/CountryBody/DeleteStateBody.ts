@@ -1,4 +1,4 @@
 export class DeleteStateBody {
     stateId: number;
-    userId: string ='1';
+    userId: string ;
 }

@@ -23,7 +23,7 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
   locationResponse: GetAllLocationResponse[];
   selectedValue;
   action;
-  context; 
+  context;
 
   normalStateClcik; normalCityClcik;
   normalCountryClcik;
@@ -63,7 +63,6 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
   getAllDepartment(): any {
     var departmentBody = new GetAllDepartmentBody();
     departmentBody.userID = 1;
-    //console.log("key locationBody", departmentBody)
     this.countryService.getDepartment(departmentBody)
       .subscribe(
         data => {
@@ -78,28 +77,31 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
   }
 
   onClick() {
+    console.log('onSelectClick');
     if (this.params === 'country') {
-      this.normalStateClcik = false;
-      this.normalCityClcik = false;
+
     } else if (this.params === 'state') {
       this.getAllState(this.context.componentParent.selectedCountryId);
-      this.normalStateClcik = true;
     } else if (this.params === 'city') {
       this.getAllCity(this.context.componentParent.selectedStateId);
-      this.normalCityClcik = true;
 
     }
   }
   getSelectedValue(event) {
+    console.log('this.newObj   ' + event);
     if (this.params === 'country') {
-      this.context.componentParent.selectedCountryId = event.target.value;
+      this.context.componentParent.selectedCountryId = event;
+      this.context.componentParent.stateData = [];
+      this.context.componentParent.cityData = [];
     } else if (this.params === 'state') {
-      this.context.componentParent.selectedStateId = event.target.value;
+      this.context.componentParent.selectedStateId = event;
+      this.context.componentParent.cityData = [];
     } else if (this.params === 'city') {
-      this.context.componentParent.selectedCityId = event.target.value;
+      this.context.componentParent.selectedCityId = event;
     }
 
   }
+  haveData;
   getAllCountry(): any {
     const universalBody = new UniversalBody();
     universalBody.userID = '1';
@@ -108,36 +110,44 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
         data => {
           this.locationResponse = data;
           this.context.componentParent.selectedCountryId = this.locationResponse[0].id;
+          console.log("key locationBody", this.context.componentParent.selectedCountryId);
         }
       );
   }
   getAllState(countryID): any {
-    var universalBody = new UniversalBody();
-    universalBody.userID = '1';
-    universalBody.countryID = countryID + '';
-    this.countryService.stateDropdown(universalBody)
-      .subscribe(
-        data => {
-          this.locationResponse = data;
-          this.context.componentParent.selectedStateId = this.locationResponse[0].id;
-
-        }
-      );
+    if (this.context.componentParent.stateData.length === 0) {
+      var universalBody = new UniversalBody();
+      universalBody.userID = '1';
+      universalBody.countryID = countryID + '';
+      this.countryService.stateDropdown(universalBody)
+        .subscribe(
+          data => {
+            this.locationResponse = data;
+            this.context.componentParent.stateData = data;
+            this.context.componentParent.selectedStateId = this.locationResponse[0].id;
+            this.haveData = 1;
+          }
+        );
+    } else { }
   }
 
-  getAllCity(stateID): any {
-    var universalBody = new UniversalBody();
-    universalBody.userID = '1';
-    universalBody.stateID = stateID + '';
-    console.log('zxcasczx  :' + JSON.stringify(universalBody));
-    this.countryService.cityDropdown(universalBody)
-      .subscribe(
-        data => {
-          this.locationResponse = data;
-          this.context.componentParent.selectedCityId = this.locationResponse[0].id;
 
-        }
-      );
+  getAllCity(stateID): any {
+    if (this.context.componentParent.cityData.length === 0) {
+      var universalBody = new UniversalBody();
+      universalBody.userID = '1';
+      universalBody.stateID = stateID + '';
+      console.log('zxcasczx  :' + JSON.stringify(universalBody));
+      this.countryService.cityDropdown(universalBody)
+        .subscribe(
+          data => {
+            this.locationResponse = data;
+            this.context.componentParent.cityData = data;
+            this.context.componentParent.selectedCityId = this.locationResponse[0].id;
+
+          }
+        );
+    } else { }
   }
 
 }
