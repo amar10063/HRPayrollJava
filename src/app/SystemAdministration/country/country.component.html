@@ -257,7 +257,7 @@
                           <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
                             <label class="checkBox">
                               <input type="checkbox" name="checkbox" (ngModelChange)="onPostalFilterChange($event)"
-                                [ngModel]="postalFilter">
+                                [ngModel]="postalFilter" [disabled]="selectAllPostalToggle">
                               <span class="checkmark check1" title="Select All"></span> </label>
                           </div>
 
@@ -295,8 +295,9 @@
                         [singleClickEdit]="true" [gridOptions]="gridOptions" (gridReady)="onPostalGridReady($event)"
                         [stopEditingWhenGridLosesFocus]="true" (selectionChanged)="onPostalSelectionChanged($event)"
                         (cellDoubleClicked)="rowPostalEditingStarted($event)"
-                        (firstDataRendered)="onFirstDataRendered($event)">
+                        (firstDataRendered)="onFirstDataRendered($event)" (cellValueChanged)="onPostalCellValueChanged($event)">
                       </ag-grid-angular>
+
                       <div  class="row">
                           <label  class="col-md-6 pull-right"></label>
                           <span class=" col-md-6 pull-right loadmore">Showing results 1 - {{ShowLimitedPostal}} Out of {{TotalPostal}}  

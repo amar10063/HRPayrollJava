@@ -3,7 +3,6 @@ export class UpdateCountryBody
     countryId: number; 
     countryName:string ;
     countryCode: string;
-    //UpdatedBy :string= "1" ;
-    descpition : string ="Country Name ";
+    descpition : string;
     userId: number =1;
 }

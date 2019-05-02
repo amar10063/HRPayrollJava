@@ -100,7 +100,8 @@ export class CountryComponent implements OnInit {
   selectAllCity = true;
 
   TotalPostal: any = 0;
-  ShowLimitedPostal: any = 0;
+  StartPostalNumber: any = 0;
+  EndPostalNumber: any = 0;
 
   stateApi: GridApi;
   stateColumnApi: ColumnApi;
@@ -130,10 +131,15 @@ export class CountryComponent implements OnInit {
   stateArray: StateBody[] = [];
   cityArray: CityBody[] = [];
   postalArray: PostalBody[] = [];
+  postalArrayUpdate: UpdatePostalBody[] = [];
 
   deleteArrayCountry: DeleteCountryBody[] = [];
   updateArrayCountry: UpdateCountryBody[] = [];
   selectAllCountryToggle = true;
+  selectAllPostalToggle = true;
+
+  addPostCount = 0;
+   
 
 
   type: '';
@@ -344,6 +350,9 @@ export class CountryComponent implements OnInit {
 
       },
 
+      { headerName: '', field: 'hidden', hide: true },      
+      { headerName: '', field: 'pID', hide: true },
+
       { headerName: 'Description', field: 'description',  tooltipField: 'description', sortable: true, filter: true, Width: 150, minWidth: 50, maxWidth: 500, editable: false },
       { headerName: '', field: 'hidden', hide: true },
 
@@ -446,7 +455,7 @@ export class CountryComponent implements OnInit {
     console.log('datatest:  ' + JSON.stringify(dataTest));
     var res1 = this.postalApi.updateRowData({ remove: selectedData });
 
-    let res = this.postalApi.updateRowData({ add: [{ cityName: dataTest['cityName'], stateName: dataTest['stateName'], countryName: dataTest['countryName'], postalCode: dataTest['postalCode'], description: dataTest['description'], hidden: 'hidden' }], addIndex: event.rowIndex });
+    let res = this.postalApi.updateRowData({ add: [{ cityName: dataTest['cityName'], stateName: dataTest['stateName'], countryName: dataTest['countryName'], postalCode: dataTest['postalCode'], description: dataTest['description'], hidden: 'hidden',pID:dataTest['pID'] }], addIndex: event.rowIndex });
 
     this.postalApi.startEditingCell({
       rowIndex: event.rowIndex,
@@ -459,7 +468,7 @@ export class CountryComponent implements OnInit {
     // const countrySelectedNodes = this.api.getSelectedNodes();
     const stateSelectedNodes = this.stateApi.getSelectedNodes();
     const citySelectedNodes = this.cityApi.getSelectedNodes();
-    // const postalSelectedNodes = this.postalApi.getSelectedNodes();
+    const postalSelectedNodes = this.postalApi.getSelectedNodes();
     // if (countrySelectedNodes.length !== 0) {
     //   this.onDeleteCountry();
     // }
@@ -469,9 +478,9 @@ export class CountryComponent implements OnInit {
     else if (citySelectedNodes.length !== 0) {
       this.onSaveUpdateCity();
     }
-    // else if (postalSelectedNodes.length !== 0) {
-    //   this.onDeletePostal();
-    // }
+    else if (postalSelectedNodes.length !== 0) {
+      this.onSaveUpdatePostal();
+    }
   }
 
 
@@ -876,6 +885,10 @@ export class CountryComponent implements OnInit {
   }
 
   getPostal() {
+    this.addPostalToggleButton = true;
+    this.savePostalToggleButton = true;
+    this.deletePostalToggleButton = true;
+    
     const universalBody = new UniversalBody();
     universalBody.userID = '1';
     this.allWeb.getPostal(universalBody)
@@ -884,20 +897,16 @@ export class CountryComponent implements OnInit {
           this.getPostalResponse = data;
           console.log('this.getPostalResponse:  ' + JSON.stringify(this.getPostalResponse));
           if (this.getPostalResponse.length === 0) {
-            this.TotalPostal = this.getPostalResponse.length;
+            
             this.saveUpdatePostal = 'Save';
-
             this.addPostalToggleButton = false;
             this.savePostalToggleButton = true;
             this.deletePostalToggleButton = true;
-          } else {
-
-            if (this.getPostalResponse.length >= 50) {
-              this.ShowLimitedPostal = 50;
-            } else {
-              this.ShowLimitedPostal = this.getPostalResponse.length;
-            }
-
+          } 
+          else {
+            this.selectAllPostalToggle = false;
+            this.StartPostalNumber = 1;
+            this.EndPostalNumber = this.getPostalResponse.length;
             this.TotalPostal = this.getPostalResponse.length;
             this.saveUpdatePostal = 'Save';
 
@@ -1066,20 +1075,71 @@ export class CountryComponent implements OnInit {
     }
   }
 
+
+  onPostalCellValueChanged(params) {
+    console.log("in onPostalCellValueChanged");
+    const cell = params.api.getFocusedCell() + '';
+    const selectedNodes = this.postalApi.getSelectedNodes();
+    const selectedData = selectedNodes.map(node => node.data);
+    var dataTest: Object;
+    selectedData.map(node => dataTest = node as Object);
+    console.log("city id : ", this.selectedCityId);
+    this.postalArray.forEach(data => {
+      console.log("Datatest Pid : ", dataTest['pID']);
+      console.log("Data Pid : ", data['pID']);
+      if (dataTest['pID'] === data['pID']) {
+        console.log("in loop");    
+        const postalBody = new PostalBody();
+        postalBody.pID = dataTest['pID'];
+        if (cell.includes('postalCode')) {
+          console.log("city id : ", this.selectedCityId);
+          postalBody.description = dataTest['description'];
+          postalBody.cityId = this.selectedCityId;
+          postalBody.postalCode = dataTest['postalCode'];
+          var newposition = (dataTest['id'].replace(/POST/g, '')) - 1;
+          this.postalArray.splice(newposition, 1, postalBody);
+        } 
+        else if (cell.includes('cityId')) {
+          console.log("city id : ", this.selectedCityId);
+          postalBody.description = dataTest['description'];
+          postalBody.cityId = this.selectedCityId;
+          postalBody.postalCode = dataTest['postalCode'];
+          var newposition = (dataTest['id'].replace(/POST/g, '')) - 1;
+          this.postalArray.splice(newposition, 1, postalBody);
+        } 
+        else if (cell.includes('description')) {
+          console.log("city id : ", this.selectedCityId);
+          postalBody.description = dataTest['description'];
+          postalBody.cityId = this.selectedCityId;
+          postalBody.postalCode = dataTest['postalCode'];
+          var newposition = (dataTest['id'].replace(/POST/g, '')) - 1;
+          this.postalArray.splice(newposition, 1, postalBody);
+       }
+        console.log("jsondata in new function",JSON.stringify(this.postalArray));
+      }
+
+    });
+
+  }
+
   onAddPostal() {
+    this.addPostCount++;
     this.savePostalToggleButton = false;
     this.saveUpdatePostal = 'Save';
     this.nodePostalSelect = 'Add';
-
+    this.addCountryToggleButton = true;
+  
     this.postalApi.setFocusedCell(this.countPostal, 'countryName');
     this.postalApi.getColumnDef('postalCode').editable = true;
     this.postalApi.getColumnDef('description').editable = true;
     this.countPostal++;
 
     var res = this.postalApi.updateRowData({
-      add: [{ cityName: '', stateName: '', countryName: '', postalCode: '', description: '', hidden: 'hidden' }],
-      addIndex: 0
-    });
+       add: [{ cityName: '', stateName: '', countryName: '', postalCode: '', description: '', hidden: 'hidden', pID: 'POST' + this.addPostCount }], 
+       addIndex: 0 
+      });
+
+   
 
     const postalBody = new PostalBody();
 
@@ -1089,25 +1149,12 @@ export class CountryComponent implements OnInit {
     var dataTest: Object;
     selectedData.map(node => dataTest = node as Object);
 
+      postalBody.pID = 'POST' + this.addPostCount + '';
+      postalBody.postalCode = '';
+      postalBody.description = '';
+      postalBody.cityId = this.selectedCityId;
+      this.postalArray.push(postalBody);
 
-    if (dataTest['postalCode'] === '') {
-      alert("Enter postal code");
-    } else if (this.selectedCountryId + '' === '') {
-      alert('Select Country ')
-    }
-    else {
-      for (let selectedNode of selectedData) {
-        postalBody.postalCode = selectedNode['postalCode'];
-        postalBody.description = selectedNode['description'];
-        postalBody.cityID = this.selectedCityId + '';
-        this.postalArray.push(postalBody);
-
-      }
-    }
-    this.savePostalToggleButton = false;
-    this.nodePostalSelect = "Add";
-    this.addCountryToggleButton = true;
-    this.saveUpdatePostal = 'Save';
   }
 
 
@@ -1296,7 +1343,7 @@ export class CountryComponent implements OnInit {
     else {
       for (let selectedNode of selectedData) {
         const deletePostalBody = new DeletePostalBody();
-        deletePostalBody.postalId = selectedNode['pID'];
+        deletePostalBody.pID = selectedNode['pID'];
 
         deletePostalArray.push(deletePostalBody);
 
@@ -1306,12 +1353,13 @@ export class CountryComponent implements OnInit {
       jsonData = jsonData.replace(/"/g, "'");
 
       universalJsonBody.jsonData = jsonData;
-
+      this.isShowing = true;
       this.allWeb.deletePostal(universalJsonBody)
 
         .subscribe(
           data => {
             this.universalResponse = data;
+            this.isShowing = false;
             alert(this.universalResponse.MESSAGE);
             if (this.universalResponse.STATUS === 'Success') {
 
@@ -1357,7 +1405,6 @@ export class CountryComponent implements OnInit {
           for (let selectedNode of selectedData) {
             const updateCountryBody = new UpdateCountryBody();
             updateCountryBody.countryId = selectedNode['countryID'];
-            console.log("country ID", selectedNode['countryID']);
             updateCountryBody.countryCode = selectedNode['countryCode'];
             updateCountryBody.countryName = selectedNode['countryName'];
             this.updateArrayCountry.push(updateCountryBody);
@@ -1419,12 +1466,14 @@ export class CountryComponent implements OnInit {
       this.postalCheckedStatus = true;
       this.deletePostalToggleButton = false;
       this.addPostalToggleButton = true;
+      this.savePostalToggleButton = false;
     } else {
       this.postalApi.deselectAll();
       this.postalFilter = false;
       this.postalCheckedStatus = false;
       this.deletePostalToggleButton = true;
       this.addPostalToggleButton = false;
+      this.savePostalToggleButton = true;
     }
 
   }
@@ -1470,10 +1519,6 @@ export class CountryComponent implements OnInit {
         this.btnSaveUpdateAddressPopup = 'UPDATE';
         this.saveUpdateAddressPopup = 'Do you want to update?';
       }
-    }
-    else if (this.selectedRowPostal.length >= 1) {
-      this.savePostalToggleButton = true;
-
     }
 
 
@@ -1891,7 +1936,7 @@ export class CountryComponent implements OnInit {
   }
 
   onSavePostal() {
-
+    alert("in save");
     const postalBody = new PostalBody();
     const universalJsonBody = new UniversalJsonBody();
 
@@ -1912,86 +1957,96 @@ export class CountryComponent implements OnInit {
         alert('Select Country ')
       }
       else {
-        for (let selectedNode of selectedData) {
-          postalBody.postalCode = selectedNode['postalCode'];
-          postalBody.description = selectedNode['description'];
-          postalBody.cityID = this.selectedCityId + '';
-
-          this.postalArray.push(postalBody);
-          var jsonData = JSON.stringify(this.postalArray);
-          jsonData = jsonData.replace(/"/g, "'");
-
-        }
-
+        var jsonData = JSON.stringify(this.postalArray);
+        jsonData = jsonData.replace(/"/g, "'");
+        console.log("json data in save", jsonData);
         universalJsonBody.jsonData = jsonData;
+
+        console.log("universal Json Data Postal Code",universalJsonBody);
+        this.isShowing = true;
         this.allWeb.savePostal(universalJsonBody)
           .subscribe(
 
             data => {
               this.universalResponse = data;
-
-              alert(this.universalResponse.MESSAGE);
-
-              if (this.universalResponse.STATUS.trim() === 'Success') {
-
+              this.isShowing = false;
+              if (this.universalResponse.OUTPUT === '') {
+                alert(this.universalResponse.MESSAGE);
                 this.getPostal();
-
               }
-              this.postalArray = [];
+              else{
+                alert(this.universalResponse.OUTPUT);
+              }
             }
           );
+        this.postalArray = [];
       }
     }
   }
 
   onUpdatePostal() {
-    const updatePostalBody = new UpdatePostalBody();
+    alert("in Update");
+    var universalResponse: UniversalResponse;
 
-    const selectedNodes = this.postalApi.getSelectedNodes();
-
-    const selectedData = selectedNodes.map(node => node.data);
-    var dataTest: Object;
-    selectedData.map(node => dataTest = node as Object);
-    if (selectedData.length === 0) {
-      alert("Please select a row");
+    if(this.selectedRowPostal === undefined)
+    {
+      alert('Please enter input valid data then hit update')
     }
-    updatePostalBody.CityID = this.selectedCityId + '';
+    else{
+      const universalJsonBody = new UniversalJsonBody();
+      
+      const selectedNodes = this.postalApi.getSelectedNodes();
+      const selectedData = selectedNodes.map(node => node.data);
+      var dataTest: Object;
+      selectedData.map(node => dataTest = node as Object);
 
-    updatePostalBody.CityID = this.selectedCityId + '';
-    updatePostalBody.postalCode = dataTest['postalCode'];
-    updatePostalBody.Description = dataTest['description'];
-
-    if (dataTest['postalCode'] === '') {
-      alert("Enter postal code");
-
-    }
-    else {
-      updatePostalBody.pid = dataTest['pID'];
-      updatePostalBody.CityID = this.selectedCityId + '';
-      if (updatePostalBody.pid === undefined) {
-        this.addPostalToggleButton = false;
+      if (selectedData.length === 0) {
+        alert("Please select a row");
       }
-      else {
+      else{
 
-        this.allWeb.updatePostal(updatePostalBody)
-          .subscribe(
-            data => {
-              this.universalResponse = data;
+        if (dataTest['postalCode'] === '') {
+          alert("Enter postal code");
+        }
+        else if(dataTest['description'] === ''){  
+          alert("Enter description");
+        }
+        else if(this.selectedCityId = 0){
+          alert("Select City");
+        }
+        else {
 
-              alert(this.universalResponse.MESSAGE);
+          for(let selectedNode of selectedData){
+            const updatePostalBody = new UpdatePostalBody();
+            updatePostalBody.cityId = this.selectedCityId;
+            updatePostalBody.postalCode = dataTest['postalCode'];
+            updatePostalBody.description = dataTest['description'];
+            updatePostalBody.pID = dataTest['pID'];
+            this.postalArrayUpdate.push(updatePostalBody);
+            var jsonData = JSON.stringify(this.postalArrayUpdate);
+          }
+          jsonData = jsonData.replace(/"/g, "'");
 
-              if (this.universalResponse.STATUS === 'Success') {
-
-                this.getPostal();
-
+          universalJsonBody.jsonData = jsonData;
+          console.log("in update json data", universalJsonBody);
+          this.isShowing = true;
+          this.allWeb.updatePostal(universalJsonBody)
+            .subscribe(
+              data => {
+                this.isShowing = false;
+                this.universalResponse = data;
+                if (this.universalResponse.OUTPUT === '') {
+                  alert(this.universalResponse.MESSAGE);
+                  this.getPostal();
+                }
+                else{
+                  alert(this.universalResponse.OUTPUT);
+                }
               }
-
-            }
-
-          );
+            );
+        }
       }
     }
-
   }
 
   getCountries() {

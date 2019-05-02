@@ -1,8 +1,9 @@
 export class UpdatePostalBody {
-    pid: number;
-    postalCode: number;
-    UpdatedBy: string = "1";
-    Description: string;
-    CityID: string;
-    userID: number = 1;
+    postalCode: String;
+    description: string;
+    cityId: number;
+    userId: string = '1';
+    pID : number;
+
+    //UpdatedBy: string = "1";
 }
