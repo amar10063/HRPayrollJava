@@ -41,10 +41,11 @@
               <div class="col-12 col-md-10 pull-left p-0">
                 <div class="tab-content col-md-12 col-12 p-0">
                   <div id="country" class="container tab-pane active">
-                    <div class="col-12 col-md-12" >
-                      <div id ="Payrolloader" style="left: 380px; position: absolute; z-index: 9999; top: 210px;" *ngIf=isShowing>
-                          <img src="{{'assets/images/Spinner.gif'}}">
-                      </div>    
+                    <div class="col-12 col-md-12">
+                      <div id="Payrolloader" style="left: 380px; position: absolute; z-index: 9999; top: 210px;"
+                        *ngIf=isShowing>
+                        <img src="{{'assets/images/Spinner.gif'}}">
+                      </div>
                     </div>
                     <div class="col-12 col-md-12 p-0">
                       <div class="col-12 col-md-4 pull-left mt-2 ">
@@ -84,11 +85,9 @@
                     <div class="clearfix"></div>
                     <div class="formBody clearfix pt-0 pb-2">
                       <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData"
-
-
-                        [rowClassRules]="rowClassRules" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [overlayNoRowsTemplate]="overlayNoRowsTemplate"
-                        [animateRows]="true" [rowSelection]="rowSelection"
-                        (selectionChanged)="onSelectionChanged($event)"
+                        [rowClassRules]="rowClassRules" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef"
+                        [overlayNoRowsTemplate]="overlayNoRowsTemplate" [animateRows]="true"
+                        [rowSelection]="rowSelection" (selectionChanged)="onSelectionChanged($event)"
                         (firstDataRendered)="onFirstDataRendered($event)" (gridReady)="onGridReady($event)">
                       </ag-grid-angular>
 
@@ -130,9 +129,9 @@
                               aria-hidden="true"></i>Add
                             New</button>
 
-                          <button type="button" class="payHeadBtn" (click)="onSaveUpdateState()"
-                            [disabled]="saveStateToggleButton" title="Save"><i class="fa fa-save"
-                              aria-hidden="true"></i>{{saveUpdateState}}
+                          <button type="button" class="payHeadBtn" [disabled]="saveStateToggleButton" title="Save"
+                            data-toggle="modal" data-target="#saveDataAddress"><i class="fa fa-save"
+                              aria-hidden="true"></i>Save
                           </button>
                           <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#addNew2"
                             [disabled]="deleteStateToggleButton"><i class="fa fa-trash" aria-hidden="true"
@@ -152,9 +151,8 @@
                         [columnDefs]="columnDefs1" [animateRows]="true" [rowSelection]="rowSelection"
                         [stopEditingWhenGridLosesFocus]="true" [frameworkComponents]="frameworkComponents"
                         [gridOptions]="gridOptions" [defaultColDef]="defaultColDef"
-                        (cellDoubleClicked)="rowEditingStarted($event)"
+                        (cellDoubleClicked)="rowEditingStarted($event)" (singleClickEdit)="true"
                         (firstDataRendered)="onFirstDataRendered($event)"
-
                         (selectionChanged)="onStateSelectionChanged($event)" (gridReady)="onStateGridReady($event)">
                       </ag-grid-angular>
 
@@ -337,13 +335,14 @@
                   {{saveUpdateAddressPopup}}
                 </div>
                 <div class="modal-footer">
-          
+
+
                   <button type="button" id="btnSave" class="btn btn-submit" onclick="" style="padding:4px;"
                     data-dismiss="modal">CANCEL</button>
-          
+
                   <button type="button" id="btnSave" class="btn btn-submit" (click)="universalSaveAddress()"
                     style="padding:4px;" data-dismiss="modal">{{btnSaveUpdateAddressPopup}}</button>
-          
+
                 </div>
               </div>
             </div>

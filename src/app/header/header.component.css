@@ -32,3 +32,101 @@
             /* height: 14px; */
             padding: 3px 5px 0px;
             height: 23px;}
+          
+ #myModel
+ {
+   background:transparent!important;
+ }           
+         
+.closebtn{
+  position: absolute;
+  top:5px;
+  right: 6px;
+  font-size:10px!important;
+  color: #fff;
+  background: #398d94 ;
+}
+
+form
+{
+  width:95%;
+  border:1px solid #f4f4f4;
+  background: #f4f4f4;
+  height:215px;
+  margin:8px;
+  padding: 8px;
+  border-radius:5px;
+}
+.container-fluid
+{
+  border-radius:5px;
+  width:110%!important;
+ background: #fff;
+  border: 1px solid #398d94;
+  text-align:left!important;
+}
+
+.btnsave
+{
+  width:60px;
+  height:24px;
+  background: #398d94 ;
+  color:#fff;
+  border-radius: 4px;
+  font-size: 9px!important;
+  margin-top:8px; 
+  border-color:#398d94;
+  font-weight: bold;
+}
+.btnsave:focus
+{
+ background:#40797d;
+ color:#fff;
+ border: 1px solid #57a4a6 !important;
+ box-shadow: 1px 1px 2px 2px #57a4a6 !important;
+}
+.head
+{
+  color: #398d94 !important;
+  font-size: 15px;
+  font-weight: 700;
+  padding-top:2px;
+}
+.note
+{
+  color:#398d94!important;
+  font-size: 16px;
+  font-weight: 700;
+}
+.labeltext
+{
+  color: black;
+  font-size: 11px;
+ margin-top:4px;
+  font-weight: bold;
+}
+.notetext
+{
+  margin-top:3px;
+  color:#ef0c0c;
+  font-size: 11px;
+  font-weight: 700;
+}
+.no-padding
+{
+  padding:0px;
+}
+input[type=text],Input[Type=password]
+{
+font-weight:600px!important;
+font-size:11px; 
+height:26px;
+border: 1px solid #a6a5a3;
+background: #eeede9;
+border-radius:.25rem;
+}
+input:focus  {
+  background-color:#fff;
+  border: 1px solid #57a4a6 !important;
+  box-shadow: 1px 1px 3px 3px  #57a4a6 !important;
+}
