@@ -168,6 +168,7 @@ export class AllWeb {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveCity, JSON.stringify(universalJsonBody), this.httpOptions);
   }
   saveState(universalJsonBody: UniversalJsonBody): Observable<UniversalResponse> {
+    alert(universalJsonBody.jsonData);
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.saveState, JSON.stringify(universalJsonBody), this.httpOptions);
   }
   getCountries(universalBody: UniversalBody): Observable<GetCountryResponse[]> {
