@@ -256,11 +256,9 @@
                             [disabled]="addPostalToggleButton" title="Add New"><i class="fa fa-plus-square"
                               aria-hidden="true"></i>Add
                             New</button>
-                          <button type="button" class="payHeadBtn" (click)="onSaveUpdatePostal()"
+                          <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#saveDataAddress"
                             [disabled]="savePostalToggleButton" title="Save"><i class="fa fa-save"
-                              aria-hidden="true"></i>{{saveUpdatePostal}}
-
-                          </button>
+                              aria-hidden="true"></i>Save</button>
                           <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#addNew2"
                             [disabled]="deletePostalToggleButton" title="Delete"><i class="fa fa-trash"
                               aria-hidden="true"></i>Delete</button>

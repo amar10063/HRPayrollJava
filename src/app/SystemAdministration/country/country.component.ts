@@ -797,15 +797,22 @@ export class CountryComponent implements OnInit {
 
   }
   onAddPostal() {
+    this.savePostalToggleButton = false;
+    this.saveUpdatePostal = 'Save';
+    this.nodePostalSelect = 'Add';
+
     this.postalApi.setFocusedCell(this.countPostal, 'countryName');
     this.postalApi.getColumnDef('postalCode').editable = true;
     this.postalApi.getColumnDef('description').editable = true;
     this.countPostal++;
-    let res = this.postalApi.updateRowData({ add: [{ cityName: '', stateName: '', countryName: '', postalCode: '', description: '', hidden: 'hidden' }], addIndex: 0 });
+    
+    var res = this.postalApi.updateRowData({
+       add: [{ cityName: '', stateName: '', countryName: '', postalCode: '', description: '', hidden: 'hidden' }], 
+       addIndex: 0 
+      });
 
     const postalBody = new PostalBody();
-    const universalJsonBody = new UniversalJsonBody();
-
+    
     const selectedNodes = this.postalApi.getSelectedNodes();
 
     const selectedData = selectedNodes.map(node => node.data);
@@ -837,7 +844,7 @@ export class CountryComponent implements OnInit {
      const countrySelectedNodes = this.api.getSelectedNodes();
     // const stateSelectedNodes = this.stateApi.getSelectedNodes();
     const citySelectedNodes = this.cityApi.getSelectedNodes();
-    // const postalSelectedNodes = this.postalApi.getSelectedNodes();
+    const postalSelectedNodes = this.postalApi.getSelectedNodes();
      if (countrySelectedNodes.length !== 0) {
        this.onSaveUpdateCountry();
     }
@@ -847,9 +854,9 @@ export class CountryComponent implements OnInit {
     else if (citySelectedNodes.length !== 0) {
       this.onSaveUpdateCity();
     }
-    // else if (postalSelectedNodes.length !== 0) {
-    //   this.onDeletePostal();
-    // }
+    else if (postalSelectedNodes.length !== 0) {
+       this.onDeletePostal();
+    }
   }
 
   universalDelete() {
@@ -1076,7 +1083,6 @@ export class CountryComponent implements OnInit {
   }
 
   onUpdateCountry() {
-    alert("in Update");
     var universalResponse: UniversalResponse;
 
     if (this.selectedRowCountry === undefined) {
@@ -1290,39 +1296,45 @@ export class CountryComponent implements OnInit {
 
   }
   onPostalSelectionChanged() {
-
-
     this.selectedRowPostal = this.postalApi.getSelectedRows();
-    const selectedNodes = this.postalApi.getSelectedNodes();
-    const selectedData = selectedNodes.map(node => node.data);
-    var dataTest: Object;
-    selectedData.map(node => dataTest = node as Object);
-    this.postalApi.stopEditing();
+    this.rowSelection = 'multiple';
+    // const selectedNodes = this.postalApi.getSelectedNodes();
+    // const selectedData = selectedNodes.map(node => node.data);
+    // var dataTest: Object;
+    // selectedData.map(node => dataTest = node as Object);
+    // this.postalApi.stopEditing();
 
     if (this.selectedRowPostal.length === 1) {
       if (this.getPostalResponse.length === 1) {
         this.deletePostalToggleButton = false;
         this.postalFilter = true;
         this.postalCheckedStatus = false;
+        this.addPostalToggleButton = false;
       }
       else {
         this.deletePostalToggleButton = false;
         this.postalFilter = false;
         this.postalCheckedStatus = false;
+        this.addPostalToggleButton = false;
 
       }
       if (this.nodePostalSelect === 'Add') {
         this.saveUpdatePostal = 'Save';
-        this.nodePostalSelect = 'Edit';
-
-      } else if (this.nodePostalSelect === undefined) {
-        if (this.nodePostalSelect === 'Edit') {
-          this.saveUpdatePostal = 'Update';
-        } else { this.saveUpdatePostal = 'Edit'; }
+        this.nodePostalSelect = 'Update';
+        this.btnSaveUpdateAddressPopup = 'SAVE';
+        this.saveUpdateAddressPopup = 'Do you want to save?';
+      } 
+      else if (this.nodePostalSelect === undefined) {
+        this.saveUpdatePostal = 'Update';
         this.savePostalToggleButton = false;
-      } else if (this.nodePostalSelect === 'Update') {
+        this.btnSaveUpdateAddressPopup = 'UPDATE';
+        this.saveUpdateAddressPopup = 'Do you want to update?';
+      } 
+      else if (this.nodePostalSelect === 'Update') {
         this.savePostalToggleButton = false;
         this.saveUpdatePostal = 'Update';
+        this.btnSaveUpdateAddressPopup = 'UPDATE';
+        this.saveUpdateAddressPopup = 'Do you want to update?';
       }
     }
     else if (this.selectedRowPostal.length >= 1) {
