@@ -66,26 +66,21 @@
           <div class="clearfix"></div>
           <div class="formBody clearfix pt-0 pb-2">
 
+
             <ag-grid-angular style="width:100%; height: 395px" class="ag-theme-balham" [rowData]="rowData"
               [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [rowSelection]="rowSelection"
               [rowClassRules]="rowClassRules" (gridReady)="onGridLocationReady($event)" (selectionChanged)="
               onLocationSelectionChanged($event)" (firstDataRendered)="onFirstDataRendered($event)"></ag-grid-angular>
+              
+              <div  class="row">
+                  <label  class="col-md-6 pull-right"></label>
+                  <span class=" col-md-6 pull-right loadmore">Showing results {{ShowLocation}} - {{ShowLimitedLocation}} Out of {{ToalLocation}}  
+                    <a  class="alink" href="#">Click to Load More </a>
+                  </span>
+                </div>
 
           </div>
-          <div class="row mb-1">
-            <div class="col-md-12 col-sm-6 col-xs-12">
-              <div class="form group col-md-2 pull-right p-0">
-                <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
-
-                <label class="col-md-6 p-0" style=" text-align: center; font-size:10px; font-weight:bold;">
-                  {{ShowLocation}} -
-                  {{ShowLimitedLocation}} of
-                  {{ToalLocation}}</label>
-
-                <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
-              </div>
-            </div>
-          </div>
+  
         </div>
         <div id="department" class="container tab-pane fade">
           <div class="col-12 col-md-12 p-0">
@@ -130,21 +125,15 @@
               [rowSelection]="rowSelection" 
               (gridReady)="onGridDepartmentReady($event)" (selectionChanged)="
               onDepartmentSelectionChanged($event)"></ag-grid-angular>
-
+              <div  class="row">
+                  <label  class="col-md-6 pull-right"></label>
+                  <span class=" col-md-6 pull-right loadmore">Showing results {{ShowDepartment}} - {{ShowLimitedDepartment}} Out of {{ToalDepartment}}  
+                    <a  class="alink" href="#">Click to Load More </a>
+                  </span>
+                </div>
 
           </div>
-          <div class="row mb-1">
-            <div class="col-md-12 col-sm-6 col-xs-12 ">
-              <div class="form group col-md-2 pull-right p-0">
-                <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
-                <label class="col-md-6 p-0"
-                  style=" text-align: center; font-size:10px; font-weight:bold;">{{ShowDepartment}} -
-                  {{ShowLimitedDepartment}} of
-                  {{ToalDepartment}}</label>
-                <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
-              </div>
-            </div>
-          </div>
+     
         </div>
         <div id="designation" class="container tab-pane fade">
           <div class="col-12 col-md-12 p-0">
@@ -185,19 +174,14 @@
               [defaultColDef]="defaultColDef" (firstDataRendered)="onFirstDataRendered($event)"
               [rowSelection]="rowSelection" (gridReady)="onGridDesignationReady($event)" (selectionChanged)="
               onDesignationSelectionChanged($event)"></ag-grid-angular>
+              <div  class="row">
+                  <label  class="col-md-6 pull-right"></label>
+                  <span class=" col-md-6 pull-right loadmore">Showing results {{startPositionDesignation}} - {{endPositionDesignation}} Out of {{totalData}}  
+                    <a  class="alink" href="#">Click to Load More </a>
+                  </span>
+                </div>
           </div>
-          <div class="row mb-1">
-            <div class="col-md-12 col-sm-6 col-xs-12">
-              <div class="form group col-md-2 pull-right p-0">
-                <span class="fa fa-angle-double-left  previous round" title="Newer" id="nextprev"></span>
-                <label class="col-md-6 p-0"
-                  style=" text-align: center; font-size:10px; font-weight:bold;">{{startPositionDesignation}} -
-                  {{endPositionDesignation}} of {{totalData}}</label>
-                <span class="fa fa-angle-double-right  next round" title="Older" id="nextprev"></span>
-              </div>
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
   </div>
