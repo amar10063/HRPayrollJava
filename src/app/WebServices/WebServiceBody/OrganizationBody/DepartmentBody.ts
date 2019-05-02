@@ -1,9 +1,8 @@
 export class DepartmentBody {
-    locationId: number = 1;
-    departmentId:number;
+    locationId: number;
+    departmentId:string;
     departmentCode: string;
     departmentName: string;
     description: string='';
-    
     userId: string ;
 }
