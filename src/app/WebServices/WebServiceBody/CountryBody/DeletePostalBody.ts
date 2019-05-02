@@ -1,5 +1,5 @@
 export class DeletePostalBody
 {
-    postalId:number;
+    pID:number;
 	userId: string ='1';
 }

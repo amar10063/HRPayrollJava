@@ -175,6 +175,7 @@ export class AllWeb {
     return this.httpClient.post<GetCountryResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getCountry, JSON.stringify(universalBody), this.httpOptions);
   }
   savePostal(universalJsonBody: UniversalJsonBody): Observable<UniversalResponse> {
+    console.log("json checking", universalJsonBody);
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.savePostal, JSON.stringify(universalJsonBody), this.httpOptions);
   }
   deleteCountry(universalJsonBody: UniversalJsonBody): Observable<UniversalResponse> {
@@ -271,14 +272,15 @@ export class AllWeb {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.updateState, JSON.stringify(updateStateBody), this.httpOptions);
   }
   updateCountry(updateCountryBody: UniversalJsonBody): Observable<UniversalResponse> {
-    console.log("jsondata : ",updateCountryBody);
+   // console.log("jsondata : ",updateCountryBody);
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.updateCountry, JSON.stringify(updateCountryBody), this.httpOptions);
   }
   updateCity(universalJsonBody: UniversalJsonBody): Observable<UniversalResponse> {
     alert(JSON.stringify(universalJsonBody));
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.updateCity, JSON.stringify(universalJsonBody), this.httpOptions);
   }
-  updatePostal(updatePostalBody: UpdatePostalBody): Observable<UniversalResponse> {
+  updatePostal(updatePostalBody: UniversalJsonBody): Observable<UniversalResponse> {
+    console.log("jsondata in web service: ",updatePostalBody);
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.updatePostal, JSON.stringify(updatePostalBody), this.httpOptions);
   }
   countryDropdown(universalBody: UniversalBody): Observable<GetAllLocationResponse[]> {
