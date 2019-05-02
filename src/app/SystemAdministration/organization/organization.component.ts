@@ -160,7 +160,7 @@ export class OrganizationComponent implements OnInit {
       },
       {
         headerName: 'Department Code', field: 'departmentCode', sortable: true, editable: true, width: 250, minWidth: 50,
-        maxWidth: 300, filter: true,
+        maxWidth: 300, filter: 'agNumberColumnFilter',
 
       },
       {
@@ -384,6 +384,7 @@ export class OrganizationComponent implements OnInit {
     const selectedData = selectedNodes.map(node => node.data);
     var dataTest: Object;
     var locationResponse: LocationResponse;
+
     const deleteLocationBody = new DeleteLocationBody();
     selectedData.map(node => dataTest = node as Object);
     if (selectedNodes.length === 0) {
@@ -401,13 +402,13 @@ export class OrganizationComponent implements OnInit {
         }
       }
       jsonData = jsonData.replace(/"/g, "'");
-      deleteLocationBody.locationId = dataTest['id'];
+      // deleteLocationBody.locationId = dataTest['id'];
       // deleteLocationBody.userId = dataTest['designationName']  
-      if (dataTest['id'] === '') {
-        alert("Plesae choose appropiate field");
-        this.checkedLocationStatus = false;
-      }
-      else {
+      // if (dataTest['id'] === '') {
+      //   alert("Plesae choose appropiate field");
+      //   this.checkedLocationStatus = false;
+      // }
+      // else {
         universalJsonBody.jsonData = jsonData;
         this.countryService.doDeleteLocation(universalJsonBody)
           .subscribe(
@@ -422,7 +423,7 @@ export class OrganizationComponent implements OnInit {
               }
             }
           );
-      }
+      // }
     }
   }
 
@@ -614,11 +615,13 @@ export class OrganizationComponent implements OnInit {
     this.editDepartment = false;
     this.nodeDepartmentSelect = 'Add';
     this.saveUpdateDepartment = 'Save';
+
     var res = this.departmentApi.updateRowData({
       add: [{ LocationName: '', departmentCode: '', departmentName: '', description: '', hidden: 'hidden', id: 'DEPT' + this.addDeptCount }],
       addIndex: 0
     });
     const selectedNodes = this.departmentApi.getSelectedNodes();
+
     const selectedData = selectedNodes.map(node => node.data);
     var dataTest: Object;
     selectedData.map(node => dataTest = node as Object);
@@ -1239,6 +1242,7 @@ export class OrganizationComponent implements OnInit {
           var jsonData = JSON.stringify(this.arrLocationDelete);
         }
       }
+
 
 
       for (let selectedNode of selectedData) {

@@ -368,8 +368,11 @@ a.createAcc {
     text-decoration: underline
 }
 
-.loginfooter a {
+.loginfooter a,.resetfooter a {
     color: #3e3e3e;
+}
+.loginfooter a:hover,.resetfooter a:hover {
+    color: #398d94;
 }
 
 .plainCon {
