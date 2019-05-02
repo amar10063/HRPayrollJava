@@ -124,10 +124,13 @@
                       </div>
                       <div class="col-12 col-md-8 p-0 pull-left">
                         <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-                          <button type="button" class="payHeadBtn" (click)="onAddState()"
+                          <button type="button" class="payHeadBtn" (click)="onAddStatebyButton()"
                             [disabled]="addStateToggleButton" title="Add New"><i class="fa fa-plus-square"
                               aria-hidden="true"></i>Add
                             New</button>
+
+
+
 
                           <button type="button" class="payHeadBtn" [disabled]="saveStateToggleButton" title="Save"
                             data-toggle="modal" data-target="#saveDataAddress"><i class="fa fa-save"
@@ -147,14 +150,31 @@
                     <div class="clearfix"></div>
                     <div class="formBody clearfix pt-0 pb-2">
 
-                      <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData1"
-                        [columnDefs]="columnDefs1" [animateRows]="true" [rowSelection]="rowSelection"
-                        [stopEditingWhenGridLosesFocus]="true" [frameworkComponents]="frameworkComponents"
-                        [gridOptions]="gridOptions" [defaultColDef]="defaultColDef"
-                        (cellDoubleClicked)="rowEditingStarted($event)" (singleClickEdit)="true"
+                      <!-- Default -->
+                      <!-- <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData1"
+                      [columnDefs]="columnDefs1" [rowSelection]="rowSelection"
+                      [frameworkComponents]="frameworkComponents" [gridOptions]="gridOptions"
+                      (cellDoubleClicked)="rowEditingStarted($event)"
+                      (firstDataRendered)="onFirstDataRendered($event)"
+                      (selectionChanged)="onStateSelectionChanged($event)" (gridReady)="onStateGridReady($event)"
+                      (cellValueChanged)="onStateCellValueChanged($event)">
+                    </ag-grid-angular> -->
+
+                      <!-- <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData1"
+                        [columnDefs]="columnDefs1" [rowSelection]="rowSelection"
+                        [frameworkComponents]="frameworkComponents" [gridOptions]="gridOptions"
                         (firstDataRendered)="onFirstDataRendered($event)"
-                        (selectionChanged)="onStateSelectionChanged($event)" (gridReady)="onStateGridReady($event)">
-                      </ag-grid-angular>
+                        (selectionChanged)="onStateSelectionChanged($event)" (gridReady)="onStateGridReady($event)"
+                        (cellValueChanged)="onStateCellValueChanged($event)">
+                      </ag-grid-angular> -->
+
+                      <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData1"
+                        [singleClickEdit]="true" [frameworkComponents]="frameworkComponents" [columnDefs]="columnDefs1"
+                        (firstDataRendered)="onFirstDataRendered($event)" [defaultColDef]="defaultColDef"
+                        [rowSelection]="rowSelection" (gridReady)="onStateGridReady($event)"  
+                        (selectionChanged)="onStateSelectionChanged($event)"   [gridOptions]="gridOptions"
+                        (cellDoubleClicked)="rowEditingStarted($event)"
+                        (cellValueChanged)="onStateCellValueChanged($event)"></ag-grid-angular>
 
                       <div  class="row">
                           <label  class="col-md-6 pull-right"></label>
@@ -214,6 +234,7 @@
                         (cellDoubleClicked)="rowCityEditingStarted($event)"
                         (firstDataRendered)="onFirstDataRendered($event)">
                       </ag-grid-angular>
+
 
                       <div  class="row">
                           <label  class="col-md-6 pull-right"></label>
