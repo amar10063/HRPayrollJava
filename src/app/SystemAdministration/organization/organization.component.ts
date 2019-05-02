@@ -378,9 +378,6 @@ export class OrganizationComponent implements OnInit {
       );
   }
 
-
-
-
   onDeleteLocation() {
     const universalJsonBody = new UniversalJsonBody();
     const selectedNodes = this.locationApi.getSelectedNodes();
@@ -569,45 +566,43 @@ export class OrganizationComponent implements OnInit {
 
     }
   }
-  onCellValueChanged(params) {
-    console.log('onCellValueChanged');
+
+  // For department////
+  onDepartmentCellValueChanged(params) {
     const cell = params.api.getFocusedCell() + '';
-    if (params.oldValue !== params.newValue) {
-      console.log(cell + '  ' + params.newValue + ' ' + params.oldValue);
-    }
     const selectedNodes = this.departmentApi.getSelectedNodes();
     const selectedData = selectedNodes.map(node => node.data);
     var dataTest: Object;
     selectedData.map(node => dataTest = node as Object);
     this.arrDepartmentSave.forEach(data => {
-      //  console.log(dataTest['id'] + ' selectedData ' + data['departmentId']);
       if (dataTest['id'] === data['departmentId']) {
         const departmentBody = new DepartmentBody();
         departmentBody.locationId = 1;
         departmentBody.userId = '1';
         departmentBody.departmentId = dataTest['id'];
         if (cell.includes('departmentCode')) {
-          //   console.log('departmentCode');
+          // console.log('departmentCode');
           departmentBody.departmentName = dataTest['departmentName'];
           departmentBody.description = dataTest['description'];
           departmentBody.departmentCode = dataTest['departmentCode'];
-          this.arrDepartmentSave.splice(this.arrDepartmentSave.indexOf(departmentBody), 1);
-          this.arrDepartmentSave.push(departmentBody);
+          var newposition = (dataTest['id'].replace(/DEPT/g, '')) - 1;
+          this.arrDepartmentSave.splice(newposition, 1, departmentBody);
         } else if (cell.includes('departmentName')) {
-          departmentBody.departmentName = dataTest['departmentName'];
+          // console.log('departmentName');
           departmentBody.departmentCode = dataTest['departmentCode'];
           departmentBody.description = dataTest['description'];
-          this.arrDepartmentSave.splice(this.arrDepartmentSave.indexOf(departmentBody), 1);
-          this.arrDepartmentSave.push(departmentBody);
+          departmentBody.departmentName = dataTest['departmentName'];
+          var newposition = (dataTest['id'].replace(/DEPT/g, '')) - 1;
+          this.arrDepartmentSave.splice(newposition, 1, departmentBody);
         } else if (cell.includes('description')) {
+          console.log('description');
           departmentBody.departmentCode = dataTest['departmentCode'];
-          departmentBody.description = dataTest['description'];
           departmentBody.departmentName = dataTest['departmentName'];
-          this.arrDepartmentSave.splice(this.arrDepartmentSave.indexOf(departmentBody), 1);
-          this.arrDepartmentSave.push(departmentBody);
+          departmentBody.description = dataTest['description'];
+          var newposition = (dataTest['id'].replace(/DEPT/g, '')) - 1;
+          this.arrDepartmentSave.splice(newposition, 1, departmentBody);
         }
-      } else {
-
+        console.log(JSON.stringify(this.arrDepartmentSave));
       }
 
     });
@@ -636,52 +631,7 @@ export class OrganizationComponent implements OnInit {
     departmentBody.locationId = 1;
     departmentBody.userId = '1';
     this.arrDepartmentSave.push(departmentBody);
-
-    //var jsonData = JSON.stringify(this.arrDepartmentSave);
-    // jsonData = jsonData.replace(/"/g, "'");
-
-
   }
-
-
-
-  // onAddDepartment() {
-  //   this.editDepartment = false;
-  //   this.nodeDepartmentSelect = 'Add';
-  //   this.saveUpdateDepartment = 'Save';
-  //   var res = this.departmentApi.updateRowData({
-  //     add: [{ LocationName: '', departmentCode: '', departmentName: '', description: '', hidden: 'hidden' }],
-  //     addIndex: 0
-  //   });
-
-  //   if (dataTest['departmentCode'] === '') {
-  //     alert("Please Enter Department Code");
-  //   }
-  //   else if (dataTest['departmentName'] === '') {
-  //     alert("Plesae Enter Department Name");
-  //   }
-  //   else {
-  //   this.departmentApi.tabToNextCell();
-  //   const selectedNodes = this.departmentApi.getSelectedNodes();
-  //   const selectedData = selectedNodes.map(node => node.data);
-  //   var dataTest: Object;
-  //   selectedData.map(node => dataTest = node as Object);
-
-  //   for (let selectedNode of selectedData) {
-  //     const departmentBody = new DepartmentBody();
-  //     departmentBody.departmentCode = selectedNode['departmentCode'];
-  //     departmentBody.departmentName = selectedNode['departmentName']
-  //     departmentBody.description = selectedNode['description'];
-  //     departmentBody.userId = '1';
-  //     this.arrDepartmentSave.push(departmentBody);
-
-  //     var jsonData = JSON.stringify(this.arrDepartmentSave);
-  //     jsonData = jsonData.replace(/"/g, "'");
-
-  //    }
-  //   }
-  // }
-
 
   onCheckedBoxChangeDepartment() {
     if (this.departmentCheckedStatus === false) {
@@ -710,32 +660,6 @@ export class OrganizationComponent implements OnInit {
     this.gridOptions = params.gridOptions;
     params.api.sizeColumnsToFit();
   }
-
-  onGridDesignationReady(params) {
-    this.designationApi = params.api;
-    this.designationColumnApi = params.columnApi;
-    params.api.sizeColumnsToFit();
-  }
-
-  onSelectionChanged() {
-    const selectedRows = this.locationApi.getSelectedRows();
-    let selectedRowsString = '';
-    selectedRows.forEach(function (selectedRow, index) {
-      if (index !== 0) {
-        selectedRowsString += ', ';
-      }
-      selectedRowsString += selectedRow.athlete;
-    });
-    document.querySelector('#selectedRows').innerHTML = selectedRowsString;
-  }
-
-
-
-  onEmpFilterChange(event) {
-    alert("Check");
-  }
-
-
   onDeleteDepartment() {
     const selectedNodes = this.departmentApi.getSelectedNodes();
     var dataTest: Object;
@@ -774,8 +698,6 @@ export class OrganizationComponent implements OnInit {
     this.departmentApi.removeItems(selectedNodes);
 
   }
-
-
   getDepartment(UserID: string) {
     var getDepartmentBody = new UniversalBody();
     getDepartmentBody.userID = UserID + '';
@@ -844,6 +766,10 @@ export class OrganizationComponent implements OnInit {
     //   alert("Enter Location Description");
     // }
     else {
+      var jsonData = JSON.stringify(this.arrDepartmentSave);
+      jsonData = jsonData.replace(/"/g, "'");
+      console.log('jsonData:   ' + jsonData);
+      universalJsonBody.jsonData = jsonData;
       this.countryService.saveDepartment(universalJsonBody)
         .subscribe(
           data => {
@@ -851,6 +777,7 @@ export class OrganizationComponent implements OnInit {
             this.arrDepartmentSave = [];
 
             if (this.universalResponse.STATUS.trim() === 'Success') {
+              this.addDeptCount = 0;
               if (this.arrDepartmentSave.length >= 1) {
                 if (this.universalResponse.OUTPUT === '') {
                   alert(this.universalResponse.MESSAGE);
@@ -1014,6 +941,35 @@ export class OrganizationComponent implements OnInit {
       // this.departmentfilter =false;
     }
   }
+  /////////////////////////////////////////////////////////
+
+
+  onGridDesignationReady(params) {
+    this.designationApi = params.api;
+    this.designationColumnApi = params.columnApi;
+    params.api.sizeColumnsToFit();
+  }
+
+  onSelectionChanged() {
+    const selectedRows = this.locationApi.getSelectedRows();
+    let selectedRowsString = '';
+    selectedRows.forEach(function (selectedRow, index) {
+      if (index !== 0) {
+        selectedRowsString += ', ';
+      }
+      selectedRowsString += selectedRow.athlete;
+    });
+    document.querySelector('#selectedRows').innerHTML = selectedRowsString;
+  }
+
+
+
+  onEmpFilterChange(event) {
+    alert("Check");
+  }
+
+
+
 
   getDesignation(UserID: number) {
     console.log("in get designation", "running");
@@ -1253,9 +1209,6 @@ export class OrganizationComponent implements OnInit {
     const DepartmentNode = this.departmentApi.getSelectedNodes();
     const DesignationNode = this.designationApi.getSelectedNodes();
     if (DepartmentNode.length !== 0) {
-      var jsonData = JSON.stringify(this.arrDepartmentSave);
-      jsonData = jsonData.replace(/"/g, "'");
-      console.log('jsonData:   ' + jsonData);
       this.departmentApi.tabToNextCell();
       this.onSaveUpdateDepartmentData();
     }

@@ -125,7 +125,7 @@
           <div class="formBody clearfix pt-0 pb-2">
 
             <ag-grid-angular style="width:100%; height: 395px" class="ag-theme-balham" [rowData]="rowData1"
-              [singleClickEdit]="true" [frameworkComponents]="frameworkComponents" [columnDefs]="columnDefs1"(cellValueChanged)="onCellValueChanged($event)"
+              [singleClickEdit]="true" [frameworkComponents]="frameworkComponents" [columnDefs]="columnDefs1"(cellValueChanged)="onDepartmentCellValueChanged($event)"
               (firstDataRendered)="onFirstDataRendered($event)" [defaultColDef]="defaultColDef"
               [rowSelection]="rowSelection" 
               (gridReady)="onGridDepartmentReady($event)" (selectionChanged)="
