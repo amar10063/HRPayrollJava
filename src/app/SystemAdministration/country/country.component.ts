@@ -147,7 +147,8 @@ export class CountryComponent implements OnInit {
   constructor(private allWeb: AllWeb) {
 
     this.gridOptions = {
-      context: { componentParent: this }
+      context: { componentParent: this },
+      enableBrowserTooltips: true
     };
     this.rowSelection = 'multiple';
     this.editType = 'fullRow';
@@ -156,7 +157,7 @@ export class CountryComponent implements OnInit {
 
     this.columnDefs = [
       {
-        id: 0, headerName: 'Country Code', field: 'countryCode', sortable: true, filter: true, editable: true, Width: 250, minWidth: 50, maxWidth: 500,
+        id: 0, headerName: 'Country Code', tooltipField: 'countryCode', field: 'countryCode', sortable: true, filter: true, editable: true, Width: 250, minWidth: 50, maxWidth: 500,
         cellStyle: function (params) {
           if (params.value === '') {
             //this.ToggleButton = true;
@@ -170,7 +171,7 @@ export class CountryComponent implements OnInit {
 
       {
 
-        id: 1, headerName: 'Country Name', field: 'countryName', sortable: true, Width: 150, minWidth: 50, maxWidth: 500,
+        id: 1, headerName: 'Country Name', field: 'countryName', tooltipField: 'countryName', sortable: true, Width: 150, minWidth: 50, maxWidth: 500,
         filter: true, editable: true,
         cellStyle: function (params) {
 
@@ -190,7 +191,7 @@ export class CountryComponent implements OnInit {
     this.rowData;
     this.columnDefs1 = [
       {
-        headerName: 'Country', field: 'countryName', sortable: true, filter: true, Width: 150, minWidth: 50, maxWidth: 500,
+        headerName: 'Country', field: 'countryName', tooltipField: 'countryName', sortable: true, filter: true, Width: 150, minWidth: 50, maxWidth: 500,
         cellRendererSelector: function (params) {
           var locationDetails = {
             component: 'locationFramework',
@@ -205,7 +206,7 @@ export class CountryComponent implements OnInit {
 
       },
       {
-        headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: false, Width: 150, minWidth: 50, maxWidth: 500,
+        headerName: 'State', field: 'stateName', tooltipField: 'stateName', sortable: true, filter: true, editable: false, Width: 150, minWidth: 50, maxWidth: 500,
         cellStyle: function (params) {
           if (params.value === '') {
             return { outline: '1px solid red' };
@@ -216,7 +217,7 @@ export class CountryComponent implements OnInit {
         }
 
       },
-      { headerName: 'Description', field: 'description', sortable: true, filter: true, editable: false, Width: 150, minWidth: 50, maxWidth: 500, },
+      { headerName: 'Description', field: 'description', tooltipField: 'description', sortable: true, filter: true, editable: false, Width: 150, minWidth: 50, maxWidth: 500, },
 
 
     ];
@@ -228,7 +229,7 @@ export class CountryComponent implements OnInit {
     this.columnDefs2 = [
 
       {
-        headerName: 'Country', field: 'countryName', sortable: true, editable: false, filter: true, Width: 150, minWidth: 50, maxWidth: 500,
+        headerName: 'Country', field: 'countryName', tooltipField: 'countryName', sortable: true, editable: false, filter: true, Width: 150, minWidth: 50, maxWidth: 500,
 
         cellRendererSelector: function (params) {
           var locationDetails = {
@@ -243,7 +244,7 @@ export class CountryComponent implements OnInit {
         }
       },
       {
-        headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: false, Width: 150, minWidth: 50, maxWidth: 500,
+        headerName: 'State', field: 'stateName', tooltipField: 'stateName', sortable: true, filter: true, editable: false, Width: 150, minWidth: 50, maxWidth: 500,
 
         cellRendererSelector: function (params) {
           var locationDetails = {
@@ -258,7 +259,7 @@ export class CountryComponent implements OnInit {
         }
       },
       {
-        headerName: 'City', field: 'cityName', sortable: true, filter: true, editable: false, singleClickEdit: true, Width: 250, minWidth: 50, maxWidth: 500,
+        headerName: 'City', field: 'cityName', tooltipField: 'cityName', sortable: true, filter: true, editable: false, singleClickEdit: true, Width: 250, minWidth: 50, maxWidth: 500,
 
 
         cellStyle: function (params) {
@@ -274,7 +275,7 @@ export class CountryComponent implements OnInit {
 
       },
 
-      { headerName: 'Description', field: 'description', sortable: true, filter: true, editable: false, Width: 150, minWidth: 50, maxWidth: 500, },
+      { headerName: 'Description', field: 'description', tooltipField: 'description', sortable: true, filter: true, editable: false, Width: 150, minWidth: 50, maxWidth: 500, },
 
 
 
@@ -286,7 +287,7 @@ export class CountryComponent implements OnInit {
     this.columnDefs3 = [
 
       {
-        headerName: 'Country', field: 'countryName', sortable: true, editable: false, filter: true, Width: 150, minWidth: 50, maxWidth: 500,
+        headerName: 'Country', field: 'countryName', tooltipField: 'countryName',  sortable: true, editable: false, filter: true, Width: 150, minWidth: 50, maxWidth: 500,
         cellRendererSelector: function (params) {
           var locationDetails = {
             component: 'locationFramework',
@@ -300,7 +301,7 @@ export class CountryComponent implements OnInit {
         }
       },
       {
-        headerName: 'State', field: 'stateName', sortable: true, filter: true, editable: false, Width: 150, minWidth: 50, maxWidth: 500,
+        headerName: 'State', field: 'stateName',  tooltipField: 'stateName', sortable: true, filter: true, editable: false, Width: 150, minWidth: 50, maxWidth: 500,
         cellRendererSelector: function (params) {
           var locationDetails = {
             component: 'locationFramework',
@@ -315,7 +316,7 @@ export class CountryComponent implements OnInit {
 
       },
       {
-        headerName: 'City', field: 'cityName', sortable: true, filter: true, editable: false, Width: 150, minWidth: 50, maxWidth: 500,
+        headerName: 'City', field: 'cityName',  tooltipField: 'cityName', sortable: true, filter: true, editable: false, Width: 150, minWidth: 50, maxWidth: 500,
         cellRendererSelector: function (params) {
           var locationDetails = {
             component: 'locationFramework',
@@ -331,7 +332,7 @@ export class CountryComponent implements OnInit {
 
       },
       {
-        headerName: 'Postal Code', field: 'postalCode', sortable: true, filter: true, editable: false, Width: 150, minWidth: 50, maxWidth: 500,
+        headerName: 'Postal Code', field: 'postalCode', tooltipField: 'postalCode', sortable: true, filter: true, editable: false, Width: 150, minWidth: 50, maxWidth: 500,
         cellStyle: function (params) {
           if (params.value === '') {
             return { outline: '1px solid red' };
@@ -342,7 +343,7 @@ export class CountryComponent implements OnInit {
 
       },
 
-      { headerName: 'Description', field: 'description', sortable: true, filter: true, Width: 150, minWidth: 50, maxWidth: 500, editable: false },
+      { headerName: 'Description', field: 'description',  tooltipField: 'description', sortable: true, filter: true, Width: 150, minWidth: 50, maxWidth: 500, editable: false },
       { headerName: '', field: 'hidden', hide: true },
 
     ];
