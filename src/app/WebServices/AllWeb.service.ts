@@ -118,7 +118,14 @@ export class AllWeb {
     console.log("Message",getLocationBody);
     return this.httpClient.post<GetAllLocationResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getLocation, JSON.stringify(getLocationBody), this.httpOptions);
   }
-
+  getLocationDropDown(getLocationBody: UniversalBody): Observable<GetAllLocationResponse[]> {
+    console.log("Message",getLocationBody);
+    return this.httpClient.post<GetAllLocationResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getLocationDropDown, JSON.stringify(getLocationBody), this.httpOptions);
+  }
+  getDepartmentDropDown(getLocationBody: UniversalBody): Observable<GetAllLocationResponse[]> {
+    console.log("Message",getLocationBody);
+    return this.httpClient.post<GetAllLocationResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getDepartmentDropDown, JSON.stringify(getLocationBody), this.httpOptions);
+  }
   updateLocation(jsonData: UniversalJsonBody): Observable<any> {
     console.log("Dataaaaaaaaaa",jsonData);
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.UpdateLocation, JSON.stringify(jsonData), this.httpOptions);
@@ -268,8 +275,8 @@ export class AllWeb {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deletePostal, JSON.stringify(universalJsonBody), this.httpOptions);
   }
 
-  updateState(updateStateBody: UpdateStateBody): Observable<UniversalResponse> {
-    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.updateState, JSON.stringify(updateStateBody), this.httpOptions);
+  updateState(updateStateBody: UniversalJsonBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.UpdateMultipleState, JSON.stringify(updateStateBody), this.httpOptions);
   }
   updateCountry(updateCountryBody: UniversalJsonBody): Observable<UniversalResponse> {
    // console.log("jsondata : ",updateCountryBody);
