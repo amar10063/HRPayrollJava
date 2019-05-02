@@ -145,7 +145,6 @@ export class CountryComponent implements OnInit {
   stateData = []; cityData = [];
 
   constructor(private allWeb: AllWeb) {
-
     this.gridOptions = {
       context: { componentParent: this },
       enableBrowserTooltips: true

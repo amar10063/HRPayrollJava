@@ -120,10 +120,10 @@
           <div class="formBody clearfix pt-0 pb-2">
 
             <ag-grid-angular style="width:100%; height: 395px" class="ag-theme-balham" [rowData]="rowData1"
-              [singleClickEdit]="true" [frameworkComponents]="frameworkComponents" [columnDefs]="columnDefs1"(cellValueChanged)="onDepartmentCellValueChanged($event)"
+              [gridOptions]="gridOptions" [frameworkComponents]="frameworkComponents" [columnDefs]="columnDefs1"
+              (cellValueChanged)="onDepartmentCellValueChanged($event)" (cellDoubleClicked)="rowDeptEditingStarted($event)"
               (firstDataRendered)="onFirstDataRendered($event)" [defaultColDef]="defaultColDef"
-              [rowSelection]="rowSelection" 
-              (gridReady)="onGridDepartmentReady($event)" (selectionChanged)="
+              [rowSelection]="rowSelection" (gridReady)="onGridDepartmentReady($event)" (selectionChanged)="
               onDepartmentSelectionChanged($event)"></ag-grid-angular>
               <div  class="row">
                   <label  class="col-md-6 pull-right"></label>
@@ -171,8 +171,9 @@
           <div class="formBody clearfix pt-0 pb-2">
             <ag-grid-angular style="width:100%; height: 395px" class="ag-theme-balham" [rowData]="rowData2"
               [frameworkComponents]="frameworkComponents" [singleClickEdit]="true" [columnDefs]="columnDefs2"
-              [defaultColDef]="defaultColDef" (firstDataRendered)="onFirstDataRendered($event)"
-              [rowSelection]="rowSelection" (gridReady)="onGridDesignationReady($event)" (selectionChanged)="
+              [gridOptions]="gridOptions" [defaultColDef]="defaultColDef"
+              (firstDataRendered)="onFirstDataRendered($event)" [rowSelection]="rowSelection"
+              (gridReady)="onGridDesignationReady($event)" (selectionChanged)="
               onDesignationSelectionChanged($event)"></ag-grid-angular>
               <div  class="row">
                   <label  class="col-md-6 pull-right"></label>

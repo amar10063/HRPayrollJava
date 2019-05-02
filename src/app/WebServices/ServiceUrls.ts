@@ -9,7 +9,9 @@ export class ServiceUrls {
     public static UpdateLocation = '/UpdateMultipleLocation';
 
     public static getLocation = '/getLocation';
-    
+    public static getLocationDropDown = '/getLocationDropDown';
+    public static getDepartmentDropDown = '/getDepartmentDropDown';
+
     public static getAllDesignation = '/getDesignation';
     public static getAllDepartment: '/getDepartment';
 

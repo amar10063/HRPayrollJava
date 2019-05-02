@@ -86,12 +86,12 @@
                     <div class="clearfix"></div>
                     <div class="formBody clearfix pt-0 pb-2">
                       <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData"
-
                         [rowClassRules]="rowClassRules" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef"
                         [overlayNoRowsTemplate]="overlayNoRowsTemplate" [animateRows]="true"
                         [rowSelection]="rowSelection" (selectionChanged)="onSelectionChanged($event)"
                         (firstDataRendered)="onFirstDataRendered($event)" (gridReady)="onGridReady($event)">
                       </ag-grid-angular>
+
 
 
                       <div  class="row">
@@ -187,8 +187,7 @@
                             [disabled]="addCityToggleButton" title="Add New"><i class="fa fa-plus-square"
                               aria-hidden="true"></i>Add
                             New</button>
-                          <button type="button" class="payHeadBtn" 
-                          data-toggle="modal" data-target="#saveDataAddress"
+                          <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#saveDataAddress"
                             [disabled]="saveCityToggleButton" Title="Save"><i class="fa fa-save"
                               aria-hidden="true"></i>{{saveUpdateCity}}
                           </button>
@@ -328,13 +327,13 @@
                   {{saveUpdateAddressPopup}}
                 </div>
                 <div class="modal-footer">
-          
+
                   <button type="button" id="btnSave" class="btn btn-submit" onclick="" style="padding:4px;"
                     data-dismiss="modal">CANCEL</button>
-          
+
                   <button type="button" id="btnSave" class="btn btn-submit" (click)="universalSaveAddress()"
                     style="padding:4px;" data-dismiss="modal">{{btnSaveUpdateAddressPopup}}</button>
-          
+
 
                 </div>
               </div>
