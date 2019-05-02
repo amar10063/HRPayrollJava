@@ -1264,17 +1264,17 @@ export class OrganizationComponent implements OnInit {
     } else {
 
 
-      for (let selectedNode of selectedData) {
-        const deleteLocationBody = new DeleteLocationBody();
-        deleteLocationBody.locationId = selectedNode['id'];
-        if(deleteLocationBody.locationId===undefined){
-          this.locationApi.updateRowData({ remove: selectedData });
-        }else{
-          deleteLocationBody.userId=1;
-          this.arrLocationDelete.push(deleteLocationBody);
-          var jsonData = JSON.stringify(this.arrLocationDelete);
-        }
-      }
+      // for (let selectedNode of selectedData) {
+      //   const deleteLocationBody = new DeleteLocationBody();
+      //   deleteLocationBody.locationId = selectedNode['id'];
+      //   if(deleteLocationBody.locationId===undefined){
+      //     this.locationApi.updateRowData({ remove: selectedData });
+      //   }else{
+      //     deleteLocationBody.userId=1;
+      //     this.arrLocationDelete.push(deleteLocationBody);
+      //     var jsonData = JSON.stringify(this.arrLocationDelete);
+      //   }
+      // }
 
 
       for (let selectedNode of selectedData) {
