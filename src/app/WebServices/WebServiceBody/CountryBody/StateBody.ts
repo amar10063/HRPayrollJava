@@ -1,10 +1,9 @@
 export class StateBody {
 
     stateName: string;
-    countryId: string ;
     description: string;
+    countryId: string ;
     userId: string;
-
-    // stateId:number;
+    stateID:string;
 
 }

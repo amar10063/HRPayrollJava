@@ -267,8 +267,8 @@ export class AllWeb {
     return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.deletePostal, JSON.stringify(universalJsonBody), this.httpOptions);
   }
 
-  updateState(updateStateBody: UpdateStateBody): Observable<UniversalResponse> {
-    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.updateState, JSON.stringify(updateStateBody), this.httpOptions);
+  updateState(updateStateBody: UniversalJsonBody): Observable<UniversalResponse> {
+    return this.httpClient.post<UniversalResponse>(ServiceUrls.baseUrls + ServiceUrls.UpdateMultipleState, JSON.stringify(updateStateBody), this.httpOptions);
   }
   updateCountry(updateCountryBody: UniversalJsonBody): Observable<UniversalResponse> {
     console.log("jsondata : ",updateCountryBody);

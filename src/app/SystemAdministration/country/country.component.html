@@ -86,7 +86,6 @@
                     <div class="clearfix"></div>
                     <div class="formBody clearfix pt-0 pb-2">
                       <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData"
-
                         [rowClassRules]="rowClassRules" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef"
                         [overlayNoRowsTemplate]="overlayNoRowsTemplate" [animateRows]="true"
                         [rowSelection]="rowSelection" (selectionChanged)="onSelectionChanged($event)"
@@ -100,7 +99,8 @@
                         <div class="form group col-md-2 pull-right p-0">
                           <span class="fa fa-angle-double-left  previous round" title="Older" id="nextprev"></span>
                           <label class="col-md-6 p-0"
-                            style=" text-align: center; font-size:10px; font-weight:bold;">{{StartCountryNumber}} - {{EndCountryNumber}} of
+                            style=" text-align: center; font-size:10px; font-weight:bold;">{{StartCountryNumber}} -
+                            {{EndCountryNumber}} of
                             {{TotalCountry}}</label>
                           <span class="fa fa-angle-double-right  next round" title="Newer" id="nextprev"></span>
                         </div>
@@ -126,10 +126,13 @@
                       </div>
                       <div class="col-12 col-md-8 p-0 pull-left">
                         <div class="buttonCon pull-right mt-2 mb-2 mr-1 ">
-                          <button type="button" class="payHeadBtn" (click)="onAddState()"
+                          <button type="button" class="payHeadBtn" (click)="onAddStatebyButton()"
                             [disabled]="addStateToggleButton" title="Add New"><i class="fa fa-plus-square"
                               aria-hidden="true"></i>Add
                             New</button>
+
+
+
 
                           <button type="button" class="payHeadBtn" [disabled]="saveStateToggleButton" title="Save"
                             data-toggle="modal" data-target="#saveDataAddress"><i class="fa fa-save"
@@ -149,14 +152,31 @@
                     <div class="clearfix"></div>
                     <div class="formBody clearfix pt-0 pb-2">
 
-                      <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData1"
-                        [columnDefs]="columnDefs1" [animateRows]="true" [rowSelection]="rowSelection"
-                        [stopEditingWhenGridLosesFocus]="true" [frameworkComponents]="frameworkComponents"
-                        [gridOptions]="gridOptions" [defaultColDef]="defaultColDef"
-                        (cellDoubleClicked)="rowEditingStarted($event)" (singleClickEdit)="true"
+                      <!-- Default -->
+                      <!-- <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData1"
+                      [columnDefs]="columnDefs1" [rowSelection]="rowSelection"
+                      [frameworkComponents]="frameworkComponents" [gridOptions]="gridOptions"
+                      (cellDoubleClicked)="rowEditingStarted($event)"
+                      (firstDataRendered)="onFirstDataRendered($event)"
+                      (selectionChanged)="onStateSelectionChanged($event)" (gridReady)="onStateGridReady($event)"
+                      (cellValueChanged)="onStateCellValueChanged($event)">
+                    </ag-grid-angular> -->
+
+                      <!-- <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData1"
+                        [columnDefs]="columnDefs1" [rowSelection]="rowSelection"
+                        [frameworkComponents]="frameworkComponents" [gridOptions]="gridOptions"
                         (firstDataRendered)="onFirstDataRendered($event)"
-                        (selectionChanged)="onStateSelectionChanged($event)" (gridReady)="onStateGridReady($event)">
-                      </ag-grid-angular>
+                        (selectionChanged)="onStateSelectionChanged($event)" (gridReady)="onStateGridReady($event)"
+                        (cellValueChanged)="onStateCellValueChanged($event)">
+                      </ag-grid-angular> -->
+
+                      <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData1"
+                        [singleClickEdit]="true" [frameworkComponents]="frameworkComponents" [columnDefs]="columnDefs1"
+                        (firstDataRendered)="onFirstDataRendered($event)" [defaultColDef]="defaultColDef"
+                        [rowSelection]="rowSelection" (gridReady)="onStateGridReady($event)"  
+                        (selectionChanged)="onStateSelectionChanged($event)"   [gridOptions]="gridOptions"
+                        (cellDoubleClicked)="rowEditingStarted($event)"
+                        (cellValueChanged)="onStateCellValueChanged($event)"></ag-grid-angular>
 
 
 
@@ -194,8 +214,7 @@
                             [disabled]="addCityToggleButton" title="Add New"><i class="fa fa-plus-square"
                               aria-hidden="true"></i>Add
                             New</button>
-                          <button type="button" class="payHeadBtn" 
-                          data-toggle="modal" data-target="#saveDataAddress"
+                          <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#saveDataAddress"
                             [disabled]="saveCityToggleButton" Title="Save"><i class="fa fa-save"
                               aria-hidden="true"></i>{{saveUpdateCity}}
                           </button>
@@ -228,7 +247,8 @@
                         <div class="form group col-md-2 pull-right p-0">
                           <span class="fa fa-angle-double-left  previous round" title="Older" id="nextprev"></span>
                           <label class="col-md-6 p-0"
-                            style=" text-align: center; font-size:10px; font-weight:bold;">{{ShowCity}} -{{ShowLimitedCity}} of
+                            style=" text-align: center; font-size:10px; font-weight:bold;">{{ShowCity}}
+                            -{{ShowLimitedCity}} of
                             {{TotalCity}}</label>
                           <span class="fa fa-angle-double-right  next round" title="Newer" id="nextprev"></span>
                         </div>
@@ -338,13 +358,13 @@
                   {{saveUpdateAddressPopup}}
                 </div>
                 <div class="modal-footer">
-          
+
                   <button type="button" id="btnSave" class="btn btn-submit" onclick="" style="padding:4px;"
                     data-dismiss="modal">CANCEL</button>
-          
+
                   <button type="button" id="btnSave" class="btn btn-submit" (click)="universalSaveAddress()"
                     style="padding:4px;" data-dismiss="modal">{{btnSaveUpdateAddressPopup}}</button>
-          
+
 
                 </div>
               </div>
