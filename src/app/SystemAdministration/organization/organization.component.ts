@@ -97,7 +97,7 @@ export class OrganizationComponent implements OnInit {
         }
       },
       {
-        headerName: 'Location Code', field: 'code', sortable: true, filter: true, editable: true, width: 250, minWidth: 50,
+        headerName: 'Location Code', field: 'code', tooltipField: 'code', sortable: true, filter: true, editable: true, width: 250, minWidth: 50,
         maxWidth: 300,
         cellStyle: function (params) {
           if (params.value === '') {
@@ -108,7 +108,7 @@ export class OrganizationComponent implements OnInit {
         }
       },
       {
-        headerName: 'Location Name', field: 'name', sortable: true, filter: true, editable: true, width: 250, minWidth: 50,
+        headerName: 'Location Name', field: 'name', tooltipField: 'name', sortable: true, filter: true, editable: true, width: 250, minWidth: 50,
         maxWidth: 300,
 
 
@@ -122,7 +122,7 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Description', field: 'description', sortable: true, filter: true, editable: true, width: 300, minWidth: 50,
+        headerName: 'Description', field: 'description', tooltipField: 'description', sortable: true, filter: true, editable: true, width: 300, minWidth: 50,
         maxWidth: 500,
 
 
@@ -147,7 +147,8 @@ export class OrganizationComponent implements OnInit {
     this.rowData;
     this.columnDefs1 = [
       {
-        headerName: 'Location Name', field: 'locationName', sortable: true, filter: true, width: 150, minWidth: 50,
+
+        headerName: 'Location Name', field: 'LocationName', tooltipField: 'LocationName', sortable: true, filter: true, width: 150, minWidth: 50,
         maxWidth: 300,
         cellRendererSelector: function (params) {
           var locationDetails = {
@@ -162,17 +163,19 @@ export class OrganizationComponent implements OnInit {
         },
       },
       {
-        headerName: 'Department Code', field: 'departmentCode', sortable: true, editable: false, width: 250, minWidth: 50,
+
+        headerName: 'Department Code', field: 'departmentCode', tooltipField: 'departmentCode', sortable: true, editable: true, width: 250, minWidth: 50,
         maxWidth: 300, filter: 'agNumberColumnFilter',
 
       },
       {
-        headerName: 'Department Name', field: 'departmentName', sortable: true, width: 150, minWidth: 50,
-        maxWidth: 300, editable: false, filter: true,
+
+        headerName: 'Department Name', field: 'departmentName', tooltipField: 'departmentName', sortable: true, width: 150, minWidth: 50,
+        maxWidth: 300, editable: true, filter: true,
       },
       {
-        headerName: 'Description', field: 'description', sortable: true, width: 250, minWidth: 50,
-        maxWidth: 300, editable: false, filter: true,
+        headerName: 'Description', field: 'description', tooltipField: 'description', sortable: true, width: 250, minWidth: 50,
+        maxWidth: 300, editable: true, filter: true,
       },
       { headerName: '', field: 'hidden', hide: true },
       { headerName: '', field: 'departmentID', hide: true }
@@ -185,7 +188,8 @@ export class OrganizationComponent implements OnInit {
 
     this.columnDefs2 = [
       {
-        headerName: 'Location Name', field: 'locationName', sortable: true, filter: true, editable: true, width: 150, minWidth: 50,
+
+        headerName: 'Location Name', field: 'LocationName', tooltipField: 'LocationName', sortable: true, filter: true, editable: true, width: 150, minWidth: 50,
         maxWidth: 300,
         cellEditor: 'select',
         cellRendererSelector: function (params) {
@@ -202,7 +206,7 @@ export class OrganizationComponent implements OnInit {
       },
 
       {
-        headerName: 'Department', field: 'DepartmentName', sortable: true, editable: true, filter: true, width: 150, minWidth: 50,
+        headerName: 'Department', field: 'DepartmentName', tooltipField: 'DepartmentName', sortable: true, editable: true, filter: true, width: 150, minWidth: 50,
         maxWidth: 300,
 
         cellEditor: "select",
@@ -220,7 +224,7 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Designation Code', field: 'designationCode', sortable: true, editable: true, filter: true, width: 150, minWidth: 50,
+        headerName: 'Designation Code', field: 'designationCode', tooltipField: 'designationCode', sortable: true, editable: true, filter: true, width: 150, minWidth: 50,
         maxWidth: 300,
 
 
@@ -239,7 +243,7 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Designation', field: 'designationName', sortable: true, editable: true, filter: true, width: 150, minWidth: 50,
+        headerName: 'Designation', field: 'designationName', tooltipField: 'designationName', sortable: true, editable: true, filter: true, width: 150, minWidth: 50,
         maxWidth: 300,
 
         cellStyle: function (params) {
@@ -257,7 +261,7 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Description', field: 'description', sortable: true, editable: true, filter: true, width: 220, minWidth: 50,
+        headerName: 'Description', field: 'description', tooltipField: 'description', sortable: true, editable: true, filter: true, width: 220, minWidth: 50,
         maxWidth: 300,
 
 

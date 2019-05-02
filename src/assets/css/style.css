@@ -2526,15 +2526,11 @@ text-align:center;
     padding: 6px 10px;
  
   }
-  
-  #nextprev:hover {
-    background-color:#398d94;
-    color: white;
-  }
-  
-  .round {
-    border-radius: 50%;
-  }
+  .alink{color:#398d94;    padding-left: 10px;}
+  .alink:hover{color:#398d94}
+  #nextprev:hover {    background-color:#398d94 !important;    color: white;  }
+  .loadmore{ text-align: right; font-size:10px; font-weight:500; }
+  .round {   border-radius: 50%;  }
   
   .selectextwidth{
       width:10%!important;
