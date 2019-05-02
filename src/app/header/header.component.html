@@ -3,7 +3,11 @@
     <div class="col-12 col-md-7 col-lg-7">
         <!-- <label for="Company" class="companyName">Company : </label>
         <label for="Yoeki" class="companyName"> Yoeki Soft Pvt Ltd.</label> -->
-    </div>
+        <div class="text-center fullscreen">
+        <span (click)="openFullscreen()" *ngIf="hide" title="View Full Screen" class="text-center"><i class="fa fa-expand" aria-hidden="true"></i></span>
+        <span (click)="closeFullscreen()" *ngIf="show" title="Exit Full Screen" class="text-center"><i class="fa fa-compress" aria-hidden="true"></i></span>
+        </div>
+      </div>
     <div class="col-12 col-md-5 col-lg-5 search">
      
     <span class="ml-3">

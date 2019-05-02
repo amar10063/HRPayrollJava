@@ -93,19 +93,17 @@
                       </ag-grid-angular>
 
 
-                    </div>
-                    <div class="row mb-1">
-                      <div class="col-md-12 col-sm-6 col-xs-12 ">
-                        <div class="form group col-md-2 pull-right p-0">
-                          <span class="fa fa-angle-double-left  previous round" title="Older" id="nextprev"></span>
-                          <label class="col-md-6 p-0"
-                            style=" text-align: center; font-size:10px; font-weight:bold;">{{StartCountryNumber}} -
-                            {{EndCountryNumber}} of
-                            {{TotalCountry}}</label>
-                          <span class="fa fa-angle-double-right  next round" title="Newer" id="nextprev"></span>
-                        </div>
+
+                      <div  class="row">
+                        <label  class="col-md-6 pull-right"></label>
+                        <span class=" col-md-6 pull-right loadmore">Showing results {{StartCountryNumber}} - {{ShowLimitedCountry}} Out of {{TotalCountry}}  
+                          <a  class="alink" href="#">Click to Load More </a>
+                        </span>
+
                       </div>
                     </div>
+                
+          
                   </div>
                   <div id="state" class="container tab-pane fade">
 
@@ -178,20 +176,15 @@
                         (cellDoubleClicked)="rowEditingStarted($event)"
                         (cellValueChanged)="onStateCellValueChanged($event)"></ag-grid-angular>
 
-
-
-                    </div>
-                    <div class="row mb-1">
-                      <div class="col-md-12 col-sm-6 col-xs-12 ">
-                        <div class="form group col-md-2 pull-right p-0">
-                          <span class="fa fa-angle-double-left  previous round" title="Older" id="nextprev"></span>
-                          <label class="col-md-6 p-0"
-                            style=" text-align: center; font-size:10px; font-weight:bold;">{{ShowLimitedState}} of
-                            {{TotalState}}</label>
-                          <span class="fa fa-angle-double-right  next round" title="Newer" id="nextprev"></span>
+                      <div  class="row">
+                          <label  class="col-md-6 pull-right"></label>
+                          <span class=" col-md-6 pull-right loadmore">Showing results 1 - {{ShowLimitedState}} Out of {{TotalState}}  
+                            <a  class="alink" href="#">Click to Load More </a>
+                          </span>
                         </div>
-                      </div>
+
                     </div>
+                  
                   </div>
                   <div id="city" class="container tab-pane fade">
 
@@ -241,19 +234,19 @@
                         (cellDoubleClicked)="rowCityEditingStarted($event)"
                         (firstDataRendered)="onFirstDataRendered($event)">
                       </ag-grid-angular>
-                    </div>
-                    <div class="row mb-1">
-                      <div class="col-md-12 col-sm-4 col-xs-12 ">
-                        <div class="form group col-md-2 pull-right p-0">
-                          <span class="fa fa-angle-double-left  previous round" title="Older" id="nextprev"></span>
-                          <label class="col-md-6 p-0"
-                            style=" text-align: center; font-size:10px; font-weight:bold;">{{ShowCity}}
-                            -{{ShowLimitedCity}} of
-                            {{TotalCity}}</label>
-                          <span class="fa fa-angle-double-right  next round" title="Newer" id="nextprev"></span>
+
+
+                      <div  class="row">
+                          <label  class="col-md-6 pull-right"></label>
+                          <span class=" col-md-6 pull-right loadmore">Showing results {{ShowCity}} - {{ShowLimitedCity}} Out of {{TotalCity}}  
+                            <a  class="alink" href="#">Click to Load More </a>
+                          </span>
+
                         </div>
-                      </div>
                     </div>
+                   
+                  
+                  
                   </div>
                   <div id="postal" class="container tab-pane fade">
                     <div class="col-12 col-md-12 p-0">
@@ -304,19 +297,16 @@
                         (cellDoubleClicked)="rowPostalEditingStarted($event)"
                         (firstDataRendered)="onFirstDataRendered($event)">
                       </ag-grid-angular>
+                      <div  class="row">
+                          <label  class="col-md-6 pull-right"></label>
+                          <span class=" col-md-6 pull-right loadmore">Showing results 1 - {{ShowLimitedPostal}} Out of {{TotalPostal}}  
+                            <a  class="alink" href="#">Click to Load More </a>
+                          </span>
+                        </div>
 
                     </div>
-                    <div class="row mb-1">
-                      <div class="col-md-12 col-sm-6 col-xs-12 ">
-                        <div class="form group col-md-2 pull-right p-0">
-                          <span class="fa fa-angle-double-left  previous round" title="Older" id="nextprev"></span>
-                          <label class="col-md-6 p-0"
-                            style=" text-align: center; font-size:10px; font-weight:bold;">{{ShowLimitedPostal}} of
-                            {{TotalPostal}}</label>
-                          <span class="fa fa-angle-double-right  next round" title="Newer" id="nextprev"></span>
-                        </div>
-                      </div>
-                    </div>
+                   
+                   
                   </div>
 
                 </div>

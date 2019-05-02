@@ -37,7 +37,7 @@ export class OrganizationComponent implements OnInit {
 
   departmentApi: GridApi;
   departmentColumnApi: ColumnApi;
-
+  public selectedLocationId; public selectedDepartmentId;
   designationApi: GridApi;
   designationColumnApi: ColumnApi;
   private defaultColDef;
@@ -53,7 +53,7 @@ export class OrganizationComponent implements OnInit {
   getAllLocationResponse: GetAllLocationResponse[];
   getDepartmentResponse: GetDepartmentResponse[];
   getDesignationResponse: GetDesignationResponse[];
-  gridOptions: GridOptions;
+  gridOptions = {} as GridOptions;
   addNewLocationRow: boolean = false;
   addNewDepartmentRow: boolean = false;
   addNewDesignationRow: boolean = false;
@@ -86,6 +86,9 @@ export class OrganizationComponent implements OnInit {
     locationFramework: LocationDropdownComponent
   };
   constructor(private countryService: AllWeb) {
+    this.gridOptions = {
+      context: { organizationParent: this }
+    };
     this.rowSelection = 'multiple';
     this.columnDefs = [
       {
@@ -99,7 +102,7 @@ export class OrganizationComponent implements OnInit {
         }
       },
       {
-        headerName: 'Location Code', field: 'code', sortable: true, filter: true, editable: true, width: 250, minWidth: 50,
+        headerName: 'Location Code', field: 'code', tooltipField: 'code', sortable: true, filter: true, editable: true, width: 250, minWidth: 50,
         maxWidth: 300,
         cellStyle: function (params) {
           if (params.value === '') {
@@ -110,7 +113,7 @@ export class OrganizationComponent implements OnInit {
         }
       },
       {
-        headerName: 'Location Name', field: 'name', sortable: true, filter: true, editable: true, width: 250, minWidth: 50,
+        headerName: 'Location Name', field: 'name', tooltipField: 'name', sortable: true, filter: true, editable: true, width: 250, minWidth: 50,
         maxWidth: 300,
 
 
@@ -124,7 +127,7 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Description', field: 'description', sortable: true, filter: true, editable: true, width: 300, minWidth: 50,
+        headerName: 'Description', field: 'description', tooltipField: 'description', sortable: true, filter: true, editable: true, width: 300, minWidth: 50,
         maxWidth: 500,
 
 
@@ -149,7 +152,8 @@ export class OrganizationComponent implements OnInit {
     this.rowData;
     this.columnDefs1 = [
       {
-        headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, width: 150, minWidth: 50,
+
+        headerName: 'Location Name', field: 'LocationName', tooltipField: 'LocationName', sortable: true, filter: true, width: 150, minWidth: 50,
         maxWidth: 300,
         cellRendererSelector: function (params) {
           var locationDetails = {
@@ -164,20 +168,22 @@ export class OrganizationComponent implements OnInit {
         },
       },
       {
-        headerName: 'Department Code', field: 'departmentCode', sortable: true, editable: true, width: 250, minWidth: 50,
+
+        headerName: 'Department Code', field: 'departmentCode', tooltipField: 'departmentCode', sortable: true, editable: true, width: 250, minWidth: 50,
         maxWidth: 300, filter: 'agNumberColumnFilter',
 
       },
       {
-        headerName: 'Department Name', field: 'departmentName', sortable: true, width: 150, minWidth: 50,
+
+        headerName: 'Department Name', field: 'departmentName', tooltipField: 'departmentName', sortable: true, width: 150, minWidth: 50,
         maxWidth: 300, editable: true, filter: true,
       },
       {
-        headerName: 'Description', field: 'description', sortable: true, width: 250, minWidth: 50,
+        headerName: 'Description', field: 'description', tooltipField: 'description', sortable: true, width: 250, minWidth: 50,
         maxWidth: 300, editable: true, filter: true,
       },
       { headerName: '', field: 'hidden', hide: true },
-      { headerName: '', field: 'id', hide: true }
+      { headerName: '', field: 'departmentID', hide: true }
 
     ];
     this.defaultColDef = { resizable: true };
@@ -187,7 +193,8 @@ export class OrganizationComponent implements OnInit {
 
     this.columnDefs2 = [
       {
-        headerName: 'Location Name', field: 'LocationName', sortable: true, filter: true, editable: true, width: 150, minWidth: 50,
+
+        headerName: 'Location Name', field: 'LocationName', tooltipField: 'LocationName', sortable: true, filter: true, editable: true, width: 150, minWidth: 50,
         maxWidth: 300,
         cellEditor: 'select',
         cellRendererSelector: function (params) {
@@ -204,7 +211,7 @@ export class OrganizationComponent implements OnInit {
       },
 
       {
-        headerName: 'Department', field: 'DepartmentName', sortable: true, editable: true, filter: true, width: 150, minWidth: 50,
+        headerName: 'Department', field: 'DepartmentName', tooltipField: 'DepartmentName', sortable: true, editable: true, filter: true, width: 150, minWidth: 50,
         maxWidth: 300,
 
         cellEditor: "select",
@@ -222,7 +229,7 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Designation Code', field: 'designationCode', sortable: true, editable: true, filter: true, width: 150, minWidth: 50,
+        headerName: 'Designation Code', field: 'designationCode', tooltipField: 'designationCode', sortable: true, editable: true, filter: true, width: 150, minWidth: 50,
         maxWidth: 300,
 
 
@@ -241,7 +248,7 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Designation', field: 'designationName', sortable: true, editable: true, filter: true, width: 150, minWidth: 50,
+        headerName: 'Designation', field: 'designationName', tooltipField: 'designationName', sortable: true, editable: true, filter: true, width: 150, minWidth: 50,
         maxWidth: 300,
 
         cellStyle: function (params) {
@@ -259,7 +266,7 @@ export class OrganizationComponent implements OnInit {
 
       },
       {
-        headerName: 'Description', field: 'description', sortable: true, editable: true, filter: true, width: 220, minWidth: 50,
+        headerName: 'Description', field: 'description', tooltipField: 'description', sortable: true, editable: true, filter: true, width: 220, minWidth: 50,
         maxWidth: 300,
 
 
@@ -407,27 +414,21 @@ export class OrganizationComponent implements OnInit {
         }
       }
       jsonData = jsonData.replace(/"/g, "'");
-      // deleteLocationBody.locationId = dataTest['id'];
-      // deleteLocationBody.userId = dataTest['designationName']  
-      // if (dataTest['id'] === '') {
-      //   alert("Plesae choose appropiate field");
-      //   this.checkedLocationStatus = false;
-      // }
-      // else {
-        universalJsonBody.jsonData = jsonData;
-        this.countryService.doDeleteLocation(universalJsonBody)
-          .subscribe(
-            data => {
-              locationResponse = data;
-              //console.log("key", LocationResponse);
-              alert(locationResponse.MESSAGE);
-              if (locationResponse.STATUS === 'Success') {
-                this.arrLocationDelete = [];
-                this.getLocation(1);
-                this.checkedLocationStatus = false;
-              }
+
+      universalJsonBody.jsonData = jsonData;
+      this.countryService.doDeleteLocation(universalJsonBody)
+        .subscribe(
+          data => {
+            locationResponse = data;
+            //console.log("key", LocationResponse);
+            alert(locationResponse.MESSAGE);
+            if (locationResponse.STATUS === 'Success') {
+              this.arrLocationDelete = [];
+              this.getLocation(1);
+              this.checkedLocationStatus = false;
             }
-          );
+          }
+        );
       // }
     }
   }
@@ -541,20 +542,11 @@ export class OrganizationComponent implements OnInit {
     if (this.selectedRowsLocation.length >= 1) {
       this.deleteNewLocation = false;
       this.editLocation = false;
-      // alert(this.nodeSelectButWhere);
       if (this.nodeSelectButWhere === "Save") {
         this.nodeSelectButWhere = "Save"
       } else {
-
         this.nodeSelectButWhere = "Update"
         this.editLocation = false;
-
-        // alert(this.checkedLocationStatus);
-        // if (this.checkedLocationStatus === true) {
-        //   alert("sadfgdsdfg");
-        //   this.checkedLocationStatus = true;
-        // }
-
       }
     }
   }
@@ -575,37 +567,40 @@ export class OrganizationComponent implements OnInit {
 
   // For department////
   onDepartmentCellValueChanged(params) {
-    const cell = params.api.getFocusedCell() + '';
+    console.log('onCellValueChanged: ' + params.oldValue + ' to ' + params.newValue);
+    const cell = this.departmentApi.getFocusedCell() + '';
     const selectedNodes = this.departmentApi.getSelectedNodes();
     const selectedData = selectedNodes.map(node => node.data);
     var dataTest: Object;
     selectedData.map(node => dataTest = node as Object);
     this.arrDepartmentSave.forEach(data => {
-      if (dataTest['id'] === data['departmentId']) {
+      if (dataTest['departmentID'] === data['departmentId']) {
         const departmentBody = new DepartmentBody();
-        departmentBody.locationId = 1;
         departmentBody.userId = '1';
-        departmentBody.departmentId = dataTest['id'];
+        departmentBody.departmentId = dataTest['departmentID'];
         if (cell.includes('departmentCode')) {
           // console.log('departmentCode');
+          departmentBody.locationId = this.selectedLocationId;
           departmentBody.departmentName = dataTest['departmentName'];
           departmentBody.description = dataTest['description'];
           departmentBody.departmentCode = dataTest['departmentCode'];
-          var newposition = (dataTest['id'].replace(/DEPT/g, '')) - 1;
+          var newposition = (dataTest['departmentID'].replace(/DEPT/g, '')) - 1;
           this.arrDepartmentSave.splice(newposition, 1, departmentBody);
         } else if (cell.includes('departmentName')) {
           // console.log('departmentName');
+          departmentBody.locationId = this.selectedLocationId;
           departmentBody.departmentCode = dataTest['departmentCode'];
           departmentBody.description = dataTest['description'];
           departmentBody.departmentName = dataTest['departmentName'];
-          var newposition = (dataTest['id'].replace(/DEPT/g, '')) - 1;
+          var newposition = (dataTest['departmentID'].replace(/DEPT/g, '')) - 1;
           this.arrDepartmentSave.splice(newposition, 1, departmentBody);
         } else if (cell.includes('description')) {
           console.log('description');
+          departmentBody.locationId = this.selectedLocationId;
           departmentBody.departmentCode = dataTest['departmentCode'];
           departmentBody.departmentName = dataTest['departmentName'];
           departmentBody.description = dataTest['description'];
-          var newposition = (dataTest['id'].replace(/DEPT/g, '')) - 1;
+          var newposition = (dataTest['departmentID'].replace(/DEPT/g, '')) - 1;
           this.arrDepartmentSave.splice(newposition, 1, departmentBody);
         }
         console.log(JSON.stringify(this.arrDepartmentSave));
@@ -622,7 +617,7 @@ export class OrganizationComponent implements OnInit {
     this.saveUpdateDepartment = 'Save';
 
     var res = this.departmentApi.updateRowData({
-      add: [{ LocationName: '', departmentCode: '', departmentName: '', description: '', hidden: 'hidden', id: 'DEPT' + this.addDeptCount }],
+      add: [{ locationName: '', departmentCode: '', departmentName: '', description: '', hidden: 'hidden', departmentID: 'DEPT' + this.addDeptCount }],
       addIndex: 0
     });
     const selectedNodes = this.departmentApi.getSelectedNodes();
@@ -636,7 +631,7 @@ export class OrganizationComponent implements OnInit {
     departmentBody.departmentCode = '';
     departmentBody.departmentName = '';
     departmentBody.description = '';
-    departmentBody.locationId = 1;
+    departmentBody.locationId = this.selectedLocationId;
     departmentBody.userId = '1';
     this.arrDepartmentSave.push(departmentBody);
   }
@@ -665,8 +660,7 @@ export class OrganizationComponent implements OnInit {
   onGridDepartmentReady(params) {
     this.departmentApi = params.api;
     this.departmentColumnApi = params.columnApi;
-    this.gridOptions = params.gridOptions;
-    params.api.sizeColumnsToFit();
+    this.departmentApi.sizeColumnsToFit();
   }
   onDeleteDepartment() {
     const selectedNodes = this.departmentApi.getSelectedNodes();
@@ -679,8 +673,6 @@ export class OrganizationComponent implements OnInit {
     if (selectedNodes.length === 0) {
       alert("Please Select any row.");
     } else {
-
-
       for (let selectedNode of selectedData) {
         const deleteDepartmentBody = new DeleteDepartmentBody();
         deleteDepartmentBody.departmentId = selectedNode['departmentID'];
@@ -688,22 +680,28 @@ export class OrganizationComponent implements OnInit {
         var jsonData = JSON.stringify(this.arrDepartmentDelete);
       }
       jsonData = jsonData.replace(/"/g, "'");
-
       universalJsonBody.jsonData = jsonData;
-      this.countryService.deleteDepartment(universalJsonBody)
-        .subscribe(
-          data => {
-            universlResponse = data;
+      if (dataTest['departmentID'].includes('DEPT')) {
+        var newposition = (dataTest['departmentID'].replace(/DEPT/g, '')) - 1;
+        this.arrDepartmentSave.splice(newposition, 1);
+        this.departmentApi.removeItems(selectedNodes);
+      }
+      else {
+        this.countryService.deleteDepartment(universalJsonBody)
+          .subscribe(
+            data => {
+              universlResponse = data;
 
-            if (universlResponse.STATUS.trim() === 'Success') {
-              this.departmentApi.removeItems(selectedNodes);
-              this.arrDepartmentDelete = [];
-              this.getDepartment('1');
+              if (universlResponse.STATUS.trim() === 'Success') {
+                this.departmentApi.removeItems(selectedNodes);
+                this.arrDepartmentDelete = [];
+                this.getDepartment('1');
+              }
             }
-          }
-        );
+          );
+        this.departmentApi.removeItems(selectedNodes);
+      }
     }
-    this.departmentApi.removeItems(selectedNodes);
 
   }
   getDepartment(UserID: string) {
@@ -743,7 +741,15 @@ export class OrganizationComponent implements OnInit {
   }
 
   onSaveUpdateDepartmentData() {
-    this.departmentApi.tabToNextCell();
+    // this.departmentApi.tabToNextCell();
+    // const selectedNodes = this.departmentApi.getSelectedNodes();
+    // console.log("key", selectedNodes);
+    // const selectedData = selectedNodes.map(node => node.data);
+    // var dataTest: Object;
+    // selectedData.map(node => dataTest = node as Object);
+    // for (let dept of selectedData) { 
+    //   if(dept['id'].includes)
+    // }
     if (this.nodeDepartmentSelect === 'Add') {
       this.onSaveDepartment('1');
     } else {
@@ -753,11 +759,7 @@ export class OrganizationComponent implements OnInit {
 
   onSaveDepartment(userID: string) {
     this.departmentApi.tabToPreviousCell();
-
     const universalJsonBody = new UniversalJsonBody();
-
-    // var getDepartmentBody = new UniversalBody();
-
     const selectedNodes = this.departmentApi.getSelectedNodes();
     console.log("key", selectedNodes);
     const selectedData = selectedNodes.map(node => node.data);
@@ -770,9 +772,6 @@ export class OrganizationComponent implements OnInit {
     } else if (dataTest['departmentName'] === '') {
       alert("Enter Department");
     }
-    // else if (dataTest['description'] === '') {
-    //   alert("Enter Location Description");
-    // }
     else {
       var jsonData = JSON.stringify(this.arrDepartmentSave);
       jsonData = jsonData.replace(/"/g, "'");
@@ -781,15 +780,16 @@ export class OrganizationComponent implements OnInit {
       this.countryService.saveDepartment(universalJsonBody)
         .subscribe(
           data => {
-            this.universalResponse = data;
             this.arrDepartmentSave = [];
-
+            this.universalResponse = data;
             if (this.universalResponse.STATUS.trim() === 'Success') {
-              this.addDeptCount = 0;
+              this.addDeptCount = 0; this.getDepartment('1');
+
               if (this.arrDepartmentSave.length >= 1) {
                 if (this.universalResponse.OUTPUT === '') {
                   alert(this.universalResponse.MESSAGE);
                   this.getDepartment('1');
+
                 }
                 else {
                   alert(this.universalResponse.MESSAGE + ' ' + this.universalResponse.OUTPUT + ' ' + 'already existed ');
@@ -799,13 +799,12 @@ export class OrganizationComponent implements OnInit {
                 if (this.universalResponse.OUTPUT === '') {
                   alert(this.universalResponse.MESSAGE);
                   this.getDepartment('1');
+
                 }
                 else {
                   alert(this.universalResponse.OUTPUT + ' ' + 'already existed');
                 }
               }
-              // this.getDepartment('1');
-
             }
 
           }
@@ -813,11 +812,24 @@ export class OrganizationComponent implements OnInit {
     }
     this.nodeDepartmentSelect = 'Update';
   }
+  rowDeptEditingStarted(event) {
+    this.departmentApi.getColumnDef('departmentCode').editable = true;
+    this.departmentApi.getColumnDef('departmentName').editable = true;
+    this.departmentApi.getColumnDef('description').editable = true;
 
+    const selectedNodes = this.departmentApi.getSelectedNodes();
+    const selectedData = selectedNodes.map(node => node.data);
+    var dataTest: Object;
+    selectedData.map(node => dataTest = node as Object);
+    console.log('datatest:  ' + JSON.stringify(dataTest));
+    var res1 = this.departmentApi.updateRowData({ remove: selectedData });
+
+    let res = this.departmentApi.updateRowData({ add: [{ departmentCode: dataTest['departmentCode'], departmentName: dataTest['departmentName'], description: dataTest['description'], hidden: 'hidden', locationName: dataTest['locationName'], departmentID: dataTest['departmentID'] }], addIndex: event.rowIndex });
+
+
+  }
   onUpdateDepartmentData(userID: string) {
-
     this.editDepartment = false;
-
     if (this.selectedRowsDepartment === undefined) {
       alert("Please enter input valid data then hit save.")
     } else {
@@ -826,7 +838,6 @@ export class OrganizationComponent implements OnInit {
       if (selectedNodes.length === 0) {
         alert("Please Input Valid Data");
       } else {
-
         const universalJsonBody = new UniversalJsonBody();
         const selectedData = selectedNodes.map(node => node.data);
         var universalResonse: UniversalResponse;
@@ -836,26 +847,20 @@ export class OrganizationComponent implements OnInit {
           alert("Enter Department Code");
         } else if (dataTest['departmentName'] === '') {
           alert("Enter Department");
-        } //else if (dataTest['description'] === '') {
-        //   alert("Enter Location Description");
-        // }
+        }
         else {
           for (let selectedNode of selectedData) {
             const updateDepartmentBody = new DepartmentBody();
-
             updateDepartmentBody.userId = userID;
+            updateDepartmentBody.locationId = this.selectedLocationId;
             updateDepartmentBody.departmentCode = selectedNode['departmentCode'];
-            //  updateDepartmentBody.departmentName =selectedNode
             updateDepartmentBody.departmentName = selectedNode['departmentName'];
             updateDepartmentBody.description = selectedNode['description'];
             updateDepartmentBody.departmentId = selectedNode['departmentID'];
-
-            // this.arrDepartmentSave.push(updateDepartmentBody);
-
-            var jsonData = JSON.stringify(this.arrDepartmentSave);
-            jsonData = jsonData.replace(/"/g, "'");
-
+            this.arrDepartmentSave.push(updateDepartmentBody);
           }
+          var jsonData = JSON.stringify(this.arrDepartmentSave);
+          jsonData = jsonData.replace(/"/g, "'");
 
           universalJsonBody.jsonData = jsonData;
 
@@ -906,6 +911,7 @@ export class OrganizationComponent implements OnInit {
   onDepartmentSelectionChanged() {
     this.selectedRowsDepartment = this.departmentApi.getSelectedRows();
     this.rowSelection = 'multiple';
+
     if (this.selectedRowsDepartment.length === 1) {
       if (this.getDepartmentResponse.length === 1) {
         this.deleteNewDepartment = false;
@@ -925,28 +931,16 @@ export class OrganizationComponent implements OnInit {
         this.saveUpdateDepartmentPopup = 'Do you want to save?';
         this.btnSaveUpdateDepartmentPopup = 'SAVE';
         //this.nodeDepartmentSelect = "Update";
-      } else if (this.nodeDepartmentSelect === undefined) {
-        this.saveUpdateDepartment = "Save";
-        this.saveUpdateDepartmentPopup = 'Do you want to update?';
-        this.btnSaveUpdateDepartmentPopup = 'UPDATE';
-        this.editDepartment = false;
       }
-      else if (this.nodeDepartmentSelect === 'Update') {
-        this.editDepartment = false;
-        this.saveUpdateDepartment = 'Save';
-        this.btnSaveUpdateDepartmentPopup = 'UPDATE';
-        this.saveUpdateDepartmentPopup = 'Do you want to update?';
-      }
+
     }
     else if (this.selectedRowsDepartment.length >= 1) {
       this.editDepartment = false;
       this.deleteNewDepartment = false;
       this.addNewDepartmentRow = false;
-
     }
     else if (this.selectedRowsDepartment.length === 0) {
       this.deleteNewDepartment = true;
-      // this.departmentfilter =false;
     }
   }
   /////////////////////////////////////////////////////////
@@ -1020,7 +1014,7 @@ export class OrganizationComponent implements OnInit {
     this.nodeSelectButWhere = "Add";
     this.checkBoxDesignation = false;
     this.editDesignation = false;
-    let res = this.designationApi.updateRowData({ add: [{ LocationName: '', departmentName: '', designationCode: '', designationName: '', description: '' }], addIndex: 0 });
+    let res = this.designationApi.updateRowData({ add: [{ locationName: '', departmentName: '', designationCode: '', designationName: '', description: '' }], addIndex: 0 });
     res.add.forEach(function (rowNode) {
       console.log('Added Row Node', rowNode);
     });
