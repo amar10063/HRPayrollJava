@@ -96,16 +96,17 @@
 
 
 
-                      <div  class="row">
-                        <label  class="col-md-6 pull-right"></label>
-                        <span class=" col-md-6 pull-right loadmore">Showing results {{StartCountryNumber}} - {{ShowLimitedCountry}} Out of {{TotalCountry}}  
-                          <a  class="alink" href="#">Click to Load More </a>
+                      <div class="row">
+                        <label class="col-md-6 pull-right"></label>
+                        <span class=" col-md-6 pull-right loadmore">Showing results {{StartCountryNumber}} -
+                          {{ShowLimitedCountry}} Out of {{TotalCountry}}
+                          <a class="alink" href="#">Click to Load More </a>
                         </span>
 
                       </div>
                     </div>
-                
-          
+
+
                   </div>
                   <div id="state" class="container tab-pane fade">
 
@@ -152,41 +153,26 @@
                     <div class="clearfix"></div>
                     <div class="formBody clearfix pt-0 pb-2">
 
-                      <!-- Default -->
-                      <!-- <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData1"
-                      [columnDefs]="columnDefs1" [rowSelection]="rowSelection"
-                      [frameworkComponents]="frameworkComponents" [gridOptions]="gridOptions"
-                      (cellDoubleClicked)="rowEditingStarted($event)"
-                      (firstDataRendered)="onFirstDataRendered($event)"
-                      (selectionChanged)="onStateSelectionChanged($event)" (gridReady)="onStateGridReady($event)"
-                      (cellValueChanged)="onStateCellValueChanged($event)">
-                    </ag-grid-angular> -->
 
-                      <!-- <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData1"
-                        [columnDefs]="columnDefs1" [rowSelection]="rowSelection"
-                        [frameworkComponents]="frameworkComponents" [gridOptions]="gridOptions"
-                        (firstDataRendered)="onFirstDataRendered($event)"
-                        (selectionChanged)="onStateSelectionChanged($event)" (gridReady)="onStateGridReady($event)"
-                        (cellValueChanged)="onStateCellValueChanged($event)">
-                      </ag-grid-angular> -->
 
                       <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData1"
                         [singleClickEdit]="true" [frameworkComponents]="frameworkComponents" [columnDefs]="columnDefs1"
                         (firstDataRendered)="onFirstDataRendered($event)" [defaultColDef]="defaultColDef"
-                        [rowSelection]="rowSelection" (gridReady)="onStateGridReady($event)"  
-                        (selectionChanged)="onStateSelectionChanged($event)"   [gridOptions]="gridOptions"
+                        [rowSelection]="rowSelection" (gridReady)="onStateGridReady($event)"
+                        (selectionChanged)="onStateSelectionChanged($event)" [gridOptions]="gridOptions"
                         (cellDoubleClicked)="rowEditingStarted($event)"
                         (cellValueChanged)="onStateCellValueChanged($event)"></ag-grid-angular>
 
-                      <div  class="row">
-                          <label  class="col-md-6 pull-right"></label>
-                          <span class=" col-md-6 pull-right loadmore">Showing results 1 - {{ShowLimitedState}} Out of {{TotalState}}  
-                            <a  class="alink" href="#">Click to Load More </a>
-                          </span>
-                        </div>
+                      <div class="row">
+                        <label class="col-md-6 pull-right"></label>
+                        <span class=" col-md-6 pull-right loadmore">Showing results 1 - {{ShowLimitedState}} Out of
+                          {{TotalState}}
+                          <a class="alink" href="#">Click to Load More </a>
+                        </span>
+                      </div>
 
                     </div>
-                  
+
                   </div>
                   <div id="city" class="container tab-pane fade">
 
@@ -238,17 +224,18 @@
                       </ag-grid-angular>
 
 
-                      <div  class="row">
-                          <label  class="col-md-6 pull-right"></label>
-                          <span class=" col-md-6 pull-right loadmore">Showing results {{ShowCity}} - {{ShowLimitedCity}} Out of {{TotalCity}}  
-                            <a  class="alink" href="#">Click to Load More </a>
-                          </span>
+                      <div class="row">
+                        <label class="col-md-6 pull-right"></label>
+                        <span class=" col-md-6 pull-right loadmore">Showing results {{ShowCity}} - {{ShowLimitedCity}}
+                          Out of {{TotalCity}}
+                          <a class="alink" href="#">Click to Load More </a>
+                        </span>
 
-                        </div>
+                      </div>
                     </div>
-                   
-                  
-                  
+
+
+
                   </div>
                   <div id="postal" class="container tab-pane fade">
                     <div class="col-12 col-md-12 p-0">
@@ -297,19 +284,21 @@
                         [singleClickEdit]="true" [gridOptions]="gridOptions" (gridReady)="onPostalGridReady($event)"
                         [stopEditingWhenGridLosesFocus]="true" (selectionChanged)="onPostalSelectionChanged($event)"
                         (cellDoubleClicked)="rowPostalEditingStarted($event)"
-                        (firstDataRendered)="onFirstDataRendered($event)" (cellValueChanged)="onPostalCellValueChanged($event)">
+                        (firstDataRendered)="onFirstDataRendered($event)"
+                        (cellValueChanged)="onPostalCellValueChanged($event)">
                       </ag-grid-angular>
 
-                      <div  class="row">
-                          <label  class="col-md-6 pull-right"></label>
-                          <span class=" col-md-6 pull-right loadmore">Showing results 1 - {{ShowLimitedPostal}} Out of {{TotalPostal}}  
-                            <a  class="alink" href="#">Click to Load More </a>
-                          </span>
-                        </div>
+                      <div class="row">
+                        <label class="col-md-6 pull-right"></label>
+                        <span class=" col-md-6 pull-right loadmore">Showing results 1 - {{ShowLimitedPostal}} Out of
+                          {{TotalPostal}}
+                          <a class="alink" href="#">Click to Load More </a>
+                        </span>
+                      </div>
 
                     </div>
-                   
-                   
+
+
                   </div>
 
                 </div>

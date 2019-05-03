@@ -2086,7 +2086,6 @@ export class CountryComponent implements OnInit {
             this.deleteCountryToggleButton = true;
             this.rowData = this.countryDataResponse;
           }
-          //console.log(this.employeeeAddressResponse);
         }
 
 
