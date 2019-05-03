@@ -138,6 +138,7 @@ export class CountryComponent implements OnInit {
   selectAllCountryToggle = true;
   selectAllPostalToggle = true;
 
+  addStateCount = 0;
   addPostCount = 0;
    
 
@@ -223,7 +224,7 @@ export class CountryComponent implements OnInit {
 
       },
       { headerName: '', field: 'hidden', hide: true },
-      { headerName: '', field: 'stateID', hide: true }
+      { headerName: '', field: 'stateID', hide: true },
       { headerName: 'Description', field: 'description', tooltipField: 'description', sortable: true, filter: true, editable: false, Width: 150, minWidth: 50, maxWidth: 500, },
 
 
@@ -416,7 +417,7 @@ export class CountryComponent implements OnInit {
   rowNodeIndex: any;
   newDataTest;
 
-  rowEditingStarted(event) {
+  rowStateEditingStarted(event) {
     this.stateApi.getColumnDef('stateName').editable = true;
     this.stateApi.getColumnDef('description').editable = true;
     const selectedNodes = this.stateApi.getSelectedNodes();
@@ -424,7 +425,12 @@ export class CountryComponent implements OnInit {
     selectedData.map(node => this.newDataTest = node as Object);
     var res1 = this.stateApi.updateRowData({ remove: selectedData });
     let res = this.stateApi.updateRowData({ add: [{ stateName: this.newDataTest['stateName'], countryName: this.newDataTest['countryName'], description: this.newDataTest['description'], hidden: 'hidden', stateID: this.newDataTest['stateID'] }], addIndex: event.rowIndex });
-    this.rowNodeIndex = event.rowIndex;
+    // this.rowNodeIndex = event.rowIndex;
+
+    this.stateApi.startEditingCell({
+      rowIndex: event.rowIndex,
+      colKey: 'countryName'
+    });
   }
 
   rowCityEditingStarted(event) {
@@ -527,7 +533,6 @@ export class CountryComponent implements OnInit {
     });
   }
 
-  addStateCount = 0;
   onAddStatebyButton() {
 
     this.addStateCount++;
@@ -590,8 +595,6 @@ export class CountryComponent implements OnInit {
         }
       );
   }
-
-
 
   onSaveUpdateStateData() {
     this.stateApi.tabToNextCell();
@@ -694,8 +697,6 @@ export class CountryComponent implements OnInit {
     this.deleteStateToggleButton = true;
   }
 
- 
-
   onSaveUpdateState() {
     this.stateApi.tabToNextCell();
     alert(this.saveUpdateState);
@@ -710,8 +711,7 @@ export class CountryComponent implements OnInit {
   }
 
   onUpdateState() {
-    const universalJsonBody = new UniversalJsonBody();
-    const updateStateBody = new StateBody();
+    const universalJsonBody = new UniversalJsonBody();  
     const selectedNodes = this.stateApi.getSelectedNodes();
     const selectedData = selectedNodes.map(node => node.data);
     var dataTest: Object;
@@ -726,6 +726,7 @@ export class CountryComponent implements OnInit {
     }
     else {
       for (let selectedNode of selectedData) {
+        const updateStateBody = new StateBody();
         updateStateBody.stateName = selectedNode['stateName'];
         updateStateBody.description = selectedNode['description'];
         updateStateBody.countryId = this.selectedCountryId + '';
@@ -739,7 +740,7 @@ export class CountryComponent implements OnInit {
       this.allWeb.updateState(universalJsonBody)
         .subscribe(
           data => {
-            this.getStates();
+            // this.getStates();
             this.universalResponse = data;
             alert(this.universalResponse.MESSAGE);
             if (this.universalResponse.STATUS === 'Success') {
@@ -752,9 +753,7 @@ export class CountryComponent implements OnInit {
   }
 
   onStateFilterChange() {
-
     if (this.stateCheckedStatus === false) {
-
       this.stateApi.selectAll();
       this.stateFilter = true;
       this.stateCheckedStatus = true;
@@ -773,12 +772,11 @@ export class CountryComponent implements OnInit {
   onStateSelectionChanged(event) {
     this.selectedRowState = this.stateApi.getSelectedRows();
     const selectedNodes = this.stateApi.getSelectedNodes();
+    this.rowSelection = "multiple";
     const selectedData = selectedNodes.map(node => node.data);
     var dataTest: Object;
     selectedData.map(node => dataTest = node as Object);
     this.stateApi.stopEditing();
-
-    this.rowSelection = "multiple";
     if (this.selectedRowState.length === 1) {
       if (this.getStateResponse.length === 1) {
         this.deleteStateToggleButton = false;
@@ -791,7 +789,6 @@ export class CountryComponent implements OnInit {
         this.stateFilter = false;
         this.stateCheckedStatus = false;
         this.saveStateToggleButton = false;
-
       }
       // alert(this.nodeStateSelect);
       if (this.nodeStateSelect === 'Add') {
@@ -799,7 +796,6 @@ export class CountryComponent implements OnInit {
         // this.nodeStateSelect = 'Edit';
         this.saveUpdateAddressPopup = 'Do you want to save?';
         this.btnSaveUpdateAddressPopup = 'SAVE';
-
       } else if (this.nodeStateSelect === undefined) {
         this.saveUpdateState = 'Update';
         this.saveStateToggleButton = false;
@@ -817,7 +813,6 @@ export class CountryComponent implements OnInit {
       this.saveStateToggleButton = false;
       this.deleteStateToggleButton = false;
       this.addStateToggleButton = false;
-
     }
   }
 
