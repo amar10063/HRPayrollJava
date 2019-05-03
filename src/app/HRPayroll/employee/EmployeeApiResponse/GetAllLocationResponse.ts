@@ -3,5 +3,5 @@ export class GetAllLocationResponse {
     code: string;
     descriprion: string;
     id: number;
-
+    userId: string;
 }
