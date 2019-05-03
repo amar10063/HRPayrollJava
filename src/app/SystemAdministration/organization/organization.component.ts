@@ -331,6 +331,7 @@ export class OrganizationComponent implements OnInit {
     this.locationApi = params.api;
     this.columnApi = params.columnApi;
     this.locationApi.sizeColumnsToFit();
+    this.defaultColDef = { resizable: true };
   }
 
   onAddLocation() {
@@ -661,6 +662,7 @@ export class OrganizationComponent implements OnInit {
     this.departmentApi = params.api;
     this.departmentColumnApi = params.columnApi;
     this.departmentApi.sizeColumnsToFit();
+    
   }
   onDeleteDepartment() {
     const selectedNodes = this.departmentApi.getSelectedNodes();
