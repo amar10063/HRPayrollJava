@@ -61,12 +61,13 @@ export class LocationDropdownComponent implements INoRowsOverlayAngularComp {
   getAllDepartment(selectedLocationId): any {
     var locationBody = new UniversalBody();
     locationBody.userID = '1';
-    locationBody.locationID =selectedLocationId;
+    locationBody.locationID = selectedLocationId;
     this.countryService.getDepartmentDropDown(locationBody)
       .subscribe(
         data => {
           this.locationResponse = data;
           this.context.organizationParent.selectedDepartmentId = this.locationResponse[0].id;
+          console.log('selectedDepartmentId:   ' + this.context.organizationParent.selectedDepartmentId);
 
         }
 

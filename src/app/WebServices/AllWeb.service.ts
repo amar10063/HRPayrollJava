@@ -127,7 +127,6 @@ export class AllWeb {
     return this.httpClient.post<GetAllLocationResponse[]>(ServiceUrls.baseUrls + ServiceUrls.getDepartmentDropDown, JSON.stringify(getLocationBody), this.httpOptions);
   }
   updateLocation(jsonData: UniversalJsonBody): Observable<any> {
-    console.log("Dataaaaaaaaaa",jsonData);
     return this.httpClient.post<any>(ServiceUrls.baseUrls + ServiceUrls.UpdateLocation, JSON.stringify(jsonData), this.httpOptions);
   }
   getDepartment(departmentBody: GetAllDepartmentBody): Observable<GetAllLocationResponse[]> {
