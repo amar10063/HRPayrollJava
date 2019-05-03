@@ -2077,42 +2077,6 @@ getCountries() {
       this.savePostalToggleButton = true;
     }
 
-
-
-
-
-    // this.selectedRowPostal = this.postalApi.getSelectedRows();
-    // this.rowSelection = 'multiple';
-    // if (this.selectedRowPostal.length === 1) {
-    //   if (this.getPostalResponse.length === 1) {
-    //     this.deletePostalToggleButton = false;
-    //     this.postalFilter = true;
-    //     this.postalCheckedStatus = false;
-    //   }
-    //   else {
-
-    //     this.deletePostalToggleButton = false;
-    //     this.postalFilter = false;
-    //     this.postalCheckedStatus = false;
-    //   }
-    //   if (this.nodePostalSelect === 'Add') {
-    //     this.saveUpdatePostal = 'Save';
-    //     this.nodePostalSelect = 'Update';
-    //   } else if (this.nodePostalSelect === undefined) {
-    //     this.saveUpdatePostal = 'Update';
-
-    //     this.savePostalToggleButton = false;
-    //   }
-    //   else if (this.nodePostalSelect === 'Update') {
-    //     this.savePostalToggleButton = false;
-    //     this.saveUpdatePostal = 'Update';
-
-    //   }
-    // }
-    // else if (this.selectedRowPostal.length >= 1) {
-    //   this.savePostalToggleButton = true;
-
-    // }
   }
 
 }

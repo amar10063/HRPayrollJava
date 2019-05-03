@@ -1,7 +1,8 @@
 <div class="container-fluid gridBody">
 
   <div class="buttonCon pull-right">
-      <button type="button" class="btn templateBg" title="Back" data-toggle="modal" data-target="#myModalc" data-backdrop="static" data-keyboard="false"><img src="../assets/images/back-icon.png"
+    <button type="button" class="btn templateBg" title="Back" data-toggle="modal" data-target="#myModalc"
+      data-backdrop="static" data-keyboard="false"><img src="../assets/images/back-icon.png"
         alt="home" />countrypopup</button>
     <button type="button" class="btn templateBg" title="Back"><img src="../assets/images/back-icon.png"
         alt="home" />Back</button>
@@ -139,9 +140,9 @@
                             data-toggle="modal" data-target="#saveDataAddress"><i class="fa fa-save"
                               aria-hidden="true"></i>Save
                           </button>
-                          <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#addNew2" data-backdrop="static" data-keyboard="false"
-                            [disabled]="deleteStateToggleButton"><i class="fa fa-trash" aria-hidden="true"
-                              title="Delete"></i>Delete</button>
+                          <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#addNew2"
+                            data-backdrop="static" data-keyboard="false" [disabled]="deleteStateToggleButton"><i
+                              class="fa fa-trash" aria-hidden="true" title="Delete"></i>Delete</button>
                           <button type="button" class="payHeadBtn" title="Import"><i class="fa fa-upload"
                               aria-hidden="true"></i>Import</button>
                           <button type="button" class="payHeadBtn" title="Export"><i class="fa fa-download"
@@ -154,22 +155,42 @@
                     <div class="formBody clearfix pt-0 pb-2">
 
                       <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData1"
-                          [columnDefs]="columnDefs1" [defaultColDef]="defaultColDef" [animateRows]="true"
-                          [rowSelection]="rowSelection"  [frameworkComponents]="frameworkComponents"
-                          [singleClickEdit]="true" [gridOptions]="gridOptions" (gridReady)="onStateGridReady($event)"  
-                          [stopEditingWhenGridLosesFocus]="true" (selectionChanged)="onStateSelectionChanged($event)" 
-                          (cellDoubleClicked)="rowStateEditingStarted($event)" (firstDataRendered)="onFirstDataRendered($event)" 
-                          (cellValueChanged)="onStateCellValueChanged($event)"></ag-grid-angular>
-                       
-                      <div  class="row">
-                          <label  class="col-md-6 pull-right"></label>
-                          <span class=" col-md-6 pull-right loadmore">Showing results 1 - {{ShowLimitedState}} Out of {{TotalState}}  
-                            <a  class="alink" href="#">Click to Load More </a>
-                          </span>
-                        </div>
-      </div>
+                        [columnDefs]="columnDefs1" [defaultColDef]="defaultColDef" [animateRows]="true"
+                        [rowSelection]="rowSelection" [frameworkComponents]="frameworkComponents"
+                        [singleClickEdit]="true" [gridOptions]="gridOptions" (gridReady)="onStateGridReady($event)"
+                        [stopEditingWhenGridLosesFocus]="true" (selectionChanged)="onStateSelectionChanged($event)"
+                        (cellDoubleClicked)="rowStateEditingStarted($event)"
+                        (firstDataRendered)="onFirstDataRendered($event)"
+                        (cellValueChanged)="onStateCellValueChanged($event)"></ag-grid-angular>
 
+                      <div class="row">
+                        <label class="col-md-6 pull-right"></label>
+                        <span class=" col-md-6 pull-right loadmore">Showing results 1 - {{ShowLimitedState}} Out of
+                          {{TotalState}}
+                          <a class="alink" href="#">Click to Load More </a>
+                        </span>
+                      </div>
                     </div>
+
+                  </div>
+
+                </div>
+                <div id="city" class="container tab-pane fade">
+
+                  <div class="col-12 col-md-12 p-0">
+                    <div class="col-12 col-md-4 pull-left mt-3 ">
+                      <label for="Select All" class="col-4 col-md-3 pull-left p-0">Select All:</label>
+                      <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
+                        <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
+                          <label class="checkBox">
+                            <input type="checkbox" name="checkbox" (ngModelChange)="onCityFilterChange($event)"
+                              [ngModel]="cityFilter" [disabled]="selectAllCity">
+                            <span class="checkmark check1" title="Select All"></span> </label>
+                        </div>
+
+                      </div>
+                    </div>
+
                     <div id="city" class="container tab-pane fade">
 
                         <div class="col-12 col-md-12 p-0">
@@ -247,6 +268,7 @@
                               </div>
     
                             </div>
+
                           </div>
     
                           <div class="col-12 col-md-8 p-0 pull-left">
@@ -270,6 +292,7 @@
                           </div>
                           <div class="clearfix"></div>
                         </div>
+
                         <div class="clearfix"></div>
                         <div class="formBody clearfix pt-0 pb-2">
     
@@ -291,149 +314,89 @@
                               <a class="alink" href="#">Click to Load More </a>
                             </span>
                           </div>
-    
+
                         </div>
     
     
                       </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="formBody clearfix pt-0 pb-2">
+                      <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData"
+                        [rowClassRules]="rowClassRules" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef"
+                        [overlayNoRowsTemplate]="overlayNoRowsTemplate" [animateRows]="true"
+                        [rowSelection]="rowSelection" (selectionChanged)="onSelectionChanged($event)"
+                        (firstDataRendered)="onFirstDataRendered($event)" (gridReady)="onGridReady($event)">
+                      </ag-grid-angular>
+
+
+
+                      <div class="row">
+                        <label class="col-md-6 pull-right"></label>
+                        <span class=" col-md-6 pull-right loadmore">Showing results {{StartCountryNumber}} -
+                          {{ShowLimitedCountry}} Out of {{TotalCountry}}
+                          <a class="alink" href="#">Click to Load More </a>
+                        </span>
+
+                      </div>
+                    </div>
+
+
                   </div>
                
 
                 </div>
               </div>
+
+
             </div>
           </div>
-          <div class="modal datagridpopup" id="myModalc">
-              <div class="modal-dialog modal-lg" >
-                <div class="modal-content">
-                
-                
-                  <div class="modal-header">
-                    <h5 class="modal-title">Modal Heading</h5>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  </div>
-                  
-                  
-                  <div class="modal-body">
-                  <div class="row">
-                      <div id="country" class="container tab-pane active">
-                          <div class="col-12 col-md-12">
-                            <div id="Payrolloader" style="left: 380px; position: absolute; z-index: 9999; top: 210px;"
-                              *ngIf=isShowing>
-                              <img src="{{'assets/images/Spinner.gif'}}">
-                            </div>
-                          </div>
-                          <div class="col-12 col-md-12 p-0">
-                            <div class="col-12 col-md-4 pull-left mt-2 ">
-                              <label for="Select All" class="col-4 col-md-3 pull-left p-0">Select All:</label>
-                              <div class="formSelect clearfix col-8 col-md-8 pull-left pr-0">
-                                <div class="form-check checkCol col-6 col-md-6 pull-left p-0">
-                                  <label class="checkBox">
-      
-                                    <input type="checkbox" name="checkbox" (ngModelChange)="onCountryFilterChange($event)"
-                                      [ngModel]="countryFilter" [disabled]="selectAllCountryToggle">
-                                    <span class="checkmark check1" title="Select All"></span> </label>
-                                </div>
-      
-                              </div>
-                            </div>
-                            <div class="col-12 col-md-8 p-0 pull-left">
-                              <div class="buttonCon pull-right mt-1 mb-2 mr-1 ">
-                                <button type="button" class="payHeadBtn" 
-                                  [disabled]="addCountryToggleButton" title="Add New"><i class="fa fa-plus-square"
-                                    aria-hidden="true"></i>Add
-                                  New</button>
-      
-                                <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#saveDataAddress"
-                                  [disabled]="saveCountryToggleButton" title="Save"><i class="fa fa-save"
-                                    aria-hidden="true"></i>Save
-                                </button>
-                                <button type="button" class="payHeadBtn" data-toggle="modal" data-target="#addNew2"
-                                  [disabled]="deleteCountryToggleButton" title="Delete"><i class="fa fa-trash"
-                                    aria-hidden="true"></i>Delete</button>
-                                <button type="button" class="payHeadBtn" title="Import"><i class="fa fa-upload"
-                                    aria-hidden="true"></i>Import</button>
-                                <button type="button" class="payHeadBtn" title="Export"><i class="fa fa-download"
-                                    aria-hidden="true"></i>Export</button>
-                              </div>
-                            </div>
-                            <div class="clearfix"></div>
-                          </div>
-                          <div class="clearfix"></div>
-                          <div class="formBody clearfix pt-0 pb-2">
-                            <ag-grid-angular style="width:100%; height: 391px" class="ag-theme-balham" [rowData]="rowData"
-                              [rowClassRules]="rowClassRules" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef"
-                              [overlayNoRowsTemplate]="overlayNoRowsTemplate" [animateRows]="true"
-                              [rowSelection]="rowSelection" (selectionChanged)="onSelectionChanged($event)"
-                              (firstDataRendered)="onFirstDataRendered($event)" (gridReady)="onGridReady($event)">
-                            </ag-grid-angular>
-      
-      
-      
-                            <div  class="row">
-                              <label  class="col-md-6 pull-right"></label>
-                              <span class=" col-md-6 pull-right loadmore">Showing results {{StartCountryNumber}} - {{ShowLimitedCountry}} Out of {{TotalCountry}}  
-                                <a  class="alink" href="#">Click to Load More </a>
-                              </span>
-      
-                            </div>
-                          </div>
-                      
-                
-                        </div>
-  
-                      </div>
-                  </div>             
-               
-                  
-                </div>
+        </div> -->
+
+        <div class="modal fade" id="addNew2">
+          <div class="modal-dialog modal-dialog-centered" id="Div3">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title"><img src="../assets/images/del-icon.png" alt="Delete" /></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
               </div>
-            </div>
+              <div class="modal-body">
+                Are you sure you want to delete this?
+              </div>
+              <div class="modal-footer">
 
-          <div class="modal fade" id="addNew2">
-            <div class="modal-dialog modal-dialog-centered" id="Div3">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h4 class="modal-title"><img src="../assets/images/del-icon.png" alt="Delete" /></h4>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                  Are you sure you want to delete this?
-                </div>
-                <div class="modal-footer">
+                <button type="button" id="btnSave" class="btn btn-submit" onclick="" style="padding:4px;"
+                  data-dismiss="modal">CANCEL</button>
 
-                  <button type="button" id="btnSave" class="btn btn-submit" onclick="" style="padding:4px;"
-                    data-dismiss="modal">CANCEL</button>
-
-                  <button type="button" id="btnSave" class="btn btn-submit" (click)="universalDelete()"
-                    style="padding:4px;" data-dismiss="modal">DELETE</button>
-                </div>
+                <button type="button" id="btnSave" class="btn btn-submit" (click)="universalDelete()"
+                  style="padding:4px;" data-dismiss="modal">DELETE</button>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="modal fade" id="saveDataAddress">
-            <div class="modal-dialog modal-dialog-centered" id="Div3">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h4 class="modal-title"><img src="../assets/images/del-icon.png" alt="Delete" /></h4>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                  {{saveUpdateAddressPopup}}
-                </div>
-                <div class="modal-footer">
+        <div class="modal fade" id="saveDataAddress">
+          <div class="modal-dialog modal-dialog-centered" id="Div3">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title"><img src="../assets/images/del-icon.png" alt="Delete" /></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                {{saveUpdateAddressPopup}}
+              </div>
+              <div class="modal-footer">
 
-                  <button type="button" id="btnSave" class="btn btn-submit" onclick="" style="padding:4px;"
-                    data-dismiss="modal">CANCEL</button>
+                <button type="button" id="btnSave" class="btn btn-submit" onclick="" style="padding:4px;"
+                  data-dismiss="modal">CANCEL</button>
 
-                  <button type="button" id="btnSave" class="btn btn-submit" (click)="universalSaveAddress()"
-                    style="padding:4px;" data-dismiss="modal">{{btnSaveUpdateAddressPopup}}</button>
+                <button type="button" id="btnSave" class="btn btn-submit" (click)="universalSaveAddress()"
+                  style="padding:4px;" data-dismiss="modal">{{btnSaveUpdateAddressPopup}}</button>
 
 
-                </div>
               </div>
             </div>
           </div>
-
-         
+        </div>

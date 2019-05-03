@@ -308,7 +308,7 @@ export class OrganizationComponent implements OnInit {
     ];
     this.defaultColDef = { resizable: true };
     this.rowData2;
-    this.editType = 'fullRow'
+    this.editType = 'fullRow';
 
   }
   ngOnInit() {
