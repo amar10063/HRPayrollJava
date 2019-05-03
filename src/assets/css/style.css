@@ -2539,3 +2539,5 @@ text-align:center;
   .ag-theme-balham .ag-cell-inline-editing select, .ag-theme-balham .ag-popup-editor select {
     height: 100% !important; 
 }
+.datagridpopup h5{top:8px !important;}
+.datagridpopup .modal-body{padding:0px !important;    text-align: left;}
