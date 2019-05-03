@@ -223,7 +223,7 @@ export class CountryComponent implements OnInit {
 
       },
       { headerName: '', field: 'hidden', hide: true },
-      { headerName: '', field: 'stateID', hide: true }
+      { headerName: '', field: 'stateID', hide: true },
       { headerName: 'Description', field: 'description', tooltipField: 'description', sortable: true, filter: true, editable: false, Width: 150, minWidth: 50, maxWidth: 500, },
 
 
